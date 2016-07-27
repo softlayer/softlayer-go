@@ -83,7 +83,7 @@ import (
 const iface = `
 import (
     "time"
-    "github.ibm.com/riethm/softlayer-meta/datatypes"
+    "github.ibm.com/riethm/gopherlayer/datatypes"
 )
 
 {{range .}}type {{.Name|removePrefix}} interface {
@@ -137,12 +137,12 @@ func main() {
 	}
 
 
-	err = writeGoFile(*outputPath, "datatypes", "sl_datatypes", sortedMeta)
+	err = writeGoFile(*outputPath, "datatypes", "sl_datatypes", sortedMeta, datatype)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
 
-	err = writeGoFile(*outputPath, "softlayer", "sl_interfaces", sortedMeta)
+	err = writeGoFile(*outputPath, "softlayer", "sl_interfaces", sortedMeta, iface)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
@@ -218,11 +218,11 @@ func getSortedKeys(m map[string]Type) []string {
 }
 
 // Executes a template against the metadata structure, and generates a go source file with the result
-func writeGoFile(base string, pkg string, name string, meta []Type) error {
+func writeGoFile(base string, pkg string, name string, meta []Type, ts string) error {
 	var buf bytes.Buffer
 
 	t := template.New(pkg).Funcs(fMap)
-	template.Must(t.Parse(datatype)).Execute(&buf, meta)
+	template.Must(t.Parse(ts)).Execute(&buf, meta)
 	pretty, err := format.Source(buf.Bytes())
 	if err != nil {
 		panic(err)
