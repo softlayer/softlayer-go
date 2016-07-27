@@ -11,7 +11,7 @@ out
 .idea
 
 # Project files
-softlayer-go.iml
+*.iml
 
 # Architecture specific extensions/prefixes
 *.[568vq]
