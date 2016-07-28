@@ -132,13 +132,12 @@ func main() {
 		sortedMeta = append(sortedMeta, meta[name])
 	}
 
-
-	err = writeGoFile(*outputPath, "datatypes", "sl_datatypes", sortedMeta, datatype)
+	err = writePackage(*outputPath, "datatypes", sortedMeta, datatype)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
 
-	err = writeGoFile(*outputPath, "softlayer", "sl_interfaces", sortedMeta, iface)
+	err = writePackage(*outputPath, "softlayer", sortedMeta, iface)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
@@ -211,6 +210,34 @@ func getSortedKeys(m map[string]Type) []string {
 	sort.Strings(keys)
 
 	return keys
+}
+
+func writePackage(base string, pkg string, meta []Type, ts string) error {
+	var currPrefix string
+	var start int
+
+	for i, t := range meta {
+		components := strings.Split(RemovePrefix(t.Name), "_")
+
+		if i == 0 {
+			currPrefix = components[0]
+			continue
+		}
+
+		if components[0] != currPrefix {
+			err := writeGoFile(base, pkg, currPrefix, meta[start:i], ts)
+			if err != nil {
+				return err
+			}
+
+			currPrefix = components[0]
+			start = i
+		}
+	}
+
+	writeGoFile(base, pkg, currPrefix, meta[start:], ts)
+
+	return nil
 }
 
 // Executes a template against the metadata structure, and generates a go source file with the result
