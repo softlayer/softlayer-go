@@ -2,6 +2,7 @@ package softlayer
 
 import (
 	"time"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 )
 
@@ -6138,5 +6139,3 @@ type Virtual_Storage_Repository interface {
 type Virtual_Storage_Repository_Type interface {
 	Entity
 }
-
-

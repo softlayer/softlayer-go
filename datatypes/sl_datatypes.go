@@ -1,8 +1,6 @@
 package datatypes
 
-import (
-	"time"
-)
+import "time"
 
 type McAfee_Epolicy_Orchestrator_Version36_Agent_Details struct {
 	Entity
@@ -12315,5 +12313,3 @@ type Virtual_Storage_Repository_Type struct {
 	StorageRepositories    []Virtual_Storage_Repository `json:"storageRepositories:omitempty"`
 	StorageRepositoryCount *uint                        `json:"storageRepositoryCount:omitempty"`
 }
-
-

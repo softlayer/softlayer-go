@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+	"golang.org/x/tools/imports"
 )
 
 type Type struct {
@@ -62,10 +63,7 @@ var fMap = template.FuncMap{
 	"titleCase":         strings.Title,         // TitleCase the argument
 }
 
-const datatype = `
-import (
-    "time"
-)
+const datatype = `package datatypes
 
 {{range .}}type {{.Name|removePrefix}} struct {
     {{.Base|removePrefix}}
@@ -78,11 +76,7 @@ import (
 {{end}}
 `
 
-const iface = `
-import (
-    "time"
-    "github.ibm.com/riethm/gopherlayer/datatypes"
-)
+const iface = `package softlayer
 
 {{range .}}type {{.Name|removePrefix}} interface {
     {{.Base|removePrefix}}
@@ -217,21 +211,27 @@ func getSortedKeys(m map[string]Type) []string {
 
 // Executes a template against the metadata structure, and generates a go source file with the result
 func writeGoFile(base string, pkg string, name string, meta []Type, ts string) error {
-	var buf bytes.Buffer
+	filename := base + "/" + pkg + "/" + name + ".go"
 
+	// Generate the source
+	var buf bytes.Buffer
 	t := template.New(pkg).Funcs(fMap)
 	template.Must(t.Parse(ts)).Execute(&buf, meta)
-	pretty, err := format.Source(buf.Bytes())
+
+	// Add the imports
+	src, err := imports.Process(filename, buf.Bytes(), &imports.Options{})
+
+	// Format
+	pretty, err := format.Source(src)
 	if err != nil {
 		panic(err)
 	}
 
-	f, err := os.Create(base + "/" + pkg + "/" + name + ".go")
+	f, err := os.Create(filename)
 	if err != nil {
 		return fmt.Errorf("Error creating file: %s", err)
 	}
 	defer f.Close()
-	fmt.Fprintf(f, "package %s\n", pkg)
 	fmt.Fprintf(f, "%s", pretty)
 
 	return nil
