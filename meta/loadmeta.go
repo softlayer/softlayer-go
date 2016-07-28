@@ -224,7 +224,7 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 	// Format
 	pretty, err := format.Source(src)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("Error while formatting source: %s", err)
 	}
 
 	f, err := os.Create(filename)
