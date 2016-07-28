@@ -84,6 +84,9 @@ const iface = `package softlayer
 
     {{range .Methods}}{{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}error)
     {{end}}
+
+    {{range .Properties}}{{if .Form|eq "relational"}}Get{{.Name|titleCase}}() ({{.Type|convertType|prefixWithPackage "datatypes"}}, error)
+    {{end}}{{end}}
 }
 
 {{end}}
