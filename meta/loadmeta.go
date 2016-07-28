@@ -73,7 +73,8 @@ import (
 {{range .}}type {{.Name|removePrefix}} struct {
     {{.Base|removePrefix}}
 
-    {{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}
+    {{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}` +
+	"`json:\"{{.Name}}:omitempty\"`" + `
     {{end}}
 }
 
