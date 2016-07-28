@@ -43,9 +43,6 @@ type Method struct {
 	Filterable bool        `json:"filterable"`
 	Maskable   bool        `json:"maskable"`
 	Parameters []Parameter `json:"parameters"`
-
-	// Whether the return type is void
-	TypeVoid bool
 }
 
 type Parameter struct {
