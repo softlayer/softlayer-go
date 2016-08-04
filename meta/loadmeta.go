@@ -62,6 +62,7 @@ var fMap = template.FuncMap{
 	"removePrefix":      RemovePrefix,          // Remove 'SoftLayer_' prefix. if it exists
 	"removeReserved":    RemoveReservedWords,   // Substitute language-reserved identifiers
 	"titleCase":         strings.Title,         // TitleCase the argument
+	"desnake":           Desnake,               // Remove '_' from Snake_Case
 }
 
 const datatype = `package datatypes
@@ -70,24 +71,40 @@ const datatype = `package datatypes
     {{.Base|removePrefix}}
 
     {{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}` +
-	"`json:\"{{.Name}}:omitempty\"`" + `
+	"`json:\"{{.Name}},omitempty\"`" + `
     {{end}}
 }
 
 {{end}}
 `
+const service = `package service
 
-const iface = `package softlayer
+{{range .}}{{$base := .Name|removePrefix}}
+    type {{$base}} struct {
+        Session *Session
+        Options
+    }
 
-{{range .}}type {{.Name|removePrefix}} interface {
-    {{.Base|removePrefix}}
+    func (r *Session) Get{{$base | desnake}}Service() {{$base}} {
+        return {{$base}}{Session: r}
+    }
 
-    {{range .Methods}}{{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}error)
+    {{range .Methods}}func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
+        {{if .Type|eq "void"}}var resp datatypes.Void
+        {{end}}{{if len .Parameters | lt 0}}params := []interface{}{
+            {{range .Parameters}}{{.Name|removeReserved}},
+            {{end}}
+        }
+        {{end}}err = invokeMethod({{if len .Parameters | lt 0}}params{{else}}nil{{end}}, r.Session, &r.Options, &resp)
+	return
+    }
     {{end}}
 
-    {{range .Properties}}{{if .Form|eq "relational"}}Get{{.Name|titleCase}}() ({{.Type|convertType|prefixWithPackage "datatypes"}}, error)
+    {{range .Properties}}{{if .Form|eq "relational"}}func (r *{{$base}}) Get{{.Name|titleCase}}() (resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, err error) {
+        err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+    }
     {{end}}{{end}}
-}
 
 {{end}}
 `
@@ -116,12 +133,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = clearTargetDirs(*outputPath, []string{"datatypes", "softlayer", "services"})
-	if err != nil {
-		fmt.Printf("Error preparing target directories: %s", err)
-		os.Exit(1)
-	}
-
 	// Build an array of Types, sorted by name
 	// This will ensure consistency in the order that code is later emitted
 	keys := getSortedKeys(meta)
@@ -137,7 +148,7 @@ func main() {
 		fmt.Printf("Error writing to file: %s", err)
 	}
 
-	err = writePackage(*outputPath, "softlayer", sortedMeta, iface)
+	err = writePackage(*outputPath, "service", sortedMeta, service)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
@@ -200,6 +211,12 @@ func RemoveReservedWords(args ...interface{}) string {
 	return n
 }
 
+// Remove '_' from Snake_Case values
+func Desnake(args ...interface{}) string {
+	s := args[0].(string)
+	return strings.Replace(s, "_", "", -1)
+}
+
 // private
 
 func getSortedKeys(m map[string]Type) []string {
@@ -242,15 +259,23 @@ func writePackage(base string, pkg string, meta []Type, ts string) error {
 
 // Executes a template against the metadata structure, and generates a go source file with the result
 func writeGoFile(base string, pkg string, name string, meta []Type, ts string) error {
-	filename := base + "/" + pkg + "/" + name + ".go"
+	filename := base + "/" + pkg + "/" + strings.ToLower(name) + ".go"
 
 	// Generate the source
 	var buf bytes.Buffer
 	t := template.New(pkg).Funcs(fMap)
 	template.Must(t.Parse(ts)).Execute(&buf, meta)
 
+	/*if pkg == "service" && name == "Account"{
+		fmt.Println(string(buf.String()))
+		os.Exit(0)
+	}*/
+
 	// Add the imports
 	src, err := imports.Process(filename, buf.Bytes(), &imports.Options{})
+	if err != nil {
+		fmt.Printf("Error processing imports: %s", err)
+	}
 
 	// Format
 	pretty, err := format.Source(src)
@@ -264,22 +289,6 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 	}
 	defer f.Close()
 	fmt.Fprintf(f, "%s", pretty)
-
-	return nil
-}
-
-func clearTargetDirs(base string, dirs []string) error {
-	for _, d := range dirs {
-		err := os.RemoveAll(base + "/" + d)
-		if err != nil {
-			return fmt.Errorf("Unable to remove %s directory: %s", d, err)
-		}
-
-		err = os.Mkdir(base+"/"+d, 0755)
-		if err != nil {
-			return fmt.Errorf("Unable to create %s directory: %s", d, err)
-		}
-	}
 
 	return nil
 }
