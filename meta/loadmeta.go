@@ -1,3 +1,19 @@
+/**
+ * Copyright 2016 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package main
 
 import (
@@ -6,14 +22,13 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
+	"golang.org/x/tools/imports"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"sort"
 	"strings"
 	"text/template"
-
-	"golang.org/x/tools/imports"
 )
 
 type Type struct {
@@ -65,49 +80,69 @@ var fMap = template.FuncMap{
 	"desnake":           Desnake,               // Remove '_' from Snake_Case
 }
 
-const datatype = `package datatypes
+const license = `/**
+ * Copyright 2016 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ `
+
+var datatype = fmt.Sprintf(`%s
+package datatypes
 
 {{range .}}type {{.Name|removePrefix}} struct {
-    {{.Base|removePrefix}}
+	{{.Base|removePrefix}}
 
-    {{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}` +
-	"`json:\"{{.Name}},omitempty\"`" + `
-    {{end}}
+	{{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}`+
+	"`json:\"{{.Name}},omitempty\"`"+`
+	{{end}}
 }
 
 {{end}}
-`
-const service = `package service
+`, license)
+
+var service = fmt.Sprintf(`%s
+package service
 
 {{range .}}{{$base := .Name|removePrefix}}
-    type {{$base}} struct {
-        Session *Session
-        Options
-    }
+	type {{$base}} struct {
+		Session *Session
+		Options
+	}
 
-    func (r *Session) Get{{$base | desnake}}Service() {{$base}} {
-        return {{$base}}{Session: r}
-    }
+	func (r *Session) Get{{$base | desnake}}Service() {{$base}} {
+		return {{$base}}{Session: r}
+	}
 
-    {{range .Methods}}func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
-        {{if .Type|eq "void"}}var resp datatypes.Void
-        {{end}}{{if len .Parameters | lt 0}}params := []interface{}{
-            {{range .Parameters}}{{.Name|removeReserved}},
-            {{end}}
-        }
-        {{end}}err = invokeMethod({{if len .Parameters | lt 0}}params{{else}}nil{{end}}, r.Session, &r.Options, &resp)
+	{{range .Methods}}func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
+		{{if .Type|eq "void"}}var resp datatypes.Void
+		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
+			{{range .Parameters}}{{.Name|removeReserved}},
+			{{end}}
+		}
+		{{end}}err = invokeMethod({{if len .Parameters | lt 0}}params{{else}}nil{{end}}, r.Session, &r.Options, &resp)
 	return
-    }
-    {{end}}
+	}
+	{{end}}
 
-    {{range .Properties}}{{if .Form|eq "relational"}}func (r *{{$base}}) Get{{.Name|titleCase}}() (resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, err error) {
-        err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	{{range .Properties}}{{if .Form|eq "relational"}}func (r *{{$base}}) Get{{.Name|titleCase}}() (resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, err error) {
+		err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-    }
-    {{end}}{{end}}
+	}
+	{{end}}{{end}}
 
 {{end}}
-`
+`, license)
 
 func main() {
 	var meta map[string]Type
@@ -272,7 +307,7 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 	}*/
 
 	// Add the imports
-	src, err := imports.Process(filename, buf.Bytes(), &imports.Options{})
+	src, err := imports.Process(filename, buf.Bytes(), &imports.Options{Comments: true})
 	if err != nil {
 		fmt.Printf("Error processing imports: %s", err)
 	}

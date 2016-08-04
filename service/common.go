@@ -1,13 +1,29 @@
+/**
+ * Copyright 2016 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package service
 
 import (
-	"strconv"
-	"encoding/json"
-	"runtime"
-	"strings"
-	"fmt"
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"reflect"
+	"runtime"
+	"strconv"
+	"strings"
 )
 
 type Options struct {
@@ -143,7 +159,7 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	}
 
 	if apiMethod != "getObject" && apiMethod != "deleteObject" && apiMethod != "createObject" &&
-	apiMethod != "createObjects" && apiMethod != "editObject" && apiMethod != "editObjects" {
+		apiMethod != "createObjects" && apiMethod != "editObject" && apiMethod != "editObjects" {
 		path = path + "/" + apiMethod
 	}
 
