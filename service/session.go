@@ -28,6 +28,7 @@ type Session struct {
 	UserName string
 	ApiKey   string
 	Endpoint string
+	Debug    bool
 }
 
 func (r *Session) String() string {

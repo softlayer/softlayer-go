@@ -29,6 +29,8 @@ import (
 func main() {
 	session := service.NewSession("username", "apikey") // default endpoint
 
+	session.Debug = true
+
 	// List all Virtual Guests for an account
 	//doListAccountVMsTest(&session)
 

@@ -24,6 +24,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"log"
 )
 
 type Options struct {
@@ -167,8 +168,10 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 
 	path = path + queryString(options)
 
-	fmt.Printf("Path: %s\n", path)
-	fmt.Printf("Parameters: %s\n", parameters)
+	if session.Debug {
+		log.Println("[DEBUG] Path: ", path)
+		log.Println("[DEBUG] Parameters: ", string(parameters))
+	}
 
 	resp, code, err := makeHttpRequest(
 		session,
