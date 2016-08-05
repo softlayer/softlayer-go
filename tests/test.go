@@ -22,6 +22,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/service"
 	"github.ibm.com/riethm/gopherlayer/sl"
+	"reflect"
 	"time"
 )
 
@@ -29,16 +30,19 @@ func main() {
 	session := service.NewSession("username", "apikey") // default endpoint
 
 	// List all Virtual Guests for an account
-	doListAccountVMsTest(&session)
+	//doListAccountVMsTest(&session)
 
 	// Execute a remote script on a Virtual Guest
-	doExecuteRemoteScriptTest(&session)
+	//doExecuteRemoteScriptTest(&session)
 
 	// Example: Provision and destroy a Virtual Guest
-	doCreateVMTest(&session)
+	//doCreateVMTest(&session)
 
 	// Example: Get disk usage metrics by date
-	doGetDiskUsageMetricsTest(&session)
+	//doGetDiskUsageMetricsTest(&session)
+
+	// Example: Get the last bill date
+	//doGetLatestBillDate(&session)
 }
 
 func doListAccountVMsTest(session *service.Session) {
@@ -147,4 +151,13 @@ func doGetDiskUsageMetricsTest(session *service.Session) {
 	if len(data) > 0 {
 		fmt.Printf("item.DateTime = %s\n", data[0].DateTime)
 	}
+}
+
+func doGetLatestBillDate(session *service.Session) {
+	service := session.GetAccountService()
+
+	d, _ := service.GetLatestBillDate()
+
+	fmt.Printf("date of last bill: %s\n", d)
+	fmt.Printf("type of date field: %s\n", reflect.TypeOf(d))
 }
