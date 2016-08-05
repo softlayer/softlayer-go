@@ -84,24 +84,6 @@ func (r *Auxiliary_Notification_Emergency) GetStatus() (resp datatypes.Auxiliary
 	return
 }
 
-type Auxiliary_Notification_Emergency_Signature struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAuxiliaryNotificationEmergencySignatureService() Auxiliary_Notification_Emergency_Signature {
-	return Auxiliary_Notification_Emergency_Signature{Session: r}
-}
-
-type Auxiliary_Notification_Emergency_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAuxiliaryNotificationEmergencyStatusService() Auxiliary_Notification_Emergency_Status {
-	return Auxiliary_Notification_Emergency_Status{Session: r}
-}
-
 type Auxiliary_Press_Release struct {
 	Session *Session
 	Options
@@ -276,15 +258,6 @@ func (r *Auxiliary_Press_Release_Media_Partner_Press_Release) GetMediaPartners()
 func (r *Auxiliary_Press_Release_Media_Partner_Press_Release) GetPressReleases() (resp []datatypes.Auxiliary_Press_Release, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Auxiliary_Shipping_Courier struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAuxiliaryShippingCourierService() Auxiliary_Shipping_Courier {
-	return Auxiliary_Shipping_Courier{Session: r}
 }
 
 type Auxiliary_Shipping_Courier_Type struct {

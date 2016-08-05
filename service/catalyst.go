@@ -18,15 +18,6 @@ package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
-type Catalyst_Affiliate struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetCatalystAffiliateService() Catalyst_Affiliate {
-	return Catalyst_Affiliate{Session: r}
-}
-
 type Catalyst_Company_Type struct {
 	Session *Session
 	Options
@@ -113,31 +104,4 @@ func (r *Catalyst_Enrollment) GetIsActiveFlag() (resp bool, err error) {
 func (r *Catalyst_Enrollment) GetRepresentative() (resp datatypes.User_Employee, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Catalyst_Enrollment_Request struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetCatalystEnrollmentRequestService() Catalyst_Enrollment_Request {
-	return Catalyst_Enrollment_Request{Session: r}
-}
-
-func (r *Catalyst_Enrollment_Request) GetAffiliate() (resp datatypes.Catalyst_Affiliate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Catalyst_Enrollment_Request) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Catalyst_Enrollment_Request_Container_AnswerOption struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetCatalystEnrollmentRequestContainerAnswerOptionService() Catalyst_Enrollment_Request_Container_AnswerOption {
-	return Catalyst_Enrollment_Request_Container_AnswerOption{Session: r}
 }

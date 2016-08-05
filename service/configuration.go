@@ -18,15 +18,6 @@ package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
-type Configuration_Storage_Filesystem_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationStorageFilesystemTypeService() Configuration_Storage_Filesystem_Type {
-	return Configuration_Storage_Filesystem_Type{Session: r}
-}
-
 type Configuration_Storage_Group_Array_Type struct {
 	Session *Session
 	Options
@@ -46,38 +37,6 @@ func (r *Configuration_Storage_Group_Array_Type) GetObject() (resp datatypes.Con
 }
 
 func (r *Configuration_Storage_Group_Array_Type) GetHardwareComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Configuration_Storage_Group_Order struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationStorageGroupOrderService() Configuration_Storage_Group_Order {
-	return Configuration_Storage_Group_Order{Session: r}
-}
-
-func (r *Configuration_Storage_Group_Order) GetArrayType() (resp datatypes.Configuration_Storage_Group_Array_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Configuration_Storage_Group_Order) GetBillingOrderItem() (resp datatypes.Billing_Order_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Configuration_Storage_Group_Template_Group struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationStorageGroupTemplateGroupService() Configuration_Storage_Group_Template_Group {
-	return Configuration_Storage_Group_Template_Group{Session: r}
-}
-
-func (r *Configuration_Storage_Group_Template_Group) GetType() (resp datatypes.Configuration_Storage_Group_Array_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -162,20 +121,6 @@ func (r *Configuration_Template) GetUser() (resp datatypes.User_Customer, err er
 	return
 }
 
-type Configuration_Template_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationTemplateAttributeService() Configuration_Template_Attribute {
-	return Configuration_Template_Attribute{Session: r}
-}
-
-func (r *Configuration_Template_Attribute) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Configuration_Template_Section struct {
 	Session *Session
 	Options
@@ -231,20 +176,6 @@ func (r *Configuration_Template_Section) GetTemplate() (resp datatypes.Configura
 	return
 }
 
-type Configuration_Template_Section_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationTemplateSectionAttributeService() Configuration_Template_Section_Attribute {
-	return Configuration_Template_Section_Attribute{Session: r}
-}
-
-func (r *Configuration_Template_Section_Attribute) GetConfigurationSection() (resp datatypes.Configuration_Template_Section, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Configuration_Template_Section_Definition struct {
 	Session *Session
 	Options
@@ -282,33 +213,6 @@ func (r *Configuration_Template_Section_Definition) GetSection() (resp datatypes
 func (r *Configuration_Template_Section_Definition) GetValueType() (resp datatypes.Configuration_Template_Section_Definition_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Configuration_Template_Section_Definition_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationTemplateSectionDefinitionAttributeService() Configuration_Template_Section_Definition_Attribute {
-	return Configuration_Template_Section_Definition_Attribute{Session: r}
-}
-
-func (r *Configuration_Template_Section_Definition_Attribute) GetAttributeType() (resp datatypes.Configuration_Template_Section_Definition_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Configuration_Template_Section_Definition_Attribute) GetConfigurationDefinition() (resp datatypes.Configuration_Template_Section_Definition, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Configuration_Template_Section_Definition_Attribute_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetConfigurationTemplateSectionDefinitionAttributeTypeService() Configuration_Template_Section_Definition_Attribute_Type {
-	return Configuration_Template_Section_Definition_Attribute_Type{Session: r}
 }
 
 type Configuration_Template_Section_Definition_Group struct {

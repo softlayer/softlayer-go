@@ -96,51 +96,6 @@ func (r *Virtual_Disk_Image) GetType() (resp datatypes.Virtual_Disk_Image_Type, 
 	return
 }
 
-type Virtual_Disk_Image_Software struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualDiskImageSoftwareService() Virtual_Disk_Image_Software {
-	return Virtual_Disk_Image_Software{Session: r}
-}
-
-func (r *Virtual_Disk_Image_Software) GetDiskImage() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Disk_Image_Software) GetPasswords() (resp []datatypes.Virtual_Disk_Image_Software_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Disk_Image_Software) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Disk_Image_Software_Password struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualDiskImageSoftwarePasswordService() Virtual_Disk_Image_Software_Password {
-	return Virtual_Disk_Image_Software_Password{Session: r}
-}
-
-func (r *Virtual_Disk_Image_Software_Password) GetSoftware() (resp datatypes.Virtual_Disk_Image_Software, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Disk_Image_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualDiskImageTypeService() Virtual_Disk_Image_Type {
-	return Virtual_Disk_Image_Type{Session: r}
-}
-
 type Virtual_Guest struct {
 	Session *Session
 	Options
@@ -1088,91 +1043,6 @@ func (r *Virtual_Guest) GetVirtualRackName() (resp string, err error) {
 	return
 }
 
-type Virtual_Guest_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestAttributeService() Virtual_Guest_Attribute {
-	return Virtual_Guest_Attribute{Session: r}
-}
-
-func (r *Virtual_Guest_Attribute) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Attribute) GetType() (resp datatypes.Virtual_Guest_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Guest_Attribute_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestAttributeTypeService() Virtual_Guest_Attribute_Type {
-	return Virtual_Guest_Attribute_Type{Session: r}
-}
-
-type Virtual_Guest_Attribute_UserData struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestAttributeUserDataService() Virtual_Guest_Attribute_UserData {
-	return Virtual_Guest_Attribute_UserData{Session: r}
-}
-
-type Virtual_Guest_Block_Device struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestBlockDeviceService() Virtual_Guest_Block_Device {
-	return Virtual_Guest_Block_Device{Session: r}
-}
-
-func (r *Virtual_Guest_Block_Device) GetDiskImage() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device) GetStatus() (resp datatypes.Virtual_Guest_Block_Device_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Guest_Block_Device_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestBlockDeviceStatusService() Virtual_Guest_Block_Device_Status {
-	return Virtual_Guest_Block_Device_Status{Session: r}
-}
-
-type Virtual_Guest_Block_Device_Template struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestBlockDeviceTemplateService() Virtual_Guest_Block_Device_Template {
-	return Virtual_Guest_Block_Device_Template{Session: r}
-}
-
-func (r *Virtual_Guest_Block_Device_Template) GetDiskImage() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template) GetGroup() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Virtual_Guest_Block_Device_Template_Group struct {
 	Session *Session
 	Options
@@ -1353,33 +1223,6 @@ func (r *Virtual_Guest_Block_Device_Template_Group) GetTransaction() (resp datat
 	return
 }
 
-type Virtual_Guest_Block_Device_Template_Group_Accounts struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestBlockDeviceTemplateGroupAccountsService() Virtual_Guest_Block_Device_Template_Group_Accounts {
-	return Virtual_Guest_Block_Device_Template_Group_Accounts{Session: r}
-}
-
-func (r *Virtual_Guest_Block_Device_Template_Group_Accounts) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group_Accounts) GetGroup() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Guest_Block_Device_Template_Group_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestBlockDeviceTemplateGroupStatusService() Virtual_Guest_Block_Device_Template_Group_Status {
-	return Virtual_Guest_Block_Device_Template_Group_Status{Session: r}
-}
-
 type Virtual_Guest_Boot_Parameter struct {
 	Session *Session
 	Options
@@ -1508,51 +1351,6 @@ func (r *Virtual_Guest_Network_Component) GetRouter() (resp datatypes.Hardware_R
 func (r *Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Virtual_Guest_Network_Component_IpAddress struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestNetworkComponentIpAddressService() Virtual_Guest_Network_Component_IpAddress {
-	return Virtual_Guest_Network_Component_IpAddress{Session: r}
-}
-
-func (r *Virtual_Guest_Network_Component_IpAddress) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Network_Component_IpAddress) GetNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Guest_Power_State struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestPowerStateService() Virtual_Guest_Power_State {
-	return Virtual_Guest_Power_State{Session: r}
-}
-
-type Virtual_Guest_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestStatusService() Virtual_Guest_Status {
-	return Virtual_Guest_Status{Session: r}
-}
-
-type Virtual_Guest_SupplementalCreateObjectOptions struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualGuestSupplementalCreateObjectOptionsService() Virtual_Guest_SupplementalCreateObjectOptions {
-	return Virtual_Guest_SupplementalCreateObjectOptions{Session: r}
 }
 
 type Virtual_Host struct {
@@ -1736,20 +1534,6 @@ func (r *Virtual_Storage_Repository) GetPublicImageBillingItem() (resp datatypes
 	return
 }
 func (r *Virtual_Storage_Repository) GetType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Virtual_Storage_Repository_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetVirtualStorageRepositoryTypeService() Virtual_Storage_Repository_Type {
-	return Virtual_Storage_Repository_Type{Session: r}
-}
-
-func (r *Virtual_Storage_Repository_Type) GetStorageRepositories() (resp []datatypes.Virtual_Storage_Repository, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

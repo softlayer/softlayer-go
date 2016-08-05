@@ -1359,20 +1359,6 @@ func (r *Account) GetVirtualStoragePublicRepositories() (resp []datatypes.Virtua
 	return
 }
 
-type Account_AbuseEmail struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAbuseEmailService() Account_AbuseEmail {
-	return Account_AbuseEmail{Session: r}
-}
-
-func (r *Account_AbuseEmail) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Account_Address struct {
 	Session *Session
 	Options
@@ -1534,82 +1520,6 @@ func (r *Account_Agreement) GetTopLevelBillingItems() (resp []datatypes.Billing_
 	return
 }
 
-type Account_Agreement_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAgreementStatusService() Account_Agreement_Status {
-	return Account_Agreement_Status{Session: r}
-}
-
-type Account_Agreement_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAgreementTypeService() Account_Agreement_Type {
-	return Account_Agreement_Type{Session: r}
-}
-
-type Account_Attachment_Employee struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAttachmentEmployeeService() Account_Attachment_Employee {
-	return Account_Attachment_Employee{Session: r}
-}
-
-func (r *Account_Attachment_Employee) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Attachment_Employee) GetEmployee() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Attachment_Employee) GetEmployeeRole() (resp datatypes.Account_Attachment_Employee_Role, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Account_Attachment_Employee_Role struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAttachmentEmployeeRoleService() Account_Attachment_Employee_Role {
-	return Account_Attachment_Employee_Role{Session: r}
-}
-
-type Account_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAttributeService() Account_Attribute {
-	return Account_Attribute{Session: r}
-}
-
-func (r *Account_Attribute) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Attribute) GetAccountAttributeType() (resp datatypes.Account_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Account_Attribute_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAttributeTypeService() Account_Attribute_Type {
-	return Account_Attribute_Type{Session: r}
-}
-
 type Account_Authentication_Attribute struct {
 	Session *Session
 	Options
@@ -1653,24 +1563,6 @@ func (r *Account_Authentication_Attribute_Type) GetAllObjects() (resp []datatype
 func (r *Account_Authentication_Attribute_Type) GetObject() (resp datatypes.Account_Authentication_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Account_Authentication_OpenIdConnect_Option struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAuthenticationOpenIdConnectOptionService() Account_Authentication_OpenIdConnect_Option {
-	return Account_Authentication_OpenIdConnect_Option{Session: r}
-}
-
-type Account_Authentication_OpenIdConnect_RegistrationInformation struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountAuthenticationOpenIdConnectRegistrationInformationService() Account_Authentication_OpenIdConnect_RegistrationInformation {
-	return Account_Authentication_OpenIdConnect_RegistrationInformation{Session: r}
 }
 
 type Account_Authentication_Saml struct {
@@ -1718,15 +1610,6 @@ func (r *Account_Authentication_Saml) GetAttributes() (resp []datatypes.Account_
 	return
 }
 
-type Account_Classification_Group_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountClassificationGroupTypeService() Account_Classification_Group_Type {
-	return Account_Classification_Group_Type{Session: r}
-}
-
 type Account_Contact struct {
 	Session *Session
 	Options
@@ -1770,15 +1653,6 @@ func (r *Account_Contact) GetAccount() (resp datatypes.Account, err error) {
 func (r *Account_Contact) GetType() (resp datatypes.Account_Contact_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Account_Contact_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountContactTypeService() Account_Contact_Type {
-	return Account_Contact_Type{Session: r}
 }
 
 type Account_Historical_Report struct {
@@ -1859,24 +1733,6 @@ func (r *Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *
 	return
 }
 
-type Account_Link struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkService() Account_Link {
-	return Account_Link{Session: r}
-}
-
-func (r *Account_Link) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Link) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Account_Link_Bluemix struct {
 	Session *Session
 	Options
@@ -1950,60 +1806,6 @@ func (r *Account_Link_OpenStack) GetObject() (resp datatypes.Account_Link_OpenSt
 func (r *Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Account_Link_OpenStack_DomainCreationDetails struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkOpenStackDomainCreationDetailsService() Account_Link_OpenStack_DomainCreationDetails {
-	return Account_Link_OpenStack_DomainCreationDetails{Session: r}
-}
-
-type Account_Link_OpenStack_LinkRequest struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkOpenStackLinkRequestService() Account_Link_OpenStack_LinkRequest {
-	return Account_Link_OpenStack_LinkRequest{Session: r}
-}
-
-type Account_Link_OpenStack_ProjectCreationDetails struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkOpenStackProjectCreationDetailsService() Account_Link_OpenStack_ProjectCreationDetails {
-	return Account_Link_OpenStack_ProjectCreationDetails{Session: r}
-}
-
-type Account_Link_OpenStack_ProjectDetails struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkOpenStackProjectDetailsService() Account_Link_OpenStack_ProjectDetails {
-	return Account_Link_OpenStack_ProjectDetails{Session: r}
-}
-
-type Account_Link_ThePlanet struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkThePlanetService() Account_Link_ThePlanet {
-	return Account_Link_ThePlanet{Session: r}
-}
-
-type Account_Link_Vendor struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountLinkVendorService() Account_Link_Vendor {
-	return Account_Link_Vendor{Session: r}
 }
 
 type Account_Lockdown_Request struct {
@@ -2208,38 +2010,6 @@ func (r *Account_Media_Data_Transfer_Request) GetTickets() (resp []datatypes.Tic
 	return
 }
 
-type Account_Media_Data_Transfer_Request_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountMediaDataTransferRequestStatusService() Account_Media_Data_Transfer_Request_Status {
-	return Account_Media_Data_Transfer_Request_Status{Session: r}
-}
-
-type Account_Media_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountMediaTypeService() Account_Media_Type {
-	return Account_Media_Type{Session: r}
-}
-
-type Account_Network_Vlan_Span struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountNetworkVlanSpanService() Account_Network_Vlan_Span {
-	return Account_Network_Vlan_Span{Session: r}
-}
-
-func (r *Account_Network_Vlan_Span) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Account_Note struct {
 	Session *Session
 	Options
@@ -2285,24 +2055,6 @@ func (r *Account_Note) GetNoteHistory() (resp []datatypes.Account_Note_History, 
 	return
 }
 func (r *Account_Note) GetNoteType() (resp datatypes.Account_Note_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Account_Note_History struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountNoteHistoryService() Account_Note_History {
-	return Account_Note_History{Session: r}
-}
-
-func (r *Account_Note_History) GetAccountNote() (resp datatypes.Account_Note, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Note_History) GetCustomer() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2397,15 +2149,6 @@ func (r *Account_Password) GetAccount() (resp datatypes.Account, err error) {
 func (r *Account_Password) GetType() (resp datatypes.Account_Password_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Account_Password_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountPasswordTypeService() Account_Password_Type {
-	return Account_Password_Type{Session: r}
 }
 
 type Account_Regional_Registry_Detail struct {
@@ -2556,15 +2299,6 @@ func (r *Account_Regional_Registry_Detail_Type) GetObject() (resp datatypes.Acco
 	return
 }
 
-type Account_Regional_Registry_Detail_Version4_Person_Default struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountRegionalRegistryDetailVersion4PersonDefaultService() Account_Regional_Registry_Detail_Version4_Person_Default {
-	return Account_Regional_Registry_Detail_Version4_Person_Default{Session: r}
-}
-
 type Account_Reports_Request struct {
 	Session *Session
 	Options
@@ -2630,20 +2364,6 @@ func (r *Account_Reports_Request) GetTicket() (resp datatypes.Ticket, err error)
 	return
 }
 func (r *Account_Reports_Request) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Account_Rwhois_Handle struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountRwhoisHandleService() Account_Rwhois_Handle {
-	return Account_Rwhois_Handle{Session: r}
-}
-
-func (r *Account_Rwhois_Handle) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2881,13 +2601,4 @@ func (r *Session) GetAccountShipmentTypeService() Account_Shipment_Type {
 func (r *Account_Shipment_Type) GetObject() (resp datatypes.Account_Shipment_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Account_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetAccountStatusService() Account_Status {
-	return Account_Status{Session: r}
 }

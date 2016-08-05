@@ -207,24 +207,6 @@ func (r *Location_Group) GetLocations() (resp []datatypes.Location, err error) {
 	return
 }
 
-type Location_Group_Location_CrossReference struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationGroupLocationCrossReferenceService() Location_Group_Location_CrossReference {
-	return Location_Group_Location_CrossReference{Session: r}
-}
-
-func (r *Location_Group_Location_CrossReference) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location_Group_Location_CrossReference) GetLocationGroup() (resp datatypes.Location_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Location_Group_Pricing struct {
 	Session *Session
 	Options
@@ -271,87 +253,6 @@ func (r *Location_Group_Regional) GetDatacenters() (resp []datatypes.Location, e
 	return
 }
 func (r *Location_Group_Regional) GetPreferredDatacenter() (resp datatypes.Location_Datacenter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Location_Group_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationGroupTypeService() Location_Group_Type {
-	return Location_Group_Type{Session: r}
-}
-
-type Location_Inventory_Room struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationInventoryRoomService() Location_Inventory_Room {
-	return Location_Inventory_Room{Session: r}
-}
-
-type Location_Network_Operations_Center struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationNetworkOperationsCenterService() Location_Network_Operations_Center {
-	return Location_Network_Operations_Center{Session: r}
-}
-
-type Location_Office struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationOfficeService() Location_Office {
-	return Location_Office{Session: r}
-}
-
-type Location_Rack struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationRackService() Location_Rack {
-	return Location_Rack{Session: r}
-}
-
-type Location_Region struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationRegionService() Location_Region {
-	return Location_Region{Session: r}
-}
-
-func (r *Location_Region) GetLocation() (resp datatypes.Location_Region_Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Location_Region_Location struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationRegionLocationService() Location_Region_Location {
-	return Location_Region_Location{Session: r}
-}
-
-func (r *Location_Region_Location) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location_Region_Location) GetLocationPackageDetails() (resp []datatypes.Product_Package_Locations, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location_Region_Location) GetRegion() (resp datatypes.Location_Region, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -447,49 +348,4 @@ func (r *Location_Reservation_Rack_Member) GetLocation() (resp datatypes.Locatio
 func (r *Location_Reservation_Rack_Member) GetLocationReservationRack() (resp datatypes.Location_Reservation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Location_Root struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationRootService() Location_Root {
-	return Location_Root{Session: r}
-}
-
-type Location_Server_Room struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationServerRoomService() Location_Server_Room {
-	return Location_Server_Room{Session: r}
-}
-
-type Location_Slot struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationSlotService() Location_Slot {
-	return Location_Slot{Session: r}
-}
-
-type Location_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationStatusService() Location_Status {
-	return Location_Status{Session: r}
-}
-
-type Location_Storage_Room struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocationStorageRoomService() Location_Storage_Room {
-	return Location_Storage_Room{Session: r}
 }

@@ -210,20 +210,6 @@ func (r *Scale_Group) GetVirtualGuestMembers() (resp []datatypes.Scale_Member_Vi
 	return
 }
 
-type Scale_Group_Log struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetScaleGroupLogService() Scale_Group_Log {
-	return Scale_Group_Log{Session: r}
-}
-
-func (r *Scale_Group_Log) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Scale_Group_Status struct {
 	Session *Session
 	Options

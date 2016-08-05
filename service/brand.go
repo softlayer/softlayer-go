@@ -138,65 +138,6 @@ func (r *Brand) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	return
 }
 
-type Brand_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetBrandAttributeService() Brand_Attribute {
-	return Brand_Attribute{Session: r}
-}
-
-func (r *Brand_Attribute) GetBrand() (resp datatypes.Brand, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Brand_Contact struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetBrandContactService() Brand_Contact {
-	return Brand_Contact{Session: r}
-}
-
-func (r *Brand_Contact) GetBrand() (resp datatypes.Brand, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand_Contact) GetBrandContactType() (resp datatypes.Brand_Contact_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Brand_Contact_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetBrandContactTypeService() Brand_Contact_Type {
-	return Brand_Contact_Type{Session: r}
-}
-
-type Brand_Payment_Processor struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetBrandPaymentProcessorService() Brand_Payment_Processor {
-	return Brand_Payment_Processor{Session: r}
-}
-
-func (r *Brand_Payment_Processor) GetBrand() (resp datatypes.Brand, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand_Payment_Processor) GetPaymentProcessor() (resp datatypes.Billing_Payment_Processor, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Brand_Restriction_Location_CustomerCountry struct {
 	Session *Session
 	Options

@@ -375,12 +375,3 @@ func (r *Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Compo
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-type Monitoring_Robot_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMonitoringRobotStatusService() Monitoring_Robot_Status {
-	return Monitoring_Robot_Status{Session: r}
-}

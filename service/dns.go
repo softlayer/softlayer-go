@@ -151,15 +151,6 @@ func (r *Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
 	return
 }
 
-type Dns_Domain_Forward struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainForwardService() Dns_Domain_Forward {
-	return Dns_Domain_Forward{Session: r}
-}
-
 type Dns_Domain_Registration struct {
 	Session *Session
 	Options
@@ -398,33 +389,6 @@ func (r *Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err 
 	return
 }
 
-type Dns_Domain_ResourceRecord_AType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordATypeService() Dns_Domain_ResourceRecord_AType {
-	return Dns_Domain_ResourceRecord_AType{Session: r}
-}
-
-type Dns_Domain_ResourceRecord_AaaaType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordAaaaTypeService() Dns_Domain_ResourceRecord_AaaaType {
-	return Dns_Domain_ResourceRecord_AaaaType{Session: r}
-}
-
-type Dns_Domain_ResourceRecord_CnameType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordCnameTypeService() Dns_Domain_ResourceRecord_CnameType {
-	return Dns_Domain_ResourceRecord_CnameType{Session: r}
-}
-
 type Dns_Domain_ResourceRecord_MxType struct {
 	Session *Session
 	Options
@@ -478,42 +442,6 @@ func (r *Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domai
 	return
 }
 
-type Dns_Domain_ResourceRecord_NsType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordNsTypeService() Dns_Domain_ResourceRecord_NsType {
-	return Dns_Domain_ResourceRecord_NsType{Session: r}
-}
-
-type Dns_Domain_ResourceRecord_PtrType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordPtrTypeService() Dns_Domain_ResourceRecord_PtrType {
-	return Dns_Domain_ResourceRecord_PtrType{Session: r}
-}
-
-type Dns_Domain_ResourceRecord_SoaType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordSoaTypeService() Dns_Domain_ResourceRecord_SoaType {
-	return Dns_Domain_ResourceRecord_SoaType{Session: r}
-}
-
-type Dns_Domain_ResourceRecord_SpfType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordSpfTypeService() Dns_Domain_ResourceRecord_SpfType {
-	return Dns_Domain_ResourceRecord_SpfType{Session: r}
-}
-
 type Dns_Domain_ResourceRecord_SrvType struct {
 	Session *Session
 	Options
@@ -563,64 +491,6 @@ func (r *Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []dataty
 	return
 }
 func (r *Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Dns_Domain_ResourceRecord_TxtType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainResourceRecordTxtTypeService() Dns_Domain_ResourceRecord_TxtType {
-	return Dns_Domain_ResourceRecord_TxtType{Session: r}
-}
-
-type Dns_Domain_Reverse struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainReverseService() Dns_Domain_Reverse {
-	return Dns_Domain_Reverse{Session: r}
-}
-
-type Dns_Domain_Reverse_Version4 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainReverseVersion4Service() Dns_Domain_Reverse_Version4 {
-	return Dns_Domain_Reverse_Version4{Session: r}
-}
-
-type Dns_Domain_Reverse_Version6 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsDomainReverseVersion6Service() Dns_Domain_Reverse_Version6 {
-	return Dns_Domain_Reverse_Version6{Session: r}
-}
-
-type Dns_Message struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsMessageService() Dns_Message {
-	return Dns_Message{Session: r}
-}
-
-func (r *Dns_Message) GetDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Message) GetResourceRecord() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Message) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -694,13 +564,4 @@ func (r *Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err er
 func (r *Dns_Secondary) GetStatus() (resp datatypes.Dns_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Dns_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetDnsStatusService() Dns_Status {
-	return Dns_Status{Session: r}
 }

@@ -66,15 +66,6 @@ func (r *Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err
 	return
 }
 
-type Locale_StateProvince struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLocaleStateProvinceService() Locale_StateProvince {
-	return Locale_StateProvince{Session: r}
-}
-
 type Locale_Timezone struct {
 	Session *Session
 	Options

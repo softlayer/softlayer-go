@@ -172,18 +172,24 @@ func main() {
 	// This will ensure consistency in the order that code is later emitted
 	keys := getSortedKeys(meta)
 
-	sortedMeta := make([]Type, 0, len(keys))
+	sortedTypes := make([]Type, 0, len(keys))
+	sortedServices := make([]Type, 0, len(keys))
 
 	for _, name := range keys {
-		sortedMeta = append(sortedMeta, meta[name])
+		sortedTypes = append(sortedTypes, meta[name])
+
+		// Not every datatype is also a service
+		if !meta[name].NoService {
+			sortedServices = append(sortedServices, meta[name])
+		}
 	}
 
-	err = writePackage(*outputPath, "datatypes", sortedMeta, datatype)
+	err = writePackage(*outputPath, "datatypes", sortedTypes, datatype)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
 
-	err = writePackage(*outputPath, "service", sortedMeta, service)
+	err = writePackage(*outputPath, "service", sortedServices, service)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}

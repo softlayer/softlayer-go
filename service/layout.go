@@ -45,15 +45,6 @@ func (r *Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err e
 	return
 }
 
-type Layout_Container_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLayoutContainerTypeService() Layout_Container_Type {
-	return Layout_Container_Type{Session: r}
-}
-
 type Layout_Item struct {
 	Session *Session
 	Options
@@ -75,38 +66,6 @@ func (r *Layout_Item) GetLayoutItemPreferences() (resp []datatypes.Layout_Prefer
 func (r *Layout_Item) GetLayoutItemType() (resp datatypes.Layout_Item_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Layout_Item_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLayoutItemTypeService() Layout_Item_Type {
-	return Layout_Item_Type{Session: r}
-}
-
-type Layout_Preference struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLayoutPreferenceService() Layout_Preference {
-	return Layout_Preference{Session: r}
-}
-
-func (r *Layout_Preference) GetLayoutPreferenceType() (resp datatypes.Layout_Preference_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Layout_Preference_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetLayoutPreferenceTypeService() Layout_Preference_Type {
-	return Layout_Preference_Type{Session: r}
 }
 
 type Layout_Profile struct {

@@ -70,15 +70,6 @@ func (r *Security_Certificate) GetLoadBalancerVirtualIpAddresses() (resp []datat
 	return
 }
 
-type Security_Certificate_Entry struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetSecurityCertificateEntryService() Security_Certificate_Entry {
-	return Security_Certificate_Entry{Session: r}
-}
-
 type Security_Certificate_Request struct {
 	Session *Session
 	Options
@@ -191,38 +182,6 @@ func (r *Security_Certificate_Request_Status) GetObject() (resp datatypes.Securi
 func (r *Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []datatypes.Security_Certificate_Request_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Security_Directory_Service_Host_Xref_Hardware struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetSecurityDirectoryServiceHostXrefHardwareService() Security_Directory_Service_Host_Xref_Hardware {
-	return Security_Directory_Service_Host_Xref_Hardware{Session: r}
-}
-
-func (r *Security_Directory_Service_Host_Xref_Hardware) GetHost() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Security_SecureTransportCipher struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetSecuritySecureTransportCipherService() Security_SecureTransportCipher {
-	return Security_SecureTransportCipher{Session: r}
-}
-
-type Security_SecureTransportProtocol struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetSecuritySecureTransportProtocolService() Security_SecureTransportProtocol {
-	return Security_SecureTransportProtocol{Session: r}
 }
 
 type Security_Ssh_Key struct {

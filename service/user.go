@@ -18,68 +18,6 @@ package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
-type User_Access_Facility_Log struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserAccessFacilityLogService() User_Access_Facility_Log {
-	return User_Access_Facility_Log{Session: r}
-}
-
-func (r *User_Access_Facility_Log) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Access_Facility_Log) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Access_Facility_Log) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Access_Facility_Log) GetLogType() (resp datatypes.User_Access_Facility_Log_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Access_Facility_Log) GetVisitor() (resp datatypes.Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Access_Facility_Log_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserAccessFacilityLogTypeService() User_Access_Facility_Log_Type {
-	return User_Access_Facility_Log_Type{Session: r}
-}
-
-type User_Access_Facility_Visitor struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserAccessFacilityVisitorService() User_Access_Facility_Visitor {
-	return User_Access_Facility_Visitor{Session: r}
-}
-
-func (r *User_Access_Facility_Visitor) GetVisitorType() (resp datatypes.User_Access_Facility_Visitor_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Access_Facility_Visitor_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserAccessFacilityVisitorTypeService() User_Access_Facility_Visitor_Type {
-	return User_Access_Facility_Visitor_Type{Session: r}
-}
-
 type User_Customer struct {
 	Session *Session
 	Options
@@ -760,34 +698,6 @@ func (r *User_Customer) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err 
 	return
 }
 
-type User_Customer_Access_Authentication struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerAccessAuthenticationService() User_Customer_Access_Authentication {
-	return User_Customer_Access_Authentication{Session: r}
-}
-
-func (r *User_Customer_Access_Authentication) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Customer_AdditionalEmail struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerAdditionalEmailService() User_Customer_AdditionalEmail {
-	return User_Customer_AdditionalEmail{Session: r}
-}
-
-func (r *User_Customer_AdditionalEmail) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type User_Customer_ApiAuthentication struct {
 	Session *Session
 	Options
@@ -860,15 +770,6 @@ func (r *User_Customer_External_Binding) GetObject() (resp datatypes.User_Custom
 func (r *User_Customer_External_Binding) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Customer_External_Binding_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerExternalBindingAttributeService() User_Customer_External_Binding_Attribute {
-	return User_Customer_External_Binding_Attribute{Session: r}
 }
 
 type User_Customer_External_Binding_Phone struct {
@@ -982,15 +883,6 @@ func (r *User_Customer_External_Binding_Totp) GetObject() (resp datatypes.User_C
 	return
 }
 
-type User_Customer_External_Binding_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerExternalBindingTypeService() User_Customer_External_Binding_Type {
-	return User_Customer_External_Binding_Type{Session: r}
-}
-
 type User_Customer_External_Binding_Vendor struct {
 	Session *Session
 	Options
@@ -1087,33 +979,6 @@ func (r *User_Customer_Invitation) GetObject() (resp datatypes.User_Customer_Inv
 func (r *User_Customer_Invitation) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Customer_Link struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerLinkService() User_Customer_Link {
-	return User_Customer_Link{Session: r}
-}
-
-func (r *User_Customer_Link) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer_Link) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Customer_Link_ThePlanet struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerLinkThePlanetService() User_Customer_Link_ThePlanet {
-	return User_Customer_Link_ThePlanet{Session: r}
 }
 
 type User_Customer_MobileDevice struct {
@@ -1438,32 +1303,6 @@ func (r *User_Customer_OpenIdConnect) UpdatePassword(password *string) (resp boo
 	return
 }
 
-type User_Customer_Prospect struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerProspectService() User_Customer_Prospect {
-	return User_Customer_Prospect{Session: r}
-}
-
-func (r *User_Customer_Prospect) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer_Prospect) GetAssignedEmployees() (resp []datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer_Prospect) GetQuotes() (resp []datatypes.Billing_Order_Quote, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer_Prospect) GetType() (resp datatypes.User_Customer_Prospect_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	Session *Session
 	Options
@@ -1488,15 +1327,6 @@ func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp
 func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Customer_Prospect_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserCustomerProspectTypeService() User_Customer_Prospect_Type {
-	return User_Customer_Prospect_Type{Session: r}
 }
 
 type User_Customer_Security_Answer struct {
@@ -1538,57 +1368,6 @@ func (r *User_Customer_Status) GetAllObjects() (resp []datatypes.User_Customer_S
 func (r *User_Customer_Status) GetObject() (resp datatypes.User_Customer_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Employee struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserEmployeeService() User_Employee {
-	return User_Employee{Session: r}
-}
-
-func (r *User_Employee) GetActions() (resp []datatypes.User_Permission_Action, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetChatTranscript() (resp []datatypes.Ticket_Chat, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetEmployeeDepartment() (resp datatypes.User_Employee_Department, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetTicketActivities() (resp []datatypes.Ticket_Activity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Employee) GetTicketAttachmentReferences() (resp []datatypes.Ticket_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Employee_Department struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserEmployeeDepartmentService() User_Employee_Department {
-	return User_Employee_Department{Session: r}
 }
 
 type User_External_Binding struct {
@@ -1637,29 +1416,6 @@ func (r *User_External_Binding) GetVendor() (resp datatypes.User_External_Bindin
 	return
 }
 
-type User_External_Binding_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserExternalBindingAttributeService() User_External_Binding_Attribute {
-	return User_External_Binding_Attribute{Session: r}
-}
-
-func (r *User_External_Binding_Attribute) GetExternalBinding() (resp datatypes.User_External_Binding, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_External_Binding_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserExternalBindingTypeService() User_External_Binding_Type {
-	return User_External_Binding_Type{Session: r}
-}
-
 type User_External_Binding_Vendor struct {
 	Session *Session
 	Options
@@ -1676,15 +1432,6 @@ func (r *User_External_Binding_Vendor) GetAllObjects() (resp []datatypes.User_Ex
 func (r *User_External_Binding_Vendor) GetObject() (resp datatypes.User_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Interface struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserInterfaceService() User_Interface {
-	return User_Interface{Session: r}
 }
 
 type User_Permission_Action struct {
@@ -1932,33 +1679,6 @@ func (r *User_Permission_Role) GetGroups() (resp []datatypes.User_Permission_Gro
 func (r *User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type User_Preference struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserPreferenceService() User_Preference {
-	return User_Preference{Session: r}
-}
-
-func (r *User_Preference) GetDescription() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Preference) GetType() (resp datatypes.User_Preference_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type User_Preference_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetUserPreferenceTypeService() User_Preference_Type {
-	return User_Preference_Type{Session: r}
 }
 
 type User_Security_Question struct {

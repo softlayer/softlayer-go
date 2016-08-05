@@ -18,15 +18,6 @@ package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
-type Marketplace_EmailDistribution struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMarketplaceEmailDistributionService() Marketplace_EmailDistribution {
-	return Marketplace_EmailDistribution{Session: r}
-}
-
 type Marketplace_Partner struct {
 	Session *Session
 	Options
@@ -92,45 +83,4 @@ func (r *Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner
 func (r *Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Marketplace_Partner_Attachment struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMarketplacePartnerAttachmentService() Marketplace_Partner_Attachment {
-	return Marketplace_Partner_Attachment{Session: r}
-}
-
-func (r *Marketplace_Partner_Attachment) GetAttachmentType() (resp datatypes.Marketplace_Partner_Attachment_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Marketplace_Partner_Attachment_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMarketplacePartnerAttachmentTypeService() Marketplace_Partner_Attachment_Type {
-	return Marketplace_Partner_Attachment_Type{Session: r}
-}
-
-type Marketplace_Partner_File struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMarketplacePartnerFileService() Marketplace_Partner_File {
-	return Marketplace_Partner_File{Session: r}
-}
-
-type Marketplace_Partner_File_Attributes struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetMarketplacePartnerFileAttributesService() Marketplace_Partner_File_Attributes {
-	return Marketplace_Partner_File_Attributes{Session: r}
 }

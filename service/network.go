@@ -531,24 +531,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Get
 	return
 }
 
-type Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerServiceGroupCrossReferenceService() Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference {
-	return Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference{Session: r}
-}
-
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference) GetService() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference) GetServiceGroup() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Session *Session
 	Options
@@ -647,34 +629,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 	return
 }
 
-type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressSecureTransportCipherService() Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher{Session: r}
-}
-
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressSecureTransportProtocolService() Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol{Session: r}
-}
-
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	Session *Session
 	Options
@@ -716,15 +670,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Get
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Application_Delivery_Controller_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkApplicationDeliveryControllerTypeService() Network_Application_Delivery_Controller_Type {
-	return Network_Application_Delivery_Controller_Type{Session: r}
 }
 
 type Network_Backbone struct {
@@ -799,64 +744,6 @@ func (r *Network_Backbone_Location_Dependent) GetDependentLocation() (resp datat
 	return
 }
 func (r *Network_Backbone_Location_Dependent) GetSourceLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Usage struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthUsageService() Network_Bandwidth_Usage {
-	return Network_Bandwidth_Usage{Session: r}
-}
-
-func (r *Network_Bandwidth_Usage) GetTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Usage) GetType() (resp datatypes.Network_Bandwidth_Version1_Usage_Detail_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Usage_Detail struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthUsageDetailService() Network_Bandwidth_Usage_Detail {
-	return Network_Bandwidth_Usage_Detail{Session: r}
-}
-
-func (r *Network_Bandwidth_Usage_Detail) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Usage_Detail) GetTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Usage_Detail) GetType() (resp datatypes.Network_Bandwidth_Version1_Usage_Detail_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Allocation struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1AllocationService() Network_Bandwidth_Version1_Allocation {
-	return Network_Bandwidth_Version1_Allocation{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Allocation) GetAllotmentDetail() (resp datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allocation) GetBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1113,122 +1000,6 @@ func (r *Network_Bandwidth_Version1_Allotment) GetVirtualGuests() (resp []dataty
 	return
 }
 
-type Network_Bandwidth_Version1_Allotment_Detail struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1AllotmentDetailService() Network_Bandwidth_Version1_Allotment_Detail {
-	return Network_Bandwidth_Version1_Allotment_Detail{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Allotment_Detail) GetAllocation() (resp datatypes.Network_Bandwidth_Version1_Allocation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment_Detail) GetBandwidthAllotment() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment_Detail) GetBandwidthUsage() (resp []datatypes.Network_Bandwidth_Version1_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Host struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1HostService() Network_Bandwidth_Version1_Host {
-	return Network_Bandwidth_Version1_Host{Session: r}
-}
-
-type Network_Bandwidth_Version1_Interface struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1InterfaceService() Network_Bandwidth_Version1_Interface {
-	return Network_Bandwidth_Version1_Interface{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Interface) GetHost() (resp datatypes.Network_Bandwidth_Version1_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Interface) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Usage struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1UsageService() Network_Bandwidth_Version1_Usage {
-	return Network_Bandwidth_Version1_Usage{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Usage) GetBandwidthAllotmentDetail() (resp datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Usage) GetBandwidthUsageDetail() (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Usage_Detail struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1UsageDetailService() Network_Bandwidth_Version1_Usage_Detail {
-	return Network_Bandwidth_Version1_Usage_Detail{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Usage_Detail) GetBandwidthUsage() (resp datatypes.Network_Bandwidth_Version1_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Usage_Detail) GetBandwidthUsageDetailType() (resp datatypes.Network_Bandwidth_Version1_Usage_Detail_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Usage_Detail_Total struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1UsageDetailTotalService() Network_Bandwidth_Version1_Usage_Detail_Total {
-	return Network_Bandwidth_Version1_Usage_Detail_Total{Session: r}
-}
-
-func (r *Network_Bandwidth_Version1_Usage_Detail_Total) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Usage_Detail_Total) GetTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Usage_Detail_Total) GetType() (resp datatypes.Network_Bandwidth_Version1_Usage_Detail_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Bandwidth_Version1_Usage_Detail_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkBandwidthVersion1UsageDetailTypeService() Network_Bandwidth_Version1_Usage_Detail_Type {
-	return Network_Bandwidth_Version1_Usage_Detail_Type{Session: r}
-}
-
 type Network_Component struct {
 	Session *Session
 	Options
@@ -1381,15 +1152,6 @@ func (r *Network_Component) GetUplinkDuplexMode() (resp datatypes.Network_Compon
 	return
 }
 
-type Network_Component_Duplex_Mode struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentDuplexModeService() Network_Component_Duplex_Mode {
-	return Network_Component_Duplex_Mode{Session: r}
-}
-
 type Network_Component_Firewall struct {
 	Session *Session
 	Options
@@ -1429,115 +1191,6 @@ func (r *Network_Component_Firewall) GetRules() (resp []datatypes.Network_Compon
 	return
 }
 func (r *Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_Firewall_Rule struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentFirewallRuleService() Network_Component_Firewall_Rule {
-	return Network_Component_Firewall_Rule{Session: r}
-}
-
-func (r *Network_Component_Firewall_Rule) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_Firewall_Subnets struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentFirewallSubnetsService() Network_Component_Firewall_Subnets {
-	return Network_Component_Firewall_Subnets{Session: r}
-}
-
-func (r *Network_Component_Firewall_Subnets) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component_Firewall_Subnets) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_Group struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentGroupService() Network_Component_Group {
-	return Network_Component_Group{Session: r}
-}
-
-func (r *Network_Component_Group) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_IpAddress struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentIpAddressService() Network_Component_IpAddress {
-	return Network_Component_IpAddress{Session: r}
-}
-
-func (r *Network_Component_IpAddress) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component_IpAddress) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_Network_Vlan_Trunk struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentNetworkVlanTrunkService() Network_Component_Network_Vlan_Trunk {
-	return Network_Component_Network_Vlan_Trunk{Session: r}
-}
-
-func (r *Network_Component_Network_Vlan_Trunk) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component_Network_Vlan_Trunk) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Component_RemoteManagement struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentRemoteManagementService() Network_Component_RemoteManagement {
-	return Network_Component_RemoteManagement{Session: r}
-}
-
-type Network_Component_Uplink_Hardware struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkComponentUplinkHardwareService() Network_Component_Uplink_Hardware {
-	return Network_Component_Uplink_Hardware{Session: r}
-}
-
-func (r *Network_Component_Uplink_Hardware) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component_Uplink_Hardware) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1853,15 +1506,6 @@ func (r *Network_ContentDelivery_Account) GetTokenAuthenticationEnabledFlag() (r
 	return
 }
 
-type Network_ContentDelivery_Account_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkContentDeliveryAccountStatusService() Network_ContentDelivery_Account_Status {
-	return Network_ContentDelivery_Account_Status{Session: r}
-}
-
 type Network_ContentDelivery_Authentication_Address struct {
 	Session *Session
 	Options
@@ -1997,24 +1641,6 @@ func (r *Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Cus
 	return
 }
 
-type Network_Customer_Subnet_IpAddress struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkCustomerSubnetIpAddressService() Network_Customer_Subnet_IpAddress {
-	return Network_Customer_Subnet_IpAddress{Session: r}
-}
-
-func (r *Network_Customer_Subnet_IpAddress) GetSubnet() (resp datatypes.Network_Customer_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Customer_Subnet_IpAddress) GetTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Firewall_AccessControlList struct {
 	Session *Session
 	Options
@@ -2102,20 +1728,6 @@ func (r *Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewal
 	return
 }
 
-type Network_Firewall_Template_Rule struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkFirewallTemplateRuleService() Network_Firewall_Template_Rule {
-	return Network_Firewall_Template_Rule{Session: r}
-}
-
-func (r *Network_Firewall_Template_Rule) GetFirewallTemplate() (resp datatypes.Network_Firewall_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Firewall_Update_Request struct {
 	Session *Session
 	Options
@@ -2170,24 +1782,6 @@ func (r *Network_Firewall_Update_Request) GetRules() (resp []datatypes.Network_F
 	return
 }
 
-type Network_Firewall_Update_Request_Customer struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkFirewallUpdateRequestCustomerService() Network_Firewall_Update_Request_Customer {
-	return Network_Firewall_Update_Request_Customer{Session: r}
-}
-
-type Network_Firewall_Update_Request_Employee struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkFirewallUpdateRequestEmployeeService() Network_Firewall_Update_Request_Employee {
-	return Network_Firewall_Update_Request_Employee{Session: r}
-}
-
 type Network_Firewall_Update_Request_Rule struct {
 	Session *Session
 	Options
@@ -2222,15 +1816,6 @@ func (r *Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netw
 func (r *Network_Firewall_Update_Request_Rule) GetFirewallUpdateRequest() (resp datatypes.Network_Firewall_Update_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Firewall_Update_Request_Rule_Version6 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkFirewallUpdateRequestRuleVersion6Service() Network_Firewall_Update_Request_Rule_Version6 {
-	return Network_Firewall_Update_Request_Rule_Version6{Session: r}
 }
 
 type Network_Gateway struct {
@@ -2511,15 +2096,6 @@ func (r *Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp dataty
 	return
 }
 
-type Network_LoadBalancer_Global_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkLoadBalancerGlobalTypeService() Network_LoadBalancer_Global_Type {
-	return Network_LoadBalancer_Global_Type{Session: r}
-}
-
 type Network_LoadBalancer_Service struct {
 	Session *Session
 	Options
@@ -2615,15 +2191,6 @@ func (r *Network_LoadBalancer_VirtualIpAddress) GetManagedResourceFlag() (resp b
 func (r *Network_LoadBalancer_VirtualIpAddress) GetServices() (resp []datatypes.Network_LoadBalancer_Service, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Logging_Syslog struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkLoggingSyslogService() Network_Logging_Syslog {
-	return Network_Logging_Syslog{Session: r}
 }
 
 type Network_Media_Transcode_Account struct {
@@ -2732,20 +2299,6 @@ func (r *Network_Media_Transcode_Job) GetUser() (resp datatypes.User_Customer, e
 	return
 }
 
-type Network_Media_Transcode_Job_History struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMediaTranscodeJobHistoryService() Network_Media_Transcode_Job_History {
-	return Network_Media_Transcode_Job_History{Session: r}
-}
-
-func (r *Network_Media_Transcode_Job_History) GetTranscodeStatusName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Media_Transcode_Job_Status struct {
 	Session *Session
 	Options
@@ -2798,20 +2351,6 @@ func (r *Network_Message_Delivery) GetType() (resp datatypes.Network_Message_Del
 	return
 }
 func (r *Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Message_Delivery_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMessageDeliveryAttributeService() Network_Message_Delivery_Attribute {
-	return Network_Message_Delivery_Attribute{Session: r}
-}
-
-func (r *Network_Message_Delivery_Attribute) GetNetworkMessageDelivery() (resp datatypes.Network_Message_Delivery, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2907,24 +2446,6 @@ func (r *Network_Message_Delivery_Email_Sendgrid) GetEmailAddress() (resp string
 func (r *Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Message_Delivery_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMessageDeliveryTypeService() Network_Message_Delivery_Type {
-	return Network_Message_Delivery_Type{Session: r}
-}
-
-type Network_Message_Delivery_Vendor struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMessageDeliveryVendorService() Network_Message_Delivery_Vendor {
-	return Network_Message_Delivery_Vendor{Session: r}
 }
 
 type Network_Message_Queue struct {
@@ -3058,15 +2579,6 @@ func (r *Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_
 	return
 }
 
-type Network_Monitor_Version1_Incident struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMonitorVersion1IncidentService() Network_Monitor_Version1_Incident {
-	return Network_Monitor_Version1_Incident{Session: r}
-}
-
 type Network_Monitor_Version1_Query_Host struct {
 	Session *Session
 	Options
@@ -3171,38 +2683,6 @@ func (r *Network_Monitor_Version1_Query_Host_Stratum) GetHardware() (resp dataty
 	return
 }
 
-type Network_Monitor_Version1_Query_ResponseType struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMonitorVersion1QueryResponseTypeService() Network_Monitor_Version1_Query_ResponseType {
-	return Network_Monitor_Version1_Query_ResponseType{Session: r}
-}
-
-type Network_Monitor_Version1_Query_Result struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMonitorVersion1QueryResultService() Network_Monitor_Version1_Query_Result {
-	return Network_Monitor_Version1_Query_Result{Session: r}
-}
-
-func (r *Network_Monitor_Version1_Query_Result) GetQueryHost() (resp datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Monitor_Version1_Query_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkMonitorVersion1QueryTypeService() Network_Monitor_Version1_Query_Type {
-	return Network_Monitor_Version1_Query_Type{Session: r}
-}
-
 type Network_Pod struct {
 	Session *Session
 	Options
@@ -3227,73 +2707,6 @@ func (r *Network_Pod) GetObject() (resp datatypes.Network_Pod, err error) {
 func (r *Network_Pod) ListCapabilities() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Protection_Address struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkProtectionAddressService() Network_Protection_Address {
-	return Network_Protection_Address{Session: r}
-}
-
-func (r *Network_Protection_Address) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetModifiedUser() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetPrimaryRouter() (resp datatypes.Hardware_Router, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetSubnetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetTerminatedUser() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetUserDepartment() (resp datatypes.User_Employee_Department, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Protection_Address) GetUserRecord() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Regional_Internet_Registry struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkRegionalInternetRegistryService() Network_Regional_Internet_Registry {
-	return Network_Regional_Internet_Registry{Session: r}
 }
 
 type Network_Security_Scanner_Request struct {
@@ -3338,198 +2751,6 @@ func (r *Network_Security_Scanner_Request) GetRequestorOwnedFlag() (resp bool, e
 	return
 }
 func (r *Network_Security_Scanner_Request) GetStatus() (resp datatypes.Network_Security_Scanner_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Security_Scanner_Request_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSecurityScannerRequestStatusService() Network_Security_Scanner_Request_Status {
-	return Network_Security_Scanner_Request_Status{Session: r}
-}
-
-type Network_Service_Health struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceHealthService() Network_Service_Health {
-	return Network_Service_Health{Session: r}
-}
-
-func (r *Network_Service_Health) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Health) GetStatus() (resp datatypes.Network_Service_Health_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Service_Health_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceHealthStatusService() Network_Service_Health_Status {
-	return Network_Service_Health_Status{Session: r}
-}
-
-type Network_Service_Resource struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceService() Network_Service_Resource {
-	return Network_Service_Resource{Session: r}
-}
-
-func (r *Network_Service_Resource) GetApiHost() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiPassword() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiPath() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiPort() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiProtocol() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiUsername() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetApiVersion() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetAttributes() (resp []datatypes.Network_Service_Resource_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetNetworkDevice() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetSshUsername() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource) GetType() (resp datatypes.Network_Service_Resource_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Service_Resource_Attribute struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceAttributeService() Network_Service_Resource_Attribute {
-	return Network_Service_Resource_Attribute{Session: r}
-}
-
-func (r *Network_Service_Resource_Attribute) GetAttributeType() (resp datatypes.Network_Service_Resource_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource_Attribute) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Service_Resource_Attribute_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceAttributeTypeService() Network_Service_Resource_Attribute_Type {
-	return Network_Service_Resource_Attribute_Type{Session: r}
-}
-
-type Network_Service_Resource_Hub struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceHubService() Network_Service_Resource_Hub {
-	return Network_Service_Resource_Hub{Session: r}
-}
-
-type Network_Service_Resource_Hub_Swift struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceHubSwiftService() Network_Service_Resource_Hub_Swift {
-	return Network_Service_Resource_Hub_Swift{Session: r}
-}
-
-type Network_Service_Resource_MonitoringHub struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceMonitoringHubService() Network_Service_Resource_MonitoringHub {
-	return Network_Service_Resource_MonitoringHub{Session: r}
-}
-
-func (r *Network_Service_Resource_MonitoringHub) GetAdnServicesIp() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource_MonitoringHub) GetHubAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource_MonitoringHub) GetHubConnectionTimeout() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource_MonitoringHub) GetRobotsCount() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Service_Resource_MonitoringHub) GetRobotsMax() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Service_Resource_NimsoftLandingHub struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceNimsoftLandingHubService() Network_Service_Resource_NimsoftLandingHub {
-	return Network_Service_Resource_NimsoftLandingHub{Session: r}
-}
-
-type Network_Service_Resource_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkServiceResourceTypeService() Network_Service_Resource_Type {
-	return Network_Service_Resource_Type{Session: r}
-}
-
-func (r *Network_Service_Resource_Type) GetServiceResources() (resp []datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4542,24 +3763,6 @@ func (r *Network_Storage_Allowed_Host_VirtualGuest) GetResource() (resp datatype
 	return
 }
 
-type Network_Storage_Backup struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageBackupService() Network_Storage_Backup {
-	return Network_Storage_Backup{Session: r}
-}
-
-func (r *Network_Storage_Backup) GetCurrentCyclePeakUsage() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup) GetPreviousCyclePeakUsage() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Storage_Backup_Evault struct {
 	Session *Session
 	Options
@@ -4603,107 +3806,6 @@ func (r *Network_Storage_Backup_Evault) InitiateBareMetalRestoreForServer(hardwa
 		hardwareId,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Backup_Evault_Version6 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageBackupEvaultVersion6Service() Network_Storage_Backup_Evault_Version6 {
-	return Network_Storage_Backup_Evault_Version6{Session: r}
-}
-
-func (r *Network_Storage_Backup_Evault_Version6) GetAgentStatuses() (resp []datatypes.Container_Network_Storage_Evault_WebCc_AgentStatus, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup_Evault_Version6) GetBackupJobDetails() (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup_Evault_Version6) GetPluginBillingItems() (resp []datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup_Evault_Version6) GetRestoreJobDetails() (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup_Evault_Version6) GetSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Backup_Evault_Version6) GetTasks() (resp []datatypes.Container_Network_Storage_Evault_Vault_Task, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Credential struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageCredentialService() Network_Storage_Credential {
-	return Network_Storage_Credential{Session: r}
-}
-
-func (r *Network_Storage_Credential) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Credential) GetNetworkStorageAllowedHosts() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Credential) GetType() (resp datatypes.Network_Storage_Credential_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Credential) GetVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Credential_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageCredentialTypeService() Network_Storage_Credential_Type {
-	return Network_Storage_Credential_Type{Session: r}
-}
-
-type Network_Storage_Daily_Usage struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageDailyUsageService() Network_Storage_Daily_Usage {
-	return Network_Storage_Daily_Usage{Session: r}
-}
-
-func (r *Network_Storage_Daily_Usage) GetNasVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Event struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageEventService() Network_Storage_Event {
-	return Network_Storage_Event{Session: r}
-}
-
-func (r *Network_Storage_Event) GetSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Event) GetVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4902,38 +4004,6 @@ func (r *Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage
 	return
 }
 
-type Network_Storage_History struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageHistoryService() Network_Storage_History {
-	return Network_Storage_History{Session: r}
-}
-
-func (r *Network_Storage_History) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_History) GetNasVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Hub struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageHubService() Network_Storage_Hub {
-	return Network_Storage_Hub{Session: r}
-}
-
-func (r *Network_Storage_Hub) GetBandwidthBillingItems() (resp []datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Storage_Hub_Cleversafe_Account struct {
 	Session *Session
 	Options
@@ -5000,29 +4070,6 @@ func (r *Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err err
 	return
 }
 
-type Network_Storage_Hub_Swift struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageHubSwiftService() Network_Storage_Hub_Swift {
-	return Network_Storage_Hub_Swift{Session: r}
-}
-
-func (r *Network_Storage_Hub_Swift) GetStorageNodes() (resp []datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Hub_Swift_Container struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageHubSwiftContainerService() Network_Storage_Hub_Swift_Container {
-	return Network_Storage_Hub_Swift_Container{Session: r}
-}
-
 type Network_Storage_Hub_Swift_Share struct {
 	Session *Session
 	Options
@@ -5051,15 +4098,6 @@ func (r *Network_Storage_Hub_Swift_Share) GetFileList(container *string, path *s
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Storage_Hub_Swift_Version1 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageHubSwiftVersion1Service() Network_Storage_Hub_Swift_Version1 {
-	return Network_Storage_Hub_Swift_Version1{Session: r}
 }
 
 type Network_Storage_Iscsi struct {
@@ -5164,51 +4202,6 @@ func (r *Network_Storage_Iscsi) RemoveAccessToReplicantFromVirtualGuestList(virt
 	return
 }
 
-type Network_Storage_Iscsi_EqualLogic_Version3 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageIscsiEqualLogicVersion3Service() Network_Storage_Iscsi_EqualLogic_Version3 {
-	return Network_Storage_Iscsi_EqualLogic_Version3{Session: r}
-}
-
-type Network_Storage_Iscsi_EqualLogic_Version3_Replicant struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageIscsiEqualLogicVersion3ReplicantService() Network_Storage_Iscsi_EqualLogic_Version3_Replicant {
-	return Network_Storage_Iscsi_EqualLogic_Version3_Replicant{Session: r}
-}
-
-func (r *Network_Storage_Iscsi_EqualLogic_Version3_Replicant) GetFailbackInProgressFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Iscsi_EqualLogic_Version3_Replicant) GetVolumeName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Iscsi_EqualLogic_Version3_Snapshot struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageIscsiEqualLogicVersion3SnapshotService() Network_Storage_Iscsi_EqualLogic_Version3_Snapshot {
-	return Network_Storage_Iscsi_EqualLogic_Version3_Snapshot{Session: r}
-}
-
-func (r *Network_Storage_Iscsi_EqualLogic_Version3_Snapshot) GetCreationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Iscsi_EqualLogic_Version3_Snapshot) GetVolumeName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Storage_Iscsi_OS_Type struct {
 	Session *Session
 	Options
@@ -5223,110 +4216,6 @@ func (r *Network_Storage_Iscsi_OS_Type) GetAllObjects() (resp []datatypes.Networ
 	return
 }
 func (r *Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Nas struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageNasService() Network_Storage_Nas {
-	return Network_Storage_Nas{Session: r}
-}
-
-func (r *Network_Storage_Nas) GetRecentBytesUsed() (resp datatypes.Network_Storage_Daily_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_OpenStack_Object struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageOpenStackObjectService() Network_Storage_OpenStack_Object {
-	return Network_Storage_OpenStack_Object{Session: r}
-}
-
-func (r *Network_Storage_OpenStack_Object) GetBandwidthBillingItems() (resp []datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Partnership struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStoragePartnershipService() Network_Storage_Partnership {
-	return Network_Storage_Partnership{Session: r}
-}
-
-func (r *Network_Storage_Partnership) GetPartnerVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Partnership) GetType() (resp datatypes.Network_Storage_Partnership_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Partnership) GetVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Partnership_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStoragePartnershipTypeService() Network_Storage_Partnership_Type {
-	return Network_Storage_Partnership_Type{Session: r}
-}
-
-type Network_Storage_Property struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStoragePropertyService() Network_Storage_Property {
-	return Network_Storage_Property{Session: r}
-}
-
-func (r *Network_Storage_Property) GetType() (resp datatypes.Network_Storage_Property_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Property) GetVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Property_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStoragePropertyTypeService() Network_Storage_Property_Type {
-	return Network_Storage_Property_Type{Session: r}
-}
-
-type Network_Storage_Replicant struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageReplicantService() Network_Storage_Replicant {
-	return Network_Storage_Replicant{Session: r}
-}
-
-func (r *Network_Storage_Replicant) GetFailbackInProgressFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Replicant) GetVolumeName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5416,24 +4305,6 @@ func (r *Network_Storage_Schedule) GetVolume() (resp datatypes.Network_Storage, 
 	return
 }
 
-type Network_Storage_Schedule_Property struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageSchedulePropertyService() Network_Storage_Schedule_Property {
-	return Network_Storage_Schedule_Property{Session: r}
-}
-
-func (r *Network_Storage_Schedule_Property) GetSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Schedule_Property) GetType() (resp datatypes.Network_Storage_Schedule_Property_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Storage_Schedule_Property_Type struct {
 	Session *Session
 	Options
@@ -5448,47 +4319,6 @@ func (r *Network_Storage_Schedule_Property_Type) GetAllObjects() (resp []datatyp
 	return
 }
 func (r *Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Network_Storage_Schedule_Property_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Schedule_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageScheduleTypeService() Network_Storage_Schedule_Type {
-	return Network_Storage_Schedule_Type{Session: r}
-}
-
-type Network_Storage_Snapshot struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageSnapshotService() Network_Storage_Snapshot {
-	return Network_Storage_Snapshot{Session: r}
-}
-
-func (r *Network_Storage_Snapshot) GetCreationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Snapshot) GetVolumeName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Storage_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkStorageTypeService() Network_Storage_Type {
-	return Network_Storage_Type{Session: r}
-}
-
-func (r *Network_Storage_Type) GetVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5968,20 +4798,6 @@ func (r *Network_Subnet_IpAddress_Global) GetIpAddress() (resp datatypes.Network
 	return
 }
 
-type Network_Subnet_IpAddress_Version6 struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetIpAddressVersion6Service() Network_Subnet_IpAddress_Version6 {
-	return Network_Subnet_IpAddress_Version6{Session: r}
-}
-
-func (r *Network_Subnet_IpAddress_Version6) GetPublicVersion6NetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Subnet_Registration struct {
 	Session *Session
 	Options
@@ -6059,24 +4875,6 @@ func (r *Network_Subnet_Registration) GetSubnet() (resp datatypes.Network_Subnet
 	return
 }
 
-type Network_Subnet_Registration_Apnic struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetRegistrationApnicService() Network_Subnet_Registration_Apnic {
-	return Network_Subnet_Registration_Apnic{Session: r}
-}
-
-type Network_Subnet_Registration_Arin struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetRegistrationArinService() Network_Subnet_Registration_Arin {
-	return Network_Subnet_Registration_Arin{Session: r}
-}
-
 type Network_Subnet_Registration_Details struct {
 	Session *Session
 	Options
@@ -6109,42 +4907,6 @@ func (r *Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Accoun
 func (r *Network_Subnet_Registration_Details) GetRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Network_Subnet_Registration_Event struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetRegistrationEventService() Network_Subnet_Registration_Event {
-	return Network_Subnet_Registration_Event{Session: r}
-}
-
-func (r *Network_Subnet_Registration_Event) GetRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_Registration_Event) GetType() (resp datatypes.Network_Subnet_Registration_Event_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Subnet_Registration_Event_Type struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetRegistrationEventTypeService() Network_Subnet_Registration_Event_Type {
-	return Network_Subnet_Registration_Event_Type{Session: r}
-}
-
-type Network_Subnet_Registration_Ripe struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkSubnetRegistrationRipeService() Network_Subnet_Registration_Ripe {
-	return Network_Subnet_Registration_Ripe{Session: r}
 }
 
 type Network_Subnet_Registration_Status struct {
@@ -6486,28 +5248,6 @@ func (r *Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatype
 	return
 }
 
-type Network_Tunnel_Module_Context_Address_Translation struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkTunnelModuleContextAddressTranslationService() Network_Tunnel_Module_Context_Address_Translation {
-	return Network_Tunnel_Module_Context_Address_Translation{Session: r}
-}
-
-func (r *Network_Tunnel_Module_Context_Address_Translation) GetCustomerIpAddressRecord() (resp datatypes.Network_Customer_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context_Address_Translation) GetInternalIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context_Address_Translation) GetNetworkTunnelContext() (resp datatypes.Network_Tunnel_Module_Context, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Vlan struct {
 	Session *Session
 	Options
@@ -6811,20 +5551,6 @@ func (r *Network_Vlan_Firewall) GetRules() (resp []datatypes.Network_Vlan_Firewa
 	return
 }
 func (r *Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Network_Vlan_Firewall_Rule struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetNetworkVlanFirewallRuleService() Network_Vlan_Firewall_Rule {
-	return Network_Vlan_Firewall_Rule{Session: r}
-}
-
-func (r *Network_Vlan_Firewall_Rule) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

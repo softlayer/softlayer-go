@@ -238,48 +238,6 @@ func (r *Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenanc
 	return
 }
 
-type Provisioning_Version1_Transaction struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetProvisioningVersion1TransactionService() Provisioning_Version1_Transaction {
-	return Provisioning_Version1_Transaction{Session: r}
-}
-
-func (r *Provisioning_Version1_Transaction) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetLoopback() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetPendingTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetTicketScheduledActionReference() (resp []datatypes.Ticket_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetTransactionGroup() (resp datatypes.Provisioning_Version1_Transaction_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction) GetTransactionStatus() (resp datatypes.Provisioning_Version1_Transaction_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Provisioning_Version1_Transaction_Group struct {
 	Session *Session
 	Options
@@ -296,53 +254,4 @@ func (r *Provisioning_Version1_Transaction_Group) GetAllObjects() (resp []dataty
 func (r *Provisioning_Version1_Transaction_Group) GetObject() (resp datatypes.Provisioning_Version1_Transaction_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
-}
-
-type Provisioning_Version1_Transaction_History struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetProvisioningVersion1TransactionHistoryService() Provisioning_Version1_Transaction_History {
-	return Provisioning_Version1_Transaction_History{Session: r}
-}
-
-func (r *Provisioning_Version1_Transaction_History) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction_History) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction_History) GetTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Provisioning_Version1_Transaction_History) GetTransactionStatus() (resp datatypes.Provisioning_Version1_Transaction_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Provisioning_Version1_Transaction_Status struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetProvisioningVersion1TransactionStatusService() Provisioning_Version1_Transaction_Status {
-	return Provisioning_Version1_Transaction_Status{Session: r}
-}
-
-func (r *Provisioning_Version1_Transaction_Status) GetNonCompletedTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-type Provisioning_Version1_Transaction_SubnetMigration struct {
-	Session *Session
-	Options
-}
-
-func (r *Session) GetProvisioningVersion1TransactionSubnetMigrationService() Provisioning_Version1_Transaction_SubnetMigration {
-	return Provisioning_Version1_Transaction_SubnetMigration{Session: r}
 }
