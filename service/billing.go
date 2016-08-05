@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Billing_Currency struct {
 	Session *Session
@@ -68,7 +64,7 @@ func (r *Billing_Currency_ExchangeRate) GetCurrencies() (resp []datatypes.Billin
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Currency_ExchangeRate) GetExchangeRate(to *string, from *string, effectiveDate *time.Time) (resp datatypes.Billing_Currency_ExchangeRate, err error) {
+func (r *Billing_Currency_ExchangeRate) GetExchangeRate(to *string, from *string, effectiveDate *datatypes.Time) (resp datatypes.Billing_Currency_ExchangeRate, err error) {
 	params := []interface{}{
 		to,
 		from,
@@ -129,11 +125,11 @@ func (r *Billing_Info) GetCurrentBillingCycle() (resp datatypes.Billing_Info_Cyc
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Info) GetLastBillDate() (resp time.Time, err error) {
+func (r *Billing_Info) GetLastBillDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Info) GetNextBillDate() (resp time.Time, err error) {
+func (r *Billing_Info) GetNextBillDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -429,21 +425,21 @@ func (r *Session) GetBillingInvoiceNextService() Billing_Invoice_Next {
 	return Billing_Invoice_Next{Session: r}
 }
 
-func (r *Billing_Invoice_Next) GetExcel(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Billing_Invoice_Next) GetExcel(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Invoice_Next) GetPdf(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Billing_Invoice_Next) GetPdf(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Invoice_Next) GetPdfDetailed(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Billing_Invoice_Next) GetPdfDetailed(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
@@ -921,7 +917,7 @@ func (r *Billing_Item_Cancellation_Request) GetAllCancellationRequests() (resp [
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Item_Cancellation_Request) GetCancellationCutoffDate(accountId *int, categoryCode *string) (resp time.Time, err error) {
+func (r *Billing_Item_Cancellation_Request) GetCancellationCutoffDate(accountId *int, categoryCode *string) (resp datatypes.Time, err error) {
 	params := []interface{}{
 		accountId,
 		categoryCode,
@@ -1752,7 +1748,7 @@ func (r *Billing_Order) GetItems() (resp []datatypes.Billing_Order_Item, err err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Order) GetOrderApprovalDate() (resp time.Time, err error) {
+func (r *Billing_Order) GetOrderApprovalDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1946,7 +1942,7 @@ func (r *Billing_Order_Item) GetOrder() (resp datatypes.Billing_Order, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Order_Item) GetOrderApprovalDate() (resp time.Time, err error) {
+func (r *Billing_Order_Item) GetOrderApprovalDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -16,6 +16,11 @@
 
 package sl
 
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"time"
+)
+
 func Int(v int) *int {
 	return &v
 }
@@ -26,4 +31,9 @@ func String(v string) *string {
 
 func Bool(v bool) *bool {
 	return &v
+}
+
+func Time(v time.Time) *datatypes.Time {
+	r := datatypes.Time{Time: v}
+	return &r
 }

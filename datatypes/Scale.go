@@ -16,12 +16,10 @@
 
 package datatypes
 
-import "time"
-
 type Scale_Asset struct {
 	Entity
 
-	CreateDate   *time.Time   `json:"createDate,omitempty"`
+	CreateDate   *Time        `json:"createDate,omitempty"`
 	DeleteFlag   *bool        `json:"deleteFlag,omitempty"`
 	Id           *int         `json:"id,omitempty"`
 	ScaleGroup   *Scale_Group `json:"scaleGroup,omitempty"`
@@ -49,17 +47,17 @@ type Scale_Group struct {
 	AccountId                  *int                         `json:"accountId,omitempty"`
 	BalancedTerminationFlag    *bool                        `json:"balancedTerminationFlag,omitempty"`
 	Cooldown                   *int                         `json:"cooldown,omitempty"`
-	CreateDate                 *time.Time                   `json:"createDate,omitempty"`
+	CreateDate                 *Time                        `json:"createDate,omitempty"`
 	DesiredMemberCount         *int                         `json:"desiredMemberCount,omitempty"`
 	Id                         *int                         `json:"id,omitempty"`
-	LastActionDate             *time.Time                   `json:"lastActionDate,omitempty"`
+	LastActionDate             *Time                        `json:"lastActionDate,omitempty"`
 	LoadBalancerCount          *uint                        `json:"loadBalancerCount,omitempty"`
 	LoadBalancers              []Scale_LoadBalancer         `json:"loadBalancers,omitempty"`
 	LogCount                   *uint                        `json:"logCount,omitempty"`
 	Logs                       []Scale_Group_Log            `json:"logs,omitempty"`
 	MaximumMemberCount         *int                         `json:"maximumMemberCount,omitempty"`
 	MinimumMemberCount         *int                         `json:"minimumMemberCount,omitempty"`
-	ModifyDate                 *time.Time                   `json:"modifyDate,omitempty"`
+	ModifyDate                 *Time                        `json:"modifyDate,omitempty"`
 	Name                       *string                      `json:"name,omitempty"`
 	NetworkVlanCount           *uint                        `json:"networkVlanCount,omitempty"`
 	NetworkVlans               []Scale_Network_Vlan         `json:"networkVlans,omitempty"`
@@ -81,7 +79,7 @@ type Scale_Group struct {
 type Scale_Group_Log struct {
 	Entity
 
-	CreateDate   *time.Time   `json:"createDate,omitempty"`
+	CreateDate   *Time        `json:"createDate,omitempty"`
 	Description  *string      `json:"description,omitempty"`
 	Id           *int         `json:"id,omitempty"`
 	ScaleGroup   *Scale_Group `json:"scaleGroup,omitempty"`
@@ -100,12 +98,12 @@ type Scale_LoadBalancer struct {
 	Entity
 
 	AllocationPercent  *int                                                                 `json:"allocationPercent,omitempty"`
-	CreateDate         *time.Time                                                           `json:"createDate,omitempty"`
+	CreateDate         *Time                                                                `json:"createDate,omitempty"`
 	DeleteFlag         *bool                                                                `json:"deleteFlag,omitempty"`
 	HealthCheck        *Network_Application_Delivery_Controller_LoadBalancer_Health_Check   `json:"healthCheck,omitempty"`
 	HealthCheckId      *int                                                                 `json:"healthCheckId,omitempty"`
 	Id                 *int                                                                 `json:"id,omitempty"`
-	ModifyDate         *time.Time                                                           `json:"modifyDate,omitempty"`
+	ModifyDate         *Time                                                                `json:"modifyDate,omitempty"`
 	Port               *int                                                                 `json:"port,omitempty"`
 	RoutingMethod      *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method `json:"routingMethod,omitempty"`
 	RoutingType        *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type   `json:"routingType,omitempty"`
@@ -120,7 +118,7 @@ type Scale_LoadBalancer struct {
 type Scale_Member struct {
 	Entity
 
-	CreateDate   *time.Time   `json:"createDate,omitempty"`
+	CreateDate   *Time        `json:"createDate,omitempty"`
 	Id           *int         `json:"id,omitempty"`
 	ScaleGroup   *Scale_Group `json:"scaleGroup,omitempty"`
 	ScaleGroupId *int         `json:"scaleGroupId,omitempty"`
@@ -136,7 +134,7 @@ type Scale_Member_Virtual_Guest struct {
 type Scale_Network_Vlan struct {
 	Entity
 
-	CreateDate    *time.Time    `json:"createDate,omitempty"`
+	CreateDate    *Time         `json:"createDate,omitempty"`
 	DeleteFlag    *bool         `json:"deleteFlag,omitempty"`
 	Id            *int          `json:"id,omitempty"`
 	NetworkVlan   *Network_Vlan `json:"networkVlan,omitempty"`
@@ -151,10 +149,10 @@ type Scale_Policy struct {
 	ActionCount             *uint                              `json:"actionCount,omitempty"`
 	Actions                 []Scale_Policy_Action              `json:"actions,omitempty"`
 	Cooldown                *int                               `json:"cooldown,omitempty"`
-	CreateDate              *time.Time                         `json:"createDate,omitempty"`
+	CreateDate              *Time                              `json:"createDate,omitempty"`
 	DeleteFlag              *bool                              `json:"deleteFlag,omitempty"`
 	Id                      *int                               `json:"id,omitempty"`
-	ModifyDate              *time.Time                         `json:"modifyDate,omitempty"`
+	ModifyDate              *Time                              `json:"modifyDate,omitempty"`
 	Name                    *string                            `json:"name,omitempty"`
 	OneTimeTriggerCount     *uint                              `json:"oneTimeTriggerCount,omitempty"`
 	OneTimeTriggers         []Scale_Policy_Trigger_OneTime     `json:"oneTimeTriggers,omitempty"`
@@ -173,10 +171,10 @@ type Scale_Policy struct {
 type Scale_Policy_Action struct {
 	Entity
 
-	CreateDate    *time.Time                `json:"createDate,omitempty"`
+	CreateDate    *Time                     `json:"createDate,omitempty"`
 	DeleteFlag    *bool                     `json:"deleteFlag,omitempty"`
 	Id            *int                      `json:"id,omitempty"`
-	ModifyDate    *time.Time                `json:"modifyDate,omitempty"`
+	ModifyDate    *Time                     `json:"modifyDate,omitempty"`
 	ScalePolicy   *Scale_Policy             `json:"scalePolicy,omitempty"`
 	ScalePolicyId *int                      `json:"scalePolicyId,omitempty"`
 	Type          *Scale_Policy_Action_Type `json:"type,omitempty"`
@@ -201,10 +199,10 @@ type Scale_Policy_Action_Type struct {
 type Scale_Policy_Trigger struct {
 	Entity
 
-	CreateDate    *time.Time                 `json:"createDate,omitempty"`
+	CreateDate    *Time                      `json:"createDate,omitempty"`
 	DeleteFlag    *bool                      `json:"deleteFlag,omitempty"`
 	Id            *int                       `json:"id,omitempty"`
-	ModifyDate    *time.Time                 `json:"modifyDate,omitempty"`
+	ModifyDate    *Time                      `json:"modifyDate,omitempty"`
 	ScalePolicy   *Scale_Policy              `json:"scalePolicy,omitempty"`
 	ScalePolicyId *int                       `json:"scalePolicyId,omitempty"`
 	Type          *Scale_Policy_Trigger_Type `json:"type,omitempty"`
@@ -214,7 +212,7 @@ type Scale_Policy_Trigger struct {
 type Scale_Policy_Trigger_OneTime struct {
 	Scale_Policy_Trigger
 
-	Date *time.Time `json:"date,omitempty"`
+	Date *Time `json:"date,omitempty"`
 }
 
 type Scale_Policy_Trigger_Repeating struct {
@@ -234,11 +232,11 @@ type Scale_Policy_Trigger_ResourceUse_Watch struct {
 	Entity
 
 	Algorithm            *string                           `json:"algorithm,omitempty"`
-	CreateDate           *time.Time                        `json:"createDate,omitempty"`
+	CreateDate           *Time                             `json:"createDate,omitempty"`
 	DeleteFlag           *bool                             `json:"deleteFlag,omitempty"`
 	Id                   *int                              `json:"id,omitempty"`
 	Metric               *string                           `json:"metric,omitempty"`
-	ModifyDate           *time.Time                        `json:"modifyDate,omitempty"`
+	ModifyDate           *Time                             `json:"modifyDate,omitempty"`
 	Operator             *string                           `json:"operator,omitempty"`
 	Period               *int                              `json:"period,omitempty"`
 	ScalePolicyTrigger   *Scale_Policy_Trigger_ResourceUse `json:"scalePolicyTrigger,omitempty"`

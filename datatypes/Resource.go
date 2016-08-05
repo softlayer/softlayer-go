@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Resource_Group struct {
 	Entity
 
@@ -25,7 +23,7 @@ type Resource_Group struct {
 	AncestorGroups      []Resource_Group           `json:"ancestorGroups,omitempty"`
 	AttributeCount      *uint                      `json:"attributeCount,omitempty"`
 	Attributes          []Resource_Group_Attribute `json:"attributes,omitempty"`
-	CreateDate          *time.Time                 `json:"createDate,omitempty"`
+	CreateDate          *Time                      `json:"createDate,omitempty"`
 	Description         *string                    `json:"description,omitempty"`
 	HardwareMemberCount *uint                      `json:"hardwareMemberCount,omitempty"`
 	HardwareMembers     []Resource_Group_Member    `json:"hardwareMembers,omitempty"`
@@ -47,7 +45,7 @@ type Resource_Group struct {
 type Resource_Group_Attribute struct {
 	Entity
 
-	CreateDate *time.Time                     `json:"createDate,omitempty"`
+	CreateDate *Time                          `json:"createDate,omitempty"`
 	Group      *Resource_Group                `json:"group,omitempty"`
 	Id         *int                           `json:"id,omitempty"`
 	Type       *Resource_Group_Attribute_Type `json:"type,omitempty"`
@@ -75,7 +73,7 @@ type Resource_Group_Member struct {
 
 	AttributeCount        *uint                             `json:"attributeCount,omitempty"`
 	Attributes            []Resource_Group_Member_Attribute `json:"attributes,omitempty"`
-	CreateDate            *time.Time                        `json:"createDate,omitempty"`
+	CreateDate            *Time                             `json:"createDate,omitempty"`
 	DescendantMemberCount *uint                             `json:"descendantMemberCount,omitempty"`
 	DescendantMembers     []Resource_Group_Member           `json:"descendantMembers,omitempty"`
 	Group                 *Resource_Group                   `json:"group,omitempty"`
@@ -89,7 +87,7 @@ type Resource_Group_Member struct {
 type Resource_Group_Member_Attribute struct {
 	Entity
 
-	CreateDate *time.Time                            `json:"createDate,omitempty"`
+	CreateDate *Time                                 `json:"createDate,omitempty"`
 	Id         *int                                  `json:"id,omitempty"`
 	Member     *Resource_Group_Member                `json:"member,omitempty"`
 	Type       *Resource_Group_Member_Attribute_Type `json:"type,omitempty"`

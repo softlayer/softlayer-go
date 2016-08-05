@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Network struct {
 	Session *Session
@@ -131,7 +127,7 @@ func (r *Network_Application_Delivery_Controller) EditObject(templateObject *dat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDateTime *time.Time, endDateTime *time.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -140,7 +136,7 @@ func (r *Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDa
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller) GetBandwidthImageByDate(startDateTime *time.Time, endDateTime *time.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Network_Application_Delivery_Controller) GetBandwidthImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -223,7 +219,7 @@ func (r *Network_Application_Delivery_Controller) GetDescription() (resp string,
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller) GetLicenseExpirationDate() (resp time.Time, err error) {
+func (r *Network_Application_Delivery_Controller) GetLicenseExpirationDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -888,14 +884,14 @@ func (r *Network_Bandwidth_Version1_Allotment) EditObject(templateObject *dataty
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *time.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
 		date,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *time.Time, endDate *time.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -903,7 +899,7 @@ func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -911,7 +907,7 @@ func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *time.Time, dateSpecifiedEnd *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		networkType,
 		snapshotRange,
@@ -929,14 +925,14 @@ func (r *Network_Bandwidth_Version1_Allotment) GetCustomBandwidthDataByDate(grap
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *time.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
 		date,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthUse(startDate *time.Time, endDate *time.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
+func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1618,7 +1614,7 @@ func (r *Network_ContentDelivery_Account) EnableLogging() (resp bool, err error)
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthData(beginDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Container_Network_ContentDelivery_Bandwidth_PointsOfPresence_Summary, err error) {
+func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthData(beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Container_Network_ContentDelivery_Bandwidth_PointsOfPresence_Summary, err error) {
 	params := []interface{}{
 		beginDateTime,
 		endDateTime,
@@ -1626,7 +1622,7 @@ func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthData(beginDateTime 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthImage(title *string, beginDateTime *time.Time, endDateTime *time.Time, unit *string) (resp datatypes.Container_Bandwidth_GraphOutputsExtended, err error) {
+func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthImage(title *string, beginDateTime *datatypes.Time, endDateTime *datatypes.Time, unit *string) (resp datatypes.Container_Bandwidth_GraphOutputsExtended, err error) {
 	params := []interface{}{
 		title,
 		beginDateTime,
@@ -1640,7 +1636,7 @@ func (r *Network_ContentDelivery_Account) GetAuthenticationServiceEndpoints() (r
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetBandwidthData(beginDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Container_Network_ContentDelivery_Bandwidth_Summary, err error) {
+func (r *Network_ContentDelivery_Account) GetBandwidthData(beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Container_Network_ContentDelivery_Bandwidth_Summary, err error) {
 	params := []interface{}{
 		beginDateTime,
 		endDateTime,
@@ -1648,7 +1644,7 @@ func (r *Network_ContentDelivery_Account) GetBandwidthData(beginDateTime *time.T
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetBandwidthDataWithTypes(beginDateTime *time.Time, endDateTime *time.Time, period *string) (resp []datatypes.Container_Network_ContentDelivery_Report_Usage, err error) {
+func (r *Network_ContentDelivery_Account) GetBandwidthDataWithTypes(beginDateTime *datatypes.Time, endDateTime *datatypes.Time, period *string) (resp []datatypes.Container_Network_ContentDelivery_Report_Usage, err error) {
 	params := []interface{}{
 		beginDateTime,
 		endDateTime,
@@ -1657,7 +1653,7 @@ func (r *Network_ContentDelivery_Account) GetBandwidthDataWithTypes(beginDateTim
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetBandwidthImage(title *string, beginDateTime *time.Time, endDateTime *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputsExtended, err error) {
+func (r *Network_ContentDelivery_Account) GetBandwidthImage(title *string, beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputsExtended, err error) {
 	params := []interface{}{
 		title,
 		beginDateTime,
@@ -1680,7 +1676,7 @@ func (r *Network_ContentDelivery_Account) GetDirectoryInformation(directoryName 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetDiskSpaceUsageDataByDate(beginDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Network_ContentDelivery_Account) GetDiskSpaceUsageDataByDate(beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		beginDateTime,
 		endDateTime,
@@ -1688,7 +1684,7 @@ func (r *Network_ContentDelivery_Account) GetDiskSpaceUsageDataByDate(beginDateT
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_ContentDelivery_Account) GetDiskSpaceUsageImageByDate(beginDateTime *time.Time, endDateTime *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Network_ContentDelivery_Account) GetDiskSpaceUsageImageByDate(beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		beginDateTime,
 		endDateTime,
@@ -2993,7 +2989,7 @@ func (r *Network_Message_Queue_Node) GetObject() (resp datatypes.Network_Message
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Message_Queue_Node) GetUsage(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Network_Message_Queue_Node) GetUsage(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -3738,7 +3734,7 @@ func (r *Network_Storage) ChangePassword(username *string, currentPassword *stri
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage) CollectBandwidth(typ *string, startDate *time.Time, endDate *time.Time) (resp uint, err error) {
+func (r *Network_Storage) CollectBandwidth(typ *string, startDate *datatypes.Time, endDate *datatypes.Time) (resp uint, err error) {
 	params := []interface{}{
 		typ,
 		startDate,
@@ -3936,7 +3932,7 @@ func (r *Network_Storage) GetFolderList() (resp []datatypes.Container_Network_St
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage) GetGraph(startDate *time.Time, endDate *time.Time, typ *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Network_Storage) GetGraph(startDate *datatypes.Time, endDate *datatypes.Time, typ *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,

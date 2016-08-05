@@ -205,7 +205,7 @@ func PrefixWithPackageName(args ...interface{}) string {
 	p := args[0].(string)
 	s := args[1].(string)
 
-	if !strings.HasPrefix(s, "SoftLayer_") {
+	if !strings.HasPrefix(s, "SoftLayer_") && s != "Time" {
 		return s
 	}
 
@@ -222,7 +222,7 @@ func ConvertType(args ...interface{}) string {
 	case "boolean":
 		return "bool"
 	case "dateTime":
-		return "time.Time"
+		return "Time"
 	case "decimal", "float":
 		return "float64"
 	case "base64Binary":

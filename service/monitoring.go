@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Monitoring_Agent struct {
 	Session *Session
@@ -88,7 +84,7 @@ func (r *Monitoring_Agent) GetEligibleAlarmSubscibers() (resp []datatypes.User_C
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Monitoring_Agent) GetGraph(configurationValues []datatypes.Monitoring_Agent_Configuration_Value, beginDate *time.Time, endDate *time.Time) (resp datatypes.Container_Monitoring_Graph_Outputs, err error) {
+func (r *Monitoring_Agent) GetGraph(configurationValues []datatypes.Monitoring_Agent_Configuration_Value, beginDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Monitoring_Graph_Outputs, err error) {
 	params := []interface{}{
 		configurationValues,
 		beginDate,
@@ -97,7 +93,7 @@ func (r *Monitoring_Agent) GetGraph(configurationValues []datatypes.Monitoring_A
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Monitoring_Agent) GetGraphData(metricDataTypes []datatypes.Container_Metric_Data_Type, startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Monitoring_Agent) GetGraphData(metricDataTypes []datatypes.Container_Metric_Data_Type, startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		metricDataTypes,
 		startDate,

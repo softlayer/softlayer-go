@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Dns_Domain struct {
 	Entity
 
@@ -29,7 +27,7 @@ type Dns_Domain struct {
 	ResourceRecords     []Dns_Domain_ResourceRecord `json:"resourceRecords,omitempty"`
 	Secondary           *Dns_Secondary              `json:"secondary,omitempty"`
 	Serial              *int                        `json:"serial,omitempty"`
-	UpdateDate          *time.Time                  `json:"updateDate,omitempty"`
+	UpdateDate          *Time                       `json:"updateDate,omitempty"`
 }
 
 type Dns_Domain_Forward struct {
@@ -40,13 +38,13 @@ type Dns_Domain_Registration struct {
 	Entity
 
 	Account                        *Account                                                `json:"account,omitempty"`
-	CreateDate                     *time.Time                                              `json:"createDate,omitempty"`
+	CreateDate                     *Time                                                   `json:"createDate,omitempty"`
 	DomainRegistrationStatus       *Dns_Domain_Registration_Status                         `json:"domainRegistrationStatus,omitempty"`
 	DomainRegistrationStatusId     *int                                                    `json:"domainRegistrationStatusId,omitempty"`
-	ExpireDate                     *time.Time                                              `json:"expireDate,omitempty"`
+	ExpireDate                     *Time                                                   `json:"expireDate,omitempty"`
 	Id                             *int                                                    `json:"id,omitempty"`
 	LockedFlag                     *int                                                    `json:"lockedFlag,omitempty"`
-	ModifyDate                     *time.Time                                              `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                                                   `json:"modifyDate,omitempty"`
 	Name                           *string                                                 `json:"name,omitempty"`
 	RegistrantVerificationStatus   *Dns_Domain_Registration_Registrant_Verification_Status `json:"registrantVerificationStatus,omitempty"`
 	RegistrantVerificationStatusId *int                                                    `json:"registrantVerificationStatusId,omitempty"`
@@ -155,7 +153,7 @@ type Dns_Domain_Reverse_Version6 struct {
 type Dns_Message struct {
 	Entity
 
-	CreateDate     *time.Time                 `json:"createDate,omitempty"`
+	CreateDate     *Time                      `json:"createDate,omitempty"`
 	Domain         *Dns_Domain                `json:"domain,omitempty"`
 	Id             *int                       `json:"id,omitempty"`
 	Message        *string                    `json:"message,omitempty"`
@@ -168,12 +166,12 @@ type Dns_Secondary struct {
 	Entity
 
 	Account           *Account      `json:"account,omitempty"`
-	CreateDate        *time.Time    `json:"createDate,omitempty"`
+	CreateDate        *Time         `json:"createDate,omitempty"`
 	Domain            *Dns_Domain   `json:"domain,omitempty"`
 	ErrorMessageCount *uint         `json:"errorMessageCount,omitempty"`
 	ErrorMessages     []Dns_Message `json:"errorMessages,omitempty"`
 	Id                *int          `json:"id,omitempty"`
-	LastUpdate        *time.Time    `json:"lastUpdate,omitempty"`
+	LastUpdate        *Time         `json:"lastUpdate,omitempty"`
 	MasterIpAddress   *string       `json:"masterIpAddress,omitempty"`
 	Status            *Dns_Status   `json:"status,omitempty"`
 	StatusId          *int          `json:"statusId,omitempty"`

@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Hardware struct {
 	Entity
 
@@ -164,7 +162,7 @@ type Hardware struct {
 	ProcessorCount                              *uint                                        `json:"processorCount,omitempty"`
 	ProcessorPhysicalCoreAmount                 *uint                                        `json:"processorPhysicalCoreAmount,omitempty"`
 	Processors                                  []Hardware_Component                         `json:"processors,omitempty"`
-	ProvisionDate                               *time.Time                                   `json:"provisionDate,omitempty"`
+	ProvisionDate                               *Time                                        `json:"provisionDate,omitempty"`
 	Rack                                        *Location                                    `json:"rack,omitempty"`
 	RaidControllerCount                         *uint                                        `json:"raidControllerCount,omitempty"`
 	RaidControllers                             []Hardware_Component                         `json:"raidControllers,omitempty"`
@@ -237,11 +235,11 @@ type Hardware_Attribute_Type struct {
 type Hardware_Benchmark_Certification struct {
 	Entity
 
-	Account    *Account   `json:"account,omitempty"`
-	AccountId  *int       `json:"accountId,omitempty"`
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Hardware   *Hardware  `json:"hardware,omitempty"`
-	HardwareId *int       `json:"hardwareId,omitempty"`
+	Account    *Account  `json:"account,omitempty"`
+	AccountId  *int      `json:"accountId,omitempty"`
+	CreateDate *Time     `json:"createDate,omitempty"`
+	Hardware   *Hardware `json:"hardware,omitempty"`
+	HardwareId *int      `json:"hardwareId,omitempty"`
 }
 
 type Hardware_Chassis struct {
@@ -276,7 +274,7 @@ type Hardware_Component struct {
 	HardwareComponentType          *Hardware_Component_Type  `json:"hardwareComponentType,omitempty"`
 	HardwareId                     *int                      `json:"hardwareId,omitempty"`
 	Id                             *int                      `json:"id,omitempty"`
-	ModifyDate                     *time.Time                `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                     `json:"modifyDate,omitempty"`
 	Name                           *string                   `json:"name,omitempty"`
 	NetworkComponentCount          *uint                     `json:"networkComponentCount,omitempty"`
 	NetworkComponents              []Network_Component       `json:"networkComponents,omitempty"`
@@ -506,10 +504,10 @@ type Hardware_Component_RemoteManagement_Command struct {
 type Hardware_Component_RemoteManagement_Command_Request struct {
 	Entity
 
-	CreateDate              *time.Time                                   `json:"createDate,omitempty"`
+	CreateDate              *Time                                        `json:"createDate,omitempty"`
 	Hardware                *Hardware                                    `json:"hardware,omitempty"`
 	HardwareId              *int                                         `json:"hardwareId,omitempty"`
-	ModifyDate              *time.Time                                   `json:"modifyDate,omitempty"`
+	ModifyDate              *Time                                        `json:"modifyDate,omitempty"`
 	NetworkComponent        *Network_Component                           `json:"networkComponent,omitempty"`
 	Processed               *bool                                        `json:"processed,omitempty"`
 	RemoteManagementCommand *Hardware_Component_RemoteManagement_Command `json:"remoteManagementCommand,omitempty"`
@@ -593,12 +591,12 @@ type Hardware_LoadBalancer struct {
 type Hardware_Note struct {
 	Entity
 
-	CreateDate   *time.Time          `json:"createDate,omitempty"`
+	CreateDate   *Time               `json:"createDate,omitempty"`
 	Employee     *User_Employee      `json:"employee,omitempty"`
 	Hardware     *Hardware           `json:"hardware,omitempty"`
 	HardwareId   *int                `json:"hardwareId,omitempty"`
 	Id           *int                `json:"id,omitempty"`
-	ModifyDate   *time.Time          `json:"modifyDate,omitempty"`
+	ModifyDate   *Time               `json:"modifyDate,omitempty"`
 	Note         *string             `json:"note,omitempty"`
 	Type         *Hardware_Note_Type `json:"type,omitempty"`
 	TypeId       *int                `json:"typeId,omitempty"`

@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Notification struct {
 	Entity
 
@@ -59,7 +57,7 @@ type Notification_Occurrence_Event struct {
 	AcknowledgedFlag                *bool                                      `json:"acknowledgedFlag,omitempty"`
 	AttachmentCount                 *uint                                      `json:"attachmentCount,omitempty"`
 	Attachments                     []Notification_Occurrence_Event_Attachment `json:"attachments,omitempty"`
-	EndDate                         *time.Time                                 `json:"endDate,omitempty"`
+	EndDate                         *Time                                      `json:"endDate,omitempty"`
 	FirstUpdate                     *Notification_Occurrence_Update            `json:"firstUpdate,omitempty"`
 	Id                              *int                                       `json:"id,omitempty"`
 	ImpactedAccountCount            *uint                                      `json:"impactedAccountCount,omitempty"`
@@ -70,10 +68,10 @@ type Notification_Occurrence_Event struct {
 	ImpactedUsers                   []Notification_Occurrence_User             `json:"impactedUsers,omitempty"`
 	LastImpactedUserCount           *int                                       `json:"lastImpactedUserCount,omitempty"`
 	LastUpdate                      *Notification_Occurrence_Update            `json:"lastUpdate,omitempty"`
-	ModifyDate                      *time.Time                                 `json:"modifyDate,omitempty"`
+	ModifyDate                      *Time                                      `json:"modifyDate,omitempty"`
 	NotificationOccurrenceEventType *Notification_Occurrence_Event_Type        `json:"notificationOccurrenceEventType,omitempty"`
 	RecoveryTime                    *int                                       `json:"recoveryTime,omitempty"`
-	StartDate                       *time.Time                                 `json:"startDate,omitempty"`
+	StartDate                       *Time                                      `json:"startDate,omitempty"`
 	StatusCode                      *Notification_Occurrence_Status_Code       `json:"statusCode,omitempty"`
 	Subject                         *string                                    `json:"subject,omitempty"`
 	Summary                         *string                                    `json:"summary,omitempty"`
@@ -85,7 +83,7 @@ type Notification_Occurrence_Event struct {
 type Notification_Occurrence_Event_Attachment struct {
 	Entity
 
-	CreateDate                    *time.Time                     `json:"createDate,omitempty"`
+	CreateDate                    *Time                          `json:"createDate,omitempty"`
 	FileName                      *string                        `json:"fileName,omitempty"`
 	FileSize                      *string                        `json:"fileSize,omitempty"`
 	Id                            *int                           `json:"id,omitempty"`
@@ -199,11 +197,11 @@ type Notification_Occurrence_Update struct {
 	Entity
 
 	Contents                    *string                        `json:"contents,omitempty"`
-	CreateDate                  *time.Time                     `json:"createDate,omitempty"`
+	CreateDate                  *Time                          `json:"createDate,omitempty"`
 	Employee                    *User_Employee                 `json:"employee,omitempty"`
-	EndDate                     *time.Time                     `json:"endDate,omitempty"`
+	EndDate                     *Time                          `json:"endDate,omitempty"`
 	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
-	StartDate                   *time.Time                     `json:"startDate,omitempty"`
+	StartDate                   *Time                          `json:"startDate,omitempty"`
 }
 
 type Notification_Occurrence_User struct {
@@ -236,11 +234,11 @@ type Notification_Subscriber struct {
 	Entity
 
 	Active                               *int                                      `json:"active,omitempty"`
-	CreateDate                           *time.Time                                `json:"createDate,omitempty"`
+	CreateDate                           *Time                                     `json:"createDate,omitempty"`
 	DeliveryMethodCount                  *uint                                     `json:"deliveryMethodCount,omitempty"`
 	DeliveryMethods                      []Notification_Subscriber_Delivery_Method `json:"deliveryMethods,omitempty"`
 	Id                                   *int                                      `json:"id,omitempty"`
-	ModifyDate                           *time.Time                                `json:"modifyDate,omitempty"`
+	ModifyDate                           *Time                                     `json:"modifyDate,omitempty"`
 	Notification                         *Notification                             `json:"notification,omitempty"`
 	NotificationId                       *int                                      `json:"notificationId,omitempty"`
 	NotificationSubscriberTypeId         *int                                      `json:"notificationSubscriberTypeId,omitempty"`
@@ -257,8 +255,8 @@ type Notification_Subscriber_Delivery_Method struct {
 	Entity
 
 	Active                       *int                          `json:"active,omitempty"`
-	CreateDate                   *time.Time                    `json:"createDate,omitempty"`
-	ModifyDate                   *time.Time                    `json:"modifyDate,omitempty"`
+	CreateDate                   *Time                         `json:"createDate,omitempty"`
+	ModifyDate                   *Time                         `json:"modifyDate,omitempty"`
 	NotificationDeliveryMethod   *Notification_Delivery_Method `json:"notificationDeliveryMethod,omitempty"`
 	NotificationDeliveryMethodId *int                          `json:"notificationDeliveryMethodId,omitempty"`
 	NotificationSubscriber       *Notification_Subscriber      `json:"notificationSubscriber,omitempty"`

@@ -16,19 +16,17 @@
 
 package datatypes
 
-import "time"
-
 type Auxiliary_Marketing_Event struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	EnabledFlag *int       `json:"enabledFlag,omitempty"`
-	EndDate     *time.Time `json:"endDate,omitempty"`
-	Location    *string    `json:"location,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	StartDate   *time.Time `json:"startDate,omitempty"`
-	Title       *string    `json:"title,omitempty"`
-	Url         *string    `json:"url,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	EnabledFlag *int    `json:"enabledFlag,omitempty"`
+	EndDate     *Time   `json:"endDate,omitempty"`
+	Location    *string `json:"location,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	StartDate   *Time   `json:"startDate,omitempty"`
+	Title       *string `json:"title,omitempty"`
+	Url         *string `json:"url,omitempty"`
 }
 
 type Auxiliary_Network_Status struct {
@@ -38,16 +36,16 @@ type Auxiliary_Network_Status struct {
 type Auxiliary_Notification_Emergency struct {
 	Entity
 
-	CreateDate       *time.Time                                  `json:"createDate,omitempty"`
+	CreateDate       *Time                                       `json:"createDate,omitempty"`
 	Device           *string                                     `json:"device,omitempty"`
 	Duration         *string                                     `json:"duration,omitempty"`
 	Id               *int                                        `json:"id,omitempty"`
 	Location         *string                                     `json:"location,omitempty"`
 	Message          *string                                     `json:"message,omitempty"`
-	ModifyDate       *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate       *Time                                       `json:"modifyDate,omitempty"`
 	ServicesAffected *string                                     `json:"servicesAffected,omitempty"`
 	Signature        *Auxiliary_Notification_Emergency_Signature `json:"signature,omitempty"`
-	StartDate        *time.Time                                  `json:"startDate,omitempty"`
+	StartDate        *Time                                       `json:"startDate,omitempty"`
 	Status           *Auxiliary_Notification_Emergency_Status    `json:"status,omitempty"`
 	StatusId         *int                                        `json:"statusId,omitempty"`
 }
@@ -75,7 +73,7 @@ type Auxiliary_Press_Release struct {
 	MediaPartnerCount    *uint                                                 `json:"mediaPartnerCount,omitempty"`
 	MediaPartners        []Auxiliary_Press_Release_Media_Partner_Press_Release `json:"mediaPartners,omitempty"`
 	PressReleaseContent  *Auxiliary_Press_Release_Content                      `json:"pressReleaseContent,omitempty"`
-	PublishDate          *time.Time                                            `json:"publishDate,omitempty"`
+	PublishDate          *Time                                                 `json:"publishDate,omitempty"`
 	ReleaseLocation      *string                                               `json:"releaseLocation,omitempty"`
 	SubTitle             *string                                               `json:"subTitle,omitempty"`
 	Title                *string                                               `json:"title,omitempty"`

@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Catalyst_Affiliate struct {
 	Entity
 
@@ -44,8 +42,8 @@ type Catalyst_Enrollment struct {
 	CompanyDescription       *string                `json:"companyDescription,omitempty"`
 	CompanyType              *Catalyst_Company_Type `json:"companyType,omitempty"`
 	CompanyTypeId            *int                   `json:"companyTypeId,omitempty"`
-	EnrollmentDate           *time.Time             `json:"enrollmentDate,omitempty"`
-	GraduationDate           *time.Time             `json:"graduationDate,omitempty"`
+	EnrollmentDate           *Time                  `json:"enrollmentDate,omitempty"`
+	GraduationDate           *Time                  `json:"graduationDate,omitempty"`
 	IsActiveFlag             *bool                  `json:"isActiveFlag,omitempty"`
 	MonthlyCreditAmount      *float64               `json:"monthlyCreditAmount,omitempty"`
 	Representative           *User_Employee         `json:"representative,omitempty"`

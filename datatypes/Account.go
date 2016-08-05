@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Account struct {
 	Entity
 
@@ -112,7 +110,7 @@ type Account struct {
 	ClosedTickets                                          []Ticket                                                                `json:"closedTickets,omitempty"`
 	CompanyName                                            *string                                                                 `json:"companyName,omitempty"`
 	Country                                                *string                                                                 `json:"country,omitempty"`
-	CreateDate                                             *time.Time                                                              `json:"createDate,omitempty"`
+	CreateDate                                             *Time                                                                   `json:"createDate,omitempty"`
 	DatacentersWithSubnetAllocationCount                   *uint                                                                   `json:"datacentersWithSubnetAllocationCount,omitempty"`
 	DatacentersWithSubnetAllocations                       []Location                                                              `json:"datacentersWithSubnetAllocations,omitempty"`
 	DeviceFingerprintId                                    *string                                                                 `json:"deviceFingerprintId,omitempty"`
@@ -211,7 +209,7 @@ type Account struct {
 	LastFiveClosedTickets                                  []Ticket                                                                `json:"lastFiveClosedTickets,omitempty"`
 	LastName                                               *string                                                                 `json:"lastName,omitempty"`
 	LateFeeProtectionFlag                                  *bool                                                                   `json:"lateFeeProtectionFlag,omitempty"`
-	LatestBillDate                                         *time.Time                                                              `json:"latestBillDate,omitempty"`
+	LatestBillDate                                         *Time                                                                   `json:"latestBillDate,omitempty"`
 	LatestRecurringInvoice                                 *Billing_Invoice                                                        `json:"latestRecurringInvoice,omitempty"`
 	LatestRecurringPendingInvoice                          *Billing_Invoice                                                        `json:"latestRecurringPendingInvoice,omitempty"`
 	LegacyBandwidthAllotmentCount                          *uint                                                                   `json:"legacyBandwidthAllotmentCount,omitempty"`
@@ -229,7 +227,7 @@ type Account struct {
 	MediaDataTransferRequests                              []Account_Media_Data_Transfer_Request                                   `json:"mediaDataTransferRequests,omitempty"`
 	MessageQueueAccountCount                               *uint                                                                   `json:"messageQueueAccountCount,omitempty"`
 	MessageQueueAccounts                                   []Network_Message_Queue                                                 `json:"messageQueueAccounts,omitempty"`
-	ModifyDate                                             *time.Time                                                              `json:"modifyDate,omitempty"`
+	ModifyDate                                             *Time                                                                   `json:"modifyDate,omitempty"`
 	MonthlyBareMetalInstanceCount                          *uint                                                                   `json:"monthlyBareMetalInstanceCount,omitempty"`
 	MonthlyBareMetalInstances                              []Hardware                                                              `json:"monthlyBareMetalInstances,omitempty"`
 	MonthlyVirtualGuestCount                               *uint                                                                   `json:"monthlyVirtualGuestCount,omitempty"`
@@ -396,7 +394,7 @@ type Account struct {
 	StandardPoolVirtualGuestCount                          *uint                                                                   `json:"standardPoolVirtualGuestCount,omitempty"`
 	StandardPoolVirtualGuests                              []Virtual_Guest                                                         `json:"standardPoolVirtualGuests,omitempty"`
 	State                                                  *string                                                                 `json:"state,omitempty"`
-	StatusDate                                             *time.Time                                                              `json:"statusDate,omitempty"`
+	StatusDate                                             *Time                                                                   `json:"statusDate,omitempty"`
 	SubnetCount                                            *uint                                                                   `json:"subnetCount,omitempty"`
 	SubnetRegistrationCount                                *uint                                                                   `json:"subnetRegistrationCount,omitempty"`
 	SubnetRegistrationDetailCount                          *uint                                                                   `json:"subnetRegistrationDetailCount,omitempty"`
@@ -492,21 +490,21 @@ type Account_Address struct {
 type Account_Address_Type struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Account_Affiliation struct {
 	Entity
 
-	Account     *Account   `json:"account,omitempty"`
-	AccountId   *int       `json:"accountId,omitempty"`
-	AffiliateId *string    `json:"affiliateId,omitempty"`
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
+	Account     *Account `json:"account,omitempty"`
+	AccountId   *int     `json:"accountId,omitempty"`
+	AffiliateId *string  `json:"affiliateId,omitempty"`
+	CreateDate  *Time    `json:"createDate,omitempty"`
+	Id          *int     `json:"id,omitempty"`
+	ModifyDate  *Time    `json:"modifyDate,omitempty"`
 }
 
 type Account_Agreement struct {
@@ -521,11 +519,11 @@ type Account_Agreement struct {
 	BillingItemCount                  *uint                            `json:"billingItemCount,omitempty"`
 	BillingItems                      []Billing_Item                   `json:"billingItems,omitempty"`
 	CancellationFee                   *int                             `json:"cancellationFee,omitempty"`
-	CreateDate                        *time.Time                       `json:"createDate,omitempty"`
+	CreateDate                        *Time                            `json:"createDate,omitempty"`
 	DurationMonths                    *int                             `json:"durationMonths,omitempty"`
-	EndDate                           *time.Time                       `json:"endDate,omitempty"`
+	EndDate                           *Time                            `json:"endDate,omitempty"`
 	Id                                *int                             `json:"id,omitempty"`
-	StartDate                         *time.Time                       `json:"startDate,omitempty"`
+	StartDate                         *Time                            `json:"startDate,omitempty"`
 	Status                            *Account_Agreement_Status        `json:"status,omitempty"`
 	StatusId                          *int                             `json:"statusId,omitempty"`
 	Title                             *string                          `json:"title,omitempty"`
@@ -659,14 +657,14 @@ type Account_Contact struct {
 	City           *string               `json:"city,omitempty"`
 	CompanyName    *string               `json:"companyName,omitempty"`
 	Country        *string               `json:"country,omitempty"`
-	CreateDate     *time.Time            `json:"createDate,omitempty"`
+	CreateDate     *Time                 `json:"createDate,omitempty"`
 	Email          *string               `json:"email,omitempty"`
 	FaxPhone       *string               `json:"faxPhone,omitempty"`
 	FirstName      *string               `json:"firstName,omitempty"`
 	Id             *int                  `json:"id,omitempty"`
 	JobTitle       *string               `json:"jobTitle,omitempty"`
 	LastName       *string               `json:"lastName,omitempty"`
-	ModifyDate     *time.Time            `json:"modifyDate,omitempty"`
+	ModifyDate     *Time                 `json:"modifyDate,omitempty"`
 	OfficePhone    *string               `json:"officePhone,omitempty"`
 	PostalCode     *string               `json:"postalCode,omitempty"`
 	ProfileName    *string               `json:"profileName,omitempty"`
@@ -679,12 +677,12 @@ type Account_Contact struct {
 type Account_Contact_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type Account_Historical_Report struct {
@@ -696,7 +694,7 @@ type Account_Link struct {
 
 	Account                          *Account          `json:"account,omitempty"`
 	AccountId                        *int              `json:"accountId,omitempty"`
-	CreateDate                       *time.Time        `json:"createDate,omitempty"`
+	CreateDate                       *Time             `json:"createDate,omitempty"`
 	DestinationAccountAlphanumericId *string           `json:"destinationAccountAlphanumericId,omitempty"`
 	DestinationAccountId             *int              `json:"destinationAccountId,omitempty"`
 	Id                               *int              `json:"id,omitempty"`
@@ -761,12 +759,12 @@ type Account_Link_Vendor struct {
 type Account_Lockdown_Request struct {
 	Entity
 
-	AccountId  *int       `json:"accountId,omitempty"`
-	Action     *string    `json:"action,omitempty"`
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Status     *string    `json:"status,omitempty"`
+	AccountId  *int    `json:"accountId,omitempty"`
+	Action     *string `json:"action,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Status     *string `json:"status,omitempty"`
 }
 
 type Account_MasterServiceAgreement struct {
@@ -807,7 +805,7 @@ type Account_Media_Data_Transfer_Request struct {
 	BillingItem       *Billing_Item                               `json:"billingItem,omitempty"`
 	CreateUser        *User_Customer                              `json:"createUser,omitempty"`
 	CreateUserId      *int                                        `json:"createUserId,omitempty"`
-	EndDate           *time.Time                                  `json:"endDate,omitempty"`
+	EndDate           *Time                                       `json:"endDate,omitempty"`
 	Id                *int                                        `json:"id,omitempty"`
 	Media             *Account_Media                              `json:"media,omitempty"`
 	ModifyEmployee    *User_Employee                              `json:"modifyEmployee,omitempty"`
@@ -815,7 +813,7 @@ type Account_Media_Data_Transfer_Request struct {
 	ModifyUserId      *int                                        `json:"modifyUserId,omitempty"`
 	ShipmentCount     *uint                                       `json:"shipmentCount,omitempty"`
 	Shipments         []Account_Shipment                          `json:"shipments,omitempty"`
-	StartDate         *time.Time                                  `json:"startDate,omitempty"`
+	StartDate         *Time                                       `json:"startDate,omitempty"`
 	Status            *Account_Media_Data_Transfer_Request_Status `json:"status,omitempty"`
 	StatusId          *int                                        `json:"statusId,omitempty"`
 	TicketCount       *uint                                       `json:"ticketCount,omitempty"`
@@ -843,12 +841,12 @@ type Account_Media_Type struct {
 type Account_Network_Vlan_Span struct {
 	Entity
 
-	Account          *Account   `json:"account,omitempty"`
-	EnabledFlag      *bool      `json:"enabledFlag,omitempty"`
-	Id               *int       `json:"id,omitempty"`
-	LastAppliedDate  *time.Time `json:"lastAppliedDate,omitempty"`
-	LastVerifiedDate *time.Time `json:"lastVerifiedDate,omitempty"`
-	ModifyDate       *time.Time `json:"modifyDate,omitempty"`
+	Account          *Account `json:"account,omitempty"`
+	EnabledFlag      *bool    `json:"enabledFlag,omitempty"`
+	Id               *int     `json:"id,omitempty"`
+	LastAppliedDate  *Time    `json:"lastAppliedDate,omitempty"`
+	LastVerifiedDate *Time    `json:"lastVerifiedDate,omitempty"`
+	ModifyDate       *Time    `json:"modifyDate,omitempty"`
 }
 
 type Account_Note struct {
@@ -856,10 +854,10 @@ type Account_Note struct {
 
 	Account          *Account               `json:"account,omitempty"`
 	AccountId        *int                   `json:"accountId,omitempty"`
-	CreateDate       *time.Time             `json:"createDate,omitempty"`
+	CreateDate       *Time                  `json:"createDate,omitempty"`
 	Customer         *User_Customer         `json:"customer,omitempty"`
 	Id               *int                   `json:"id,omitempty"`
-	ModifyDate       *time.Time             `json:"modifyDate,omitempty"`
+	ModifyDate       *Time                  `json:"modifyDate,omitempty"`
 	Note             *string                `json:"note,omitempty"`
 	NoteHistory      []Account_Note_History `json:"noteHistory,omitempty"`
 	NoteHistoryCount *uint                  `json:"noteHistoryCount,omitempty"`
@@ -873,10 +871,10 @@ type Account_Note_History struct {
 
 	AccountNote   *Account_Note  `json:"accountNote,omitempty"`
 	AccountNoteId *int           `json:"accountNoteId,omitempty"`
-	CreateDate    *time.Time     `json:"createDate,omitempty"`
+	CreateDate    *Time          `json:"createDate,omitempty"`
 	Customer      *User_Customer `json:"customer,omitempty"`
 	Id            *int           `json:"id,omitempty"`
-	ModifyDate    *time.Time     `json:"modifyDate,omitempty"`
+	ModifyDate    *Time          `json:"modifyDate,omitempty"`
 	Note          *string        `json:"note,omitempty"`
 	UserId        *int           `json:"userId,omitempty"`
 }
@@ -884,14 +882,14 @@ type Account_Note_History struct {
 type Account_Note_Type struct {
 	Entity
 
-	BrandId         *int       `json:"brandId,omitempty"`
-	CreateDate      *time.Time `json:"createDate,omitempty"`
-	Description     *string    `json:"description,omitempty"`
-	Id              *int       `json:"id,omitempty"`
-	KeyName         *string    `json:"keyName,omitempty"`
-	ModifyDate      *time.Time `json:"modifyDate,omitempty"`
-	Name            *string    `json:"name,omitempty"`
-	ValueExpression *string    `json:"valueExpression,omitempty"`
+	BrandId         *int    `json:"brandId,omitempty"`
+	CreateDate      *Time   `json:"createDate,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	Id              *int    `json:"id,omitempty"`
+	KeyName         *string `json:"keyName,omitempty"`
+	ModifyDate      *Time   `json:"modifyDate,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	ValueExpression *string `json:"valueExpression,omitempty"`
 }
 
 type Account_Partner_Referral_Prospect struct {
@@ -928,13 +926,13 @@ type Account_Regional_Registry_Detail struct {
 
 	Account                          *Account                                    `json:"account,omitempty"`
 	AccountId                        *int                                        `json:"accountId,omitempty"`
-	CreateDate                       *time.Time                                  `json:"createDate,omitempty"`
+	CreateDate                       *Time                                       `json:"createDate,omitempty"`
 	DetailCount                      *uint                                       `json:"detailCount,omitempty"`
 	DetailType                       *Account_Regional_Registry_Detail_Type      `json:"detailType,omitempty"`
 	DetailTypeId                     *int                                        `json:"detailTypeId,omitempty"`
 	Details                          []Network_Subnet_Registration_Details       `json:"details,omitempty"`
 	Id                               *int                                        `json:"id,omitempty"`
-	ModifyDate                       *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate                       *Time                                       `json:"modifyDate,omitempty"`
 	Properties                       []Account_Regional_Registry_Detail_Property `json:"properties,omitempty"`
 	PropertyCount                    *uint                                       `json:"propertyCount,omitempty"`
 	RegionalInternetRegistryHandle   *Account_Rwhois_Handle                      `json:"regionalInternetRegistryHandle,omitempty"`
@@ -944,10 +942,10 @@ type Account_Regional_Registry_Detail struct {
 type Account_Regional_Registry_Detail_Property struct {
 	Entity
 
-	CreateDate           *time.Time                                      `json:"createDate,omitempty"`
+	CreateDate           *Time                                           `json:"createDate,omitempty"`
 	Detail               *Account_Regional_Registry_Detail               `json:"detail,omitempty"`
 	Id                   *int                                            `json:"id,omitempty"`
-	ModifyDate           *time.Time                                      `json:"modifyDate,omitempty"`
+	ModifyDate           *Time                                           `json:"modifyDate,omitempty"`
 	PropertyType         *Account_Regional_Registry_Detail_Property_Type `json:"propertyType,omitempty"`
 	PropertyTypeId       *int                                            `json:"propertyTypeId,omitempty"`
 	RegistrationDetailId *int                                            `json:"registrationDetailId,omitempty"`
@@ -958,22 +956,22 @@ type Account_Regional_Registry_Detail_Property struct {
 type Account_Regional_Registry_Detail_Property_Type struct {
 	Entity
 
-	CreateDate      *time.Time `json:"createDate,omitempty"`
-	Id              *int       `json:"id,omitempty"`
-	KeyName         *string    `json:"keyName,omitempty"`
-	ModifyDate      *time.Time `json:"modifyDate,omitempty"`
-	Name            *string    `json:"name,omitempty"`
-	ValueExpression *string    `json:"valueExpression,omitempty"`
+	CreateDate      *Time   `json:"createDate,omitempty"`
+	Id              *int    `json:"id,omitempty"`
+	KeyName         *string `json:"keyName,omitempty"`
+	ModifyDate      *Time   `json:"modifyDate,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	ValueExpression *string `json:"valueExpression,omitempty"`
 }
 
 type Account_Regional_Registry_Detail_Type struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Account_Regional_Registry_Detail_Version4_Person_Default struct {
@@ -988,10 +986,10 @@ type Account_Reports_Request struct {
 	AccountContactId       *int                    `json:"accountContactId,omitempty"`
 	AccountId              *int                    `json:"accountId,omitempty"`
 	ComplianceReportTypeId *string                 `json:"complianceReportTypeId,omitempty"`
-	CreateDate             *time.Time              `json:"createDate,omitempty"`
+	CreateDate             *Time                   `json:"createDate,omitempty"`
 	EmployeeRecordId       *int                    `json:"employeeRecordId,omitempty"`
 	Id                     *int                    `json:"id,omitempty"`
-	ModifyDate             *time.Time              `json:"modifyDate,omitempty"`
+	ModifyDate             *Time                   `json:"modifyDate,omitempty"`
 	Nda                    *string                 `json:"nda,omitempty"`
 	Notes                  *string                 `json:"notes,omitempty"`
 	Report                 *string                 `json:"report,omitempty"`
@@ -1007,12 +1005,12 @@ type Account_Reports_Request struct {
 type Account_Rwhois_Handle struct {
 	Entity
 
-	Account    *Account   `json:"account,omitempty"`
-	AccountId  *int       `json:"accountId,omitempty"`
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Handle     *string    `json:"handle,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
+	Account    *Account `json:"account,omitempty"`
+	AccountId  *int     `json:"accountId,omitempty"`
+	CreateDate *Time    `json:"createDate,omitempty"`
+	Handle     *string  `json:"handle,omitempty"`
+	Id         *int     `json:"id,omitempty"`
+	ModifyDate *Time    `json:"modifyDate,omitempty"`
 }
 
 type Account_Shipment struct {
@@ -1028,7 +1026,7 @@ type Account_Shipment struct {
 	CreateUserId         *int                             `json:"createUserId,omitempty"`
 	DestinationAddress   *Account_Address                 `json:"destinationAddress,omitempty"`
 	DestinationAddressId *int                             `json:"destinationAddressId,omitempty"`
-	DestinationDate      *time.Time                       `json:"destinationDate,omitempty"`
+	DestinationDate      *Time                            `json:"destinationDate,omitempty"`
 	Id                   *int                             `json:"id,omitempty"`
 	ModifyEmployee       *User_Employee                   `json:"modifyEmployee,omitempty"`
 	ModifyUser           *User_Customer                   `json:"modifyUser,omitempty"`
@@ -1036,7 +1034,7 @@ type Account_Shipment struct {
 	Note                 *string                          `json:"note,omitempty"`
 	OriginationAddress   *Account_Address                 `json:"originationAddress,omitempty"`
 	OriginationAddressId *int                             `json:"originationAddressId,omitempty"`
-	OriginationDate      *time.Time                       `json:"originationDate,omitempty"`
+	OriginationDate      *Time                            `json:"originationDate,omitempty"`
 	ShipmentItemCount    *uint                            `json:"shipmentItemCount,omitempty"`
 	ShipmentItems        []Account_Shipment_Item          `json:"shipmentItems,omitempty"`
 	Status               *Account_Shipment_Status         `json:"status,omitempty"`
@@ -1050,7 +1048,7 @@ type Account_Shipment struct {
 type Account_Shipment_Item struct {
 	Entity
 
-	CreateDate         *time.Time                  `json:"createDate,omitempty"`
+	CreateDate         *Time                       `json:"createDate,omitempty"`
 	Description        *string                     `json:"description,omitempty"`
 	Id                 *int                        `json:"id,omitempty"`
 	PackageId          *int                        `json:"packageId,omitempty"`
@@ -1064,10 +1062,10 @@ type Account_Shipment_Item struct {
 type Account_Shipment_Item_Type struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Account_Shipment_Resource_Type struct {
@@ -1077,10 +1075,10 @@ type Account_Shipment_Resource_Type struct {
 type Account_Shipment_Status struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Account_Shipment_Tracking_Data struct {
@@ -1103,11 +1101,11 @@ type Account_Shipment_Tracking_Data struct {
 type Account_Shipment_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type Account_Status struct {

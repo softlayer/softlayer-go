@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Virtual_Disk_Image struct {
 	Entity
 
@@ -30,12 +28,12 @@ type Virtual_Disk_Image struct {
 	CoalescedDiskImageCount *uint                                `json:"coalescedDiskImageCount,omitempty"`
 	CoalescedDiskImages     []Virtual_Disk_Image                 `json:"coalescedDiskImages,omitempty"`
 	CopyOnWriteFlag         *bool                                `json:"copyOnWriteFlag,omitempty"`
-	CreateDate              *time.Time                           `json:"createDate,omitempty"`
+	CreateDate              *Time                                `json:"createDate,omitempty"`
 	Description             *string                              `json:"description,omitempty"`
 	Id                      *int                                 `json:"id,omitempty"`
 	LocalDiskFlag           *bool                                `json:"localDiskFlag,omitempty"`
 	MetadataFlag            *bool                                `json:"metadataFlag,omitempty"`
-	ModifyDate              *time.Time                           `json:"modifyDate,omitempty"`
+	ModifyDate              *Time                                `json:"modifyDate,omitempty"`
 	Name                    *string                              `json:"name,omitempty"`
 	ParentId                *int                                 `json:"parentId,omitempty"`
 	SoftwareReferenceCount  *uint                                `json:"softwareReferenceCount,omitempty"`
@@ -123,7 +121,7 @@ type Virtual_Guest struct {
 	ConsoleIpAddressRecord                    *Virtual_Guest_Network_Component_IpAddress     `json:"consoleIpAddressRecord,omitempty"`
 	ContinuousDataProtectionSoftwareComponent *Software_Component                            `json:"continuousDataProtectionSoftwareComponent,omitempty"`
 	ControlPanel                              *Software_Component                            `json:"controlPanel,omitempty"`
-	CreateDate                                *time.Time                                     `json:"createDate,omitempty"`
+	CreateDate                                *Time                                          `json:"createDate,omitempty"`
 	CurrentBandwidthSummary                   *Metric_Tracking_Object_Bandwidth_Summary      `json:"currentBandwidthSummary,omitempty"`
 	Datacenter                                *Location                                      `json:"datacenter,omitempty"`
 	DedicatedAccountHostOnlyFlag              *bool                                          `json:"dedicatedAccountHostOnlyFlag,omitempty"`
@@ -150,7 +148,7 @@ type Virtual_Guest struct {
 	LastOperatingSystemReload                 *Provisioning_Version1_Transaction             `json:"lastOperatingSystemReload,omitempty"`
 	LastPowerStateId                          *int                                           `json:"lastPowerStateId,omitempty"`
 	LastTransaction                           *Provisioning_Version1_Transaction             `json:"lastTransaction,omitempty"`
-	LastVerifiedDate                          *time.Time                                     `json:"lastVerifiedDate,omitempty"`
+	LastVerifiedDate                          *Time                                          `json:"lastVerifiedDate,omitempty"`
 	LatestNetworkMonitorIncident              *Network_Monitor_Version1_Incident             `json:"latestNetworkMonitorIncident,omitempty"`
 	LocalDiskFlag                             *bool                                          `json:"localDiskFlag,omitempty"`
 	Location                                  *Location                                      `json:"location,omitempty"`
@@ -158,10 +156,10 @@ type Virtual_Guest struct {
 	MaxCpu                                    *int                                           `json:"maxCpu,omitempty"`
 	MaxCpuUnits                               *string                                        `json:"maxCpuUnits,omitempty"`
 	MaxMemory                                 *int                                           `json:"maxMemory,omitempty"`
-	MetricPollDate                            *time.Time                                     `json:"metricPollDate,omitempty"`
+	MetricPollDate                            *Time                                          `json:"metricPollDate,omitempty"`
 	MetricTrackingObject                      *Metric_Tracking_Object                        `json:"metricTrackingObject,omitempty"`
 	MetricTrackingObjectId                    *int                                           `json:"metricTrackingObjectId,omitempty"`
-	ModifyDate                                *time.Time                                     `json:"modifyDate,omitempty"`
+	ModifyDate                                *Time                                          `json:"modifyDate,omitempty"`
 	MonitoringAgentCount                      *uint                                          `json:"monitoringAgentCount,omitempty"`
 	MonitoringAgents                          []Monitoring_Agent                             `json:"monitoringAgents,omitempty"`
 	MonitoringRobot                           *Monitoring_Robot                              `json:"monitoringRobot,omitempty"`
@@ -197,7 +195,7 @@ type Virtual_Guest struct {
 	PrivateNetworkOnlyFlag                    *bool                                          `json:"privateNetworkOnlyFlag,omitempty"`
 	ProjectedOverBandwidthAllocationFlag      *int                                           `json:"projectedOverBandwidthAllocationFlag,omitempty"`
 	ProjectedPublicBandwidthUsage             *float64                                       `json:"projectedPublicBandwidthUsage,omitempty"`
-	ProvisionDate                             *time.Time                                     `json:"provisionDate,omitempty"`
+	ProvisionDate                             *Time                                          `json:"provisionDate,omitempty"`
 	RecentEventCount                          *uint                                          `json:"recentEventCount,omitempty"`
 	RecentEvents                              []Notification_Occurrence_Event                `json:"recentEvents,omitempty"`
 	RegionalGroup                             *Location_Group_Regional                       `json:"regionalGroup,omitempty"`
@@ -253,7 +251,7 @@ type Virtual_Guest_Block_Device struct {
 	Entity
 
 	BootableFlag *int                               `json:"bootableFlag,omitempty"`
-	CreateDate   *time.Time                         `json:"createDate,omitempty"`
+	CreateDate   *Time                              `json:"createDate,omitempty"`
 	Device       *string                            `json:"device,omitempty"`
 	DiskImage    *Virtual_Disk_Image                `json:"diskImage,omitempty"`
 	DiskImageId  *int                               `json:"diskImageId,omitempty"`
@@ -261,7 +259,7 @@ type Virtual_Guest_Block_Device struct {
 	GuestId      *int                               `json:"guestId,omitempty"`
 	HotPlugFlag  *int                               `json:"hotPlugFlag,omitempty"`
 	Id           *int                               `json:"id,omitempty"`
-	ModifyDate   *time.Time                         `json:"modifyDate,omitempty"`
+	ModifyDate   *Time                              `json:"modifyDate,omitempty"`
 	MountMode    *string                            `json:"mountMode,omitempty"`
 	MountType    *string                            `json:"mountType,omitempty"`
 	Status       *Virtual_Guest_Block_Device_Status `json:"status,omitempty"`
@@ -303,7 +301,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	BlockDevicesDiskSpaceTotal *float64                                             `json:"blockDevicesDiskSpaceTotal,omitempty"`
 	Children                   []Virtual_Guest_Block_Device_Template_Group          `json:"children,omitempty"`
 	ChildrenCount              *uint                                                `json:"childrenCount,omitempty"`
-	CreateDate                 *time.Time                                           `json:"createDate,omitempty"`
+	CreateDate                 *Time                                                `json:"createDate,omitempty"`
 	Datacenter                 *Location                                            `json:"datacenter,omitempty"`
 	DatacenterCount            *uint                                                `json:"datacenterCount,omitempty"`
 	Datacenters                []Location                                           `json:"datacenters,omitempty"`
@@ -335,7 +333,7 @@ type Virtual_Guest_Block_Device_Template_Group_Accounts struct {
 
 	Account    *Account                                   `json:"account,omitempty"`
 	AccountId  *int                                       `json:"accountId,omitempty"`
-	CreateDate *time.Time                                 `json:"createDate,omitempty"`
+	CreateDate *Time                                      `json:"createDate,omitempty"`
 	Group      *Virtual_Guest_Block_Device_Template_Group `json:"group,omitempty"`
 	GroupId    *int                                       `json:"groupId,omitempty"`
 }
@@ -351,32 +349,32 @@ type Virtual_Guest_Block_Device_Template_Group_Status struct {
 type Virtual_Guest_Boot_Parameter struct {
 	Entity
 
-	CreateDate               *time.Time                         `json:"createDate,omitempty"`
+	CreateDate               *Time                              `json:"createDate,omitempty"`
 	Guest                    *Virtual_Guest                     `json:"guest,omitempty"`
 	GuestBootParameterType   *Virtual_Guest_Boot_Parameter_Type `json:"guestBootParameterType,omitempty"`
 	GuestBootParameterTypeId *int                               `json:"guestBootParameterTypeId,omitempty"`
 	GuestId                  *int                               `json:"guestId,omitempty"`
 	Id                       *int                               `json:"id,omitempty"`
-	ModifyDate               *time.Time                         `json:"modifyDate,omitempty"`
+	ModifyDate               *Time                              `json:"modifyDate,omitempty"`
 }
 
 type Virtual_Guest_Boot_Parameter_Type struct {
 	Entity
 
-	BootOption  *string    `json:"bootOption,omitempty"`
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
-	Value       *string    `json:"value,omitempty"`
+	BootOption  *string `json:"bootOption,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Value       *string `json:"value,omitempty"`
 }
 
 type Virtual_Guest_Network_Component struct {
 	Entity
 
-	CreateDate                     *time.Time                                  `json:"createDate,omitempty"`
+	CreateDate                     *Time                                       `json:"createDate,omitempty"`
 	Guest                          *Virtual_Guest                              `json:"guest,omitempty"`
 	GuestId                        *int                                        `json:"guestId,omitempty"`
 	HighAvailabilityFirewallFlag   *bool                                       `json:"highAvailabilityFirewallFlag,omitempty"`
@@ -385,7 +383,7 @@ type Virtual_Guest_Network_Component struct {
 	IpAddressBindings              []Virtual_Guest_Network_Component_IpAddress `json:"ipAddressBindings,omitempty"`
 	MacAddress                     *string                                     `json:"macAddress,omitempty"`
 	MaxSpeed                       *int                                        `json:"maxSpeed,omitempty"`
-	ModifyDate                     *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                                       `json:"modifyDate,omitempty"`
 	Name                           *string                                     `json:"name,omitempty"`
 	NetworkComponentFirewall       *Network_Component_Firewall                 `json:"networkComponentFirewall,omitempty"`
 	NetworkId                      *int                                        `json:"networkId,omitempty"`
@@ -442,7 +440,7 @@ type Virtual_Host struct {
 	AccountId                *int                    `json:"accountId,omitempty"`
 	BilledPerGuestFlag       *bool                   `json:"billedPerGuestFlag,omitempty"`
 	BilledPerMemoryUsageFlag *bool                   `json:"billedPerMemoryUsageFlag,omitempty"`
-	CreateDate               *time.Time              `json:"createDate,omitempty"`
+	CreateDate               *Time                   `json:"createDate,omitempty"`
 	Description              *string                 `json:"description,omitempty"`
 	EnabledFlag              *int                    `json:"enabledFlag,omitempty"`
 	GuestCount               *uint                   `json:"guestCount,omitempty"`
@@ -451,7 +449,7 @@ type Virtual_Host struct {
 	HardwareId               *int                    `json:"hardwareId,omitempty"`
 	Id                       *int                    `json:"id,omitempty"`
 	MetricTrackingObject     *Metric_Tracking_Object `json:"metricTrackingObject,omitempty"`
-	ModifyDate               *time.Time              `json:"modifyDate,omitempty"`
+	ModifyDate               *Time                   `json:"modifyDate,omitempty"`
 	Name                     *string                 `json:"name,omitempty"`
 	PhysicalMemoryCapacity   *int                    `json:"physicalMemoryCapacity,omitempty"`
 	Uuid                     *string                 `json:"uuid,omitempty"`

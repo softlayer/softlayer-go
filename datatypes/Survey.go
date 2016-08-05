@@ -16,13 +16,11 @@
 
 package datatypes
 
-import "time"
-
 type Survey struct {
 	Entity
 
 	Active        *int              `json:"active,omitempty"`
-	CreateDate    *time.Time        `json:"createDate,omitempty"`
+	CreateDate    *Time             `json:"createDate,omitempty"`
 	Id            *int              `json:"id,omitempty"`
 	Name          *string           `json:"name,omitempty"`
 	QuestionCount *uint             `json:"questionCount,omitempty"`

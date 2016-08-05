@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type McAfee_Epolicy_Orchestrator_Version36_Agent_Details struct {
 	Entity
 
@@ -36,7 +34,7 @@ type McAfee_Epolicy_Orchestrator_Version36_Agent_Parent_Details struct {
 type McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event struct {
 	Entity
 
-	EventLocalDateTime *time.Time                                                                `json:"eventLocalDateTime,omitempty"`
+	EventLocalDateTime *Time                                                                     `json:"eventLocalDateTime,omitempty"`
 	Filename           *string                                                                   `json:"filename,omitempty"`
 	VirusActionTaken   *McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_Filter_Description `json:"virusActionTaken,omitempty"`
 	VirusName          *string                                                                   `json:"virusName,omitempty"`
@@ -46,11 +44,11 @@ type McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event struct {
 type McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_AccessProtection struct {
 	Entity
 
-	EventLocalDateTime *time.Time `json:"eventLocalDateTime,omitempty"`
-	Filename           *string    `json:"filename,omitempty"`
-	ProcessName        *string    `json:"processName,omitempty"`
-	RuleName           *string    `json:"ruleName,omitempty"`
-	Source             *string    `json:"source,omitempty"`
+	EventLocalDateTime *Time   `json:"eventLocalDateTime,omitempty"`
+	Filename           *string `json:"filename,omitempty"`
+	ProcessName        *string `json:"processName,omitempty"`
+	RuleName           *string `json:"ruleName,omitempty"`
+	Source             *string `json:"source,omitempty"`
 }
 
 type McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_Filter_Description struct {
@@ -62,9 +60,9 @@ type McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_Filter_Description st
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_BlockedApplicationEvent struct {
 	Entity
 
-	ApplicationDescription *string    `json:"applicationDescription,omitempty"`
-	IncidentTime           *time.Time `json:"incidentTime,omitempty"`
-	ProcessName            *string    `json:"processName,omitempty"`
+	ApplicationDescription *string `json:"applicationDescription,omitempty"`
+	IncidentTime           *Time   `json:"incidentTime,omitempty"`
+	ProcessName            *string `json:"processName,omitempty"`
 }
 
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_Event_Signature struct {
@@ -76,7 +74,7 @@ type McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_Event_Signature struct 
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_IPSEvent struct {
 	Entity
 
-	IncidentTime    *time.Time                                                           `json:"incidentTime,omitempty"`
+	IncidentTime    *Time                                                                `json:"incidentTime,omitempty"`
 	ProcessName     *string                                                              `json:"processName,omitempty"`
 	ReactionText    *string                                                              `json:"reactionText,omitempty"`
 	RemoteIpAddress *string                                                              `json:"remoteIpAddress,omitempty"`
@@ -87,9 +85,9 @@ type McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_IPSEvent struct {
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_BlockedApplicationEvent struct {
 	Entity
 
-	ApplicationDescription *string    `json:"applicationDescription,omitempty"`
-	IncidentTime           *time.Time `json:"incidentTime,omitempty"`
-	ProcessName            *string    `json:"processName,omitempty"`
+	ApplicationDescription *string `json:"applicationDescription,omitempty"`
+	IncidentTime           *Time   `json:"incidentTime,omitempty"`
+	ProcessName            *string `json:"processName,omitempty"`
 }
 
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_Event_Signature struct {
@@ -101,7 +99,7 @@ type McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_Event_Signature struct 
 type McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_IPSEvent struct {
 	Entity
 
-	IncidentTime    *time.Time                                                           `json:"incidentTime,omitempty"`
+	IncidentTime    *Time                                                                `json:"incidentTime,omitempty"`
 	ProcessName     *string                                                              `json:"processName,omitempty"`
 	ReactionText    *string                                                              `json:"reactionText,omitempty"`
 	RemoteIpAddress *string                                                              `json:"remoteIpAddress,omitempty"`
@@ -124,8 +122,8 @@ type McAfee_Epolicy_Orchestrator_Version36_Product_Properties struct {
 type McAfee_Epolicy_Orchestrator_Version45_Agent_Details struct {
 	Entity
 
-	AgentVersion *string    `json:"agentVersion,omitempty"`
-	LastUpdate   *time.Time `json:"lastUpdate,omitempty"`
+	AgentVersion *string `json:"agentVersion,omitempty"`
+	LastUpdate   *Time   `json:"lastUpdate,omitempty"`
 }
 
 type McAfee_Epolicy_Orchestrator_Version45_Agent_Parent_Details struct {
@@ -141,7 +139,7 @@ type McAfee_Epolicy_Orchestrator_Version45_Event struct {
 	Entity
 
 	AgentDetails        *McAfee_Epolicy_Orchestrator_Version45_Agent_Details            `json:"agentDetails,omitempty"`
-	DetectedUtc         *time.Time                                                      `json:"detectedUtc,omitempty"`
+	DetectedUtc         *Time                                                           `json:"detectedUtc,omitempty"`
 	SourceIpv4          *string                                                         `json:"sourceIpv4,omitempty"`
 	SourceProcessName   *string                                                         `json:"sourceProcessName,omitempty"`
 	TargetFilename      *string                                                         `json:"targetFilename,omitempty"`

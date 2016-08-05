@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Account struct {
 	Session *Session
@@ -77,7 +73,7 @@ func (r *Account) CountHourlyInstances() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetAccountBackupHistory(startDate *time.Time, endDate *time.Time, backupStatus *string) (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
+func (r *Account) GetAccountBackupHistory(startDate *datatypes.Time, endDate *datatypes.Time, backupStatus *string) (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -116,7 +112,7 @@ func (r *Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Produc
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetAggregatedUptimeGraph(startDate *time.Time, endDate *time.Time) (resp datatypes.Container_Graph, err error) {
+func (r *Account) GetAggregatedUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -139,7 +135,7 @@ func (r *Account) GetAuxiliaryNotifications() (resp []datatypes.Container_Utilit
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp float64, err error) {
+func (r *Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -147,7 +143,7 @@ func (r *Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *time.Tim
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetAveragePublicUsageMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp float64, err error) {
+func (r *Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -173,7 +169,7 @@ func (r *Account) GetCurrentUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetDiskUsageMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Account) GetDiskUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -181,7 +177,7 @@ func (r *Account) GetDiskUsageMetricDataByDate(startDateTime *time.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -189,7 +185,7 @@ func (r *Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *time.Tim
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(startDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -197,7 +193,7 @@ func (r *Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(sta
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetDiskUsageMetricImageByDate(startDateTime *time.Time, endDateTime *time.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+func (r *Account) GetDiskUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -222,7 +218,7 @@ func (r *Account) GetFlexibleCreditProgramInfo(forNextBillCycle *bool) (resp dat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetHistoricalBackupGraph(startDate *time.Time, endDate *time.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+func (r *Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -230,7 +226,7 @@ func (r *Account) GetHistoricalBackupGraph(startDate *time.Time, endDate *time.T
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetHistoricalBandwidthGraph(startDate *time.Time, endDate *time.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+func (r *Account) GetHistoricalBandwidthGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -238,7 +234,7 @@ func (r *Account) GetHistoricalBandwidthGraph(startDate *time.Time, endDate *tim
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetHistoricalTicketGraph(startDate *time.Time, endDate *time.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+func (r *Account) GetHistoricalTicketGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -246,7 +242,7 @@ func (r *Account) GetHistoricalTicketGraph(startDate *time.Time, endDate *time.T
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetHistoricalUptimeGraph(startDate *time.Time, endDate *time.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+func (r *Account) GetHistoricalUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -262,21 +258,21 @@ func (r *Account) GetLargestAllowedSubnetCidr(numberOfHosts *int, locationId *in
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetNextInvoiceExcel(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Account) GetNextInvoiceExcel(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetNextInvoicePdf(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Account) GetNextInvoicePdf(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetNextInvoicePdfDetailed(documentCreateDate *time.Time) (resp []byte, err error) {
+func (r *Account) GetNextInvoicePdfDetailed(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		documentCreateDate,
 	}
@@ -818,7 +814,7 @@ func (r *Account) GetLastFiveClosedTickets() (resp []datatypes.Ticket, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account) GetLatestBillDate() (resp time.Time, err error) {
+func (r *Account) GetLatestBillDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

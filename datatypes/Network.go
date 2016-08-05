@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Network struct {
 	Entity
 
@@ -40,16 +38,16 @@ type Network_Application_Delivery_Controller struct {
 	BillingItem                      *Billing_Item_Network_Application_Delivery_Controller                   `json:"billingItem,omitempty"`
 	ConfigurationHistory             []Network_Application_Delivery_Controller_Configuration_History         `json:"configurationHistory,omitempty"`
 	ConfigurationHistoryCount        *uint                                                                   `json:"configurationHistoryCount,omitempty"`
-	CreateDate                       *time.Time                                                              `json:"createDate,omitempty"`
+	CreateDate                       *Time                                                                   `json:"createDate,omitempty"`
 	Datacenter                       *Location                                                               `json:"datacenter,omitempty"`
 	Description                      *string                                                                 `json:"description,omitempty"`
 	Id                               *int                                                                    `json:"id,omitempty"`
-	LicenseExpirationDate            *time.Time                                                              `json:"licenseExpirationDate,omitempty"`
+	LicenseExpirationDate            *Time                                                                   `json:"licenseExpirationDate,omitempty"`
 	LoadBalancerCount                *uint                                                                   `json:"loadBalancerCount,omitempty"`
 	LoadBalancers                    []Network_LoadBalancer_VirtualIpAddress                                 `json:"loadBalancers,omitempty"`
 	ManagedResourceFlag              *bool                                                                   `json:"managedResourceFlag,omitempty"`
 	ManagementIpAddress              *string                                                                 `json:"managementIpAddress,omitempty"`
-	ModifyDate                       *time.Time                                                              `json:"modifyDate,omitempty"`
+	ModifyDate                       *Time                                                                   `json:"modifyDate,omitempty"`
 	Name                             *string                                                                 `json:"name,omitempty"`
 	NetworkVlan                      *Network_Vlan                                                           `json:"networkVlan,omitempty"`
 	NetworkVlanCount                 *uint                                                                   `json:"networkVlanCount,omitempty"`
@@ -73,7 +71,7 @@ type Network_Application_Delivery_Controller_Configuration_History struct {
 	Entity
 
 	Controller *Network_Application_Delivery_Controller `json:"controller,omitempty"`
-	CreateDate *time.Time                               `json:"createDate,omitempty"`
+	CreateDate *Time                                    `json:"createDate,omitempty"`
 	Id         *int                                     `json:"id,omitempty"`
 	Notes      *string                                  `json:"notes,omitempty"`
 }
@@ -340,11 +338,11 @@ type Network_Bandwidth_Version1_Allotment struct {
 	BillingCyclePublicBandwidthUsage     *Network_Bandwidth_Usage                      `json:"billingCyclePublicBandwidthUsage,omitempty"`
 	BillingCyclePublicUsageTotal         *uint                                         `json:"billingCyclePublicUsageTotal,omitempty"`
 	BillingItem                          *Billing_Item                                 `json:"billingItem,omitempty"`
-	CreateDate                           *time.Time                                    `json:"createDate,omitempty"`
+	CreateDate                           *Time                                         `json:"createDate,omitempty"`
 	CurrentBandwidthSummary              *Metric_Tracking_Object_Bandwidth_Summary     `json:"currentBandwidthSummary,omitempty"`
 	DetailCount                          *uint                                         `json:"detailCount,omitempty"`
 	Details                              []Network_Bandwidth_Version1_Allotment_Detail `json:"details,omitempty"`
-	EndDate                              *time.Time                                    `json:"endDate,omitempty"`
+	EndDate                              *Time                                         `json:"endDate,omitempty"`
 	Hardware                             []Hardware                                    `json:"hardware,omitempty"`
 	HardwareCount                        *uint                                         `json:"hardwareCount,omitempty"`
 	Id                                   *int                                          `json:"id,omitempty"`
@@ -382,8 +380,8 @@ type Network_Bandwidth_Version1_Allotment_Detail struct {
 	BandwidthAllotmentId *int                                   `json:"bandwidthAllotmentId,omitempty"`
 	BandwidthUsage       []Network_Bandwidth_Version1_Usage     `json:"bandwidthUsage,omitempty"`
 	BandwidthUsageCount  *uint                                  `json:"bandwidthUsageCount,omitempty"`
-	EffectiveDate        *time.Time                             `json:"effectiveDate,omitempty"`
-	EndEffectiveDate     *time.Time                             `json:"endEffectiveDate,omitempty"`
+	EffectiveDate        *Time                                  `json:"effectiveDate,omitempty"`
+	EndEffectiveDate     *Time                                  `json:"endEffectiveDate,omitempty"`
 	Id                   *int                                   `json:"id,omitempty"`
 	ServiceProviderId    *int                                   `json:"serviceProviderId,omitempty"`
 }
@@ -418,7 +416,7 @@ type Network_Bandwidth_Version1_Usage_Detail struct {
 	AmountOut                *float64                                      `json:"amountOut,omitempty"`
 	BandwidthUsage           *Network_Bandwidth_Version1_Usage             `json:"bandwidthUsage,omitempty"`
 	BandwidthUsageDetailType *Network_Bandwidth_Version1_Usage_Detail_Type `json:"bandwidthUsageDetailType,omitempty"`
-	Day                      *time.Time                                    `json:"day,omitempty"`
+	Day                      *Time                                         `json:"day,omitempty"`
 }
 
 type Network_Bandwidth_Version1_Usage_Detail_Total struct {
@@ -460,7 +458,7 @@ type Network_Component struct {
 	MacAddress                     *string                                               `json:"macAddress,omitempty"`
 	MaxSpeed                       *int                                                  `json:"maxSpeed,omitempty"`
 	MetricTrackingObject           *Metric_Tracking_Object                               `json:"metricTrackingObject,omitempty"`
-	ModifyDate                     *time.Time                                            `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                                                 `json:"modifyDate,omitempty"`
 	Name                           *string                                               `json:"name,omitempty"`
 	NetworkComponentFirewall       *Network_Component_Firewall                           `json:"networkComponentFirewall,omitempty"`
 	NetworkComponentGroup          *Network_Component_Group                              `json:"networkComponentGroup,omitempty"`
@@ -596,7 +594,7 @@ type Network_ContentDelivery_Account struct {
 	CdnAccountName                 *string                                          `json:"cdnAccountName,omitempty"`
 	CdnAccountNote                 *string                                          `json:"cdnAccountNote,omitempty"`
 	CdnSolutionName                *string                                          `json:"cdnSolutionName,omitempty"`
-	CreateDate                     *time.Time                                       `json:"createDate,omitempty"`
+	CreateDate                     *Time                                            `json:"createDate,omitempty"`
 	DependantServiceFlag           *bool                                            `json:"dependantServiceFlag,omitempty"`
 	Id                             *int                                             `json:"id,omitempty"`
 	LegacyCdnFlag                  *bool                                            `json:"legacyCdnFlag,omitempty"`
@@ -618,26 +616,26 @@ type Network_ContentDelivery_Account_Status struct {
 type Network_ContentDelivery_Authentication_Address struct {
 	Entity
 
-	AccessType   *string    `json:"accessType,omitempty"`
-	CdnAccountId *int       `json:"cdnAccountId,omitempty"`
-	CreateDate   *time.Time `json:"createDate,omitempty"`
-	Id           *int       `json:"id,omitempty"`
-	IpAddress    *string    `json:"ipAddress,omitempty"`
-	ModifyDate   *time.Time `json:"modifyDate,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	Priority     *int       `json:"priority,omitempty"`
-	UserId       *int       `json:"userId,omitempty"`
+	AccessType   *string `json:"accessType,omitempty"`
+	CdnAccountId *int    `json:"cdnAccountId,omitempty"`
+	CreateDate   *Time   `json:"createDate,omitempty"`
+	Id           *int    `json:"id,omitempty"`
+	IpAddress    *string `json:"ipAddress,omitempty"`
+	ModifyDate   *Time   `json:"modifyDate,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Priority     *int    `json:"priority,omitempty"`
+	UserId       *int    `json:"userId,omitempty"`
 }
 
 type Network_ContentDelivery_Authentication_Token struct {
 	Entity
 
-	CdnAccountId *int       `json:"cdnAccountId,omitempty"`
-	ClientIp     *string    `json:"clientIp,omitempty"`
-	CreateDate   *time.Time `json:"createDate,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	Referrer     *string    `json:"referrer,omitempty"`
-	Token        *string    `json:"token,omitempty"`
+	CdnAccountId *int    `json:"cdnAccountId,omitempty"`
+	ClientIp     *string `json:"clientIp,omitempty"`
+	CreateDate   *Time   `json:"createDate,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Referrer     *string `json:"referrer,omitempty"`
+	Token        *string `json:"token,omitempty"`
 }
 
 type Network_Customer_Subnet struct {
@@ -722,12 +720,12 @@ type Network_Firewall_Template_Rule struct {
 type Network_Firewall_Update_Request struct {
 	Entity
 
-	ApplyDate                          *time.Time                             `json:"applyDate,omitempty"`
+	ApplyDate                          *Time                                  `json:"applyDate,omitempty"`
 	AuthorizingUser                    *User_Interface                        `json:"authorizingUser,omitempty"`
 	AuthorizingUserId                  *int                                   `json:"authorizingUserId,omitempty"`
 	AuthorizingUserType                *string                                `json:"authorizingUserType,omitempty"`
 	BypassFlag                         *bool                                  `json:"bypassFlag,omitempty"`
-	CreateDate                         *time.Time                             `json:"createDate,omitempty"`
+	CreateDate                         *Time                                  `json:"createDate,omitempty"`
 	FirewallContextAccessControlListId *int                                   `json:"firewallContextAccessControlListId,omitempty"`
 	Guest                              *Virtual_Guest                         `json:"guest,omitempty"`
 	Hardware                           *Hardware                              `json:"hardware,omitempty"`
@@ -876,7 +874,7 @@ type Network_LoadBalancer_Service struct {
 	Entity
 
 	ConnectionLimit      *int                                   `json:"connectionLimit,omitempty"`
-	CreateDate           *time.Time                             `json:"createDate,omitempty"`
+	CreateDate           *Time                                  `json:"createDate,omitempty"`
 	DestinationIpAddress *string                                `json:"destinationIpAddress,omitempty"`
 	DestinationPort      *int                                   `json:"destinationPort,omitempty"`
 	Enabled              *bool                                  `json:"enabled,omitempty"`
@@ -884,7 +882,7 @@ type Network_LoadBalancer_Service struct {
 	HealthCheckURL       *string                                `json:"healthCheckURL,omitempty"`
 	HealthResponse       *string                                `json:"healthResponse,omitempty"`
 	Id                   *int                                   `json:"id,omitempty"`
-	ModifyDate           *time.Time                             `json:"modifyDate,omitempty"`
+	ModifyDate           *Time                                  `json:"modifyDate,omitempty"`
 	Name                 *string                                `json:"name,omitempty"`
 	Notes                *string                                `json:"notes,omitempty"`
 	PeakConnections      *int                                   `json:"peakConnections,omitempty"`
@@ -906,7 +904,7 @@ type Network_LoadBalancer_VirtualIpAddress struct {
 	LoadBalancingMethod         *string                        `json:"loadBalancingMethod,omitempty"`
 	LoadBalancingMethodFullName *string                        `json:"loadBalancingMethodFullName,omitempty"`
 	ManagedResourceFlag         *bool                          `json:"managedResourceFlag,omitempty"`
-	ModifyDate                  *time.Time                     `json:"modifyDate,omitempty"`
+	ModifyDate                  *Time                          `json:"modifyDate,omitempty"`
 	Name                        *string                        `json:"name,omitempty"`
 	Notes                       *string                        `json:"notes,omitempty"`
 	SecurityCertificateId       *int                           `json:"securityCertificateId,omitempty"`
@@ -920,15 +918,15 @@ type Network_LoadBalancer_VirtualIpAddress struct {
 type Network_Logging_Syslog struct {
 	Entity
 
-	CreateDate           *time.Time `json:"createDate,omitempty"`
-	DestinationIpAddress *string    `json:"destinationIpAddress,omitempty"`
-	DestinationPort      *int       `json:"destinationPort,omitempty"`
-	EventType            *string    `json:"eventType,omitempty"`
-	Message              *string    `json:"message,omitempty"`
-	Protocol             *string    `json:"protocol,omitempty"`
-	SourceIpAddress      *string    `json:"sourceIpAddress,omitempty"`
-	SourcePort           *int       `json:"sourcePort,omitempty"`
-	TotalEvents          *int       `json:"totalEvents,omitempty"`
+	CreateDate           *Time   `json:"createDate,omitempty"`
+	DestinationIpAddress *string `json:"destinationIpAddress,omitempty"`
+	DestinationPort      *int    `json:"destinationPort,omitempty"`
+	EventType            *string `json:"eventType,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	Protocol             *string `json:"protocol,omitempty"`
+	SourceIpAddress      *string `json:"sourceIpAddress,omitempty"`
+	SourcePort           *int    `json:"sourcePort,omitempty"`
+	TotalEvents          *int    `json:"totalEvents,omitempty"`
 }
 
 type Network_Media_Transcode_Account struct {
@@ -936,9 +934,9 @@ type Network_Media_Transcode_Account struct {
 
 	Account           *Account                      `json:"account,omitempty"`
 	AccountId         *int                          `json:"accountId,omitempty"`
-	CreateDate        *time.Time                    `json:"createDate,omitempty"`
+	CreateDate        *Time                         `json:"createDate,omitempty"`
 	Id                *int                          `json:"id,omitempty"`
-	ModifyDate        *time.Time                    `json:"modifyDate,omitempty"`
+	ModifyDate        *Time                         `json:"modifyDate,omitempty"`
 	TranscodeJobCount *uint                         `json:"transcodeJobCount,omitempty"`
 	TranscodeJobs     []Network_Media_Transcode_Job `json:"transcodeJobs,omitempty"`
 }
@@ -948,12 +946,12 @@ type Network_Media_Transcode_Job struct {
 
 	AutoDeleteDuration  *int                                             `json:"autoDeleteDuration,omitempty"`
 	ByteIn              *int                                             `json:"byteIn,omitempty"`
-	CreateDate          *time.Time                                       `json:"createDate,omitempty"`
+	CreateDate          *Time                                            `json:"createDate,omitempty"`
 	History             []Network_Media_Transcode_Job_History            `json:"history,omitempty"`
 	HistoryCount        *uint                                            `json:"historyCount,omitempty"`
 	Id                  *int                                             `json:"id,omitempty"`
 	InputFile           *string                                          `json:"inputFile,omitempty"`
-	ModifyDate          *time.Time                                       `json:"modifyDate,omitempty"`
+	ModifyDate          *Time                                            `json:"modifyDate,omitempty"`
 	Name                *string                                          `json:"name,omitempty"`
 	OutputFile          *string                                          `json:"outputFile,omitempty"`
 	TranscodeAccount    *Network_Media_Transcode_Account                 `json:"transcodeAccount,omitempty"`
@@ -972,10 +970,10 @@ type Network_Media_Transcode_Job struct {
 type Network_Media_Transcode_Job_History struct {
 	Entity
 
-	CreateDate          *time.Time `json:"createDate,omitempty"`
-	PublicNotes         *string    `json:"publicNotes,omitempty"`
-	TranscodeJobId      *int       `json:"transcodeJobId,omitempty"`
-	TranscodeStatusName *string    `json:"transcodeStatusName,omitempty"`
+	CreateDate          *Time   `json:"createDate,omitempty"`
+	PublicNotes         *string `json:"publicNotes,omitempty"`
+	TranscodeJobId      *int    `json:"transcodeJobId,omitempty"`
+	TranscodeStatusName *string `json:"transcodeStatusName,omitempty"`
 }
 
 type Network_Media_Transcode_Job_Status struct {
@@ -992,9 +990,9 @@ type Network_Message_Delivery struct {
 	Account     *Account                         `json:"account,omitempty"`
 	AccountId   *int                             `json:"accountId,omitempty"`
 	BillingItem *Billing_Item                    `json:"billingItem,omitempty"`
-	CreateDate  *time.Time                       `json:"createDate,omitempty"`
+	CreateDate  *Time                            `json:"createDate,omitempty"`
 	Id          *int                             `json:"id,omitempty"`
-	ModifyDate  *time.Time                       `json:"modifyDate,omitempty"`
+	ModifyDate  *Time                            `json:"modifyDate,omitempty"`
 	Password    *string                          `json:"password,omitempty"`
 	Type        *Network_Message_Delivery_Type   `json:"type,omitempty"`
 	TypeId      *int                             `json:"typeId,omitempty"`
@@ -1040,7 +1038,7 @@ type Network_Message_Queue struct {
 	Account              *Account                      `json:"account,omitempty"`
 	AccountId            *int                          `json:"accountId,omitempty"`
 	BillingItem          *Billing_Item                 `json:"billingItem,omitempty"`
-	CreateDate           *time.Time                    `json:"createDate,omitempty"`
+	CreateDate           *Time                         `json:"createDate,omitempty"`
 	Id                   *int                          `json:"id,omitempty"`
 	MessageQueueStatusId *int                          `json:"messageQueueStatusId,omitempty"`
 	Name                 *string                       `json:"name,omitempty"`
@@ -1119,7 +1117,7 @@ type Network_Monitor_Version1_Query_ResponseType struct {
 type Network_Monitor_Version1_Query_Result struct {
 	Entity
 
-	FinishTime     *time.Time                           `json:"finishTime,omitempty"`
+	FinishTime     *Time                                `json:"finishTime,omitempty"`
 	QueryHost      *Network_Monitor_Version1_Query_Host `json:"queryHost,omitempty"`
 	ResponseStatus *int                                 `json:"responseStatus,omitempty"`
 	ResponseTime   *float64                             `json:"responseTime,omitempty"`
@@ -1182,7 +1180,7 @@ type Network_Security_Scanner_Request struct {
 
 	Account            *Account                                 `json:"account,omitempty"`
 	AccountId          *int                                     `json:"accountId,omitempty"`
-	CreateDate         *time.Time                               `json:"createDate,omitempty"`
+	CreateDate         *Time                                    `json:"createDate,omitempty"`
 	Guest              *Virtual_Guest                           `json:"guest,omitempty"`
 	GuestId            *int                                     `json:"guestId,omitempty"`
 	Hardware           *Hardware                                `json:"hardware,omitempty"`
@@ -1190,7 +1188,7 @@ type Network_Security_Scanner_Request struct {
 	HostId             *int                                     `json:"hostId,omitempty"`
 	Id                 *int                                     `json:"id,omitempty"`
 	IpAddress          *string                                  `json:"ipAddress,omitempty"`
-	ModifyDate         *time.Time                               `json:"modifyDate,omitempty"`
+	ModifyDate         *Time                                    `json:"modifyDate,omitempty"`
 	RequestorOwnedFlag *bool                                    `json:"requestorOwnedFlag,omitempty"`
 	Status             *Network_Security_Scanner_Request_Status `json:"status,omitempty"`
 	StatusId           *int                                     `json:"statusId,omitempty"`
@@ -1206,10 +1204,10 @@ type Network_Security_Scanner_Request_Status struct {
 type Network_Service_Health struct {
 	Entity
 
-	CreateDate *time.Time                     `json:"createDate,omitempty"`
+	CreateDate *Time                          `json:"createDate,omitempty"`
 	Location   *Location                      `json:"location,omitempty"`
 	LocationId *int                           `json:"locationId,omitempty"`
-	ModifyDate *time.Time                     `json:"modifyDate,omitempty"`
+	ModifyDate *Time                          `json:"modifyDate,omitempty"`
 	Status     *Network_Service_Health_Status `json:"status,omitempty"`
 	StatusId   *int                           `json:"statusId,omitempty"`
 }
@@ -1324,7 +1322,7 @@ type Network_Storage struct {
 	BillingItemCategory                 *Product_Item_Category              `json:"billingItemCategory,omitempty"`
 	BytesUsed                           *string                             `json:"bytesUsed,omitempty"`
 	CapacityGb                          *int                                `json:"capacityGb,omitempty"`
-	CreateDate                          *time.Time                          `json:"createDate,omitempty"`
+	CreateDate                          *Time                               `json:"createDate,omitempty"`
 	CreationScheduleId                  *string                             `json:"creationScheduleId,omitempty"`
 	CredentialCount                     *uint                               `json:"credentialCount,omitempty"`
 	Credentials                         []Network_Storage_Credential        `json:"credentials,omitempty"`
@@ -1475,9 +1473,9 @@ type Network_Storage_Credential struct {
 
 	Account                    *Account                         `json:"account,omitempty"`
 	AccountId                  *string                          `json:"accountId,omitempty"`
-	CreateDate                 *time.Time                       `json:"createDate,omitempty"`
+	CreateDate                 *Time                            `json:"createDate,omitempty"`
 	Id                         *int                             `json:"id,omitempty"`
-	ModifyDate                 *time.Time                       `json:"modifyDate,omitempty"`
+	ModifyDate                 *Time                            `json:"modifyDate,omitempty"`
 	NasCredentialTypeId        *int                             `json:"nasCredentialTypeId,omitempty"`
 	NetworkStorageAllowedHosts *Network_Storage_Allowed_Host    `json:"networkStorageAllowedHosts,omitempty"`
 	Password                   *string                          `json:"password,omitempty"`
@@ -1490,11 +1488,11 @@ type Network_Storage_Credential struct {
 type Network_Storage_Credential_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type Network_Storage_Daily_Usage struct {
@@ -1502,7 +1500,7 @@ type Network_Storage_Daily_Usage struct {
 
 	BytesUsed          *uint            `json:"bytesUsed,omitempty"`
 	CdnHttpBandwidth   *uint            `json:"cdnHttpBandwidth,omitempty"`
-	CreateDate         *time.Time       `json:"createDate,omitempty"`
+	CreateDate         *Time            `json:"createDate,omitempty"`
 	NasVolume          *Network_Storage `json:"nasVolume,omitempty"`
 	NasVolumeId        *int             `json:"nasVolumeId,omitempty"`
 	PublicBandwidthOut *uint            `json:"publicBandwidthOut,omitempty"`
@@ -1511,7 +1509,7 @@ type Network_Storage_Daily_Usage struct {
 type Network_Storage_Event struct {
 	Entity
 
-	CreateDate *time.Time                `json:"createDate,omitempty"`
+	CreateDate *Time                     `json:"createDate,omitempty"`
 	Message    *string                   `json:"message,omitempty"`
 	Schedule   *Network_Storage_Schedule `json:"schedule,omitempty"`
 	ScheduleId *int                      `json:"scheduleId,omitempty"`
@@ -1530,11 +1528,11 @@ type Network_Storage_Group struct {
 	AllowedHosts        []Network_Storage_Allowed_Host `json:"allowedHosts,omitempty"`
 	AttachedVolumeCount *uint                          `json:"attachedVolumeCount,omitempty"`
 	AttachedVolumes     []Network_Storage              `json:"attachedVolumes,omitempty"`
-	CreateDate          *time.Time                     `json:"createDate,omitempty"`
+	CreateDate          *Time                          `json:"createDate,omitempty"`
 	GroupType           *Network_Storage_Group_Type    `json:"groupType,omitempty"`
 	GroupTypeId         *int                           `json:"groupTypeId,omitempty"`
 	Id                  *int                           `json:"id,omitempty"`
-	ModifyDate          *time.Time                     `json:"modifyDate,omitempty"`
+	ModifyDate          *Time                          `json:"modifyDate,omitempty"`
 	OsType              *Network_Storage_Iscsi_OS_Type `json:"osType,omitempty"`
 	OsTypeId            *int                           `json:"osTypeId,omitempty"`
 	ServiceResource     *Network_Service_Resource      `json:"serviceResource,omitempty"`
@@ -1561,7 +1559,7 @@ type Network_Storage_History struct {
 	Entity
 
 	Account    *Account         `json:"account,omitempty"`
-	CreateDate *time.Time       `json:"createDate,omitempty"`
+	CreateDate *Time            `json:"createDate,omitempty"`
 	NasVolume  *Network_Storage `json:"nasVolume,omitempty"`
 	Notes      *string          `json:"notes,omitempty"`
 	Password   *string          `json:"password,omitempty"`
@@ -1639,11 +1637,11 @@ type Network_Storage_Iscsi_EqualLogic_Version3_Snapshot struct {
 type Network_Storage_Iscsi_OS_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type Network_Storage_Nas struct {
@@ -1662,8 +1660,8 @@ type Network_Storage_OpenStack_Object struct {
 type Network_Storage_Partnership struct {
 	Entity
 
-	CreateDate      *time.Time                        `json:"createDate,omitempty"`
-	ModifyDate      *time.Time                        `json:"modifyDate,omitempty"`
+	CreateDate      *Time                             `json:"createDate,omitempty"`
+	ModifyDate      *Time                             `json:"modifyDate,omitempty"`
 	PartnerVolume   *Network_Storage                  `json:"partnerVolume,omitempty"`
 	PartnerVolumeId *int                              `json:"partnerVolumeId,omitempty"`
 	Type            *Network_Storage_Partnership_Type `json:"type,omitempty"`
@@ -1682,8 +1680,8 @@ type Network_Storage_Partnership_Type struct {
 type Network_Storage_Property struct {
 	Entity
 
-	CreateDate *time.Time                     `json:"createDate,omitempty"`
-	ModifyDate *time.Time                     `json:"modifyDate,omitempty"`
+	CreateDate *Time                          `json:"createDate,omitempty"`
+	ModifyDate *Time                          `json:"modifyDate,omitempty"`
 	Type       *Network_Storage_Property_Type `json:"type,omitempty"`
 	Value      *string                        `json:"value,omitempty"`
 	Volume     *Network_Storage               `json:"volume,omitempty"`
@@ -1709,7 +1707,7 @@ type Network_Storage_Schedule struct {
 	Entity
 
 	Active               *int                                `json:"active,omitempty"`
-	CreateDate           *time.Time                          `json:"createDate,omitempty"`
+	CreateDate           *Time                               `json:"createDate,omitempty"`
 	DayOfMonth           *string                             `json:"dayOfMonth,omitempty"`
 	DayOfWeek            *string                             `json:"dayOfWeek,omitempty"`
 	EventCount           *uint                               `json:"eventCount,omitempty"`
@@ -1717,7 +1715,7 @@ type Network_Storage_Schedule struct {
 	Hour                 *string                             `json:"hour,omitempty"`
 	Id                   *int                                `json:"id,omitempty"`
 	Minute               *string                             `json:"minute,omitempty"`
-	ModifyDate           *time.Time                          `json:"modifyDate,omitempty"`
+	ModifyDate           *Time                               `json:"modifyDate,omitempty"`
 	MonthOfYear          *string                             `json:"monthOfYear,omitempty"`
 	Name                 *string                             `json:"name,omitempty"`
 	Partnership          *Network_Storage_Partnership        `json:"partnership,omitempty"`
@@ -1738,9 +1736,9 @@ type Network_Storage_Schedule struct {
 type Network_Storage_Schedule_Property struct {
 	Entity
 
-	CreateDate *time.Time                              `json:"createDate,omitempty"`
+	CreateDate *Time                                   `json:"createDate,omitempty"`
 	Id         *int                                    `json:"id,omitempty"`
-	ModifyDate *time.Time                              `json:"modifyDate,omitempty"`
+	ModifyDate *Time                                   `json:"modifyDate,omitempty"`
 	Schedule   *Network_Storage_Schedule               `json:"schedule,omitempty"`
 	Type       *Network_Storage_Schedule_Property_Type `json:"type,omitempty"`
 	TypeId     *int                                    `json:"typeId,omitempty"`
@@ -1819,7 +1817,7 @@ type Network_Subnet struct {
 	IpAddresses                       []Network_Subnet_IpAddress          `json:"ipAddresses,omitempty"`
 	IsCustomerOwned                   *bool                               `json:"isCustomerOwned,omitempty"`
 	IsCustomerRoutable                *bool                               `json:"isCustomerRoutable,omitempty"`
-	ModifyDate                        *time.Time                          `json:"modifyDate,omitempty"`
+	ModifyDate                        *Time                               `json:"modifyDate,omitempty"`
 	Netmask                           *string                             `json:"netmask,omitempty"`
 	NetworkComponent                  *Network_Component                  `json:"networkComponent,omitempty"`
 	NetworkComponentFirewall          *Network_Component_Firewall         `json:"networkComponentFirewall,omitempty"`
@@ -1940,13 +1938,13 @@ type Network_Subnet_Registration struct {
 	Account                          *Account                              `json:"account,omitempty"`
 	AccountId                        *int                                  `json:"accountId,omitempty"`
 	Cidr                             *int                                  `json:"cidr,omitempty"`
-	CreateDate                       *time.Time                            `json:"createDate,omitempty"`
+	CreateDate                       *Time                                 `json:"createDate,omitempty"`
 	DetailReferenceCount             *uint                                 `json:"detailReferenceCount,omitempty"`
 	DetailReferences                 []Network_Subnet_Registration_Details `json:"detailReferences,omitempty"`
 	EventCount                       *uint                                 `json:"eventCount,omitempty"`
 	Events                           []Network_Subnet_Registration_Event   `json:"events,omitempty"`
 	Id                               *int                                  `json:"id,omitempty"`
-	ModifyDate                       *time.Time                            `json:"modifyDate,omitempty"`
+	ModifyDate                       *Time                                 `json:"modifyDate,omitempty"`
 	NetworkDetail                    *Account_Regional_Registry_Detail     `json:"networkDetail,omitempty"`
 	NetworkHandle                    *string                               `json:"networkHandle,omitempty"`
 	NetworkIdentifier                *string                               `json:"networkIdentifier,omitempty"`
@@ -1971,11 +1969,11 @@ type Network_Subnet_Registration_Arin struct {
 type Network_Subnet_Registration_Details struct {
 	Entity
 
-	CreateDate     *time.Time                        `json:"createDate,omitempty"`
+	CreateDate     *Time                             `json:"createDate,omitempty"`
 	Detail         *Account_Regional_Registry_Detail `json:"detail,omitempty"`
 	DetailId       *int                              `json:"detailId,omitempty"`
 	Id             *int                              `json:"id,omitempty"`
-	ModifyDate     *time.Time                        `json:"modifyDate,omitempty"`
+	ModifyDate     *Time                             `json:"modifyDate,omitempty"`
 	Registration   *Network_Subnet_Registration      `json:"registration,omitempty"`
 	RegistrationId *int                              `json:"registrationId,omitempty"`
 }
@@ -1983,10 +1981,10 @@ type Network_Subnet_Registration_Details struct {
 type Network_Subnet_Registration_Event struct {
 	Entity
 
-	CreateDate     *time.Time                              `json:"createDate,omitempty"`
+	CreateDate     *Time                                   `json:"createDate,omitempty"`
 	Id             *int                                    `json:"id,omitempty"`
 	Message        *string                                 `json:"message,omitempty"`
-	ModifyDate     *time.Time                              `json:"modifyDate,omitempty"`
+	ModifyDate     *Time                                   `json:"modifyDate,omitempty"`
 	Registration   *Network_Subnet_Registration            `json:"registration,omitempty"`
 	RegistrationId *int                                    `json:"registrationId,omitempty"`
 	Type           *Network_Subnet_Registration_Event_Type `json:"type,omitempty"`
@@ -1996,11 +1994,11 @@ type Network_Subnet_Registration_Event struct {
 type Network_Subnet_Registration_Event_Type struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Network_Subnet_Registration_Ripe struct {
@@ -2010,32 +2008,32 @@ type Network_Subnet_Registration_Ripe struct {
 type Network_Subnet_Registration_Status struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Network_Subnet_Rwhois_Data struct {
 	Entity
 
-	AbuseEmail           *string    `json:"abuseEmail,omitempty"`
-	Account              *Account   `json:"account,omitempty"`
-	AccountId            *int       `json:"accountId,omitempty"`
-	Address1             *string    `json:"address1,omitempty"`
-	Address2             *string    `json:"address2,omitempty"`
-	City                 *string    `json:"city,omitempty"`
-	CompanyName          *string    `json:"companyName,omitempty"`
-	Country              *string    `json:"country,omitempty"`
-	CreateDate           *time.Time `json:"createDate,omitempty"`
-	FirstName            *string    `json:"firstName,omitempty"`
-	Id                   *int       `json:"id,omitempty"`
-	LastName             *string    `json:"lastName,omitempty"`
-	ModifyDate           *time.Time `json:"modifyDate,omitempty"`
-	PostalCode           *string    `json:"postalCode,omitempty"`
-	PrivateResidenceFlag *bool      `json:"privateResidenceFlag,omitempty"`
-	State                *string    `json:"state,omitempty"`
+	AbuseEmail           *string  `json:"abuseEmail,omitempty"`
+	Account              *Account `json:"account,omitempty"`
+	AccountId            *int     `json:"accountId,omitempty"`
+	Address1             *string  `json:"address1,omitempty"`
+	Address2             *string  `json:"address2,omitempty"`
+	City                 *string  `json:"city,omitempty"`
+	CompanyName          *string  `json:"companyName,omitempty"`
+	Country              *string  `json:"country,omitempty"`
+	CreateDate           *Time    `json:"createDate,omitempty"`
+	FirstName            *string  `json:"firstName,omitempty"`
+	Id                   *int     `json:"id,omitempty"`
+	LastName             *string  `json:"lastName,omitempty"`
+	ModifyDate           *Time    `json:"modifyDate,omitempty"`
+	PostalCode           *string  `json:"postalCode,omitempty"`
+	PrivateResidenceFlag *bool    `json:"privateResidenceFlag,omitempty"`
+	State                *string  `json:"state,omitempty"`
 }
 
 type Network_Subnet_Swip_Transaction struct {
@@ -2064,7 +2062,7 @@ type Network_Tunnel_Module_Context struct {
 	AllAvailableServiceSubnetCount *uint                                               `json:"allAvailableServiceSubnetCount,omitempty"`
 	AllAvailableServiceSubnets     []Network_Subnet                                    `json:"allAvailableServiceSubnets,omitempty"`
 	BillingItem                    *Billing_Item                                       `json:"billingItem,omitempty"`
-	CreateDate                     *time.Time                                          `json:"createDate,omitempty"`
+	CreateDate                     *Time                                               `json:"createDate,omitempty"`
 	CustomerPeerIpAddress          *string                                             `json:"customerPeerIpAddress,omitempty"`
 	CustomerSubnetCount            *uint                                               `json:"customerSubnetCount,omitempty"`
 	CustomerSubnets                []Network_Customer_Subnet                           `json:"customerSubnets,omitempty"`
@@ -2074,7 +2072,7 @@ type Network_Tunnel_Module_Context struct {
 	InternalPeerIpAddress          *string                                             `json:"internalPeerIpAddress,omitempty"`
 	InternalSubnetCount            *uint                                               `json:"internalSubnetCount,omitempty"`
 	InternalSubnets                []Network_Subnet                                    `json:"internalSubnets,omitempty"`
-	ModifyDate                     *time.Time                                          `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                                               `json:"modifyDate,omitempty"`
 	Name                           *string                                             `json:"name,omitempty"`
 	PhaseOneAuthentication         *string                                             `json:"phaseOneAuthentication,omitempty"`
 	PhaseOneDiffieHellmanGroup     *int                                                `json:"phaseOneDiffieHellmanGroup,omitempty"`
@@ -2137,7 +2135,7 @@ type Network_Vlan struct {
 	HighAvailabilityFirewallFlag       *bool                                       `json:"highAvailabilityFirewallFlag,omitempty"`
 	Id                                 *int                                        `json:"id,omitempty"`
 	LocalDiskStorageCapabilityFlag     *bool                                       `json:"localDiskStorageCapabilityFlag,omitempty"`
-	ModifyDate                         *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate                         *Time                                       `json:"modifyDate,omitempty"`
 	Name                               *string                                     `json:"name,omitempty"`
 	Network                            *Network                                    `json:"network,omitempty"`
 	NetworkComponentCount              *uint                                       `json:"networkComponentCount,omitempty"`

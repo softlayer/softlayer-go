@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Ticket struct {
 	Entity
 
@@ -41,7 +39,7 @@ type Ticket struct {
 	BillableFlag                         *bool                               `json:"billableFlag,omitempty"`
 	CancellationRequest                  *Billing_Item_Cancellation_Request  `json:"cancellationRequest,omitempty"`
 	ChangeOwnerFlag                      *bool                               `json:"changeOwnerFlag,omitempty"`
-	CreateDate                           *time.Time                          `json:"createDate,omitempty"`
+	CreateDate                           *Time                               `json:"createDate,omitempty"`
 	EmployeeAttachmentCount              *uint                               `json:"employeeAttachmentCount,omitempty"`
 	EmployeeAttachments                  []User_Employee                     `json:"employeeAttachments,omitempty"`
 	FinalComments                        *string                             `json:"finalComments,omitempty"`
@@ -53,15 +51,15 @@ type Ticket struct {
 	InvoiceItemCount                     *uint                               `json:"invoiceItemCount,omitempty"`
 	InvoiceItems                         []Billing_Invoice_Item              `json:"invoiceItems,omitempty"`
 	LastActivity                         *Ticket_Activity                    `json:"lastActivity,omitempty"`
-	LastEditDate                         *time.Time                          `json:"lastEditDate,omitempty"`
+	LastEditDate                         *Time                               `json:"lastEditDate,omitempty"`
 	LastEditType                         *string                             `json:"lastEditType,omitempty"`
 	LastEditor                           *User_Interface                     `json:"lastEditor,omitempty"`
-	LastResponseDate                     *time.Time                          `json:"lastResponseDate,omitempty"`
+	LastResponseDate                     *Time                               `json:"lastResponseDate,omitempty"`
 	LastUpdate                           *Ticket_Update                      `json:"lastUpdate,omitempty"`
-	LastViewedDate                       *time.Time                          `json:"lastViewedDate,omitempty"`
+	LastViewedDate                       *Time                               `json:"lastViewedDate,omitempty"`
 	Location                             *Location                           `json:"location,omitempty"`
 	LocationId                           *int                                `json:"locationId,omitempty"`
-	ModifyDate                           *time.Time                          `json:"modifyDate,omitempty"`
+	ModifyDate                           *Time                               `json:"modifyDate,omitempty"`
 	NewUpdatesFlag                       *bool                               `json:"newUpdatesFlag,omitempty"`
 	NotifyUserOnUpdateFlag               *bool                               `json:"notifyUserOnUpdateFlag,omitempty"`
 	OriginatingIpAddress                 *string                             `json:"originatingIpAddress,omitempty"`
@@ -96,8 +94,8 @@ type Ticket struct {
 type Ticket_Activity struct {
 	Entity
 
-	CreateDate      *time.Time      `json:"createDate,omitempty"`
-	CreateTimestamp *time.Time      `json:"createTimestamp,omitempty"`
+	CreateDate      *Time           `json:"createDate,omitempty"`
+	CreateTimestamp *Time           `json:"createTimestamp,omitempty"`
 	Editor          *User_Interface `json:"editor,omitempty"`
 	Id              *int            `json:"id,omitempty"`
 	Ticket          *Ticket         `json:"ticket,omitempty"`
@@ -110,7 +108,7 @@ type Ticket_Attachment struct {
 
 	AssignedAgent   *User_Customer                     `json:"assignedAgent,omitempty"`
 	AttachmentId    *int                               `json:"attachmentId,omitempty"`
-	CreateDate      *time.Time                         `json:"createDate,omitempty"`
+	CreateDate      *Time                              `json:"createDate,omitempty"`
 	Id              *int                               `json:"id,omitempty"`
 	ScheduledAction *Provisioning_Version1_Transaction `json:"scheduledAction,omitempty"`
 	Ticket          *Ticket                            `json:"ticket,omitempty"`
@@ -133,11 +131,11 @@ type Ticket_Attachment_CardChangeRequest struct {
 type Ticket_Attachment_File struct {
 	Entity
 
-	CreateDate   *time.Time     `json:"createDate,omitempty"`
+	CreateDate   *Time          `json:"createDate,omitempty"`
 	FileName     *string        `json:"fileName,omitempty"`
 	FileSize     *string        `json:"fileSize,omitempty"`
 	Id           *int           `json:"id,omitempty"`
-	ModifyDate   *time.Time     `json:"modifyDate,omitempty"`
+	ModifyDate   *Time          `json:"modifyDate,omitempty"`
 	Ticket       *Ticket        `json:"ticket,omitempty"`
 	TicketId     *int           `json:"ticketId,omitempty"`
 	Update       *Ticket_Update `json:"update,omitempty"`
@@ -164,7 +162,7 @@ type Ticket_Attachment_Scheduled_Action struct {
 	Ticket_Attachment
 
 	Resource      *Provisioning_Version1_Transaction `json:"resource,omitempty"`
-	RunDate       *time.Time                         `json:"runDate,omitempty"`
+	RunDate       *Time                              `json:"runDate,omitempty"`
 	Transaction   *Provisioning_Version1_Transaction `json:"transaction,omitempty"`
 	TransactionId *int                               `json:"transactionId,omitempty"`
 }
@@ -183,8 +181,8 @@ type Ticket_Chat struct {
 	Agent        *User_Employee      `json:"agent,omitempty"`
 	Customer     *User_Customer      `json:"customer,omitempty"`
 	CustomerId   *int                `json:"customerId,omitempty"`
-	EndDate      *time.Time          `json:"endDate,omitempty"`
-	StartDate    *time.Time          `json:"startDate,omitempty"`
+	EndDate      *Time               `json:"endDate,omitempty"`
+	StartDate    *Time               `json:"startDate,omitempty"`
 	TicketUpdate *Ticket_Update_Chat `json:"ticketUpdate,omitempty"`
 	Transcript   *string             `json:"transcript,omitempty"`
 }
@@ -278,7 +276,7 @@ type Ticket_Update struct {
 	Entity
 
 	ChangeOwnerActivity *string                  `json:"changeOwnerActivity,omitempty"`
-	CreateDate          *time.Time               `json:"createDate,omitempty"`
+	CreateDate          *Time                    `json:"createDate,omitempty"`
 	Editor              *User_Interface          `json:"editor,omitempty"`
 	EditorId            *int                     `json:"editorId,omitempty"`
 	EditorType          *string                  `json:"editorType,omitempty"`

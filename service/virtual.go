@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Virtual_Disk_Image struct {
 	Session *Session
@@ -303,7 +299,7 @@ func (r *Virtual_Guest) GetAdditionalRequiredPricesForOsReload(config *datatypes
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetAlarmHistory(startDate *time.Time, endDate *time.Time, alarmId *string) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Virtual_Guest) GetAlarmHistory(startDate *datatypes.Time, endDate *datatypes.Time, alarmId *string) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -330,7 +326,7 @@ func (r *Virtual_Guest) GetAvailableNetworkStorages(nasType *string) (resp []dat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetBandwidthDataByDate(startDateTime *time.Time, endDateTime *time.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Virtual_Guest) GetBandwidthDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -339,7 +335,7 @@ func (r *Virtual_Guest) GetBandwidthDataByDate(startDateTime *time.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetBandwidthForDateRange(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Virtual_Guest) GetBandwidthForDateRange(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -347,7 +343,7 @@ func (r *Virtual_Guest) GetBandwidthForDateRange(startDate *time.Time, endDate *
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetBandwidthImage(networkType *string, snapshotRange *string, dateSpecified *time.Time, dateSpecifiedEnd *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetBandwidthImage(networkType *string, snapshotRange *string, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		networkType,
 		snapshotRange,
@@ -357,7 +353,7 @@ func (r *Virtual_Guest) GetBandwidthImage(networkType *string, snapshotRange *st
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetBandwidthImageByDate(startDateTime *time.Time, endDateTime *time.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetBandwidthImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -366,7 +362,7 @@ func (r *Virtual_Guest) GetBandwidthImageByDate(startDateTime *time.Time, endDat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetBandwidthTotal(startDateTime *time.Time, endDateTime *time.Time, direction *string, side *string) (resp uint, err error) {
+func (r *Virtual_Guest) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, side *string) (resp uint, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -388,7 +384,7 @@ func (r *Virtual_Guest) GetCoreRestrictedOperatingSystemPrice() (resp datatypes.
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetCpuMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time, cpuIndexes []int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Virtual_Guest) GetCpuMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, cpuIndexes []int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -397,7 +393,7 @@ func (r *Virtual_Guest) GetCpuMetricDataByDate(startDateTime *time.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		snapshotRange,
 		dateSpecified,
@@ -405,7 +401,7 @@ func (r *Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetCpuMetricImageByDate(startDateTime *time.Time, endDateTime *time.Time, cpuIndexes []int) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetCpuMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, cpuIndexes []int) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -465,7 +461,7 @@ func (r *Virtual_Guest) GetItemPricesFromSoftwareDescriptions(softwareDescriptio
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -473,7 +469,7 @@ func (r *Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *time.Time, endD
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetMemoryMetricImage(snapshotRange *string, dateSpecified *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetMemoryMetricImage(snapshotRange *string, dateSpecified *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		snapshotRange,
 		dateSpecified,
@@ -481,7 +477,7 @@ func (r *Virtual_Guest) GetMemoryMetricImage(snapshotRange *string, dateSpecifie
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *time.Time, endDateTime *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -489,7 +485,7 @@ func (r *Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *time.Time, end
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetMonitoringActiveAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Virtual_Guest) GetMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -497,7 +493,7 @@ func (r *Virtual_Guest) GetMonitoringActiveAlarms(startDate *time.Time, endDate 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetMonitoringClosedAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Virtual_Guest) GetMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -521,7 +517,7 @@ func (r *Virtual_Guest) GetOrderTemplate(billingType *string, orderPrices []data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetProvisionDate() (resp time.Time, err error) {
+func (r *Virtual_Guest) GetProvisionDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -532,7 +528,7 @@ func (r *Virtual_Guest) GetRecentMetricData(time *uint) (resp []datatypes.Metric
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -540,7 +536,7 @@ func (r *Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *time.Time, en
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest) GetRemoteMonitoringClosedAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Virtual_Guest) GetRemoteMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1674,7 +1670,7 @@ func (r *Virtual_Storage_Repository) GetArchiveDiskUsageRatePerGb() (resp float6
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp float64, err error) {
+func (r *Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -1694,7 +1690,7 @@ func (r *Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Loc
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *time.Time, endDateTime *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -1702,7 +1698,7 @@ func (r *Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *tim
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *time.Time, endDateTime *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,

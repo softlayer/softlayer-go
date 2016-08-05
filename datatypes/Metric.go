@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Metric_Tracking_Object struct {
 	Entity
 
@@ -25,7 +23,7 @@ type Metric_Tracking_Object struct {
 	Id              *int                          `json:"id,omitempty"`
 	Label           *string                       `json:"label,omitempty"`
 	ResourceTableId *int                          `json:"resourceTableId,omitempty"`
-	StartDate       *time.Time                    `json:"startDate,omitempty"`
+	StartDate       *Time                         `json:"startDate,omitempty"`
 	Type            *Metric_Tracking_Object_Type  `json:"type,omitempty"`
 }
 
@@ -50,9 +48,9 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 type Metric_Tracking_Object_Data struct {
 	Entity
 
-	Counter  *float64   `json:"counter,omitempty"`
-	DateTime *time.Time `json:"dateTime,omitempty"`
-	Type     *string    `json:"type,omitempty"`
+	Counter  *float64 `json:"counter,omitempty"`
+	DateTime *Time    `json:"dateTime,omitempty"`
+	Type     *string  `json:"type,omitempty"`
 }
 
 type Metric_Tracking_Object_Data_Network_ContentDelivery_Account struct {

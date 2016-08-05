@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Layout_Container struct {
 	Entity
 
@@ -80,13 +78,13 @@ type Layout_Profile struct {
 	Entity
 
 	ActiveFlag            *int                        `json:"activeFlag,omitempty"`
-	CreateDate            *time.Time                  `json:"createDate,omitempty"`
+	CreateDate            *Time                       `json:"createDate,omitempty"`
 	Id                    *int                        `json:"id,omitempty"`
 	LayoutContainerCount  *uint                       `json:"layoutContainerCount,omitempty"`
 	LayoutContainers      []Layout_Container          `json:"layoutContainers,omitempty"`
 	LayoutPreferenceCount *uint                       `json:"layoutPreferenceCount,omitempty"`
 	LayoutPreferences     []Layout_Profile_Preference `json:"layoutPreferences,omitempty"`
-	ModifyDate            *time.Time                  `json:"modifyDate,omitempty"`
+	ModifyDate            *Time                       `json:"modifyDate,omitempty"`
 	Name                  *string                     `json:"name,omitempty"`
 	UserRecordId          *int                        `json:"userRecordId,omitempty"`
 }
@@ -94,13 +92,13 @@ type Layout_Profile struct {
 type Layout_Profile_Containers struct {
 	Entity
 
-	CreateDate          *time.Time        `json:"createDate,omitempty"`
+	CreateDate          *Time             `json:"createDate,omitempty"`
 	Id                  *int              `json:"id,omitempty"`
 	LayoutContainerId   *int              `json:"layoutContainerId,omitempty"`
 	LayoutContainerType *Layout_Container `json:"layoutContainerType,omitempty"`
 	LayoutProfile       *Layout_Profile   `json:"layoutProfile,omitempty"`
 	LayoutProfileId     *int              `json:"layoutProfileId,omitempty"`
-	ModifyDate          *time.Time        `json:"modifyDate,omitempty"`
+	ModifyDate          *Time             `json:"modifyDate,omitempty"`
 }
 
 type Layout_Profile_Customer struct {
@@ -112,7 +110,7 @@ type Layout_Profile_Customer struct {
 type Layout_Profile_Preference struct {
 	Entity
 
-	CreateDate         *time.Time         `json:"createDate,omitempty"`
+	CreateDate         *Time              `json:"createDate,omitempty"`
 	DefaultValueFlag   *int               `json:"defaultValueFlag,omitempty"`
 	LayoutContainer    *Layout_Container  `json:"layoutContainer,omitempty"`
 	LayoutContainerId  *int               `json:"layoutContainerId,omitempty"`
@@ -122,6 +120,6 @@ type Layout_Profile_Preference struct {
 	LayoutPreferenceId *int               `json:"layoutPreferenceId,omitempty"`
 	LayoutProfile      *Layout_Profile    `json:"layoutProfile,omitempty"`
 	LayoutProfileId    *int               `json:"layoutProfileId,omitempty"`
-	ModifyDate         *time.Time         `json:"modifyDate,omitempty"`
+	ModifyDate         *Time              `json:"modifyDate,omitempty"`
 	Value              *string            `json:"value,omitempty"`
 }

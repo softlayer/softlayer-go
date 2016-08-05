@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Product_Catalog struct {
 	Session *Session
@@ -1538,7 +1534,7 @@ func (r *Product_Upgrade_Request) GetObject() (resp datatypes.Product_Upgrade_Re
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *time.Time, maintenanceWindowId *int) (resp bool, err error) {
+func (r *Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *datatypes.Time, maintenanceWindowId *int) (resp bool, err error) {
 	params := []interface{}{
 		maintenanceStartTime,
 		maintenanceWindowId,

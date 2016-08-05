@@ -16,58 +16,56 @@
 
 package datatypes
 
-import "time"
-
 type Container_Account_Discount_Program struct {
 	Entity
 
-	AppliedCredit           *float64   `json:"appliedCredit,omitempty"`
-	IsParticipant           *bool      `json:"isParticipant,omitempty"`
-	LifetimeAppliedCredit   *float64   `json:"lifetimeAppliedCredit,omitempty"`
-	LifetimeCredit          *float64   `json:"lifetimeCredit,omitempty"`
-	LifetimeRemainingCredit *float64   `json:"lifetimeRemainingCredit,omitempty"`
-	MaximumActiveOrders     *float64   `json:"maximumActiveOrders,omitempty"`
-	MonthlyCredit           *float64   `json:"monthlyCredit,omitempty"`
-	PostTaxRemainingCredit  *float64   `json:"postTaxRemainingCredit,omitempty"`
-	ProgramEndDate          *time.Time `json:"programEndDate,omitempty"`
-	ProgramName             *string    `json:"programName,omitempty"`
-	RemainingCredit         *float64   `json:"remainingCredit,omitempty"`
-	RemainingCreditTax      *float64   `json:"remainingCreditTax,omitempty"`
+	AppliedCredit           *float64 `json:"appliedCredit,omitempty"`
+	IsParticipant           *bool    `json:"isParticipant,omitempty"`
+	LifetimeAppliedCredit   *float64 `json:"lifetimeAppliedCredit,omitempty"`
+	LifetimeCredit          *float64 `json:"lifetimeCredit,omitempty"`
+	LifetimeRemainingCredit *float64 `json:"lifetimeRemainingCredit,omitempty"`
+	MaximumActiveOrders     *float64 `json:"maximumActiveOrders,omitempty"`
+	MonthlyCredit           *float64 `json:"monthlyCredit,omitempty"`
+	PostTaxRemainingCredit  *float64 `json:"postTaxRemainingCredit,omitempty"`
+	ProgramEndDate          *Time    `json:"programEndDate,omitempty"`
+	ProgramName             *string  `json:"programName,omitempty"`
+	RemainingCredit         *float64 `json:"remainingCredit,omitempty"`
+	RemainingCreditTax      *float64 `json:"remainingCreditTax,omitempty"`
 }
 
 type Container_Account_Graph_Outputs struct {
 	Entity
 
-	ClosedTickets                      *string    `json:"closedTickets,omitempty"`
-	CompletedBackupCount               *string    `json:"completedBackupCount,omitempty"`
-	ConflictBackupCount                *string    `json:"conflictBackupCount,omitempty"`
-	EndDate                            *time.Time `json:"endDate,omitempty"`
-	FailedBackupCount                  *string    `json:"failedBackupCount,omitempty"`
-	GraphError                         *string    `json:"graphError,omitempty"`
-	GraphImage                         *[]byte    `json:"graphImage,omitempty"`
-	HardwareUptime                     *string    `json:"hardwareUptime,omitempty"`
-	InboundUsage                       *string    `json:"inboundUsage,omitempty"`
-	OpenTickets                        *string    `json:"openTickets,omitempty"`
-	OutboundUsage                      *string    `json:"outboundUsage,omitempty"`
-	PendingCustomerResponseTicketCount *string    `json:"pendingCustomerResponseTicketCount,omitempty"`
-	StartDate                          *time.Time `json:"startDate,omitempty"`
-	UrlUptime                          *string    `json:"urlUptime,omitempty"`
-	WaitingEmployeeResponseTicketCount *string    `json:"waitingEmployeeResponseTicketCount,omitempty"`
+	ClosedTickets                      *string `json:"closedTickets,omitempty"`
+	CompletedBackupCount               *string `json:"completedBackupCount,omitempty"`
+	ConflictBackupCount                *string `json:"conflictBackupCount,omitempty"`
+	EndDate                            *Time   `json:"endDate,omitempty"`
+	FailedBackupCount                  *string `json:"failedBackupCount,omitempty"`
+	GraphError                         *string `json:"graphError,omitempty"`
+	GraphImage                         *[]byte `json:"graphImage,omitempty"`
+	HardwareUptime                     *string `json:"hardwareUptime,omitempty"`
+	InboundUsage                       *string `json:"inboundUsage,omitempty"`
+	OpenTickets                        *string `json:"openTickets,omitempty"`
+	OutboundUsage                      *string `json:"outboundUsage,omitempty"`
+	PendingCustomerResponseTicketCount *string `json:"pendingCustomerResponseTicketCount,omitempty"`
+	StartDate                          *Time   `json:"startDate,omitempty"`
+	UrlUptime                          *string `json:"urlUptime,omitempty"`
+	WaitingEmployeeResponseTicketCount *string `json:"waitingEmployeeResponseTicketCount,omitempty"`
 }
 
 type Container_Account_Historical_Summary struct {
 	Entity
 
 	Details   []Container_Account_Historical_Summary_Detail `json:"details,omitempty"`
-	EndDate   *time.Time                                    `json:"endDate,omitempty"`
-	StartDate *time.Time                                    `json:"startDate,omitempty"`
+	EndDate   *Time                                         `json:"endDate,omitempty"`
+	StartDate *Time                                         `json:"startDate,omitempty"`
 }
 
 type Container_Account_Historical_Summary_Detail struct {
 	Entity
 
-	EndDate   *time.Time `json:"endDate,omitempty"`
-	StartDate *time.Time `json:"startDate,omitempty"`
+	EndDate   *Time `json:"endDate,omitempty"`
+	StartDate *Time `json:"startDate,omitempty"`
 }
 
 type Container_Account_Historical_Summary_Detail_Uptime struct {
@@ -108,63 +106,63 @@ type Container_Account_Payment_Method_CreditCard struct {
 type Container_Auxiliary_Network_Status_Reading struct {
 	Entity
 
-	AveragePing   *float64   `json:"averagePing,omitempty"`
-	Fails         *int       `json:"fails,omitempty"`
-	Frequency     *int       `json:"frequency,omitempty"`
-	Label         *string    `json:"label,omitempty"`
-	LastCheckDate *time.Time `json:"lastCheckDate,omitempty"`
-	LastDownDate  *time.Time `json:"lastDownDate,omitempty"`
-	Latency       *float64   `json:"latency,omitempty"`
-	Location      *string    `json:"location,omitempty"`
-	MaximumPing   *float64   `json:"maximumPing,omitempty"`
-	MinimumPing   *float64   `json:"minimumPing,omitempty"`
-	PingLoss      *float64   `json:"pingLoss,omitempty"`
-	StartDate     *time.Time `json:"startDate,omitempty"`
-	StatusCode    *string    `json:"statusCode,omitempty"`
-	StatusMessage *string    `json:"statusMessage,omitempty"`
-	Target        *string    `json:"target,omitempty"`
-	TargetType    *string    `json:"targetType,omitempty"`
+	AveragePing   *float64 `json:"averagePing,omitempty"`
+	Fails         *int     `json:"fails,omitempty"`
+	Frequency     *int     `json:"frequency,omitempty"`
+	Label         *string  `json:"label,omitempty"`
+	LastCheckDate *Time    `json:"lastCheckDate,omitempty"`
+	LastDownDate  *Time    `json:"lastDownDate,omitempty"`
+	Latency       *float64 `json:"latency,omitempty"`
+	Location      *string  `json:"location,omitempty"`
+	MaximumPing   *float64 `json:"maximumPing,omitempty"`
+	MinimumPing   *float64 `json:"minimumPing,omitempty"`
+	PingLoss      *float64 `json:"pingLoss,omitempty"`
+	StartDate     *Time    `json:"startDate,omitempty"`
+	StatusCode    *string  `json:"statusCode,omitempty"`
+	StatusMessage *string  `json:"statusMessage,omitempty"`
+	Target        *string  `json:"target,omitempty"`
+	TargetType    *string  `json:"targetType,omitempty"`
 }
 
 type Container_Bandwidth_GraphInputs struct {
 	Entity
 
-	EndDate            *time.Time `json:"endDate,omitempty"`
-	NetworkInterfaceId *int       `json:"networkInterfaceId,omitempty"`
-	Pod                *int       `json:"pod,omitempty"`
-	ServerName         *string    `json:"serverName,omitempty"`
-	StartDate          *time.Time `json:"startDate,omitempty"`
+	EndDate            *Time   `json:"endDate,omitempty"`
+	NetworkInterfaceId *int    `json:"networkInterfaceId,omitempty"`
+	Pod                *int    `json:"pod,omitempty"`
+	ServerName         *string `json:"serverName,omitempty"`
+	StartDate          *Time   `json:"startDate,omitempty"`
 }
 
 type Container_Bandwidth_GraphOutputs struct {
 	Entity
 
-	GraphImage   *[]byte    `json:"graphImage,omitempty"`
-	GraphTitle   *string    `json:"graphTitle,omitempty"`
-	MaxEndDate   *time.Time `json:"maxEndDate,omitempty"`
-	MinStartDate *time.Time `json:"minStartDate,omitempty"`
+	GraphImage   *[]byte `json:"graphImage,omitempty"`
+	GraphTitle   *string `json:"graphTitle,omitempty"`
+	MaxEndDate   *Time   `json:"maxEndDate,omitempty"`
+	MinStartDate *Time   `json:"minStartDate,omitempty"`
 }
 
 type Container_Bandwidth_GraphOutputsExtended struct {
 	Entity
 
-	GraphImage         *[]byte    `json:"graphImage,omitempty"`
-	GraphTitle         *string    `json:"graphTitle,omitempty"`
-	InBoundTotalBytes  *uint      `json:"inBoundTotalBytes,omitempty"`
-	MaxEndDate         *time.Time `json:"maxEndDate,omitempty"`
-	MinStartDate       *time.Time `json:"minStartDate,omitempty"`
-	OutBoundTotalBytes *uint      `json:"outBoundTotalBytes,omitempty"`
+	GraphImage         *[]byte `json:"graphImage,omitempty"`
+	GraphTitle         *string `json:"graphTitle,omitempty"`
+	InBoundTotalBytes  *uint   `json:"inBoundTotalBytes,omitempty"`
+	MaxEndDate         *Time   `json:"maxEndDate,omitempty"`
+	MinStartDate       *Time   `json:"minStartDate,omitempty"`
+	OutBoundTotalBytes *uint   `json:"outBoundTotalBytes,omitempty"`
 }
 
 type Container_Bandwidth_Projection struct {
 	Entity
 
-	AllowedUsage   *string    `json:"allowedUsage,omitempty"`
-	EstimatedUsage *string    `json:"estimatedUsage,omitempty"`
-	HardwareId     *int       `json:"hardwareId,omitempty"`
-	ProjectedUsage *string    `json:"projectedUsage,omitempty"`
-	ServerName     *string    `json:"serverName,omitempty"`
-	StartDate      *time.Time `json:"startDate,omitempty"`
+	AllowedUsage   *string `json:"allowedUsage,omitempty"`
+	EstimatedUsage *string `json:"estimatedUsage,omitempty"`
+	HardwareId     *int    `json:"hardwareId,omitempty"`
+	ProjectedUsage *string `json:"projectedUsage,omitempty"`
+	ServerName     *string `json:"serverName,omitempty"`
+	StartDate      *Time   `json:"startDate,omitempty"`
 }
 
 type Container_Billing_Currency_Format struct {
@@ -321,11 +319,11 @@ type Container_Dns_Domain_Registration_Information struct {
 	Entity
 
 	Contacts           []Container_Dns_Domain_Registration_Contact    `json:"contacts,omitempty"`
-	ExpireDate         *time.Time                                     `json:"expireDate,omitempty"`
+	ExpireDate         *Time                                          `json:"expireDate,omitempty"`
 	Nameservers        []Container_Dns_Domain_Registration_Nameserver `json:"nameservers,omitempty"`
-	RegistryCreateDate *time.Time                                     `json:"registryCreateDate,omitempty"`
-	RegistryExpireDate *time.Time                                     `json:"registryExpireDate,omitempty"`
-	RegistryUpdateDate *time.Time                                     `json:"registryUpdateDate,omitempty"`
+	RegistryCreateDate *Time                                          `json:"registryCreateDate,omitempty"`
+	RegistryExpireDate *Time                                          `json:"registryExpireDate,omitempty"`
+	RegistryUpdateDate *Time                                          `json:"registryUpdateDate,omitempty"`
 }
 
 type Container_Dns_Domain_Registration_List struct {
@@ -369,17 +367,17 @@ type Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail stru
 	Entity
 
 	Status                   *Dns_Domain_Registration_Registrant_Verification_Status `json:"status,omitempty"`
-	VerificationDeadlineDate *time.Time                                              `json:"verificationDeadlineDate,omitempty"`
+	VerificationDeadlineDate *Time                                                   `json:"verificationDeadlineDate,omitempty"`
 }
 
 type Container_Dns_Domain_Registration_Transfer_Information struct {
 	Entity
 
-	Reason          *string    `json:"reason,omitempty"`
-	RegistrantEmail *string    `json:"registrantEmail,omitempty"`
-	Status          *string    `json:"status,omitempty"`
-	TimeStamp       *time.Time `json:"timeStamp,omitempty"`
-	Transferrable   *int       `json:"transferrable,omitempty"`
+	Reason          *string `json:"reason,omitempty"`
+	RegistrantEmail *string `json:"registrantEmail,omitempty"`
+	Status          *string `json:"status,omitempty"`
+	TimeStamp       *Time   `json:"timeStamp,omitempty"`
+	Transferrable   *int    `json:"transferrable,omitempty"`
 }
 
 type Container_Exception struct {
@@ -521,50 +519,50 @@ type Container_Metric_Tracking_Object_Summary struct {
 type Container_Metric_Tracking_Object_Virtual_Host_Details struct {
 	Container_Metric_Tracking_Object_Details
 
-	Day             *time.Time `json:"day,omitempty"`
-	MaxInstances    *int       `json:"maxInstances,omitempty"`
-	MaxMemoryUsage  *int       `json:"maxMemoryUsage,omitempty"`
-	MeanInstances   *float64   `json:"meanInstances,omitempty"`
-	MeanMemoryUsage *float64   `json:"meanMemoryUsage,omitempty"`
-	MinInstances    *int       `json:"minInstances,omitempty"`
-	MinMemoryUsage  *int       `json:"minMemoryUsage,omitempty"`
+	Day             *Time    `json:"day,omitempty"`
+	MaxInstances    *int     `json:"maxInstances,omitempty"`
+	MaxMemoryUsage  *int     `json:"maxMemoryUsage,omitempty"`
+	MeanInstances   *float64 `json:"meanInstances,omitempty"`
+	MeanMemoryUsage *float64 `json:"meanMemoryUsage,omitempty"`
+	MinInstances    *int     `json:"minInstances,omitempty"`
+	MinMemoryUsage  *int     `json:"minMemoryUsage,omitempty"`
 }
 
 type Container_Metric_Tracking_Object_Virtual_Host_Summary struct {
 	Container_Metric_Tracking_Object_Summary
 
-	AvgMemoryUsageInBillingCycle *int       `json:"avgMemoryUsageInBillingCycle,omitempty"`
-	CurrentBillCycleEnd          *time.Time `json:"currentBillCycleEnd,omitempty"`
-	CurrentBillCycleStart        *time.Time `json:"currentBillCycleStart,omitempty"`
-	LastInstanceCount            *int       `json:"lastInstanceCount,omitempty"`
-	LastMemoryUsageAmount        *int       `json:"lastMemoryUsageAmount,omitempty"`
-	LastPollTime                 *time.Time `json:"lastPollTime,omitempty"`
-	MaxInstanceInBillingCycle    *int       `json:"maxInstanceInBillingCycle,omitempty"`
-	PreviousBillCycleEnd         *time.Time `json:"previousBillCycleEnd,omitempty"`
-	PreviousBillCycleStart       *time.Time `json:"previousBillCycleStart,omitempty"`
-	VirtualPlatformName          *string    `json:"virtualPlatformName,omitempty"`
+	AvgMemoryUsageInBillingCycle *int    `json:"avgMemoryUsageInBillingCycle,omitempty"`
+	CurrentBillCycleEnd          *Time   `json:"currentBillCycleEnd,omitempty"`
+	CurrentBillCycleStart        *Time   `json:"currentBillCycleStart,omitempty"`
+	LastInstanceCount            *int    `json:"lastInstanceCount,omitempty"`
+	LastMemoryUsageAmount        *int    `json:"lastMemoryUsageAmount,omitempty"`
+	LastPollTime                 *Time   `json:"lastPollTime,omitempty"`
+	MaxInstanceInBillingCycle    *int    `json:"maxInstanceInBillingCycle,omitempty"`
+	PreviousBillCycleEnd         *Time   `json:"previousBillCycleEnd,omitempty"`
+	PreviousBillCycleStart       *Time   `json:"previousBillCycleStart,omitempty"`
+	VirtualPlatformName          *string `json:"virtualPlatformName,omitempty"`
 }
 
 type Container_Monitoring_Alarm_History struct {
 	Entity
 
-	AccountId  *int       `json:"accountId,omitempty"`
-	AgentId    *int       `json:"agentId,omitempty"`
-	AlarmId    *string    `json:"alarmId,omitempty"`
-	ClosedDate *time.Time `json:"closedDate,omitempty"`
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Message    *string    `json:"message,omitempty"`
-	RobotId    *int       `json:"robotId,omitempty"`
-	Severity   *string    `json:"severity,omitempty"`
+	AccountId  *int    `json:"accountId,omitempty"`
+	AgentId    *int    `json:"agentId,omitempty"`
+	AlarmId    *string `json:"alarmId,omitempty"`
+	ClosedDate *Time   `json:"closedDate,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Message    *string `json:"message,omitempty"`
+	RobotId    *int    `json:"robotId,omitempty"`
+	Severity   *string `json:"severity,omitempty"`
 }
 
 type Container_Monitoring_Graph_Outputs struct {
 	Entity
 
-	EndDate    *time.Time `json:"endDate,omitempty"`
-	GraphError *string    `json:"graphError,omitempty"`
-	GraphImage *[]byte    `json:"graphImage,omitempty"`
-	StartDate  *time.Time `json:"startDate,omitempty"`
+	EndDate    *Time   `json:"endDate,omitempty"`
+	GraphError *string `json:"graphError,omitempty"`
+	GraphImage *[]byte `json:"graphImage,omitempty"`
+	StartDate  *Time   `json:"startDate,omitempty"`
 }
 
 type Container_Network_Authentication_Data struct {
@@ -589,17 +587,17 @@ type Container_Network_Bandwidth_Data_Summary struct {
 type Container_Network_Bandwidth_Version1_Usage struct {
 	Entity
 
-	IncomingAmount *float64   `json:"incomingAmount,omitempty"`
-	OutgoingAmount *float64   `json:"outgoingAmount,omitempty"`
-	RecordedDate   *time.Time `json:"recordedDate,omitempty"`
+	IncomingAmount *float64 `json:"incomingAmount,omitempty"`
+	OutgoingAmount *float64 `json:"outgoingAmount,omitempty"`
+	RecordedDate   *Time    `json:"recordedDate,omitempty"`
 }
 
 type Container_Network_ContentDelivery_Authentication_Directory struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Name       *string    `json:"name,omitempty"`
-	Type       *string    `json:"type,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Type       *string `json:"type,omitempty"`
 }
 
 type Container_Network_ContentDelivery_Authentication_Parameter struct {
@@ -622,24 +620,24 @@ type Container_Network_ContentDelivery_Authentication_ServiceEndpoint struct {
 type Container_Network_ContentDelivery_Bandwidth_PointsOfPresence_Summary struct {
 	Entity
 
-	Bandwidth     *uint      `json:"bandwidth,omitempty"`
-	EndDateTime   *time.Time `json:"endDateTime,omitempty"`
-	PopName       *string    `json:"popName,omitempty"`
-	StartDateTime *time.Time `json:"startDateTime,omitempty"`
-	UsageUnits    *string    `json:"usageUnits,omitempty"`
-	ViewCount     *uint      `json:"viewCount,omitempty"`
+	Bandwidth     *uint   `json:"bandwidth,omitempty"`
+	EndDateTime   *Time   `json:"endDateTime,omitempty"`
+	PopName       *string `json:"popName,omitempty"`
+	StartDateTime *Time   `json:"startDateTime,omitempty"`
+	UsageUnits    *string `json:"usageUnits,omitempty"`
+	ViewCount     *uint   `json:"viewCount,omitempty"`
 }
 
 type Container_Network_ContentDelivery_Bandwidth_Summary struct {
 	Entity
 
-	CdnAccountId  *int       `json:"cdnAccountId,omitempty"`
-	EndDateTime   *time.Time `json:"endDateTime,omitempty"`
-	FileName      *string    `json:"fileName,omitempty"`
-	MediaType     *string    `json:"mediaType,omitempty"`
-	StartDateTime *time.Time `json:"startDateTime,omitempty"`
-	Usage         *float64   `json:"usage,omitempty"`
-	UsageUnits    *string    `json:"usageUnits,omitempty"`
+	CdnAccountId  *int     `json:"cdnAccountId,omitempty"`
+	EndDateTime   *Time    `json:"endDateTime,omitempty"`
+	FileName      *string  `json:"fileName,omitempty"`
+	MediaType     *string  `json:"mediaType,omitempty"`
+	StartDateTime *Time    `json:"startDateTime,omitempty"`
+	Usage         *float64 `json:"usage,omitempty"`
+	UsageUnits    *string  `json:"usageUnits,omitempty"`
 }
 
 type Container_Network_ContentDelivery_Bandwidth_Summary_Detail struct {
@@ -676,20 +674,20 @@ type Container_Network_ContentDelivery_PurgeService_Response struct {
 type Container_Network_ContentDelivery_Report_Usage struct {
 	Entity
 
-	ApplicationDeliveryNetwork    *float64   `json:"applicationDeliveryNetwork,omitempty"`
-	ApplicationDeliveryNetworkSsl *float64   `json:"applicationDeliveryNetworkSsl,omitempty"`
-	DiskSpace                     *float64   `json:"diskSpace,omitempty"`
-	EndDate                       *time.Time `json:"endDate,omitempty"`
-	Flash                         *float64   `json:"flash,omitempty"`
-	Http                          *float64   `json:"http,omitempty"`
-	HttpSmall                     *float64   `json:"httpSmall,omitempty"`
-	Https                         *float64   `json:"https,omitempty"`
-	HttpsSmall                    *float64   `json:"httpsSmall,omitempty"`
-	Region                        *string    `json:"region,omitempty"`
-	SslTotal                      *float64   `json:"sslTotal,omitempty"`
-	StandardTotal                 *float64   `json:"standardTotal,omitempty"`
-	StartDate                     *time.Time `json:"startDate,omitempty"`
-	WindowsMedia                  *float64   `json:"windowsMedia,omitempty"`
+	ApplicationDeliveryNetwork    *float64 `json:"applicationDeliveryNetwork,omitempty"`
+	ApplicationDeliveryNetworkSsl *float64 `json:"applicationDeliveryNetworkSsl,omitempty"`
+	DiskSpace                     *float64 `json:"diskSpace,omitempty"`
+	EndDate                       *Time    `json:"endDate,omitempty"`
+	Flash                         *float64 `json:"flash,omitempty"`
+	Http                          *float64 `json:"http,omitempty"`
+	HttpSmall                     *float64 `json:"httpSmall,omitempty"`
+	Https                         *float64 `json:"https,omitempty"`
+	HttpsSmall                    *float64 `json:"httpsSmall,omitempty"`
+	Region                        *string  `json:"region,omitempty"`
+	SslTotal                      *float64 `json:"sslTotal,omitempty"`
+	StandardTotal                 *float64 `json:"standardTotal,omitempty"`
+	StartDate                     *Time    `json:"startDate,omitempty"`
+	WindowsMedia                  *float64 `json:"windowsMedia,omitempty"`
 }
 
 type Container_Network_ContentDelivery_SupportedProtocol struct {
@@ -913,12 +911,12 @@ type Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Graph struct {
 type Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Options struct {
 	Entity
 
-	AggregatesOnly     *bool      `json:"aggregatesOnly,omitempty"`
-	Category           *string    `json:"category,omitempty"`
-	Days               *int       `json:"days,omitempty"`
-	EndDate            *time.Time `json:"endDate,omitempty"`
-	SelectedStatistics []string   `json:"selectedStatistics,omitempty"`
-	StartDate          *time.Time `json:"startDate,omitempty"`
+	AggregatesOnly     *bool    `json:"aggregatesOnly,omitempty"`
+	Category           *string  `json:"category,omitempty"`
+	Days               *int     `json:"days,omitempty"`
+	EndDate            *Time    `json:"endDate,omitempty"`
+	SelectedStatistics []string `json:"selectedStatistics,omitempty"`
+	StartDate          *Time    `json:"startDate,omitempty"`
 }
 
 type Container_Network_Port_Statistic struct {
@@ -967,32 +965,32 @@ type Container_Network_Storage_Evault_Vault_Task struct {
 type Container_Network_Storage_Evault_WebCc_AgentStatus struct {
 	Entity
 
-	LastBackup *time.Time `json:"lastBackup,omitempty"`
-	Status     *string    `json:"status,omitempty"`
+	LastBackup *Time   `json:"lastBackup,omitempty"`
+	Status     *string `json:"status,omitempty"`
 }
 
 type Container_Network_Storage_Evault_WebCc_BackupResults struct {
 	Entity
 
-	BeginTime *time.Time `json:"beginTime,omitempty"`
-	Conflict  *string    `json:"conflict,omitempty"`
-	EndTime   *time.Time `json:"endTime,omitempty"`
-	Failed    *string    `json:"failed,omitempty"`
-	Success   *string    `json:"success,omitempty"`
+	BeginTime *Time   `json:"beginTime,omitempty"`
+	Conflict  *string `json:"conflict,omitempty"`
+	EndTime   *Time   `json:"endTime,omitempty"`
+	Failed    *string `json:"failed,omitempty"`
+	Success   *string `json:"success,omitempty"`
 }
 
 type Container_Network_Storage_Evault_WebCc_JobDetails struct {
 	Entity
 
-	BytesUsed              *uint      `json:"bytesUsed,omitempty"`
-	Description            *string    `json:"description,omitempty"`
-	HardwareId             *int       `json:"hardwareId,omitempty"`
-	LastRunDate            *time.Time `json:"lastRunDate,omitempty"`
-	Name                   *string    `json:"name,omitempty"`
-	OriginalSize           *uint      `json:"originalSize,omitempty"`
-	PercentageOfTotalUsage *int       `json:"percentageOfTotalUsage,omitempty"`
-	Result                 *string    `json:"result,omitempty"`
-	VirtualGuestId         *int       `json:"virtualGuestId,omitempty"`
+	BytesUsed              *uint   `json:"bytesUsed,omitempty"`
+	Description            *string `json:"description,omitempty"`
+	HardwareId             *int    `json:"hardwareId,omitempty"`
+	LastRunDate            *Time   `json:"lastRunDate,omitempty"`
+	Name                   *string `json:"name,omitempty"`
+	OriginalSize           *uint   `json:"originalSize,omitempty"`
+	PercentageOfTotalUsage *int    `json:"percentageOfTotalUsage,omitempty"`
+	Result                 *string `json:"result,omitempty"`
+	VirtualGuestId         *int    `json:"virtualGuestId,omitempty"`
 }
 
 type Container_Network_Storage_Host struct {
@@ -1517,7 +1515,7 @@ type Container_Product_Order_Receipt struct {
 
 	ExternalPaymentCheckoutUrl *string                  `json:"externalPaymentCheckoutUrl,omitempty"`
 	ExternalPaymentToken       *string                  `json:"externalPaymentToken,omitempty"`
-	OrderDate                  *time.Time               `json:"orderDate,omitempty"`
+	OrderDate                  *Time                    `json:"orderDate,omitempty"`
 	OrderDetails               *Container_Product_Order `json:"orderDetails,omitempty"`
 	OrderId                    *int                     `json:"orderId,omitempty"`
 	PaypalCheckoutUrl          *string                  `json:"paypalCheckoutUrl,omitempty"`
@@ -1611,19 +1609,19 @@ type Container_Provisioning_Maintenance_Window struct {
 	ItemCategoryIds       []Product_Item_Category                   `json:"itemCategoryIds,omitempty"`
 	MaintenanceWindowId   *int                                      `json:"maintenanceWindowId,omitempty"`
 	TicketId              *int                                      `json:"ticketId,omitempty"`
-	WindowMaintenanceDate *time.Time                                `json:"windowMaintenanceDate,omitempty"`
+	WindowMaintenanceDate *Time                                     `json:"windowMaintenanceDate,omitempty"`
 }
 
 type Container_Referral_Partner_Commission struct {
 	Entity
 
-	CommissionAmount         *float64   `json:"commissionAmount,omitempty"`
-	CommissionRate           *float64   `json:"commissionRate,omitempty"`
-	CreateDate               *time.Time `json:"createDate,omitempty"`
-	ReferralAccountId        *int       `json:"referralAccountId,omitempty"`
-	ReferralCompanyName      *string    `json:"referralCompanyName,omitempty"`
-	ReferralPartnerAccountId *int       `json:"referralPartnerAccountId,omitempty"`
-	ReferralRevenue          *float64   `json:"referralRevenue,omitempty"`
+	CommissionAmount         *float64 `json:"commissionAmount,omitempty"`
+	CommissionRate           *float64 `json:"commissionRate,omitempty"`
+	CreateDate               *Time    `json:"createDate,omitempty"`
+	ReferralAccountId        *int     `json:"referralAccountId,omitempty"`
+	ReferralCompanyName      *string  `json:"referralCompanyName,omitempty"`
+	ReferralPartnerAccountId *int     `json:"referralPartnerAccountId,omitempty"`
+	ReferralRevenue          *float64 `json:"referralRevenue,omitempty"`
 }
 
 type Container_Referral_Partner_Payment_Option struct {
@@ -1779,20 +1777,20 @@ type Container_Tax_Rates struct {
 type Container_Ticket_GraphInputs struct {
 	Entity
 
-	EndDate            *time.Time `json:"endDate,omitempty"`
-	NetworkInterfaceId *int       `json:"networkInterfaceId,omitempty"`
-	Pod                *int       `json:"pod,omitempty"`
-	ServerName         *string    `json:"serverName,omitempty"`
-	StartDate          *time.Time `json:"startDate,omitempty"`
+	EndDate            *Time   `json:"endDate,omitempty"`
+	NetworkInterfaceId *int    `json:"networkInterfaceId,omitempty"`
+	Pod                *int    `json:"pod,omitempty"`
+	ServerName         *string `json:"serverName,omitempty"`
+	StartDate          *Time   `json:"startDate,omitempty"`
 }
 
 type Container_Ticket_GraphOutputs struct {
 	Entity
 
-	GraphImage   *[]byte    `json:"graphImage,omitempty"`
-	GraphTitle   *string    `json:"graphTitle,omitempty"`
-	MaxEndDate   *time.Time `json:"maxEndDate,omitempty"`
-	MinStartDate *time.Time `json:"minStartDate,omitempty"`
+	GraphImage   *[]byte `json:"graphImage,omitempty"`
+	GraphTitle   *string `json:"graphTitle,omitempty"`
+	MaxEndDate   *Time   `json:"maxEndDate,omitempty"`
+	MinStartDate *Time   `json:"minStartDate,omitempty"`
 }
 
 type Container_Ticket_Priority struct {
@@ -1805,9 +1803,9 @@ type Container_Ticket_Priority struct {
 type Container_Ticket_Survey_Preference struct {
 	Entity
 
-	Applicable   *bool      `json:"applicable,omitempty"`
-	OptedOut     *bool      `json:"optedOut,omitempty"`
-	OptedOutDate *time.Time `json:"optedOutDate,omitempty"`
+	Applicable   *bool `json:"applicable,omitempty"`
+	OptedOut     *bool `json:"optedOut,omitempty"`
+	OptedOutDate *Time `json:"optedOutDate,omitempty"`
 }
 
 type Container_User_Authentication_Token struct {
@@ -1913,47 +1911,47 @@ type Container_Utility_File_Attachment struct {
 type Container_Utility_File_Descriptor struct {
 	Entity
 
-	FileName     *string    `json:"fileName,omitempty"`
-	FriendlyName *string    `json:"friendlyName,omitempty"`
-	ModifyDate   *time.Time `json:"modifyDate,omitempty"`
+	FileName     *string `json:"fileName,omitempty"`
+	FriendlyName *string `json:"friendlyName,omitempty"`
+	ModifyDate   *Time   `json:"modifyDate,omitempty"`
 }
 
 type Container_Utility_File_Entity struct {
 	Entity
 
-	Content     *[]byte    `json:"content,omitempty"`
-	ContentType *string    `json:"contentType,omitempty"`
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	DeleteDate  *time.Time `json:"deleteDate,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	IsShared    *int       `json:"isShared,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
-	Owner       *string    `json:"owner,omitempty"`
-	Size        *uint      `json:"size,omitempty"`
-	Type        *string    `json:"type,omitempty"`
-	Version     *int       `json:"version,omitempty"`
+	Content     *[]byte `json:"content,omitempty"`
+	ContentType *string `json:"contentType,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	DeleteDate  *Time   `json:"deleteDate,omitempty"`
+	Id          *string `json:"id,omitempty"`
+	IsShared    *int    `json:"isShared,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Owner       *string `json:"owner,omitempty"`
+	Size        *uint   `json:"size,omitempty"`
+	Type        *string `json:"type,omitempty"`
+	Version     *int    `json:"version,omitempty"`
 }
 
 type Container_Utility_Message struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	Message    *string    `json:"message,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Summary    *string    `json:"summary,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	Message    *string `json:"message,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Summary    *string `json:"summary,omitempty"`
 }
 
 type Container_Utility_Microsoft_Windows_UpdateServices_Status struct {
 	Entity
 
-	LastRebootDate   *time.Time `json:"lastRebootDate,omitempty"`
-	LastStatusDate   *time.Time `json:"lastStatusDate,omitempty"`
-	LastSyncDate     *time.Time `json:"lastSyncDate,omitempty"`
-	PrivateIPAddress *string    `json:"privateIPAddress,omitempty"`
-	SyncStatus       *string    `json:"syncStatus,omitempty"`
-	UpdateStatus     *string    `json:"updateStatus,omitempty"`
+	LastRebootDate   *Time   `json:"lastRebootDate,omitempty"`
+	LastStatusDate   *Time   `json:"lastStatusDate,omitempty"`
+	LastSyncDate     *Time   `json:"lastSyncDate,omitempty"`
+	PrivateIPAddress *string `json:"privateIPAddress,omitempty"`
+	SyncStatus       *string `json:"syncStatus,omitempty"`
+	UpdateStatus     *string `json:"updateStatus,omitempty"`
 }
 
 type Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem struct {

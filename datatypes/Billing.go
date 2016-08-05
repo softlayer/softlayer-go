@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Billing_Currency struct {
 	Entity
 
@@ -29,8 +27,8 @@ type Billing_Currency struct {
 type Billing_Currency_ExchangeRate struct {
 	Entity
 
-	EffectiveDate   *time.Time        `json:"effectiveDate,omitempty"`
-	ExpirationDate  *time.Time        `json:"expirationDate,omitempty"`
+	EffectiveDate   *Time             `json:"effectiveDate,omitempty"`
+	ExpirationDate  *Time             `json:"expirationDate,omitempty"`
 	FundingCurrency *Billing_Currency `json:"fundingCurrency,omitempty"`
 	Id              *int              `json:"id,omitempty"`
 	LocalCurrency   *Billing_Currency `json:"localCurrency,omitempty"`
@@ -51,15 +49,15 @@ type Billing_Info struct {
 	CardNickname              *string             `json:"cardNickname,omitempty"`
 	CardType                  *string             `json:"cardType,omitempty"`
 	CardVerificationNumber    *string             `json:"cardVerificationNumber,omitempty"`
-	CreateDate                *time.Time          `json:"createDate,omitempty"`
+	CreateDate                *Time               `json:"createDate,omitempty"`
 	Currency                  *Billing_Currency   `json:"currency,omitempty"`
 	CurrentBillingCycle       *Billing_Info_Cycle `json:"currentBillingCycle,omitempty"`
 	Id                        *int                `json:"id,omitempty"`
-	LastBillDate              *time.Time          `json:"lastBillDate,omitempty"`
+	LastBillDate              *Time               `json:"lastBillDate,omitempty"`
 	LastFourPaymentCardDigits *int                `json:"lastFourPaymentCardDigits,omitempty"`
-	LastPaymentDate           *time.Time          `json:"lastPaymentDate,omitempty"`
-	ModifyDate                *time.Time          `json:"modifyDate,omitempty"`
-	NextBillDate              *time.Time          `json:"nextBillDate,omitempty"`
+	LastPaymentDate           *Time               `json:"lastPaymentDate,omitempty"`
+	ModifyDate                *Time               `json:"modifyDate,omitempty"`
+	NextBillDate              *Time               `json:"nextBillDate,omitempty"`
 	PaymentTerms              *int                `json:"paymentTerms,omitempty"`
 	PercentDiscountOnetime    *int                `json:"percentDiscountOnetime,omitempty"`
 	PercentDiscountRecurring  *int                `json:"percentDiscountRecurring,omitempty"`
@@ -70,34 +68,34 @@ type Billing_Info struct {
 type Billing_Info_Ach struct {
 	Entity
 
-	Account           *Account   `json:"account,omitempty"`
-	AccountId         *int       `json:"accountId,omitempty"`
-	AccountNumber     *string    `json:"accountNumber,omitempty"`
-	AccountType       *string    `json:"accountType,omitempty"`
-	BankTransitNumber *string    `json:"bankTransitNumber,omitempty"`
-	City              *string    `json:"city,omitempty"`
-	Country           *string    `json:"country,omitempty"`
-	FirstName         *string    `json:"firstName,omitempty"`
-	Id                *int       `json:"id,omitempty"`
-	LastName          *string    `json:"lastName,omitempty"`
-	PhoneNumber       *string    `json:"phoneNumber,omitempty"`
-	Postalcode        *string    `json:"postalcode,omitempty"`
-	State             *string    `json:"state,omitempty"`
-	Status            *string    `json:"status,omitempty"`
-	Street1           *string    `json:"street1,omitempty"`
-	Street2           *string    `json:"street2,omitempty"`
-	VerifiedDate      *time.Time `json:"verifiedDate,omitempty"`
+	Account           *Account `json:"account,omitempty"`
+	AccountId         *int     `json:"accountId,omitempty"`
+	AccountNumber     *string  `json:"accountNumber,omitempty"`
+	AccountType       *string  `json:"accountType,omitempty"`
+	BankTransitNumber *string  `json:"bankTransitNumber,omitempty"`
+	City              *string  `json:"city,omitempty"`
+	Country           *string  `json:"country,omitempty"`
+	FirstName         *string  `json:"firstName,omitempty"`
+	Id                *int     `json:"id,omitempty"`
+	LastName          *string  `json:"lastName,omitempty"`
+	PhoneNumber       *string  `json:"phoneNumber,omitempty"`
+	Postalcode        *string  `json:"postalcode,omitempty"`
+	State             *string  `json:"state,omitempty"`
+	Status            *string  `json:"status,omitempty"`
+	Street1           *string  `json:"street1,omitempty"`
+	Street2           *string  `json:"street2,omitempty"`
+	VerifiedDate      *Time    `json:"verifiedDate,omitempty"`
 }
 
 type Billing_Info_Cycle struct {
 	Entity
 
-	Account                *Account   `json:"account,omitempty"`
-	CurrentCycleEndDate    *time.Time `json:"currentCycleEndDate,omitempty"`
-	CurrentCycleStartDate  *time.Time `json:"currentCycleStartDate,omitempty"`
-	NextCycleStartDate     *time.Time `json:"nextCycleStartDate,omitempty"`
-	PreviousCycleEndDate   *time.Time `json:"previousCycleEndDate,omitempty"`
-	PreviousCycleStartDate *time.Time `json:"previousCycleStartDate,omitempty"`
+	Account                *Account `json:"account,omitempty"`
+	CurrentCycleEndDate    *Time    `json:"currentCycleEndDate,omitempty"`
+	CurrentCycleStartDate  *Time    `json:"currentCycleStartDate,omitempty"`
+	NextCycleStartDate     *Time    `json:"nextCycleStartDate,omitempty"`
+	PreviousCycleEndDate   *Time    `json:"previousCycleEndDate,omitempty"`
+	PreviousCycleStartDate *Time    `json:"previousCycleStartDate,omitempty"`
 }
 
 type Billing_Invoice struct {
@@ -111,10 +109,10 @@ type Billing_Invoice struct {
 	BrandAtInvoiceCreation         *Brand                               `json:"brandAtInvoiceCreation,omitempty"`
 	City                           *string                              `json:"city,omitempty"`
 	ClaimedTaxExemptTxFlag         *bool                                `json:"claimedTaxExemptTxFlag,omitempty"`
-	ClosedDate                     *time.Time                           `json:"closedDate,omitempty"`
+	ClosedDate                     *Time                                `json:"closedDate,omitempty"`
 	CompanyName                    *string                              `json:"companyName,omitempty"`
 	Country                        *string                              `json:"country,omitempty"`
-	CreateDate                     *time.Time                           `json:"createDate,omitempty"`
+	CreateDate                     *Time                                `json:"createDate,omitempty"`
 	DetailedPdfGeneratedFlag       *bool                                `json:"detailedPdfGeneratedFlag,omitempty"`
 	DocumentsGeneratedFlag         *bool                                `json:"documentsGeneratedFlag,omitempty"`
 	Email                          *string                              `json:"email,omitempty"`
@@ -133,7 +131,7 @@ type Billing_Invoice struct {
 	ItemCount                      *uint                                `json:"itemCount,omitempty"`
 	Items                          []Billing_Invoice_Item               `json:"items,omitempty"`
 	LastName                       *string                              `json:"lastName,omitempty"`
-	ModifyDate                     *time.Time                           `json:"modifyDate,omitempty"`
+	ModifyDate                     *Time                                `json:"modifyDate,omitempty"`
 	OfficePhone                    *string                              `json:"officePhone,omitempty"`
 	Payment                        *float64                             `json:"payment,omitempty"`
 	PaymentCount                   *uint                                `json:"paymentCount,omitempty"`
@@ -167,7 +165,7 @@ type Billing_Invoice_Item struct {
 	CategoryCode                    *string                `json:"categoryCode,omitempty"`
 	Children                        []Billing_Invoice_Item `json:"children,omitempty"`
 	ChildrenCount                   *uint                  `json:"childrenCount,omitempty"`
-	CreateDate                      *time.Time             `json:"createDate,omitempty"`
+	CreateDate                      *Time                  `json:"createDate,omitempty"`
 	Description                     *string                `json:"description,omitempty"`
 	DomainName                      *string                `json:"domainName,omitempty"`
 	FilteredAssociatedChildren      []Billing_Invoice_Item `json:"filteredAssociatedChildren,omitempty"`
@@ -217,7 +215,7 @@ type Billing_Invoice_Item_Hardware struct {
 type Billing_Invoice_Item_Tax_Info struct {
 	Entity
 
-	CreateDate          *time.Time                `json:"createDate,omitempty"`
+	CreateDate          *Time                     `json:"createDate,omitempty"`
 	Description         *string                   `json:"description,omitempty"`
 	EffectiveTaxRate    *float64                  `json:"effectiveTaxRate,omitempty"`
 	ExemptAmount        *float64                  `json:"exemptAmount,omitempty"`
@@ -227,7 +225,7 @@ type Billing_Invoice_Item_Tax_Info struct {
 	InvoiceItemId       *int                      `json:"invoiceItemId,omitempty"`
 	InvoiceTaxInfo      *Billing_Invoice_Tax_Info `json:"invoiceTaxInfo,omitempty"`
 	InvoiceTaxInfoId    *int                      `json:"invoiceTaxInfoId,omitempty"`
-	ModifyDate          *time.Time                `json:"modifyDate,omitempty"`
+	ModifyDate          *Time                     `json:"modifyDate,omitempty"`
 	NonTaxableBasis     *float64                  `json:"nonTaxableBasis,omitempty"`
 	ReportedFlag        *bool                     `json:"reportedFlag,omitempty"`
 	SellerRegistration  *string                   `json:"sellerRegistration,omitempty"`
@@ -248,7 +246,7 @@ type Billing_Invoice_Receivable_Payment struct {
 
 	Account                  *Account                            `json:"account,omitempty"`
 	Amount                   *float64                            `json:"amount,omitempty"`
-	CreateDate               *time.Time                          `json:"createDate,omitempty"`
+	CreateDate               *Time                               `json:"createDate,omitempty"`
 	CreditCardLastFourDigits *int                                `json:"creditCardLastFourDigits,omitempty"`
 	CreditCardRequestId      *string                             `json:"creditCardRequestId,omitempty"`
 	CreditCardTransaction    *Billing_Payment_Card_Transaction   `json:"creditCardTransaction,omitempty"`
@@ -262,7 +260,7 @@ type Billing_Invoice_Receivable_Payment struct {
 type Billing_Invoice_Tax_Info struct {
 	Entity
 
-	CreateDate               *time.Time                      `json:"createDate,omitempty"`
+	CreateDate               *Time                           `json:"createDate,omitempty"`
 	Currency                 *Billing_Currency               `json:"currency,omitempty"`
 	CurrencyId               *int                            `json:"currencyId,omitempty"`
 	FunctionalCurrency       *Billing_Currency               `json:"functionalCurrency,omitempty"`
@@ -272,7 +270,7 @@ type Billing_Invoice_Tax_Info struct {
 	ItemCount                *uint                           `json:"itemCount,omitempty"`
 	ItemWithCurrencyInfo     *Billing_Invoice_Item_Tax_Info  `json:"itemWithCurrencyInfo,omitempty"`
 	Items                    []Billing_Invoice_Item_Tax_Info `json:"items,omitempty"`
-	ModifyDate               *time.Time                      `json:"modifyDate,omitempty"`
+	ModifyDate               *Time                           `json:"modifyDate,omitempty"`
 	ReportedFlag             *bool                           `json:"reportedFlag,omitempty"`
 	TotalTaxAmountToCurrency *float64                        `json:"totalTaxAmountToCurrency,omitempty"`
 }
@@ -280,11 +278,11 @@ type Billing_Invoice_Tax_Info struct {
 type Billing_Invoice_Tax_Status struct {
 	Entity
 
-	CreateDate *time.Time `json:"createDate,omitempty"`
-	Id         *int       `json:"id,omitempty"`
-	KeyName    *string    `json:"keyName,omitempty"`
-	ModifyDate *time.Time `json:"modifyDate,omitempty"`
-	Name       *string    `json:"name,omitempty"`
+	CreateDate *Time   `json:"createDate,omitempty"`
+	Id         *int    `json:"id,omitempty"`
+	KeyName    *string `json:"keyName,omitempty"`
+	ModifyDate *Time   `json:"modifyDate,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 type Billing_Invoice_Tax_Type struct {
@@ -335,7 +333,7 @@ type Billing_Item struct {
 	BundledItems                                       []Billing_Item                          `json:"bundledItems,omitempty"`
 	CanceledChildren                                   []Billing_Item                          `json:"canceledChildren,omitempty"`
 	CanceledChildrenCount                              *uint                                   `json:"canceledChildrenCount,omitempty"`
-	CancellationDate                                   *time.Time                              `json:"cancellationDate,omitempty"`
+	CancellationDate                                   *Time                                   `json:"cancellationDate,omitempty"`
 	CancellationReason                                 *Billing_Item_Cancellation_Reason       `json:"cancellationReason,omitempty"`
 	CancellationRequestCount                           *uint                                   `json:"cancellationRequestCount,omitempty"`
 	CancellationRequests                               []Billing_Item_Cancellation_Request     `json:"cancellationRequests,omitempty"`
@@ -345,9 +343,9 @@ type Billing_Item struct {
 	ChildrenCount                                      *uint                                   `json:"childrenCount,omitempty"`
 	ChildrenWithActiveAgreement                        []Billing_Item                          `json:"childrenWithActiveAgreement,omitempty"`
 	ChildrenWithActiveAgreementCount                   *uint                                   `json:"childrenWithActiveAgreementCount,omitempty"`
-	CreateDate                                         *time.Time                              `json:"createDate,omitempty"`
+	CreateDate                                         *Time                                   `json:"createDate,omitempty"`
 	CurrentHourlyCharge                                *string                                 `json:"currentHourlyCharge,omitempty"`
-	CycleStartDate                                     *time.Time                              `json:"cycleStartDate,omitempty"`
+	CycleStartDate                                     *Time                                   `json:"cycleStartDate,omitempty"`
 	Description                                        *string                                 `json:"description,omitempty"`
 	DomainName                                         *string                                 `json:"domainName,omitempty"`
 	DowngradeItemCount                                 *uint                                   `json:"downgradeItemCount,omitempty"`
@@ -365,10 +363,10 @@ type Billing_Item struct {
 	Item                                               *Product_Item                           `json:"item,omitempty"`
 	LaborFee                                           *float64                                `json:"laborFee,omitempty"`
 	LaborFeeTaxRate                                    *float64                                `json:"laborFeeTaxRate,omitempty"`
-	LastBillDate                                       *time.Time                              `json:"lastBillDate,omitempty"`
+	LastBillDate                                       *Time                                   `json:"lastBillDate,omitempty"`
 	Location                                           *Location                               `json:"location,omitempty"`
-	ModifyDate                                         *time.Time                              `json:"modifyDate,omitempty"`
-	NextBillDate                                       *time.Time                              `json:"nextBillDate,omitempty"`
+	ModifyDate                                         *Time                                   `json:"modifyDate,omitempty"`
+	NextBillDate                                       *Time                                   `json:"nextBillDate,omitempty"`
 	NextInvoiceChildren                                []Billing_Item                          `json:"nextInvoiceChildren,omitempty"`
 	NextInvoiceChildrenCount                           *uint                                   `json:"nextInvoiceChildrenCount,omitempty"`
 	NextInvoiceTotalOneTimeAmount                      *float64                                `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
@@ -415,7 +413,7 @@ type Billing_Item_Association_History struct {
 	AssociatedBillingItemId *int          `json:"associatedBillingItemId,omitempty"`
 	BillingItem             *Billing_Item `json:"billingItem,omitempty"`
 	BillingItemId           *int          `json:"billingItemId,omitempty"`
-	CreateDate              *time.Time    `json:"createDate,omitempty"`
+	CreateDate              *Time         `json:"createDate,omitempty"`
 	Id                      *int          `json:"id,omitempty"`
 }
 
@@ -447,11 +445,11 @@ type Billing_Item_Cancellation_Request struct {
 	Account               *Account                                  `json:"account,omitempty"`
 	AccountId             *int                                      `json:"accountId,omitempty"`
 	BillingCancelReasonId *int                                      `json:"billingCancelReasonId,omitempty"`
-	CreateDate            *time.Time                                `json:"createDate,omitempty"`
+	CreateDate            *Time                                     `json:"createDate,omitempty"`
 	Id                    *int                                      `json:"id,omitempty"`
 	ItemCount             *uint                                     `json:"itemCount,omitempty"`
 	Items                 []Billing_Item_Cancellation_Request_Item  `json:"items,omitempty"`
-	ModifyDate            *time.Time                                `json:"modifyDate,omitempty"`
+	ModifyDate            *Time                                     `json:"modifyDate,omitempty"`
 	Notes                 *string                                   `json:"notes,omitempty"`
 	Status                *Billing_Item_Cancellation_Request_Status `json:"status,omitempty"`
 	StatusId              *int                                      `json:"statusId,omitempty"`
@@ -469,7 +467,7 @@ type Billing_Item_Cancellation_Request_Item struct {
 	CancellationRequestId     *int                               `json:"cancellationRequestId,omitempty"`
 	Id                        *int                               `json:"id,omitempty"`
 	ImmediateCancellationFlag *bool                              `json:"immediateCancellationFlag,omitempty"`
-	ScheduledCancellationDate *time.Time                         `json:"scheduledCancellationDate,omitempty"`
+	ScheduledCancellationDate *Time                              `json:"scheduledCancellationDate,omitempty"`
 	ServiceReclaimStatusCode  *string                            `json:"serviceReclaimStatusCode,omitempty"`
 }
 
@@ -779,7 +777,7 @@ type Billing_Order struct {
 	Cart                         *Billing_Order_Cart                  `json:"cart,omitempty"`
 	CoreRestrictedItemCount      *uint                                `json:"coreRestrictedItemCount,omitempty"`
 	CoreRestrictedItems          []Billing_Order_Item                 `json:"coreRestrictedItems,omitempty"`
-	CreateDate                   *time.Time                           `json:"createDate,omitempty"`
+	CreateDate                   *Time                                `json:"createDate,omitempty"`
 	CreditCardTransactionCount   *uint                                `json:"creditCardTransactionCount,omitempty"`
 	CreditCardTransactions       []Billing_Payment_Card_Transaction   `json:"creditCardTransactions,omitempty"`
 	ExchangeRate                 *Billing_Currency_ExchangeRate       `json:"exchangeRate,omitempty"`
@@ -788,8 +786,8 @@ type Billing_Order struct {
 	InitialInvoice               *Billing_Invoice                     `json:"initialInvoice,omitempty"`
 	ItemCount                    *uint                                `json:"itemCount,omitempty"`
 	Items                        []Billing_Order_Item                 `json:"items,omitempty"`
-	ModifyDate                   *time.Time                           `json:"modifyDate,omitempty"`
-	OrderApprovalDate            *time.Time                           `json:"orderApprovalDate,omitempty"`
+	ModifyDate                   *Time                                `json:"modifyDate,omitempty"`
+	OrderApprovalDate            *Time                                `json:"orderApprovalDate,omitempty"`
 	OrderNonServerMonthlyAmount  *float64                             `json:"orderNonServerMonthlyAmount,omitempty"`
 	OrderQuoteId                 *int                                 `json:"orderQuoteId,omitempty"`
 	OrderServerMonthlyAmount     *float64                             `json:"orderServerMonthlyAmount,omitempty"`
@@ -858,7 +856,7 @@ type Billing_Order_Item struct {
 	OneTimeFeeTaxRate         *float64                             `json:"oneTimeFeeTaxRate,omitempty"`
 	OneTimeTaxAmount          *float64                             `json:"oneTimeTaxAmount,omitempty"`
 	Order                     *Billing_Order                       `json:"order,omitempty"`
-	OrderApprovalDate         *time.Time                           `json:"orderApprovalDate,omitempty"`
+	OrderApprovalDate         *Time                                `json:"orderApprovalDate,omitempty"`
 	Package                   *Product_Package                     `json:"package,omitempty"`
 	Parent                    *Billing_Order_Item                  `json:"parent,omitempty"`
 	ParentId                  *int                                 `json:"parentId,omitempty"`
@@ -884,7 +882,7 @@ type Billing_Order_Item_Category_Answer struct {
 	Entity
 
 	Answer     *string                         `json:"answer,omitempty"`
-	CreateDate *time.Time                      `json:"createDate,omitempty"`
+	CreateDate *Time                           `json:"createDate,omitempty"`
 	OrderItem  *Billing_Order_Item             `json:"orderItem,omitempty"`
 	Question   *Product_Item_Category_Question `json:"question,omitempty"`
 	QuestionId *int                            `json:"questionId,omitempty"`
@@ -893,7 +891,7 @@ type Billing_Order_Item_Category_Answer struct {
 type Billing_Order_Note struct {
 	Entity
 
-	CreateDate *time.Time     `json:"createDate,omitempty"`
+	CreateDate *Time          `json:"createDate,omitempty"`
 	Employee   *User_Employee `json:"employee,omitempty"`
 	Order      *Billing_Order `json:"order,omitempty"`
 }
@@ -904,10 +902,10 @@ type Billing_Order_Quote struct {
 	Account                 *Account        `json:"account,omitempty"`
 	AccountId               *int            `json:"accountId,omitempty"`
 	CompletedPurchaseDataId *int            `json:"completedPurchaseDataId,omitempty"`
-	CreateDate              *time.Time      `json:"createDate,omitempty"`
-	ExpirationDate          *time.Time      `json:"expirationDate,omitempty"`
+	CreateDate              *Time           `json:"createDate,omitempty"`
+	ExpirationDate          *Time           `json:"expirationDate,omitempty"`
 	Id                      *int            `json:"id,omitempty"`
-	ModifyDate              *time.Time      `json:"modifyDate,omitempty"`
+	ModifyDate              *Time           `json:"modifyDate,omitempty"`
 	Name                    *string         `json:"name,omitempty"`
 	Order                   *Billing_Order  `json:"order,omitempty"`
 	OrdersFromQuote         []Billing_Order `json:"ordersFromQuote,omitempty"`
@@ -1029,10 +1027,10 @@ type Billing_Payment_Card_Transaction struct {
 	CardExpirationMonth *int           `json:"cardExpirationMonth,omitempty"`
 	CardExpirationYear  *int           `json:"cardExpirationYear,omitempty"`
 	CardType            *string        `json:"cardType,omitempty"`
-	CreateDate          *time.Time     `json:"createDate,omitempty"`
+	CreateDate          *Time          `json:"createDate,omitempty"`
 	Id                  *int           `json:"id,omitempty"`
 	InvoiceId           *int           `json:"invoiceId,omitempty"`
-	ModifyDate          *time.Time     `json:"modifyDate,omitempty"`
+	ModifyDate          *Time          `json:"modifyDate,omitempty"`
 	Order               *Billing_Order `json:"order,omitempty"`
 	OrderFromIpAddress  *string        `json:"orderFromIpAddress,omitempty"`
 	ReferenceCode       *string        `json:"referenceCode,omitempty"`
@@ -1056,14 +1054,14 @@ type Billing_Payment_PayPal_Transaction struct {
 	AddressStreet1       *string        `json:"addressStreet1,omitempty"`
 	AddressStreet2       *string        `json:"addressStreet2,omitempty"`
 	ContactPhone         *string        `json:"contactPhone,omitempty"`
-	CreateDate           *time.Time     `json:"createDate,omitempty"`
+	CreateDate           *Time          `json:"createDate,omitempty"`
 	ExchangeRate         *string        `json:"exchangeRate,omitempty"`
 	FeeAmount            *float64       `json:"feeAmount,omitempty"`
 	GrossAmount          *float64       `json:"grossAmount,omitempty"`
 	Id                   *int           `json:"id,omitempty"`
 	InvoiceId            *int           `json:"invoiceId,omitempty"`
 	LastPaypalCommand    *string        `json:"lastPaypalCommand,omitempty"`
-	ModifyDate           *time.Time     `json:"modifyDate,omitempty"`
+	ModifyDate           *Time          `json:"modifyDate,omitempty"`
 	Order                *Billing_Order `json:"order,omitempty"`
 	OrderFromIpAddress   *string        `json:"orderFromIpAddress,omitempty"`
 	OrderTotal           *float64       `json:"orderTotal,omitempty"`
@@ -1074,7 +1072,7 @@ type Billing_Payment_PayPal_Transaction struct {
 	PayerId              *string        `json:"payerId,omitempty"`
 	PayerLastName        *string        `json:"payerLastName,omitempty"`
 	PayerStatus          *string        `json:"payerStatus,omitempty"`
-	PaymentDate          *time.Time     `json:"paymentDate,omitempty"`
+	PaymentDate          *Time          `json:"paymentDate,omitempty"`
 	PaymentStatus        *string        `json:"paymentStatus,omitempty"`
 	PaymentType          *string        `json:"paymentType,omitempty"`
 	PendingReason        *string        `json:"pendingReason,omitempty"`

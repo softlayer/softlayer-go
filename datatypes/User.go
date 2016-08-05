@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type User_Access_Facility_Log struct {
 	Entity
 
@@ -30,8 +28,8 @@ type User_Access_Facility_Log struct {
 	Id          *int                           `json:"id,omitempty"`
 	LocationId  *int                           `json:"locationId,omitempty"`
 	LogType     *User_Access_Facility_Log_Type `json:"logType,omitempty"`
-	TimeIn      *time.Time                     `json:"timeIn,omitempty"`
-	TimeOut     *time.Time                     `json:"timeOut,omitempty"`
+	TimeIn      *Time                          `json:"timeIn,omitempty"`
+	TimeOut     *Time                          `json:"timeOut,omitempty"`
 	Visitor     *Entity                        `json:"visitor,omitempty"`
 }
 
@@ -86,7 +84,7 @@ type User_Customer struct {
 	ClosedTickets                            []Ticket                                      `json:"closedTickets,omitempty"`
 	CompanyName                              *string                                       `json:"companyName,omitempty"`
 	Country                                  *string                                       `json:"country,omitempty"`
-	CreateDate                               *time.Time                                    `json:"createDate,omitempty"`
+	CreateDate                               *Time                                         `json:"createDate,omitempty"`
 	DaylightSavingsTimeFlag                  *bool                                         `json:"daylightSavingsTimeFlag,omitempty"`
 	DenyAllResourceAccessOnCreateFlag        *bool                                         `json:"denyAllResourceAccessOnCreateFlag,omitempty"`
 	DisplayName                              *string                                       `json:"displayName,omitempty"`
@@ -116,7 +114,7 @@ type User_Customer struct {
 	ManagedByOpenIdConnectFlag               *bool                                         `json:"managedByOpenIdConnectFlag,omitempty"`
 	MobileDeviceCount                        *uint                                         `json:"mobileDeviceCount,omitempty"`
 	MobileDevices                            []User_Customer_MobileDevice                  `json:"mobileDevices,omitempty"`
-	ModifyDate                               *time.Time                                    `json:"modifyDate,omitempty"`
+	ModifyDate                               *Time                                         `json:"modifyDate,omitempty"`
 	Msn                                      *string                                       `json:"msn,omitempty"`
 	NameId                                   *string                                       `json:"nameId,omitempty"`
 	NotificationSubscriberCount              *uint                                         `json:"notificationSubscriberCount,omitempty"`
@@ -129,7 +127,7 @@ type User_Customer struct {
 	Overrides                                []Network_Service_Vpn_Overrides               `json:"overrides,omitempty"`
 	Parent                                   *User_Customer                                `json:"parent,omitempty"`
 	ParentId                                 *int                                          `json:"parentId,omitempty"`
-	PasswordExpireDate                       *time.Time                                    `json:"passwordExpireDate,omitempty"`
+	PasswordExpireDate                       *Time                                         `json:"passwordExpireDate,omitempty"`
 	PermissionCount                          *uint                                         `json:"permissionCount,omitempty"`
 	PermissionSystemVersion                  *int                                          `json:"permissionSystemVersion,omitempty"`
 	Permissions                              []User_Customer_CustomerPermission_Permission `json:"permissions,omitempty"`
@@ -143,14 +141,14 @@ type User_Customer struct {
 	SavedId                                  *string                                       `json:"savedId,omitempty"`
 	SecondaryLoginManagementFlag             *bool                                         `json:"secondaryLoginManagementFlag,omitempty"`
 	SecondaryLoginRequiredFlag               *bool                                         `json:"secondaryLoginRequiredFlag,omitempty"`
-	SecondaryPasswordModifyDate              *time.Time                                    `json:"secondaryPasswordModifyDate,omitempty"`
+	SecondaryPasswordModifyDate              *Time                                         `json:"secondaryPasswordModifyDate,omitempty"`
 	SecondaryPasswordTimeoutDays             *int                                          `json:"secondaryPasswordTimeoutDays,omitempty"`
 	SecurityAnswerCount                      *uint                                         `json:"securityAnswerCount,omitempty"`
 	SecurityAnswers                          []User_Customer_Security_Answer               `json:"securityAnswers,omitempty"`
 	Sms                                      *string                                       `json:"sms,omitempty"`
 	SslVpnAllowedFlag                        *bool                                         `json:"sslVpnAllowedFlag,omitempty"`
 	State                                    *string                                       `json:"state,omitempty"`
-	StatusDate                               *time.Time                                    `json:"statusDate,omitempty"`
+	StatusDate                               *Time                                         `json:"statusDate,omitempty"`
 	SubscriberCount                          *uint                                         `json:"subscriberCount,omitempty"`
 	Subscribers                              []Notification_User_Subscriber                `json:"subscribers,omitempty"`
 	SuccessfulLoginCount                     *uint                                         `json:"successfulLoginCount,omitempty"`
@@ -179,7 +177,7 @@ type User_Customer struct {
 type User_Customer_Access_Authentication struct {
 	Entity
 
-	CreateDate  *time.Time     `json:"createDate,omitempty"`
+	CreateDate  *Time          `json:"createDate,omitempty"`
 	IpAddress   *string        `json:"ipAddress,omitempty"`
 	SuccessFlag *bool          `json:"successFlag,omitempty"`
 	User        *User_Customer `json:"user,omitempty"`
@@ -256,16 +254,16 @@ type User_Customer_Invitation struct {
 	Entity
 
 	Code                       *string        `json:"code,omitempty"`
-	CreateDate                 *time.Time     `json:"createDate,omitempty"`
+	CreateDate                 *Time          `json:"createDate,omitempty"`
 	CreatorId                  *int           `json:"creatorId,omitempty"`
 	CreatorType                *string        `json:"creatorType,omitempty"`
 	Email                      *string        `json:"email,omitempty"`
 	ExistingBlueIdFlag         *int           `json:"existingBlueIdFlag,omitempty"`
-	ExpirationDate             *time.Time     `json:"expirationDate,omitempty"`
+	ExpirationDate             *Time          `json:"expirationDate,omitempty"`
 	Id                         *int           `json:"id,omitempty"`
 	IsFederatedEmailDomainFlag *int           `json:"isFederatedEmailDomainFlag,omitempty"`
-	ModifyDate                 *time.Time     `json:"modifyDate,omitempty"`
-	ResponseDate               *time.Time     `json:"responseDate,omitempty"`
+	ModifyDate                 *Time          `json:"modifyDate,omitempty"`
+	ResponseDate               *Time          `json:"responseDate,omitempty"`
 	StatusId                   *int           `json:"statusId,omitempty"`
 	User                       *User_Customer `json:"user,omitempty"`
 	UserId                     *int           `json:"userId,omitempty"`
@@ -274,7 +272,7 @@ type User_Customer_Invitation struct {
 type User_Customer_Link struct {
 	Entity
 
-	CreateDate                    *time.Time        `json:"createDate,omitempty"`
+	CreateDate                    *Time             `json:"createDate,omitempty"`
 	DefaultFlag                   *int              `json:"defaultFlag,omitempty"`
 	DestinationUserAlphanumericId *string           `json:"destinationUserAlphanumericId,omitempty"`
 	DestinationUserId             *int              `json:"destinationUserId,omitempty"`
@@ -294,14 +292,14 @@ type User_Customer_MobileDevice struct {
 
 	AvailablePushNotificationSubscriptionCount *uint                                       `json:"availablePushNotificationSubscriptionCount,omitempty"`
 	AvailablePushNotificationSubscriptions     []Notification                              `json:"availablePushNotificationSubscriptions,omitempty"`
-	CreateDate                                 *time.Time                                  `json:"createDate,omitempty"`
+	CreateDate                                 *Time                                       `json:"createDate,omitempty"`
 	Customer                                   *User_Customer                              `json:"customer,omitempty"`
 	DisplayResolutionXxY                       *string                                     `json:"displayResolutionXxY,omitempty"`
 	Id                                         *int                                        `json:"id,omitempty"`
 	MobileDeviceTypeId                         *int                                        `json:"mobileDeviceTypeId,omitempty"`
 	MobileOperatingSystemId                    *int                                        `json:"mobileOperatingSystemId,omitempty"`
 	ModelNumber                                *string                                     `json:"modelNumber,omitempty"`
-	ModifyDate                                 *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate                                 *Time                                       `json:"modifyDate,omitempty"`
 	Name                                       *string                                     `json:"name,omitempty"`
 	OperatingSystem                            *User_Customer_MobileDevice_OperatingSystem `json:"operatingSystem,omitempty"`
 	PhoneNumber                                *string                                     `json:"phoneNumber,omitempty"`
@@ -316,24 +314,24 @@ type User_Customer_MobileDevice struct {
 type User_Customer_MobileDevice_OperatingSystem struct {
 	Entity
 
-	BuildVersion *int       `json:"buildVersion,omitempty"`
-	CreateDate   *time.Time `json:"createDate,omitempty"`
-	Description  *string    `json:"description,omitempty"`
-	Id           *int       `json:"id,omitempty"`
-	MajorVersion *int       `json:"majorVersion,omitempty"`
-	MinorVersion *int       `json:"minorVersion,omitempty"`
-	ModifyDate   *time.Time `json:"modifyDate,omitempty"`
-	Name         *string    `json:"name,omitempty"`
+	BuildVersion *int    `json:"buildVersion,omitempty"`
+	CreateDate   *Time   `json:"createDate,omitempty"`
+	Description  *string `json:"description,omitempty"`
+	Id           *int    `json:"id,omitempty"`
+	MajorVersion *int    `json:"majorVersion,omitempty"`
+	MinorVersion *int    `json:"minorVersion,omitempty"`
+	ModifyDate   *Time   `json:"modifyDate,omitempty"`
+	Name         *string `json:"name,omitempty"`
 }
 
 type User_Customer_MobileDevice_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type User_Customer_Notification_Hardware struct {
@@ -412,12 +410,12 @@ type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 type User_Customer_Prospect_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type User_Customer_Security_Answer struct {
@@ -478,7 +476,7 @@ type User_External_Binding struct {
 	AttributeCount *uint                             `json:"attributeCount,omitempty"`
 	Attributes     []User_External_Binding_Attribute `json:"attributes,omitempty"`
 	BillingItem    *Billing_Item                     `json:"billingItem,omitempty"`
-	CreateDate     *time.Time                        `json:"createDate,omitempty"`
+	CreateDate     *Time                             `json:"createDate,omitempty"`
 	ExternalId     *string                           `json:"externalId,omitempty"`
 	Id             *int                              `json:"id,omitempty"`
 	Note           *string                           `json:"note,omitempty"`
@@ -519,12 +517,12 @@ type User_Interface struct {
 type User_Permission_Action struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	KeyName     *string    `json:"keyName,omitempty"`
-	ModifyDate  *time.Time `json:"modifyDate,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	KeyName     *string `json:"keyName,omitempty"`
+	ModifyDate  *Time   `json:"modifyDate,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 type User_Permission_Group struct {
@@ -534,11 +532,11 @@ type User_Permission_Group struct {
 	AccountId      *int                        `json:"accountId,omitempty"`
 	ActionCount    *uint                       `json:"actionCount,omitempty"`
 	Actions        []User_Permission_Action    `json:"actions,omitempty"`
-	CreateDate     *time.Time                  `json:"createDate,omitempty"`
+	CreateDate     *Time                       `json:"createDate,omitempty"`
 	Description    *string                     `json:"description,omitempty"`
-	ExpirationDate *time.Time                  `json:"expirationDate,omitempty"`
+	ExpirationDate *Time                       `json:"expirationDate,omitempty"`
 	Id             *int                        `json:"id,omitempty"`
-	ModifyDate     *time.Time                  `json:"modifyDate,omitempty"`
+	ModifyDate     *Time                       `json:"modifyDate,omitempty"`
 	Name           *string                     `json:"name,omitempty"`
 	RoleCount      *uint                       `json:"roleCount,omitempty"`
 	Roles          []User_Permission_Role      `json:"roles,omitempty"`
@@ -549,12 +547,12 @@ type User_Permission_Group struct {
 type User_Permission_Group_Type struct {
 	Entity
 
-	CreateDate *time.Time              `json:"createDate,omitempty"`
+	CreateDate *Time                   `json:"createDate,omitempty"`
 	GroupCount *uint                   `json:"groupCount,omitempty"`
 	Groups     []User_Permission_Group `json:"groups,omitempty"`
 	Id         *int                    `json:"id,omitempty"`
 	KeyName    *string                 `json:"keyName,omitempty"`
-	ModifyDate *time.Time              `json:"modifyDate,omitempty"`
+	ModifyDate *Time                   `json:"modifyDate,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
 }
 
@@ -565,12 +563,12 @@ type User_Permission_Role struct {
 	AccountId          *int                     `json:"accountId,omitempty"`
 	ActionCount        *uint                    `json:"actionCount,omitempty"`
 	Actions            []User_Permission_Action `json:"actions,omitempty"`
-	CreateDate         *time.Time               `json:"createDate,omitempty"`
+	CreateDate         *Time                    `json:"createDate,omitempty"`
 	Description        *string                  `json:"description,omitempty"`
 	GroupCount         *uint                    `json:"groupCount,omitempty"`
 	Groups             []User_Permission_Group  `json:"groups,omitempty"`
 	Id                 *int                     `json:"id,omitempty"`
-	ModifyDate         *time.Time               `json:"modifyDate,omitempty"`
+	ModifyDate         *Time                    `json:"modifyDate,omitempty"`
 	Name               *string                  `json:"name,omitempty"`
 	NewUserDefaultFlag *int                     `json:"newUserDefaultFlag,omitempty"`
 	SystemFlag         *int                     `json:"systemFlag,omitempty"`

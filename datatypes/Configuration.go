@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Configuration_Storage_Filesystem_Type struct {
 	Entity
 
@@ -73,7 +71,7 @@ type Configuration_Template struct {
 	ConfigurationSections               []Configuration_Template_Section                          `json:"configurationSections,omitempty"`
 	ConfigurationTemplateReference      []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReference,omitempty"`
 	ConfigurationTemplateReferenceCount *uint                                                     `json:"configurationTemplateReferenceCount,omitempty"`
-	CreateDate                          *time.Time                                                `json:"createDate,omitempty"`
+	CreateDate                          *Time                                                     `json:"createDate,omitempty"`
 	DefaultValueCount                   *uint                                                     `json:"defaultValueCount,omitempty"`
 	DefaultValues                       []Configuration_Template_Section_Definition_Value         `json:"defaultValues,omitempty"`
 	DefinitionCount                     *uint                                                     `json:"definitionCount,omitempty"`
@@ -83,7 +81,7 @@ type Configuration_Template struct {
 	Item                                *Product_Item                                             `json:"item,omitempty"`
 	ItemId                              *int                                                      `json:"itemId,omitempty"`
 	LinkedSectionReferences             *Configuration_Template_Section_Reference                 `json:"linkedSectionReferences,omitempty"`
-	ModifyDate                          *time.Time                                                `json:"modifyDate,omitempty"`
+	ModifyDate                          *Time                                                     `json:"modifyDate,omitempty"`
 	Name                                *string                                                   `json:"name,omitempty"`
 	Parent                              *Configuration_Template                                   `json:"parent,omitempty"`
 	ParentId                            *int                                                      `json:"parentId,omitempty"`
@@ -101,7 +99,7 @@ type Configuration_Template_Attribute struct {
 type Configuration_Template_Section struct {
 	Entity
 
-	CreateDate              *time.Time                                  `json:"createDate,omitempty"`
+	CreateDate              *Time                                       `json:"createDate,omitempty"`
 	DefinitionCount         *uint                                       `json:"definitionCount,omitempty"`
 	Definitions             []Configuration_Template_Section_Definition `json:"definitions,omitempty"`
 	Description             *string                                     `json:"description,omitempty"`
@@ -110,7 +108,7 @@ type Configuration_Template_Section struct {
 	LinkedTemplate          *Configuration_Template                     `json:"linkedTemplate,omitempty"`
 	LinkedTemplateId        *string                                     `json:"linkedTemplateId,omitempty"`
 	LinkedTemplateReference *Configuration_Template_Section_Reference   `json:"linkedTemplateReference,omitempty"`
-	ModifyDate              *time.Time                                  `json:"modifyDate,omitempty"`
+	ModifyDate              *Time                                       `json:"modifyDate,omitempty"`
 	Name                    *string                                     `json:"name,omitempty"`
 	ParentId                *int                                        `json:"parentId,omitempty"`
 	ProfileCount            *uint                                       `json:"profileCount,omitempty"`
@@ -137,7 +135,7 @@ type Configuration_Template_Section_Definition struct {
 
 	AttributeCount     *uint                                                 `json:"attributeCount,omitempty"`
 	Attributes         []Configuration_Template_Section_Definition_Attribute `json:"attributes,omitempty"`
-	CreateDate         *time.Time                                            `json:"createDate,omitempty"`
+	CreateDate         *Time                                                 `json:"createDate,omitempty"`
 	DefaultValue       *Configuration_Template_Section_Definition_Value      `json:"defaultValue,omitempty"`
 	Description        *string                                               `json:"description,omitempty"`
 	EnumerationValues  *string                                               `json:"enumerationValues,omitempty"`
@@ -146,7 +144,7 @@ type Configuration_Template_Section_Definition struct {
 	Id                 *int                                                  `json:"id,omitempty"`
 	MaximumValue       *string                                               `json:"maximumValue,omitempty"`
 	MinimumValue       *string                                               `json:"minimumValue,omitempty"`
-	ModifyDate         *time.Time                                            `json:"modifyDate,omitempty"`
+	ModifyDate         *Time                                                 `json:"modifyDate,omitempty"`
 	MonitoringDataFlag *bool                                                 `json:"monitoringDataFlag,omitempty"`
 	Name               *string                                               `json:"name,omitempty"`
 	Path               *string                                               `json:"path,omitempty"`
@@ -177,7 +175,7 @@ type Configuration_Template_Section_Definition_Attribute_Type struct {
 type Configuration_Template_Section_Definition_Group struct {
 	Entity
 
-	CreateDate  *time.Time                                       `json:"createDate,omitempty"`
+	CreateDate  *Time                                            `json:"createDate,omitempty"`
 	Description *string                                          `json:"description,omitempty"`
 	Id          *int                                             `json:"id,omitempty"`
 	Name        *string                                          `json:"name,omitempty"`
@@ -196,10 +194,10 @@ type Configuration_Template_Section_Definition_Type struct {
 type Configuration_Template_Section_Definition_Value struct {
 	Entity
 
-	CreateDate   *time.Time                                 `json:"createDate,omitempty"`
+	CreateDate   *Time                                      `json:"createDate,omitempty"`
 	Definition   *Configuration_Template_Section_Definition `json:"definition,omitempty"`
 	DefinitionId *int                                       `json:"definitionId,omitempty"`
-	ModifyDate   *time.Time                                 `json:"modifyDate,omitempty"`
+	ModifyDate   *Time                                      `json:"modifyDate,omitempty"`
 	Template     *Configuration_Template                    `json:"template,omitempty"`
 	TemplateId   *int                                       `json:"templateId,omitempty"`
 	Value        *string                                    `json:"value,omitempty"`
@@ -210,7 +208,7 @@ type Configuration_Template_Section_Profile struct {
 
 	AgentId              *int                            `json:"agentId,omitempty"`
 	ConfigurationSection *Configuration_Template_Section `json:"configurationSection,omitempty"`
-	CreateDate           *time.Time                      `json:"createDate,omitempty"`
+	CreateDate           *Time                           `json:"createDate,omitempty"`
 	Id                   *int                            `json:"id,omitempty"`
 	MonitoringAgent      *Monitoring_Agent               `json:"monitoringAgent,omitempty"`
 	Name                 *string                         `json:"name,omitempty"`
@@ -220,9 +218,9 @@ type Configuration_Template_Section_Profile struct {
 type Configuration_Template_Section_Reference struct {
 	Entity
 
-	CreateDate *time.Time                      `json:"createDate,omitempty"`
+	CreateDate *Time                           `json:"createDate,omitempty"`
 	Id         *int                            `json:"id,omitempty"`
-	ModifyDate *time.Time                      `json:"modifyDate,omitempty"`
+	ModifyDate *Time                           `json:"modifyDate,omitempty"`
 	Section    *Configuration_Template_Section `json:"section,omitempty"`
 	SectionId  *int                            `json:"sectionId,omitempty"`
 	Template   *Configuration_Template         `json:"template,omitempty"`
@@ -240,8 +238,8 @@ type Configuration_Template_Section_Type struct {
 type Configuration_Template_Type struct {
 	Entity
 
-	CreateDate  *time.Time `json:"createDate,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Id          *int       `json:"id,omitempty"`
-	Name        *string    `json:"name,omitempty"`
+	CreateDate  *Time   `json:"createDate,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }

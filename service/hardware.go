@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Hardware struct {
 	Session *Session
@@ -106,7 +102,7 @@ func (r *Hardware) GenerateOrderTemplate(templateObject *datatypes.Hardware) (re
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetAlarmHistory(startDate *time.Time, endDate *time.Time, alarmId *string) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Hardware) GetAlarmHistory(startDate *datatypes.Time, endDate *datatypes.Time, alarmId *string) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -129,7 +125,7 @@ func (r *Hardware) GetAvailableNetworkStorages(nasType *string) (resp []datatype
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetBackendIncomingBandwidth(startDate *time.Time, endDate *time.Time) (resp float64, err error) {
+func (r *Hardware) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -137,7 +133,7 @@ func (r *Hardware) GetBackendIncomingBandwidth(startDate *time.Time, endDate *ti
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetBackendOutgoingBandwidth(startDate *time.Time, endDate *time.Time) (resp float64, err error) {
+func (r *Hardware) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -157,7 +153,7 @@ func (r *Hardware) GetCurrentBillingTotal() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetDailyAverage(startDate *time.Time, endDate *time.Time) (resp float64, err error) {
+func (r *Hardware) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -165,7 +161,7 @@ func (r *Hardware) GetDailyAverage(startDate *time.Time, endDate *time.Time) (re
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetFrontendIncomingBandwidth(startDate *time.Time, endDate *time.Time) (resp float64, err error) {
+func (r *Hardware) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -173,7 +169,7 @@ func (r *Hardware) GetFrontendIncomingBandwidth(startDate *time.Time, endDate *t
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetFrontendOutgoingBandwidth(startDate *time.Time, endDate *time.Time) (resp float64, err error) {
+func (r *Hardware) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -181,7 +177,7 @@ func (r *Hardware) GetFrontendOutgoingBandwidth(startDate *time.Time, endDate *t
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetHourlyBandwidth(mode *string, day *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Hardware) GetHourlyBandwidth(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		mode,
 		day,
@@ -189,7 +185,7 @@ func (r *Hardware) GetHourlyBandwidth(mode *string, day *time.Time) (resp []data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetMonitoringActiveAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Hardware) GetMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -197,7 +193,7 @@ func (r *Hardware) GetMonitoringActiveAlarms(startDate *time.Time, endDate *time
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware) GetMonitoringClosedAlarms(startDate *time.Time, endDate *time.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
+func (r *Hardware) GetMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1684,7 +1680,7 @@ func (r *Hardware_Server) EditObject(templateObject *datatypes.Hardware_Server) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetBackendBandwidthUsage(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Hardware_Server) GetBackendBandwidthUsage(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1692,7 +1688,7 @@ func (r *Hardware_Server) GetBackendBandwidthUsage(startDate *time.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetBackendBandwidthUse(startDate *time.Time, endDate *time.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
+func (r *Hardware_Server) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1700,7 +1696,7 @@ func (r *Hardware_Server) GetBackendBandwidthUse(startDate *time.Time, endDate *
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetBandwidthForDateRange(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Hardware_Server) GetBandwidthForDateRange(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1708,7 +1704,7 @@ func (r *Hardware_Server) GetBandwidthForDateRange(startDate *time.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *time.Time, dateSpecifiedEnd *time.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Hardware_Server) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		networkType,
 		snapshotRange,
@@ -1734,7 +1730,7 @@ func (r *Hardware_Server) GetFirewallProtectableSubnets() (resp []datatypes.Netw
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetFrontendBandwidthUsage(startDate *time.Time, endDate *time.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Hardware_Server) GetFrontendBandwidthUsage(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1742,7 +1738,7 @@ func (r *Hardware_Server) GetFrontendBandwidthUsage(startDate *time.Time, endDat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetFrontendBandwidthUse(startDate *time.Time, endDate *time.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
+func (r *Hardware_Server) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -1813,7 +1809,7 @@ func (r *Hardware_Server) GetPrivateVlanByIpAddress(ipAddress *string) (resp dat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetProvisionDate() (resp time.Time, err error) {
+func (r *Hardware_Server) GetProvisionDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1821,7 +1817,7 @@ func (r *Hardware_Server) GetPublicBandwidthDataSummary() (resp datatypes.Contai
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Hardware_Server) GetPublicBandwidthGraphImage(startTime *time.Time, endTime *time.Time) (resp []byte, err error) {
+func (r *Hardware_Server) GetPublicBandwidthGraphImage(startTime *datatypes.Time, endTime *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
 		startTime,
 		endTime,

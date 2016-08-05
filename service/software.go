@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Software_AccountLicense struct {
 	Session *Session
@@ -553,7 +549,7 @@ func (r *Session) GetSoftwareComponentOperatingSystemService() Software_Componen
 	return Software_Component_OperatingSystem{Session: r}
 }
 
-func (r *Software_Component_OperatingSystem) GetLicenseExpirationDate() (resp time.Time, err error) {
+func (r *Software_Component_OperatingSystem) GetLicenseExpirationDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

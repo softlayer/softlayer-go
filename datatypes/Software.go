@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Software_AccountLicense struct {
 	Entity
 
@@ -234,7 +232,7 @@ type Software_Component_HostIps_Mcafee_Epo_Version45_Hips_Version8 struct {
 type Software_Component_OperatingSystem struct {
 	Software_Component
 
-	LicenseExpirationDate  *time.Time                               `json:"licenseExpirationDate,omitempty"`
+	LicenseExpirationDate  *Time                                    `json:"licenseExpirationDate,omitempty"`
 	PartitionTemplateCount *uint                                    `json:"partitionTemplateCount,omitempty"`
 	PartitionTemplates     []Hardware_Component_Partition_Template  `json:"partitionTemplates,omitempty"`
 	ReloadTransactionGroup *Provisioning_Version1_Transaction_Group `json:"reloadTransactionGroup,omitempty"`
@@ -255,9 +253,9 @@ type Software_Component_Package_Management_Ksplice struct {
 type Software_Component_Password struct {
 	Entity
 
-	CreateDate  *time.Time          `json:"createDate,omitempty"`
+	CreateDate  *Time               `json:"createDate,omitempty"`
 	Id          *int                `json:"id,omitempty"`
-	ModifyDate  *time.Time          `json:"modifyDate,omitempty"`
+	ModifyDate  *Time               `json:"modifyDate,omitempty"`
 	Notes       *string             `json:"notes,omitempty"`
 	Password    *string             `json:"password,omitempty"`
 	Port        *int                `json:"port,omitempty"`
@@ -271,7 +269,7 @@ type Software_Component_Password struct {
 type Software_Component_Password_History struct {
 	Entity
 
-	CreateDate          *time.Time          `json:"createDate,omitempty"`
+	CreateDate          *Time               `json:"createDate,omitempty"`
 	Notes               *string             `json:"notes,omitempty"`
 	Password            *string             `json:"password,omitempty"`
 	SoftwareComponent   *Software_Component `json:"softwareComponent,omitempty"`

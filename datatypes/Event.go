@@ -16,13 +16,11 @@
 
 package datatypes
 
-import "time"
-
 type Event_Log struct {
 	Entity
 
 	AccountId       *int           `json:"accountId,omitempty"`
-	EventCreateDate *time.Time     `json:"eventCreateDate,omitempty"`
+	EventCreateDate *Time          `json:"eventCreateDate,omitempty"`
 	EventName       *string        `json:"eventName,omitempty"`
 	IpAddress       *string        `json:"ipAddress,omitempty"`
 	Label           *string        `json:"label,omitempty"`

@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Ticket struct {
 	Session *Session
@@ -187,7 +183,7 @@ func (r *Ticket) GetObject() (resp datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Ticket) GetTicketsClosedSinceDate(closeDate *time.Time) (resp []datatypes.Ticket, err error) {
+func (r *Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
 	params := []interface{}{
 		closeDate,
 	}
@@ -333,7 +329,7 @@ func (r *Ticket) GetLastUpdate() (resp datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Ticket) GetLastViewedDate() (resp time.Time, err error) {
+func (r *Ticket) GetLastViewedDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -16,5 +16,24 @@
 
 package datatypes
 
+import "time"
+
 // For identifying void return values from methods
 type Void int
+
+// Time type overrides the default json marshaler with the SoftLayer custom format
+type Time struct {
+	time.Time
+}
+
+func (r Time) String() (string) {
+	return r.Time.Format(time.RFC3339)
+}
+
+func (r Time) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + r.String() + `"`), nil
+}
+
+func (r Time) MarshalText() ([]byte, error) {
+	return []byte(r.String()), nil
+}

@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Monitoring_Agent struct {
 	Entity
 
@@ -28,10 +26,10 @@ type Monitoring_Agent struct {
 	ConfigurationTemplateId   *int                                     `json:"configurationTemplateId,omitempty"`
 	ConfigurationValueCount   *uint                                    `json:"configurationValueCount,omitempty"`
 	ConfigurationValues       []Monitoring_Agent_Configuration_Value   `json:"configurationValues,omitempty"`
-	CreateDate                *time.Time                               `json:"createDate,omitempty"`
+	CreateDate                *Time                                    `json:"createDate,omitempty"`
 	Hardware                  *Hardware                                `json:"hardware,omitempty"`
 	Id                        *int                                     `json:"id,omitempty"`
-	ModifyDate                *time.Time                               `json:"modifyDate,omitempty"`
+	ModifyDate                *Time                                    `json:"modifyDate,omitempty"`
 	Name                      *string                                  `json:"name,omitempty"`
 	ProductItem               *Product_Item                            `json:"productItem,omitempty"`
 	RemoteMonitoringAgentFlag *bool                                    `json:"remoteMonitoringAgentFlag,omitempty"`
@@ -51,12 +49,12 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 	ConfigurationTemplateReferenceCount *uint                                                     `json:"configurationTemplateReferenceCount,omitempty"`
 	ConfigurationTemplateReferences     []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReferences,omitempty"`
 	ConfigurationTemplates              []Configuration_Template                                  `json:"configurationTemplates,omitempty"`
-	CreateDate                          *time.Time                                                `json:"createDate,omitempty"`
+	CreateDate                          *Time                                                     `json:"createDate,omitempty"`
 	Description                         *string                                                   `json:"description,omitempty"`
 	Id                                  *int                                                      `json:"id,omitempty"`
 	Item                                *Product_Item                                             `json:"item,omitempty"`
 	ItemId                              *int                                                      `json:"itemId,omitempty"`
-	ModifyDate                          *time.Time                                                `json:"modifyDate,omitempty"`
+	ModifyDate                          *Time                                                     `json:"modifyDate,omitempty"`
 	Name                                *string                                                   `json:"name,omitempty"`
 }
 

@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type Product_Catalog struct {
 	Entity
 
@@ -36,8 +34,8 @@ type Product_Catalog_Item_Price struct {
 
 	Catalog    *Product_Catalog    `json:"catalog,omitempty"`
 	CatalogId  *int                `json:"catalogId,omitempty"`
-	CreateDate *time.Time          `json:"createDate,omitempty"`
-	ModifyDate *time.Time          `json:"modifyDate,omitempty"`
+	CreateDate *Time               `json:"createDate,omitempty"`
+	ModifyDate *Time               `json:"modifyDate,omitempty"`
 	Price      *Product_Item_Price `json:"price,omitempty"`
 	PriceId    *int                `json:"priceId,omitempty"`
 }
@@ -485,7 +483,7 @@ type Product_Package_Inventory struct {
 	ItemId                  *int             `json:"itemId,omitempty"`
 	Location                *Location        `json:"location,omitempty"`
 	LocationId              *int             `json:"locationId,omitempty"`
-	ModifyDate              *time.Time       `json:"modifyDate,omitempty"`
+	ModifyDate              *Time            `json:"modifyDate,omitempty"`
 	OverstockFlag           *int             `json:"overstockFlag,omitempty"`
 	Package                 *Product_Package `json:"package,omitempty"`
 	PackageId               *int             `json:"packageId,omitempty"`
@@ -698,14 +696,14 @@ type Product_Upgrade_Request struct {
 	Account                 *Account                        `json:"account,omitempty"`
 	AccountId               *int                            `json:"accountId,omitempty"`
 	CompletedFlag           *bool                           `json:"completedFlag,omitempty"`
-	CreateDate              *time.Time                      `json:"createDate,omitempty"`
+	CreateDate              *Time                           `json:"createDate,omitempty"`
 	EmployeeId              *int                            `json:"employeeId,omitempty"`
 	GuestId                 *int                            `json:"guestId,omitempty"`
 	HardwareId              *int                            `json:"hardwareId,omitempty"`
 	Id                      *int                            `json:"id,omitempty"`
 	Invoice                 *Billing_Invoice                `json:"invoice,omitempty"`
-	MaintenanceStartTimeUtc *time.Time                      `json:"maintenanceStartTimeUtc,omitempty"`
-	ModifyDate              *time.Time                      `json:"modifyDate,omitempty"`
+	MaintenanceStartTimeUtc *Time                           `json:"maintenanceStartTimeUtc,omitempty"`
+	ModifyDate              *Time                           `json:"modifyDate,omitempty"`
 	Order                   *Billing_Order                  `json:"order,omitempty"`
 	OrderId                 *int                            `json:"orderId,omitempty"`
 	OrderTotal              *float64                        `json:"orderTotal,omitempty"`

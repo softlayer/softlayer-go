@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Metric_Tracking_Object struct {
 	Session *Session
@@ -38,7 +34,7 @@ func (r *Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetBandwidthData(startDateTime *time.Time, endDateTime *time.Time, typ *string, rollupSeconds *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, typ *string, rollupSeconds *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -48,7 +44,7 @@ func (r *Metric_Tracking_Object) GetBandwidthData(startDateTime *time.Time, endD
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetBandwidthGraph(startDateTime *time.Time, endDateTime *time.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -61,7 +57,7 @@ func (r *Metric_Tracking_Object) GetBandwidthGraph(startDateTime *time.Time, end
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetBandwidthTotal(startDateTime *time.Time, endDateTime *time.Time, direction *string, typ *string) (resp uint, err error) {
+func (r *Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, typ *string) (resp uint, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -78,7 +74,7 @@ func (r *Metric_Tracking_Object) GetCustomGraphData(graphContainer *datatypes.Co
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetDetailsForDateRange(startDate *time.Time, endDate *time.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
+func (r *Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time, endDate *datatypes.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -87,7 +83,7 @@ func (r *Metric_Tracking_Object) GetDetailsForDateRange(startDate *time.Time, en
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetGraph(startDateTime *time.Time, endDateTime *time.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r *Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -111,7 +107,7 @@ func (r *Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.C
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Metric_Tracking_Object) GetSummaryData(startDateTime *time.Time, endDateTime *time.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r *Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,

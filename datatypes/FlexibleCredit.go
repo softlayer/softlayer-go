@@ -16,8 +16,6 @@
 
 package datatypes
 
-import "time"
-
 type FlexibleCredit_Affiliate struct {
 	Entity
 
@@ -44,9 +42,9 @@ type FlexibleCredit_Enrollment struct {
 	CompanyDescription       *string                      `json:"companyDescription,omitempty"`
 	CompanyType              *FlexibleCredit_Company_Type `json:"companyType,omitempty"`
 	CompanyTypeId            *int                         `json:"companyTypeId,omitempty"`
-	EnrollmentDate           *time.Time                   `json:"enrollmentDate,omitempty"`
+	EnrollmentDate           *Time                        `json:"enrollmentDate,omitempty"`
 	FlexibleCreditProgram    *FlexibleCredit_Program      `json:"flexibleCreditProgram,omitempty"`
-	GraduationDate           *time.Time                   `json:"graduationDate,omitempty"`
+	GraduationDate           *Time                        `json:"graduationDate,omitempty"`
 	IsActiveFlag             *bool                        `json:"isActiveFlag,omitempty"`
 	MonthlyCreditAmount      *float64                     `json:"monthlyCreditAmount,omitempty"`
 	Representative           *User_Employee               `json:"representative,omitempty"`

@@ -16,11 +16,7 @@
 
 package service
 
-import (
-	"time"
-
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-)
+import "github.ibm.com/riethm/gopherlayer/datatypes"
 
 type Provisioning_Hook struct {
 	Session *Session
@@ -212,7 +208,7 @@ func (r *Provisioning_Maintenance_Window) GetMaintenanceWindowTicketsByTicketId(
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *time.Time, endDate *time.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
+func (r *Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
 		beginDate,
 		endDate,
@@ -222,7 +218,7 @@ func (r *Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *time.
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *time.Time, endDate *time.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
+func (r *Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
 		beginDate,
 		endDate,
@@ -232,7 +228,7 @@ func (r *Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *time.Ti
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenanceStartTime *time.Time, newMaintenanceWindowId *int, ticketId *int) (resp bool, err error) {
+func (r *Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenanceStartTime *datatypes.Time, newMaintenanceWindowId *int, ticketId *int) (resp bool, err error) {
 	params := []interface{}{
 		maintenanceStartTime,
 		newMaintenanceWindowId,
