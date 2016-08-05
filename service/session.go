@@ -18,8 +18,11 @@ package service
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/url"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
@@ -49,7 +52,31 @@ func NewSession(u string, k string, args ...interface{}) Session {
 	return Session{UserName: u, ApiKey: k, Endpoint: e}
 }
 
-func makeHttpRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer) ([]byte, int, error) {
+func encodeQuery(opts *Options) string {
+	query := new(url.URL).Query()
+
+	if opts.ObjectMask != "" {
+		query.Add("objectMask", opts.ObjectMask)
+	}
+
+	if opts.ObjectFilter != "" {
+		query.Add("objectFilter", opts.ObjectFilter)
+	}
+
+	// resultLimit=<offset>,<limit>
+	// If offset unspecified, default to 0
+	if opts.ResultLimit != nil {
+		if opts.StartOffset != nil {
+			query.Add("resultLimit", fmt.Sprintf("%d,%d", *opts.StartOffset, *opts.ResultLimit))
+		} else {
+			query.Add("resultLimit", fmt.Sprintf("0,%d", *opts.ResultLimit))
+		}
+	}
+
+	return query.Encode()
+}
+
+func makeHttpRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *Options) ([]byte, int, error) {
 	client := http.DefaultClient
 
 	url := session.Endpoint + "/" + path
@@ -59,6 +86,13 @@ func makeHttpRequest(session *Session, path string, requestType string, requestB
 	}
 
 	req.SetBasicAuth(session.UserName, session.ApiKey)
+
+	req.URL.RawQuery = encodeQuery(options)
+
+	if session.Debug {
+		log.Println("[DEBUG] Path: ", req.URL	)
+		log.Println("[DEBUG] Parameters: ", requestBody.String())
+	}
 
 	resp, err := client.Do(req)
 	if err != nil {

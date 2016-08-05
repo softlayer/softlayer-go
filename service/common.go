@@ -24,7 +24,6 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
-	"log"
 )
 
 type Options struct {
@@ -70,36 +69,6 @@ func httpMethod(name string) string {
 	}
 
 	return "GET"
-}
-
-func queryString(opts *Options) string {
-	sep := "?"
-
-	var qstr string
-
-	if opts.ObjectMask != "" {
-		qstr = sep + "objectMask=" + opts.ObjectMask
-		sep = "&"
-	}
-
-	if opts.ObjectFilter != "" {
-		qstr = qstr + sep + "objectFilter=" + opts.ObjectFilter
-		sep = "&"
-	}
-
-	// resultLimit=<offset>,<limit>
-	// If offset unspecified, default to 0
-	if opts.ResultLimit != nil {
-		qstr = qstr + sep + "resultLimit="
-		if opts.StartOffset != nil {
-			qstr = qstr + strconv.Itoa(*opts.StartOffset)
-		} else {
-			qstr = qstr + "0"
-		}
-		qstr = qstr + "," + strconv.Itoa(*opts.ResultLimit)
-	}
-
-	return qstr
 }
 
 func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {
@@ -166,18 +135,12 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 
 	path = path + ".json"
 
-	path = path + queryString(options)
-
-	if session.Debug {
-		log.Println("[DEBUG] Path: ", path)
-		log.Println("[DEBUG] Parameters: ", string(parameters))
-	}
-
 	resp, code, err := makeHttpRequest(
 		session,
 		path,
 		restMethod,
-		bytes.NewBuffer(parameters))
+		bytes.NewBuffer(parameters),
+		options)
 
 	if err != nil {
 		return fmt.Errorf("Error during HTTP request: %s", err)
