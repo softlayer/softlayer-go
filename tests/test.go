@@ -18,7 +18,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/service"
@@ -29,19 +28,31 @@ import (
 func main() {
 	session := service.NewSession("username", "apikey") // default endpoint
 
-	// Example: List all Virtual Guests for an account
+	// List all Virtual Guests for an account
+	doListAccountVMsTest(&session)
 
+	// Execute a remote script on a Virtual Guest
+	doExecuteRemoteScriptTest(&session)
+
+	// Example: Provision and destroy a Virtual Guest
+	doCreateVMTest(&session)
+
+	// Example: Get disk usage metrics by date
+	doGetDiskUsageMetricsTest(&session)
+}
+
+func doListAccountVMsTest(session *service.Session) {
 	// Get the Account service
-	acctService := session.GetAccountService()
+	service := session.GetAccountService()
 
 	//Set an object mask and a result limit
-	acctService.Mask("id;hostname;domain").Limit(10)
+	service.Mask("id;hostname;domain").Limit(10)
 
 	// List VMs
-	vms, err := acctService.GetVirtualGuests()
+	vms, err := service.GetVirtualGuests()
 	if err != nil {
 		fmt.Printf("Error retrieving Virtual Guests from Account: %s\n", err)
-		os.Exit(1)
+		return
 	} else {
 		fmt.Println("VMs under Account:")
 	}
@@ -49,24 +60,22 @@ func main() {
 	for _, vm := range vms {
 		fmt.Printf("\t[%d]%s.%s\n", *vm.Id, *vm.Hostname, *vm.Domain)
 	}
+}
 
-	// Example: Execute a remote script on a Virtual Guest
-
+func doExecuteRemoteScriptTest(session *service.Session) {
 	// Get the VirtualGuest service
-	vGuestService := session.GetVirtualGuestService()
+	service := session.GetVirtualGuestService()
 
 	// Set the object ID for the service to act upon
-	vGuestService.Id(22870595)
+	service.Id(22870595)
 
 	// Execute the remote script
-	err = vGuestService.ExecuteRemoteScript(sl.String("http://example.com"))
+	err := service.ExecuteRemoteScript(sl.String("http://example.com"))
 	if err != nil {
 		fmt.Printf("Error executing remote script on VM: %s", err)
 	} else {
 		fmt.Println("Remote script sent for execution on VM")
 	}
-
-	doCreateVMTest(&session)
 }
 
 func doCreateVMTest(session *service.Session) {
@@ -89,6 +98,7 @@ func doCreateVMTest(session *service.Session) {
 	vGuest, err := service.CreateObject(&vGuestTemplate)
 	if err != nil {
 		fmt.Printf("%s\n", err)
+		return
 	} else {
 		fmt.Printf("\nNew Virtual Guest created with ID %d\n", *vGuest.Id)
 		fmt.Printf("Domain: %s\n", *vGuest.Domain)
@@ -99,7 +109,7 @@ func doCreateVMTest(session *service.Session) {
 	service.Id(*vGuest.Id)
 
 	// Delay to allow transactions to be registered
-	time.Sleep(5 * time.Second)
+	time.Sleep(10 * time.Second)
 
 	for transactions, _ := service.GetActiveTransactions(); len(transactions) > 0; {
 		fmt.Print(".")
@@ -116,5 +126,25 @@ func doCreateVMTest(session *service.Session) {
 		fmt.Printf("Error deleting virtual guest")
 	} else {
 		fmt.Printf("Virtual Guest deleted successfully")
+	}
+}
+
+func doGetDiskUsageMetricsTest(session *service.Session) {
+	service := session.GetAccountService()
+
+	tEnd := sl.Time(time.Now())
+	tStart := sl.Time(tEnd.AddDate(0, -6, 0))
+
+	data, err := service.GetDiskUsageMetricDataByDate(tStart, tEnd)
+	if err != nil {
+		fmt.Println("Error calling GetDiskUsageMetricDataByDate: ", err)
+		return
+	}
+
+	fmt.Printf("Number of elements returned: %d\n", len(data))
+
+	// Retrieve and print a DateTime (sl.Time) value
+	if len(data) > 0 {
+		fmt.Printf("item.DateTime = %s\n", data[0].DateTime)
 	}
 }
