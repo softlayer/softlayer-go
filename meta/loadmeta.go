@@ -99,7 +99,14 @@ const license = `/**
  */
  `
 
+const codegenWarning = `/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */`
+
 var datatype = fmt.Sprintf(`%s
+
+%s
+
 package datatypes
 
 {{range .}}{{.TypeDoc|goDoc}}
@@ -114,9 +121,12 @@ type {{.Name|removePrefix}} struct {
 }
 
 {{end}}
-`, license)
+`, license, codegenWarning)
 
 var service = fmt.Sprintf(`%s
+
+%s
+
 package service
 
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
@@ -142,7 +152,7 @@ package service
 	{{end}}
 
 {{end}}
-`, license)
+`, license, codegenWarning)
 
 func main() {
 	var meta map[string]Type
