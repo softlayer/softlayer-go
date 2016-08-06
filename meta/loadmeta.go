@@ -135,12 +135,6 @@ package service
 	}
 	{{end}}
 
-	{{range .Properties}}{{if .Form|eq "relational"}}func (r *{{$base}}) Get{{.Name|titleCase}}() (resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, err error) {
-		err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-	}
-	{{end}}{{end}}
-
 {{end}}
 `, license)
 
@@ -176,11 +170,13 @@ func main() {
 	sortedServices := make([]Type, 0, len(keys))
 
 	for _, name := range keys {
-		sortedTypes = append(sortedTypes, meta[name])
+		t := meta[name]
+		sortedTypes = append(sortedTypes, t)
 
 		// Not every datatype is also a service
-		if !meta[name].NoService {
-			sortedServices = append(sortedServices, meta[name])
+		if !t.NoService {
+			createGetters(&t)
+			sortedServices = append(sortedServices, t)
 		}
 	}
 
@@ -259,6 +255,23 @@ func Desnake(args ...interface{}) string {
 }
 
 // private
+
+func createGetters(service *Type) {
+	for _, p := range service.Properties {
+		if p.Form == "relational" {
+			m := Method{
+				Name:       "get" + strings.Title(p.Name),
+				Type:       p.Type,
+				TypeArray:  p.TypeArray,
+				Doc:        "Retrieve " + p.Doc, // TODO lowercase the first letter
+				Parameters: []Parameter{},
+			}
+
+			service.Methods[m.Name] = m
+		}
+	}
+
+}
 
 func getSortedKeys(m map[string]Type) []string {
 	keys := make([]string, 0, len(m))
