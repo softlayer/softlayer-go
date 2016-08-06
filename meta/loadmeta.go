@@ -79,6 +79,7 @@ var fMap = template.FuncMap{
 	"removeReserved":    RemoveReservedWords,   // Substitute language-reserved identifiers
 	"titleCase":         strings.Title,         // TitleCase the argument
 	"desnake":           Desnake,               // Remove '_' from Snake_Case
+	"goDoc":             GoDoc,                 // Format a go doc string
 }
 
 const license = `/**
@@ -101,11 +102,14 @@ const license = `/**
 var datatype = fmt.Sprintf(`%s
 package datatypes
 
-{{range .}}type {{.Name|removePrefix}} struct {
+{{range .}}{{.TypeDoc|goDoc}}
+type {{.Name|removePrefix}} struct {
 	{{.Base|removePrefix}}
 
-	{{range .Properties}}{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}`+
+	{{range .Properties}}{{.Doc|goDoc}}
+	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}`+
 	"`json:\"{{.Name}},omitempty\"`"+`
+
 	{{end}}
 }
 
@@ -115,7 +119,7 @@ package datatypes
 var service = fmt.Sprintf(`%s
 package service
 
-{{range .}}{{$base := .Name|removePrefix}}
+{{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
 	type {{$base}} struct {
 		Session *Session
 		Options
@@ -125,7 +129,8 @@ package service
 		return {{$base}}{Session: r}
 	}
 
-	{{range .Methods}}func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
+	{{range .Methods}}{{.Doc|goDoc}}
+	func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
 		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
 			{{range .Parameters}}{{.Name|removeReserved}},
@@ -262,6 +267,12 @@ func Desnake(args ...interface{}) string {
 	return strings.Replace(s, "_", "", -1)
 }
 
+// Formats a string into a comment.  For now, just each comment line with "//"
+func GoDoc(args ...interface{}) string {
+	s := args[0].(string)
+
+	return "// " + strings.Replace(s, "\n", "\n// ", -1)
+}
 // private
 
 func createGetters(service *Type) {
