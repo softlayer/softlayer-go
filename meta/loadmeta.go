@@ -22,13 +22,14 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
-	"golang.org/x/tools/imports"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"sort"
 	"strings"
 	"text/template"
+
+	"golang.org/x/tools/imports"
 )
 
 type Type struct {
