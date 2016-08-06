@@ -117,7 +117,6 @@ func (r *Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, e
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Object_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

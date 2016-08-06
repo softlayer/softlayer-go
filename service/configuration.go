@@ -31,12 +31,11 @@ func (r *Configuration_Storage_Group_Array_Type) GetAllObjects() (resp []datatyp
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Configuration_Storage_Group_Array_Type) GetObject() (resp datatypes.Configuration_Storage_Group_Array_Type, err error) {
+func (r *Configuration_Storage_Group_Array_Type) GetHardwareComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Configuration_Storage_Group_Array_Type) GetHardwareComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
+func (r *Configuration_Storage_Group_Array_Type) GetObject() (resp datatypes.Configuration_Storage_Group_Array_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -68,23 +67,11 @@ func (r *Configuration_Template) EditObject(templateObject *datatypes.Configurat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Configuration_Template) GetAllObjects() (resp []datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Configuration_Template) GetObject() (resp datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Configuration_Template) UpdateDefaultValues(configurationValues []datatypes.Configuration_Template_Section_Definition_Value) (resp bool, err error) {
-	params := []interface{}{
-		configurationValues,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Configuration_Template) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Configuration_Template) GetAllObjects() (resp []datatypes.Configuration_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -112,12 +99,23 @@ func (r *Configuration_Template) GetLinkedSectionReferences() (resp datatypes.Co
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Configuration_Template) GetObject() (resp datatypes.Configuration_Template, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Configuration_Template) GetParent() (resp datatypes.Configuration_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Configuration_Template) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Configuration_Template) UpdateDefaultValues(configurationValues []datatypes.Configuration_Template_Section_Definition_Value) (resp bool, err error) {
+	params := []interface{}{
+		configurationValues,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -128,15 +126,6 @@ type Configuration_Template_Section struct {
 
 func (r *Session) GetConfigurationTemplateSectionService() Configuration_Template_Section {
 	return Configuration_Template_Section{Session: r}
-}
-
-func (r *Configuration_Template_Section) GetObject() (resp datatypes.Configuration_Template_Section, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Configuration_Template_Section) HasSubSections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Configuration_Template_Section) GetDefinitions() (resp []datatypes.Configuration_Template_Section_Definition, err error) {
@@ -152,6 +141,10 @@ func (r *Configuration_Template_Section) GetLinkedTemplate() (resp datatypes.Con
 	return
 }
 func (r *Configuration_Template_Section) GetLinkedTemplateReference() (resp datatypes.Configuration_Template_Section_Reference, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Configuration_Template_Section) GetObject() (resp datatypes.Configuration_Template_Section, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -175,6 +168,10 @@ func (r *Configuration_Template_Section) GetTemplate() (resp datatypes.Configura
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Configuration_Template_Section) HasSubSections() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Configuration_Template_Section_Definition struct {
 	Session *Session
@@ -183,11 +180,6 @@ type Configuration_Template_Section_Definition struct {
 
 func (r *Session) GetConfigurationTemplateSectionDefinitionService() Configuration_Template_Section_Definition {
 	return Configuration_Template_Section_Definition{Session: r}
-}
-
-func (r *Configuration_Template_Section_Definition) GetObject() (resp datatypes.Configuration_Template_Section_Definition, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Configuration_Template_Section_Definition) GetAttributes() (resp []datatypes.Configuration_Template_Section_Definition_Attribute, err error) {
@@ -203,6 +195,10 @@ func (r *Configuration_Template_Section_Definition) GetGroup() (resp datatypes.C
 	return
 }
 func (r *Configuration_Template_Section_Definition) GetMonitoringDataFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Configuration_Template_Section_Definition) GetObject() (resp datatypes.Configuration_Template_Section_Definition, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -232,7 +228,6 @@ func (r *Configuration_Template_Section_Definition_Group) GetObject() (resp data
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Configuration_Template_Section_Definition_Group) GetParent() (resp datatypes.Configuration_Template_Section_Definition_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -261,12 +256,11 @@ func (r *Session) GetConfigurationTemplateSectionDefinitionValueService() Config
 	return Configuration_Template_Section_Definition_Value{Session: r}
 }
 
-func (r *Configuration_Template_Section_Definition_Value) GetObject() (resp datatypes.Configuration_Template_Section_Definition_Value, err error) {
+func (r *Configuration_Template_Section_Definition_Value) GetDefinition() (resp datatypes.Configuration_Template_Section_Definition, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Configuration_Template_Section_Definition_Value) GetDefinition() (resp datatypes.Configuration_Template_Section_Definition, err error) {
+func (r *Configuration_Template_Section_Definition_Value) GetObject() (resp datatypes.Configuration_Template_Section_Definition_Value, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -284,16 +278,15 @@ func (r *Session) GetConfigurationTemplateSectionProfileService() Configuration_
 	return Configuration_Template_Section_Profile{Session: r}
 }
 
-func (r *Configuration_Template_Section_Profile) GetObject() (resp datatypes.Configuration_Template_Section_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Configuration_Template_Section_Profile) GetConfigurationSection() (resp datatypes.Configuration_Template_Section, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Configuration_Template_Section_Profile) GetMonitoringAgent() (resp datatypes.Monitoring_Agent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Configuration_Template_Section_Profile) GetObject() (resp datatypes.Configuration_Template_Section_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -311,7 +304,6 @@ func (r *Configuration_Template_Section_Reference) GetObject() (resp datatypes.C
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Configuration_Template_Section_Reference) GetSection() (resp datatypes.Configuration_Template_Section, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

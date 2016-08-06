@@ -60,7 +60,6 @@ func (r *Locale_Country) GetObject() (resp datatypes.Locale_Country, err error) 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

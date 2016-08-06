@@ -45,7 +45,19 @@ func (r *Session) GetCatalystEnrollmentService() Catalyst_Enrollment {
 	return Catalyst_Enrollment{Session: r}
 }
 
+func (r *Catalyst_Enrollment) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Catalyst_Enrollment) GetAffiliate() (resp datatypes.Catalyst_Affiliate, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Catalyst_Enrollment) GetAffiliates() (resp []datatypes.Catalyst_Affiliate, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Catalyst_Enrollment) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -65,7 +77,15 @@ func (r *Catalyst_Enrollment) GetEnrollmentRequestYearsInOperationOptions() (res
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Catalyst_Enrollment) GetIsActiveFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Catalyst_Enrollment) GetObject() (resp datatypes.Catalyst_Enrollment, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Catalyst_Enrollment) GetRepresentative() (resp datatypes.User_Employee, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -82,26 +102,5 @@ func (r *Catalyst_Enrollment) RequestSelfEnrollment(enrollmentRequest *datatypes
 		enrollmentRequest,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Catalyst_Enrollment) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Catalyst_Enrollment) GetAffiliate() (resp datatypes.Catalyst_Affiliate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Catalyst_Enrollment) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Catalyst_Enrollment) GetIsActiveFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Catalyst_Enrollment) GetRepresentative() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

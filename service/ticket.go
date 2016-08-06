@@ -164,96 +164,15 @@ func (r *Ticket) Edit(templateObject *datatypes.Ticket, contents *string, attach
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Ticket) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Ticket) GetAllTicketStatuses() (resp []datatypes.Ticket_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
-	params := []interface{}{
-		attachmentId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) GetObject() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
-	params := []interface{}{
-		closeDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) MarkAsViewed() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveAssignedAgent(agentId *int) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		agentId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err error) {
-	params := []interface{}{
-		emails,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) {
-	params := []interface{}{
-		hardwareId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) {
-	params := []interface{}{
-		guestId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveScheduledAlert() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) RemoveScheduledAutoClose() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) SetTags(tags *string) (resp bool, err error) {
-	params := []interface{}{
-		tags,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) SurveyEligible() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err error) {
-	params := []interface{}{
-		emails,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Ticket) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -267,6 +186,13 @@ func (r *Ticket) GetAssignedUser() (resp datatypes.User_Customer, err error) {
 }
 func (r *Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
+	params := []interface{}{
+		attachmentId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Ticket) GetAttachedFiles() (resp []datatypes.Ticket_Attachment_File, err error) {
@@ -341,6 +267,10 @@ func (r *Ticket) GetNewUpdatesFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Ticket) GetObject() (resp datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Ticket) GetScheduledActions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -373,8 +303,77 @@ func (r *Ticket) GetTagReferences() (resp []datatypes.Tag_Reference, err error) 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
+	params := []interface{}{
+		closeDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Ticket) GetUpdates() (resp []datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) MarkAsViewed() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveAssignedAgent(agentId *int) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		agentId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err error) {
+	params := []interface{}{
+		emails,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) {
+	params := []interface{}{
+		hardwareId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) {
+	params := []interface{}{
+		guestId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveScheduledAlert() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) RemoveScheduledAutoClose() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) SetTags(tags *string) (resp bool, err error) {
+	params := []interface{}{
+		tags,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) SurveyEligible() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err error) {
+	params := []interface{}{
+		emails,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -395,7 +394,6 @@ func (r *Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_F
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Ticket_Attachment_File) GetTicket() (resp datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -432,16 +430,15 @@ func (r *Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

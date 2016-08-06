@@ -73,6 +73,14 @@ func (r *Billing_Currency_ExchangeRate) GetExchangeRate(to *string, from *string
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Currency_ExchangeRate) GetFundingCurrency() (resp datatypes.Billing_Currency, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Currency_ExchangeRate) GetLocalCurrency() (resp datatypes.Billing_Currency, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Currency_ExchangeRate) GetObject() (resp datatypes.Billing_Currency_ExchangeRate, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -86,15 +94,6 @@ func (r *Billing_Currency_ExchangeRate) GetPrice(price *float64, formatOptions *
 	return
 }
 
-func (r *Billing_Currency_ExchangeRate) GetFundingCurrency() (resp datatypes.Billing_Currency, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Currency_ExchangeRate) GetLocalCurrency() (resp datatypes.Billing_Currency, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Billing_Info struct {
 	Session *Session
 	Options
@@ -102,11 +101,6 @@ type Billing_Info struct {
 
 func (r *Session) GetBillingInfoService() Billing_Info {
 	return Billing_Info{Session: r}
-}
-
-func (r *Billing_Info) GetObject() (resp datatypes.Billing_Info, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Billing_Info) GetAccount() (resp datatypes.Account, err error) {
@@ -133,6 +127,10 @@ func (r *Billing_Info) GetNextBillDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Info) GetObject() (resp datatypes.Billing_Info, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Billing_Invoice struct {
 	Session *Session
@@ -151,55 +149,6 @@ func (r *Billing_Invoice) EmailInvoices(options *datatypes.Container_Billing_Inv
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Invoice) GetExcel() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetObject() (resp datatypes.Billing_Invoice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPdf() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPdfDetailed() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPdfDetailedFilename() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPdfFileSize() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPdfFilename() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPreliminaryExcel() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPreliminaryPdf() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetPreliminaryPdfDetailed() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetXlsFilename() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Billing_Invoice) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -213,6 +162,10 @@ func (r *Billing_Invoice) GetBrandAtInvoiceCreation() (resp datatypes.Brand, err
 	return
 }
 func (r *Billing_Invoice) GetDetailedPdfGeneratedFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetExcel() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -248,11 +201,47 @@ func (r *Billing_Invoice) GetItems() (resp []datatypes.Billing_Invoice_Item, err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Invoice) GetObject() (resp datatypes.Billing_Invoice, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Invoice) GetPayment() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Billing_Invoice) GetPayments() (resp []datatypes.Billing_Invoice_Receivable_Payment, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPdf() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPdfDetailed() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPdfDetailedFilename() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPdfFileSize() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPdfFilename() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPreliminaryExcel() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPreliminaryPdf() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetPreliminaryPdfDetailed() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -276,6 +265,14 @@ func (r *Billing_Invoice) GetTaxType() (resp datatypes.Billing_Invoice_Tax_Type,
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Invoice) GetXlsFilename() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Billing_Invoice_Item struct {
 	Session *Session
@@ -284,11 +281,6 @@ type Billing_Invoice_Item struct {
 
 func (r *Session) GetBillingInvoiceItemService() Billing_Invoice_Item {
 	return Billing_Invoice_Item{Session: r}
-}
-
-func (r *Billing_Invoice_Item) GetObject() (resp datatypes.Billing_Invoice_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Billing_Invoice_Item) GetAssociatedChildren() (resp []datatypes.Billing_Invoice_Item, err error) {
@@ -324,6 +316,10 @@ func (r *Billing_Invoice_Item) GetLocation() (resp datatypes.Location, err error
 	return
 }
 func (r *Billing_Invoice_Item) GetNonZeroAssociatedChildren() (resp []datatypes.Billing_Invoice_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Invoice_Item) GetObject() (resp datatypes.Billing_Invoice_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -446,34 +442,6 @@ func (r *Billing_Item) CancelServiceOnAnniversaryDate() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Item) GetObject() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item) GetServiceBillingItemsByCategory(categoryCode *string, includeZeroRecurringFee *bool) (resp []datatypes.Billing_Item, err error) {
-	params := []interface{}{
-		categoryCode,
-		includeZeroRecurringFee,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item) RemoveAssociationId() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item) SetAssociationId(associatedId *int) (resp bool, err error) {
-	params := []interface{}{
-		associatedId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item) VoidCancelService() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Billing_Item) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -630,6 +598,10 @@ func (r *Billing_Item) GetNonZeroNextInvoiceChildren() (resp []datatypes.Billing
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Item) GetObject() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Item) GetOrderItem() (resp datatypes.Billing_Order_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -662,6 +634,14 @@ func (r *Billing_Item) GetProvisionTransaction() (resp datatypes.Provisioning_Ve
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Item) GetServiceBillingItemsByCategory(categoryCode *string, includeZeroRecurringFee *bool) (resp []datatypes.Billing_Item, err error) {
+	params := []interface{}{
+		categoryCode,
+		includeZeroRecurringFee,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Item) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -671,6 +651,21 @@ func (r *Billing_Item) GetUpgradeItem() (resp datatypes.Product_Item, err error)
 	return
 }
 func (r *Billing_Item) GetUpgradeItems() (resp []datatypes.Product_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item) RemoveAssociationId() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item) SetAssociationId(associatedId *int) (resp bool, err error) {
+	params := []interface{}{
+		associatedId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item) VoidCancelService() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -688,16 +683,15 @@ func (r *Billing_Item_Cancellation_Reason) GetAllCancellationReasons() (resp []d
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Item_Cancellation_Reason) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Billing_Item_Cancellation_Reason) GetBillingCancellationReasonCategory() (resp datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Billing_Item_Cancellation_Reason) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item_Cancellation_Reason) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -719,12 +713,11 @@ func (r *Billing_Item_Cancellation_Reason_Category) GetAllCancellationReasonCate
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Item_Cancellation_Reason_Category) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
+func (r *Billing_Item_Cancellation_Reason_Category) GetBillingCancellationReasons() (resp []datatypes.Billing_Item_Cancellation_Reason, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Billing_Item_Cancellation_Reason_Category) GetBillingCancellationReasons() (resp []datatypes.Billing_Item_Cancellation_Reason, err error) {
+func (r *Billing_Item_Cancellation_Reason_Category) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -745,6 +738,10 @@ func (r *Billing_Item_Cancellation_Request) CreateObject(templateObject *datatyp
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Item_Cancellation_Request) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Item_Cancellation_Request) GetAllCancellationRequests() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -757,7 +754,23 @@ func (r *Billing_Item_Cancellation_Request) GetCancellationCutoffDate(accountId 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Item_Cancellation_Request) GetItems() (resp []datatypes.Billing_Item_Cancellation_Request_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Item_Cancellation_Request) GetObject() (resp datatypes.Billing_Item_Cancellation_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item_Cancellation_Request) GetStatus() (resp datatypes.Billing_Item_Cancellation_Request_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item_Cancellation_Request) GetTicket() (resp datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Item_Cancellation_Request) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -783,27 +796,6 @@ func (r *Billing_Item_Cancellation_Request) Void(closeRelatedTicketFlag *bool) (
 	return
 }
 
-func (r *Billing_Item_Cancellation_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item_Cancellation_Request) GetItems() (resp []datatypes.Billing_Item_Cancellation_Request_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item_Cancellation_Request) GetStatus() (resp datatypes.Billing_Item_Cancellation_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item_Cancellation_Request) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Item_Cancellation_Request) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Billing_Order struct {
 	Session *Session
 	Options
@@ -817,44 +809,11 @@ func (r *Billing_Order) ApproveModifiedOrder() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Billing_Order) GetAllObjects() (resp []datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetObject() (resp datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetOrderStatuses() (resp []datatypes.Container_Billing_Order_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetPdf() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetPdfFilename() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetRecalculatedOrderContainer(message *string, ignoreDiscountsFlag *bool) (resp datatypes.Container_Product_Order, err error) {
-	params := []interface{}{
-		message,
-		ignoreDiscountsFlag,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) GetReceipt() (resp datatypes.Container_Product_Order_Receipt, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order) IsPendingEditApproval() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Billing_Order) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order) GetAllObjects() (resp []datatypes.Billing_Order, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -886,6 +845,10 @@ func (r *Billing_Order) GetItems() (resp []datatypes.Billing_Order_Item, err err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order) GetObject() (resp datatypes.Billing_Order, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order) GetOrderApprovalDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -895,6 +858,10 @@ func (r *Billing_Order) GetOrderNonServerMonthlyAmount() (resp float64, err erro
 	return
 }
 func (r *Billing_Order) GetOrderServerMonthlyAmount() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order) GetOrderStatuses() (resp []datatypes.Container_Billing_Order_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -942,11 +909,31 @@ func (r *Billing_Order) GetPaypalTransactions() (resp []datatypes.Billing_Paymen
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order) GetPdf() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order) GetPdfFilename() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order) GetPresaleEvent() (resp datatypes.Sales_Presale_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Billing_Order) GetQuote() (resp datatypes.Billing_Order_Quote, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order) GetRecalculatedOrderContainer(message *string, ignoreDiscountsFlag *bool) (resp datatypes.Container_Product_Order, err error) {
+	params := []interface{}{
+		message,
+		ignoreDiscountsFlag,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order) GetReceipt() (resp datatypes.Container_Product_Order_Receipt, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -962,6 +949,10 @@ func (r *Billing_Order) GetUserRecord() (resp datatypes.User_Customer, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order) IsPendingEditApproval() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Billing_Order_Cart struct {
 	Session *Session
@@ -972,6 +963,14 @@ func (r *Session) GetBillingOrderCartService() Billing_Order_Cart {
 	return Billing_Order_Cart{Session: r}
 }
 
+func (r *Billing_Order_Cart) Claim(quoteKey *string, quoteId *int) (resp datatypes.Billing_Order_Quote, err error) {
+	params := []interface{}{
+		quoteKey,
+		quoteId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order_Cart) CreateCart(orderData *datatypes.Container_Product_Order) (resp int, err error) {
 	params := []interface{}{
 		orderData,
@@ -980,6 +979,14 @@ func (r *Billing_Order_Cart) CreateCart(orderData *datatypes.Container_Product_O
 	return
 }
 func (r *Billing_Order_Cart) DeleteCart() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) DeleteQuote() (resp datatypes.Billing_Order_Quote, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -994,8 +1001,23 @@ func (r *Billing_Order_Cart) GetObject() (resp datatypes.Billing_Order_Cart, err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order_Cart) GetOrder() (resp datatypes.Billing_Order, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) GetOrdersFromQuote() (resp []datatypes.Billing_Order, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order_Cart) GetPdf() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) GetQuoteByQuoteKey(quoteKey *string) (resp datatypes.Billing_Order_Quote, err error) {
+	params := []interface{}{
+		quoteKey,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Billing_Order_Cart) GetRecalculatedOrderContainer(orderData *datatypes.Container_Product_Order, orderBeingPlacedFlag *bool) (resp datatypes.Container_Product_Order, err error) {
@@ -1006,7 +1028,32 @@ func (r *Billing_Order_Cart) GetRecalculatedOrderContainer(orderData *datatypes.
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order_Cart) PlaceOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Receipt, err error) {
+	params := []interface{}{
+		orderData,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) PlaceQuote(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
+	params := []interface{}{
+		orderData,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) SaveQuote() (resp datatypes.Billing_Order_Quote, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order_Cart) UpdateCart(orderData *datatypes.Container_Product_Order) (resp int, err error) {
+	params := []interface{}{
+		orderData,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Cart) VerifyOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
 		orderData,
 	}
@@ -1021,11 +1068,6 @@ type Billing_Order_Item struct {
 
 func (r *Session) GetBillingOrderItemService() Billing_Order_Item {
 	return Billing_Order_Item{Session: r}
-}
-
-func (r *Billing_Order_Item) GetObject() (resp datatypes.Billing_Order_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Billing_Order_Item) GetBillingItem() (resp datatypes.Billing_Item, err error) {
@@ -1069,6 +1111,10 @@ func (r *Billing_Order_Item) GetLocation() (resp datatypes.Location, err error) 
 	return
 }
 func (r *Billing_Order_Item) GetNextOrderChildren() (resp []datatypes.Billing_Order_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Item) GetObject() (resp datatypes.Billing_Order_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1134,7 +1180,19 @@ func (r *Billing_Order_Quote) DeleteQuote() (resp datatypes.Billing_Order_Quote,
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Billing_Order_Quote) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Billing_Order_Quote) GetObject() (resp datatypes.Billing_Order_Quote, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Quote) GetOrder() (resp datatypes.Billing_Order, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Billing_Order_Quote) GetOrdersFromQuote() (resp []datatypes.Billing_Order, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1180,18 +1238,5 @@ func (r *Billing_Order_Quote) VerifyOrder(orderData *datatypes.Container_Product
 		orderData,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Billing_Order_Quote) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order_Quote) GetOrder() (resp datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Billing_Order_Quote) GetOrdersFromQuote() (resp []datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

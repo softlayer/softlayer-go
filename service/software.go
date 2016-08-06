@@ -27,20 +27,19 @@ func (r *Session) GetSoftwareAccountLicenseService() Software_AccountLicense {
 	return Software_AccountLicense{Session: r}
 }
 
-func (r *Software_AccountLicense) GetAllObjects() (resp []datatypes.Software_AccountLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Software_AccountLicense) GetObject() (resp datatypes.Software_AccountLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Software_AccountLicense) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Software_AccountLicense) GetAllObjects() (resp []datatypes.Software_AccountLicense, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Software_AccountLicense) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_AccountLicense) GetObject() (resp datatypes.Software_AccountLicense, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -58,19 +57,6 @@ func (r *Session) GetSoftwareComponentService() Software_Component {
 	return Software_Component{Session: r}
 }
 
-func (r *Software_Component) GetLicenseFile() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Software_Component) GetObject() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Software_Component) GetVendorSetUpConfiguration() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Software_Component) GetAverageInstallationDuration() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -80,6 +66,14 @@ func (r *Software_Component) GetBillingItem() (resp datatypes.Billing_Item, err 
 	return
 }
 func (r *Software_Component) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component) GetLicenseFile() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component) GetObject() (resp datatypes.Software_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -99,6 +93,10 @@ func (r *Software_Component) GetSoftwareLicense() (resp datatypes.Software_Licen
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Software_Component) GetVendorSetUpConfiguration() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Software_Component) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -113,7 +111,47 @@ func (r *Session) GetSoftwareComponentAntivirusSpywareService() Software_Compone
 	return Software_Component_AntivirusSpyware{Session: r}
 }
 
+func (r *Software_Component_AntivirusSpyware) GetAverageInstallationDuration() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetLicenseFile() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Software_Component_AntivirusSpyware) GetObject() (resp datatypes.Software_Component_AntivirusSpyware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetPasswordHistory() (resp []datatypes.Software_Component_Password_History, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetSoftwareLicense() (resp datatypes.Software_License, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetVendorSetUpConfiguration() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_AntivirusSpyware) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -135,11 +173,51 @@ func (r *Session) GetSoftwareComponentHostIpsService() Software_Component_HostIp
 	return Software_Component_HostIps{Session: r}
 }
 
+func (r *Software_Component_HostIps) GetAverageInstallationDuration() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Software_Component_HostIps) GetCurrentHostIpsPolicies() (resp []datatypes.Container_Software_Component_HostIps_Policy, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Software_Component_HostIps) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetLicenseFile() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Software_Component_HostIps) GetObject() (resp datatypes.Software_Component_HostIps, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetPasswordHistory() (resp []datatypes.Software_Component_Password_History, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetSoftwareLicense() (resp datatypes.Software_License, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetVendorSetUpConfiguration() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Component_HostIps) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -209,7 +287,6 @@ func (r *Software_Component_Password) GetObject() (resp datatypes.Software_Compo
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Software_Component_Password) GetSoftware() (resp datatypes.Software_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -232,11 +309,6 @@ func (r *Software_Description) GetAllObjects() (resp []datatypes.Software_Descri
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Software_Description) GetObject() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Software_Description) GetAttributes() (resp []datatypes.Software_Description_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -254,6 +326,10 @@ func (r *Software_Description) GetFeatures() (resp []datatypes.Software_Descript
 	return
 }
 func (r *Software_Description) GetLatestVersion() (resp []datatypes.Software_Description, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_Description) GetObject() (resp datatypes.Software_Description, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -299,15 +375,6 @@ func (r *Session) GetSoftwareVirtualLicenseService() Software_VirtualLicense {
 	return Software_VirtualLicense{Session: r}
 }
 
-func (r *Software_VirtualLicense) GetLicenseFile() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Software_VirtualLicense) GetObject() (resp datatypes.Software_VirtualLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Software_VirtualLicense) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -321,6 +388,14 @@ func (r *Software_VirtualLicense) GetHostHardware() (resp datatypes.Hardware_Ser
 	return
 }
 func (r *Software_VirtualLicense) GetIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_VirtualLicense) GetLicenseFile() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Software_VirtualLicense) GetObject() (resp datatypes.Software_VirtualLicense, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -46,7 +46,6 @@ func (r *Event_Log) GetAllUserTypes() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Event_Log) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

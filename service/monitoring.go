@@ -68,6 +68,10 @@ func (r *Monitoring_Agent) GetActiveAlarmSubscribers() (resp []datatypes.Notific
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Monitoring_Agent) GetAgentStatus() (resp datatypes.Monitoring_Agent_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Monitoring_Agent) GetAvailableConfigurationTemplates() (resp []datatypes.Configuration_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -78,6 +82,18 @@ func (r *Monitoring_Agent) GetAvailableConfigurationValues(configurationDefiniti
 		configValues,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetConfigurationProfiles() (resp []datatypes.Configuration_Template_Section_Profile, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetConfigurationValues() (resp []datatypes.Monitoring_Agent_Configuration_Value, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Monitoring_Agent) GetEligibleAlarmSubscibers() (resp []datatypes.User_Customer, err error) {
@@ -102,7 +118,27 @@ func (r *Monitoring_Agent) GetGraphData(metricDataTypes []datatypes.Container_Me
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Monitoring_Agent) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Monitoring_Agent) GetObject() (resp datatypes.Monitoring_Agent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetProductItem() (resp datatypes.Product_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetStatusName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -126,43 +162,6 @@ func (r *Monitoring_Agent) SetActiveAlarmSubscriber(userRecordId *int) (resp boo
 		userRecordId,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Monitoring_Agent) GetAgentStatus() (resp datatypes.Monitoring_Agent_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetConfigurationProfiles() (resp []datatypes.Configuration_Template_Section_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetConfigurationValues() (resp []datatypes.Monitoring_Agent_Configuration_Value, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetProductItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetStatusName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Agent) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -193,6 +192,10 @@ func (r *Monitoring_Agent_Configuration_Template_Group) EditObject(templateObjec
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Monitoring_Agent_Configuration_Template_Group) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Monitoring_Agent_Configuration_Template_Group) GetAllObjects() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -204,15 +207,6 @@ func (r *Monitoring_Agent_Configuration_Template_Group) GetConfigurationGroups(p
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Monitoring_Agent_Configuration_Template_Group) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Monitoring_Agent_Configuration_Template_Group) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
 func (r *Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplateReferences() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -222,6 +216,10 @@ func (r *Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplate
 	return
 }
 func (r *Monitoring_Agent_Configuration_Template_Group) GetItem() (resp datatypes.Product_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent_Configuration_Template_Group) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -267,12 +265,11 @@ func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetAllObjects(
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
+func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
+func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -290,11 +287,6 @@ func (r *Session) GetMonitoringAgentConfigurationValueService() Monitoring_Agent
 	return Monitoring_Agent_Configuration_Value{Session: r}
 }
 
-func (r *Monitoring_Agent_Configuration_Value) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Value, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Monitoring_Agent_Configuration_Value) GetDefinition() (resp datatypes.Configuration_Template_Section_Definition, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -304,6 +296,10 @@ func (r *Monitoring_Agent_Configuration_Value) GetMetricDataType() (resp datatyp
 	return
 }
 func (r *Monitoring_Agent_Configuration_Value) GetMonitoringAgent() (resp datatypes.Monitoring_Agent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Agent_Configuration_Value) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Value, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -346,24 +342,19 @@ func (r *Monitoring_Robot) DeployMonitoringAgents(configurationTemplateGroup *da
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Monitoring_Robot) GetAvailableConfigurationGroups() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Robot) GetObject() (resp datatypes.Monitoring_Robot, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Monitoring_Robot) ResetStatus() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Monitoring_Robot) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Monitoring_Robot) GetAvailableConfigurationGroups() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Monitoring_Robot) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Robot) GetObject() (resp datatypes.Monitoring_Robot, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -372,6 +363,10 @@ func (r *Monitoring_Robot) GetRobotStatus() (resp datatypes.Monitoring_Robot_Sta
 	return
 }
 func (r *Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Monitoring_Robot) ResetStatus() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

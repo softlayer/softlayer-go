@@ -34,11 +34,19 @@ func (r *Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Tag) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Tag) GetObject() (resp datatypes.Tag, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -56,14 +64,5 @@ func (r *Tag) SetTags(tags *string, keyName *string, resourceTableId *int) (resp
 		resourceTableId,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Tag) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

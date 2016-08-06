@@ -34,11 +34,6 @@ func (r *Resource_Group) EditObject(templateObject *datatypes.Resource_Group) (r
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Resource_Group) GetObject() (resp datatypes.Resource_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Resource_Group) GetAncestorGroups() (resp []datatypes.Resource_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -52,6 +47,10 @@ func (r *Resource_Group) GetHardwareMembers() (resp []datatypes.Resource_Group_M
 	return
 }
 func (r *Resource_Group) GetMembers() (resp []datatypes.Resource_Group_Member, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Resource_Group) GetObject() (resp datatypes.Resource_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -85,16 +84,15 @@ func (r *Resource_Group_Template) GetAllObjects() (resp []datatypes.Resource_Gro
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Resource_Group_Template) GetObject() (resp datatypes.Resource_Group_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Resource_Group_Template) GetChildren() (resp []datatypes.Resource_Group_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Resource_Group_Template) GetMembers() (resp []datatypes.Resource_Group_Template_Member, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Resource_Group_Template) GetObject() (resp datatypes.Resource_Group_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

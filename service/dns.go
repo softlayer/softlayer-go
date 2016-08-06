@@ -118,6 +118,10 @@ func (r *Dns_Domain) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Domain) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain, err error) {
 	params := []interface{}{
 		name,
@@ -125,20 +129,11 @@ func (r *Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain,
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Domain) GetZoneFileContents() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Dns_Domain) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
 func (r *Dns_Domain) GetManagedResourceFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -147,6 +142,10 @@ func (r *Dns_Domain) GetResourceRecords() (resp []datatypes.Dns_Domain_ResourceR
 	return
 }
 func (r *Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Domain) GetZoneFileContents() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -174,6 +173,10 @@ func (r *Dns_Domain_Registration) DeleteRegisteredNameserver(nameserver *string)
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Domain_Registration) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Domain_Registration) GetAuthenticationCode() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -183,6 +186,10 @@ func (r *Dns_Domain_Registration) GetDomainInformation() (resp datatypes.Contain
 	return
 }
 func (r *Dns_Domain_Registration) GetDomainNameservers() (resp []datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Domain_Registration) GetDomainRegistrationStatus() (resp datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -201,7 +208,15 @@ func (r *Dns_Domain_Registration) GetRegisteredNameserver() (resp datatypes.Cont
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Domain_Registration) GetRegistrantVerificationStatus() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Domain_Registration) GetRegistrantVerificationStatusDetail() (resp datatypes.Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Domain_Registration) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -274,23 +289,6 @@ func (r *Dns_Domain_Registration) SetAuthenticationCode(authenticationCode *stri
 	return
 }
 func (r *Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Dns_Domain_Registration) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Domain_Registration) GetDomainRegistrationStatus() (resp datatypes.Dns_Domain_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Domain_Registration) GetRegistrantVerificationStatus() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Domain_Registration) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -379,12 +377,11 @@ func (r *Dns_Domain_ResourceRecord) EditObjects(templateObjects []datatypes.Dns_
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r *Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err error) {
+func (r *Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -435,6 +432,10 @@ func (r *Dns_Domain_ResourceRecord_MxType) EditObjects(templateObjects []datatyp
 		templateObjects,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Domain_ResourceRecord_MxType) GetDomain() (resp datatypes.Dns_Domain, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
@@ -490,6 +491,10 @@ func (r *Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []dataty
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Domain_ResourceRecord_SrvType) GetDomain() (resp datatypes.Dns_Domain, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -533,24 +538,15 @@ func (r *Dns_Secondary) EditObject(templateObject *datatypes.Dns_Secondary) (res
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Secondary) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Secondary, err error) {
 	params := []interface{}{
 		name,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Secondary) GetObject() (resp datatypes.Dns_Secondary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Dns_Secondary) TransferNow() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Dns_Secondary) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
@@ -561,7 +557,15 @@ func (r *Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err er
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Dns_Secondary) GetObject() (resp datatypes.Dns_Secondary, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Dns_Secondary) GetStatus() (resp datatypes.Dns_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Dns_Secondary) TransferNow() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

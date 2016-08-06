@@ -64,11 +64,6 @@ func (r *Network) GetAllObjects() (resp []datatypes.Network, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network) GetObject() (resp datatypes.Network, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network) GetCidr() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -82,6 +77,10 @@ func (r *Network) GetNetworkIdentifier() (resp string, err error) {
 	return
 }
 func (r *Network) GetNotes() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network) GetObject() (resp datatypes.Network, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -127,6 +126,14 @@ func (r *Network_Application_Delivery_Controller) EditObject(templateObject *dat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Application_Delivery_Controller) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -145,70 +152,19 @@ func (r *Network_Application_Delivery_Controller) GetBandwidthImageByDate(startD
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller) GetCustomBandwidthDataByDate(graphData *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
-	params := []interface{}{
-		graphData,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) GetLiveLoadBalancerServiceGraphImage(service *datatypes.Network_LoadBalancer_Service, graphType *string, metric *string) (resp []byte, err error) {
-	params := []interface{}{
-		service,
-		graphType,
-		metric,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) GetObject() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) RestoreBaseConfiguration() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) RestoreConfiguration(configurationHistoryId *int) (resp bool, err error) {
-	params := []interface{}{
-		configurationHistoryId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) SaveCurrentConfiguration(notes *string) (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
-	params := []interface{}{
-		notes,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) UpdateLiveLoadBalancer(loadBalancer *datatypes.Network_LoadBalancer_VirtualIpAddress) (resp bool, err error) {
-	params := []interface{}{
-		loadBalancer,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) UpdateNetScalerLicense() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Application_Delivery_Controller) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
 func (r *Network_Application_Delivery_Controller) GetBillingItem() (resp datatypes.Billing_Item_Network_Application_Delivery_Controller, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Application_Delivery_Controller) GetConfigurationHistory() (resp []datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) GetCustomBandwidthDataByDate(graphData *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
+	params := []interface{}{
+		graphData,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Application_Delivery_Controller) GetDatacenter() (resp datatypes.Location, err error) {
@@ -221,6 +177,15 @@ func (r *Network_Application_Delivery_Controller) GetDescription() (resp string,
 }
 func (r *Network_Application_Delivery_Controller) GetLicenseExpirationDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) GetLiveLoadBalancerServiceGraphImage(service *datatypes.Network_LoadBalancer_Service, graphType *string, metric *string) (resp []byte, err error) {
+	params := []interface{}{
+		service,
+		graphType,
+		metric,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Application_Delivery_Controller) GetLoadBalancers() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
@@ -240,6 +205,10 @@ func (r *Network_Application_Delivery_Controller) GetNetworkVlan() (resp datatyp
 	return
 }
 func (r *Network_Application_Delivery_Controller) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) GetObject() (resp datatypes.Network_Application_Delivery_Controller, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -275,6 +244,35 @@ func (r *Network_Application_Delivery_Controller) GetVirtualIpAddresses() (resp 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Application_Delivery_Controller) RestoreBaseConfiguration() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) RestoreConfiguration(configurationHistoryId *int) (resp bool, err error) {
+	params := []interface{}{
+		configurationHistoryId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) SaveCurrentConfiguration(notes *string) (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
+	params := []interface{}{
+		notes,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) UpdateLiveLoadBalancer(loadBalancer *datatypes.Network_LoadBalancer_VirtualIpAddress) (resp bool, err error) {
+	params := []interface{}{
+		loadBalancer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller) UpdateNetScalerLicense() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Application_Delivery_Controller_Configuration_History struct {
 	Session *Session
@@ -289,12 +287,11 @@ func (r *Network_Application_Delivery_Controller_Configuration_History) DeleteOb
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller_Configuration_History) GetObject() (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
+func (r *Network_Application_Delivery_Controller_Configuration_History) GetController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Application_Delivery_Controller_Configuration_History) GetController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
+func (r *Network_Application_Delivery_Controller_Configuration_History) GetObject() (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -308,12 +305,11 @@ func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttri
 	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{Session: r}
 }
 
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetHealthCheck() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetHealthCheck() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -349,12 +345,11 @@ func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheck
 	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check{Session: r}
 }
 
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAttributes() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAttributes() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -446,15 +441,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetGraphI
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleStatus() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroupReferences() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -475,7 +461,15 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetIpAddr
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) GetServiceGroup() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleStatus() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -501,11 +495,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Get
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) KickAllConnections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetRoutingMethod() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -530,6 +519,10 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Get
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) KickAllConnections() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Session *Session
@@ -547,31 +540,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportCiphers() (resp []datatypes.Security_SecureTransportCipher, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportProtocols() (resp []datatypes.Security_SecureTransportProtocol, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StartSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StopSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -581,6 +549,14 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 	return
 }
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportCiphers() (resp []datatypes.Security_SecureTransportCipher, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportProtocols() (resp []datatypes.Security_SecureTransportProtocol, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -608,6 +584,10 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportCiphers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -625,6 +605,18 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 	return
 }
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetVirtualServers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StartSsl() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StopSsl() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -646,15 +638,6 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Get
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StartSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StopSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetRoutingMethod() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -668,6 +651,14 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Get
 	return
 }
 func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StartSsl() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StopSsl() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -696,11 +687,6 @@ func (r *Network_Backbone) GetGraphImage() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Backbone) GetHealth() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -710,6 +696,10 @@ func (r *Network_Backbone) GetLocation() (resp datatypes.Location, err error) {
 	return
 }
 func (r *Network_Backbone) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -727,6 +717,10 @@ func (r *Network_Backbone_Location_Dependent) GetAllObjects() (resp []datatypes.
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Backbone_Location_Dependent) GetDependentLocation() (resp datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Backbone_Location_Dependent) GetObject() (resp datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -736,11 +730,6 @@ func (r *Network_Backbone_Location_Dependent) GetSourceDependentsByName(location
 		locationName,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Backbone_Location_Dependent) GetDependentLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Backbone_Location_Dependent) GetSourceLocation() (resp datatypes.Location, err error) {
@@ -769,6 +758,22 @@ func (r *Network_Bandwidth_Version1_Allotment) EditObject(templateObject *dataty
 		templateObject,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetActiveDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
@@ -805,11 +810,43 @@ func (r *Network_Bandwidth_Version1_Allotment) GetBandwidthImage(networkType *st
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Bandwidth_Version1_Allotment) GetBareMetalInstances() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicUsageTotal() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Bandwidth_Version1_Allotment) GetCustomBandwidthDataByDate(graphData *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		graphData,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
@@ -827,7 +864,71 @@ func (r *Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthUse(startDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetLocationGroup() (resp datatypes.Location_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetManagedBareMetalInstances() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetManagedHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_VirtualDedicatedRack, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetMetricTrackingObjectId() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Bandwidth_Version1_Allotment) GetObject() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetOverBandwidthAllocationFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetPrivateNetworkOnlyHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetTotalBandwidthAllocated() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Bandwidth_Version1_Allotment) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -887,119 +988,6 @@ func (r *Network_Bandwidth_Version1_Allotment) VoidPendingVdrCancellation() (res
 	return
 }
 
-func (r *Network_Bandwidth_Version1_Allotment) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetActiveDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBareMetalInstances() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicUsageTotal() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetInboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetLocationGroup() (resp datatypes.Location_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetManagedBareMetalInstances() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetManagedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_VirtualDedicatedRack, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetMetricTrackingObjectId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetPrivateNetworkOnlyHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetTotalBandwidthAllocated() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Bandwidth_Version1_Allotment) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Component struct {
 	Session *Session
 	Options
@@ -1020,31 +1008,15 @@ func (r *Network_Component) ClearNetworkVlanTrunks() (resp []datatypes.Network_V
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Component) GetActiveCommand() (resp datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Component) GetCustomBandwidthDataByDate(graphData *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		graphData,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component) GetObject() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component) GetPortStatistics() (resp datatypes.Container_Network_Port_Statistic, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		networkVlans,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Component) GetActiveCommand() (resp datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Component) GetDownlinkComponent() (resp datatypes.Network_Component, err error) {
@@ -1103,6 +1075,14 @@ func (r *Network_Component) GetNetworkVlanTrunks() (resp []datatypes.Network_Com
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Component) GetObject() (resp datatypes.Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Component) GetPortStatistics() (resp datatypes.Container_Network_Port_Statistic, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Component) GetPrimaryIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1151,6 +1131,13 @@ func (r *Network_Component) GetUplinkDuplexMode() (resp datatypes.Network_Compon
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		networkVlans,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Component_Firewall struct {
 	Session *Session
@@ -1159,11 +1146,6 @@ type Network_Component_Firewall struct {
 
 func (r *Session) GetNetworkComponentFirewallService() Network_Component_Firewall {
 	return Network_Component_Firewall{Session: r}
-}
-
-func (r *Network_Component_Firewall) GetObject() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Network_Component_Firewall) GetApplyServerRuleSubnets() (resp []datatypes.Network_Subnet, err error) {
@@ -1183,6 +1165,10 @@ func (r *Network_Component_Firewall) GetNetworkComponent() (resp datatypes.Netwo
 	return
 }
 func (r *Network_Component_Firewall) GetNetworkFirewallUpdateRequest() (resp []datatypes.Network_Firewall_Update_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Component_Firewall) GetObject() (resp datatypes.Network_Component_Firewall, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1267,6 +1253,10 @@ func (r *Network_ContentDelivery_Account) EnableLogging() (resp bool, err error)
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_ContentDelivery_Account) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthData(beginDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Container_Network_ContentDelivery_Bandwidth_PointsOfPresence_Summary, err error) {
 	params := []interface{}{
 		beginDateTime,
@@ -1283,6 +1273,14 @@ func (r *Network_ContentDelivery_Account) GetAllPopsBandwidthImage(title *string
 		unit,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetAssociatedCdnAccountId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetAuthenticationIpAddresses() (resp []datatypes.Network_ContentDelivery_Authentication_Address, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_ContentDelivery_Account) GetAuthenticationServiceEndpoints() (resp []datatypes.Container_Network_ContentDelivery_Authentication_ServiceEndpoint, err error) {
@@ -1315,11 +1313,31 @@ func (r *Network_ContentDelivery_Account) GetBandwidthImage(title *string, begin
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_ContentDelivery_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetCdnAccountName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetCdnAccountNote() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetCdnSolutionName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_ContentDelivery_Account) GetCustomerOrigins(mediaType *string) (resp []datatypes.Container_Network_ContentDelivery_OriginPull_Mapping, err error) {
 	params := []interface{}{
 		mediaType,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetDependantServiceFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_ContentDelivery_Account) GetDirectoryInformation(directoryName *string) (resp []datatypes.Container_Network_Directory_Listing, err error) {
@@ -1349,6 +1367,14 @@ func (r *Network_ContentDelivery_Account) GetFtpAttributes() (resp datatypes.Con
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_ContentDelivery_Account) GetLegacyCdnFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetLogEnabledFlag() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_ContentDelivery_Account) GetMediaUrls() (resp []datatypes.Container_Network_ContentDelivery_SupportedProtocol, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1373,11 +1399,23 @@ func (r *Network_ContentDelivery_Account) GetPopNames() (resp []datatypes.Contai
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_ContentDelivery_Account) GetProviderPortalAccessFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_ContentDelivery_Account) GetProviderPortalCredentials() (resp datatypes.Container_Network_Authentication_Data, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_ContentDelivery_Account) GetStatus() (resp datatypes.Network_ContentDelivery_Account_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_ContentDelivery_Account) GetTokenAuthenticationDirectories() (resp []datatypes.Container_Network_Directory_Listing, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_ContentDelivery_Account) GetTokenAuthenticationEnabledFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1450,59 +1488,6 @@ func (r *Network_ContentDelivery_Account) UploadStream(source *datatypes.Contain
 		target,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_ContentDelivery_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetAssociatedCdnAccountId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetAuthenticationIpAddresses() (resp []datatypes.Network_ContentDelivery_Authentication_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetCdnAccountName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetCdnAccountNote() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetCdnSolutionName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetDependantServiceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetLegacyCdnFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetLogEnabledFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetProviderPortalAccessFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetStatus() (resp datatypes.Network_ContentDelivery_Account_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_ContentDelivery_Account) GetTokenAuthenticationEnabledFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1631,12 +1616,11 @@ func (r *Network_Customer_Subnet) CreateObject(templateObject *datatypes.Network
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Subnet, err error) {
+func (r *Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Customer_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Customer_Subnet_IpAddress, err error) {
+func (r *Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1650,16 +1634,15 @@ func (r *Session) GetNetworkFirewallAccessControlListService() Network_Firewall_
 	return Network_Firewall_AccessControlList{Session: r}
 }
 
-func (r *Network_Firewall_AccessControlList) GetObject() (resp datatypes.Network_Firewall_AccessControlList, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Firewall_AccessControlList) GetNetworkFirewallUpdateRequests() (resp []datatypes.Network_Firewall_Update_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Firewall_AccessControlList) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Firewall_AccessControlList) GetObject() (resp datatypes.Network_Firewall_AccessControlList, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1677,6 +1660,14 @@ func (r *Session) GetNetworkFirewallInterfaceService() Network_Firewall_Interfac
 	return Network_Firewall_Interface{Session: r}
 }
 
+func (r *Network_Firewall_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Firewall_Interface) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Firewall_Interface) GetObject() (resp datatypes.Network_Firewall_Interface, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1691,16 +1682,15 @@ func (r *Session) GetNetworkFirewallModuleContextInterfaceService() Network_Fire
 	return Network_Firewall_Module_Context_Interface{Session: r}
 }
 
-func (r *Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.Network_Firewall_Module_Context_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Firewall_Module_Context_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Firewall_Module_Context_Interface) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.Network_Firewall_Module_Context_Interface, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1722,7 +1712,6 @@ func (r *Network_Firewall_Template) GetObject() (resp datatypes.Network_Firewall
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewall_Template_Rule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1744,24 +1733,11 @@ func (r *Network_Firewall_Update_Request) CreateObject(templateObject *datatypes
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Firewall_Update_Request) GetFirewallUpdateRequestRuleAttributes() (resp datatypes.Container_Utility_Network_Firewall_Rule_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Firewall_Update_Request) GetObject() (resp datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Network_Component_Firewall_Rule, note *string) (resp bool, err error) {
-	params := []interface{}{
-		fwRule,
-		note,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Firewall_Update_Request) GetAuthorizingUser() (resp datatypes.User_Interface, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Firewall_Update_Request) GetFirewallUpdateRequestRuleAttributes() (resp datatypes.Container_Utility_Network_Firewall_Rule_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1777,8 +1753,20 @@ func (r *Network_Firewall_Update_Request) GetNetworkComponentFirewall() (resp da
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Firewall_Update_Request) GetObject() (resp datatypes.Network_Firewall_Update_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Firewall_Update_Request) GetRules() (resp []datatypes.Network_Firewall_Update_Request_Rule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Network_Component_Firewall_Rule, note *string) (resp bool, err error) {
+	params := []interface{}{
+		fwRule,
+		note,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1798,6 +1786,10 @@ func (r *Network_Firewall_Update_Request_Rule) CreateObject(templateObject *data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Firewall_Update_Request_Rule) GetFirewallUpdateRequest() (resp datatypes.Network_Firewall_Update_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Firewall_Update_Request_Rule) GetObject() (resp datatypes.Network_Firewall_Update_Request_Rule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1810,11 +1802,6 @@ func (r *Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netw
 		applyToAclId,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Firewall_Update_Request_Rule) GetFirewallUpdateRequest() (resp datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1854,28 +1841,6 @@ func (r *Network_Gateway) EditObject(templateObject *datatypes.Network_Gateway) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Gateway) GetObject() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Gateway) GetPossibleInsideVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Gateway) UnbypassAllVlans() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		vlans,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1885,6 +1850,14 @@ func (r *Network_Gateway) GetInsideVlans() (resp []datatypes.Network_Gateway_Vla
 	return
 }
 func (r *Network_Gateway) GetMembers() (resp []datatypes.Network_Gateway_Member, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Gateway) GetObject() (resp datatypes.Network_Gateway, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Gateway) GetPossibleInsideVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1912,6 +1885,19 @@ func (r *Network_Gateway) GetStatus() (resp datatypes.Network_Gateway_Status, er
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Gateway) UnbypassAllVlans() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		vlans,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Gateway_Member struct {
 	Session *Session
@@ -1936,16 +1922,15 @@ func (r *Network_Gateway_Member) CreateObjects(templateObjects []datatypes.Netwo
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Gateway_Member) GetHardware() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2004,21 +1989,20 @@ func (r *Network_Gateway_Vlan) DeleteObjects(templateObjects []datatypes.Network
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Gateway_Vlan) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Gateway_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Gateway_Vlan) GetObject() (resp datatypes.Network_Gateway_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Gateway_Vlan) Unbypass() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Gateway_Vlan) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Gateway_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2043,15 +2027,6 @@ func (r *Network_LoadBalancer_Global_Account) EditObject(templateObject *datatyp
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_LoadBalancer_Global_Account) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2072,6 +2047,14 @@ func (r *Network_LoadBalancer_Global_Account) GetManagedResourceFlag() (resp boo
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_LoadBalancer_Global_Host struct {
 	Session *Session
@@ -2086,12 +2069,11 @@ func (r *Network_LoadBalancer_Global_Host) DeleteObject() (resp bool, err error)
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_LoadBalancer_Global_Host, err error) {
+func (r *Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
+func (r *Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_LoadBalancer_Global_Host, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2125,12 +2107,11 @@ func (r *Network_LoadBalancer_Service) GetStatus() (resp []datatypes.Container_N
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_LoadBalancer_Service) ResetPeakConnections() (resp bool, err error) {
+func (r *Network_LoadBalancer_Service) GetVip() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_LoadBalancer_Service) GetVip() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
+func (r *Network_LoadBalancer_Service) ResetPeakConnections() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2159,19 +2140,6 @@ func (r *Network_LoadBalancer_VirtualIpAddress) Enable() (resp bool, err error) 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_LoadBalancer_VirtualIpAddress) KickAllConnections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_LoadBalancer_VirtualIpAddress) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2188,7 +2156,19 @@ func (r *Network_LoadBalancer_VirtualIpAddress) GetManagedResourceFlag() (resp b
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_LoadBalancer_VirtualIpAddress) GetServices() (resp []datatypes.Network_LoadBalancer_Service, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_LoadBalancer_VirtualIpAddress) KickAllConnections() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2211,6 +2191,10 @@ func (r *Network_Media_Transcode_Account) CreateTranscodeJob(newJob *datatypes.N
 		newJob,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Media_Transcode_Account) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Media_Transcode_Account) GetDirectoryInformation(directoryName *string, extensionFilter *string) (resp []datatypes.Container_Network_Directory_Listing, err error) {
@@ -2247,11 +2231,6 @@ func (r *Network_Media_Transcode_Account) GetPresets() (resp []datatypes.Contain
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Media_Transcode_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
 func (r *Network_Media_Transcode_Account) GetTranscodeJobs() (resp []datatypes.Network_Media_Transcode_Job, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2273,12 +2252,11 @@ func (r *Network_Media_Transcode_Job) CreateObject(templateObject *datatypes.Net
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Media_Transcode_Job) GetObject() (resp datatypes.Network_Media_Transcode_Job, err error) {
+func (r *Network_Media_Transcode_Job) GetHistory() (resp []datatypes.Network_Media_Transcode_Job_History, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Media_Transcode_Job) GetHistory() (resp []datatypes.Network_Media_Transcode_Job_History, err error) {
+func (r *Network_Media_Transcode_Job) GetObject() (resp datatypes.Network_Media_Transcode_Job, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2333,16 +2311,15 @@ func (r *Network_Message_Delivery) EditObject(templateObject *datatypes.Network_
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Message_Delivery) GetObject() (resp datatypes.Network_Message_Delivery, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Message_Delivery) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Message_Delivery) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery) GetObject() (resp datatypes.Network_Message_Delivery, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2383,7 +2360,18 @@ func (r *Network_Message_Delivery_Email_Sendgrid) DisableSmtpAccess() (resp bool
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Message_Delivery_Email_Sendgrid) EditObject(templateObject *datatypes.Network_Message_Delivery) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Message_Delivery_Email_Sendgrid) EnableSmtpAccess() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery_Email_Sendgrid) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2391,7 +2379,15 @@ func (r *Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp dat
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Message_Delivery_Email_Sendgrid) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Message_Delivery_Email_Sendgrid) GetCategoryList() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery_Email_Sendgrid) GetEmailAddress() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2403,6 +2399,10 @@ func (r *Network_Message_Delivery_Email_Sendgrid) GetEmailList(list *string) (re
 	return
 }
 func (r *Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Network_Message_Delivery_Email_Sendgrid, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2418,6 +2418,14 @@ func (r *Network_Message_Delivery_Email_Sendgrid) GetStatisticsGraph(options *da
 		options,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery_Email_Sendgrid) GetType() (resp datatypes.Network_Message_Delivery_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Delivery_Email_Sendgrid) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Message_Delivery_Email_Sendgrid) GetVendorPortalUrl() (resp string, err error) {
@@ -2439,15 +2447,6 @@ func (r *Network_Message_Delivery_Email_Sendgrid) UpdateEmailAddress(emailAddres
 	return
 }
 
-func (r *Network_Message_Delivery_Email_Sendgrid) GetEmailAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Message_Queue struct {
 	Session *Session
 	Options
@@ -2455,11 +2454,6 @@ type Network_Message_Queue struct {
 
 func (r *Session) GetNetworkMessageQueueService() Network_Message_Queue {
 	return Network_Message_Queue{Session: r}
-}
-
-func (r *Network_Message_Queue) GetObject() (resp datatypes.Network_Message_Queue, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Network_Message_Queue) GetAccount() (resp datatypes.Account, err error) {
@@ -2471,6 +2465,10 @@ func (r *Network_Message_Queue) GetBillingItem() (resp datatypes.Billing_Item, e
 	return
 }
 func (r *Network_Message_Queue) GetNodes() (resp []datatypes.Network_Message_Queue_Node, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Queue) GetObject() (resp datatypes.Network_Message_Queue, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2506,7 +2504,19 @@ func (r *Network_Message_Queue_Node) GetAllUsers() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Message_Queue_Node) GetMessageQueue() (resp datatypes.Network_Message_Queue, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Queue_Node) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Message_Queue_Node) GetObject() (resp datatypes.Network_Message_Queue_Node, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Message_Queue_Node) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2523,19 +2533,6 @@ func (r *Network_Message_Queue_Node) GetUsageGraph(graphData *datatypes.Containe
 		graphData,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Message_Queue_Node) GetMessageQueue() (resp datatypes.Network_Message_Queue, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Message_Queue_Node) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Message_Queue_Node) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2634,16 +2631,15 @@ func (r *Network_Monitor_Version1_Query_Host) FindByHardwareId(hardwareId *int) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Monitor_Version1_Query_Host) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Monitor_Version1_Query_Host) GetHardware() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Monitor_Version1_Query_Host) GetLastResult() (resp datatypes.Network_Monitor_Version1_Query_Result, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Monitor_Version1_Query_Host) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2673,12 +2669,11 @@ func (r *Network_Monitor_Version1_Query_Host_Stratum) GetAllResponseTypes() (res
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Monitor_Version1_Query_Host_Stratum) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
+func (r *Network_Monitor_Version1_Query_Host_Stratum) GetHardware() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Monitor_Version1_Query_Host_Stratum) GetHardware() (resp datatypes.Hardware, err error) {
+func (r *Network_Monitor_Version1_Query_Host_Stratum) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2725,15 +2720,6 @@ func (r *Network_Security_Scanner_Request) CreateObject(templateObject *datatype
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Security_Scanner_Request) GetObject() (resp datatypes.Network_Security_Scanner_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Security_Scanner_Request) GetReport() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Security_Scanner_Request) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2743,6 +2729,14 @@ func (r *Network_Security_Scanner_Request) GetGuest() (resp datatypes.Virtual_Gu
 	return
 }
 func (r *Network_Security_Scanner_Request) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Security_Scanner_Request) GetObject() (resp datatypes.Network_Security_Scanner_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Security_Scanner_Request) GetReport() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2786,7 +2780,6 @@ func (r *Network_Service_Vpn_Overrides) GetObject() (resp datatypes.Network_Serv
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Service_Vpn_Overrides) GetSubnet() (resp datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3062,6 +3055,18 @@ func (r *Network_Storage) FailoverToReplicant(replicantId *int) (resp bool, err 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAccountPassword() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3102,7 +3107,47 @@ func (r *Network_Storage) GetAllowableVirtualGuests(filterHostname *string) (res
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetAllowedHostsLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3114,11 +3159,31 @@ func (r *Network_Storage) GetByUsername(username *string, typ *string) (resp []d
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Storage) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetCreationScheduleId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3162,7 +3227,43 @@ func (r *Network_Storage) GetGraph(startDate *datatypes.Time, endDate *datatypes
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetIops() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetLunId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetMountableFlag() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3181,6 +3282,34 @@ func (r *Network_Storage) GetObjectsByCredential(credentialObject *datatypes.Net
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetOsTypeId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetParentVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetRecycleBinFileByIdentifier(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		fileId,
@@ -3192,7 +3321,75 @@ func (r *Network_Storage) GetRemainingAllowedHosts() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetReplicationStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetServiceResourceBackendIpAddress() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetServiceResourceName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshotCapacityGb() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshotCreationTimestamp() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshotSizeBytes() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshotSpaceAvailable() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3200,7 +3397,51 @@ func (r *Network_Storage) GetStorageGroupsNetworkConnectionDetails() (resp []dat
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage) GetStorageTierLevel() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetTotalBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetUsageNotification() (resp datatypes.Notification, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetVendorName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetVolumeStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetWebccAccount() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3382,255 +3623,6 @@ func (r *Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Enti
 	return
 }
 
-func (r *Network_Storage) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAccountPassword() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetCreationScheduleId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetIops() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetLunId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetMountableFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetOsTypeId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetParentVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetReplicationStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetServiceResourceBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetServiceResourceName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshotCapacityGb() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshotCreationTimestamp() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshotSizeBytes() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshotSpaceAvailable() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetStorageTierLevel() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetTotalBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetUsageNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetVendorName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetVolumeStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetWebccAccount() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Storage_Allowed_Host struct {
 	Session *Session
 	Options
@@ -3658,18 +3650,6 @@ func (r *Network_Storage_Allowed_Host) EditObject(templateObject *datatypes.Netw
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage_Allowed_Host) GetObject() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (resp bool, err error) {
-	params := []interface{}{
-		password,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Storage_Allowed_Host) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3686,6 +3666,17 @@ func (r *Network_Storage_Allowed_Host) GetCredential() (resp datatypes.Network_S
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Allowed_Host) GetObject() (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Storage_Allowed_Host_Hardware struct {
 	Session *Session
@@ -3696,13 +3687,53 @@ func (r *Session) GetNetworkStorageAllowedHostHardwareService() Network_Storage_
 	return Network_Storage_Allowed_Host_Hardware{Session: r}
 }
 
+func (r *Network_Storage_Allowed_Host_Hardware) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Allowed_Host_Hardware) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Storage_Allowed_Host_Hardware) GetResource() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3715,13 +3746,53 @@ func (r *Session) GetNetworkStorageAllowedHostIpAddressService() Network_Storage
 	return Network_Storage_Allowed_Host_IpAddress{Session: r}
 }
 
+func (r *Network_Storage_Allowed_Host_IpAddress) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Allowed_Host_IpAddress) GetObject() (resp datatypes.Network_Storage_Allowed_Host_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Storage_Allowed_Host_IpAddress) GetResource() (resp datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3734,13 +3805,53 @@ func (r *Session) GetNetworkStorageAllowedHostSubnetService() Network_Storage_Al
 	return Network_Storage_Allowed_Host_Subnet{Session: r}
 }
 
+func (r *Network_Storage_Allowed_Host_Subnet) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Allowed_Host_Subnet) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Storage_Allowed_Host_Subnet) GetResource() (resp datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3753,13 +3864,53 @@ func (r *Session) GetNetworkStorageAllowedHostVirtualGuestService() Network_Stor
 	return Network_Storage_Allowed_Host_VirtualGuest{Session: r}
 }
 
+func (r *Network_Storage_Allowed_Host_VirtualGuest) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Allowed_Host_VirtualGuest) GetObject() (resp datatypes.Network_Storage_Allowed_Host_VirtualGuest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Network_Storage_Allowed_Host_VirtualGuest) GetResource() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Allowed_Host_VirtualGuest) SetCredentialPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3772,11 +3923,444 @@ func (r *Session) GetNetworkStorageBackupEvaultService() Network_Storage_Backup_
 	return Network_Storage_Backup_Evault{Session: r}
 }
 
+func (r *Network_Storage_Backup_Evault) AllowAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromHost(typeClassName *string, hostId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		typeClassName,
+		hostId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromHostList(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromVirtualGuest(virtualGuestObjectTemplate *datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromVirtualGuest(virtualGuestObjectTemplate *datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AllowAccessToReplicantFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AssignCredential(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) AssignNewCredential(typ *string) (resp datatypes.Network_Storage_Credential, err error) {
+	params := []interface{}{
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) ChangePassword(username *string, currentPassword *string, newPassword *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+		currentPassword,
+		newPassword,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) CollectBandwidth(typ *string, startDate *datatypes.Time, endDate *datatypes.Time) (resp uint, err error) {
+	params := []interface{}{
+		typ,
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) CollectBytesUsed() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) CreateFolder(folder *string) (resp bool, err error) {
+	params := []interface{}{
+		folder,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) CreateSnapshot(notes *string) (resp datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		notes,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DeleteAllFiles() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DeleteFile(fileId *string) (resp bool, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DeleteFiles(fileIds []string) (resp bool, err error) {
+	params := []interface{}{
+		fileIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DeleteFolder(folder *string) (resp bool, err error) {
+	params := []interface{}{
+		folder,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Backup_Evault) DeleteTasks(tasks []int) (resp bool, err error) {
 	params := []interface{}{
 		tasks,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DisableSnapshots(scheduleType *string) (resp bool, err error) {
+	params := []interface{}{
+		scheduleType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) DownloadFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) EditCredential(username *string, newPassword *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+		newPassword,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) EditObject(templateObject *datatypes.Network_Storage) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) EnableSnapshots(scheduleType *string, retentionCount *int, minute *int, hour *int, dayOfWeek *string) (resp bool, err error) {
+	params := []interface{}{
+		scheduleType,
+		retentionCount,
+		minute,
+		hour,
+		dayOfWeek,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) FailbackFromReplicant() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) FailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAccountPassword() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllFilesByFilter(filter *datatypes.Container_Utility_File_Entity) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		filter,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowableHardware(filterHostname *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowableIpAddresses(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		subnetId,
+		filterIpAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowableSubnets(filterNetworkIdentifier *string) (resp []datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		filterNetworkIdentifier,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowableVirtualGuests(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedHostsLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetByUsername(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		username,
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetCreationScheduleId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFileByIdentifier(identifier *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		identifier,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFileCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFileList(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		folder,
+		path,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFilePendingDeleteCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetGraph(startDate *datatypes.Time, endDate *datatypes.Time, typ *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Storage_Backup_Evault) GetHardwareWithEvaultFirst(option *string, exactMatch *bool, criteria *string, mode *string) (resp []datatypes.Hardware, err error) {
@@ -3789,12 +4373,229 @@ func (r *Network_Storage_Backup_Evault) GetHardwareWithEvaultFirst(option *strin
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Backup_Evault) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetLunId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetMountableFlag() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Backup_Evault) GetObject() (resp datatypes.Network_Storage_Backup_Evault, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetObjectsByCredential(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		credentialObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetOsTypeId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetParentVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetRecycleBinFileByIdentifier(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetRemainingAllowedHosts() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetReplicationStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetServiceResourceBackendIpAddress() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetServiceResourceName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotCapacityGb() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotCreationTimestamp() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotSizeBytes() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotSpaceAvailable() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetStorageTierLevel() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetTotalBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetUsageNotification() (resp datatypes.Notification, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetVendorName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetVolumeStatus() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Storage_Backup_Evault) GetWebCCAuthenticationDetails() (resp datatypes.Container_Network_Storage_Backup_Evault_WebCc_Authentication_Details, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetWebccAccount() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) ImmediateFailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Storage_Backup_Evault) InitiateBareMetalRestore() (resp bool, err error) {
@@ -3804,6 +4605,176 @@ func (r *Network_Storage_Backup_Evault) InitiateBareMetalRestore() (resp bool, e
 func (r *Network_Storage_Backup_Evault) InitiateBareMetalRestoreForServer(hardwareId *int) (resp bool, err error) {
 	params := []interface{}{
 		hardwareId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) IsBlockingOperationInProgress(exemptStatusKeyNames []string) (resp bool, err error) {
+	params := []interface{}{
+		exemptStatusKeyNames,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromHost(typeClassName *string, hostId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		typeClassName,
+		hostId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromHostList(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromVirtualGuest(virtualGuestObjectTemplate *datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessToReplicantFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessToReplicantFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessToReplicantFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveAccessToReplicantFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RemoveCredential(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RestoreFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) RestoreFromSnapshot(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) SendPasswordReminderEmail(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) SetMountable(mountable *bool) (resp bool, err error) {
+	params := []interface{}{
+		mountable,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		capacityGb,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) UpgradeVolumeCapacity(itemId *int) (resp bool, err error) {
+	params := []interface{}{
+		itemId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Utility_File_Entity) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		file,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -3850,34 +4821,11 @@ func (r *Network_Storage_Group) EditObject(templateObject *datatypes.Network_Sto
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage_Group) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Group) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Group) GetObject() (resp datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Group) RemoveAllowedHost(allowedHost *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
-	params := []interface{}{
-		allowedHost,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Storage) (resp bool, err error) {
-	params := []interface{}{
-		volume,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Storage_Group) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3893,12 +4841,34 @@ func (r *Network_Storage_Group) GetGroupType() (resp datatypes.Network_Storage_G
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Group) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group) GetObject() (resp datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Group) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Storage_Group) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group) RemoveAllowedHost(allowedHost *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
+	params := []interface{}{
+		allowedHost,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Storage) (resp bool, err error) {
+	params := []interface{}{
+		volume,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3925,7 +4895,57 @@ func (r *Network_Storage_Group_Iscsi) AttachToVolume(volume *datatypes.Network_S
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Group_Iscsi) CreateObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) EditObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetGroupType() (resp datatypes.Network_Storage_Group_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Group_Iscsi) GetObject() (resp datatypes.Network_Storage_Group_Iscsi, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Iscsi) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -3967,7 +4987,57 @@ func (r *Network_Storage_Group_Nfs) AttachToVolume(volume *datatypes.Network_Sto
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Group_Nfs) CreateObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) EditObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetGroupType() (resp datatypes.Network_Storage_Group_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Group_Nfs) GetObject() (resp datatypes.Network_Storage_Group_Nfs, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Group_Nfs) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4024,23 +5094,6 @@ func (r *Network_Storage_Hub_Cleversafe_Account) CredentialDelete(credential *da
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Hub_Cleversafe_Account) GetEndpoints() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Storage_Hub_Cleversafe_Account) GetObject() (resp datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Storage_Hub_Cleversafe_Account) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4053,7 +5106,19 @@ func (r *Network_Storage_Hub_Cleversafe_Account) GetCancelledBillingItem() (resp
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Hub_Cleversafe_Account) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Hub_Cleversafe_Account) GetEndpoints() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4062,6 +5127,10 @@ func (r *Network_Storage_Hub_Cleversafe_Account) GetEvents() (resp []datatypes.N
 	return
 }
 func (r *Network_Storage_Hub_Cleversafe_Account) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Hub_Cleversafe_Account) GetObject() (resp datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4116,9 +5185,52 @@ func (r *Network_Storage_Iscsi) AllowAccessFromHardware(hardwareObjectTemplate *
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) AllowAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessFromHost(typeClassName *string, hostId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		typeClassName,
+		hostId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessFromHostList(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) AllowAccessFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -4130,9 +5242,30 @@ func (r *Network_Storage_Iscsi) AllowAccessFromVirtualGuest(virtualGuestObjectTe
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) AllowAccessFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
 		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -4144,6 +5277,27 @@ func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromIpAddressList(ipAddres
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromVirtualGuest(virtualGuestObjectTemplate *datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
 	params := []interface{}{
 		virtualGuestObjectTemplates,
@@ -4151,7 +5305,463 @@ func (r *Network_Storage_Iscsi) AllowAccessToReplicantFromVirtualGuestList(virtu
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) AssignCredential(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) AssignNewCredential(typ *string) (resp datatypes.Network_Storage_Credential, err error) {
+	params := []interface{}{
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) ChangePassword(username *string, currentPassword *string, newPassword *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+		currentPassword,
+		newPassword,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) CollectBandwidth(typ *string, startDate *datatypes.Time, endDate *datatypes.Time) (resp uint, err error) {
+	params := []interface{}{
+		typ,
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) CollectBytesUsed() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) CreateFolder(folder *string) (resp bool, err error) {
+	params := []interface{}{
+		folder,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) CreateSnapshot(notes *string) (resp datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		notes,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DeleteAllFiles() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DeleteFile(fileId *string) (resp bool, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DeleteFiles(fileIds []string) (resp bool, err error) {
+	params := []interface{}{
+		fileIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DeleteFolder(folder *string) (resp bool, err error) {
+	params := []interface{}{
+		folder,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DisableSnapshots(scheduleType *string) (resp bool, err error) {
+	params := []interface{}{
+		scheduleType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) DownloadFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) EditCredential(username *string, newPassword *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+		newPassword,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) EditObject(templateObject *datatypes.Network_Storage) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) EnableSnapshots(scheduleType *string, retentionCount *int, minute *int, hour *int, dayOfWeek *string) (resp bool, err error) {
+	params := []interface{}{
+		scheduleType,
+		retentionCount,
+		minute,
+		hour,
+		dayOfWeek,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) FailbackFromReplicant() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) FailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAccountPassword() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllFilesByFilter(filter *datatypes.Container_Utility_File_Entity) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		filter,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowableHardware(filterHostname *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowableIpAddresses(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		subnetId,
+		filterIpAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowableSubnets(filterNetworkIdentifier *string) (resp []datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		filterNetworkIdentifier,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowableVirtualGuests(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedHostsLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetByUsername(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		username,
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetCreationScheduleId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFileByIdentifier(identifier *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		identifier,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFileCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFileList(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		folder,
+		path,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFilePendingDeleteCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetGraph(startDate *datatypes.Time, endDate *datatypes.Time, typ *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+		typ,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetHardware() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetIops() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetLunId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetMountableFlag() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) GetObject() (resp datatypes.Network_Storage_Iscsi, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetObjectsByCredential(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		credentialObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetOsTypeId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetParentVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetRecycleBinFileByIdentifier(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetRemainingAllowedHosts() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetReplicationStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetServiceResourceBackendIpAddress() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetServiceResourceName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshotCapacityGb() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshotCreationTimestamp() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshotSizeBytes() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshotSpaceAvailable() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4159,9 +5769,101 @@ func (r *Network_Storage_Iscsi) GetSnapshotsForVolume() (resp []datatypes.Networ
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetStorageTierLevel() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetTotalBytesUsed() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetUsageNotification() (resp datatypes.Notification, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetVendorName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetVolumeStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetWebccAccount() (resp datatypes.Account_Password, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) ImmediateFailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) IsBlockingOperationInProgress(exemptStatusKeyNames []string) (resp bool, err error) {
+	params := []interface{}{
+		exemptStatusKeyNames,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
 		hardwareObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
+	params := []interface{}{
+		hardwareObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromHost(typeClassName *string, hostId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		typeClassName,
+		hostId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromHostList(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -4173,9 +5875,37 @@ func (r *Network_Storage_Iscsi) RemoveAccessFromIpAddress(ipAddressObjectTemplat
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) RemoveAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
+	params := []interface{}{
+		ipAddressObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) RemoveAccessFromVirtualGuest(virtualGuestObjectTemplate *datatypes.Virtual_Guest) (resp bool, err error) {
 	params := []interface{}{
 		virtualGuestObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestObjectTemplates,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -4194,9 +5924,80 @@ func (r *Network_Storage_Iscsi) RemoveAccessToReplicantFromIpAddressList(ipAddre
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Storage_Iscsi) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveAccessToReplicantFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
+	params := []interface{}{
+		subnetObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Storage_Iscsi) RemoveAccessToReplicantFromVirtualGuestList(virtualGuestObjectTemplates []datatypes.Virtual_Guest) (resp bool, err error) {
 	params := []interface{}{
 		virtualGuestObjectTemplates,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RemoveCredential(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RestoreFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		fileId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) RestoreFromSnapshot(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) SendPasswordReminderEmail(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) SetMountable(mountable *bool) (resp bool, err error) {
+	params := []interface{}{
+		mountable,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		capacityGb,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) UpgradeVolumeCapacity(itemId *int) (resp bool, err error) {
+	params := []interface{}{
+		itemId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_File_Entity) (resp datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		file,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -4247,11 +6048,6 @@ func (r *Network_Storage_Schedule) EditObject(templateObject *datatypes.Network_
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Storage_Schedule) GetObject() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Storage_Schedule) GetDayOfMonth() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4273,6 +6069,10 @@ func (r *Network_Storage_Schedule) GetMinute() (resp string, err error) {
 	return
 }
 func (r *Network_Storage_Schedule) GetMonthOfYear() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Storage_Schedule) GetObject() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4372,47 +6172,6 @@ func (r *Network_Subnet) FindAllSubnetsAndActiveSwipTransactionStatus() (resp []
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
-	params := []interface{}{
-		nasType,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
-	params := []interface{}{
-		nasType,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) GetObject() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) GetSubnetForIpAddress(ipAddress *string) (resp datatypes.Network_Subnet, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects []datatypes.Network_Storage) (resp bool, err error) {
-	params := []interface{}{
-		networkStorageTemplateObjects,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Subnet) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4443,6 +6202,20 @@ func (r *Network_Subnet) GetAllowedNetworkStorage() (resp []datatypes.Network_St
 }
 func (r *Network_Subnet) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Subnet) GetBillingItem() (resp datatypes.Billing_Item, err error) {
@@ -4513,6 +6286,10 @@ func (r *Network_Subnet) GetNetworkVlan() (resp datatypes.Network_Vlan, err erro
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Subnet) GetObject() (resp datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Subnet) GetPodName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4537,11 +6314,19 @@ func (r *Network_Subnet) GetReverseDomain() (resp datatypes.Dns_Domain, err erro
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Subnet) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Subnet) GetRoleKeyName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Subnet) GetRoleName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4551,6 +6336,13 @@ func (r *Network_Subnet) GetRoutingTypeKeyName() (resp string, err error) {
 }
 func (r *Network_Subnet) GetRoutingTypeName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet) GetSubnetForIpAddress(ipAddress *string) (resp datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		ipAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
@@ -4563,6 +6355,13 @@ func (r *Network_Subnet) GetUnboundDescendants() (resp []datatypes.Network_Subne
 }
 func (r *Network_Subnet) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects []datatypes.Network_Storage) (resp bool, err error) {
+	params := []interface{}{
+		networkStorageTemplateObjects,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4610,6 +6409,22 @@ func (r *Network_Subnet_IpAddress) FindByIpv4Address(ipAddress *string) (resp da
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Subnet_IpAddress) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Subnet_IpAddress) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
@@ -4629,34 +6444,6 @@ func (r *Network_Subnet_IpAddress) GetByIpAddress(ipAddress *string) (resp datat
 		ipAddress,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress) GetObject() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects []datatypes.Network_Storage) (resp bool, err error) {
-	params := []interface{}{
-		networkStorageTemplateObjects,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Subnet_IpAddress) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Subnet_IpAddress) GetContextTunnelTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
@@ -4680,6 +6467,10 @@ func (r *Network_Subnet_IpAddress) GetHardware() (resp datatypes.Hardware, err e
 	return
 }
 func (r *Network_Subnet_IpAddress) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress) GetObject() (resp datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4751,6 +6542,13 @@ func (r *Network_Subnet_IpAddress) GetVirtualLicenses() (resp []datatypes.Softwa
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects []datatypes.Network_Storage) (resp bool, err error) {
+	params := []interface{}{
+		networkStorageTemplateObjects,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Subnet_IpAddress_Global struct {
 	Session *Session
@@ -4759,22 +6557,6 @@ type Network_Subnet_IpAddress_Global struct {
 
 func (r *Session) GetNetworkSubnetIpAddressGlobalService() Network_Subnet_IpAddress_Global {
 	return Network_Subnet_IpAddress_Global{Session: r}
-}
-
-func (r *Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Subnet_IpAddress_Global, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	params := []interface{}{
-		newEndPointIpAddress,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_IpAddress_Global) Unroute() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Network_Subnet_IpAddress_Global) GetAccount() (resp datatypes.Account, err error) {
@@ -4794,6 +6576,21 @@ func (r *Network_Subnet_IpAddress_Global) GetDestinationIpAddress() (resp dataty
 	return
 }
 func (r *Network_Subnet_IpAddress_Global) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Subnet_IpAddress_Global, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	params := []interface{}{
+		newEndPointIpAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_IpAddress_Global) Unroute() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4833,11 +6630,6 @@ func (r *Network_Subnet_Registration) EditRegistrationAttachedDetails(personObje
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Subnet_Registration) GetObject() (resp datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Subnet_Registration) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4851,6 +6643,10 @@ func (r *Network_Subnet_Registration) GetEvents() (resp []datatypes.Network_Subn
 	return
 }
 func (r *Network_Subnet_Registration) GetNetworkDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_Registration) GetObject() (resp datatypes.Network_Subnet_Registration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4895,12 +6691,11 @@ func (r *Network_Subnet_Registration_Details) DeleteObject() (resp bool, err err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Subnet_Registration_Details) GetObject() (resp datatypes.Network_Subnet_Registration_Details, err error) {
+func (r *Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
+func (r *Network_Subnet_Registration_Details) GetObject() (resp datatypes.Network_Subnet_Registration_Details, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4943,12 +6738,11 @@ func (r *Network_Subnet_Rwhois_Data) EditObject(templateObject *datatypes.Networ
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_Rwhois_Data, err error) {
+func (r *Network_Subnet_Rwhois_Data) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Network_Subnet_Rwhois_Data) GetAccount() (resp datatypes.Account, err error) {
+func (r *Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_Rwhois_Data, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4966,7 +6760,15 @@ func (r *Network_Subnet_Swip_Transaction) FindMyTransactions() (resp []datatypes
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Subnet_Swip_Transaction) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Subnet_Swip_Transaction) GetObject() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -4987,15 +6789,6 @@ func (r *Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error)
 	return
 }
 func (r *Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Network_Subnet_Swip_Transaction) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5133,7 +6926,23 @@ func (r *Network_Tunnel_Module_Context) EditObject(templateObject *datatypes.Net
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Tunnel_Module_Context) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Tunnel_Module_Context) GetAddressTranslationConfigurations() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetAddressTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetAllAvailableServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5142,6 +6951,18 @@ func (r *Network_Tunnel_Module_Context) GetAuthenticationDefault() (resp string,
 	return
 }
 func (r *Network_Tunnel_Module_Context) GetAuthenticationOptions() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetCustomerSubnets() (resp []datatypes.Network_Customer_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetDatacenter() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5158,6 +6979,10 @@ func (r *Network_Tunnel_Module_Context) GetEncryptionDefault() (resp string, err
 	return
 }
 func (r *Network_Tunnel_Module_Context) GetEncryptionOptions() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetInternalSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5178,6 +7003,18 @@ func (r *Network_Tunnel_Module_Context) GetPhaseOneKeylifeDefault() (resp string
 	return
 }
 func (r *Network_Tunnel_Module_Context) GetPhaseTwoKeylifeDefault() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetStaticRouteSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5203,51 +7040,6 @@ func (r *Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(sub
 	return
 }
 
-func (r *Network_Tunnel_Module_Context) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetAddressTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetAllAvailableServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetCustomerSubnets() (resp []datatypes.Network_Customer_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetInternalSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetStaticRouteSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Network_Vlan struct {
 	Session *Session
 	Options
@@ -5264,67 +7056,6 @@ func (r *Network_Vlan) EditObject(templateObject *datatypes.Network_Vlan) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Network_Vlan) GetCancelFailureReasons() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetObject() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		fqdn,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) GetVlanForIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) SetTags(tags *string) (resp bool, err error) {
-	params := []interface{}{
-		tags,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		enabled,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Network_Vlan) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5349,6 +7080,10 @@ func (r *Network_Vlan) GetBillingItem() (resp datatypes.Billing_Item, err error)
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan) GetCancelFailureReasons() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Vlan) GetDedicatedFirewallFlag() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5366,6 +7101,14 @@ func (r *Network_Vlan) GetFirewallInterfaces() (resp []datatypes.Network_Firewal
 	return
 }
 func (r *Network_Vlan) GetFirewallNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) GetFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5409,6 +7152,10 @@ func (r *Network_Vlan) GetNetworkVlanFirewall() (resp datatypes.Network_Vlan_Fir
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan) GetObject() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Vlan) GetPrimaryRouter() (resp datatypes.Hardware_Router, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5429,6 +7176,17 @@ func (r *Network_Vlan) GetPrivateNetworkGateways() (resp []datatypes.Network_Gat
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		ipAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Vlan) GetProtectedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5437,11 +7195,22 @@ func (r *Network_Vlan) GetPublicNetworkGateways() (resp []datatypes.Network_Gate
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		fqdn,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Vlan) GetResourceGroupMember() (resp []datatypes.Resource_Group_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Vlan) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -5481,6 +7250,28 @@ func (r *Network_Vlan) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan) GetVlanForIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		ipAddress,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) SetTags(tags *string) (resp bool, err error) {
+	params := []interface{}{
+		tags,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		enabled,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Network_Vlan_Firewall struct {
 	Session *Session
@@ -5489,29 +7280,6 @@ type Network_Vlan_Firewall struct {
 
 func (r *Session) GetNetworkVlanFirewallService() Network_Vlan_Firewall {
 	return Network_Vlan_Firewall{Session: r}
-}
-
-func (r *Network_Vlan_Firewall) GetObject() (resp datatypes.Network_Vlan_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan_Firewall) RestoreDefaults() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan_Firewall) SetTags(tags *string) (resp bool, err error) {
-	params := []interface{}{
-		tags,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	params := []interface{}{
-		bypass,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Network_Vlan_Firewall) GetBillingItem() (resp datatypes.Billing_Item, err error) {
@@ -5546,12 +7314,34 @@ func (r *Network_Vlan_Firewall) GetNetworkVlans() (resp []datatypes.Network_Vlan
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Network_Vlan_Firewall) GetObject() (resp datatypes.Network_Vlan_Firewall, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Network_Vlan_Firewall) GetRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan_Firewall) RestoreDefaults() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan_Firewall) SetTags(tags *string) (resp bool, err error) {
+	params := []interface{}{
+		tags,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	params := []interface{}{
+		bypass,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 

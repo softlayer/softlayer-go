@@ -31,36 +31,15 @@ func (r *Location) GetAvailableObjectStorageDatacenters() (resp []datatypes.Loca
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Location) GetDatacenters() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Location) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location) GetObject() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location) GetViewableDatacenters() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location) GetViewablePopsAndDataCenters() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location) GetViewablepointOfPresence() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location) GetpointOfPresence() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Location) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -85,6 +64,10 @@ func (r *Location) GetLocationStatus() (resp datatypes.Location_Status, err erro
 	return
 }
 func (r *Location) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location) GetObject() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -116,6 +99,22 @@ func (r *Location) GetVdrGroup() (resp datatypes.Location_Group_Location_CrossRe
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location) GetViewableDatacenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location) GetViewablePopsAndDataCenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location) GetViewablepointOfPresence() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location) GetpointOfPresence() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Location_Datacenter struct {
 	Session *Session
@@ -126,20 +125,19 @@ func (r *Session) GetLocationDatacenterService() Location_Datacenter {
 	return Location_Datacenter{Session: r}
 }
 
-func (r *Location_Datacenter) GetObject() (resp datatypes.Location_Datacenter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location_Datacenter) GetStatisticsGraphImage() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Location_Datacenter) GetActiveItemPresaleEvents() (resp []datatypes.Sales_Presale_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Location_Datacenter) GetActivePresaleEvents() (resp []datatypes.Sales_Presale_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetAvailableObjectStorageDatacenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -155,7 +153,23 @@ func (r *Location_Datacenter) GetBrandCountryRestrictions() (resp []datatypes.Br
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Datacenter) GetDatacenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Location_Datacenter) GetFrontendHardwareRouters() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetGroups() (resp []datatypes.Location_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetHardwareFirewalls() (resp []datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -163,7 +177,43 @@ func (r *Location_Datacenter) GetHardwareRouters() (resp []datatypes.Hardware, e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Datacenter) GetLocationAddress() (resp datatypes.Account_Address, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetLocationReservationMember() (resp datatypes.Location_Reservation_Rack_Member, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetLocationStatus() (resp datatypes.Location_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetObject() (resp datatypes.Location_Datacenter, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetOnlinePptpVpnUserCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetOnlineSslVpnUserCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetPathString() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Location_Datacenter) GetPresaleEvents() (resp []datatypes.Sales_Presale_Event, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetPriceGroups() (resp []datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -175,7 +225,39 @@ func (r *Location_Datacenter) GetRegionalInternetRegistry() (resp datatypes.Netw
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Datacenter) GetRegions() (resp []datatypes.Location_Region, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Location_Datacenter) GetRoutableBoundSubnets() (resp []datatypes.Network_Subnet, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetStatisticsGraphImage() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetTimezone() (resp datatypes.Locale_Timezone, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetVdrGroup() (resp datatypes.Location_Group_Location_CrossReference, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetViewableDatacenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetViewablePopsAndDataCenters() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetViewablepointOfPresence() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Datacenter) GetpointOfPresence() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -193,16 +275,15 @@ func (r *Location_Group) GetAllObjects() (resp []datatypes.Location_Group, err e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Location_Group) GetObject() (resp datatypes.Location_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Location_Group) GetLocationGroupType() (resp datatypes.Location_Group_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Location_Group) GetLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Group) GetObject() (resp datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -220,11 +301,18 @@ func (r *Location_Group_Pricing) GetAllObjects() (resp []datatypes.Location_Grou
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Group_Pricing) GetLocationGroupType() (resp datatypes.Location_Group_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Group_Pricing) GetLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Location_Group_Pricing) GetObject() (resp datatypes.Location_Group_Pricing, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Location_Group_Pricing) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -243,12 +331,19 @@ func (r *Location_Group_Regional) GetAllObjects() (resp []datatypes.Location_Gro
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Location_Group_Regional) GetObject() (resp datatypes.Location_Group_Regional, err error) {
+func (r *Location_Group_Regional) GetDatacenters() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Location_Group_Regional) GetDatacenters() (resp []datatypes.Location, err error) {
+func (r *Location_Group_Regional) GetLocationGroupType() (resp datatypes.Location_Group_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Group_Regional) GetLocations() (resp []datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Group_Regional) GetObject() (resp datatypes.Location_Group_Regional, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -266,16 +361,11 @@ func (r *Session) GetLocationReservationService() Location_Reservation {
 	return Location_Reservation{Session: r}
 }
 
-func (r *Location_Reservation) GetAccountReservations() (resp []datatypes.Location_Reservation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Location_Reservation) GetObject() (resp datatypes.Location_Reservation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Location_Reservation) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Reservation) GetAccountReservations() (resp []datatypes.Location_Reservation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -295,6 +385,10 @@ func (r *Location_Reservation) GetLocationReservationRack() (resp datatypes.Loca
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Reservation) GetObject() (resp datatypes.Location_Reservation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Location_Reservation_Rack struct {
 	Session *Session
@@ -303,11 +397,6 @@ type Location_Reservation_Rack struct {
 
 func (r *Session) GetLocationReservationRackService() Location_Reservation_Rack {
 	return Location_Reservation_Rack{Session: r}
-}
-
-func (r *Location_Reservation_Rack) GetObject() (resp datatypes.Location_Reservation_Rack, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Location_Reservation_Rack) GetAllotment() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
@@ -326,6 +415,10 @@ func (r *Location_Reservation_Rack) GetLocationReservation() (resp datatypes.Loc
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Location_Reservation_Rack) GetObject() (resp datatypes.Location_Reservation_Rack, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Location_Reservation_Rack_Member struct {
 	Session *Session
@@ -336,16 +429,15 @@ func (r *Session) GetLocationReservationRackMemberService() Location_Reservation
 	return Location_Reservation_Rack_Member{Session: r}
 }
 
-func (r *Location_Reservation_Rack_Member) GetObject() (resp datatypes.Location_Reservation_Rack_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Location_Reservation_Rack_Member) GetLocation() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Location_Reservation_Rack_Member) GetLocationReservationRack() (resp datatypes.Location_Reservation, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Location_Reservation_Rack_Member) GetObject() (resp datatypes.Location_Reservation_Rack_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -38,14 +38,6 @@ func (r *Survey) GetObject() (resp datatypes.Survey, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Survey) TakeSurvey(responses []datatypes.Survey_Response) (resp bool, err error) {
-	params := []interface{}{
-		responses,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Survey) GetQuestions() (resp []datatypes.Survey_Question, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -56,5 +48,12 @@ func (r *Survey) GetStatus() (resp datatypes.Survey_Status, err error) {
 }
 func (r *Survey) GetType() (resp datatypes.Survey_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Survey) TakeSurvey(responses []datatypes.Survey_Response) (resp bool, err error) {
+	params := []interface{}{
+		responses,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }

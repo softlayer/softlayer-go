@@ -187,7 +187,19 @@ func (r *User_Customer) FindUserPreference(profileName *string, containerKeyname
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetActions() (resp []datatypes.User_Permission_Action, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetActiveExternalAuthenticationVendors() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -199,11 +211,27 @@ func (r *User_Customer) GetAllowedVirtualGuestIds() (resp []int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetAuthenticationToken(token *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Authentication_Token, err error) {
 	params := []interface{}{
 		token,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetCdnAccounts() (resp []datatypes.Network_ContentDelivery_Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetChildUsers() (resp []datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetClosedTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer) GetDefaultSecurityQuestions(key *string) (resp []datatypes.User_Security_Question, err error) {
@@ -213,7 +241,31 @@ func (r *User_Customer) GetDefaultSecurityQuestions(key *string) (resp []datatyp
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetExternalBindings() (resp []datatypes.User_External_Binding, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetHardwareCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetHasAcknowledgedSupportPolicyFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetHasFullHardwareAccessFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetHasFullVirtualGuestAccessFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -221,7 +273,43 @@ func (r *User_Customer) GetImpersonationToken() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetLocale() (resp datatypes.Locale, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetLoginAttempts() (resp []datatypes.User_Customer_Access_Authentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetMobileDevices() (resp []datatypes.User_Customer_MobileDevice, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetObject() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetOpenTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetParent() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -246,11 +334,39 @@ func (r *User_Customer) GetPreferenceTypes() (resp []datatypes.User_Preference_T
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetPreferences() (resp []datatypes.User_Preference, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetRequirementsForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
 	params := []interface{}{
 		passwordSet,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSupportPolicyAcknowledgementRequiredFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer) GetSupportPolicyDocument() (resp []byte, err error) {
@@ -262,6 +378,26 @@ func (r *User_Customer) GetSupportPolicyName() (resp string, err error) {
 	return
 }
 func (r *User_Customer) GetSupportedLocales() (resp []datatypes.Locale, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSurveyRequiredFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetSurveys() (resp []datatypes.Survey, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetTimezone() (resp datatypes.Locale_Timezone, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -279,6 +415,10 @@ func (r *User_Customer) GetUserIdForPasswordSet(key *string) (resp int, err erro
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
 		profileName,
@@ -287,7 +427,15 @@ func (r *User_Customer) GetUserPreferences(profileName *string, containerKeyname
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer) GetUserStatus() (resp datatypes.User_Customer_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer) GetVirtualGuestCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -549,155 +697,6 @@ func (r *User_Customer) ValidateAuthenticationToken(authenticationToken *datatyp
 	return
 }
 
-func (r *User_Customer) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetActions() (resp []datatypes.User_Permission_Action, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetCdnAccounts() (resp []datatypes.Network_ContentDelivery_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetChildUsers() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetClosedTickets() (resp []datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetExternalBindings() (resp []datatypes.User_External_Binding, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetHasAcknowledgedSupportPolicyFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetHasFullHardwareAccessFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetHasFullVirtualGuestAccessFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetLocale() (resp datatypes.Locale, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetLoginAttempts() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetMobileDevices() (resp []datatypes.User_Customer_MobileDevice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetOpenTickets() (resp []datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetParent() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetPreferences() (resp []datatypes.User_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSupportPolicyAcknowledgementRequiredFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSurveyRequiredFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetSurveys() (resp []datatypes.Survey, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetTickets() (resp []datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetTimezone() (resp datatypes.Locale_Timezone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetUserStatus() (resp datatypes.User_Customer_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type User_Customer_ApiAuthentication struct {
 	Session *Session
 	Options
@@ -718,7 +717,6 @@ func (r *User_Customer_ApiAuthentication) GetObject() (resp datatypes.User_Custo
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *User_Customer_ApiAuthentication) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -751,6 +749,10 @@ func (r *Session) GetUserCustomerExternalBindingService() User_Customer_External
 	return User_Customer_External_Binding{Session: r}
 }
 
+func (r *User_Customer_External_Binding) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding) Disable(reason *string) (resp bool, err error) {
 	params := []interface{}{
 		reason,
@@ -762,13 +764,39 @@ func (r *User_Customer_External_Binding) Enable() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_External_Binding) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding) GetNote() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding) GetObject() (resp datatypes.User_Customer_External_Binding, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
+func (r *User_Customer_External_Binding) GetType() (resp datatypes.User_External_Binding_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding) GetVendor() (resp datatypes.User_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding) UpdateNote(text *string) (resp bool, err error) {
+	params := []interface{}{
+		text,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -786,6 +814,10 @@ func (r *User_Customer_External_Binding_Phone) CheckPhoneValidationResult(token 
 		token,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer_External_Binding_Phone) Disable(reason *string) (resp bool, err error) {
@@ -810,7 +842,23 @@ func (r *User_Customer_External_Binding_Phone) GetAllAuthenticationPinModes(auth
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_External_Binding_Phone) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding_Phone) GetAuthenticationMode() (resp datatypes.Container_User_Customer_External_Binding_Phone_Mode, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetBindingStatus() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetNote() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -823,6 +871,22 @@ func (r *User_Customer_External_Binding_Phone) GetPhoneAppActivationCode() (resp
 	return
 }
 func (r *User_Customer_External_Binding_Phone) GetPhoneData() (resp []datatypes.Container_User_Data_Phone, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetPinLength() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetType() (resp datatypes.User_External_Binding_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Phone) GetVendor() (resp datatypes.User_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -840,20 +904,18 @@ func (r *User_Customer_External_Binding_Phone) UpdateAuthenticationMode(mode *da
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_External_Binding_Phone) UpdateNote(text *string) (resp bool, err error) {
+	params := []interface{}{
+		text,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding_Phone) UpdatePhone(phoneData []datatypes.Container_User_Data_Phone) (resp bool, err error) {
 	params := []interface{}{
 		phoneData,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *User_Customer_External_Binding_Phone) GetBindingStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Customer_External_Binding_Phone) GetPinLength() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -874,12 +936,58 @@ func (r *User_Customer_External_Binding_Totp) Deactivate() (resp bool, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_External_Binding_Totp) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) Disable(reason *string) (resp bool, err error) {
+	params := []interface{}{
+		reason,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) Enable() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding_Totp) GenerateSecretKey() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetNote() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer_External_Binding_Totp) GetObject() (resp datatypes.User_Customer_External_Binding_Totp, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetType() (resp datatypes.User_External_Binding_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) GetVendor() (resp datatypes.User_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Totp) UpdateNote(text *string) (resp bool, err error) {
+	params := []interface{}{
+		text,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -892,6 +1000,10 @@ func (r *Session) GetUserCustomerExternalBindingVendorService() User_Customer_Ex
 	return User_Customer_External_Binding_Vendor{Session: r}
 }
 
+func (r *User_Customer_External_Binding_Vendor) GetAllObjects() (resp []datatypes.User_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User_Customer_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -925,26 +1037,14 @@ func (r *User_Customer_External_Binding_Verisign) GetActivationCodeForMobileClie
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_External_Binding_Verisign) GetObject() (resp datatypes.User_Customer_External_Binding_Verisign, err error) {
+func (r *User_Customer_External_Binding_Verisign) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_External_Binding_Verisign) Unlock(securityCode *string) (resp bool, err error) {
-	params := []interface{}{
-		securityCode,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+func (r *User_Customer_External_Binding_Verisign) GetBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *int, externalId *string) (resp bool, err error) {
-	params := []interface{}{
-		userId,
-		externalId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *User_Customer_External_Binding_Verisign) GetCredentialExpirationDate() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -961,6 +1061,48 @@ func (r *User_Customer_External_Binding_Verisign) GetCredentialType() (resp stri
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_External_Binding_Verisign) GetNote() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) GetObject() (resp datatypes.User_Customer_External_Binding_Verisign, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) GetType() (resp datatypes.User_External_Binding_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) GetUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) GetVendor() (resp datatypes.User_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) Unlock(securityCode *string) (resp bool, err error) {
+	params := []interface{}{
+		securityCode,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) UpdateNote(text *string) (resp bool, err error) {
+	params := []interface{}{
+		text,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *int, externalId *string) (resp bool, err error) {
+	params := []interface{}{
+		userId,
+		externalId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type User_Customer_Invitation struct {
 	Session *Session
@@ -975,7 +1117,6 @@ func (r *User_Customer_Invitation) GetObject() (resp datatypes.User_Customer_Inv
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *User_Customer_Invitation) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1008,16 +1149,15 @@ func (r *User_Customer_MobileDevice) EditObject(templateObject *datatypes.User_C
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_MobileDevice) GetObject() (resp datatypes.User_Customer_MobileDevice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *User_Customer_MobileDevice) GetAvailablePushNotificationSubscriptions() (resp []datatypes.Notification, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer_MobileDevice) GetCustomer() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_MobileDevice) GetObject() (resp datatypes.User_Customer_MobileDevice, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1107,12 +1247,11 @@ func (r *User_Customer_Notification_Hardware) FindByHardwareId(hardwareId *int) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_Notification_Hardware) GetObject() (resp datatypes.User_Customer_Notification_Hardware, err error) {
+func (r *User_Customer_Notification_Hardware) GetHardware() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *User_Customer_Notification_Hardware) GetHardware() (resp datatypes.Hardware, err error) {
+func (r *User_Customer_Notification_Hardware) GetObject() (resp datatypes.User_Customer_Notification_Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1158,12 +1297,11 @@ func (r *User_Customer_Notification_Virtual_Guest) FindByGuestId(id *int) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_Notification_Virtual_Guest) GetObject() (resp datatypes.User_Customer_Notification_Virtual_Guest, err error) {
+func (r *User_Customer_Notification_Virtual_Guest) GetGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *User_Customer_Notification_Virtual_Guest) GetGuest() (resp datatypes.Virtual_Guest, err error) {
+func (r *User_Customer_Notification_Virtual_Guest) GetObject() (resp datatypes.User_Customer_Notification_Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1181,12 +1319,133 @@ func (r *Session) GetUserCustomerOpenIdConnectService() User_Customer_OpenIdConn
 	return User_Customer_OpenIdConnect{Session: r}
 }
 
+func (r *User_Customer_OpenIdConnect) AcknowledgeSupportPolicy() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddApiAuthenticationKey() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddBulkHardwareAccess(hardwareIds []int) (resp bool, err error) {
+	params := []interface{}{
+		hardwareIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddBulkPortalPermission(permissions []datatypes.User_Customer_CustomerPermission_Permission) (resp bool, err error) {
+	params := []interface{}{
+		permissions,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		roles,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddBulkVirtualGuestAccess(virtualGuestIds []int) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddExternalBinding(externalBinding *datatypes.User_External_Binding) (resp datatypes.User_Customer_External_Binding, err error) {
+	params := []interface{}{
+		externalBinding,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddHardwareAccess(hardwareId *int) (resp bool, err error) {
+	params := []interface{}{
+		hardwareId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddNotificationSubscriber(notificationKeyName *string) (resp bool, err error) {
+	params := []interface{}{
+		notificationKeyName,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddPortalPermission(permission *datatypes.User_Customer_CustomerPermission_Permission) (resp bool, err error) {
+	params := []interface{}{
+		permission,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddRole(role *datatypes.User_Permission_Role) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		role,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) AddVirtualGuestAccess(virtualGuestId *int) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) ChangePreference(preferenceTypeKeyName *string, value *string) (resp []datatypes.User_Preference, err error) {
+	params := []interface{}{
+		preferenceTypeKeyName,
+		value,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) CheckExternalAuthenticationStatus(authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+	params := []interface{}{
+		authenticationContainer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) CheckPhoneFactorAuthenticationForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
+	params := []interface{}{
+		passwordSet,
+		authenticationContainer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) CompleteInvitationAfterLogin(providerType *string, accessToken *string, emailRegistrationCode *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
 		accessToken,
 		emailRegistrationCode,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) CreateNotificationSubscriber(keyName *string, resourceTableId *int) (resp bool, err error) {
+	params := []interface{}{
+		keyName,
+		resourceTableId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) CreateObject(templateObject *datatypes.User_Customer, password *string, vpnPassword *string) (resp datatypes.User_Customer, err error) {
+	params := []interface{}{
+		templateObject,
+		password,
+		vpnPassword,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -1201,6 +1460,22 @@ func (r *User_Customer_OpenIdConnect) CreateOpenIdConnectUserAndCompleteInvitati
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) CreateSubscriberDeliveryMethods(notificationKeyName *string, deliveryMethodKeyNames []string) (resp bool, err error) {
+	params := []interface{}{
+		notificationKeyName,
+		deliveryMethodKeyNames,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) DeactivateNotificationSubscriber(keyName *string, resourceTableId *int) (resp bool, err error) {
+	params := []interface{}{
+		keyName,
+		resourceTableId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) DeclineInvitation(providerType *string, registrationCode *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -1210,6 +1485,76 @@ func (r *User_Customer_OpenIdConnect) DeclineInvitation(providerType *string, re
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) EditObject(templateObject *datatypes.User_Customer) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) EditObjects(templateObjects []datatypes.User_Customer) (resp bool, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) FindUserPreference(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
+	params := []interface{}{
+		profileName,
+		containerKeyname,
+		preferenceKeyname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetActions() (resp []datatypes.User_Permission_Action, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetActiveExternalAuthenticationVendors() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetAllowedHardwareIds() (resp []int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetAllowedVirtualGuestIds() (resp []int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetAuthenticationToken(token *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Authentication_Token, err error) {
+	params := []interface{}{
+		token,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetCdnAccounts() (resp []datatypes.Network_ContentDelivery_Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetChildUsers() (resp []datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -1217,11 +1562,70 @@ func (r *User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (r
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) GetDefaultSecurityQuestions(key *string) (resp []datatypes.User_Security_Question, err error) {
+	params := []interface{}{
+		key,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetExternalBindings() (resp []datatypes.User_External_Binding, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHardware() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHardwareCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHasAcknowledgedSupportPolicyFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHasFullHardwareAccessFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetHasFullVirtualGuestAccessFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetImpersonationToken() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetLocale() (resp datatypes.Locale, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetLoginAttempts() (resp []datatypes.User_Customer_Access_Authentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) GetMappedAccounts(providerType *string) (resp []datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetMobileDevices() (resp []datatypes.User_Customer_MobileDevice, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_Customer_OpenIdConnect) GetObject() (resp datatypes.User_Customer_OpenIdConnect, err error) {
@@ -1236,6 +1640,32 @@ func (r *User_Customer_OpenIdConnect) GetOpenIdRegistrationInfoFromCode(provider
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) GetOpenTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetParent() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetPortalLoginToken(username *string, password *string, securityQuestionId *int, securityQuestionAnswer *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+	params := []interface{}{
+		username,
+		password,
+		securityQuestionId,
+		securityQuestionAnswer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) GetPortalLoginTokenOpenIdConnect(providerType *string, accessToken *string, accountId *int) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		providerType,
@@ -1245,9 +1675,161 @@ func (r *User_Customer_OpenIdConnect) GetPortalLoginTokenOpenIdConnect(providerT
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) GetPreference(preferenceTypeKeyName *string) (resp datatypes.User_Preference, err error) {
+	params := []interface{}{
+		preferenceTypeKeyName,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetPreferenceTypes() (resp []datatypes.User_Preference_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetPreferences() (resp []datatypes.User_Preference, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetRequirementsForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+	params := []interface{}{
+		passwordSet,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSupportPolicyAcknowledgementRequiredFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSupportPolicyDocument() (resp []byte, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSupportPolicyName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSupportedLocales() (resp []datatypes.Locale, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSurveyRequiredFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetSurveys() (resp []datatypes.Survey, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetTimezone() (resp datatypes.Locale_Timezone, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) GetUserFromLostPasswordRequest(key *string) (resp []datatypes.User_Security_Question, err error) {
 	params := []interface{}{
 		key,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetUserIdForPasswordSet(key *string) (resp int, err error) {
+	params := []interface{}{
+		key,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
+	params := []interface{}{
+		profileName,
+		containerKeyname,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetUserStatus() (resp datatypes.User_Customer_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetVirtualGuestCount() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) InTerminalStatus() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) InitiateExternalAuthentication(authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp string, err error) {
+	params := []interface{}{
+		authenticationContainer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) InitiatePortalPasswordChange(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) InitiatePortalPasswordChangeByBrandAgent(username *string) (resp bool, err error) {
+	params := []interface{}{
+		username,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string) (resp bool, err error) {
+	params := []interface{}{
+		providerType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) IsMasterUser() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) IsValidForumPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -1267,6 +1849,101 @@ func (r *User_Customer_OpenIdConnect) LostPassword(username *string, email *stri
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) PerformExternalAuthentication(authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+	params := []interface{}{
+		authenticationContainer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) ProcessPasswordSetRequest(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+	params := []interface{}{
+		passwordSet,
+		authenticationContainer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveAllHardwareAccessForThisUser() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveAllVirtualAccessForThisUser() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveApiAuthenticationKey(keyId *int) (resp bool, err error) {
+	params := []interface{}{
+		keyId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveBulkHardwareAccess(hardwareIds []int) (resp bool, err error) {
+	params := []interface{}{
+		hardwareIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveBulkPortalPermission(permissions []datatypes.User_Customer_CustomerPermission_Permission) (resp bool, err error) {
+	params := []interface{}{
+		permissions,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		roles,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveBulkVirtualGuestAccess(virtualGuestIds []int) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestIds,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveExternalBinding(externalBinding *datatypes.User_External_Binding) (resp bool, err error) {
+	params := []interface{}{
+		externalBinding,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveHardwareAccess(hardwareId *int) (resp bool, err error) {
+	params := []interface{}{
+		hardwareId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemovePortalPermission(permission *datatypes.User_Customer_CustomerPermission_Permission) (resp bool, err error) {
+	params := []interface{}{
+		permission,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveRole(role *datatypes.User_Permission_Role) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		role,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) RemoveVirtualGuestAccess(virtualGuestId *int) (resp bool, err error) {
+	params := []interface{}{
+		virtualGuestId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) ResetExpiredPassword(username *string, password *string, newPassword *string, securityQuestionId *int, securityQuestionAnswer *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -1274,6 +1951,33 @@ func (r *User_Customer_OpenIdConnect) ResetExpiredPassword(username *string, pas
 		newPassword,
 		securityQuestionId,
 		securityQuestionAnswer,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) SamlAuthenticate(accountId *string, samlResponse *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+	params := []interface{}{
+		accountId,
+		samlResponse,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) SamlBeginAuthentication(accountId *int) (resp string, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) SamlBeginLogout() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) SamlLogout(samlResponse *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		samlResponse,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -1295,9 +1999,59 @@ func (r *User_Customer_OpenIdConnect) SetPasswordFromLostPasswordRequest(key *st
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Customer_OpenIdConnect) UpdateForumPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) UpdateNotificationSubscriber(notificationKeyName *string, active *int) (resp bool, err error) {
+	params := []interface{}{
+		notificationKeyName,
+		active,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Customer_OpenIdConnect) UpdatePassword(password *string) (resp bool, err error) {
 	params := []interface{}{
 		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) UpdateSecurityAnswers(questions []datatypes.User_Security_Question, answers []string) (resp bool, err error) {
+	params := []interface{}{
+		questions,
+		answers,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) UpdateSubscriberDeliveryMethod(notificationKeyName *string, deliveryMethodKeyNames []string, active *int) (resp bool, err error) {
+	params := []interface{}{
+		notificationKeyName,
+		deliveryMethodKeyNames,
+		active,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) UpdateVpnPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) UpdateVpnUser() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Customer_OpenIdConnect) ValidateAuthenticationToken(authenticationToken *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+	params := []interface{}{
+		authenticationToken,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
@@ -1319,12 +2073,11 @@ func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) Enroll(templateOb
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp datatypes.User_Customer_Prospect_ServiceProvider_EnrollRequest, err error) {
+func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
+func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp datatypes.User_Customer_Prospect_ServiceProvider_EnrollRequest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1342,7 +2095,6 @@ func (r *User_Customer_Security_Answer) GetObject() (resp datatypes.User_Custome
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *User_Customer_Security_Answer) GetQuestion() (resp datatypes.User_Security_Question, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1383,18 +2135,6 @@ func (r *User_External_Binding) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *User_External_Binding) GetObject() (resp datatypes.User_External_Binding, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_External_Binding) UpdateNote(text *string) (resp bool, err error) {
-	params := []interface{}{
-		text,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *User_External_Binding) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1407,12 +2147,23 @@ func (r *User_External_Binding) GetNote() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_External_Binding) GetObject() (resp datatypes.User_External_Binding, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_External_Binding) GetType() (resp datatypes.User_External_Binding_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *User_External_Binding) GetVendor() (resp datatypes.User_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_External_Binding) UpdateNote(text *string) (resp bool, err error) {
+	params := []interface{}{
+		text,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1511,7 +2262,23 @@ func (r *User_Permission_Group) EditObject(templateObject *datatypes.User_Permis
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Permission_Group) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Group) GetActions() (resp []datatypes.User_Permission_Action, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Permission_Group) GetObject() (resp datatypes.User_Permission_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Group) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Group) GetType() (resp datatypes.User_Permission_Group_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1564,23 +2331,6 @@ func (r *User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role)
 	return
 }
 
-func (r *User_Permission_Group) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Group) GetActions() (resp []datatypes.User_Permission_Action, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Group) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Group) GetType() (resp datatypes.User_Permission_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type User_Permission_Group_Type struct {
 	Session *Session
 	Options
@@ -1590,12 +2340,11 @@ func (r *Session) GetUserPermissionGroupTypeService() User_Permission_Group_Type
 	return User_Permission_Group_Type{Session: r}
 }
 
-func (r *User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_Group_Type, err error) {
+func (r *User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
+func (r *User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_Group_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1635,7 +2384,23 @@ func (r *User_Permission_Role) EditObject(templateObject *datatypes.User_Permiss
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *User_Permission_Role) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Role) GetActions() (resp []datatypes.User_Permission_Action, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Role) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *User_Permission_Role) GetObject() (resp datatypes.User_Permission_Role, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1661,23 +2426,6 @@ func (r *User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Grou
 		group,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *User_Permission_Role) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Role) GetActions() (resp []datatypes.User_Permission_Action, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Role) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 

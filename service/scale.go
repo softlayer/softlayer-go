@@ -35,7 +35,6 @@ func (r *Scale_Asset) GetObject() (resp datatypes.Scale_Asset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Asset) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -57,16 +56,23 @@ func (r *Scale_Asset_Hardware) CreateObject(templateObject *datatypes.Scale_Asse
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Scale_Asset_Hardware) GetObject() (resp datatypes.Scale_Asset_Hardware, err error) {
+func (r *Scale_Asset_Hardware) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Asset_Hardware) GetHardware() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Scale_Asset_Hardware) GetHardwareId() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Asset_Hardware) GetObject() (resp datatypes.Scale_Asset_Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Asset_Hardware) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -87,11 +93,18 @@ func (r *Scale_Asset_Virtual_Guest) CreateObject(templateObject *datatypes.Scale
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Asset_Virtual_Guest) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Asset_Virtual_Guest) GetObject() (resp datatypes.Scale_Asset_Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
+func (r *Scale_Asset_Virtual_Guest) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Asset_Virtual_Guest) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -132,44 +145,15 @@ func (r *Scale_Group) ForceDeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Group) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Group) GetAvailableHourlyInstanceLimit() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Scale_Group) GetAvailableRegionalGroups() (resp []datatypes.Location_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Group) GetObject() (resp datatypes.Scale_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Group) Resume() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Group) Scale(delta *int) (resp []datatypes.Scale_Member, err error) {
-	params := []interface{}{
-		delta,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Group) ScaleTo(number *int) (resp []datatypes.Scale_Member, err error) {
-	params := []interface{}{
-		number,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Group) Suspend() (err error) {
-	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Scale_Group) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -182,6 +166,10 @@ func (r *Scale_Group) GetLogs() (resp []datatypes.Scale_Group_Log, err error) {
 	return
 }
 func (r *Scale_Group) GetNetworkVlans() (resp []datatypes.Scale_Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Group) GetObject() (resp datatypes.Scale_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -206,6 +194,30 @@ func (r *Scale_Group) GetVirtualGuestAssets() (resp []datatypes.Scale_Asset_Virt
 	return
 }
 func (r *Scale_Group) GetVirtualGuestMembers() (resp []datatypes.Scale_Member_Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Group) Resume() (err error) {
+	var resp datatypes.Void
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Group) Scale(delta *int) (resp []datatypes.Scale_Member, err error) {
+	params := []interface{}{
+		delta,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Group) ScaleTo(number *int) (resp []datatypes.Scale_Member, err error) {
+	params := []interface{}{
+		number,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Group) Suspend() (err error) {
+	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -255,16 +267,15 @@ func (r *Scale_LoadBalancer) EditObject(templateObject *datatypes.Scale_LoadBala
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Scale_LoadBalancer) GetObject() (resp datatypes.Scale_LoadBalancer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Scale_LoadBalancer) GetAllocationPercent() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Scale_LoadBalancer) GetHealthCheck() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_LoadBalancer) GetObject() (resp datatypes.Scale_LoadBalancer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -310,7 +321,6 @@ func (r *Scale_Member) GetObject() (resp datatypes.Scale_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Member) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -333,7 +343,10 @@ func (r *Scale_Member_Virtual_Guest) GetObject() (resp datatypes.Scale_Member_Vi
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
+func (r *Scale_Member_Virtual_Guest) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Member_Virtual_Guest) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -363,12 +376,11 @@ func (r *Scale_Network_Vlan) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Scale_Network_Vlan) GetObject() (resp datatypes.Scale_Network_Vlan, err error) {
+func (r *Scale_Network_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Scale_Network_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+func (r *Scale_Network_Vlan) GetObject() (resp datatypes.Scale_Network_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -404,16 +416,11 @@ func (r *Scale_Policy) EditObject(templateObject *datatypes.Scale_Policy) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Scale_Policy) GetObject() (resp datatypes.Scale_Policy, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Scale_Policy) Trigger() (resp []datatypes.Scale_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Scale_Policy) GetActions() (resp []datatypes.Scale_Policy_Action, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy) GetObject() (resp datatypes.Scale_Policy, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -438,6 +445,10 @@ func (r *Scale_Policy) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 	return
 }
 func (r *Scale_Policy) GetTriggers() (resp []datatypes.Scale_Policy_Trigger, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy) Trigger() (resp []datatypes.Scale_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -466,7 +477,6 @@ func (r *Scale_Policy_Action) GetObject() (resp datatypes.Scale_Policy_Action, e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Policy_Action) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -492,7 +502,26 @@ func (r *Scale_Policy_Action_Scale) CreateObject(templateObject *datatypes.Scale
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Policy_Action_Scale) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Action_Scale) EditObject(templateObject *datatypes.Scale_Policy_Action) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Policy_Action_Scale) GetObject() (resp datatypes.Scale_Policy_Action_Scale, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Action_Scale) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Action_Scale) GetType() (resp datatypes.Scale_Policy_Action_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -546,7 +575,6 @@ func (r *Scale_Policy_Trigger) GetObject() (resp datatypes.Scale_Policy_Trigger,
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Policy_Trigger) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -572,7 +600,26 @@ func (r *Scale_Policy_Trigger_OneTime) CreateObject(templateObject *datatypes.Sc
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Policy_Trigger_OneTime) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_OneTime) EditObject(templateObject *datatypes.Scale_Policy_Trigger) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Policy_Trigger_OneTime) GetObject() (resp datatypes.Scale_Policy_Trigger_OneTime, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_OneTime) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_OneTime) GetType() (resp datatypes.Scale_Policy_Trigger_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -593,7 +640,26 @@ func (r *Scale_Policy_Trigger_Repeating) CreateObject(templateObject *datatypes.
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Policy_Trigger_Repeating) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_Repeating) EditObject(templateObject *datatypes.Scale_Policy_Trigger) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Policy_Trigger_Repeating) GetObject() (resp datatypes.Scale_Policy_Trigger_Repeating, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_Repeating) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_Repeating) GetType() (resp datatypes.Scale_Policy_Trigger_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -622,11 +688,29 @@ func (r *Scale_Policy_Trigger_ResourceUse) CreateObject(templateObject *datatype
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Scale_Policy_Trigger_ResourceUse) DeleteObject() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_ResourceUse) EditObject(templateObject *datatypes.Scale_Policy_Trigger) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Policy_Trigger_ResourceUse) GetObject() (resp datatypes.Scale_Policy_Trigger_ResourceUse, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
+func (r *Scale_Policy_Trigger_ResourceUse) GetScalePolicy() (resp datatypes.Scale_Policy, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Scale_Policy_Trigger_ResourceUse) GetType() (resp datatypes.Scale_Policy_Trigger_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Scale_Policy_Trigger_ResourceUse) GetWatches() (resp []datatypes.Scale_Policy_Trigger_ResourceUse_Watch, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -675,7 +759,6 @@ func (r *Scale_Policy_Trigger_ResourceUse_Watch) GetObject() (resp datatypes.Sca
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Scale_Policy_Trigger_ResourceUse_Watch) GetScalePolicyTrigger() (resp datatypes.Scale_Policy_Trigger_ResourceUse, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

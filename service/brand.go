@@ -42,33 +42,6 @@ func (r *Brand) CreateObject(templateObject *datatypes.Brand) (resp datatypes.Br
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
-	params := []interface{}{
-		account,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand) GetContactInformation() (resp []datatypes.Brand_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand) GetMerchantName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand) GetObject() (resp datatypes.Brand, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Brand) GetToken(userId *int) (resp string, err error) {
-	params := []interface{}{
-		userId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Brand) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -77,11 +50,22 @@ func (r *Brand) GetAllOwnedAccounts() (resp []datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
+	params := []interface{}{
+		account,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Brand) GetAllowAccountCreationFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Brand) GetCatalog() (resp datatypes.Product_Catalog, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Brand) GetContactInformation() (resp []datatypes.Brand_Contact, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -113,6 +97,14 @@ func (r *Brand) GetHasAgentSupportFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Brand) GetMerchantName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Brand) GetObject() (resp datatypes.Brand, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Brand) GetOpenTickets() (resp []datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -127,6 +119,13 @@ func (r *Brand) GetTicketGroups() (resp []datatypes.Ticket_Group, err error) {
 }
 func (r *Brand) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Brand) GetToken(userId *int) (resp string, err error) {
+	params := []interface{}{
+		userId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Brand) GetUsers() (resp []datatypes.User_Customer, err error) {
@@ -151,16 +150,15 @@ func (r *Brand_Restriction_Location_CustomerCountry) GetAllObjects() (resp []dat
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Brand_Restriction_Location_CustomerCountry) GetObject() (resp datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Brand_Restriction_Location_CustomerCountry) GetBrand() (resp datatypes.Brand, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Brand_Restriction_Location_CustomerCountry) GetLocation() (resp datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Brand_Restriction_Location_CustomerCountry) GetObject() (resp datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

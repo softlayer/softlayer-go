@@ -52,20 +52,19 @@ func (r *Security_Certificate) FindByCommonName(commonName *string) (resp []data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Security_Certificate) GetObject() (resp datatypes.Security_Certificate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Security_Certificate) GetPemFormat() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Security_Certificate) GetAssociatedServiceCount() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Security_Certificate) GetLoadBalancerVirtualIpAddresses() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Certificate) GetObject() (resp datatypes.Security_Certificate, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Certificate) GetPemFormat() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -83,6 +82,10 @@ func (r *Security_Certificate_Request) CancelSslOrder() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Security_Certificate_Request) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Security_Certificate_Request) GetAdministratorEmailDomains(commonName *string) (resp []string, err error) {
 	params := []interface{}{
 		commonName,
@@ -94,7 +97,19 @@ func (r *Security_Certificate_Request) GetAdministratorEmailPrefixes() (resp []s
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Security_Certificate_Request) GetCertificateAuthorityName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Security_Certificate_Request) GetObject() (resp datatypes.Security_Certificate_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Certificate_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Certificate_Request) GetOrderItem() (resp datatypes.Billing_Order_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -107,6 +122,10 @@ func (r *Security_Certificate_Request) GetSslCertificateRequests(accountId *int)
 		accountId,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Certificate_Request) GetStatus() (resp datatypes.Security_Certificate_Request_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Security_Certificate_Request) ResendEmail(emailType *string) (resp bool, err error) {
@@ -124,27 +143,6 @@ func (r *Security_Certificate_Request) ValidateCsr(csr *string, validityMonths *
 		serverType,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Security_Certificate_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Security_Certificate_Request) GetCertificateAuthorityName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Security_Certificate_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Security_Certificate_Request) GetOrderItem() (resp datatypes.Billing_Order_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Security_Certificate_Request) GetStatus() (resp datatypes.Security_Certificate_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -211,16 +209,15 @@ func (r *Security_Ssh_Key) EditObject(templateObject *datatypes.Security_Ssh_Key
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Security_Ssh_Key) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Security_Ssh_Key) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -34,15 +34,6 @@ func (r *Virtual_Disk_Image) EditObject(templateObject *datatypes.Virtual_Disk_I
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Disk_Image) GetObject() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Virtual_Disk_Image) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Disk_Image, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -68,6 +59,14 @@ func (r *Virtual_Disk_Image) GetLocalDiskFlag() (resp bool, err error) {
 	return
 }
 func (r *Virtual_Disk_Image) GetMetadataFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Disk_Image) GetObject() (resp datatypes.Virtual_Disk_Image, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -247,6 +246,30 @@ func (r *Virtual_Guest) GenerateOrderTemplate(templateObject *datatypes.Virtual_
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAccountOwnedPoolFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetActiveNetworkMonitorIncident() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetActiveTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetAdditionalRequiredPricesForOsReload(config *datatypes.Container_Hardware_Server_Configuration) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		config,
@@ -263,6 +286,26 @@ func (r *Virtual_Guest) GetAlarmHistory(startDate *datatypes.Time, endDate *data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAntivirusSpywareSoftwareComponent() (resp datatypes.Software_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
@@ -270,7 +313,15 @@ func (r *Virtual_Guest) GetAttachedNetworkStorages(nasType *string) (resp []data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetAttributes() (resp []datatypes.Virtual_Guest_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetAvailableBlockDevicePositions() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -279,6 +330,30 @@ func (r *Virtual_Guest) GetAvailableNetworkStorages(nasType *string) (resp []dat
 		nasType,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBackendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBackendRouters() (resp []datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBandwidthAllocation() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBandwidthAllotmentDetail() (resp datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) GetBandwidthDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
@@ -327,11 +402,55 @@ func (r *Virtual_Guest) GetBandwidthTotal(startDateTime *datatypes.Time, endDate
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBlockCancelBecauseDisconnectedFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBlockDeviceTemplateGroup() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetBootOrder() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) GetConsoleAccessLog() (resp []datatypes.Network_Logging_Syslog, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetConsoleIpAddressFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetConsoleIpAddressRecord() (resp datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetContinuousDataProtectionSoftwareComponent() (resp datatypes.Software_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetControlPanel() (resp datatypes.Software_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -369,6 +488,10 @@ func (r *Virtual_Guest) GetCreateObjectOptions() (resp datatypes.Container_Virtu
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -391,7 +514,15 @@ func (r *Virtual_Guest) GetCustomMetricDataByDate(graphData *datatypes.Container
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetDatacenter() (resp datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetDriveRetentionItemPrice() (resp datatypes.Product_Item_Price, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -399,7 +530,51 @@ func (r *Virtual_Guest) GetFirewallProtectableSubnets() (resp []datatypes.Networ
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetFirewallServiceComponent() (resp datatypes.Network_Component_Firewall, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetFirstAvailableBlockDevicePosition() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetFrontendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetFrontendRouters() (resp datatypes.Hardware, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetGlobalIdentifier() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetGuestBootParameter() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetHost() (resp datatypes.Virtual_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetHostIpsSoftwareComponent() (resp datatypes.Software_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetHourlyBillingFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetInternalTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -414,6 +589,34 @@ func (r *Virtual_Guest) GetItemPricesFromSoftwareDescriptions(softwareDescriptio
 		returnAllPricesFlag,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLastKnownPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLastTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLatestNetworkMonitorIncident() (resp datatypes.Network_Monitor_Version1_Incident, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLocalDiskFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetLocation() (resp datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetManagedResourceFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
@@ -440,12 +643,24 @@ func (r *Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *datatypes.Time
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMetricTrackingObjectId() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) GetMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
@@ -456,11 +671,63 @@ func (r *Virtual_Guest) GetMonitoringClosedAlarms(startDate *datatypes.Time, end
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMonitoringServiceComponent() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMonitoringServiceFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetMonitoringUserNotification() (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetNetworkMonitorIncidents() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetNetworkStorage() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetObject() (resp datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOpenCancellationTicket() (resp datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOperatingSystem() (resp datatypes.Software_Component_OperatingSystem, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOperatingSystemReferenceCode() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -472,7 +739,59 @@ func (r *Virtual_Guest) GetOrderTemplate(billingType *string, orderPrices []data
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetOrderedPackageId() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPrimaryBackendIpAddress() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPrimaryBackendNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPrimaryIpAddress() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPrimaryNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetProvisionDate() (resp datatypes.Time, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -481,6 +800,14 @@ func (r *Virtual_Guest) GetRecentMetricData(time *uint) (resp []datatypes.Metric
 		time,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetRegionalGroup() (resp datatypes.Location_Group_Regional, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
@@ -503,6 +830,42 @@ func (r *Virtual_Guest) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetScaleMember() (resp datatypes.Scale_Member_Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetScaledFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetServerRoom() (resp datatypes.Location, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetStatus() (resp datatypes.Virtual_Guest_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetUpgradeItemPrices(includeDowngradeItemPrices *bool) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		includeDowngradeItemPrices,
@@ -510,11 +873,35 @@ func (r *Virtual_Guest) GetUpgradeItemPrices(includeDowngradeItemPrices *bool) (
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetUserData() (resp []datatypes.Virtual_Guest_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetUsers() (resp []datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest) GetValidBlockDeviceTemplateGroups(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		visibility,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetVirtualRack() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetVirtualRackId() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest) GetVirtualRackName() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest) IsBackendPingable() (resp bool, err error) {
@@ -654,395 +1041,6 @@ func (r *Virtual_Guest) VerifyReloadOperatingSystem(config *datatypes.Container_
 	return
 }
 
-func (r *Virtual_Guest) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAccountOwnedPoolFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetActiveNetworkMonitorIncident() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetActiveTickets() (resp []datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAntivirusSpywareSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAttributes() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBackendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBackendRouters() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBandwidthAllocation() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBandwidthAllotmentDetail() (resp datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBlockCancelBecauseDisconnectedFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBlockDeviceTemplateGroup() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetConsoleIpAddressFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetConsoleIpAddressRecord() (resp datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetContinuousDataProtectionSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetControlPanel() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetFirewallServiceComponent() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetFrontendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetFrontendRouters() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetGlobalIdentifier() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetGuestBootParameter() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetHost() (resp datatypes.Virtual_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetHostIpsSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetHourlyBillingFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetInboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetInternalTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLastKnownPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLastTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLatestNetworkMonitorIncident() (resp datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLocalDiskFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMetricTrackingObjectId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringServiceComponent() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringServiceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetMonitoringUserNotification() (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetNetworkMonitorIncidents() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOpenCancellationTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOperatingSystem() (resp datatypes.Software_Component_OperatingSystem, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOperatingSystemReferenceCode() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOrderedPackageId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPrimaryBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPrimaryBackendNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPrimaryIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPrimaryNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetRegionalGroup() (resp datatypes.Location_Group_Regional, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetScaleMember() (resp datatypes.Scale_Member_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetScaledFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetServerRoom() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetStatus() (resp datatypes.Virtual_Guest_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetUserData() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetUsers() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetVirtualRack() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetVirtualRackId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest) GetVirtualRackName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Virtual_Guest_Block_Device_Template_Group struct {
 	Session *Session
 	Options
@@ -1101,55 +1099,6 @@ func (r *Virtual_Guest_Block_Device_Template_Group) EditObject(templateObject *d
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest_Block_Device_Template_Group) GetObject() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) GetPublicCustomerOwnedImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) GetPublicImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) GetStorageLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescriptions() (resp []datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) PermitSharingAccess(accountId *int) (resp bool, err error) {
-	params := []interface{}{
-		accountId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) RemoveLocations(locations []datatypes.Location) (resp bool, err error) {
-	params := []interface{}{
-		locations,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) SetAvailableLocations(locations []datatypes.Location) (resp bool, err error) {
-	params := []interface{}{
-		locations,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp bool, err error) {
-	params := []interface{}{
-		tags,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Virtual_Guest_Block_Device_Template_Group) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1198,7 +1147,19 @@ func (r *Virtual_Guest_Block_Device_Template_Group) GetImageTypeKeyName() (resp 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest_Block_Device_Template_Group) GetObject() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Guest_Block_Device_Template_Group) GetParent() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) GetPublicCustomerOwnedImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) GetPublicImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1207,6 +1168,10 @@ func (r *Virtual_Guest_Block_Device_Template_Group) GetSshKeys() (resp []datatyp
 	return
 }
 func (r *Virtual_Guest_Block_Device_Template_Group) GetStatus() (resp datatypes.Virtual_Guest_Block_Device_Template_Group_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) GetStorageLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1220,6 +1185,38 @@ func (r *Virtual_Guest_Block_Device_Template_Group) GetTagReferences() (resp []d
 }
 func (r *Virtual_Guest_Block_Device_Template_Group) GetTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescriptions() (resp []datatypes.Software_Description, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) PermitSharingAccess(accountId *int) (resp bool, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) RemoveLocations(locations []datatypes.Location) (resp bool, err error) {
+	params := []interface{}{
+		locations,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) SetAvailableLocations(locations []datatypes.Location) (resp bool, err error) {
+	params := []interface{}{
+		locations,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp bool, err error) {
+	params := []interface{}{
+		tags,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1250,16 +1247,15 @@ func (r *Virtual_Guest_Boot_Parameter) EditObject(templateObject *datatypes.Virt
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Virtual_Guest_Boot_Parameter) GetGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Guest_Boot_Parameter) GetGuestBootParameterType() (resp datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1299,15 +1295,6 @@ func (r *Virtual_Guest_Network_Component) Enable() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Virtual_Guest_Network_Component) GetObject() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Virtual_Guest_Network_Component) GetGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1325,6 +1312,10 @@ func (r *Virtual_Guest_Network_Component) GetNetworkComponentFirewall() (resp da
 	return
 }
 func (r *Virtual_Guest_Network_Component) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Guest_Network_Component) GetObject() (resp datatypes.Virtual_Guest_Network_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1352,6 +1343,10 @@ func (r *Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 
 type Virtual_Host struct {
 	Session *Session
@@ -1362,6 +1357,26 @@ func (r *Session) GetVirtualHostService() Virtual_Host {
 	return Virtual_Host{Session: r}
 }
 
+func (r *Virtual_Host) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Host) GetBilledPerGuestFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Host) GetBilledPerMemoryUsageFlag() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Host) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Host) GetLiveGuestByUuid(uuid *string) (resp datatypes.Virtual_Guest, err error) {
 	params := []interface{}{
 		uuid,
@@ -1381,6 +1396,10 @@ func (r *Virtual_Host) GetLiveGuestRecentMetricData(uuid *string, time *int, lim
 		interval,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Host) GetObject() (resp datatypes.Virtual_Host, err error) {
@@ -1430,31 +1449,6 @@ func (r *Virtual_Host) ResumeLiveGuest(uuid *string) (resp bool, err error) {
 	return
 }
 
-func (r *Virtual_Host) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Host) GetBilledPerGuestFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Host) GetBilledPerMemoryUsageFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Host) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Virtual_Storage_Repository struct {
 	Session *Session
 	Options
@@ -1464,6 +1458,10 @@ func (r *Session) GetVirtualStorageRepositoryService() Virtual_Storage_Repositor
 	return Virtual_Storage_Repository{Session: r}
 }
 
+func (r *Virtual_Storage_Repository) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Storage_Repository) GetArchiveDiskUsageRatePerGb() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1474,39 +1472,6 @@ func (r *Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTi
 		endDateTime,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Storage_Repository) GetObject() (resp datatypes.Virtual_Storage_Repository, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Storage_Repository) GetPublicImageDiskUsageRatePerGb() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Virtual_Storage_Repository) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Storage_Repository) GetBillingItem() (resp datatypes.Billing_Item, err error) {
@@ -1529,11 +1494,39 @@ func (r *Virtual_Storage_Repository) GetMetricTrackingObject() (resp datatypes.M
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Virtual_Storage_Repository) GetObject() (resp datatypes.Virtual_Storage_Repository, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Virtual_Storage_Repository) GetPublicImageBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Storage_Repository) GetPublicImageDiskUsageRatePerGb() (resp float64, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Virtual_Storage_Repository) GetType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }

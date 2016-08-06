@@ -45,16 +45,15 @@ func (r *Provisioning_Hook) EditObject(templateObject *datatypes.Provisioning_Ho
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Provisioning_Hook) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Provisioning_Hook) GetHookType() (resp datatypes.Provisioning_Hook_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -86,6 +85,10 @@ func (r *Session) GetProvisioningMaintenanceClassificationService() Provisioning
 	return Provisioning_Maintenance_Classification{Session: r}
 }
 
+func (r *Provisioning_Maintenance_Classification) GetItemCategories() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Provisioning_Maintenance_Classification) GetMaintenanceClassification(maintenanceClassificationId *int) (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
 	params := []interface{}{
 		maintenanceClassificationId,
@@ -102,11 +105,6 @@ func (r *Provisioning_Maintenance_Classification) GetObject() (resp datatypes.Pr
 	return
 }
 
-func (r *Provisioning_Maintenance_Classification) GetItemCategories() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Provisioning_Maintenance_Classification_Item_Category struct {
 	Session *Session
 	Options
@@ -116,12 +114,11 @@ func (r *Session) GetProvisioningMaintenanceClassificationItemCategoryService() 
 	return Provisioning_Maintenance_Classification_Item_Category{Session: r}
 }
 
-func (r *Provisioning_Maintenance_Classification_Item_Category) GetObject() (resp datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
+func (r *Provisioning_Maintenance_Classification_Item_Category) GetMaintenanceClassification() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Provisioning_Maintenance_Classification_Item_Category) GetMaintenanceClassification() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
+func (r *Provisioning_Maintenance_Classification_Item_Category) GetObject() (resp datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -149,16 +146,15 @@ func (r *Session) GetProvisioningMaintenanceTicketService() Provisioning_Mainten
 	return Provisioning_Maintenance_Ticket{Session: r}
 }
 
-func (r *Provisioning_Maintenance_Ticket) GetObject() (resp datatypes.Provisioning_Maintenance_Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Provisioning_Maintenance_Ticket) GetAvailableSlots() (resp datatypes.Provisioning_Maintenance_Slots, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Provisioning_Maintenance_Ticket) GetMaintenanceClass() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Provisioning_Maintenance_Ticket) GetObject() (resp datatypes.Provisioning_Maintenance_Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

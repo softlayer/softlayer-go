@@ -73,6 +73,14 @@ func (r *Account) CountHourlyInstances() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetAbuseEmail() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetAbuseEmails() (resp []datatypes.Account_AbuseEmail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetAccountBackupHistory(startDate *datatypes.Time, endDate *datatypes.Time, backupStatus *string) (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
 	params := []interface{}{
 		startDate,
@@ -80,358 +88,6 @@ func (r *Account) GetAccountBackupHistory(startDate *datatypes.Time, endDate *da
 		backupStatus,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAccountTraitValue(keyName *string) (resp string, err error) {
-	params := []interface{}{
-		keyName,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetActiveAlarms() (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetActiveOutletPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetActivePackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
-	params := []interface{}{
-		attributeKeyName,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAggregatedUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Graph, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAlternateCreditCardData() (resp datatypes.Container_Account_Payment_Method_CreditCard, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAttributeByType(attributeType *string) (resp datatypes.Account_Attribute, err error) {
-	params := []interface{}{
-		attributeType,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAuxiliaryNotifications() (resp []datatypes.Container_Utility_Message, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetCurrentBackupStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		detailedGraph,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetCurrentTicketStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		detailedGraph,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetCurrentUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetDiskUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetDiskUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetExecutiveSummaryPdf(pdfType *string, historicalType *string, startDate *string, endDate *string) (resp []byte, err error) {
-	params := []interface{}{
-		pdfType,
-		historicalType,
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetFlexibleCreditProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
-	params := []interface{}{
-		forNextBillCycle,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetHistoricalBandwidthGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetHistoricalTicketGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetHistoricalUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetLargestAllowedSubnetCidr(numberOfHosts *int, locationId *int) (resp int, err error) {
-	params := []interface{}{
-		numberOfHosts,
-		locationId,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetNextInvoiceExcel(documentCreateDate *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		documentCreateDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetNextInvoicePdf(documentCreateDate *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		documentCreateDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetNextInvoicePdfDetailed(documentCreateDate *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		documentCreateDate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetNextInvoiceZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetObject() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetPendingCreditCardChangeRequestData() (resp []datatypes.Container_Account_Payment_Method_CreditCard, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetReferralPartnerCommissionForecast() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetReferralPartnerCommissionHistory() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetReferralPartnerCommissionPending() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetSharedBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetTechIncubatorProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
-	params := []interface{}{
-		forNextBillCycle,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetThirdPartyPoliciesAcceptanceStatus() (resp []datatypes.Container_Policy_Acceptance, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetValidSecurityCertificateEntries() (resp []datatypes.Security_Certificate_Entry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetVmWareActiveAccountLicenseKeys() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetWindowsUpdateStatus() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) HasAttribute(attributeType *string) (resp bool, err error) {
-	params := []interface{}{
-		attributeType,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) HourlyInstanceLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) HourlyServerLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) LinkExternalAccount(externalAccountId *string, authorizationToken *string, externalServiceProviderKey *string) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		externalAccountId,
-		authorizationToken,
-		externalServiceProviderKey,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) RemoveAlternateCreditCard() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) RequestCreditCardChange(request *datatypes.Billing_Payment_Card_ChangeRequest, vatId *string, paymentRoleName *string, onlyChangeNicknameFlag *bool) (resp datatypes.Billing_Payment_Card_ChangeRequest, err error) {
-	params := []interface{}{
-		request,
-		vatId,
-		paymentRoleName,
-		onlyChangeNicknameFlag,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) RequestManualPayment(request *datatypes.Billing_Payment_Card_ManualPayment) (resp datatypes.Billing_Payment_Card_ManualPayment, err error) {
-	params := []interface{}{
-		request,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) RequestManualPaymentUsingCreditCardOnFile(amount *string, payWithAlternateCardFlag *bool, note *string) (resp datatypes.Billing_Payment_Card_ManualPayment, err error) {
-	params := []interface{}{
-		amount,
-		payWithAlternateCardFlag,
-		note,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) SetAbuseEmails(emails []string) (resp bool, err error) {
-	params := []interface{}{
-		emails,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) SetVlanSpan(enabled *bool) (resp bool, err error) {
-	params := []interface{}{
-		enabled,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) SwapCreditCards() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (resp bool, err error) {
-	params := []interface{}{
-		objectId,
-		objectType,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) Validate(account *datatypes.Account) (resp []string, err error) {
-	params := []interface{}{
-		account,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) ValidateManualPaymentAmount(amount *string) (resp bool, err error) {
-	params := []interface{}{
-		amount,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Account) GetAbuseEmail() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account) GetAbuseEmails() (resp []datatypes.Account_AbuseEmail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetAccountContacts() (resp []datatypes.Account_Contact, err error) {
@@ -450,6 +106,13 @@ func (r *Account) GetAccountStatus() (resp datatypes.Account_Status, err error) 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetAccountTraitValue(keyName *string) (resp string, err error) {
+	params := []interface{}{
+		keyName,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetActiveAccountDiscountBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -459,6 +122,10 @@ func (r *Account) GetActiveAccountLicenses() (resp []datatypes.Software_AccountL
 	return
 }
 func (r *Account) GetActiveAddresses() (resp []datatypes.Account_Address, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetActiveAlarms() (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -482,6 +149,25 @@ func (r *Account) GetActiveNotificationSubscribers() (resp []datatypes.Notificat
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetActiveOutletPackages() (resp []datatypes.Product_Package, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetActivePackages() (resp []datatypes.Product_Package, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
+	params := []interface{}{
+		attributeKeyName,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetActiveQuotes() (resp []datatypes.Billing_Order_Quote, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -500,6 +186,14 @@ func (r *Account) GetAddresses() (resp []datatypes.Account_Address, err error) {
 }
 func (r *Account) GetAffiliateId() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetAggregatedUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Graph, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetAllBillingItems() (resp []datatypes.Billing_Item, err error) {
@@ -534,16 +228,47 @@ func (r *Account) GetAllowsBluemixAccountLinkingFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetAlternateCreditCardData() (resp datatypes.Container_Account_Payment_Method_CreditCard, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetAttributeByType(attributeType *string) (resp datatypes.Account_Attribute, err error) {
+	params := []interface{}{
+		attributeType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetAttributes() (resp []datatypes.Account_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetAuxiliaryNotifications() (resp []datatypes.Container_Utility_Message, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetAvailablePublicNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetBalance() (resp float64, err error) {
@@ -618,12 +343,62 @@ func (r *Account) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetCurrentBackupStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		detailedGraph,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetCurrentTicketStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		detailedGraph,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetCurrentUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetDatacentersWithSubnetAllocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetDisablePaymentProcessingFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetDiskUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetDiskUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetDisplaySupportRepresentativeAssignments() (resp []datatypes.Account_Attachment_Employee, err error) {
@@ -654,6 +429,16 @@ func (r *Account) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetExecutiveSummaryPdf(pdfType *string, historicalType *string, startDate *string, endDate *string) (resp []byte, err error) {
+	params := []interface{}{
+		pdfType,
+		historicalType,
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetExpiredSecurityCertificates() (resp []datatypes.Security_Certificate, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -664,6 +449,13 @@ func (r *Account) GetFacilityLogs() (resp []datatypes.User_Access_Facility_Log, 
 }
 func (r *Account) GetFlexibleCreditEnrollments() (resp []datatypes.FlexibleCredit_Enrollment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetFlexibleCreditProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
+	params := []interface{}{
+		forNextBillCycle,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetGlobalIpRecords() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
@@ -750,6 +542,38 @@ func (r *Account) GetHasR1softBareMetalRestorePluginFlag() (resp bool, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetHistoricalBandwidthGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetHistoricalTicketGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetHistoricalUptimeGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetHourlyBareMetalInstances() (resp []datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -780,6 +604,14 @@ func (r *Account) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, e
 }
 func (r *Account) GetIscsiNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetLargestAllowedSubnetCidr(numberOfHosts *int, locationId *int) (resp int, err error) {
+	params := []interface{}{
+		numberOfHosts,
+		locationId,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetLastCanceledBillingItem() (resp datatypes.Billing_Item, err error) {
@@ -938,8 +770,29 @@ func (r *Account) GetNextBillingPublicAllotmentHardwareBandwidthDetails() (resp 
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetNextInvoiceExcel(documentCreateDate *datatypes.Time) (resp []byte, err error) {
+	params := []interface{}{
+		documentCreateDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetNextInvoiceIncubatorExemptTotal() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetNextInvoicePdf(documentCreateDate *datatypes.Time) (resp []byte, err error) {
+	params := []interface{}{
+		documentCreateDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetNextInvoicePdfDetailed(documentCreateDate *datatypes.Time) (resp []byte, err error) {
+	params := []interface{}{
+		documentCreateDate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account) GetNextInvoiceTopLevelBillingItems() (resp []datatypes.Billing_Item, err error) {
@@ -974,7 +827,15 @@ func (r *Account) GetNextInvoiceTotalTaxableRecurringAmount() (resp float64, err
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetNextInvoiceZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetObject() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1043,6 +904,10 @@ func (r *Account) GetOwnedHardwareGenericComponentModels() (resp []datatypes.Har
 	return
 }
 func (r *Account) GetPaymentProcessors() (resp []datatypes.Billing_Payment_Processor, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetPendingCreditCardChangeRequestData() (resp []datatypes.Container_Account_Payment_Method_CreditCard, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1158,6 +1023,18 @@ func (r *Account) GetReferralPartner() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetReferralPartnerCommissionForecast() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetReferralPartnerCommissionHistory() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetReferralPartnerCommissionPending() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetReferredAccounts() (resp []datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1214,6 +1091,10 @@ func (r *Account) GetServiceBillingItems() (resp []datatypes.Billing_Item, err e
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetSharedBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetShipments() (resp []datatypes.Account_Shipment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1262,6 +1143,17 @@ func (r *Account) GetTags() (resp []datatypes.Tag, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetTechIncubatorProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
+	params := []interface{}{
+		forNextBillCycle,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetThirdPartyPoliciesAcceptanceStatus() (resp []datatypes.Container_Policy_Acceptance, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1283,6 +1175,10 @@ func (r *Account) GetUpgradeRequests() (resp []datatypes.Product_Upgrade_Request
 	return
 }
 func (r *Account) GetUsers() (resp []datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetValidSecurityCertificateEntries() (resp []datatypes.Security_Certificate_Entry, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1358,6 +1254,109 @@ func (r *Account) GetVirtualStoragePublicRepositories() (resp []datatypes.Virtua
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account) GetVmWareActiveAccountLicenseKeys() (resp []string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) GetWindowsUpdateStatus() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) HasAttribute(attributeType *string) (resp bool, err error) {
+	params := []interface{}{
+		attributeType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) HourlyInstanceLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) HourlyServerLimit() (resp int, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) LinkExternalAccount(externalAccountId *string, authorizationToken *string, externalServiceProviderKey *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		externalAccountId,
+		authorizationToken,
+		externalServiceProviderKey,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) RemoveAlternateCreditCard() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) RequestCreditCardChange(request *datatypes.Billing_Payment_Card_ChangeRequest, vatId *string, paymentRoleName *string, onlyChangeNicknameFlag *bool) (resp datatypes.Billing_Payment_Card_ChangeRequest, err error) {
+	params := []interface{}{
+		request,
+		vatId,
+		paymentRoleName,
+		onlyChangeNicknameFlag,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) RequestManualPayment(request *datatypes.Billing_Payment_Card_ManualPayment) (resp datatypes.Billing_Payment_Card_ManualPayment, err error) {
+	params := []interface{}{
+		request,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) RequestManualPaymentUsingCreditCardOnFile(amount *string, payWithAlternateCardFlag *bool, note *string) (resp datatypes.Billing_Payment_Card_ManualPayment, err error) {
+	params := []interface{}{
+		amount,
+		payWithAlternateCardFlag,
+		note,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) SetAbuseEmails(emails []string) (resp bool, err error) {
+	params := []interface{}{
+		emails,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) SetVlanSpan(enabled *bool) (resp bool, err error) {
+	params := []interface{}{
+		enabled,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) SwapCreditCards() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (resp bool, err error) {
+	params := []interface{}{
+		objectId,
+		objectType,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) Validate(account *datatypes.Account) (resp []string, err error) {
+	params := []interface{}{
+		account,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account) ValidateManualPaymentAmount(amount *string) (resp bool, err error) {
+	params := []interface{}{
+		amount,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
 
 type Account_Address struct {
 	Session *Session
@@ -1382,23 +1381,11 @@ func (r *Account_Address) EditObject(templateObject *datatypes.Account_Address) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Address) GetAllDataCenters() (resp []datatypes.Account_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Address) GetNetworkAddress(name *string) (resp []datatypes.Account_Address, err error) {
-	params := []interface{}{
-		name,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Address) GetObject() (resp datatypes.Account_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Address) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Address) GetAllDataCenters() (resp []datatypes.Account_Address, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1415,6 +1402,17 @@ func (r *Account_Address) GetModifyEmployee() (resp datatypes.User_Employee, err
 	return
 }
 func (r *Account_Address) GetModifyUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Address) GetNetworkAddress(name *string) (resp []datatypes.Account_Address, err error) {
+	params := []interface{}{
+		name,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Address) GetObject() (resp datatypes.Account_Address, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1464,6 +1462,10 @@ func (r *Account_Affiliation) EditObject(templateObject *datatypes.Account_Affil
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Affiliation) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Affiliation) GetAccountAffiliationsByAffiliateId(affiliateId *string) (resp []datatypes.Account_Affiliation, err error) {
 	params := []interface{}{
 		affiliateId,
@@ -1476,11 +1478,6 @@ func (r *Account_Affiliation) GetObject() (resp datatypes.Account_Affiliation, e
 	return
 }
 
-func (r *Account_Affiliation) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 type Account_Agreement struct {
 	Session *Session
 	Options
@@ -1488,11 +1485,6 @@ type Account_Agreement struct {
 
 func (r *Session) GetAccountAgreementService() Account_Agreement {
 	return Account_Agreement{Session: r}
-}
-
-func (r *Account_Agreement) GetObject() (resp datatypes.Account_Agreement, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
 }
 
 func (r *Account_Agreement) GetAccount() (resp datatypes.Account, err error) {
@@ -1508,6 +1500,10 @@ func (r *Account_Agreement) GetAttachedBillingAgreementFiles() (resp []datatypes
 	return
 }
 func (r *Account_Agreement) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Agreement) GetObject() (resp datatypes.Account_Agreement, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1529,16 +1525,15 @@ func (r *Session) GetAccountAuthenticationAttributeService() Account_Authenticat
 	return Account_Authentication_Attribute{Session: r}
 }
 
-func (r *Account_Authentication_Attribute) GetObject() (resp datatypes.Account_Authentication_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Authentication_Attribute) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Authentication_Attribute) GetAuthenticationRecord() (resp datatypes.Account_Authentication_Saml, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Authentication_Attribute) GetObject() (resp datatypes.Account_Authentication_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1592,20 +1587,19 @@ func (r *Account_Authentication_Saml) EditObject(templateObject *datatypes.Accou
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Authentication_Saml) GetMetadata() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Authentication_Saml) GetObject() (resp datatypes.Account_Authentication_Saml, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Authentication_Saml) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Authentication_Saml) GetAttributes() (resp []datatypes.Account_Authentication_Attribute, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Authentication_Saml) GetMetadata() (resp string, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Authentication_Saml) GetObject() (resp datatypes.Account_Authentication_Saml, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1637,16 +1631,15 @@ func (r *Account_Contact) EditObject(templateObject *datatypes.Account_Contact) 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Contact) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Contact) GetAllContactTypes() (resp []datatypes.Account_Contact_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Contact) GetObject() (resp datatypes.Account_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Account_Contact) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1865,16 +1858,15 @@ func (r *Session) GetAccountMasterServiceAgreementService() Account_MasterServic
 	return Account_MasterServiceAgreement{Session: r}
 }
 
+func (r *Account_MasterServiceAgreement) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_MasterServiceAgreement) GetFile() (resp datatypes.Container_Utility_File_Entity, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_MasterServiceAgreement) GetObject() (resp datatypes.Account_MasterServiceAgreement, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Account_MasterServiceAgreement) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1895,23 +1887,11 @@ func (r *Account_Media) EditObject(templateObject *datatypes.Account_Media) (res
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Media) GetAllMediaTypes() (resp []datatypes.Account_Media_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Media) GetObject() (resp datatypes.Account_Media, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Media) RemoveMediaFromList(mediaTemplate *datatypes.Account_Media) (resp int, err error) {
-	params := []interface{}{
-		mediaTemplate,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Media) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Media) GetAllMediaTypes() (resp []datatypes.Account_Media_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1931,6 +1911,10 @@ func (r *Account_Media) GetModifyUser() (resp datatypes.User_Customer, err error
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Media) GetObject() (resp datatypes.Account_Media, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Media) GetRequest() (resp datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1941,6 +1925,13 @@ func (r *Account_Media) GetType() (resp datatypes.Account_Media_Type, err error)
 }
 func (r *Account_Media) GetVolume() (resp datatypes.Network_Storage, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Media) RemoveMediaFromList(mediaTemplate *datatypes.Account_Media) (resp int, err error) {
+	params := []interface{}{
+		mediaTemplate,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1960,20 +1951,15 @@ func (r *Account_Media_Data_Transfer_Request) EditObject(templateObject *datatyp
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Media_Data_Transfer_Request) GetAllRequestStatuses() (resp []datatypes.Account_Media_Data_Transfer_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Media_Data_Transfer_Request) GetObject() (resp datatypes.Account_Media_Data_Transfer_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Media_Data_Transfer_Request) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Media_Data_Transfer_Request) GetActiveTickets() (resp []datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Media_Data_Transfer_Request) GetAllRequestStatuses() (resp []datatypes.Account_Media_Data_Transfer_Request_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1994,6 +1980,10 @@ func (r *Account_Media_Data_Transfer_Request) GetModifyEmployee() (resp datatype
 	return
 }
 func (r *Account_Media_Data_Transfer_Request) GetModifyUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Media_Data_Transfer_Request) GetObject() (resp datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2037,11 +2027,6 @@ func (r *Account_Note) EditObject(templateObject *datatypes.Account_Note) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Note) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2055,6 +2040,10 @@ func (r *Account_Note) GetNoteHistory() (resp []datatypes.Account_Note_History, 
 	return
 }
 func (r *Account_Note) GetNoteType() (resp datatypes.Account_Note_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2137,12 +2126,11 @@ func (r *Account_Password) EditObject(templateObject *datatypes.Account_Password
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Password) GetObject() (resp datatypes.Account_Password, err error) {
+func (r *Account_Password) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Account_Password) GetAccount() (resp datatypes.Account, err error) {
+func (r *Account_Password) GetObject() (resp datatypes.Account_Password, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2178,15 +2166,6 @@ func (r *Account_Regional_Registry_Detail) EditObject(templateObject *datatypes.
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp datatypes.Container_Network_Subnet_Registration_TransactionDetails, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Regional_Registry_Detail) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2199,11 +2178,19 @@ func (r *Account_Regional_Registry_Detail) GetDetails() (resp []datatypes.Networ
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Regional_Registry_Detail, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Regional_Registry_Detail) GetProperties() (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Regional_Registry_Detail) GetRegionalInternetRegistryHandle() (resp datatypes.Account_Rwhois_Handle, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp datatypes.Container_Network_Subnet_Registration_TransactionDetails, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2249,12 +2236,11 @@ func (r *Account_Regional_Registry_Detail_Property) EditObjects(templateObjects 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Regional_Registry_Detail_Property) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
+func (r *Account_Regional_Registry_Detail_Property) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
-func (r *Account_Regional_Registry_Detail_Property) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
+func (r *Account_Regional_Registry_Detail_Property) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2317,6 +2303,14 @@ func (r *Account_Reports_Request) CreateRequest(contact *datatypes.Account_Conta
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Reports_Request) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Reports_Request) GetAccountContact() (resp datatypes.Account_Contact, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Reports_Request) GetAllObjects() (resp datatypes.Account_Reports_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2325,11 +2319,23 @@ func (r *Account_Reports_Request) GetObject() (resp datatypes.Account_Reports_Re
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Reports_Request) GetReportType() (resp datatypes.Compliance_Report_Type, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Reports_Request) GetRequestByRequestKey(requestKey *string) (resp datatypes.Account_Reports_Request, err error) {
 	params := []interface{}{
 		requestKey,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Reports_Request) GetTicket() (resp datatypes.Ticket, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Reports_Request) GetUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Account_Reports_Request) SendReportEmail(request *datatypes.Account_Reports_Request) (resp bool, err error) {
@@ -2344,27 +2350,6 @@ func (r *Account_Reports_Request) UpdateTicketOnDecline(request *datatypes.Accou
 		request,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Account_Reports_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Reports_Request) GetAccountContact() (resp datatypes.Account_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Reports_Request) GetReportType() (resp datatypes.Compliance_Report_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Reports_Request) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Reports_Request) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2384,6 +2369,10 @@ func (r *Account_Shipment) EditObject(templateObject *datatypes.Account_Shipment
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Account_Shipment) GetAccount() (resp datatypes.Account, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Account_Shipment) GetAllCouriers() (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2400,15 +2389,6 @@ func (r *Account_Shipment) GetAllShipmentStatuses() (resp []datatypes.Account_Sh
 	return
 }
 func (r *Account_Shipment) GetAllShipmentTypes() (resp []datatypes.Account_Shipment_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Account_Shipment) GetObject() (resp datatypes.Account_Shipment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Account_Shipment) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2433,6 +2413,10 @@ func (r *Account_Shipment) GetModifyEmployee() (resp datatypes.User_Employee, er
 	return
 }
 func (r *Account_Shipment) GetModifyUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Shipment) GetObject() (resp datatypes.Account_Shipment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -2477,7 +2461,6 @@ func (r *Account_Shipment_Item) GetObject() (resp datatypes.Account_Shipment_Ite
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
-
 func (r *Account_Shipment_Item) GetShipment() (resp datatypes.Account_Shipment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2563,11 +2546,6 @@ func (r *Account_Shipment_Tracking_Data) EditObject(templateObject *datatypes.Ac
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
-func (r *Account_Shipment_Tracking_Data) GetObject() (resp datatypes.Account_Shipment_Tracking_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-
 func (r *Account_Shipment_Tracking_Data) GetCreateEmployee() (resp datatypes.User_Employee, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2581,6 +2559,10 @@ func (r *Account_Shipment_Tracking_Data) GetModifyEmployee() (resp datatypes.Use
 	return
 }
 func (r *Account_Shipment_Tracking_Data) GetModifyUser() (resp datatypes.User_Customer, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Account_Shipment_Tracking_Data) GetObject() (resp datatypes.Account_Shipment_Tracking_Data, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

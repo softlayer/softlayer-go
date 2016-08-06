@@ -38,6 +38,10 @@ func (r *Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+func (r *Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
 func (r *Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		non,
@@ -50,22 +54,6 @@ func (r *Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_
 		name,
 	}
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
-	return
-}
-func (r *Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
-	params := []interface{}{
-		urlIdentifier,
-	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
-	return
-}
-
-func (r *Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 func (r *Marketplace_Partner) GetLogoMedium() (resp datatypes.Marketplace_Partner_Attachment, err error) {
@@ -82,5 +70,16 @@ func (r *Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner
 }
 func (r *Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+func (r *Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
+	params := []interface{}{
+		urlIdentifier,
+	}
+	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
