@@ -14,8 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+//
 type Search struct {
 	Entity
 }

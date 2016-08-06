@@ -14,306 +14,635 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+// Details provided for the notification are basic.  Details such as the related preferences, name and keyname for the notification can be retrieved.  The keyname property for the notification can be used to refer to a notification when integrating into the SoftLayer Notification system.  The name property can used more for display purposes.
 type Notification struct {
 	Entity
 
-	Id                      *int                      `json:"id,omitempty"`
-	KeyName                 *string                   `json:"keyName,omitempty"`
-	Name                    *string                   `json:"name,omitempty"`
-	PreferenceCount         *uint                     `json:"preferenceCount,omitempty"`
-	Preferences             []Notification_Preference `json:"preferences,omitempty"`
-	RequiredPreferenceCount *uint                     `json:"requiredPreferenceCount,omitempty"`
-	RequiredPreferences     []Notification_Preference `json:"requiredPreferences,omitempty"`
+	// Unique identifier for the notification.
+	Id *int `json:"id,omitempty"`
+
+	// Name that can be used by external systems to refer to a notification.
+	KeyName *string `json:"keyName,omitempty"`
+
+	// Friendly name for the notification.
+	Name *string `json:"name,omitempty"`
+
+	// A count of the preferences related to the notification. These are preferences are configurable and optional for subscribers to use.
+	PreferenceCount *uint `json:"preferenceCount,omitempty"`
+
+	// The preferences related to the notification. These are preferences are configurable and optional for subscribers to use.
+	Preferences []Notification_Preference `json:"preferences,omitempty"`
+
+	// A count of the required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
+	RequiredPreferenceCount *uint `json:"requiredPreferenceCount,omitempty"`
+
+	// The required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
+	RequiredPreferences []Notification_Preference `json:"requiredPreferences,omitempty"`
 }
 
+// Provides details for the delivery methods available.
 type Notification_Delivery_Method struct {
 	Entity
 
-	Active      *int    `json:"active,omitempty"`
+	// Determines if the delivery method is still used by the system.
+	Active *int `json:"active,omitempty"`
+
+	// Description used for the delivery method.
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	KeyName     *string `json:"keyName,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	// Unique identifier for the various notification delivery methods.
+	Id *int `json:"id,omitempty"`
+
+	// Name that can be used by external systems to refer to delivery method.
+	KeyName *string `json:"keyName,omitempty"`
+
+	// Friendly name used for the delivery method.
+	Name *string `json:"name,omitempty"`
 }
 
+// This is an extension of the SoftLayer_Notification class.  These are implementation details specific to those notifications which can be subscribed to and received on a mobile device.
 type Notification_Mobile struct {
 	Notification
 }
 
+//
 type Notification_Occurrence_Account struct {
 	Entity
 
-	Account                     *Account                        `json:"account,omitempty"`
-	Active                      *int                            `json:"active,omitempty"`
-	LastNotificationUpdate      *Notification_Occurrence_Update `json:"lastNotificationUpdate,omitempty"`
-	NotificationOccurrenceEvent *Notification_Occurrence_Event  `json:"notificationOccurrenceEvent,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	//
+	Active *int `json:"active,omitempty"`
+
+	//
+	LastNotificationUpdate *Notification_Occurrence_Update `json:"lastNotificationUpdate,omitempty"`
+
+	//
+	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
 }
 
+//
 type Notification_Occurrence_Event struct {
 	Entity
 
-	AcknowledgedFlag                *bool                                      `json:"acknowledgedFlag,omitempty"`
-	AttachmentCount                 *uint                                      `json:"attachmentCount,omitempty"`
-	Attachments                     []Notification_Occurrence_Event_Attachment `json:"attachments,omitempty"`
-	EndDate                         *Time                                      `json:"endDate,omitempty"`
-	FirstUpdate                     *Notification_Occurrence_Update            `json:"firstUpdate,omitempty"`
-	Id                              *int                                       `json:"id,omitempty"`
-	ImpactedAccountCount            *uint                                      `json:"impactedAccountCount,omitempty"`
-	ImpactedAccounts                []Notification_Occurrence_Account          `json:"impactedAccounts,omitempty"`
-	ImpactedResourceCount           *uint                                      `json:"impactedResourceCount,omitempty"`
-	ImpactedResources               []Notification_Occurrence_Resource         `json:"impactedResources,omitempty"`
-	ImpactedUserCount               *uint                                      `json:"impactedUserCount,omitempty"`
-	ImpactedUsers                   []Notification_Occurrence_User             `json:"impactedUsers,omitempty"`
-	LastImpactedUserCount           *int                                       `json:"lastImpactedUserCount,omitempty"`
-	LastUpdate                      *Notification_Occurrence_Update            `json:"lastUpdate,omitempty"`
-	ModifyDate                      *Time                                      `json:"modifyDate,omitempty"`
-	NotificationOccurrenceEventType *Notification_Occurrence_Event_Type        `json:"notificationOccurrenceEventType,omitempty"`
-	RecoveryTime                    *int                                       `json:"recoveryTime,omitempty"`
-	StartDate                       *Time                                      `json:"startDate,omitempty"`
-	StatusCode                      *Notification_Occurrence_Status_Code       `json:"statusCode,omitempty"`
-	Subject                         *string                                    `json:"subject,omitempty"`
-	Summary                         *string                                    `json:"summary,omitempty"`
-	SystemTicketId                  *int                                       `json:"systemTicketId,omitempty"`
-	UpdateCount                     *uint                                      `json:"updateCount,omitempty"`
-	Updates                         []Notification_Occurrence_Update           `json:"updates,omitempty"`
+	// Indicates whether or not this event has been acknowledged by the user.
+	AcknowledgedFlag *bool `json:"acknowledgedFlag,omitempty"`
+
+	// A count of a collection of attachments for this event which provide supplementary information to impacted users some examples are RFO (Reason For Outage) and root cause analysis documents.
+	AttachmentCount *uint `json:"attachmentCount,omitempty"`
+
+	// A collection of attachments for this event which provide supplementary information to impacted users some examples are RFO (Reason For Outage) and root cause analysis documents.
+	Attachments []Notification_Occurrence_Event_Attachment `json:"attachments,omitempty"`
+
+	// When this event will end.
+	EndDate *Time `json:"endDate,omitempty"`
+
+	// The first update for this event.
+	FirstUpdate *Notification_Occurrence_Update `json:"firstUpdate,omitempty"`
+
+	// Unique identifier for this event.
+	Id *int `json:"id,omitempty"`
+
+	// A count of a collection of accounts impacted by this event. Each impacted account record relates directly to a [[SoftLayer_Account]].
+	ImpactedAccountCount *uint `json:"impactedAccountCount,omitempty"`
+
+	// A collection of accounts impacted by this event. Each impacted account record relates directly to a [[SoftLayer_Account]].
+	ImpactedAccounts []Notification_Occurrence_Account `json:"impactedAccounts,omitempty"`
+
+	// A count of a collection of resources impacted by this event. Each record will relate to some physical resource that the user has access to such as [[SoftLayer_Hardware]] or [[SoftLayer_Virtual_Guest]].
+	ImpactedResourceCount *uint `json:"impactedResourceCount,omitempty"`
+
+	// A collection of resources impacted by this event. Each record will relate to some physical resource that the user has access to such as [[SoftLayer_Hardware]] or [[SoftLayer_Virtual_Guest]].
+	ImpactedResources []Notification_Occurrence_Resource `json:"impactedResources,omitempty"`
+
+	// A count of a collection of users impacted by this event. Each impacted user record relates directly to a [[SoftLayer_User_Customer]].
+	ImpactedUserCount *uint `json:"impactedUserCount,omitempty"`
+
+	// A collection of users impacted by this event. Each impacted user record relates directly to a [[SoftLayer_User_Customer]].
+	ImpactedUsers []Notification_Occurrence_User `json:"impactedUsers,omitempty"`
+
+	// Latest count of users impacted by this event.
+	LastImpactedUserCount *int `json:"lastImpactedUserCount,omitempty"`
+
+	// The last update for this event.
+	LastUpdate *Notification_Occurrence_Update `json:"lastUpdate,omitempty"`
+
+	// When this event was last updated.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The type of event such as planned or unplanned maintenance.
+	NotificationOccurrenceEventType *Notification_Occurrence_Event_Type `json:"notificationOccurrenceEventType,omitempty"`
+
+	//
+	RecoveryTime *int `json:"recoveryTime,omitempty"`
+
+	// When this event started.
+	StartDate *Time `json:"startDate,omitempty"`
+
+	//
+	StatusCode *Notification_Occurrence_Status_Code `json:"statusCode,omitempty"`
+
+	// Brief description of this event.
+	Subject *string `json:"subject,omitempty"`
+
+	// Details of this event.
+	Summary *string `json:"summary,omitempty"`
+
+	// Unique identifier for the [[SoftLayer_Ticket]] associated with this event.
+	SystemTicketId *int `json:"systemTicketId,omitempty"`
+
+	// A count of all updates for this event.
+	UpdateCount *uint `json:"updateCount,omitempty"`
+
+	// All updates for this event.
+	Updates []Notification_Occurrence_Update `json:"updates,omitempty"`
 }
 
+// SoftLayer events can have have files attached to them by a SoftLayer employee. Attaching a file to a event is a way to provide supplementary information such as a RFO (reason for outage) document or root cause analysis. The SoftLayer_Notification_Occurrence_Event_Attachment data type models a single file attached to a event.
 type Notification_Occurrence_Event_Attachment struct {
 	Entity
 
-	CreateDate                    *Time                          `json:"createDate,omitempty"`
-	FileName                      *string                        `json:"fileName,omitempty"`
-	FileSize                      *string                        `json:"fileSize,omitempty"`
-	Id                            *int                           `json:"id,omitempty"`
-	NotificationOccurrenceEvent   *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
-	NotificationOccurrenceEventId *int                           `json:"notificationOccurrenceEventId,omitempty"`
+	// The date the file was attached to the event.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// The name of the file attached to the event.
+	FileName *string `json:"fileName,omitempty"`
+
+	// The size of the file, measured in bytes.
+	FileSize *string `json:"fileSize,omitempty"`
+
+	// A event attachments' unique identifier.
+	Id *int `json:"id,omitempty"`
+
+	//
+	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
+
+	// The unique event identifier that the file is attached to.
+	NotificationOccurrenceEventId *int `json:"notificationOccurrenceEventId,omitempty"`
 }
 
+// This represents the type of SoftLayer_Notification_Occurrence_Event.
 type Notification_Occurrence_Event_Type struct {
 	Entity
 
+	// The friendly unique identifier for this event type.
 	KeyName *string `json:"keyName,omitempty"`
 }
 
+// This type contains general information relating to any hardware or services that may be impacted by a SoftLayer_Notification_Occurrence_Event.
 type Notification_Occurrence_Resource struct {
 	Entity
 
-	Active                        *int                           `json:"active,omitempty"`
-	FilterLabel                   *string                        `json:"filterLabel,omitempty"`
-	NotificationOccurrenceEvent   *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
-	NotificationOccurrenceEventId *int                           `json:"notificationOccurrenceEventId,omitempty"`
-	Resource                      *Entity                        `json:"resource,omitempty"`
-	ResourceAccountId             *int                           `json:"resourceAccountId,omitempty"`
-	ResourceName                  *string                        `json:"resourceName,omitempty"`
-	ResourceTableId               *int                           `json:"resourceTableId,omitempty"`
+	//
+	Active *int `json:"active,omitempty"`
+
+	// <<< EOT A label which gives some background as to what piece of
+	FilterLabel *string `json:"filterLabel,omitempty"`
+
+	// The associated event.
+	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
+
+	// <<< EOT The unique identifier for the associated
+	NotificationOccurrenceEventId *int `json:"notificationOccurrenceEventId,omitempty"`
+
+	// The physical resource.
+	Resource *Entity `json:"resource,omitempty"`
+
+	// <<< EOT The unique identifier for the [[SoftLayer_Account]] associated with
+	ResourceAccountId *int `json:"resourceAccountId,omitempty"`
+
+	//
+	ResourceName *string `json:"resourceName,omitempty"`
+
+	// <<< EOT The unique identifier for the physical resource that is associated
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Hardware]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Hardware struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
-	PublicIp     *string `json:"publicIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
+	PublicIp *string `json:"publicIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Application_Delivery_Controller]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Application_Delivery_Controller struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
-	PublicIp     *string `json:"publicIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
+	PublicIp *string `json:"publicIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PublicIp     *string `json:"publicIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PublicIp *string `json:"publicIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Storage_Iscsi_EqualLogic]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Storage_Iscsi_EqualLogic struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Storage_Iscsi_NetApp]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Storage_Iscsi_NetApp struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Storage_Lockbox]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Storage_Lockbox struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Storage_Nas]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Storage_Nas struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Network_Storage_NetApp_Volume]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Network_Storage_NetApp_Volume struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+// This type contains general information related to a [[SoftLayer_Virtual_Guest]] resource that is impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_Resource_Virtual struct {
 	Notification_Occurrence_Resource
 
-	Hostname     *string `json:"hostname,omitempty"`
-	PrivateIp    *string `json:"privateIp,omitempty"`
-	PublicIp     *string `json:"publicIp,omitempty"`
+	//
+	Hostname *string `json:"hostname,omitempty"`
+
+	//
+	PrivateIp *string `json:"privateIp,omitempty"`
+
+	//
+	PublicIp *string `json:"publicIp,omitempty"`
+
+	//
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
+//
 type Notification_Occurrence_Status_Code struct {
 	Entity
 
+	//
 	Description *string `json:"description,omitempty"`
-	KeyName     *string `json:"keyName,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	//
+	KeyName *string `json:"keyName,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
 }
 
+//
 type Notification_Occurrence_Update struct {
 	Entity
 
-	Contents                    *string                        `json:"contents,omitempty"`
-	CreateDate                  *Time                          `json:"createDate,omitempty"`
-	Employee                    *User_Employee                 `json:"employee,omitempty"`
-	EndDate                     *Time                          `json:"endDate,omitempty"`
+	//
+	Contents *string `json:"contents,omitempty"`
+
+	//
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	//
+	Employee *User_Employee `json:"employee,omitempty"`
+
+	//
+	EndDate *Time `json:"endDate,omitempty"`
+
+	//
 	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
-	StartDate                   *Time                          `json:"startDate,omitempty"`
+
+	//
+	StartDate *Time `json:"startDate,omitempty"`
 }
 
+// This type contains general information relating to a user that may be impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_User struct {
 	Entity
 
-	AcknowledgedFlag            *int                               `json:"acknowledgedFlag,omitempty"`
-	Active                      *int                               `json:"active,omitempty"`
-	Id                          *int                               `json:"id,omitempty"`
-	ImpactedResourceCount       *uint                              `json:"impactedResourceCount,omitempty"`
-	ImpactedResources           []Notification_Occurrence_Resource `json:"impactedResources,omitempty"`
-	NotificationOccurrenceEvent *Notification_Occurrence_Event     `json:"notificationOccurrenceEvent,omitempty"`
-	User                        *User_Customer                     `json:"user,omitempty"`
-	UsrRecordId                 *int                               `json:"usrRecordId,omitempty"`
+	//
+	AcknowledgedFlag *int `json:"acknowledgedFlag,omitempty"`
+
+	//
+	Active *int `json:"active,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	// A count of a collection of resources impacted by the associated event.
+	ImpactedResourceCount *uint `json:"impactedResourceCount,omitempty"`
+
+	// A collection of resources impacted by the associated event.
+	ImpactedResources []Notification_Occurrence_Resource `json:"impactedResources,omitempty"`
+
+	// The associated event.
+	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
+
+	// The impacted user.
+	User *User_Customer `json:"user,omitempty"`
+
+	//
+	UsrRecordId *int `json:"usrRecordId,omitempty"`
 }
 
+// Retrieve details for preferences.  Preferences are used to allow the subscriber to modify their subscription in various ways.  Details such as friendly name, keyname maximum and minimum values can be retrieved.  These provide details to help configure subscriber preferences correctly.
 type Notification_Preference struct {
 	Entity
 
-	Description  *string `json:"description,omitempty"`
-	Id           *int    `json:"id,omitempty"`
-	KeyName      *string `json:"keyName,omitempty"`
+	// A description of what the preference is used for.
+	Description *string `json:"description,omitempty"`
+
+	// Unique identifier for the notification preference.
+	Id *int `json:"id,omitempty"`
+
+	// Name that can be used by external systems to refer to preference.
+	KeyName *string `json:"keyName,omitempty"`
+
+	// Largest value allowed for the preference.
 	MaximumValue *string `json:"maximumValue,omitempty"`
+
+	// Smallest value allowed for the preference.
 	MinimumValue *string `json:"minimumValue,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Units        *string `json:"units,omitempty"`
-	Value        *string `json:"value,omitempty"`
+
+	// Friendly name for the notification.
+	Name *string `json:"name,omitempty"`
+
+	// The unit of measure used for the preference's value, minimum and maximum as well.
+	Units *string `json:"units,omitempty"`
+
+	// Default value used when setting up preferences for a new subscriber.
+	Value *string `json:"value,omitempty"`
 }
 
+//
 type Notification_Subscriber struct {
 	Entity
 
-	Active                               *int                                      `json:"active,omitempty"`
-	CreateDate                           *Time                                     `json:"createDate,omitempty"`
-	DeliveryMethodCount                  *uint                                     `json:"deliveryMethodCount,omitempty"`
-	DeliveryMethods                      []Notification_Subscriber_Delivery_Method `json:"deliveryMethods,omitempty"`
-	Id                                   *int                                      `json:"id,omitempty"`
-	ModifyDate                           *Time                                     `json:"modifyDate,omitempty"`
-	Notification                         *Notification                             `json:"notification,omitempty"`
-	NotificationId                       *int                                      `json:"notificationId,omitempty"`
-	NotificationSubscriberTypeId         *int                                      `json:"notificationSubscriberTypeId,omitempty"`
-	NotificationSubscriberTypeResourceId *int                                      `json:"notificationSubscriberTypeResourceId,omitempty"`
+	//
+	Active *int `json:"active,omitempty"`
+
+	//
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// A count of
+	DeliveryMethodCount *uint `json:"deliveryMethodCount,omitempty"`
+
+	//
+	DeliveryMethods []Notification_Subscriber_Delivery_Method `json:"deliveryMethods,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	//
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	Notification *Notification `json:"notification,omitempty"`
+
+	//
+	NotificationId *int `json:"notificationId,omitempty"`
+
+	//
+	NotificationSubscriberTypeId *int `json:"notificationSubscriberTypeId,omitempty"`
+
+	//
+	NotificationSubscriberTypeResourceId *int `json:"notificationSubscriberTypeResourceId,omitempty"`
 }
 
+//
 type Notification_Subscriber_Customer struct {
 	Notification_Subscriber
 
+	//
 	SubscriberRecord *User_Customer `json:"subscriberRecord,omitempty"`
 }
 
+// Provides details for the subscriber's delivery methods.
 type Notification_Subscriber_Delivery_Method struct {
 	Entity
 
-	Active                       *int                          `json:"active,omitempty"`
-	CreateDate                   *Time                         `json:"createDate,omitempty"`
-	ModifyDate                   *Time                         `json:"modifyDate,omitempty"`
-	NotificationDeliveryMethod   *Notification_Delivery_Method `json:"notificationDeliveryMethod,omitempty"`
-	NotificationDeliveryMethodId *int                          `json:"notificationDeliveryMethodId,omitempty"`
-	NotificationSubscriber       *Notification_Subscriber      `json:"notificationSubscriber,omitempty"`
-	NotificationSubscriberId     *int                          `json:"notificationSubscriberId,omitempty"`
+	// Indicates the subscriber's delivery method availability for notifications.
+	Active *int `json:"active,omitempty"`
+
+	// Date the subscriber's delivery method was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// Date the subscriber's delivery method was last modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	NotificationDeliveryMethod *Notification_Delivery_Method `json:"notificationDeliveryMethod,omitempty"`
+
+	// Identifier for the notification delivery method.
+	NotificationDeliveryMethodId *int `json:"notificationDeliveryMethodId,omitempty"`
+
+	//
+	NotificationSubscriber *Notification_Subscriber `json:"notificationSubscriber,omitempty"`
+
+	// Identifier for the subscriber.
+	NotificationSubscriberId *int `json:"notificationSubscriberId,omitempty"`
 }
 
+// A notification subscriber will have details pertaining to the subscriber's notification subscription.  You can receive details such as preferences, details of the preferences, delivery methods and the delivery methods for the subscriber.
+//
+// NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber struct {
 	Entity
 
-	Active                 *int                                      `json:"active,omitempty"`
-	DeliveryMethodCount    *uint                                     `json:"deliveryMethodCount,omitempty"`
-	DeliveryMethods        []Notification_Delivery_Method            `json:"deliveryMethods,omitempty"`
-	Id                     *int                                      `json:"id,omitempty"`
-	Notification           *Notification                             `json:"notification,omitempty"`
-	NotificationId         *int                                      `json:"notificationId,omitempty"`
-	PreferenceCount        *uint                                     `json:"preferenceCount,omitempty"`
-	Preferences            []Notification_User_Subscriber_Preference `json:"preferences,omitempty"`
-	PreferencesDetailCount *uint                                     `json:"preferencesDetailCount,omitempty"`
-	PreferencesDetails     []Notification_Preference                 `json:"preferencesDetails,omitempty"`
-	ResourceRecord         *Notification_User_Subscriber_Resource    `json:"resourceRecord,omitempty"`
-	UserRecord             *User_Customer                            `json:"userRecord,omitempty"`
-	UserRecordId           *int                                      `json:"userRecordId,omitempty"`
+	// The current status of the subscription.
+	Active *int `json:"active,omitempty"`
+
+	// A count of the delivery methods used to send the subscribed notification.
+	DeliveryMethodCount *uint `json:"deliveryMethodCount,omitempty"`
+
+	// The delivery methods used to send the subscribed notification.
+	DeliveryMethods []Notification_Delivery_Method `json:"deliveryMethods,omitempty"`
+
+	// Unique identifier of the subscriber that will receive the alerts.
+	Id *int `json:"id,omitempty"`
+
+	// Notification subscribed to.
+	Notification *Notification `json:"notification,omitempty"`
+
+	// Unique identifier of the notification subscribed to.
+	NotificationId *int `json:"notificationId,omitempty"`
+
+	// A count of associated subscriber preferences used for the notification subscription. For example, preferences include number of deliveries (limit) and threshold.
+	PreferenceCount *uint `json:"preferenceCount,omitempty"`
+
+	// Associated subscriber preferences used for the notification subscription. For example, preferences include number of deliveries (limit) and threshold.
+	Preferences []Notification_User_Subscriber_Preference `json:"preferences,omitempty"`
+
+	// A count of preference details such as description, minimum and maximum limits, default value and unit of measure.
+	PreferencesDetailCount *uint `json:"preferencesDetailCount,omitempty"`
+
+	// Preference details such as description, minimum and maximum limits, default value and unit of measure.
+	PreferencesDetails []Notification_Preference `json:"preferencesDetails,omitempty"`
+
+	// The subscriber id to resource id mapping.
+	ResourceRecord *Notification_User_Subscriber_Resource `json:"resourceRecord,omitempty"`
+
+	// User record for the subscription.
+	UserRecord *User_Customer `json:"userRecord,omitempty"`
+
+	// Unique identifier of the user the subscription is for.
+	UserRecordId *int `json:"userRecordId,omitempty"`
 }
 
+// A notification subscriber will have details pertaining to the subscriber's notification subscription.  You can receive details such as preferences, details of the preferences, delivery methods and the delivery methods for the subscriber.
+//
+// NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Billing struct {
 	Notification_User_Subscriber
 }
 
+// Provides mapping details of how the subscriber's notification will be delivered.  This maps the subscriber's id with all the delivery method ids used to delivery the notification.
 type Notification_User_Subscriber_Delivery_Method struct {
 	Entity
 
-	Active                       *int                          `json:"active,omitempty"`
-	DeliveryMethod               *Notification_Delivery_Method `json:"deliveryMethod,omitempty"`
-	NotificationMethodId         *int                          `json:"notificationMethodId,omitempty"`
-	NotificationUserSubscriber   *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
-	NotificationUserSubscriberId *int                          `json:"notificationUserSubscriberId,omitempty"`
+	// Determines if the delivery method is active for the user.
+	Active *int `json:"active,omitempty"`
+
+	// Provides details for the method used to deliver the notification (email, sms, ticket).
+	DeliveryMethod *Notification_Delivery_Method `json:"deliveryMethod,omitempty"`
+
+	// Unique identifier of the method used to deliver notification.
+	NotificationMethodId *int `json:"notificationMethodId,omitempty"`
+
+	// The Subscriber information tied to the delivery method.
+	NotificationUserSubscriber *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
+
+	// Unique identifier of the subscriber tied to the delivery method.
+	NotificationUserSubscriberId *int `json:"notificationUserSubscriberId,omitempty"`
 }
 
+// A notification subscriber will have details pertaining to the subscriber's notification subscription.  You can receive details such as preferences, details of the preferences, delivery methods and the delivery methods for the subscriber.
+//
+// NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Mobile struct {
 	Notification_User_Subscriber
 }
 
+// Preferences are settings that can be modified to change the behavior of the subscription.  For example, modify the limit preference to only receive notifications 10 times instead of 1 during a billing cycle.
+//
+// NOTE: Some preferences have certain restrictions on values that can be set.
 type Notification_User_Subscriber_Preference struct {
 	Entity
 
-	DefaultPreference            *Notification_Preference      `json:"defaultPreference,omitempty"`
-	Id                           *int                          `json:"id,omitempty"`
-	NotificationPreferenceId     *int                          `json:"notificationPreferenceId,omitempty"`
-	NotificationUserSubscriber   *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
-	NotificationUserSubscriberId *int                          `json:"notificationUserSubscriberId,omitempty"`
-	Value                        *string                       `json:"value,omitempty"`
+	// Details such name, keyname, minimum and maximum values for the preference.
+	DefaultPreference *Notification_Preference `json:"defaultPreference,omitempty"`
+
+	// Unique identifier for the subscriber's preferences.
+	Id *int `json:"id,omitempty"`
+
+	// Unique identifier of the default preference for which the subscriber preference is based on.  For example, if no preferences are supplied during the creation of a subscriber.  The default values are pulled using this property.
+	NotificationPreferenceId *int `json:"notificationPreferenceId,omitempty"`
+
+	// Details of the subscriber tied to the preference.
+	NotificationUserSubscriber *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
+
+	// Unique identifier of the subscriber tied to the subscriber preference.
+	NotificationUserSubscriberId *int `json:"notificationUserSubscriberId,omitempty"`
+
+	// The user supplied value to "override" the "default" preference's value.
+	Value *string `json:"value,omitempty"`
 }
 
+// Retrieve identifier cross-reference information.  SoftLayer_Notification_User_Subscriber_Resource provides the resource table id and subscriber id relation. The resource table id is the id of the service the subscriber receives alerts for.  This resource table id could be the unique identifier for a Storage Evault service, Global Load Balancer or CDN service.
 type Notification_User_Subscriber_Resource struct {
 	Entity
 
-	NotificationUserSubscriber   *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
-	NotificationUserSubscriberId *int                          `json:"notificationUserSubscriberId,omitempty"`
-	ResourceTableId              *int                          `json:"resourceTableId,omitempty"`
+	// The Subscriber information tied to the resource service.
+	NotificationUserSubscriber *Notification_User_Subscriber `json:"notificationUserSubscriber,omitempty"`
+
+	// Unique identifier of the subscriber that will receive the alerts for the resource subscribed to a notification.
+	NotificationUserSubscriberId *int `json:"notificationUserSubscriberId,omitempty"`
+
+	// Unique identifier for a SoftLayer service that is subscribed to a notification.  Currently, the SoftLayer services that can be subscribed to notifications are:
+	//
+	// Storage EVault CDN Global Load Balancer
+	//
+	//
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }

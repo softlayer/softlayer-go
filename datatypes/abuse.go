@@ -14,11 +14,19 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+//
 type Abuse_Lockdown_Resource struct {
 	Entity
 
-	Account     *Account              `json:"account,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	//
 	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty"`
 }

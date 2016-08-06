@@ -14,23 +14,55 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+// The SoftLayer_Event_Log data type contains an event detail occurred upon various SoftLayer resources.
 type Event_Log struct {
 	Entity
 
-	AccountId       *int           `json:"accountId,omitempty"`
-	EventCreateDate *Time          `json:"eventCreateDate,omitempty"`
-	EventName       *string        `json:"eventName,omitempty"`
-	IpAddress       *string        `json:"ipAddress,omitempty"`
-	Label           *string        `json:"label,omitempty"`
-	MetaData        *string        `json:"metaData,omitempty"`
-	ObjectId        *int           `json:"objectId,omitempty"`
-	ObjectName      *string        `json:"objectName,omitempty"`
-	Resource        *Entity        `json:"resource,omitempty"`
-	TraceId         *string        `json:"traceId,omitempty"`
-	User            *User_Customer `json:"user,omitempty"`
-	UserId          *int           `json:"userId,omitempty"`
-	UserType        *string        `json:"userType,omitempty"`
-	Username        *string        `json:"username,omitempty"`
+	// Account id with which the event is associated
+	AccountId *int `json:"accountId,omitempty"`
+
+	// Event creation date in millisecond precision
+	EventCreateDate *Time `json:"eventCreateDate,omitempty"`
+
+	// Event name such as "reboot", "cancel", "update host" and so on.
+	EventName *string `json:"eventName,omitempty"`
+
+	// The remote IP Address that made the request
+	IpAddress *string `json:"ipAddress,omitempty"`
+
+	// Label or description of the event object
+	Label *string `json:"label,omitempty"`
+
+	// Meta data for an event in JSON string
+	MetaData *string `json:"metaData,omitempty"`
+
+	// Event object id
+	ObjectId *int `json:"objectId,omitempty"`
+
+	// Event object name such as "server", "dns" and so on.
+	ObjectName *string `json:"objectName,omitempty"`
+
+	// A resource object that is associated with the event
+	Resource *Entity `json:"resource,omitempty"`
+
+	// A unique trace id. Multiple event can be grouped by a trace id.
+	TraceId *string `json:"traceId,omitempty"`
+
+	//
+	User *User_Customer `json:"user,omitempty"`
+
+	// Id of customer who initiated the event
+	UserId *int `json:"userId,omitempty"`
+
+	// Type of user that triggered the event. User type can be CUSTOMER, EMPLOYEE or SYSTEM.
+	UserType *string `json:"userType,omitempty"`
+
+	// Customer username who initiated the event
+	Username *string `json:"username,omitempty"`
 }

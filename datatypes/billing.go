@@ -14,1117 +14,2603 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+//
 type Billing_Currency struct {
 	Entity
 
-	Id      *int    `json:"id,omitempty"`
+	//
+	Id *int `json:"id,omitempty"`
+
+	//
 	KeyName *string `json:"keyName,omitempty"`
-	Name    *string `json:"name,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
 }
 
+//
 type Billing_Currency_ExchangeRate struct {
 	Entity
 
-	EffectiveDate   *Time             `json:"effectiveDate,omitempty"`
-	ExpirationDate  *Time             `json:"expirationDate,omitempty"`
+	//
+	EffectiveDate *Time `json:"effectiveDate,omitempty"`
+
+	//
+	ExpirationDate *Time `json:"expirationDate,omitempty"`
+
+	//
 	FundingCurrency *Billing_Currency `json:"fundingCurrency,omitempty"`
-	Id              *int              `json:"id,omitempty"`
-	LocalCurrency   *Billing_Currency `json:"localCurrency,omitempty"`
-	Rate            *float64          `json:"rate,omitempty"`
+
+	// The id of the exchange rate record.
+	Id *int `json:"id,omitempty"`
+
+	//
+	LocalCurrency *Billing_Currency `json:"localCurrency,omitempty"`
+
+	//
+	Rate *float64 `json:"rate,omitempty"`
 }
 
+// Every SoftLayer customer account has billing specific information which is kept in the SoftLayer_Billing_Info data type. This information is used by the SoftLayer accounting group when sending invoices and making billing inquiries.
 type Billing_Info struct {
 	Entity
 
-	Account                   *Account            `json:"account,omitempty"`
-	AccountId                 *int                `json:"accountId,omitempty"`
-	AchInformation            []Billing_Info_Ach  `json:"achInformation,omitempty"`
-	AchInformationCount       *uint               `json:"achInformationCount,omitempty"`
-	AnniversaryDayOfMonth     *int                `json:"anniversaryDayOfMonth,omitempty"`
-	CardAccountNumber         *string             `json:"cardAccountNumber,omitempty"`
-	CardExpirationMonth       *int                `json:"cardExpirationMonth,omitempty"`
-	CardExpirationYear        *int                `json:"cardExpirationYear,omitempty"`
-	CardNickname              *string             `json:"cardNickname,omitempty"`
-	CardType                  *string             `json:"cardType,omitempty"`
-	CardVerificationNumber    *string             `json:"cardVerificationNumber,omitempty"`
-	CreateDate                *Time               `json:"createDate,omitempty"`
-	Currency                  *Billing_Currency   `json:"currency,omitempty"`
-	CurrentBillingCycle       *Billing_Info_Cycle `json:"currentBillingCycle,omitempty"`
-	Id                        *int                `json:"id,omitempty"`
-	LastBillDate              *Time               `json:"lastBillDate,omitempty"`
-	LastFourPaymentCardDigits *int                `json:"lastFourPaymentCardDigits,omitempty"`
-	LastPaymentDate           *Time               `json:"lastPaymentDate,omitempty"`
-	ModifyDate                *Time               `json:"modifyDate,omitempty"`
-	NextBillDate              *Time               `json:"nextBillDate,omitempty"`
-	PaymentTerms              *int                `json:"paymentTerms,omitempty"`
-	PercentDiscountOnetime    *int                `json:"percentDiscountOnetime,omitempty"`
-	PercentDiscountRecurring  *int                `json:"percentDiscountRecurring,omitempty"`
-	SparePoolAmount           *int                `json:"sparePoolAmount,omitempty"`
-	VatId                     *string             `json:"vatId,omitempty"`
+	// The SoftLayer customer account associated with this billing information.
+	Account *Account `json:"account,omitempty"`
+
+	// A SoftLayer account's identifier.
+	AccountId *int `json:"accountId,omitempty"`
+
+	//
+	AchInformation []Billing_Info_Ach `json:"achInformation,omitempty"`
+
+	// A count of
+	AchInformationCount *uint `json:"achInformationCount,omitempty"`
+
+	// The day of the month that a SoftLayer customer is billed.
+	AnniversaryDayOfMonth *int `json:"anniversaryDayOfMonth,omitempty"`
+
+	// This value doesn't persist to this object. It's used as part of the account creation process only;
+	CardAccountNumber *string `json:"cardAccountNumber,omitempty"`
+
+	// the expiration month of the credit card on file
+	CardExpirationMonth *int `json:"cardExpirationMonth,omitempty"`
+
+	// the expiration year of the credit card on file
+	CardExpirationYear *int `json:"cardExpirationYear,omitempty"`
+
+	//
+	CardNickname *string `json:"cardNickname,omitempty"`
+
+	// the type of the credit card on file
+	CardType *string `json:"cardType,omitempty"`
+
+	// This value doesn't persist to this object. It's used as part of the account creation process only.
+	CardVerificationNumber *string `json:"cardVerificationNumber,omitempty"`
+
+	// The date a customer's billing information was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// Currency to be used by this customer account.
+	Currency *Billing_Currency `json:"currency,omitempty"`
+
+	// Information related to an account's current and previous billing cycles.
+	CurrentBillingCycle *Billing_Info_Cycle `json:"currentBillingCycle,omitempty"`
+
+	// A SoftLayer customer's billing information identifier.
+	Id *int `json:"id,omitempty"`
+
+	// The date on which an account was last billed.
+	LastBillDate *Time `json:"lastBillDate,omitempty"`
+
+	// The last four digits of the credit card currently on the account. This is the only portion of the card that we store. For Paypal customers, this value will be empty.
+	LastFourPaymentCardDigits *int `json:"lastFourPaymentCardDigits,omitempty"`
+
+	// The date of the last payment received by SoftLayer from the account holder.
+	LastPaymentDate *Time `json:"lastPaymentDate,omitempty"`
+
+	// The date a customer's billing information was last modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The date on which an account will be billed next.
+	NextBillDate *Time `json:"nextBillDate,omitempty"`
+
+	// The payment terms for an account.
+	PaymentTerms *int `json:"paymentTerms,omitempty"`
+
+	// The percentage discount received on all one-time charges on a customer's monthly bill.
+	PercentDiscountOnetime *int `json:"percentDiscountOnetime,omitempty"`
+
+	// The percentage discount received on all recurring charges on a customer's monthly bill.
+	PercentDiscountRecurring *int `json:"percentDiscountRecurring,omitempty"`
+
+	// The total recurring fee amount for servers that are in the spare pool status.
+	SparePoolAmount *int `json:"sparePoolAmount,omitempty"`
+
+	//
+	VatId *string `json:"vatId,omitempty"`
 }
 
+//
 type Billing_Info_Ach struct {
 	Entity
 
-	Account           *Account `json:"account,omitempty"`
-	AccountId         *int     `json:"accountId,omitempty"`
-	AccountNumber     *string  `json:"accountNumber,omitempty"`
-	AccountType       *string  `json:"accountType,omitempty"`
-	BankTransitNumber *string  `json:"bankTransitNumber,omitempty"`
-	City              *string  `json:"city,omitempty"`
-	Country           *string  `json:"country,omitempty"`
-	FirstName         *string  `json:"firstName,omitempty"`
-	Id                *int     `json:"id,omitempty"`
-	LastName          *string  `json:"lastName,omitempty"`
-	PhoneNumber       *string  `json:"phoneNumber,omitempty"`
-	Postalcode        *string  `json:"postalcode,omitempty"`
-	State             *string  `json:"state,omitempty"`
-	Status            *string  `json:"status,omitempty"`
-	Street1           *string  `json:"street1,omitempty"`
-	Street2           *string  `json:"street2,omitempty"`
-	VerifiedDate      *Time    `json:"verifiedDate,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	//
+	AccountId *int `json:"accountId,omitempty"`
+
+	//
+	AccountNumber *string `json:"accountNumber,omitempty"`
+
+	//
+	AccountType *string `json:"accountType,omitempty"`
+
+	//
+	BankTransitNumber *string `json:"bankTransitNumber,omitempty"`
+
+	//
+	City *string `json:"city,omitempty"`
+
+	//
+	Country *string `json:"country,omitempty"`
+
+	//
+	FirstName *string `json:"firstName,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	//
+	LastName *string `json:"lastName,omitempty"`
+
+	//
+	PhoneNumber *string `json:"phoneNumber,omitempty"`
+
+	//
+	Postalcode *string `json:"postalcode,omitempty"`
+
+	//
+	State *string `json:"state,omitempty"`
+
+	//
+	Status *string `json:"status,omitempty"`
+
+	//
+	Street1 *string `json:"street1,omitempty"`
+
+	//
+	Street2 *string `json:"street2,omitempty"`
+
+	//
+	VerifiedDate *Time `json:"verifiedDate,omitempty"`
 }
 
+// The SoftLayer_Billing_Info_Cycle data type models basic information concerning a SoftLayer account's previous and current billing cycles. The information in this class is only populated for SoftLayer customers who are billed monthly.
 type Billing_Info_Cycle struct {
 	Entity
 
-	Account                *Account `json:"account,omitempty"`
-	CurrentCycleEndDate    *Time    `json:"currentCycleEndDate,omitempty"`
-	CurrentCycleStartDate  *Time    `json:"currentCycleStartDate,omitempty"`
-	NextCycleStartDate     *Time    `json:"nextCycleStartDate,omitempty"`
-	PreviousCycleEndDate   *Time    `json:"previousCycleEndDate,omitempty"`
-	PreviousCycleStartDate *Time    `json:"previousCycleStartDate,omitempty"`
+	// The account that a current billing cycle is associated with.
+	Account *Account `json:"account,omitempty"`
+
+	// The ending date of an account's current billing cycle.
+	CurrentCycleEndDate *Time `json:"currentCycleEndDate,omitempty"`
+
+	// The starting date of an account's current billing cycle.
+	CurrentCycleStartDate *Time `json:"currentCycleStartDate,omitempty"`
+
+	// The start date of an account's next billing cycle.
+	NextCycleStartDate *Time `json:"nextCycleStartDate,omitempty"`
+
+	// The ending date of an account's previous billing cycle.
+	PreviousCycleEndDate *Time `json:"previousCycleEndDate,omitempty"`
+
+	// The starting date of an account's previous billing cycle.
+	PreviousCycleStartDate *Time `json:"previousCycleStartDate,omitempty"`
 }
 
+// The SoftLayer_Billing_Invoice data type contains general information relating to an individual invoice applied to a SoftLayer customer account. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the invoice is generated.
 type Billing_Invoice struct {
 	Entity
 
-	Account                        *Account                             `json:"account,omitempty"`
-	AccountId                      *int                                 `json:"accountId,omitempty"`
-	Address1                       *string                              `json:"address1,omitempty"`
-	Address2                       *string                              `json:"address2,omitempty"`
-	Amount                         *float64                             `json:"amount,omitempty"`
-	BrandAtInvoiceCreation         *Brand                               `json:"brandAtInvoiceCreation,omitempty"`
-	City                           *string                              `json:"city,omitempty"`
-	ClaimedTaxExemptTxFlag         *bool                                `json:"claimedTaxExemptTxFlag,omitempty"`
-	ClosedDate                     *Time                                `json:"closedDate,omitempty"`
-	CompanyName                    *string                              `json:"companyName,omitempty"`
-	Country                        *string                              `json:"country,omitempty"`
-	CreateDate                     *Time                                `json:"createDate,omitempty"`
-	DetailedPdfGeneratedFlag       *bool                                `json:"detailedPdfGeneratedFlag,omitempty"`
-	DocumentsGeneratedFlag         *bool                                `json:"documentsGeneratedFlag,omitempty"`
-	Email                          *string                              `json:"email,omitempty"`
-	EndingBalance                  *float64                             `json:"endingBalance,omitempty"`
-	FaxPhone                       *string                              `json:"faxPhone,omitempty"`
-	FirstName                      *string                              `json:"firstName,omitempty"`
-	Id                             *int                                 `json:"id,omitempty"`
-	InvoiceTopLevelItemCount       *uint                                `json:"invoiceTopLevelItemCount,omitempty"`
-	InvoiceTopLevelItems           []Billing_Invoice_Item               `json:"invoiceTopLevelItems,omitempty"`
-	InvoiceTotalAmount             *float64                             `json:"invoiceTotalAmount,omitempty"`
-	InvoiceTotalOneTimeAmount      *float64                             `json:"invoiceTotalOneTimeAmount,omitempty"`
-	InvoiceTotalOneTimeTaxAmount   *float64                             `json:"invoiceTotalOneTimeTaxAmount,omitempty"`
-	InvoiceTotalPreTaxAmount       *float64                             `json:"invoiceTotalPreTaxAmount,omitempty"`
-	InvoiceTotalRecurringAmount    *float64                             `json:"invoiceTotalRecurringAmount,omitempty"`
-	InvoiceTotalRecurringTaxAmount *float64                             `json:"invoiceTotalRecurringTaxAmount,omitempty"`
-	ItemCount                      *uint                                `json:"itemCount,omitempty"`
-	Items                          []Billing_Invoice_Item               `json:"items,omitempty"`
-	LastName                       *string                              `json:"lastName,omitempty"`
-	ModifyDate                     *Time                                `json:"modifyDate,omitempty"`
-	OfficePhone                    *string                              `json:"officePhone,omitempty"`
-	Payment                        *float64                             `json:"payment,omitempty"`
-	PaymentCount                   *uint                                `json:"paymentCount,omitempty"`
-	Payments                       []Billing_Invoice_Receivable_Payment `json:"payments,omitempty"`
-	PostalCode                     *string                              `json:"postalCode,omitempty"`
-	PurchaseOrderNumber            *string                              `json:"purchaseOrderNumber,omitempty"`
-	SellerRegistration             *string                              `json:"sellerRegistration,omitempty"`
-	StartingBalance                *float64                             `json:"startingBalance,omitempty"`
-	State                          *string                              `json:"state,omitempty"`
-	StatusCode                     *string                              `json:"statusCode,omitempty"`
-	TaxInfo                        *Billing_Invoice_Tax_Info            `json:"taxInfo,omitempty"`
-	TaxInfoHistory                 []Billing_Invoice_Tax_Info           `json:"taxInfoHistory,omitempty"`
-	TaxInfoHistoryCount            *uint                                `json:"taxInfoHistoryCount,omitempty"`
-	TaxMessage                     *string                              `json:"taxMessage,omitempty"`
-	TaxStatusId                    *int                                 `json:"taxStatusId,omitempty"`
-	TaxType                        *Billing_Invoice_Tax_Type            `json:"taxType,omitempty"`
-	TaxTypeId                      *int                                 `json:"taxTypeId,omitempty"`
-	TypeCode                       *string                              `json:"typeCode,omitempty"`
+	// The account that an invoice belongs to.
+	Account *Account `json:"account,omitempty"`
+
+	// The SoftLayer customer account that an invoice belongs to.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// The first line of an address belonging to an account at the time an invoice is created.
+	Address1 *string `json:"address1,omitempty"`
+
+	// The second line of an address belonging to an account at the time an invoice is created.
+	Address2 *string `json:"address2,omitempty"`
+
+	// This is the amount of this invoice.
+	Amount *float64 `json:"amount,omitempty"`
+
+	//
+	BrandAtInvoiceCreation *Brand `json:"brandAtInvoiceCreation,omitempty"`
+
+	// The city portion of an address belonging to an account at the time an invoice is created.
+	City *string `json:"city,omitempty"`
+
+	// Whether an account was exempt from taxes on their invoices at the time an invoice is created.
+	ClaimedTaxExemptTxFlag *bool `json:"claimedTaxExemptTxFlag,omitempty"`
+
+	// The date an invoice was closed. Open invoices have a null closed date.
+	ClosedDate *Time `json:"closedDate,omitempty"`
+
+	// The company name belonging to an account at the time an invoice is created.
+	CompanyName *string `json:"companyName,omitempty"`
+
+	// A two-letter abbreviation of the country portion of an address belonging to an account at the time an invoice is created.
+	Country *string `json:"country,omitempty"`
+
+	// The date an invoice was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// A flag that will reflect whether the detailed version of the pdf has been generated.
+	DetailedPdfGeneratedFlag *bool `json:"detailedPdfGeneratedFlag,omitempty"`
+
+	//
+	DocumentsGeneratedFlag *bool `json:"documentsGeneratedFlag,omitempty"`
+
+	// The email address belonging to an account at the time an invoice is created.
+	Email *string `json:"email,omitempty"`
+
+	// An SoftLayer account's balance at the time an invoice is closed. This value is measured in US Dollar ($USD) currency.
+	EndingBalance *float64 `json:"endingBalance,omitempty"`
+
+	// The fax telephone number belonging to an account at the time an invoice is created.
+	FaxPhone *string `json:"faxPhone,omitempty"`
+
+	// The first name of the account holder at the time an invoice is created.
+	FirstName *string `json:"firstName,omitempty"`
+
+	// An invoice's internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// A count of a list of top-level invoice items that are on the currently pending invoice.
+	InvoiceTopLevelItemCount *uint `json:"invoiceTopLevelItemCount,omitempty"`
+
+	// A list of top-level invoice items that are on the currently pending invoice.
+	InvoiceTopLevelItems []Billing_Invoice_Item `json:"invoiceTopLevelItems,omitempty"`
+
+	// The total amount of this invoice.
+	InvoiceTotalAmount *float64 `json:"invoiceTotalAmount,omitempty"`
+
+	// The total one-time charges for this invoice. This is the sum of one-time charges + setup fees + labor fees. This does not include taxes.
+	InvoiceTotalOneTimeAmount *float64 `json:"invoiceTotalOneTimeAmount,omitempty"`
+
+	// A sum of all the taxes related to one time charges for this invoice.
+	InvoiceTotalOneTimeTaxAmount *float64 `json:"invoiceTotalOneTimeTaxAmount,omitempty"`
+
+	// The total amount of this invoice. This does not include taxes.
+	InvoiceTotalPreTaxAmount *float64 `json:"invoiceTotalPreTaxAmount,omitempty"`
+
+	// The total Recurring amount of this invoice. This amount does not include taxes or one time charges.
+	InvoiceTotalRecurringAmount *float64 `json:"invoiceTotalRecurringAmount,omitempty"`
+
+	// The total amount of the recurring taxes on this invoice.
+	InvoiceTotalRecurringTaxAmount *float64 `json:"invoiceTotalRecurringTaxAmount,omitempty"`
+
+	// A count of the items that belong to this invoice.
+	ItemCount *uint `json:"itemCount,omitempty"`
+
+	// The items that belong to this invoice.
+	Items []Billing_Invoice_Item `json:"items,omitempty"`
+
+	// The last name of the account holder at the time an invoice is created.
+	LastName *string `json:"lastName,omitempty"`
+
+	// The date an invoice was last modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The telephone number belonging to an account at the time an invoice is created.
+	OfficePhone *string `json:"officePhone,omitempty"`
+
+	// This is the total payment made on this invoice.
+	Payment *float64 `json:"payment,omitempty"`
+
+	// A count of the payments for the invoice.
+	PaymentCount *uint `json:"paymentCount,omitempty"`
+
+	// The payments for the invoice.
+	Payments []Billing_Invoice_Receivable_Payment `json:"payments,omitempty"`
+
+	// The postal code portion of an address belonging to an account at the time an invoice is created.
+	PostalCode *string `json:"postalCode,omitempty"`
+
+	//
+	PurchaseOrderNumber *string `json:"purchaseOrderNumber,omitempty"`
+
+	// This is the seller's tax registration.
+	SellerRegistration *string `json:"sellerRegistration,omitempty"`
+
+	// An SoftLayer account's balance at the time an invoice is created. This value is measured in US Dollar ($USD) currency.
+	StartingBalance *float64 `json:"startingBalance,omitempty"`
+
+	// A two-letter abbreviation of the state portion of an address belonging to an account at the time an invoice is created. If the account that the invoice was generated for resides outside a province then this is set to "other".
+	State *string `json:"state,omitempty"`
+
+	// An invoice's status. The "OPEN" status means SoftLayer has not yet received payment for this invoice. "CLOSED" status means that SoftLayer has received payment and closed the invoice. The "CLOSED_FAILED" status code means SoftLayer closed the invoice without receiving a payment. Invoices are usually set to CLOSED_FAILED status in cases where customer accounts are terminated for non-payment.
+	StatusCode *string `json:"statusCode,omitempty"`
+
+	// This is the tax information that applies to tax auditing. This is the official tax record for this invoice.
+	TaxInfo *Billing_Invoice_Tax_Info `json:"taxInfo,omitempty"`
+
+	// This is the set of tax information for any tax calculation for this invoice. Note that not all of these are necessarily official, so use the taxInfo key to get the final information.
+	TaxInfoHistory []Billing_Invoice_Tax_Info `json:"taxInfoHistory,omitempty"`
+
+	// A count of this is the set of tax information for any tax calculation for this invoice. Note that not all of these are necessarily official, so use the taxInfo key to get the final information.
+	TaxInfoHistoryCount *uint `json:"taxInfoHistoryCount,omitempty"`
+
+	// This is a message explaining the tax treatment for this invoice.
+	TaxMessage *string `json:"taxMessage,omitempty"`
+
+	//
+	TaxStatusId *int `json:"taxStatusId,omitempty"`
+
+	// This is the strategy used to calculate tax on this invoice.
+	TaxType *Billing_Invoice_Tax_Type `json:"taxType,omitempty"`
+
+	//
+	TaxTypeId *int `json:"taxTypeId,omitempty"`
+
+	// An invoice's type. SoftLayer invoices and service credits are differentiated by their type. The "NEW" type code signifies an invoice for new service. A SoftLayer customer's first invoice has the NEW type code. "RECURRING" invoices are generated on a SoftLayer customer's anniversary billing date for monthly services. "ONE-TIME-CHARGE" invoices are generated when one-time charges are applied to an account. "CREDIT" invoices are generated whenever SoftLayer applies a credit against an account's balance. There are two special types of service credits. "REFUND" type credits are applied against a customer's account balance along with the receivables on their account. "MANUAL_PAYMENT_CREDIT" invoice credits are generated whenever a customer makes an unscheduled payment.
+	TypeCode *string `json:"typeCode,omitempty"`
 }
 
+// Each billing invoice item makes up a record within an invoice. This provides you with a detailed record of everything related to an invoice item. When you are billed, our system takes active billing items and creates an invoice. These invoice items are a copy of your active billing items, and make up the contents of your invoice.
 type Billing_Invoice_Item struct {
 	Entity
 
-	AssociatedChildren              []Billing_Invoice_Item `json:"associatedChildren,omitempty"`
-	AssociatedChildrenCount         *uint                  `json:"associatedChildrenCount,omitempty"`
-	AssociatedInvoiceItem           *Billing_Invoice_Item  `json:"associatedInvoiceItem,omitempty"`
-	AssociatedInvoiceItemId         *int                   `json:"associatedInvoiceItemId,omitempty"`
-	BillingItem                     *Billing_Item          `json:"billingItem,omitempty"`
-	BillingItemId                   *int                   `json:"billingItemId,omitempty"`
-	Category                        *Product_Item_Category `json:"category,omitempty"`
-	CategoryCode                    *string                `json:"categoryCode,omitempty"`
-	Children                        []Billing_Invoice_Item `json:"children,omitempty"`
-	ChildrenCount                   *uint                  `json:"childrenCount,omitempty"`
-	CreateDate                      *Time                  `json:"createDate,omitempty"`
-	Description                     *string                `json:"description,omitempty"`
-	DomainName                      *string                `json:"domainName,omitempty"`
-	FilteredAssociatedChildren      []Billing_Invoice_Item `json:"filteredAssociatedChildren,omitempty"`
-	FilteredAssociatedChildrenCount *uint                  `json:"filteredAssociatedChildrenCount,omitempty"`
-	HostName                        *string                `json:"hostName,omitempty"`
-	HourlyRecurringFee              *float64               `json:"hourlyRecurringFee,omitempty"`
-	Id                              *int                   `json:"id,omitempty"`
-	Invoice                         *Billing_Invoice       `json:"invoice,omitempty"`
-	InvoiceId                       *int                   `json:"invoiceId,omitempty"`
-	LaborAfterTaxAmount             *float64               `json:"laborAfterTaxAmount,omitempty"`
-	LaborFee                        *float64               `json:"laborFee,omitempty"`
-	LaborFeeTaxRate                 *float64               `json:"laborFeeTaxRate,omitempty"`
-	LaborTaxAmount                  *float64               `json:"laborTaxAmount,omitempty"`
-	Location                        *Location              `json:"location,omitempty"`
-	NonZeroAssociatedChildren       []Billing_Invoice_Item `json:"nonZeroAssociatedChildren,omitempty"`
-	NonZeroAssociatedChildrenCount  *uint                  `json:"nonZeroAssociatedChildrenCount,omitempty"`
-	Notes                           *string                `json:"notes,omitempty"`
-	OneTimeAfterTaxAmount           *float64               `json:"oneTimeAfterTaxAmount,omitempty"`
-	OneTimeFee                      *float64               `json:"oneTimeFee,omitempty"`
-	OneTimeFeeTaxRate               *float64               `json:"oneTimeFeeTaxRate,omitempty"`
-	OneTimeTaxAmount                *float64               `json:"oneTimeTaxAmount,omitempty"`
-	Parent                          *Billing_Invoice_Item  `json:"parent,omitempty"`
-	ParentId                        *int                   `json:"parentId,omitempty"`
-	Product                         *Product_Item          `json:"product,omitempty"`
-	ProductItemId                   *int                   `json:"productItemId,omitempty"`
-	RecurringAfterTaxAmount         *float64               `json:"recurringAfterTaxAmount,omitempty"`
-	RecurringFee                    *float64               `json:"recurringFee,omitempty"`
-	RecurringFeeTaxRate             *float64               `json:"recurringFeeTaxRate,omitempty"`
-	RecurringTaxAmount              *float64               `json:"recurringTaxAmount,omitempty"`
-	ResourceTableId                 *int                   `json:"resourceTableId,omitempty"`
-	SetupAfterTaxAmount             *float64               `json:"setupAfterTaxAmount,omitempty"`
-	SetupFee                        *float64               `json:"setupFee,omitempty"`
-	SetupFeeTaxRate                 *float64               `json:"setupFeeTaxRate,omitempty"`
-	SetupTaxAmount                  *float64               `json:"setupTaxAmount,omitempty"`
-	TotalOneTimeAmount              *float64               `json:"totalOneTimeAmount,omitempty"`
-	TotalOneTimeTaxAmount           *float64               `json:"totalOneTimeTaxAmount,omitempty"`
-	TotalRecurringAmount            *float64               `json:"totalRecurringAmount,omitempty"`
-	TotalRecurringTaxAmount         *float64               `json:"totalRecurringTaxAmount,omitempty"`
+	// An Invoice Item's associated child invoice items. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	AssociatedChildren []Billing_Invoice_Item `json:"associatedChildren,omitempty"`
+
+	// A count of an Invoice Item's associated child invoice items. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	AssociatedChildrenCount *uint `json:"associatedChildrenCount,omitempty"`
+
+	// An Invoice Item's associated invoice item. If this is populated, it means this is an orphaned invoice item, but logically belongs to the associated invoice item.
+	AssociatedInvoiceItem *Billing_Invoice_Item `json:"associatedInvoiceItem,omitempty"`
+
+	// The associated invoice Item ID.
+	AssociatedInvoiceItemId *int `json:"associatedInvoiceItemId,omitempty"`
+
+	// An Invoice Item's billing item, from which this item was generated.
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	// The billing item from which this invoice item was generated.
+	BillingItemId *int `json:"billingItemId,omitempty"`
+
+	// This invoice item's "item category".
+	Category *Product_Item_Category `json:"category,omitempty"`
+
+	// The item category of the invoice item being invoiced.
+	CategoryCode *string `json:"categoryCode,omitempty"`
+
+	// An Invoice Item's child invoice items. Only parent invoice items have children. For instance, a server invoice item will have children.
+	Children []Billing_Invoice_Item `json:"children,omitempty"`
+
+	// A count of an Invoice Item's child invoice items. Only parent invoice items have children. For instance, a server invoice item will have children.
+	ChildrenCount *uint `json:"childrenCount,omitempty"`
+
+	// The date the invoice item was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// The item description for this invoice item.
+	Description *string `json:"description,omitempty"`
+
+	// The domain name of the invoiced item. This is only used on invoice items whose category is "server".
+	DomainName *string `json:"domainName,omitempty"`
+
+	// An Invoice Item's associated child invoice items, excluding some items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	FilteredAssociatedChildren []Billing_Invoice_Item `json:"filteredAssociatedChildren,omitempty"`
+
+	// A count of an Invoice Item's associated child invoice items, excluding some items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	FilteredAssociatedChildrenCount *uint `json:"filteredAssociatedChildrenCount,omitempty"`
+
+	// The Host name of the invoiced item. This is only used on invoice items whose category is "server".
+	HostName *string `json:"hostName,omitempty"`
+
+	// The hourly recurring fee of the invoice item represented by a floating point decimal in US Dollars ($USD)
+	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+
+	// The ID of the invoice item.
+	Id *int `json:"id,omitempty"`
+
+	// The invoice to which this item belongs.
+	Invoice *Billing_Invoice `json:"invoice,omitempty"`
+
+	// The invoice to which this invoice item belongs.
+	InvoiceId *int `json:"invoiceId,omitempty"`
+
+	// An invoice item's labor fee total after taxes. This does not include any child invoice items.
+	LaborAfterTaxAmount *float64 `json:"laborAfterTaxAmount,omitempty"`
+
+	// This also a one-time fee of a special type.
+	LaborFee *float64 `json:"laborFee,omitempty"`
+
+	// The tax rate at which the labor fee is taxed.
+	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+
+	// An invoice item's labor tax amount. This does not include any child invoice items.
+	LaborTaxAmount *float64 `json:"laborTaxAmount,omitempty"`
+
+	// An invoice item's location, if one exists.'
+	Location *Location `json:"location,omitempty"`
+
+	// An Invoice Item's associated child invoice items, excluding ALL items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	NonZeroAssociatedChildren []Billing_Invoice_Item `json:"nonZeroAssociatedChildren,omitempty"`
+
+	// A count of an Invoice Item's associated child invoice items, excluding ALL items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
+	NonZeroAssociatedChildrenCount *uint `json:"nonZeroAssociatedChildrenCount,omitempty"`
+
+	// A note to help describe more about the item. This normally holds usernames, or some other bit of extra information.
+	Notes *string `json:"notes,omitempty"`
+
+	// An invoice item's one-time fee total after taxes. This does not include any child invoice items.
+	OneTimeAfterTaxAmount *float64 `json:"oneTimeAfterTaxAmount,omitempty"`
+
+	// If there are any one-time charges assessed, it will show up here represented by a floating point decimal in US Dollars ($USD)
+	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+
+	// The rate at which the one-time fee is taxed.
+	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+
+	// An invoice item's one-time tax amount. This does not include any child invoice items.
+	OneTimeTaxAmount *float64 `json:"oneTimeTaxAmount,omitempty"`
+
+	// Every item tied to a server should have a parent invoice item which is the server line item. This is how we associate items to a server.
+	Parent *Billing_Invoice_Item `json:"parent,omitempty"`
+
+	// The parent invoice item, usually the server invoice item.
+	ParentId *int `json:"parentId,omitempty"`
+
+	// The entry in the product catalog that a invoice item is based upon.
+	Product *Product_Item `json:"product,omitempty"`
+
+	// The entry in the product catalog that a invoice item is based upon.
+	ProductItemId *int `json:"productItemId,omitempty"`
+
+	// An invoice item's recurring fee total after taxes. This does not include any child invoice items.
+	RecurringAfterTaxAmount *float64 `json:"recurringAfterTaxAmount,omitempty"`
+
+	// The recurring fee of the invoice item represented by a floating point decimal in US Dollars ($USD)
+	RecurringFee *float64 `json:"recurringFee,omitempty"`
+
+	// the rate at which the recurring fee is taxed.
+	RecurringFeeTaxRate *float64 `json:"recurringFeeTaxRate,omitempty"`
+
+	// An invoice item's recurring tax amount. This does not include any child invoice items.
+	RecurringTaxAmount *float64 `json:"recurringTaxAmount,omitempty"`
+
+	// A unique identifier for a SoftLayer Service that is associated to an invoice item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
+
+	// An invoice item's setup fee total after taxes. This does not include any child invoice items.
+	SetupAfterTaxAmount *float64 `json:"setupAfterTaxAmount,omitempty"`
+
+	// If there were any setup fees they will show up here. These are normally a one-time fee.
+	SetupFee *float64 `json:"setupFee,omitempty"`
+
+	// The tax rate at which the setup fee is taxed.
+	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+
+	// An invoice item's setup tax amount. This does not include any child invoice items.
+	SetupTaxAmount *float64 `json:"setupTaxAmount,omitempty"`
+
+	// An invoice Item's total, including any child invoice items if they exist.
+	TotalOneTimeAmount *float64 `json:"totalOneTimeAmount,omitempty"`
+
+	// An invoice Item's total, including any child invoice items if they exist.
+	TotalOneTimeTaxAmount *float64 `json:"totalOneTimeTaxAmount,omitempty"`
+
+	// An invoice Item's total, including any child invoice items if they exist.
+	TotalRecurringAmount *float64 `json:"totalRecurringAmount,omitempty"`
+
+	// A Billing Item's total, including any child billing items if they exist.'
+	TotalRecurringTaxAmount *float64 `json:"totalRecurringTaxAmount,omitempty"`
 }
 
+// The SoftLayer_Billing_Invoice_Item_Hardware data type contains a "resource". This resource is a link to the hardware tied to a SoftLayer_Billing_item whose category code is "server".
 type Billing_Invoice_Item_Hardware struct {
 	Billing_Invoice_Item
 
+	// The resource for a server invoice item.
 	Resource *Hardware `json:"resource,omitempty"`
 }
 
+// Information about the tax rates that apply to a particular invoice item.
 type Billing_Invoice_Item_Tax_Info struct {
 	Entity
 
-	CreateDate          *Time                     `json:"createDate,omitempty"`
-	Description         *string                   `json:"description,omitempty"`
-	EffectiveTaxRate    *float64                  `json:"effectiveTaxRate,omitempty"`
-	ExemptAmount        *float64                  `json:"exemptAmount,omitempty"`
-	FeeProperty         *string                   `json:"feeProperty,omitempty"`
-	Id                  *int                      `json:"id,omitempty"`
-	InvoiceItem         *Billing_Invoice_Item     `json:"invoiceItem,omitempty"`
-	InvoiceItemId       *int                      `json:"invoiceItemId,omitempty"`
-	InvoiceTaxInfo      *Billing_Invoice_Tax_Info `json:"invoiceTaxInfo,omitempty"`
-	InvoiceTaxInfoId    *int                      `json:"invoiceTaxInfoId,omitempty"`
-	ModifyDate          *Time                     `json:"modifyDate,omitempty"`
-	NonTaxableBasis     *float64                  `json:"nonTaxableBasis,omitempty"`
-	ReportedFlag        *bool                     `json:"reportedFlag,omitempty"`
-	SellerRegistration  *string                   `json:"sellerRegistration,omitempty"`
-	TaxAmount           *float64                  `json:"taxAmount,omitempty"`
-	TaxAmountToCurrency *float64                  `json:"taxAmountToCurrency,omitempty"`
-	TaxRate             *float64                  `json:"taxRate,omitempty"`
-	TaxableBasis        *float64                  `json:"taxableBasis,omitempty"`
-	ToCurrency          *Billing_Currency         `json:"toCurrency,omitempty"`
-	ToCurrencyId        *int                      `json:"toCurrencyId,omitempty"`
+	// The date and time the tax information was recorded.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// The invoice description with special information about the invoice.
+	Description *string `json:"description,omitempty"`
+
+	// The tax rate that can be multiplied by the subtotal to get the
+	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+
+	// The amount that is exempt from tax.
+	ExemptAmount *float64 `json:"exemptAmount,omitempty"`
+
+	// The type of fee being tracked for this particular set of tax information.
+	FeeProperty *string `json:"feeProperty,omitempty"`
+
+	// An invoice item's tax information internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	//
+	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty"`
+
+	// A reference to the related invoice item.
+	InvoiceItemId *int `json:"invoiceItemId,omitempty"`
+
+	//
+	InvoiceTaxInfo *Billing_Invoice_Tax_Info `json:"invoiceTaxInfo,omitempty"`
+
+	// A reference to the tax information for the parent invoice.
+	InvoiceTaxInfoId *int `json:"invoiceTaxInfoId,omitempty"`
+
+	// The date and time the tax information was modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The amount that is exempt from tax.
+	NonTaxableBasis *float64 `json:"nonTaxableBasis,omitempty"`
+
+	// A flag to indicate whether this is the official record for this invoice item.
+	ReportedFlag *bool `json:"reportedFlag,omitempty"`
+
+	// The registration that the seller will use to report the invoice.
+	SellerRegistration *string `json:"sellerRegistration,omitempty"`
+
+	// The tax amount associated with this line item.
+	TaxAmount *float64 `json:"taxAmount,omitempty"`
+
+	// The tax amount (converted to the 'to' currency) associated with this line item.
+	TaxAmountToCurrency *float64 `json:"taxAmountToCurrency,omitempty"`
+
+	// The tax rate used. Note that this might apply to only part of the
+	TaxRate *float64 `json:"taxRate,omitempty"`
+
+	// The amount that is subject to tax.
+	TaxableBasis *float64 `json:"taxableBasis,omitempty"`
+
+	// This is the currency the invoice will be converted to.
+	ToCurrency *Billing_Currency `json:"toCurrency,omitempty"`
+
+	// The currency code that the invoice is being converted to.
+	ToCurrencyId *int `json:"toCurrencyId,omitempty"`
 }
 
+//
 type Billing_Invoice_Next struct {
 	Entity
 }
 
+// The SoftLayer_Billing_Invoice_Receivable_Payment data type contains general information relating to payments made against invoices.
 type Billing_Invoice_Receivable_Payment struct {
 	Entity
 
-	Account                  *Account                            `json:"account,omitempty"`
-	Amount                   *float64                            `json:"amount,omitempty"`
-	CreateDate               *Time                               `json:"createDate,omitempty"`
-	CreditCardLastFourDigits *int                                `json:"creditCardLastFourDigits,omitempty"`
-	CreditCardRequestId      *string                             `json:"creditCardRequestId,omitempty"`
-	CreditCardTransaction    *Billing_Payment_Card_Transaction   `json:"creditCardTransaction,omitempty"`
-	ExchangeRate             *Billing_Currency_ExchangeRate      `json:"exchangeRate,omitempty"`
-	Invoice                  *Billing_Invoice                    `json:"invoice,omitempty"`
-	InvoiceId                *int                                `json:"invoiceId,omitempty"`
-	PaypalTransaction        *Billing_Payment_PayPal_Transaction `json:"paypalTransaction,omitempty"`
-	TypeCode                 *string                             `json:"typeCode,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	// The amount of the payment.
+	Amount *float64 `json:"amount,omitempty"`
+
+	// The date of the payment.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	//
+	CreditCardLastFourDigits *int `json:"creditCardLastFourDigits,omitempty"`
+
+	//
+	CreditCardRequestId *string `json:"creditCardRequestId,omitempty"`
+
+	//
+	CreditCardTransaction *Billing_Payment_Card_Transaction `json:"creditCardTransaction,omitempty"`
+
+	//
+	ExchangeRate *Billing_Currency_ExchangeRate `json:"exchangeRate,omitempty"`
+
+	//
+	Invoice *Billing_Invoice `json:"invoice,omitempty"`
+
+	// The invoice that the payment is for.
+	InvoiceId *int `json:"invoiceId,omitempty"`
+
+	//
+	PaypalTransaction *Billing_Payment_PayPal_Transaction `json:"paypalTransaction,omitempty"`
+
+	// The type of payment.
+	TypeCode *string `json:"typeCode,omitempty"`
 }
 
+// Invoice tax information contains top-level information about the taxes recorded for a particular invoice.
 type Billing_Invoice_Tax_Info struct {
 	Entity
 
-	CreateDate               *Time                           `json:"createDate,omitempty"`
-	Currency                 *Billing_Currency               `json:"currency,omitempty"`
-	CurrencyId               *int                            `json:"currencyId,omitempty"`
-	FunctionalCurrency       *Billing_Currency               `json:"functionalCurrency,omitempty"`
-	Id                       *int                            `json:"id,omitempty"`
-	Invoice                  *Billing_Invoice                `json:"invoice,omitempty"`
-	InvoiceId                *int                            `json:"invoiceId,omitempty"`
-	ItemCount                *uint                           `json:"itemCount,omitempty"`
-	ItemWithCurrencyInfo     *Billing_Invoice_Item_Tax_Info  `json:"itemWithCurrencyInfo,omitempty"`
-	Items                    []Billing_Invoice_Item_Tax_Info `json:"items,omitempty"`
-	ModifyDate               *Time                           `json:"modifyDate,omitempty"`
-	ReportedFlag             *bool                           `json:"reportedFlag,omitempty"`
-	TotalTaxAmountToCurrency *float64                        `json:"totalTaxAmountToCurrency,omitempty"`
+	// The date and time this tax information was recorded.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// This is the currency used for the invoice.
+	Currency *Billing_Currency `json:"currency,omitempty"`
+
+	// The currency code that the invoice should be recorded in.
+	CurrencyId *int `json:"currencyId,omitempty"`
+
+	// This is the functional currency used for the invoice.
+	FunctionalCurrency *Billing_Currency `json:"functionalCurrency,omitempty"`
+
+	// The internal identifier for this invoice tax information.
+	Id *int `json:"id,omitempty"`
+
+	// This is the related invoice for this tax-related information.
+	Invoice *Billing_Invoice `json:"invoice,omitempty"`
+
+	// A reference to the related invoice.
+	InvoiceId *int `json:"invoiceId,omitempty"`
+
+	// A count of this is the collection of tax information for each of the related invoice items.
+	ItemCount *uint `json:"itemCount,omitempty"`
+
+	// This tax information on the invoice item that includes currency details.
+	ItemWithCurrencyInfo *Billing_Invoice_Item_Tax_Info `json:"itemWithCurrencyInfo,omitempty"`
+
+	// This is the collection of tax information for each of the related invoice items.
+	Items []Billing_Invoice_Item_Tax_Info `json:"items,omitempty"`
+
+	// The date and time this tax information was updated.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// A flag to indicate whether the invoice will be auditable.
+	ReportedFlag *bool `json:"reportedFlag,omitempty"`
+
+	// This the total tax amount (converted to the 'to' currency) for the invoice.
+	TotalTaxAmountToCurrency *float64 `json:"totalTaxAmountToCurrency,omitempty"`
 }
 
+// The invoice tax status data type models a single status or state that an invoice can reflect in regard to an integration with a third-party tax calculation service.
 type Billing_Invoice_Tax_Status struct {
 	Entity
 
-	CreateDate *Time   `json:"createDate,omitempty"`
-	Id         *int    `json:"id,omitempty"`
-	KeyName    *string `json:"keyName,omitempty"`
-	ModifyDate *Time   `json:"modifyDate,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	//
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	//
+	KeyName *string `json:"keyName,omitempty"`
+
+	//
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
 }
 
+// The invoice tax type data type models a single strategy for handling tax calculations.
 type Billing_Invoice_Tax_Type struct {
 	Entity
 
-	Id      *int    `json:"id,omitempty"`
+	// A tax type's internal identifier. Each type of tax calculation strategy has a unique ID value.
+	Id *int `json:"id,omitempty"`
+
+	// A unique string that identifies each strategy and is guaranteed to be stable over time.
 	KeyName *string `json:"keyName,omitempty"`
-	Name    *string `json:"name,omitempty"`
+
+	// A human-readable label for each tax strategy.
+	Name *string `json:"name,omitempty"`
 }
 
+// Every individual item that a SoftLayer customer is billed for is recorded in the SoftLayer_Billing_Item data type. Billing items range from server chassis to hard drives to control panels, bandwidth quota upgrades and port upgrade charges. Softlayer [[SoftLayer_Billing_Invoice|invoices]] are generated from the cost of a customer's billing items. Billing items are copied from the product catalog as they're ordered by customers to create a reference between an account and the billable items they own.
+//
+// Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Item struct {
 	Entity
 
-	Account                                            *Account                                `json:"account,omitempty"`
-	ActiveAgreement                                    *Account_Agreement                      `json:"activeAgreement,omitempty"`
-	ActiveAgreementFlag                                *Account_Agreement                      `json:"activeAgreementFlag,omitempty"`
-	ActiveAssociatedChildren                           []Billing_Item                          `json:"activeAssociatedChildren,omitempty"`
-	ActiveAssociatedChildrenCount                      *uint                                   `json:"activeAssociatedChildrenCount,omitempty"`
-	ActiveAssociatedGuestDiskBillingItemCount          *uint                                   `json:"activeAssociatedGuestDiskBillingItemCount,omitempty"`
-	ActiveAssociatedGuestDiskBillingItems              []Billing_Item                          `json:"activeAssociatedGuestDiskBillingItems,omitempty"`
-	ActiveBundledItemCount                             *uint                                   `json:"activeBundledItemCount,omitempty"`
-	ActiveBundledItems                                 []Billing_Item                          `json:"activeBundledItems,omitempty"`
-	ActiveCancellationItem                             *Billing_Item_Cancellation_Request_Item `json:"activeCancellationItem,omitempty"`
-	ActiveChildren                                     []Billing_Item                          `json:"activeChildren,omitempty"`
-	ActiveChildrenCount                                *uint                                   `json:"activeChildrenCount,omitempty"`
-	ActiveFlag                                         *bool                                   `json:"activeFlag,omitempty"`
-	ActiveSparePoolAssociatedGuestDiskBillingItemCount *uint                                   `json:"activeSparePoolAssociatedGuestDiskBillingItemCount,omitempty"`
-	ActiveSparePoolAssociatedGuestDiskBillingItems     []Billing_Item                          `json:"activeSparePoolAssociatedGuestDiskBillingItems,omitempty"`
-	ActiveSparePoolBundledItemCount                    *uint                                   `json:"activeSparePoolBundledItemCount,omitempty"`
-	ActiveSparePoolBundledItems                        []Billing_Item                          `json:"activeSparePoolBundledItems,omitempty"`
-	AllowCancellationFlag                              *int                                    `json:"allowCancellationFlag,omitempty"`
-	AssociatedBillingItem                              *Billing_Item                           `json:"associatedBillingItem,omitempty"`
-	AssociatedBillingItemHistory                       []Billing_Item_Association_History      `json:"associatedBillingItemHistory,omitempty"`
-	AssociatedBillingItemHistoryCount                  *uint                                   `json:"associatedBillingItemHistoryCount,omitempty"`
-	AssociatedBillingItemId                            *string                                 `json:"associatedBillingItemId,omitempty"`
-	AssociatedChildren                                 []Billing_Item                          `json:"associatedChildren,omitempty"`
-	AssociatedChildrenCount                            *uint                                   `json:"associatedChildrenCount,omitempty"`
-	AssociatedParent                                   []Billing_Item                          `json:"associatedParent,omitempty"`
-	AssociatedParentCount                              *uint                                   `json:"associatedParentCount,omitempty"`
-	AvailableMatchingVlanCount                         *uint                                   `json:"availableMatchingVlanCount,omitempty"`
-	AvailableMatchingVlans                             []Network_Vlan                          `json:"availableMatchingVlans,omitempty"`
-	BandwidthAllocation                                *Network_Bandwidth_Version1_Allocation  `json:"bandwidthAllocation,omitempty"`
-	BillableChildren                                   []Billing_Item                          `json:"billableChildren,omitempty"`
-	BillableChildrenCount                              *uint                                   `json:"billableChildrenCount,omitempty"`
-	BundleItemCount                                    *uint                                   `json:"bundleItemCount,omitempty"`
-	BundleItems                                        []Product_Item_Bundles                  `json:"bundleItems,omitempty"`
-	BundledItemCount                                   *uint                                   `json:"bundledItemCount,omitempty"`
-	BundledItems                                       []Billing_Item                          `json:"bundledItems,omitempty"`
-	CanceledChildren                                   []Billing_Item                          `json:"canceledChildren,omitempty"`
-	CanceledChildrenCount                              *uint                                   `json:"canceledChildrenCount,omitempty"`
-	CancellationDate                                   *Time                                   `json:"cancellationDate,omitempty"`
-	CancellationReason                                 *Billing_Item_Cancellation_Reason       `json:"cancellationReason,omitempty"`
-	CancellationRequestCount                           *uint                                   `json:"cancellationRequestCount,omitempty"`
-	CancellationRequests                               []Billing_Item_Cancellation_Request     `json:"cancellationRequests,omitempty"`
-	Category                                           *Product_Item_Category                  `json:"category,omitempty"`
-	CategoryCode                                       *string                                 `json:"categoryCode,omitempty"`
-	Children                                           []Billing_Item                          `json:"children,omitempty"`
-	ChildrenCount                                      *uint                                   `json:"childrenCount,omitempty"`
-	ChildrenWithActiveAgreement                        []Billing_Item                          `json:"childrenWithActiveAgreement,omitempty"`
-	ChildrenWithActiveAgreementCount                   *uint                                   `json:"childrenWithActiveAgreementCount,omitempty"`
-	CreateDate                                         *Time                                   `json:"createDate,omitempty"`
-	CurrentHourlyCharge                                *string                                 `json:"currentHourlyCharge,omitempty"`
-	CycleStartDate                                     *Time                                   `json:"cycleStartDate,omitempty"`
-	Description                                        *string                                 `json:"description,omitempty"`
-	DomainName                                         *string                                 `json:"domainName,omitempty"`
-	DowngradeItemCount                                 *uint                                   `json:"downgradeItemCount,omitempty"`
-	DowngradeItems                                     []Product_Item                          `json:"downgradeItems,omitempty"`
-	FilteredNextInvoiceChildren                        []Billing_Item                          `json:"filteredNextInvoiceChildren,omitempty"`
-	FilteredNextInvoiceChildrenCount                   *uint                                   `json:"filteredNextInvoiceChildrenCount,omitempty"`
-	HostName                                           *string                                 `json:"hostName,omitempty"`
-	HourlyFlag                                         *bool                                   `json:"hourlyFlag,omitempty"`
-	HourlyRecurringFee                                 *float64                                `json:"hourlyRecurringFee,omitempty"`
-	HoursUsed                                          *string                                 `json:"hoursUsed,omitempty"`
-	Id                                                 *int                                    `json:"id,omitempty"`
-	InvoiceItem                                        *Billing_Invoice_Item                   `json:"invoiceItem,omitempty"`
-	InvoiceItemCount                                   *uint                                   `json:"invoiceItemCount,omitempty"`
-	InvoiceItems                                       []Billing_Invoice_Item                  `json:"invoiceItems,omitempty"`
-	Item                                               *Product_Item                           `json:"item,omitempty"`
-	LaborFee                                           *float64                                `json:"laborFee,omitempty"`
-	LaborFeeTaxRate                                    *float64                                `json:"laborFeeTaxRate,omitempty"`
-	LastBillDate                                       *Time                                   `json:"lastBillDate,omitempty"`
-	Location                                           *Location                               `json:"location,omitempty"`
-	ModifyDate                                         *Time                                   `json:"modifyDate,omitempty"`
-	NextBillDate                                       *Time                                   `json:"nextBillDate,omitempty"`
-	NextInvoiceChildren                                []Billing_Item                          `json:"nextInvoiceChildren,omitempty"`
-	NextInvoiceChildrenCount                           *uint                                   `json:"nextInvoiceChildrenCount,omitempty"`
-	NextInvoiceTotalOneTimeAmount                      *float64                                `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
-	NextInvoiceTotalOneTimeTaxAmount                   *float64                                `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
-	NextInvoiceTotalRecurringAmount                    *float64                                `json:"nextInvoiceTotalRecurringAmount,omitempty"`
-	NextInvoiceTotalRecurringTaxAmount                 *float64                                `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
-	NonZeroNextInvoiceChildren                         []Billing_Item                          `json:"nonZeroNextInvoiceChildren,omitempty"`
-	NonZeroNextInvoiceChildrenCount                    *uint                                   `json:"nonZeroNextInvoiceChildrenCount,omitempty"`
-	Notes                                              *string                                 `json:"notes,omitempty"`
-	OneTimeFee                                         *float64                                `json:"oneTimeFee,omitempty"`
-	OneTimeFeeTaxRate                                  *float64                                `json:"oneTimeFeeTaxRate,omitempty"`
-	OrderItem                                          *Billing_Order_Item                     `json:"orderItem,omitempty"`
-	OrderItemId                                        *int                                    `json:"orderItemId,omitempty"`
-	OriginalLocation                                   *Location                               `json:"originalLocation,omitempty"`
-	Package                                            *Product_Package                        `json:"package,omitempty"`
-	Parent                                             *Billing_Item                           `json:"parent,omitempty"`
-	ParentId                                           *int                                    `json:"parentId,omitempty"`
-	ParentVirtualGuestBillingItem                      *Billing_Item_Virtual_Guest             `json:"parentVirtualGuestBillingItem,omitempty"`
-	PendingCancellationFlag                            *bool                                   `json:"pendingCancellationFlag,omitempty"`
-	PendingOrderItem                                   *Billing_Order_Item                     `json:"pendingOrderItem,omitempty"`
-	ProvisionTransaction                               *Provisioning_Version1_Transaction      `json:"provisionTransaction,omitempty"`
-	RecurringFee                                       *float64                                `json:"recurringFee,omitempty"`
-	RecurringFeeTaxRate                                *float64                                `json:"recurringFeeTaxRate,omitempty"`
-	RecurringMonths                                    *int                                    `json:"recurringMonths,omitempty"`
-	ServiceProviderId                                  *int                                    `json:"serviceProviderId,omitempty"`
-	SetupFee                                           *float64                                `json:"setupFee,omitempty"`
-	SetupFeeTaxRate                                    *float64                                `json:"setupFeeTaxRate,omitempty"`
-	SoftwareDescription                                *Software_Description                   `json:"softwareDescription,omitempty"`
-	UpgradeItem                                        *Product_Item                           `json:"upgradeItem,omitempty"`
-	UpgradeItemCount                                   *uint                                   `json:"upgradeItemCount,omitempty"`
-	UpgradeItems                                       []Product_Item                          `json:"upgradeItems,omitempty"`
+	// The account that a billing item belongs to.
+	Account *Account `json:"account,omitempty"`
+
+	//
+	ActiveAgreement *Account_Agreement `json:"activeAgreement,omitempty"`
+
+	// A flag indicating that the billing item is under an active agreement.
+	ActiveAgreementFlag *Account_Agreement `json:"activeAgreementFlag,omitempty"`
+
+	// A billing item's active associated child billing items. This includes "floating" items that are not necessarily child items of this billing item.
+	ActiveAssociatedChildren []Billing_Item `json:"activeAssociatedChildren,omitempty"`
+
+	// A count of a billing item's active associated child billing items. This includes "floating" items that are not necessarily child items of this billing item.
+	ActiveAssociatedChildrenCount *uint `json:"activeAssociatedChildrenCount,omitempty"`
+
+	// A count of
+	ActiveAssociatedGuestDiskBillingItemCount *uint `json:"activeAssociatedGuestDiskBillingItemCount,omitempty"`
+
+	//
+	ActiveAssociatedGuestDiskBillingItems []Billing_Item `json:"activeAssociatedGuestDiskBillingItems,omitempty"`
+
+	// A count of a Billing Item's active bundled billing items.
+	ActiveBundledItemCount *uint `json:"activeBundledItemCount,omitempty"`
+
+	// A Billing Item's active bundled billing items.
+	ActiveBundledItems []Billing_Item `json:"activeBundledItems,omitempty"`
+
+	// A service cancellation request item that corresponds to the billing item.
+	ActiveCancellationItem *Billing_Item_Cancellation_Request_Item `json:"activeCancellationItem,omitempty"`
+
+	// A Billing Item's active child billing items.
+	ActiveChildren []Billing_Item `json:"activeChildren,omitempty"`
+
+	// A count of a Billing Item's active child billing items.
+	ActiveChildrenCount *uint `json:"activeChildrenCount,omitempty"`
+
+	//
+	ActiveFlag *bool `json:"activeFlag,omitempty"`
+
+	// A count of
+	ActiveSparePoolAssociatedGuestDiskBillingItemCount *uint `json:"activeSparePoolAssociatedGuestDiskBillingItemCount,omitempty"`
+
+	//
+	ActiveSparePoolAssociatedGuestDiskBillingItems []Billing_Item `json:"activeSparePoolAssociatedGuestDiskBillingItems,omitempty"`
+
+	// A count of a Billing Item's spare pool bundled billing items.
+	ActiveSparePoolBundledItemCount *uint `json:"activeSparePoolBundledItemCount,omitempty"`
+
+	// A Billing Item's spare pool bundled billing items.
+	ActiveSparePoolBundledItems []Billing_Item `json:"activeSparePoolBundledItems,omitempty"`
+
+	// Flag to check if a billing item can be cancelled. 1 = yes. 0 = no.
+	AllowCancellationFlag *int `json:"allowCancellationFlag,omitempty"`
+
+	// A billing item's associated parent. This is to be used for billing items that are "floating", and therefore are not child items of any parent billing item. If it is desired to associate an item to another, populate this with the SoftLayer_Billing_Item ID of that associated parent item.
+	AssociatedBillingItem *Billing_Item `json:"associatedBillingItem,omitempty"`
+
+	// A history of billing items which a billing item has been associated with.
+	AssociatedBillingItemHistory []Billing_Item_Association_History `json:"associatedBillingItemHistory,omitempty"`
+
+	// A count of a history of billing items which a billing item has been associated with.
+	AssociatedBillingItemHistoryCount *uint `json:"associatedBillingItemHistoryCount,omitempty"`
+
+	// This is sometimes populated for orphan billing items that are not attached to servers. Billing items like secondary portable IP addresses fit into this category. A user may set an association by calling [[SoftLayer_Billing_Item::setAssociationId]]. This will cause this orphan item to appear under its associated server billing item on future invoices. You may only attach orphaned billing items to server billing items without cancellation dates set.
+	AssociatedBillingItemId *string `json:"associatedBillingItemId,omitempty"`
+
+	// A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
+	AssociatedChildren []Billing_Item `json:"associatedChildren,omitempty"`
+
+	// A count of a Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
+	AssociatedChildrenCount *uint `json:"associatedChildrenCount,omitempty"`
+
+	// A billing item's associated parent billing item. This object will be the same as the parent billing item if parentId is set.
+	AssociatedParent []Billing_Item `json:"associatedParent,omitempty"`
+
+	// A count of a billing item's associated parent billing item. This object will be the same as the parent billing item if parentId is set.
+	AssociatedParentCount *uint `json:"associatedParentCount,omitempty"`
+
+	// A count of
+	AvailableMatchingVlanCount *uint `json:"availableMatchingVlanCount,omitempty"`
+
+	//
+	AvailableMatchingVlans []Network_Vlan `json:"availableMatchingVlans,omitempty"`
+
+	// The bandwidth allocation for a billing item.
+	BandwidthAllocation *Network_Bandwidth_Version1_Allocation `json:"bandwidthAllocation,omitempty"`
+
+	// A billing item's recurring child items that have once been billed and are scheduled to be billed in the future.
+	BillableChildren []Billing_Item `json:"billableChildren,omitempty"`
+
+	// A count of a billing item's recurring child items that have once been billed and are scheduled to be billed in the future.
+	BillableChildrenCount *uint `json:"billableChildrenCount,omitempty"`
+
+	// A count of a Billing Item's bundled billing items
+	BundleItemCount *uint `json:"bundleItemCount,omitempty"`
+
+	// A Billing Item's bundled billing items
+	BundleItems []Product_Item_Bundles `json:"bundleItems,omitempty"`
+
+	// A count of a Billing Item's bundled billing items'
+	BundledItemCount *uint `json:"bundledItemCount,omitempty"`
+
+	// A Billing Item's bundled billing items'
+	BundledItems []Billing_Item `json:"bundledItems,omitempty"`
+
+	// A Billing Item's active child billing items.
+	CanceledChildren []Billing_Item `json:"canceledChildren,omitempty"`
+
+	// A count of a Billing Item's active child billing items.
+	CanceledChildrenCount *uint `json:"canceledChildrenCount,omitempty"`
+
+	// A billing item's cancellation date. A billing item with a cancellation date in the past is not charged on your SoftLayer invoice. Cancellation dates in the future indicate the current billing item is active, but will be cancelled and not charged for in the future. A billing item with a null cancellation date is also considered an active billing item and is charged once every billing cycle.
+	CancellationDate *Time `json:"cancellationDate,omitempty"`
+
+	// The billing item's cancellation reason.
+	CancellationReason *Billing_Item_Cancellation_Reason `json:"cancellationReason,omitempty"`
+
+	// A count of this will return any cancellation requests that are associated with this billing item.
+	CancellationRequestCount *uint `json:"cancellationRequestCount,omitempty"`
+
+	// This will return any cancellation requests that are associated with this billing item.
+	CancellationRequests []Billing_Item_Cancellation_Request `json:"cancellationRequests,omitempty"`
+
+	// The item category to which the billing item's item belongs.
+	Category *Product_Item_Category `json:"category,omitempty"`
+
+	// The category code of this billing item. It is used to tell us the difference between a primary disk and a secondary disk, for instance.
+	CategoryCode *string `json:"categoryCode,omitempty"`
+
+	// A Billing Item's child billing items'
+	Children []Billing_Item `json:"children,omitempty"`
+
+	// A count of a Billing Item's child billing items'
+	ChildrenCount *uint `json:"childrenCount,omitempty"`
+
+	// A Billing Item's active child billing items.
+	ChildrenWithActiveAgreement []Billing_Item `json:"childrenWithActiveAgreement,omitempty"`
+
+	// A count of a Billing Item's active child billing items.
+	ChildrenWithActiveAgreementCount *uint `json:"childrenWithActiveAgreementCount,omitempty"`
+
+	// The date the billing item was created. You can see this date on the invoice.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// This is the total charge for the billing item for this billing item. It is calculated based on the hourlyRecurringFee * hoursUsed.
+	CurrentHourlyCharge *string `json:"currentHourlyCharge,omitempty"`
+
+	// The last time this billing item was charged.
+	CycleStartDate *Time `json:"cycleStartDate,omitempty"`
+
+	// A brief description of a billing item.
+	Description *string `json:"description,omitempty"`
+
+	// The domain name is provided for server billing items.
+	DomainName *string `json:"domainName,omitempty"`
+
+	// A count of for product items which have a downgrade path defined, this will return those product items.
+	DowngradeItemCount *uint `json:"downgradeItemCount,omitempty"`
+
+	// For product items which have a downgrade path defined, this will return those product items.
+	DowngradeItems []Product_Item `json:"downgradeItems,omitempty"`
+
+	// A Billing Item's associated child billing items, excluding some items with a $0.00 recurring fee.
+	FilteredNextInvoiceChildren []Billing_Item `json:"filteredNextInvoiceChildren,omitempty"`
+
+	// A count of a Billing Item's associated child billing items, excluding some items with a $0.00 recurring fee.
+	FilteredNextInvoiceChildrenCount *uint `json:"filteredNextInvoiceChildrenCount,omitempty"`
+
+	// The hostname is provided for server billing items
+	HostName *string `json:"hostName,omitempty"`
+
+	// A flag that will reflect whether this billing item is billed on an hourly basis or not.
+	HourlyFlag *bool `json:"hourlyFlag,omitempty"`
+
+	// The amount of money charged per hour for a billing item, if applicable. hourlyRecurringFee is measured in US Dollars ($USD).
+	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+
+	// This is the number of hours the hourly billing item has been in use this billing period. For virtual servers, this means running, paused or stopped.
+	HoursUsed *string `json:"hoursUsed,omitempty"`
+
+	// The unique identifier for this billing item.
+	Id *int `json:"id,omitempty"`
+
+	// Invoice items associated with this billing item
+	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty"`
+
+	// A count of all invoice items associated with the billing item
+	InvoiceItemCount *uint `json:"invoiceItemCount,omitempty"`
+
+	// All invoice items associated with the billing item
+	InvoiceItems []Billing_Invoice_Item `json:"invoiceItems,omitempty"`
+
+	// The entry in the SoftLayer product catalog that a billing item is based upon.
+	Item *Product_Item `json:"item,omitempty"`
+
+	// The labor fee, if any. This is a one time charge.
+	LaborFee *float64 `json:"laborFee,omitempty"`
+
+	// The rate at which labor fees are taxed if you are a taxable customer.
+	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+
+	// The last time this billing item was charged.
+	LastBillDate *Time `json:"lastBillDate,omitempty"`
+
+	// The location of the billing item. Some billing items have physical properties such as the server itself. For items such as these, we provide location information.
+	Location *Location `json:"location,omitempty"`
+
+	// The date that a billing item was last modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The date on which your account will be charged for this billing item.
+	NextBillDate *Time `json:"nextBillDate,omitempty"`
+
+	// A Billing Item's child billing items and associated items'
+	NextInvoiceChildren []Billing_Item `json:"nextInvoiceChildren,omitempty"`
+
+	// A count of a Billing Item's child billing items and associated items'
+	NextInvoiceChildrenCount *uint `json:"nextInvoiceChildrenCount,omitempty"`
+
+	// A Billing Item's total, including any child billing items if they exist.'
+	NextInvoiceTotalOneTimeAmount *float64 `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
+
+	// A Billing Item's total, including any child billing items if they exist.'
+	NextInvoiceTotalOneTimeTaxAmount *float64 `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
+
+	// A Billing Item's total, including any child billing items and associated billing items if they exist.'
+	NextInvoiceTotalRecurringAmount *float64 `json:"nextInvoiceTotalRecurringAmount,omitempty"`
+
+	// This is deprecated and will always be zero. Because tax is calculated in real-time, previewing the next recurring invoice is pre-tax only.
+	NextInvoiceTotalRecurringTaxAmount *float64 `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
+
+	// A Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
+	NonZeroNextInvoiceChildren []Billing_Item `json:"nonZeroNextInvoiceChildren,omitempty"`
+
+	// A count of a Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
+	NonZeroNextInvoiceChildrenCount *uint `json:"nonZeroNextInvoiceChildrenCount,omitempty"`
+
+	// Extra information provided to help you identify this billing item. This is often a username or something to help identify items that customers have more than one of.
+	Notes *string `json:"notes,omitempty"`
+
+	// The amount of money charged as a one-time charge for a billing item, if applicable. oneTimeFee is measured in US Dollars ($USD).
+	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+
+	// The rate at which one time fees are taxed if you are a taxable customer.
+	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+
+	// A billing item's original order item. Simply a reference to the original order from which this billing item was created.
+	OrderItem *Billing_Order_Item `json:"orderItem,omitempty"`
+
+	// the SoftLayer_Billing_Order_Item ID. This is a reference to the original order item from which this billing item was originally created.
+	OrderItemId *int `json:"orderItemId,omitempty"`
+
+	// The original physical location for this billing item--may differ from current.
+	OriginalLocation *Location `json:"originalLocation,omitempty"`
+
+	// The package under which this billing item was sold. A Package is the general grouping of products as seen on our order forms.
+	Package *Product_Package `json:"package,omitempty"`
+
+	// A billing item's parent item. If a billing item has no parent item then this value is null.
+	Parent *Billing_Item `json:"parent,omitempty"`
+
+	// The unique identifier of the parent of this billing item.
+	ParentId *int `json:"parentId,omitempty"`
+
+	// A billing item's parent item. If a billing item has no parent item then this value is null.
+	ParentVirtualGuestBillingItem *Billing_Item_Virtual_Guest `json:"parentVirtualGuestBillingItem,omitempty"`
+
+	// This flag indicates whether a billing item is scheduled to be canceled or not.
+	PendingCancellationFlag *bool `json:"pendingCancellationFlag,omitempty"`
+
+	// The new order item that will replace this billing item.
+	PendingOrderItem *Billing_Order_Item `json:"pendingOrderItem,omitempty"`
+
+	// Provisioning transaction for this billing item
+	ProvisionTransaction *Provisioning_Version1_Transaction `json:"provisionTransaction,omitempty"`
+
+	// The amount of money charged per month for a billing item, if applicable. recurringFee is measured in US Dollars ($USD).
+	RecurringFee *float64 `json:"recurringFee,omitempty"`
+
+	// The rate at which recurring fees are taxed if you are a taxable customer.
+	RecurringFeeTaxRate *float64 `json:"recurringFeeTaxRate,omitempty"`
+
+	// The number of months in which the recurring fees will be incurred.
+	RecurringMonths *int `json:"recurringMonths,omitempty"`
+
+	// This is the service provider for this billing item.
+	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
+
+	// The setup fee, if any. This is a one time charge.
+	SetupFee *float64 `json:"setupFee,omitempty"`
+
+	// The rate at which setup fees are taxed if you are a taxable customer.
+	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+
+	// A friendly description of software component
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+
+	// Billing items whose product item has an upgrade path defined in our system will return the next product item in the upgrade path.
+	UpgradeItem *Product_Item `json:"upgradeItem,omitempty"`
+
+	// A count of billing items whose product item has an upgrade path defined in our system will return all the product items in the upgrade path.
+	UpgradeItemCount *uint `json:"upgradeItemCount,omitempty"`
+
+	// Billing items whose product item has an upgrade path defined in our system will return all the product items in the upgrade path.
+	UpgradeItems []Product_Item `json:"upgradeItems,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Account_Media_Data_Transfer_Request data type contains general information relating to a single SoftLayer billing item for a data transfer request.
 type Billing_Item_Account_Media_Data_Transfer_Request struct {
 	Billing_Item
 
+	// The data transfer request to which the billing item points.
 	Resource *Account_Media_Data_Transfer_Request `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Association_History type keeps a record of which server billing items an "orphan" item has been associated with. Orphan billing items are billable items for secondary portable services (such as secondary subnets and StorageLayer accounts) that are not associated with a server and appear at the bottom of a SoftLayer invoice. The [[SoftLayer_Billing_Item::setAssociationId]] method allows you to associate these kinds of items with servers, making them appear as a child item of the server on your invoice. A SoftLayer_Billing_Item_Association_History record is created every time one of these associations are set.
 type Billing_Item_Association_History struct {
 	Entity
 
-	AssociatedBillingItem   *Billing_Item `json:"associatedBillingItem,omitempty"`
-	AssociatedBillingItemId *int          `json:"associatedBillingItemId,omitempty"`
-	BillingItem             *Billing_Item `json:"billingItem,omitempty"`
-	BillingItemId           *int          `json:"billingItemId,omitempty"`
-	CreateDate              *Time         `json:"createDate,omitempty"`
-	Id                      *int          `json:"id,omitempty"`
+	// The server billing item that an orphaned billing item was associated with.
+	AssociatedBillingItem *Billing_Item `json:"associatedBillingItem,omitempty"`
+
+	// The internal identifier of the server billing item that an orphaned billing item was associated with.
+	AssociatedBillingItemId *int `json:"associatedBillingItemId,omitempty"`
+
+	// The billing item that was associated with a server billing item.
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	// The internal identifier of the billing item that was associated with a server billing item.
+	BillingItemId *int `json:"billingItemId,omitempty"`
+
+	// The date that a billing item association was last changed.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// A billing item association history's internal identifier.
+	Id *int `json:"id,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Cancellation_Reason data type contains cancellation reasons.
 type Billing_Item_Cancellation_Reason struct {
 	Entity
 
-	BillingCancelReasonCategoryId     *int                                       `json:"billingCancelReasonCategoryId,omitempty"`
+	// A cancel reason category internal identifier.
+	BillingCancelReasonCategoryId *int `json:"billingCancelReasonCategoryId,omitempty"`
+
+	// An billing cancellation reason category.
 	BillingCancellationReasonCategory *Billing_Item_Cancellation_Reason_Category `json:"billingCancellationReasonCategory,omitempty"`
-	BillingItemCount                  *uint                                      `json:"billingItemCount,omitempty"`
-	BillingItems                      []Billing_Item                             `json:"billingItems,omitempty"`
-	Id                                *int                                       `json:"id,omitempty"`
-	KeyName                           *string                                    `json:"keyName,omitempty"`
-	Reason                            *string                                    `json:"reason,omitempty"`
-	TranslatedReason                  *string                                    `json:"translatedReason,omitempty"`
+
+	// A count of the corresponding billing items having the specific cancellation reason.
+	BillingItemCount *uint `json:"billingItemCount,omitempty"`
+
+	// The corresponding billing items having the specific cancellation reason.
+	BillingItems []Billing_Item `json:"billingItems,omitempty"`
+
+	// A reason internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// A standardized reason internal identifier.
+	KeyName *string `json:"keyName,omitempty"`
+
+	// The descriptoin of the reason
+	Reason *string `json:"reason,omitempty"`
+
+	//
+	TranslatedReason *string `json:"translatedReason,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Cancellation_Reason_Category data type contains cancellation reason categories.
 type Billing_Item_Cancellation_Reason_Category struct {
 	Entity
 
-	BillingCancellationReasonCount *uint                              `json:"billingCancellationReasonCount,omitempty"`
-	BillingCancellationReasons     []Billing_Item_Cancellation_Reason `json:"billingCancellationReasons,omitempty"`
-	Id                             *int                               `json:"id,omitempty"`
-	Name                           *string                            `json:"name,omitempty"`
+	// A count of the corresponding billing cancellation reasons having the specific billing cancellation reason category.
+	BillingCancellationReasonCount *uint `json:"billingCancellationReasonCount,omitempty"`
+
+	// The corresponding billing cancellation reasons having the specific billing cancellation reason category.
+	BillingCancellationReasons []Billing_Item_Cancellation_Reason `json:"billingCancellationReasons,omitempty"`
+
+	// A category internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// The description of the category
+	Name *string `json:"name,omitempty"`
 }
 
+// SoftLayer_Billing_Item_Cancellation_Request data type is used to cancel service billing items.
 type Billing_Item_Cancellation_Request struct {
 	Entity
 
-	Account               *Account                                  `json:"account,omitempty"`
-	AccountId             *int                                      `json:"accountId,omitempty"`
-	BillingCancelReasonId *int                                      `json:"billingCancelReasonId,omitempty"`
-	CreateDate            *Time                                     `json:"createDate,omitempty"`
-	Id                    *int                                      `json:"id,omitempty"`
-	ItemCount             *uint                                     `json:"itemCount,omitempty"`
-	Items                 []Billing_Item_Cancellation_Request_Item  `json:"items,omitempty"`
-	ModifyDate            *Time                                     `json:"modifyDate,omitempty"`
-	Notes                 *string                                   `json:"notes,omitempty"`
-	Status                *Billing_Item_Cancellation_Request_Status `json:"status,omitempty"`
-	StatusId              *int                                      `json:"statusId,omitempty"`
-	Ticket                *Ticket                                   `json:"ticket,omitempty"`
-	TicketId              *int                                      `json:"ticketId,omitempty"`
-	User                  *User_Customer                            `json:"user,omitempty"`
+	// The SoftLayer account that a service cancellation request belongs to.
+	Account *Account `json:"account,omitempty"`
+
+	// The internal identifier of the customer account that a service cancellation record belongs to.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// The last modified date.
+	BillingCancelReasonId *int `json:"billingCancelReasonId,omitempty"`
+
+	// The date that a cancellation request was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// A cancellation record's internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// A count of a collection of service cancellation items.
+	ItemCount *uint `json:"itemCount,omitempty"`
+
+	// A collection of service cancellation items.
+	Items []Billing_Item_Cancellation_Request_Item `json:"items,omitempty"`
+
+	// The last modified date.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// Brief cancellation note.
+	Notes *string `json:"notes,omitempty"`
+
+	// The status of a service cancellation request.
+	Status *Billing_Item_Cancellation_Request_Status `json:"status,omitempty"`
+
+	// An internal identifier of the service cancellation status that this request is associated with. When a service cancellation is submitted, it will be in "Pending" status until SoftLayer Sales team reviews it. The status of a cancellation request will be updated to "Approved" or "Voided" by SoftLayer Sales.
+	//
+	// It will be updated to "Complete" when all services are reclaimed.
+	StatusId *int `json:"statusId,omitempty"`
+
+	// The ticket that is associated with the service cancellation request.
+	Ticket *Ticket `json:"ticket,omitempty"`
+
+	// An internal identifier of the ticket that is associated with a service cancellation request. When a service cancellation is submitted, a support ticket will be created. This ticket contains details on your service cancellation details and SoftLayer Sales team will use it to further communicate with you.
+	TicketId *int `json:"ticketId,omitempty"`
+
+	// The user that initiated a service cancellation request.
+	User *User_Customer `json:"user,omitempty"`
 }
 
+// SoftLayer_Billing_Item_Cancellation_Request_Item data type contains a billing item for cancellation. This data type is used to harness billing items to the associated service.
 type Billing_Item_Cancellation_Request_Item struct {
 	Entity
 
-	BillingItem               *Billing_Item                      `json:"billingItem,omitempty"`
-	BillingItemId             *int                               `json:"billingItemId,omitempty"`
-	CancellationRequest       *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty"`
-	CancellationRequestId     *int                               `json:"cancellationRequestId,omitempty"`
-	Id                        *int                               `json:"id,omitempty"`
-	ImmediateCancellationFlag *bool                              `json:"immediateCancellationFlag,omitempty"`
-	ScheduledCancellationDate *Time                              `json:"scheduledCancellationDate,omitempty"`
-	ServiceReclaimStatusCode  *string                            `json:"serviceReclaimStatusCode,omitempty"`
+	// The billing item for cancellation.
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	// The internal identifier of a billing item
+	BillingItemId *int `json:"billingItemId,omitempty"`
+
+	// The service cancellation request that a cancellation item belongs to.
+	CancellationRequest *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty"`
+
+	// A cancellation request's internal identifier.
+	CancellationRequestId *int `json:"cancellationRequestId,omitempty"`
+
+	// A cancellation request item's internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// This flag indicated if a billing item should be canceled immediately or not.  Set this flag to true when creating a cancellation request.
+	ImmediateCancellationFlag *bool `json:"immediateCancellationFlag,omitempty"`
+
+	// The scheduled cancellation date
+	ScheduledCancellationDate *Time `json:"scheduledCancellationDate,omitempty"`
+
+	// The reclaim status of a service.
+	ServiceReclaimStatusCode *string `json:"serviceReclaimStatusCode,omitempty"`
 }
 
+// SoftLayer_Billing_Item_Cancellation_Request_Status data type represents the status of a service cancellation request.
 type Billing_Item_Cancellation_Request_Status struct {
 	Entity
 
+	// The short description of a cancellation request status
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	KeyName     *string `json:"keyName,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	// The internal identifier of a cancellation request status.
+	Id *int `json:"id,omitempty"`
+
+	// status key name
+	KeyName *string `json:"keyName,omitempty"`
+
+	// The status name
+	Name *string `json:"name,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Ctc_Account data type contains general information relating to a single SoftLayer billing item for a CTC client account creation
 type Billing_Item_Ctc_Account struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Big_Data_Cluster data type contains general information relating to a single SoftLayer billing item for a big data cluster.
 type Billing_Item_Gateway_Appliance_Cluster struct {
 	Billing_Item
 
+	// The resource for a resource group billing item.
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware.
 type Billing_Item_Hardware struct {
 	Billing_Item
 
-	BillingCycleBandwidthUsage             []Network_Bandwidth_Usage     `json:"billingCycleBandwidthUsage,omitempty"`
-	BillingCycleBandwidthUsageCount        *uint                         `json:"billingCycleBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateBandwidthUsage      []Network_Bandwidth_Usage     `json:"billingCyclePrivateBandwidthUsage,omitempty"`
-	BillingCyclePrivateBandwidthUsageCount *uint                         `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateUsageIn             *float64                      `json:"billingCyclePrivateUsageIn,omitempty"`
-	BillingCyclePrivateUsageOut            *float64                      `json:"billingCyclePrivateUsageOut,omitempty"`
-	BillingCyclePrivateUsageTotal          *uint                         `json:"billingCyclePrivateUsageTotal,omitempty"`
-	BillingCyclePublicBandwidthUsage       []Network_Bandwidth_Usage     `json:"billingCyclePublicBandwidthUsage,omitempty"`
-	BillingCyclePublicBandwidthUsageCount  *uint                         `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
-	BillingCyclePublicUsageIn              *float64                      `json:"billingCyclePublicUsageIn,omitempty"`
-	BillingCyclePublicUsageOut             *float64                      `json:"billingCyclePublicUsageOut,omitempty"`
-	BillingCyclePublicUsageTotal           *uint                         `json:"billingCyclePublicUsageTotal,omitempty"`
-	LockboxNetworkStorage                  *Billing_Item_Network_Storage `json:"lockboxNetworkStorage,omitempty"`
-	MonitoringBillingItemCount             *uint                         `json:"monitoringBillingItemCount,omitempty"`
-	MonitoringBillingItems                 []Billing_Item                `json:"monitoringBillingItems,omitempty"`
-	Resource                               *Hardware_Server              `json:"resource,omitempty"`
-	ResourceTableId                        *int                          `json:"resourceTableId,omitempty"`
+	// The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
+	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty"`
+
+	// A count of the raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
+	BillingCycleBandwidthUsageCount *uint `json:"billingCycleBandwidthUsageCount,omitempty"`
+
+	// The raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePrivateBandwidthUsage,omitempty"`
+
+	// A count of the raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
+
+	// The total private inbound bandwidth for this hardware for the current billing cycle.
+	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+
+	// The total private outbound bandwidth for this hardware for the current billing cycle.
+	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+
+	// The total private bandwidth for this hardware for the current billing cycle.
+	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
+
+	// The raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
+
+	// A count of the raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
+
+	// The total public inbound bandwidth for this hardware for the current billing cycle.
+	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+
+	// The total public outbound bandwidth for this hardware for the current billing cycle.
+	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+
+	// The total public bandwidth for this hardware for the current billing cycle.
+	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
+
+	// A lockbox account associated with a server.
+	LockboxNetworkStorage *Billing_Item_Network_Storage `json:"lockboxNetworkStorage,omitempty"`
+
+	// A count of
+	MonitoringBillingItemCount *uint `json:"monitoringBillingItemCount,omitempty"`
+
+	//
+	MonitoringBillingItems []Billing_Item `json:"monitoringBillingItems,omitempty"`
+
+	// The resource for a server billing item.
+	Resource *Hardware_Server `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware.
 type Billing_Item_Hardware_Colocation struct {
 	Billing_Item_Hardware
 }
 
+// The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware components.
 type Billing_Item_Hardware_Component struct {
 	Billing_Item
 
-	Resource        []Hardware_Component `json:"resource,omitempty"`
-	ResourceCount   *uint                `json:"resourceCount,omitempty"`
-	ResourceTableId *int                 `json:"resourceTableId,omitempty"`
+	// The hardware component that this billing item points to.
+	Resource []Hardware_Component `json:"resource,omitempty"`
+
+	// A count of the hardware component that this billing item points to.
+	ResourceCount *uint `json:"resourceCount,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Hardware_Security_Module data type contains general information relating to a single SoftLayer billing item for a hardware security module.
 type Billing_Item_Hardware_Security_Module struct {
 	Billing_Item_Hardware
 }
 
+// The SoftLayer_Billing_Item_Hardware_Server data type contains billing information about a bare metal server and its relationship to a particular customer account.
 type Billing_Item_Hardware_Server struct {
 	Billing_Item_Hardware
 }
 
+//
 type Billing_Item_Link_ThePlanet struct {
 	Entity
 
-	BillingItem     *Billing_Item     `json:"billingItem,omitempty"`
+	//
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	//
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Application_Delivery_Controller data type describes the billing item related to a NetScaler VPX
 type Billing_Item_Network_Application_Delivery_Controller struct {
 	Billing_Item
 
+	// The bandwidth allotment detail for a billing item.
 	BandwidthAllotmentDetail *Network_Bandwidth_Version1_Allotment_Detail `json:"bandwidthAllotmentDetail,omitempty"`
-	Resource                 *Network_Application_Delivery_Controller     `json:"resource,omitempty"`
+
+	// The network application controller that a billing item is associated with.
+	Resource *Network_Application_Delivery_Controller `json:"resource,omitempty"`
 }
 
+// A SoftLayer_Billing_Item_Network_Application_Delivery_Controller_LoadBalancer represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress|load balancer]] instance.
 type Billing_Item_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Billing_Item
 
+	// The load balancer that a load balancer billing item is associated with.
 	Resource *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware.
 type Billing_Item_Network_Bandwidth struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Network_Firewall data type contains general information relating to a single SoftLayer billing item whose item category code is 'firewall'
 type Billing_Item_Network_Firewall struct {
 	Billing_Item
 
+	// The VLAN firewall that a VLAN firewall billing item is associated with.
 	Resource *Network_Component_Firewall `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Firewall_Module_Context data type describes the billing items related to VLAN Firewalls.
 type Billing_Item_Network_Firewall_Module_Context struct {
 	Billing_Item
 }
 
+// A SoftLayer_Billing_Item_Network_Interconnect represents the [[SoftLayer_Billing_Item|billing item]] related to a network interconnect instance.
 type Billing_Item_Network_Interconnect struct {
 	Billing_Item
 }
 
+// A SoftLayer_Billing_Item_Network_LoadBalancer represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer|load balancer]] instance.
 type Billing_Item_Network_LoadBalancer struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Network_LoadBalancer_Global data type contains general information relating to a single SoftLayer billing item whose item category code is 'global_load_balancer'
 type Billing_Item_Network_LoadBalancer_Global struct {
 	Billing_Item
 
+	// The resource for a global load balancer billing item.
 	Resource *Network_LoadBalancer_Global_Account `json:"resource,omitempty"`
 }
 
+// A SoftLayer_Billing_Item_Network_LoadBalancer_VirtualIpAddress represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer_VirtualIpAddress|load balancer]] instance.
 type Billing_Item_Network_LoadBalancer_VirtualIpAddress struct {
 	Billing_Item
 
+	// The load balancer's virtual IP address that the billing item is associated with.
 	Resource *Network_LoadBalancer_VirtualIpAddress `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Message_Delivery data describes the related billing item.
 type Billing_Item_Network_Message_Delivery struct {
 	Billing_Item
 
+	// The object this billing item is associated with.
 	Resource *Network_Message_Delivery `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Message_Queue data describes the related billing item.
 type Billing_Item_Network_Message_Queue struct {
 	Billing_Item
 
+	// The object this billing item is associated with.
 	Resource *Network_Message_Queue `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Message_Queue data describes the related billing item.
 type Billing_Item_Network_Message_Queue_Delivery struct {
 	Billing_Item_Network_Message_Queue
 }
 
+// The SoftLayer_Billing_Item_Network_PerformanceStorage_Iscsi data type contains general information relating to a single SoftLayer billing item whose item category code is 'performance_storage_iscsi'
 type Billing_Item_Network_PerformanceStorage_Iscsi struct {
 	Billing_Item_Network_Storage
 }
 
+// The SoftLayer_Billing_Item_Network_PerformanceStorage_Nfs data type contains general information relating to a single SoftLayer billing item whose item category code is 'performance_storage_nfs'
 type Billing_Item_Network_PerformanceStorage_Nfs struct {
 	Billing_Item_Network_Storage
 }
 
+// The SoftLayer_Billing_Item_Network_Storage data type describes the billing items related to StorageLayer accounts.
 type Billing_Item_Network_Storage struct {
 	Billing_Item
 
+	// The StorageLayer account that a network storage billing item is associated with.
 	Resource *Network_Storage `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Storage_Hub models all billing items related to hub-based StorageLayer offerings, such as CloudLayer storage.
 type Billing_Item_Network_Storage_Hub struct {
 	Billing_Item_Network_Storage
 }
 
+// The SoftLayer_Billing_Item_Network_Storage_Hub_Bandwidth data type models the billing items created when a CloudLayer storage account generates a bandwidth overage charge.
 type Billing_Item_Network_Storage_Hub_Bandwidth struct {
 	Billing_Item_Network_Storage
 }
 
+// The SoftLayer_Billing_Item_Network_Subnet data type contains general information relating to a single SoftLayer billing item whose item category code is one of the following:
+// * pri_ip_address
+// * static_sec_ip_addresses (static secondary)
+// * sov_sec_ip_addresses (secondary on vlan, also known as "portable ips")
+// * sov_sec_ip_addresses_pub (sov_sec_ip_addresses public only)
+// * sov_sec_ip_addresses_priv (sov_sec_ip_addresses private only)
+// * sec_ip_addresses (old style, secondary ip addresses)
+//
+//
+// These item categories denote that the billing item has subnet information attached.
 type Billing_Item_Network_Subnet struct {
 	Billing_Item
 
-	Resource        *Network_Subnet `json:"resource,omitempty"`
-	ResourceName    *string         `json:"resourceName,omitempty"`
-	ResourceTableId *int            `json:"resourceTableId,omitempty"`
+	// The resource for a subnet-related billing item.
+	Resource *Network_Subnet `json:"resource,omitempty"`
+
+	// The resource name for a subnet billing item.
+	ResourceName *string `json:"resourceName,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Subnet_IpAddress_Global data type contains general information relating to a single SoftLayer billing item whose item category code is one of the following:
+// * global_ipv4
+// * global_ipv6
+//
+//
+// These item categories denote that the billing item has subnet information attached.
 type Billing_Item_Network_Subnet_IpAddress_Global struct {
 	Billing_Item_Network_Subnet
 }
 
+// The SoftLayer_Billing_Item_Network_Storage data type describes the billing items related to StorageLayer accounts.
 type Billing_Item_Network_Tunnel struct {
 	Billing_Item
 
+	// The IPsec VPN that a network tunnel billing item is associated with.
 	Resource *Network_Tunnel_Module_Context `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Network_Vlant data type contains general information relating to a single SoftLayer billing item whose item category code is one of the following:
+// * network_vlan
+//
+//
+// These item categories denote that the billing item has network vlan information attached.
 type Billing_Item_Network_Vlan struct {
 	Billing_Item
 
+	// The resource for a network vlan related billing item.
 	Resource *Network_Vlan `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware components.
 type Billing_Item_Software_Component struct {
 	Billing_Item
 
-	Resource        *Software_Component `json:"resource,omitempty"`
-	ResourceTableId *int                `json:"resourceTableId,omitempty"`
+	// The software component that this billing item points to.
+	Resource *Software_Component `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a software component billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Software_Component_Analytics_Urchin data type contains general information relating to a single SoftLayer billing item for Urchin software components.
 type Billing_Item_Software_Component_Analytics_Urchin struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Software_Component_ControlPanel data type contains general information relating to a single SoftLayer billing item for control panel software components.
 type Billing_Item_Software_Component_ControlPanel struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Software_Component_ControlPanel data type contains general information relating to a single SoftLayer billing item for control panel software components.
 type Billing_Item_Software_Component_ControlPanel_Parallels_Plesk_Billing struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Software_Component_OperatingSystem_Addon data type contains general information relating to a single SoftLayer billing item for operating system add-on software components.
 type Billing_Item_Software_Component_OperatingSystem_Addon struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Software_Component_OperatingSystem_Addon_Citrix_Essentials data type contains general information relating to a single SoftLayer billing item for Citrix Essentials software components.
 type Billing_Item_Software_Component_OperatingSystem_Addon_Citrix_Essentials struct {
 	Billing_Item_Software_Component_OperatingSystem_Addon
 
+	// The Citrix Essentials software component that a billing item is associated with.
 	Resource *Software_Component `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Software_Component_Virtual_OperatingSystem data type contains general information relating to a single SoftLayer billing item for operating system software components on virtual machines.
 type Billing_Item_Software_Component_Virtual_OperatingSystem struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Software_Component_Virtual_OperatingSystem_Microsoft data type contains general information relating to a single SoftLayer billing item for a Microsoft operating system software components on virtual machines.
 type Billing_Item_Software_Component_Virtual_OperatingSystem_Microsoft struct {
 	Billing_Item_Software_Component_Virtual_OperatingSystem
 
-	Resource        *Software_VirtualLicense `json:"resource,omitempty"`
-	ResourceTableId *int                     `json:"resourceTableId,omitempty"`
+	// The software virtual license to which this billing item points.
+	Resource *Software_VirtualLicense `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a software virtual license billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Software_Component_Virtual_OperatingSystem_Microsoft data type contains general information relating to a single SoftLayer billing item for a Microsoft operating system software components on virtual machines.
 type Billing_Item_Software_Component_Virtual_OperatingSystem_Redhat struct {
 	Billing_Item_Software_Component_Virtual_OperatingSystem
 
-	Resource        *Software_Component `json:"resource,omitempty"`
-	ResourceTableId *int                `json:"resourceTableId,omitempty"`
+	// The software component to which this billing item points.
+	Resource *Software_Component `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a software component billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Software_License data type contains general information relating to a single SoftLayer billing item for a software license.
 type Billing_Item_Software_License struct {
 	Billing_Item
 
+	// The resource for a software license billing item.
 	Resource *Software_AccountLicense `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Support data type contains general information relating to a premium support offering
 type Billing_Item_Support struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Network_Application_Delivery_Controller data type describes the billing item related to an external authentication binding
 type Billing_Item_User_Customer_External_Binding struct {
 	Billing_Item
 
+	// The external authentication binding that a billing item is associated with.
 	Resource *User_Customer_External_Binding `json:"resource,omitempty"`
 }
 
+// A SoftLayer_Billing_Item_Virtual_Dedicated_Rack data type models the billing information for a single bandwidth pooling. Bandwidth pooling members share their public bandwidth allocations, and incur overage charges instead of the overages on individual rack members. Virtual rack billing items are the parent items for all of it's rack membership billing items.
 type Billing_Item_Virtual_Dedicated_Rack struct {
 	Billing_Item
 
-	BillingCycleBandwidthUsage             []Network_Bandwidth_Usage             `json:"billingCycleBandwidthUsage,omitempty"`
-	BillingCycleBandwidthUsageCount        *uint                                 `json:"billingCycleBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateBandwidthUsage      []Network_Bandwidth_Usage             `json:"billingCyclePrivateBandwidthUsage,omitempty"`
-	BillingCyclePrivateBandwidthUsageCount *uint                                 `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateUsageIn             *float64                              `json:"billingCyclePrivateUsageIn,omitempty"`
-	BillingCyclePrivateUsageOut            *float64                              `json:"billingCyclePrivateUsageOut,omitempty"`
-	BillingCyclePrivateUsageTotal          *uint                                 `json:"billingCyclePrivateUsageTotal,omitempty"`
-	BillingCyclePublicBandwidthUsage       []Network_Bandwidth_Usage             `json:"billingCyclePublicBandwidthUsage,omitempty"`
-	BillingCyclePublicBandwidthUsageCount  *uint                                 `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
-	BillingCyclePublicUsageIn              *float64                              `json:"billingCyclePublicUsageIn,omitempty"`
-	BillingCyclePublicUsageOut             *float64                              `json:"billingCyclePublicUsageOut,omitempty"`
-	BillingCyclePublicUsageTotal           *uint                                 `json:"billingCyclePublicUsageTotal,omitempty"`
-	Resource                               *Network_Bandwidth_Version1_Allotment `json:"resource,omitempty"`
+	// The raw bandwidth usage data for the current billing cycle. One object is returned for each network a virtual rack is attached to.
+	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty"`
+
+	// A count of the raw bandwidth usage data for the current billing cycle. One object is returned for each network a virtual rack is attached to.
+	BillingCycleBandwidthUsageCount *uint `json:"billingCycleBandwidthUsageCount,omitempty"`
+
+	// The raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePrivateBandwidthUsage,omitempty"`
+
+	// A count of the raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
+
+	// The total private network inbound bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+
+	// The total private network outbound bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+
+	// The total private network bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
+
+	// The raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
+
+	// A count of the raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
+
+	// The total public inbound bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+
+	// The total public outbound bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+
+	// The total public bandwidth for this virtual rack for the current billing cycle.
+	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
+
+	// The virtual rack that a virtual rack billing item is associated with.
+	Resource *Network_Bandwidth_Version1_Allotment `json:"resource,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Virtual_Disk_Image data type contains general information relating to a single SoftLayer billing item for disk images.
 type Billing_Item_Virtual_Disk_Image struct {
 	Billing_Item
 
-	Resource        *Virtual_Disk_Image `json:"resource,omitempty"`
-	ResourceTableId *int                `json:"resourceTableId,omitempty"`
+	// The disk image to which the billing item points.
+	Resource *Virtual_Disk_Image `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a disk image billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Virtual_Guest data type contains general information relating to a single SoftLayer billing item for guests.
 type Billing_Item_Virtual_Guest struct {
 	Billing_Item
 
-	BillingCycleBandwidthUsage             []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty"`
-	BillingCycleBandwidthUsageCount        *uint                     `json:"billingCycleBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateBandwidthUsage      []Network_Bandwidth_Usage `json:"billingCyclePrivateBandwidthUsage,omitempty"`
-	BillingCyclePrivateBandwidthUsageCount *uint                     `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
-	BillingCyclePrivateUsageIn             *float64                  `json:"billingCyclePrivateUsageIn,omitempty"`
-	BillingCyclePrivateUsageOut            *float64                  `json:"billingCyclePrivateUsageOut,omitempty"`
-	BillingCyclePrivateUsageTotal          *uint                     `json:"billingCyclePrivateUsageTotal,omitempty"`
-	BillingCyclePublicBandwidthUsage       []Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
-	BillingCyclePublicBandwidthUsageCount  *uint                     `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
-	BillingCyclePublicUsageIn              *float64                  `json:"billingCyclePublicUsageIn,omitempty"`
-	BillingCyclePublicUsageOut             *float64                  `json:"billingCyclePublicUsageOut,omitempty"`
-	BillingCyclePublicUsageTotal           *uint                     `json:"billingCyclePublicUsageTotal,omitempty"`
-	MonitoringBillingItemCount             *uint                     `json:"monitoringBillingItemCount,omitempty"`
-	MonitoringBillingItems                 []Billing_Item            `json:"monitoringBillingItems,omitempty"`
-	Resource                               *Virtual_Guest            `json:"resource,omitempty"`
-	ResourceTableId                        *int                      `json:"resourceTableId,omitempty"`
+	// The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
+	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty"`
+
+	// A count of the raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
+	BillingCycleBandwidthUsageCount *uint `json:"billingCycleBandwidthUsageCount,omitempty"`
+
+	// The raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePrivateBandwidthUsage,omitempty"`
+
+	// A count of the raw private bandwidth usage data for the current billing cycle.
+	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
+
+	// The total private inbound bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+
+	// The total private outbound bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+
+	// The total private bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
+
+	// The raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsage []Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
+
+	// A count of the raw public bandwidth usage data for the current billing cycle.
+	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
+
+	// The total public inbound bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+
+	// The total public outbound bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+
+	// The total public bandwidth for this virtual server for the current billing cycle.
+	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
+
+	// A count of
+	MonitoringBillingItemCount *uint `json:"monitoringBillingItemCount,omitempty"`
+
+	//
+	MonitoringBillingItems []Billing_Item `json:"monitoringBillingItems,omitempty"`
+
+	// The resource for a cloud server billing item.
+	Resource *Virtual_Guest `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Virtual_Host_Usage data type contains general information relating to a single SoftLayer billing item for virtual machine peak usage
 type Billing_Item_Virtual_Host_Usage struct {
 	Billing_Item
 
-	Resource        *Hardware `json:"resource,omitempty"`
-	ResourceTableId *int      `json:"resourceTableId,omitempty"`
+	// The resource for a peak virtual machine usage billing item.
+	Resource *Hardware `json:"resource,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
+// The SoftLayer_Billing_Item_Workspace data type contains general information relating to a single SoftLayer billing item whose item category code is 'workspace'
 type Billing_Item_Workspace struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Order data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the order is generated for existing SoftLayer customer.
 type Billing_Order struct {
 	Entity
 
-	Account                      *Account                             `json:"account,omitempty"`
-	AccountId                    *int                                 `json:"accountId,omitempty"`
-	Brand                        *Brand                               `json:"brand,omitempty"`
-	Cart                         *Billing_Order_Cart                  `json:"cart,omitempty"`
-	CoreRestrictedItemCount      *uint                                `json:"coreRestrictedItemCount,omitempty"`
-	CoreRestrictedItems          []Billing_Order_Item                 `json:"coreRestrictedItems,omitempty"`
-	CreateDate                   *Time                                `json:"createDate,omitempty"`
-	CreditCardTransactionCount   *uint                                `json:"creditCardTransactionCount,omitempty"`
-	CreditCardTransactions       []Billing_Payment_Card_Transaction   `json:"creditCardTransactions,omitempty"`
-	ExchangeRate                 *Billing_Currency_ExchangeRate       `json:"exchangeRate,omitempty"`
-	Id                           *int                                 `json:"id,omitempty"`
-	ImpersonatingUserRecordId    *int                                 `json:"impersonatingUserRecordId,omitempty"`
-	InitialInvoice               *Billing_Invoice                     `json:"initialInvoice,omitempty"`
-	ItemCount                    *uint                                `json:"itemCount,omitempty"`
-	Items                        []Billing_Order_Item                 `json:"items,omitempty"`
-	ModifyDate                   *Time                                `json:"modifyDate,omitempty"`
-	OrderApprovalDate            *Time                                `json:"orderApprovalDate,omitempty"`
-	OrderNonServerMonthlyAmount  *float64                             `json:"orderNonServerMonthlyAmount,omitempty"`
-	OrderQuoteId                 *int                                 `json:"orderQuoteId,omitempty"`
-	OrderServerMonthlyAmount     *float64                             `json:"orderServerMonthlyAmount,omitempty"`
-	OrderTopLevelItemCount       *uint                                `json:"orderTopLevelItemCount,omitempty"`
-	OrderTopLevelItems           []Billing_Order_Item                 `json:"orderTopLevelItems,omitempty"`
-	OrderTotalAmount             *float64                             `json:"orderTotalAmount,omitempty"`
-	OrderTotalOneTime            *float64                             `json:"orderTotalOneTime,omitempty"`
-	OrderTotalOneTimeAmount      *float64                             `json:"orderTotalOneTimeAmount,omitempty"`
-	OrderTotalOneTimeTaxAmount   *float64                             `json:"orderTotalOneTimeTaxAmount,omitempty"`
-	OrderTotalRecurring          *float64                             `json:"orderTotalRecurring,omitempty"`
-	OrderTotalRecurringAmount    *float64                             `json:"orderTotalRecurringAmount,omitempty"`
-	OrderTotalRecurringTaxAmount *float64                             `json:"orderTotalRecurringTaxAmount,omitempty"`
-	OrderTotalSetupAmount        *float64                             `json:"orderTotalSetupAmount,omitempty"`
-	OrderType                    *Billing_Order_Type                  `json:"orderType,omitempty"`
-	OrderTypeId                  *int                                 `json:"orderTypeId,omitempty"`
-	PaypalTransactionCount       *uint                                `json:"paypalTransactionCount,omitempty"`
-	PaypalTransactions           []Billing_Payment_PayPal_Transaction `json:"paypalTransactions,omitempty"`
-	PresaleEvent                 *Sales_Presale_Event                 `json:"presaleEvent,omitempty"`
-	PresaleEventId               *int                                 `json:"presaleEventId,omitempty"`
-	PrivateCloudOrderFlag        *bool                                `json:"privateCloudOrderFlag,omitempty"`
-	Quote                        *Billing_Order_Quote                 `json:"quote,omitempty"`
-	ReferralPartner              *Account                             `json:"referralPartner,omitempty"`
-	Status                       *string                              `json:"status,omitempty"`
-	UpgradeRequestFlag           *bool                                `json:"upgradeRequestFlag,omitempty"`
-	UserRecord                   *User_Customer                       `json:"userRecord,omitempty"`
-	UserRecordId                 *int                                 `json:"userRecordId,omitempty"`
+	// The account to which an order belongs.
+	Account *Account `json:"account,omitempty"`
+
+	// The account ID to which an order belongs.
+	AccountId *int `json:"accountId,omitempty"`
+
+	//
+	Brand *Brand `json:"brand,omitempty"`
+
+	// A cart is similar to a quote, except that it can be continually modified by the customer and does not have locked-in prices. Not all orders will have a cart associated with them. See [[SoftLayer_Billing_Order_Cart]] for more information.
+	Cart *Billing_Order_Cart `json:"cart,omitempty"`
+
+	// A count of the [[SoftLayer_Billing_Order_Item (type)|order items]] that are core restricted
+	CoreRestrictedItemCount *uint `json:"coreRestrictedItemCount,omitempty"`
+
+	// The [[SoftLayer_Billing_Order_Item (type)|order items]] that are core restricted
+	CoreRestrictedItems []Billing_Order_Item `json:"coreRestrictedItems,omitempty"`
+
+	// The point in time at which a billing item was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// A count of all credit card transactions associated with this order. If this order was not placed with a credit card, this will be empty.
+	CreditCardTransactionCount *uint `json:"creditCardTransactionCount,omitempty"`
+
+	// All credit card transactions associated with this order. If this order was not placed with a credit card, this will be empty.
+	CreditCardTransactions []Billing_Payment_Card_Transaction `json:"creditCardTransactions,omitempty"`
+
+	//
+	ExchangeRate *Billing_Currency_ExchangeRate `json:"exchangeRate,omitempty"`
+
+	// *
+	Id *int `json:"id,omitempty"`
+
+	// The SoftLayer_User_Customer id of the portal or API user who impersonated the user which submitted an order.
+	ImpersonatingUserRecordId *int `json:"impersonatingUserRecordId,omitempty"`
+
+	//
+	InitialInvoice *Billing_Invoice `json:"initialInvoice,omitempty"`
+
+	// A count of the SoftLayer_Billing_Order_items included in an order.
+	ItemCount *uint `json:"itemCount,omitempty"`
+
+	// The SoftLayer_Billing_Order_items included in an order.
+	Items []Billing_Order_Item `json:"items,omitempty"`
+
+	// The last time an order was updated.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	OrderApprovalDate *Time `json:"orderApprovalDate,omitempty"`
+
+	// An order's non-server items total monthly fee.
+	OrderNonServerMonthlyAmount *float64 `json:"orderNonServerMonthlyAmount,omitempty"`
+
+	// The SoftLayer_Billing_Order_Quote id of the quote's user who finalized an order.
+	OrderQuoteId *int `json:"orderQuoteId,omitempty"`
+
+	// An order's server items total monthly fee.
+	OrderServerMonthlyAmount *float64 `json:"orderServerMonthlyAmount,omitempty"`
+
+	// A count of an order's top level items. This normally includes the server line item and any non-server additional services such as NAS or ISCSI.
+	OrderTopLevelItemCount *uint `json:"orderTopLevelItemCount,omitempty"`
+
+	// An order's top level items. This normally includes the server line item and any non-server additional services such as NAS or ISCSI.
+	OrderTopLevelItems []Billing_Order_Item `json:"orderTopLevelItems,omitempty"`
+
+	// This amount represents the order's initial charge including set up fee and taxes.
+	OrderTotalAmount *float64 `json:"orderTotalAmount,omitempty"`
+
+	// An order's total one time amount summing all the set up fees, the labor fees and the one time fees. Taxes will be applied for non-tax-exempt. This amount represents the initial fees that will be charged.
+	OrderTotalOneTime *float64 `json:"orderTotalOneTime,omitempty"`
+
+	// An order's total one time amount. This amount represents the initial fees before tax.
+	OrderTotalOneTimeAmount *float64 `json:"orderTotalOneTimeAmount,omitempty"`
+
+	// An order's total one time tax amount. This amount represents the tax that will be applied to the total charge, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
+	OrderTotalOneTimeTaxAmount *float64 `json:"orderTotalOneTimeTaxAmount,omitempty"`
+
+	// An order's total recurring amount. Taxes will be applied for non-tax-exempt. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
+	OrderTotalRecurring *float64 `json:"orderTotalRecurring,omitempty"`
+
+	// An order's total recurring amount. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
+	OrderTotalRecurringAmount *float64 `json:"orderTotalRecurringAmount,omitempty"`
+
+	// The total tax amount of the recurring fees, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
+	OrderTotalRecurringTaxAmount *float64 `json:"orderTotalRecurringTaxAmount,omitempty"`
+
+	// An order's total setup fee.
+	OrderTotalSetupAmount *float64 `json:"orderTotalSetupAmount,omitempty"`
+
+	// The type of an order. This lets you know where this order was generated from.
+	OrderType *Billing_Order_Type `json:"orderType,omitempty"`
+
+	// The SoftLayer_Billing_Order_Type id of the order.
+	OrderTypeId *int `json:"orderTypeId,omitempty"`
+
+	// A count of all PayPal transactions associated with this order. If this order was not placed with PayPal, this will be empty.
+	PaypalTransactionCount *uint `json:"paypalTransactionCount,omitempty"`
+
+	// All PayPal transactions associated with this order. If this order was not placed with PayPal, this will be empty.
+	PaypalTransactions []Billing_Payment_PayPal_Transaction `json:"paypalTransactions,omitempty"`
+
+	//
+	PresaleEvent *Sales_Presale_Event `json:"presaleEvent,omitempty"`
+
+	//
+	PresaleEventId *int `json:"presaleEventId,omitempty"`
+
+	// Flag indicating a private cloud solution order (Deprecated)
+	PrivateCloudOrderFlag *bool `json:"privateCloudOrderFlag,omitempty"`
+
+	// The quote of an order. This quote holds information about its expiration date, creation date, name and status. This information is tied to an order having the status 'QUOTE'
+	Quote *Billing_Order_Quote `json:"quote,omitempty"`
+
+	// The Referral Partner who referred this order. (Only necessary for new customer orders)
+	ReferralPartner *Account `json:"referralPartner,omitempty"`
+
+	// Purchaser current status e.i. Approved, Pending_Approval
+	Status *string `json:"status,omitempty"`
+
+	// This flag indicates an order is an upgrade.
+	UpgradeRequestFlag *bool `json:"upgradeRequestFlag,omitempty"`
+
+	// The SoftLayer_User_Customer object tied to an order.
+	UserRecord *User_Customer `json:"userRecord,omitempty"`
+
+	// The SoftLayer_User_Customer id of the portal or API user who submitted an order.
+	UserRecordId *int `json:"userRecordId,omitempty"`
 }
 
+//
 type Billing_Order_Cart struct {
 	Billing_Order_Quote
 }
 
+// Every individual item that a SoftLayer customer is billed for is recorded in the SoftLayer_Billing_Item data type. Billing items range from server chassis to hard drives to control panels, bandwidth quota upgrades and port upgrade charges. Softlayer [[SoftLayer_Billing_Invoice|invoices]] are generated from the cost of a customer's billing items. Billing items are copied from the product catalog as they're ordered by customers to create a reference between an account and the billable items they own.
+//
+// Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Order_Item struct {
 	Entity
 
-	BillingItem               *Billing_Item                        `json:"billingItem,omitempty"`
-	BundledItemCount          *uint                                `json:"bundledItemCount,omitempty"`
-	BundledItems              []Billing_Order_Item                 `json:"bundledItems,omitempty"`
-	Category                  *Product_Item_Category               `json:"category,omitempty"`
-	CategoryCode              *string                              `json:"categoryCode,omitempty"`
-	Children                  []Billing_Order_Item                 `json:"children,omitempty"`
-	ChildrenCount             *uint                                `json:"childrenCount,omitempty"`
-	Description               *string                              `json:"description,omitempty"`
-	DomainName                *string                              `json:"domainName,omitempty"`
-	GlobalIdentifier          *string                              `json:"globalIdentifier,omitempty"`
-	HardwareGenericComponent  *Hardware_Component_Model_Generic    `json:"hardwareGenericComponent,omitempty"`
-	HostName                  *string                              `json:"hostName,omitempty"`
-	HourlyRecurringFee        *float64                             `json:"hourlyRecurringFee,omitempty"`
-	Id                        *int                                 `json:"id,omitempty"`
-	Item                      *Product_Item                        `json:"item,omitempty"`
-	ItemCategoryAnswerCount   *uint                                `json:"itemCategoryAnswerCount,omitempty"`
-	ItemCategoryAnswers       []Billing_Order_Item_Category_Answer `json:"itemCategoryAnswers,omitempty"`
-	ItemId                    *int                                 `json:"itemId,omitempty"`
-	ItemPrice                 *Product_Item_Price                  `json:"itemPrice,omitempty"`
-	ItemPriceId               *float64                             `json:"itemPriceId,omitempty"`
-	LaborAfterTaxAmount       *float64                             `json:"laborAfterTaxAmount,omitempty"`
-	LaborFee                  *float64                             `json:"laborFee,omitempty"`
-	LaborFeeTaxRate           *float64                             `json:"laborFeeTaxRate,omitempty"`
-	LaborTaxAmount            *float64                             `json:"laborTaxAmount,omitempty"`
-	Location                  *Location                            `json:"location,omitempty"`
-	NextOrderChildren         []Billing_Order_Item                 `json:"nextOrderChildren,omitempty"`
-	NextOrderChildrenCount    *uint                                `json:"nextOrderChildrenCount,omitempty"`
-	OldBillingItem            *Billing_Item                        `json:"oldBillingItem,omitempty"`
-	OneTimeAfterTaxAmount     *float64                             `json:"oneTimeAfterTaxAmount,omitempty"`
-	OneTimeFee                *float64                             `json:"oneTimeFee,omitempty"`
-	OneTimeFeeTaxRate         *float64                             `json:"oneTimeFeeTaxRate,omitempty"`
-	OneTimeTaxAmount          *float64                             `json:"oneTimeTaxAmount,omitempty"`
-	Order                     *Billing_Order                       `json:"order,omitempty"`
-	OrderApprovalDate         *Time                                `json:"orderApprovalDate,omitempty"`
-	Package                   *Product_Package                     `json:"package,omitempty"`
-	Parent                    *Billing_Order_Item                  `json:"parent,omitempty"`
-	ParentId                  *int                                 `json:"parentId,omitempty"`
-	PromoCodeId               *int                                 `json:"promoCodeId,omitempty"`
-	Quantity                  *int                                 `json:"quantity,omitempty"`
-	RecurringAfterTaxAmount   *float64                             `json:"recurringAfterTaxAmount,omitempty"`
-	RecurringFee              *float64                             `json:"recurringFee,omitempty"`
-	RecurringTaxAmount        *float64                             `json:"recurringTaxAmount,omitempty"`
-	RedundantPowerSupplyCount *uint                                `json:"redundantPowerSupplyCount,omitempty"`
-	SetupAfterTaxAmount       *float64                             `json:"setupAfterTaxAmount,omitempty"`
-	SetupFee                  *float64                             `json:"setupFee,omitempty"`
-	SetupFeeDeferralMonths    *int                                 `json:"setupFeeDeferralMonths,omitempty"`
-	SetupFeeTaxRate           *float64                             `json:"setupFeeTaxRate,omitempty"`
-	SetupTaxAmount            *float64                             `json:"setupTaxAmount,omitempty"`
-	SoftwareDescription       *Software_Description                `json:"softwareDescription,omitempty"`
-	StorageGroupCount         *uint                                `json:"storageGroupCount,omitempty"`
-	StorageGroups             []Configuration_Storage_Group_Order  `json:"storageGroups,omitempty"`
-	TotalRecurringAmount      *float64                             `json:"totalRecurringAmount,omitempty"`
-	UpgradeItem               *Product_Item                        `json:"upgradeItem,omitempty"`
+	// The SoftLayer_Billing_Item tied to the order item.
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	// A count of the other items included with an ordered item.
+	BundledItemCount *uint `json:"bundledItemCount,omitempty"`
+
+	// The other items included with an ordered item.
+	BundledItems []Billing_Order_Item `json:"bundledItems,omitempty"`
+
+	// The item category tied to an order item.
+	Category *Product_Item_Category `json:"category,omitempty"`
+
+	// The category code for the order item.
+	CategoryCode *string `json:"categoryCode,omitempty"`
+
+	// The child order items for an order item. All server order items should have children. These children are considered a part of the server.
+	Children []Billing_Order_Item `json:"children,omitempty"`
+
+	// A count of the child order items for an order item. All server order items should have children. These children are considered a part of the server.
+	ChildrenCount *uint `json:"childrenCount,omitempty"`
+
+	// friendly description of purchase item.
+	Description *string `json:"description,omitempty"`
+
+	// The domain name of the server as designated by the purchaser at the time of order placement.
+	DomainName *string `json:"domainName,omitempty"`
+
+	// A hardware's universally unique identifier.
+	GlobalIdentifier *string `json:"globalIdentifier,omitempty"`
+
+	// The component type tied to an order item. All hardware-specific items should have a generic hardware component.
+	HardwareGenericComponent *Hardware_Component_Model_Generic `json:"hardwareGenericComponent,omitempty"`
+
+	// The hostname of the server as designated by the purchaser at the time of order placement.
+	HostName *string `json:"hostName,omitempty"`
+
+	// The amount of money charged per hourly for an order item, if applicable, and only if it was ordered this day. hourlyRecurringFee is measured in US Dollars ($USD).
+	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	// The SoftLayer_Product_Item tied to an order item. The item is the actual definition of the product being sold.
+	Item *Product_Item `json:"item,omitempty"`
+
+	// A count of this is an item's category answers.
+	ItemCategoryAnswerCount *uint `json:"itemCategoryAnswerCount,omitempty"`
+
+	// This is an item's category answers.
+	ItemCategoryAnswers []Billing_Order_Item_Category_Answer `json:"itemCategoryAnswers,omitempty"`
+
+	// The SoftLayer_Product_Item ID for this order item.
+	ItemId *int `json:"itemId,omitempty"`
+
+	// The SoftLayer_Product_Item_Price tied to an order item. The item price object describes the cost of an item.
+	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
+
+	// the item price id (SoftLayer_Product_Item_Price->id) of the ordered item.
+	ItemPriceId *float64 `json:"itemPriceId,omitempty"`
+
+	// An order item's labor fee total after taxes. This does not include any child invoice items.
+	LaborAfterTaxAmount *float64 `json:"laborAfterTaxAmount,omitempty"`
+
+	// The labor fee, if any. This is a one time charge.
+	LaborFee *float64 `json:"laborFee,omitempty"`
+
+	// The rate at which labor fees are taxed if you are a taxable customer.
+	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+
+	// An order item's labor tax amount. This does not include any child invoice items.
+	LaborTaxAmount *float64 `json:"laborTaxAmount,omitempty"`
+
+	// The location of an ordered item. This is usually the same as the server it is being ordered with. Otherwise it describes the location of the additional service being ordered.
+	Location *Location `json:"location,omitempty"`
+
+	//
+	NextOrderChildren []Billing_Order_Item `json:"nextOrderChildren,omitempty"`
+
+	// A count of
+	NextOrderChildrenCount *uint `json:"nextOrderChildrenCount,omitempty"`
+
+	// This is only populated when an upgrade order is placed. The old billing item represents what the billing was before the upgrade happened.
+	OldBillingItem *Billing_Item `json:"oldBillingItem,omitempty"`
+
+	// An order item's one-time fee total after taxes. This does not include any child invoice items.
+	OneTimeAfterTaxAmount *float64 `json:"oneTimeAfterTaxAmount,omitempty"`
+
+	// The amount of money charged as a one-time charge for an order item, if applicable. oneTimeFee is measured in US Dollars ($USD).
+	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+
+	// The rate at which one time fees are taxed if you are a taxable customer.
+	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+
+	// An order item's one-time tax amount. This does not include any child invoice items.
+	OneTimeTaxAmount *float64 `json:"oneTimeTaxAmount,omitempty"`
+
+	// The order to which this item belongs. The order contains all the information related to the items included in an order
+	Order *Billing_Order `json:"order,omitempty"`
+
+	//
+	OrderApprovalDate *Time `json:"orderApprovalDate,omitempty"`
+
+	// The SoftLayer_Product_Package an order item is a part of.
+	Package *Product_Package `json:"package,omitempty"`
+
+	// The parent order item ID for an item. Items that are associated with a server will have a parent. The parent will be the server item itself.
+	Parent *Billing_Order_Item `json:"parent,omitempty"`
+
+	//
+	ParentId *int `json:"parentId,omitempty"`
+
+	//
+	PromoCodeId *int `json:"promoCodeId,omitempty"`
+
+	// the quantity of the ordered item in a quote.
+	Quantity *int `json:"quantity,omitempty"`
+
+	// An order item's recurring fee total after taxes. This does not include any child invoice items.
+	RecurringAfterTaxAmount *float64 `json:"recurringAfterTaxAmount,omitempty"`
+
+	// The amount of money charged per month for an order item, if applicable. recurringFee is measured in US Dollars ($USD).
+	RecurringFee *float64 `json:"recurringFee,omitempty"`
+
+	// An order item's recurring tax amount. This does not include any child invoice items.
+	RecurringTaxAmount *float64 `json:"recurringTaxAmount,omitempty"`
+
+	// A count of power supplies contained within this SoftLayer_Billing_Order
+	RedundantPowerSupplyCount *uint `json:"redundantPowerSupplyCount,omitempty"`
+
+	// An order item's setup fee total after taxes. This does not include any child invoice items.
+	SetupAfterTaxAmount *float64 `json:"setupAfterTaxAmount,omitempty"`
+
+	// The setup fee, if any. This is a one time charge.
+	SetupFee *float64 `json:"setupFee,omitempty"`
+
+	// The month set up fee deferral.
+	SetupFeeDeferralMonths *int `json:"setupFeeDeferralMonths,omitempty"`
+
+	// The rate at which setup fees are taxed if you are a taxable customer.
+	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+
+	// An order item's setup tax amount. This does not include any child invoice items.
+	SetupTaxAmount *float64 `json:"setupTaxAmount,omitempty"`
+
+	// For ordered items that are software items, a full description of that software can be found with this property.
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+
+	// A count of the drive storage groups that are attached to this billing order item.
+	StorageGroupCount *uint `json:"storageGroupCount,omitempty"`
+
+	// The drive storage groups that are attached to this billing order item.
+	StorageGroups []Configuration_Storage_Group_Order `json:"storageGroups,omitempty"`
+
+	// The recurring fee of an ordered item. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
+	TotalRecurringAmount *float64 `json:"totalRecurringAmount,omitempty"`
+
+	// The next SoftLayer_Product_Item in the upgrade path for this order item.
+	UpgradeItem *Product_Item `json:"upgradeItem,omitempty"`
 }
 
+// The SoftLayer_Billing_Order_Item_Category_Answer data type represents a single answer to an item category question.
 type Billing_Order_Item_Category_Answer struct {
 	Entity
 
-	Answer     *string                         `json:"answer,omitempty"`
-	CreateDate *Time                           `json:"createDate,omitempty"`
-	OrderItem  *Billing_Order_Item             `json:"orderItem,omitempty"`
-	Question   *Product_Item_Category_Question `json:"question,omitempty"`
-	QuestionId *int                            `json:"questionId,omitempty"`
+	// The answer to the question.
+	Answer *string `json:"answer,omitempty"`
+
+	// The date that the answer was created.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// The billing order item that the answer is for.
+	OrderItem *Billing_Order_Item `json:"orderItem,omitempty"`
+
+	// The question that is being answered.
+	Question *Product_Item_Category_Question `json:"question,omitempty"`
+
+	// The identifier for the question that the answer belongs to.
+	QuestionId *int `json:"questionId,omitempty"`
 }
 
+//
 type Billing_Order_Note struct {
 	Entity
 
-	CreateDate *Time          `json:"createDate,omitempty"`
-	Employee   *User_Employee `json:"employee,omitempty"`
-	Order      *Billing_Order `json:"order,omitempty"`
+	//
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	//
+	Employee *User_Employee `json:"employee,omitempty"`
+
+	//
+	Order *Billing_Order `json:"order,omitempty"`
 }
 
+// The SoftLayer_Billing_Oder_Quote data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the quote is generated for existing SoftLayer customer.
 type Billing_Order_Quote struct {
 	Entity
 
-	Account                 *Account        `json:"account,omitempty"`
-	AccountId               *int            `json:"accountId,omitempty"`
-	CompletedPurchaseDataId *int            `json:"completedPurchaseDataId,omitempty"`
-	CreateDate              *Time           `json:"createDate,omitempty"`
-	ExpirationDate          *Time           `json:"expirationDate,omitempty"`
-	Id                      *int            `json:"id,omitempty"`
-	ModifyDate              *Time           `json:"modifyDate,omitempty"`
-	Name                    *string         `json:"name,omitempty"`
-	Order                   *Billing_Order  `json:"order,omitempty"`
-	OrdersFromQuote         []Billing_Order `json:"ordersFromQuote,omitempty"`
-	OrdersFromQuoteCount    *uint           `json:"ordersFromQuoteCount,omitempty"`
-	PublicNote              *string         `json:"publicNote,omitempty"`
-	QuoteKey                *string         `json:"quoteKey,omitempty"`
-	Status                  *string         `json:"status,omitempty"`
+	// A quote's corresponding account.
+	Account *Account `json:"account,omitempty"`
+
+	// Identification Number of the account record tied to the quote
+	AccountId *int `json:"accountId,omitempty"`
+
+	// Identification Number of the order record tied to the quote.
+	CompletedPurchaseDataId *int `json:"completedPurchaseDataId,omitempty"`
+
+	// Holds the date the quote record was created
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// This property holds the date of expiration of a quote, after that date the quote would be deem expired
+	ExpirationDate *Time `json:"expirationDate,omitempty"`
+
+	// The id use to identify a quote.
+	Id *int `json:"id,omitempty"`
+
+	// Holds the date when the quote record was modified with reference to its creation date
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// The name given to quote by the initiator
+	Name *string `json:"name,omitempty"`
+
+	// This order contains the records for which products were selected for this quote.
+	Order *Billing_Order `json:"order,omitempty"`
+
+	// These are all the orders that were created from this quote.
+	OrdersFromQuote []Billing_Order `json:"ordersFromQuote,omitempty"`
+
+	// A count of these are all the orders that were created from this quote.
+	OrdersFromQuoteCount *uint `json:"ordersFromQuoteCount,omitempty"`
+
+	// This property Holds system generated notes. In our case if a quote is tied to an order where one of the order item has an inactive promotion code, the quote will be considered invalid.
+	PublicNote *string `json:"publicNote,omitempty"`
+
+	// Holds system generated hash password for the Quote
+	QuoteKey *string `json:"quoteKey,omitempty"`
+
+	// This property Holds the current status of a Quote: pending,expired, saved or deleted
+	Status *string `json:"status,omitempty"`
 }
 
+// The SoftLayer_Billing_Oder_Type data type contains general information relating to all the different types of orders that exist. This data pertains only to where an order was generated from, from any of the SoftLayer websites with ordering interfaces or directly through the SoftLayer API.
 type Billing_Order_Type struct {
 	Entity
 
+	// A brief description of where a SoftLayer order originated from.
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	Type        *string `json:"type,omitempty"`
+
+	// A SoftLayer order type's internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// A simple keyname stating where a SoftLayer order originated from.
+	Type *string `json:"type,omitempty"`
 }
 
+// The SoftLayer_Billing_Payment_Card_ChangeRequest data type contains general information relating to attempted credit card information changes.
 type Billing_Payment_Card_ChangeRequest struct {
 	Entity
 
-	Account                         *Account                          `json:"account,omitempty"`
-	AccountId                       *int                              `json:"accountId,omitempty"`
-	Amount                          *float64                          `json:"amount,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	// The account ID to which the credit card and billing information is associated with.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
+	Amount *float64 `json:"amount,omitempty"`
+
+	// The SoftLayer_Billing_Payment_Card_Transaction tied to the authorization performed as part of this change request.
 	AuthorizedCreditCardTransaction *Billing_Payment_Card_Transaction `json:"authorizedCreditCardTransaction,omitempty"`
-	BillingAddressLine1             *string                           `json:"billingAddressLine1,omitempty"`
-	BillingAddressLine2             *string                           `json:"billingAddressLine2,omitempty"`
-	BillingCity                     *string                           `json:"billingCity,omitempty"`
-	BillingCountryCode              *string                           `json:"billingCountryCode,omitempty"`
-	BillingEmail                    *string                           `json:"billingEmail,omitempty"`
-	BillingNameCompany              *string                           `json:"billingNameCompany,omitempty"`
-	BillingNameFirst                *string                           `json:"billingNameFirst,omitempty"`
-	BillingNameLast                 *string                           `json:"billingNameLast,omitempty"`
-	BillingPhoneFax                 *string                           `json:"billingPhoneFax,omitempty"`
-	BillingPhoneVoice               *string                           `json:"billingPhoneVoice,omitempty"`
-	BillingPostalCode               *string                           `json:"billingPostalCode,omitempty"`
-	BillingState                    *string                           `json:"billingState,omitempty"`
-	CaptureCreditCardTransaction    *Billing_Payment_Card_Transaction `json:"captureCreditCardTransaction,omitempty"`
-	CardAccountLast4                *string                           `json:"cardAccountLast4,omitempty"`
-	CardAccountNumber               *string                           `json:"cardAccountNumber,omitempty"`
-	CardExpirationMonth             *string                           `json:"cardExpirationMonth,omitempty"`
-	CardExpirationYear              *string                           `json:"cardExpirationYear,omitempty"`
-	CardNickname                    *string                           `json:"cardNickname,omitempty"`
-	CardType                        *string                           `json:"cardType,omitempty"`
-	CreditCardVerificationNumber    *string                           `json:"creditCardVerificationNumber,omitempty"`
-	CurrencyShortName               *string                           `json:"currencyShortName,omitempty"`
-	DeviceFingerprintId             *string                           `json:"deviceFingerprintId,omitempty"`
-	Id                              *int                              `json:"id,omitempty"`
-	Notes                           *string                           `json:"notes,omitempty"`
-	PaymentRoleId                   *int                              `json:"paymentRoleId,omitempty"`
-	PaymentType                     *string                           `json:"paymentType,omitempty"`
-	TicketAttachmentReferenceCount  *uint                             `json:"ticketAttachmentReferenceCount,omitempty"`
-	TicketAttachmentReferences      []Ticket_Attachment               `json:"ticketAttachmentReferences,omitempty"`
-	TicketId                        *int                              `json:"ticketId,omitempty"`
+
+	// The physical street address. Reserve information such as "apartment #123" or "Suite 2" for line 1.
+	BillingAddressLine1 *string `json:"billingAddressLine1,omitempty"`
+
+	// The second line in the address. Information such as suite number goes here.
+	BillingAddressLine2 *string `json:"billingAddressLine2,omitempty"`
+
+	// The city in which a customer's account resides.
+	BillingCity *string `json:"billingCity,omitempty"`
+
+	// The 2-character Country code for an account's address. (i.e. US)
+	BillingCountryCode *string `json:"billingCountryCode,omitempty"`
+
+	// The email address associated with a customer account.
+	BillingEmail *string `json:"billingEmail,omitempty"`
+
+	// the company name for an account.
+	BillingNameCompany *string `json:"billingNameCompany,omitempty"`
+
+	// The first name of the customer account owner.
+	BillingNameFirst *string `json:"billingNameFirst,omitempty"`
+
+	// The last name of the customer account owner
+	BillingNameLast *string `json:"billingNameLast,omitempty"`
+
+	// The fax number associated with a customer account.
+	BillingPhoneFax *string `json:"billingPhoneFax,omitempty"`
+
+	// The phone number associated with a customer account.
+	BillingPhoneVoice *string `json:"billingPhoneVoice,omitempty"`
+
+	// The Zip or Postal Code for the billing address on an account.
+	BillingPostalCode *string `json:"billingPostalCode,omitempty"`
+
+	// The State for the account.
+	BillingState *string `json:"billingState,omitempty"`
+
+	// The SoftLayer_Billing_Payment_Card_Transaction tied to the capture of funds performed as part of this change request.
+	CaptureCreditCardTransaction *Billing_Payment_Card_Transaction `json:"captureCreditCardTransaction,omitempty"`
+
+	// The last 4 digits of a customer's credit card.
+	CardAccountLast4 *string `json:"cardAccountLast4,omitempty"`
+
+	// The card number submitted in the change request.
+	CardAccountNumber *string `json:"cardAccountNumber,omitempty"`
+
+	// The month (MM) in which a customer's payment card will expire.
+	CardExpirationMonth *string `json:"cardExpirationMonth,omitempty"`
+
+	// The year (YYYY) in which a customer's payment card will expire.
+	CardExpirationYear *string `json:"cardExpirationYear,omitempty"`
+
+	//
+	CardNickname *string `json:"cardNickname,omitempty"`
+
+	// The type of payment card a customer has. (i.e. Visa, MasterCard, American Express).
+	CardType *string `json:"cardType,omitempty"`
+
+	// The credit card verification number submitted in the change request.
+	CreditCardVerificationNumber *string `json:"creditCardVerificationNumber,omitempty"`
+
+	// Describes the currency selected for payment
+	CurrencyShortName *string `json:"currencyShortName,omitempty"`
+
+	// Device Fingerprint Identifier - Used internally and can safely be ignored.
+	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty"`
+
+	// The unique identifier for a single change request.
+	Id *int `json:"id,omitempty"`
+
+	// the notes stored about a customer's payment card.
+	Notes *string `json:"notes,omitempty"`
+
+	//
+	PaymentRoleId *int `json:"paymentRoleId,omitempty"`
+
+	// The description of the type of payment sent in a change transaction.
+	PaymentType *string `json:"paymentType,omitempty"`
+
+	// A count of these are tickets tied to a credit card change request.
+	TicketAttachmentReferenceCount *uint `json:"ticketAttachmentReferenceCount,omitempty"`
+
+	// These are tickets tied to a credit card change request.
+	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty"`
+
+	// Unique identifier for a ticket discussing the switch between payment methods.
+	TicketId *int `json:"ticketId,omitempty"`
 }
 
+// The SoftLayer_Billing_Payment_Card_ManualPayment data type contains general information relating to attempted credit card information changes.
 type Billing_Payment_Card_ManualPayment struct {
 	Entity
 
-	Account                           *Account                            `json:"account,omitempty"`
-	AccountId                         *int                                `json:"accountId,omitempty"`
-	Amount                            *float64                            `json:"amount,omitempty"`
-	AuthorizedCreditCardTransaction   *Billing_Payment_Card_Transaction   `json:"authorizedCreditCardTransaction,omitempty"`
-	AuthorizedCreditCardTransactionId *int                                `json:"authorizedCreditCardTransactionId,omitempty"`
-	AuthorizedPayPalTransaction       *Billing_Payment_PayPal_Transaction `json:"authorizedPayPalTransaction,omitempty"`
-	AuthorizedPayPalTransactionId     *int                                `json:"authorizedPayPalTransactionId,omitempty"`
-	BillingAddressLine1               *string                             `json:"billingAddressLine1,omitempty"`
-	BillingAddressLine2               *string                             `json:"billingAddressLine2,omitempty"`
-	BillingCity                       *string                             `json:"billingCity,omitempty"`
-	BillingCountryCode                *string                             `json:"billingCountryCode,omitempty"`
-	BillingEmail                      *string                             `json:"billingEmail,omitempty"`
-	BillingNameCompany                *string                             `json:"billingNameCompany,omitempty"`
-	BillingNameFirst                  *string                             `json:"billingNameFirst,omitempty"`
-	BillingNameLast                   *string                             `json:"billingNameLast,omitempty"`
-	BillingPhoneFax                   *string                             `json:"billingPhoneFax,omitempty"`
-	BillingPhoneVoice                 *string                             `json:"billingPhoneVoice,omitempty"`
-	BillingPostalCode                 *string                             `json:"billingPostalCode,omitempty"`
-	BillingState                      *string                             `json:"billingState,omitempty"`
-	CancelUrl                         *string                             `json:"cancelUrl,omitempty"`
-	CaptureCreditCardTransaction      *Billing_Payment_Card_Transaction   `json:"captureCreditCardTransaction,omitempty"`
-	CapturePayPalTransaction          *Billing_Payment_PayPal_Transaction `json:"capturePayPalTransaction,omitempty"`
-	CardAccountHash                   *string                             `json:"cardAccountHash,omitempty"`
-	CardAccountLast4                  *string                             `json:"cardAccountLast4,omitempty"`
-	CardAccountNumber                 *string                             `json:"cardAccountNumber,omitempty"`
-	CardExpirationMonth               *string                             `json:"cardExpirationMonth,omitempty"`
-	CardExpirationYear                *string                             `json:"cardExpirationYear,omitempty"`
-	CardType                          *string                             `json:"cardType,omitempty"`
-	CreditCardVerificationNumber      *string                             `json:"creditCardVerificationNumber,omitempty"`
-	CurrencyShortName                 *string                             `json:"currencyShortName,omitempty"`
-	DeviceFingerprintId               *string                             `json:"deviceFingerprintId,omitempty"`
-	FromIpAddress                     *string                             `json:"fromIpAddress,omitempty"`
-	Id                                *int                                `json:"id,omitempty"`
-	Notes                             *string                             `json:"notes,omitempty"`
-	PaymentType                       *string                             `json:"paymentType,omitempty"`
-	ReturnUrl                         *string                             `json:"returnUrl,omitempty"`
-	TicketAttachmentReferenceCount    *uint                               `json:"ticketAttachmentReferenceCount,omitempty"`
-	TicketAttachmentReferences        []Ticket_Attachment                 `json:"ticketAttachmentReferences,omitempty"`
-	Type                              *string                             `json:"type,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	// The account ID to which the credit card and billing information is associated with.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
+	Amount *float64 `json:"amount,omitempty"`
+
+	// This is the credit card transaction data tied to a credit card manual payment.
+	AuthorizedCreditCardTransaction *Billing_Payment_Card_Transaction `json:"authorizedCreditCardTransaction,omitempty"`
+
+	// The unique identifier of an attempted credit card transaction.
+	AuthorizedCreditCardTransactionId *int `json:"authorizedCreditCardTransactionId,omitempty"`
+
+	// This is the PayPal transaction data tied to a PayPal manual payment.
+	AuthorizedPayPalTransaction *Billing_Payment_PayPal_Transaction `json:"authorizedPayPalTransaction,omitempty"`
+
+	// The unique identifier of an attempted PayPal transaction.
+	AuthorizedPayPalTransactionId *int `json:"authorizedPayPalTransactionId,omitempty"`
+
+	// The physical street address. Reserve information such as "apartment #123" or "Suite 2" for line 1.
+	BillingAddressLine1 *string `json:"billingAddressLine1,omitempty"`
+
+	// The second line in the address. Information such as suite number goes here.
+	BillingAddressLine2 *string `json:"billingAddressLine2,omitempty"`
+
+	// The city in which a customer's account resides.
+	BillingCity *string `json:"billingCity,omitempty"`
+
+	// The 2-character Country code for an account's address. (i.e. US)
+	BillingCountryCode *string `json:"billingCountryCode,omitempty"`
+
+	// The email address associated with a customer account.
+	BillingEmail *string `json:"billingEmail,omitempty"`
+
+	// the company name for an account.
+	BillingNameCompany *string `json:"billingNameCompany,omitempty"`
+
+	// The first name of the customer account owner.
+	BillingNameFirst *string `json:"billingNameFirst,omitempty"`
+
+	// The last name of the customer account owner.
+	BillingNameLast *string `json:"billingNameLast,omitempty"`
+
+	// The fax number associated with a customer account.
+	BillingPhoneFax *string `json:"billingPhoneFax,omitempty"`
+
+	// The phone number associated with a customer account.
+	BillingPhoneVoice *string `json:"billingPhoneVoice,omitempty"`
+
+	// The Zip or Postal Code for the billing address on an account.
+	BillingPostalCode *string `json:"billingPostalCode,omitempty"`
+
+	// The State for the account.
+	BillingState *string `json:"billingState,omitempty"`
+
+	// The cancel URL is the page to which PayPal redirects if payment is not approved.
+	CancelUrl *string `json:"cancelUrl,omitempty"`
+
+	// The SoftLayer_Billing_Payment_Card_Transaction tied to the capture performed as part of this manual payment. This will only exist if the manual payment was performed with a credit card.
+	CaptureCreditCardTransaction *Billing_Payment_Card_Transaction `json:"captureCreditCardTransaction,omitempty"`
+
+	// The SoftLayer_Billing_Payment_PayPal_Transaction tied to the capture performed as part of this manual payment. This will only exist if the manual payment was performed via PayPal.
+	CapturePayPalTransaction *Billing_Payment_PayPal_Transaction `json:"capturePayPalTransaction,omitempty"`
+
+	// A hash value of the credit card number.
+	CardAccountHash *string `json:"cardAccountHash,omitempty"`
+
+	// The last 4 digits of a customer's credit card.
+	CardAccountLast4 *string `json:"cardAccountLast4,omitempty"`
+
+	// The card number submitted in the change request.
+	CardAccountNumber *string `json:"cardAccountNumber,omitempty"`
+
+	// The month (MM) in which a customer's payment card will expire.
+	CardExpirationMonth *string `json:"cardExpirationMonth,omitempty"`
+
+	// The year (YYYY) in which a customer's payment card will expire.
+	CardExpirationYear *string `json:"cardExpirationYear,omitempty"`
+
+	// The method key of the type payment issued (Visa - 001, Mastercard - 002, American Express - 003, Discover - 004, PayPal - paypal).
+	CardType *string `json:"cardType,omitempty"`
+
+	// The credit card verification number submitted in the change request.
+	CreditCardVerificationNumber *string `json:"creditCardVerificationNumber,omitempty"`
+
+	// Describes the currency selected for payment
+	CurrencyShortName *string `json:"currencyShortName,omitempty"`
+
+	// Device Fingerprint Identifier - Used internally and can safely be ignored.
+	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty"`
+
+	// The IP address from which the transaction originates.
+	FromIpAddress *string `json:"fromIpAddress,omitempty"`
+
+	// The unique identifier for a single manual payment request.
+	Id *int `json:"id,omitempty"`
+
+	// Notes generated as a result of the payment request.
+	Notes *string `json:"notes,omitempty"`
+
+	// The description of the type of payment sent in a change transaction.
+	PaymentType *string `json:"paymentType,omitempty"`
+
+	// The return URL is the page to which PayPal redirects after payment is approved.
+	ReturnUrl *string `json:"returnUrl,omitempty"`
+
+	// A count of these are tickets tied to a credit card manual payment.
+	TicketAttachmentReferenceCount *uint `json:"ticketAttachmentReferenceCount,omitempty"`
+
+	// These are tickets tied to a credit card manual payment.
+	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty"`
+
+	// Describes the type of manual payment (PAYPAL or CREDIT_CARD).
+	Type *string `json:"type,omitempty"`
 }
 
+// The SoftLayer_Billing_Payment_Card_Transaction data type contains general information relating to attempted credit card transactions.
 type Billing_Payment_Card_Transaction struct {
 	Billing_Payment_Transaction
 
-	Account             *Account       `json:"account,omitempty"`
-	AccountId           *int           `json:"accountId,omitempty"`
-	Amount              *float64       `json:"amount,omitempty"`
-	BillingAddressLine1 *string        `json:"billingAddressLine1,omitempty"`
-	BillingAddressLine2 *string        `json:"billingAddressLine2,omitempty"`
-	BillingCity         *string        `json:"billingCity,omitempty"`
-	BillingCountryCode  *string        `json:"billingCountryCode,omitempty"`
-	BillingEmail        *string        `json:"billingEmail,omitempty"`
-	BillingNameCompany  *string        `json:"billingNameCompany,omitempty"`
-	BillingNameFirst    *string        `json:"billingNameFirst,omitempty"`
-	BillingNameLast     *string        `json:"billingNameLast,omitempty"`
-	BillingPhoneFax     *string        `json:"billingPhoneFax,omitempty"`
-	BillingPhoneVoice   *string        `json:"billingPhoneVoice,omitempty"`
-	BillingPostalCode   *string        `json:"billingPostalCode,omitempty"`
-	BillingState        *string        `json:"billingState,omitempty"`
-	CardAccountLast4    *int           `json:"cardAccountLast4,omitempty"`
-	CardExpirationMonth *int           `json:"cardExpirationMonth,omitempty"`
-	CardExpirationYear  *int           `json:"cardExpirationYear,omitempty"`
-	CardType            *string        `json:"cardType,omitempty"`
-	CreateDate          *Time          `json:"createDate,omitempty"`
-	Id                  *int           `json:"id,omitempty"`
-	InvoiceId           *int           `json:"invoiceId,omitempty"`
-	ModifyDate          *Time          `json:"modifyDate,omitempty"`
-	Order               *Billing_Order `json:"order,omitempty"`
-	OrderFromIpAddress  *string        `json:"orderFromIpAddress,omitempty"`
-	ReferenceCode       *string        `json:"referenceCode,omitempty"`
-	RequestId           *string        `json:"requestId,omitempty"`
-	ReturnStatus        *int           `json:"returnStatus,omitempty"`
-	SerializedReply     *string        `json:"serializedReply,omitempty"`
-	SerializedRequest   *string        `json:"serializedRequest,omitempty"`
+	// The account to which a transaction belongs.
+	Account *Account `json:"account,omitempty"`
+
+	// The account ID to which the credit card and billing information is associated with.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
+	Amount *float64 `json:"amount,omitempty"`
+
+	// The physical street address. Reserve information such as "apartment #123" or "Suite 2" for line 1.
+	BillingAddressLine1 *string `json:"billingAddressLine1,omitempty"`
+
+	// The second line in the address. Information such as suite number goes here.
+	BillingAddressLine2 *string `json:"billingAddressLine2,omitempty"`
+
+	// The city in which a customer's account resides.
+	BillingCity *string `json:"billingCity,omitempty"`
+
+	// The 2-character Country code for an account's address. (i.e. US)
+	BillingCountryCode *string `json:"billingCountryCode,omitempty"`
+
+	// The email address associated with a customer account.
+	BillingEmail *string `json:"billingEmail,omitempty"`
+
+	// the company name for an account.
+	BillingNameCompany *string `json:"billingNameCompany,omitempty"`
+
+	// The first name of the customer account owner.
+	BillingNameFirst *string `json:"billingNameFirst,omitempty"`
+
+	// The last name of the customer account owner.
+	BillingNameLast *string `json:"billingNameLast,omitempty"`
+
+	// The fax number associated with a customer account.
+	BillingPhoneFax *string `json:"billingPhoneFax,omitempty"`
+
+	// The phone number associated with a customer account.
+	BillingPhoneVoice *string `json:"billingPhoneVoice,omitempty"`
+
+	// The Zip or Postal Code for the billing address on an account.
+	BillingPostalCode *string `json:"billingPostalCode,omitempty"`
+
+	// The State for the account.
+	BillingState *string `json:"billingState,omitempty"`
+
+	// The last 4 digits of a customer's credit card.
+	CardAccountLast4 *int `json:"cardAccountLast4,omitempty"`
+
+	// The month (MM) in which a customer's payment card will expire.
+	CardExpirationMonth *int `json:"cardExpirationMonth,omitempty"`
+
+	// The year (YYYY) in which a customer's payment card will expire.
+	CardExpirationYear *int `json:"cardExpirationYear,omitempty"`
+
+	// The type of payment issued (i.e. Visa, MasterCard, American Express).
+	CardType *string `json:"cardType,omitempty"`
+
+	// The date that the transaction was attempted.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// The unique identifier for a single credit card transaction request.
+	Id *int `json:"id,omitempty"`
+
+	// Unique identifier of the invoice to which funds will be applied.
+	InvoiceId *int `json:"invoiceId,omitempty"`
+
+	// The date that the transaction was modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	Order *Billing_Order `json:"order,omitempty"`
+
+	// The IP address from which the transaction originates.
+	OrderFromIpAddress *string `json:"orderFromIpAddress,omitempty"`
+
+	// A code used by the financial institution to refer to the requested transaction.
+	ReferenceCode *string `json:"referenceCode,omitempty"`
+
+	// The unique identifier of the request submitted to the financial institution.
+	RequestId *string `json:"requestId,omitempty"`
+
+	// The status code returned from the financial institution.
+	ReturnStatus *int `json:"returnStatus,omitempty"`
+
+	// A serialized, delimited string of the transaction request sent to the financial institution.
+	SerializedReply *string `json:"serializedReply,omitempty"`
+
+	// A serialized, delimited string of the transaction request sent to the financial institution.
+	SerializedRequest *string `json:"serializedRequest,omitempty"`
 }
 
+// The SoftLayer_Billing_Payment_PayPal_Transaction data type contains general information relating to attempted PayPal transactions.
 type Billing_Payment_PayPal_Transaction struct {
 	Billing_Payment_Transaction
 
-	Account              *Account       `json:"account,omitempty"`
-	AccountId            *int           `json:"accountId,omitempty"`
-	AddressCityName      *string        `json:"addressCityName,omitempty"`
-	AddressCountry       *string        `json:"addressCountry,omitempty"`
-	AddressName          *string        `json:"addressName,omitempty"`
-	AddressPostalCode    *string        `json:"addressPostalCode,omitempty"`
-	AddressStateProvence *string        `json:"addressStateProvence,omitempty"`
-	AddressStatus        *string        `json:"addressStatus,omitempty"`
-	AddressStreet1       *string        `json:"addressStreet1,omitempty"`
-	AddressStreet2       *string        `json:"addressStreet2,omitempty"`
-	ContactPhone         *string        `json:"contactPhone,omitempty"`
-	CreateDate           *Time          `json:"createDate,omitempty"`
-	ExchangeRate         *string        `json:"exchangeRate,omitempty"`
-	FeeAmount            *float64       `json:"feeAmount,omitempty"`
-	GrossAmount          *float64       `json:"grossAmount,omitempty"`
-	Id                   *int           `json:"id,omitempty"`
-	InvoiceId            *int           `json:"invoiceId,omitempty"`
-	LastPaypalCommand    *string        `json:"lastPaypalCommand,omitempty"`
-	ModifyDate           *Time          `json:"modifyDate,omitempty"`
-	Order                *Billing_Order `json:"order,omitempty"`
-	OrderFromIpAddress   *string        `json:"orderFromIpAddress,omitempty"`
-	OrderTotal           *float64       `json:"orderTotal,omitempty"`
-	Payer                *string        `json:"payer,omitempty"`
-	PayerBusiness        *string        `json:"payerBusiness,omitempty"`
-	PayerCountry         *string        `json:"payerCountry,omitempty"`
-	PayerFirstName       *string        `json:"payerFirstName,omitempty"`
-	PayerId              *string        `json:"payerId,omitempty"`
-	PayerLastName        *string        `json:"payerLastName,omitempty"`
-	PayerStatus          *string        `json:"payerStatus,omitempty"`
-	PaymentDate          *Time          `json:"paymentDate,omitempty"`
-	PaymentStatus        *string        `json:"paymentStatus,omitempty"`
-	PaymentType          *string        `json:"paymentType,omitempty"`
-	PendingReason        *string        `json:"pendingReason,omitempty"`
-	SerializedReply      *string        `json:"serializedReply,omitempty"`
-	SerializedRequest    *string        `json:"serializedRequest,omitempty"`
-	SettleAmount         *float64       `json:"settleAmount,omitempty"`
-	TaxAmount            *float64       `json:"taxAmount,omitempty"`
-	Token                *string        `json:"token,omitempty"`
-	TransactionId        *string        `json:"transactionId,omitempty"`
-	TransactionType      *string        `json:"transactionType,omitempty"`
+	// The account to which a transaction belongs.
+	Account *Account `json:"account,omitempty"`
+
+	// The account ID to which the PayPal and billing information is associated with.
+	AccountId *int `json:"accountId,omitempty"`
+
+	// City given in the address of the PayPal user.
+	AddressCityName *string `json:"addressCityName,omitempty"`
+
+	// Country given in the named address of the PayPal user.
+	AddressCountry *string `json:"addressCountry,omitempty"`
+
+	// Name given to the address provided for the PayPal user.
+	AddressName *string `json:"addressName,omitempty"`
+
+	// Postal Code of the address of the PayPal user.
+	AddressPostalCode *string `json:"addressPostalCode,omitempty"`
+
+	// State or Province in the address of the PayPal user.
+	AddressStateProvence *string `json:"addressStateProvence,omitempty"`
+
+	// PayPal defined status of the address of the PayPal user.
+	AddressStatus *string `json:"addressStatus,omitempty"`
+
+	// First line of the street address of the PayPal user.
+	AddressStreet1 *string `json:"addressStreet1,omitempty"`
+
+	// Second line of the street address of the PayPal user.
+	AddressStreet2 *string `json:"addressStreet2,omitempty"`
+
+	// Phone number provided for the PayPal user.
+	ContactPhone *string `json:"contactPhone,omitempty"`
+
+	// The date that the transaction was attempted.
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// Exchange rate imposed on the payment amount.
+	ExchangeRate *string `json:"exchangeRate,omitempty"`
+
+	// PayPal fee applied to the payment.
+	FeeAmount *float64 `json:"feeAmount,omitempty"`
+
+	// The total amount of the payment executed by PayPal, represented in decimal format as US Dollars ($USD).
+	GrossAmount *float64 `json:"grossAmount,omitempty"`
+
+	// The unique identifier for a single PayPal transaction request.
+	Id *int `json:"id,omitempty"`
+
+	// Unique identifier of the invoice to which funds will be applied.
+	InvoiceId *int `json:"invoiceId,omitempty"`
+
+	// The name of the command issued to PayPal with regards to the attempted transaction.
+	LastPaypalCommand *string `json:"lastPaypalCommand,omitempty"`
+
+	// The date that the transaction was modified.
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	//
+	Order *Billing_Order `json:"order,omitempty"`
+
+	// The IP address from where the PayPal payment request originated.
+	OrderFromIpAddress *string `json:"orderFromIpAddress,omitempty"`
+
+	// The amount of the payment submitted through the SoftLayer interface, represented in decimal format as US Dollars ($USD).
+	OrderTotal *float64 `json:"orderTotal,omitempty"`
+
+	// The PayPal user account name (email address) associated with the customer account.
+	Payer *string `json:"payer,omitempty"`
+
+	// The name of the business associated with the PayPal user.
+	PayerBusiness *string `json:"payerBusiness,omitempty"`
+
+	// Country given in the address of the PayPal user.
+	PayerCountry *string `json:"payerCountry,omitempty"`
+
+	// First name of the PayPal user.
+	PayerFirstName *string `json:"payerFirstName,omitempty"`
+
+	// Unique PayPal user account identifier.
+	PayerId *string `json:"payerId,omitempty"`
+
+	// Last name of the PayPal user.
+	PayerLastName *string `json:"payerLastName,omitempty"`
+
+	// Current PayPal status associated with the user account.
+	PayerStatus *string `json:"payerStatus,omitempty"`
+
+	// Date that the payment was confirmed in PayPal by the user.
+	PaymentDate *Time `json:"paymentDate,omitempty"`
+
+	// PayPal defined status of the attempted payment.
+	PaymentStatus *string `json:"paymentStatus,omitempty"`
+
+	// PayPal defined code used to identify the type of payment.  Provided in a PayPal response.
+	PaymentType *string `json:"paymentType,omitempty"`
+
+	// Reason provided by PayPal for a payment given a pending status.
+	PendingReason *string `json:"pendingReason,omitempty"`
+
+	// A serialized, delimited string of the reply received from PayPal.
+	SerializedReply *string `json:"serializedReply,omitempty"`
+
+	// A serialized, delimited string of the request submitted to PayPal.
+	SerializedRequest *string `json:"serializedRequest,omitempty"`
+
+	// PayPal defined fee.
+	SettleAmount *float64 `json:"settleAmount,omitempty"`
+
+	// Tax applied by PayPal to the payment amount.
+	TaxAmount *float64 `json:"taxAmount,omitempty"`
+
+	// Value issued by PayPal for referencing the attempted transaction.
+	Token *string `json:"token,omitempty"`
+
+	// Unique transaction ID provided in a PayPal response.
+	TransactionId *string `json:"transactionId,omitempty"`
+
+	// PayPal defined code used to identify the type of transaction.  Provided in a PayPal response.
+	TransactionType *string `json:"transactionType,omitempty"`
 }
 
+//
 type Billing_Payment_Processor struct {
 	Entity
 
-	BrandAssignmentCount *uint                              `json:"brandAssignmentCount,omitempty"`
-	BrandAssignments     []Brand_Payment_Processor          `json:"brandAssignments,omitempty"`
-	Description          *string                            `json:"description,omitempty"`
-	Name                 *string                            `json:"name,omitempty"`
-	OwnerAccount         *Account                           `json:"ownerAccount,omitempty"`
-	PaymentMethodCount   *uint                              `json:"paymentMethodCount,omitempty"`
-	PaymentMethods       []Billing_Payment_Processor_Method `json:"paymentMethods,omitempty"`
-	Type                 *Billing_Payment_Processor_Type    `json:"type,omitempty"`
+	// A count of
+	BrandAssignmentCount *uint `json:"brandAssignmentCount,omitempty"`
+
+	//
+	BrandAssignments []Brand_Payment_Processor `json:"brandAssignments,omitempty"`
+
+	//
+	Description *string `json:"description,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
+
+	//
+	OwnerAccount *Account `json:"ownerAccount,omitempty"`
+
+	// A count of
+	PaymentMethodCount *uint `json:"paymentMethodCount,omitempty"`
+
+	//
+	PaymentMethods []Billing_Payment_Processor_Method `json:"paymentMethods,omitempty"`
+
+	//
+	Type *Billing_Payment_Processor_Type `json:"type,omitempty"`
 }
 
+//
 type Billing_Payment_Processor_Method struct {
 	Entity
 
-	MethodKey            *string                    `json:"methodKey,omitempty"`
-	MultipleCurrencyFlag *bool                      `json:"multipleCurrencyFlag,omitempty"`
-	PaymentProcessor     *Billing_Payment_Processor `json:"paymentProcessor,omitempty"`
-	PaymentType          *Billing_Payment_Type      `json:"paymentType,omitempty"`
+	//
+	MethodKey *string `json:"methodKey,omitempty"`
+
+	//
+	MultipleCurrencyFlag *bool `json:"multipleCurrencyFlag,omitempty"`
+
+	//
+	PaymentProcessor *Billing_Payment_Processor `json:"paymentProcessor,omitempty"`
+
+	//
+	PaymentType *Billing_Payment_Type `json:"paymentType,omitempty"`
 }
 
+//
 type Billing_Payment_Processor_Type struct {
 	Entity
 
-	Description           *string                     `json:"description,omitempty"`
-	KeyName               *string                     `json:"keyName,omitempty"`
-	Name                  *string                     `json:"name,omitempty"`
-	PaymentProcessorCount *uint                       `json:"paymentProcessorCount,omitempty"`
-	PaymentProcessors     []Billing_Payment_Processor `json:"paymentProcessors,omitempty"`
+	//
+	Description *string `json:"description,omitempty"`
+
+	//
+	KeyName *string `json:"keyName,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
+
+	// A count of
+	PaymentProcessorCount *uint `json:"paymentProcessorCount,omitempty"`
+
+	//
+	PaymentProcessors []Billing_Payment_Processor `json:"paymentProcessors,omitempty"`
 }
 
+// Implementation for payment transactions.
 type Billing_Payment_Transaction struct {
 	Entity
 }
 
+//
 type Billing_Payment_Type struct {
 	Entity
 
+	//
 	Description *string `json:"description,omitempty"`
-	KeyName     *string `json:"keyName,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	//
+	KeyName *string `json:"keyName,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
 }

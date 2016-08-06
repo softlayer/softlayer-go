@@ -14,101 +14,235 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+// A monitoring agent object contains information describing the agent.
 type Monitoring_Agent struct {
 	Entity
 
-	AgentStatus               *Monitoring_Agent_Status                 `json:"agentStatus,omitempty"`
-	ConfigurationProfileCount *uint                                    `json:"configurationProfileCount,omitempty"`
-	ConfigurationProfiles     []Configuration_Template_Section_Profile `json:"configurationProfiles,omitempty"`
-	ConfigurationTemplate     *Configuration_Template                  `json:"configurationTemplate,omitempty"`
-	ConfigurationTemplateId   *int                                     `json:"configurationTemplateId,omitempty"`
-	ConfigurationValueCount   *uint                                    `json:"configurationValueCount,omitempty"`
-	ConfigurationValues       []Monitoring_Agent_Configuration_Value   `json:"configurationValues,omitempty"`
-	CreateDate                *Time                                    `json:"createDate,omitempty"`
-	Hardware                  *Hardware                                `json:"hardware,omitempty"`
-	Id                        *int                                     `json:"id,omitempty"`
-	ModifyDate                *Time                                    `json:"modifyDate,omitempty"`
-	Name                      *string                                  `json:"name,omitempty"`
-	ProductItem               *Product_Item                            `json:"productItem,omitempty"`
-	RemoteMonitoringAgentFlag *bool                                    `json:"remoteMonitoringAgentFlag,omitempty"`
-	RobotId                   *int                                     `json:"robotId,omitempty"`
-	SoftwareDescription       *Software_Description                    `json:"softwareDescription,omitempty"`
-	StatusId                  *int                                     `json:"statusId,omitempty"`
-	StatusName                *string                                  `json:"statusName,omitempty"`
-	VirtualGuest              *Virtual_Guest                           `json:"virtualGuest,omitempty"`
+	// The current status of the corresponding agent
+	AgentStatus *Monitoring_Agent_Status `json:"agentStatus,omitempty"`
+
+	// A count of all custom configuration profiles associated with the corresponding agent
+	ConfigurationProfileCount *uint `json:"configurationProfileCount,omitempty"`
+
+	// All custom configuration profiles associated with the corresponding agent
+	ConfigurationProfiles []Configuration_Template_Section_Profile `json:"configurationProfiles,omitempty"`
+
+	// A template of an agent's current configuration which contains information about the structure of the configuration values.
+	ConfigurationTemplate *Configuration_Template `json:"configurationTemplate,omitempty"`
+
+	// Internal identifier of a configuration template that is used to configure this agent
+	ConfigurationTemplateId *int `json:"configurationTemplateId,omitempty"`
+
+	// A count of the values associated with the corresponding Agent configuration.
+	ConfigurationValueCount *uint `json:"configurationValueCount,omitempty"`
+
+	// The values associated with the corresponding Agent configuration.
+	ConfigurationValues []Monitoring_Agent_Configuration_Value `json:"configurationValues,omitempty"`
+
+	// Created date
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// SoftLayer hardware related to the agent.
+	Hardware *Hardware `json:"hardware,omitempty"`
+
+	// Internal identifier of a monitoring agent
+	Id *int `json:"id,omitempty"`
+
+	// Last modified date
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// Monitoring agent name
+	Name *string `json:"name,omitempty"`
+
+	// Contains general information relating to a single SoftLayer product.
+	ProductItem *Product_Item `json:"productItem,omitempty"`
+
+	// Indicates if this monitoring agent resides on your local box or on a SoftLayer monitoring cluster.
+	RemoteMonitoringAgentFlag *bool `json:"remoteMonitoringAgentFlag,omitempty"`
+
+	// Internal identifier of a monitoring robot that this agent belongs to
+	RobotId *int `json:"robotId,omitempty"`
+
+	// A description for a specific installation of a Software Component
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+
+	// Internal identifier of a monitoring agent status
+	StatusId *int `json:"statusId,omitempty"`
+
+	// Monitoring agent status name.
+	StatusName *string `json:"statusName,omitempty"`
+
+	// Softlayer_Virtual_Guest object related to the monitoring agent, which this virtual guest object and hardware is on the server of the running agent.
+	VirtualGuest *Virtual_Guest `json:"virtualGuest,omitempty"`
 }
 
+// The SoftLayer_Monitoring_Agent_Configuration_Template_Group class is consisted of configuration templates for agents in a monitoring package.
 type Monitoring_Agent_Configuration_Template_Group struct {
 	Entity
 
-	Account                             *Account                                                  `json:"account,omitempty"`
-	AccountId                           *int                                                      `json:"accountId,omitempty"`
-	ConfigurationTemplateCount          *uint                                                     `json:"configurationTemplateCount,omitempty"`
-	ConfigurationTemplateReferenceCount *uint                                                     `json:"configurationTemplateReferenceCount,omitempty"`
-	ConfigurationTemplateReferences     []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReferences,omitempty"`
-	ConfigurationTemplates              []Configuration_Template                                  `json:"configurationTemplates,omitempty"`
-	CreateDate                          *Time                                                     `json:"createDate,omitempty"`
-	Description                         *string                                                   `json:"description,omitempty"`
-	Id                                  *int                                                      `json:"id,omitempty"`
-	Item                                *Product_Item                                             `json:"item,omitempty"`
-	ItemId                              *int                                                      `json:"itemId,omitempty"`
-	ModifyDate                          *Time                                                     `json:"modifyDate,omitempty"`
-	Name                                *string                                                   `json:"name,omitempty"`
+	//
+	Account *Account `json:"account,omitempty"`
+
+	// Internal identifier of a SoftLayer account that this configuration template belongs to
+	AccountId *int `json:"accountId,omitempty"`
+
+	// A count of
+	ConfigurationTemplateCount *uint `json:"configurationTemplateCount,omitempty"`
+
+	// A count of
+	ConfigurationTemplateReferenceCount *uint `json:"configurationTemplateReferenceCount,omitempty"`
+
+	//
+	ConfigurationTemplateReferences []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReferences,omitempty"`
+
+	//
+	ConfigurationTemplates []Configuration_Template `json:"configurationTemplates,omitempty"`
+
+	// Created date
+	CreateDate *Time `json:"createDate,omitempty"`
+
+	// Description of a monitoring agent configuration group
+	Description *string `json:"description,omitempty"`
+
+	// Internal identifier of a monitoring agent configuration group
+	Id *int `json:"id,omitempty"`
+
+	//
+	Item *Product_Item `json:"item,omitempty"`
+
+	// Internal identifier of a configuration template type
+	ItemId *int `json:"itemId,omitempty"`
+
+	// Last modified date
+	ModifyDate *Time `json:"modifyDate,omitempty"`
+
+	// Name of a monitoring agent configuration group
+	Name *string `json:"name,omitempty"`
 }
 
+// SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference class holds the reference information, essentially a SQL join, between a monitoring configuration group and agent configuration templates.
 type Monitoring_Agent_Configuration_Template_Group_Reference struct {
 	Entity
 
-	ConfigurationTemplate   *Configuration_Template                        `json:"configurationTemplate,omitempty"`
-	ConfigurationTemplateId *int                                           `json:"configurationTemplateId,omitempty"`
-	Id                      *int                                           `json:"id,omitempty"`
-	TemplateGroup           *Monitoring_Agent_Configuration_Template_Group `json:"templateGroup,omitempty"`
-	TemplateGroupId         *int                                           `json:"templateGroupId,omitempty"`
+	//
+	ConfigurationTemplate *Configuration_Template `json:"configurationTemplate,omitempty"`
+
+	// Internal identifier of a configuration template
+	ConfigurationTemplateId *int `json:"configurationTemplateId,omitempty"`
+
+	// Internal identifier of a configuration group reference record
+	Id *int `json:"id,omitempty"`
+
+	//
+	TemplateGroup *Monitoring_Agent_Configuration_Template_Group `json:"templateGroup,omitempty"`
+
+	// Internal identifier of a monitoring agent configuration group
+	TemplateGroupId *int `json:"templateGroupId,omitempty"`
 }
 
+// Monitoring agent configuration value
 type Monitoring_Agent_Configuration_Value struct {
 	Entity
 
-	AgentId                   *int                                       `json:"agentId,omitempty"`
-	ConfigurationDefinitionId *int                                       `json:"configurationDefinitionId,omitempty"`
-	Definition                *Configuration_Template_Section_Definition `json:"definition,omitempty"`
-	Description               *string                                    `json:"description,omitempty"`
-	Id                        *int                                       `json:"id,omitempty"`
-	MetricDataType            *Container_Metric_Data_Type                `json:"metricDataType,omitempty"`
-	MonitoringAgent           *Monitoring_Agent                          `json:"monitoringAgent,omitempty"`
-	Profile                   *Configuration_Template_Section_Profile    `json:"profile,omitempty"`
-	ProfileId                 *int                                       `json:"profileId,omitempty"`
-	Value                     *string                                    `json:"value,omitempty"`
+	// Internal identifier of a monitoring Agent that this configuration value
+	AgentId *int `json:"agentId,omitempty"`
+
+	// Internal identifier of a monitoring configuration definition by which
+	ConfigurationDefinitionId *int `json:"configurationDefinitionId,omitempty"`
+
+	//
+	Definition *Configuration_Template_Section_Definition `json:"definition,omitempty"`
+
+	// User-friendly description of a configuration value.
+	Description *string `json:"description,omitempty"`
+
+	// Internal identifier of a monitoring configuration value.
+	Id *int `json:"id,omitempty"`
+
+	// The metric data type used to retrieve metric data currently being tracked.
+	MetricDataType *Container_Metric_Data_Type `json:"metricDataType,omitempty"`
+
+	//
+	MonitoringAgent *Monitoring_Agent `json:"monitoringAgent,omitempty"`
+
+	//
+	Profile *Configuration_Template_Section_Profile `json:"profile,omitempty"`
+
+	// Internal identifier of a configuration profile. Configuration profile is associated with a configuration section type of "Template section".
+	//
+	// A "Template section" defines skeleton configuration definitions. For instance, if you want to monitor additional hard disks with "CPU/Memory/Disk Monitoring Agent", you will have to add a new configuration profiles.
+	ProfileId *int `json:"profileId,omitempty"`
+
+	// Configuration value
+	Value *string `json:"value,omitempty"`
 }
 
+// Monitoring agent status
 type Monitoring_Agent_Status struct {
 	Entity
 
+	// Description of a monitoring agent status
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	// Internal identifier of a monitoring agent status
+	Id *int `json:"id,omitempty"`
+
+	// Monitoring agent status name
+	Name *string `json:"name,omitempty"`
 }
 
+// The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
 type Monitoring_Robot struct {
 	Entity
 
-	Account              *Account                 `json:"account,omitempty"`
-	AccountId            *int                     `json:"accountId,omitempty"`
-	Id                   *int                     `json:"id,omitempty"`
-	MonitoringAgentCount *uint                    `json:"monitoringAgentCount,omitempty"`
-	MonitoringAgents     []Monitoring_Agent       `json:"monitoringAgents,omitempty"`
-	Name                 *string                  `json:"name,omitempty"`
-	RobotStatus          *Monitoring_Robot_Status `json:"robotStatus,omitempty"`
-	SoftwareComponent    *Software_Component      `json:"softwareComponent,omitempty"`
-	StatusId             *int                     `json:"statusId,omitempty"`
+	// The account associated with the corresponding robot.
+	Account *Account `json:"account,omitempty"`
+
+	// Internal identifier of a SoftLayer account that this robot belongs to
+	AccountId *int `json:"accountId,omitempty"`
+
+	// Internal identifier of a monitoring robot
+	Id *int `json:"id,omitempty"`
+
+	// A count of the program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
+	MonitoringAgentCount *uint `json:"monitoringAgentCount,omitempty"`
+
+	// The program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
+	MonitoringAgents []Monitoring_Agent `json:"monitoringAgents,omitempty"`
+
+	// Robot name
+	Name *string `json:"name,omitempty"`
+
+	// The current status of the robot.
+	RobotStatus *Monitoring_Robot_Status `json:"robotStatus,omitempty"`
+
+	// The SoftLayer_Software_Component that corresponds to the robot installation on the server.
+	SoftwareComponent *Software_Component `json:"softwareComponent,omitempty"`
+
+	// Internal identifier of a monitoring robot status
+	StatusId *int `json:"statusId,omitempty"`
 }
 
+// Your monitoring robot will be in "Active" status under normal circumstances. If you perform an OS reload, your robot will be in "Reclaim" status until it's reloaded on your server or virtual server.
+//
+// Advanced monitoring system requires "Nimsoft Monitoring (Advanced)" service running and TCP ports 48000 - 48020 to be open on your server or virtual server. Monitoring agents cannot be managed nor can the usage data be updated if these ports are closed. Your monitoring robot will be in "Limited Connectivity" status if our monitoring management system cannot communicate with your system.
+//
+// See [[SoftLayer_Monitoring_Robot::resetStatus|resetStatus]] service for more details.
 type Monitoring_Robot_Status struct {
 	Entity
 
+	// Monitoring robot status description
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	// Internal identifier of a monitoring robot status
+	Id *int `json:"id,omitempty"`
+
+	// Monitoring robot status name
+	Name *string `json:"name,omitempty"`
 }

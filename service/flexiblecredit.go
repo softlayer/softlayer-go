@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
+//
 type FlexibleCredit_Program struct {
 	Session *Session
 	Options
@@ -27,6 +32,7 @@ func (r *Session) GetFlexibleCreditProgramService() FlexibleCredit_Program {
 	return FlexibleCredit_Program{Session: r}
 }
 
+//
 func (r *FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerificationType(verificationTypeKeyName *string) (resp []datatypes.FlexibleCredit_Affiliate, err error) {
 	params := []interface{}{
 		verificationTypeKeyName,
@@ -34,14 +40,20 @@ func (r *FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerifi
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *FlexibleCredit_Program) GetObject() (resp datatypes.FlexibleCredit_Program, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *FlexibleCredit_Program) SelfEnrollNewAccount(accountTemplate *datatypes.Account) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		accountTemplate,

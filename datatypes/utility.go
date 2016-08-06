@@ -14,24 +14,33 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+// Generic utility class used for gathering graphing parameters and actually creating graphs.
 type Utility_Bandwidth_Graph struct {
 	Entity
 }
 
+//
 type Utility_Network struct {
 	Entity
 }
 
+//
 type Utility_ObjectFilter struct {
 	Entity
 }
 
+//
 type Utility_ObjectFilter_Operation struct {
 	Entity
 }
 
+//
 type Utility_ObjectFilter_Operation_Option struct {
 	Entity
 }

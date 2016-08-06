@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package service
 
 import "github.ibm.com/riethm/gopherlayer/datatypes"
 
+//
 type Marketplace_Partner struct {
 	Session *Session
 	Options
@@ -27,10 +32,13 @@ func (r *Session) GetMarketplacePartnerService() Marketplace_Partner {
 	return Marketplace_Partner{Session: r}
 }
 
+//
 func (r *Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		searchTerm,
@@ -38,10 +46,14 @@ func (r *Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp 
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+
+// Retrieve
 func (r *Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		non,
@@ -49,6 +61,8 @@ func (r *Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.M
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_Partner_File, err error) {
 	params := []interface{}{
 		name,
@@ -56,26 +70,38 @@ func (r *Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_
 	err = invokeMethod(params, r.Session, &r.Options, &resp)
 	return
 }
+
+// Retrieve
 func (r *Marketplace_Partner) GetLogoMedium() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+// Retrieve
 func (r *Marketplace_Partner) GetLogoMediumTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+// Retrieve
 func (r *Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+// Retrieve
 func (r *Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
+
+//
 func (r *Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		urlIdentifier,

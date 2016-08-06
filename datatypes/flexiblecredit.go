@@ -14,47 +14,97 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+//
 type FlexibleCredit_Affiliate struct {
 	Entity
 
+	// Flexible Credit Program the affiliate belongs to.
 	FlexibleCreditProgram *FlexibleCredit_Program `json:"flexibleCreditProgram,omitempty"`
-	Id                    *int                    `json:"id,omitempty"`
-	Name                  *string                 `json:"name,omitempty"`
+
+	// Primary ID for the affiliate
+	Id *int `json:"id,omitempty"`
+
+	// Name of this affiliate
+	Name *string `json:"name,omitempty"`
 }
 
+//
 type FlexibleCredit_Company_Type struct {
 	Entity
 
+	// Description of the company type
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
+
+	// Primary ID for the company type
+	Id *int `json:"id,omitempty"`
 }
 
+//
 type FlexibleCredit_Enrollment struct {
 	Entity
 
-	Account                  *Account                     `json:"account,omitempty"`
-	AccountId                *int                         `json:"accountId,omitempty"`
-	Affiliate                *FlexibleCredit_Affiliate    `json:"affiliate,omitempty"`
-	AffiliateId              *int                         `json:"affiliateId,omitempty"`
-	AgreementCompleteFlag    *int                         `json:"agreementCompleteFlag,omitempty"`
-	CompanyDescription       *string                      `json:"companyDescription,omitempty"`
-	CompanyType              *FlexibleCredit_Company_Type `json:"companyType,omitempty"`
-	CompanyTypeId            *int                         `json:"companyTypeId,omitempty"`
-	EnrollmentDate           *Time                        `json:"enrollmentDate,omitempty"`
-	FlexibleCreditProgram    *FlexibleCredit_Program      `json:"flexibleCreditProgram,omitempty"`
-	GraduationDate           *Time                        `json:"graduationDate,omitempty"`
-	IsActiveFlag             *bool                        `json:"isActiveFlag,omitempty"`
-	MonthlyCreditAmount      *float64                     `json:"monthlyCreditAmount,omitempty"`
-	Representative           *User_Employee               `json:"representative,omitempty"`
-	RepresentativeEmployeeId *int                         `json:"representativeEmployeeId,omitempty"`
+	// Account the enrollment belongs to
+	Account *Account `json:"account,omitempty"`
+
+	// Account ID associated with this enrollment
+	AccountId *int `json:"accountId,omitempty"`
+
+	// Affiliate associated with the account enrollment
+	Affiliate *FlexibleCredit_Affiliate `json:"affiliate,omitempty"`
+
+	// ID of the corresponding Flexible Credit Program Affiliate
+	AffiliateId *int `json:"affiliateId,omitempty"`
+
+	// Indicates signing of Flexible Credit agreement (independent from MSA)
+	AgreementCompleteFlag *int `json:"agreementCompleteFlag,omitempty"`
+
+	// Brief description of the company
+	CompanyDescription *string `json:"companyDescription,omitempty"`
+
+	// Category which best describes the company
+	CompanyType *FlexibleCredit_Company_Type `json:"companyType,omitempty"`
+
+	// ID of the Flexible Credit Program Company classification for this enrollment
+	CompanyTypeId *int `json:"companyTypeId,omitempty"`
+
+	// Date when participation in the Flexible Credit program began
+	EnrollmentDate *Time `json:"enrollmentDate,omitempty"`
+
+	// Discount program the enrollment belongs to
+	FlexibleCreditProgram *FlexibleCredit_Program `json:"flexibleCreditProgram,omitempty"`
+
+	// Date Flexible Credit Program benefits end.
+	GraduationDate *Time `json:"graduationDate,omitempty"`
+
+	// Flag indicating whether an enrollment is active (true) or inactive (false)
+	IsActiveFlag *bool `json:"isActiveFlag,omitempty"`
+
+	// Amount of monthly credit (USD) given to the account
+	MonthlyCreditAmount *float64 `json:"monthlyCreditAmount,omitempty"`
+
+	// Employee overseeing the enrollment
+	Representative *User_Employee `json:"representative,omitempty"`
+
+	// ID of the employee representing this account.
+	RepresentativeEmployeeId *int `json:"representativeEmployeeId,omitempty"`
 }
 
+//
 type FlexibleCredit_Program struct {
 	Entity
 
-	Id      *int    `json:"id,omitempty"`
+	// Primary ID of the Flexible Credit Program
+	Id *int `json:"id,omitempty"`
+
+	// Unique name for the Flexible Credit Program
 	KeyName *string `json:"keyName,omitempty"`
-	Name    *string `json:"name,omitempty"`
+
+	// Name of the Flexible Credit Program.
+	Name *string `json:"name,omitempty"`
 }

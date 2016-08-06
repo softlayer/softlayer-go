@@ -14,200 +14,418 @@
  * limitations under the License.
  */
 
+/**
+ * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
+ */
+
 package datatypes
 
+// Every piece of hardware and network connection owned by SoftLayer is tracked physically by location and stored in the SoftLayer_Location data type. SoftLayer locations exist in parent/child relationships, a convenient way to track equipment from it's city, datacenter, server room, rack, then slot. Network backbones are tied to datacenters only, not to a room, rack, or slot.
 type Location struct {
 	Entity
 
-	BackboneDependentCount        *uint                                   `json:"backboneDependentCount,omitempty"`
-	BackboneDependents            []Network_Backbone_Location_Dependent   `json:"backboneDependents,omitempty"`
-	GroupCount                    *uint                                   `json:"groupCount,omitempty"`
-	Groups                        []Location_Group                        `json:"groups,omitempty"`
-	HardwareFirewallCount         *uint                                   `json:"hardwareFirewallCount,omitempty"`
-	HardwareFirewalls             []Hardware                              `json:"hardwareFirewalls,omitempty"`
-	Id                            *int                                    `json:"id,omitempty"`
-	LocationAddress               *Account_Address                        `json:"locationAddress,omitempty"`
-	LocationReservationMember     *Location_Reservation_Rack_Member       `json:"locationReservationMember,omitempty"`
-	LocationStatus                *Location_Status                        `json:"locationStatus,omitempty"`
-	LongName                      *string                                 `json:"longName,omitempty"`
-	Name                          *string                                 `json:"name,omitempty"`
-	NetworkConfigurationAttribute *Hardware_Attribute                     `json:"networkConfigurationAttribute,omitempty"`
-	OnlinePptpVpnUserCount        *int                                    `json:"onlinePptpVpnUserCount,omitempty"`
-	OnlineSslVpnUserCount         *int                                    `json:"onlineSslVpnUserCount,omitempty"`
-	PathString                    *string                                 `json:"pathString,omitempty"`
-	PriceGroupCount               *uint                                   `json:"priceGroupCount,omitempty"`
-	PriceGroups                   []Location_Group                        `json:"priceGroups,omitempty"`
-	RegionCount                   *uint                                   `json:"regionCount,omitempty"`
-	Regions                       []Location_Region                       `json:"regions,omitempty"`
-	StatusId                      *int                                    `json:"statusId,omitempty"`
-	Timezone                      *Locale_Timezone                        `json:"timezone,omitempty"`
-	VdrGroup                      *Location_Group_Location_CrossReference `json:"vdrGroup,omitempty"`
+	// A count of
+	BackboneDependentCount *uint `json:"backboneDependentCount,omitempty"`
+
+	//
+	BackboneDependents []Network_Backbone_Location_Dependent `json:"backboneDependents,omitempty"`
+
+	// A count of a location can be a member of 1 or more groups. This will show which groups to which a location belongs.
+	GroupCount *uint `json:"groupCount,omitempty"`
+
+	// A location can be a member of 1 or more groups. This will show which groups to which a location belongs.
+	Groups []Location_Group `json:"groups,omitempty"`
+
+	// A count of
+	HardwareFirewallCount *uint `json:"hardwareFirewallCount,omitempty"`
+
+	//
+	HardwareFirewalls []Hardware `json:"hardwareFirewalls,omitempty"`
+
+	// The unique identifier of a specific location.
+	Id *int `json:"id,omitempty"`
+
+	// A location's physical address.
+	LocationAddress *Account_Address `json:"locationAddress,omitempty"`
+
+	// A location's Dedicated Rack member
+	LocationReservationMember *Location_Reservation_Rack_Member `json:"locationReservationMember,omitempty"`
+
+	// The current locations status.
+	LocationStatus *Location_Status `json:"locationStatus,omitempty"`
+
+	// A longer location description.
+	LongName *string `json:"longName,omitempty"`
+
+	// A short location description.
+	Name *string `json:"name,omitempty"`
+
+	//
+	NetworkConfigurationAttribute *Hardware_Attribute `json:"networkConfigurationAttribute,omitempty"`
+
+	// The total number of users online using SoftLayer's PPTP VPN service for a location.
+	OnlinePptpVpnUserCount *int `json:"onlinePptpVpnUserCount,omitempty"`
+
+	// The total number of users online using SoftLayer's SSL VPN service for a location.
+	OnlineSslVpnUserCount *int `json:"onlineSslVpnUserCount,omitempty"`
+
+	//
+	PathString *string `json:"pathString,omitempty"`
+
+	// A count of a location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
+	PriceGroupCount *uint `json:"priceGroupCount,omitempty"`
+
+	// A location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
+	PriceGroups []Location_Group `json:"priceGroups,omitempty"`
+
+	// A count of a location can be a member of 1 or more regions. This will show which regions to which a location belongs.
+	RegionCount *uint `json:"regionCount,omitempty"`
+
+	// A location can be a member of 1 or more regions. This will show which regions to which a location belongs.
+	Regions []Location_Region `json:"regions,omitempty"`
+
+	//
+	StatusId *int `json:"statusId,omitempty"`
+
+	//
+	Timezone *Locale_Timezone `json:"timezone,omitempty"`
+
+	// A location can be a member of 1 Bandwidth Pooling Group. This will show which group to which a location belongs.
+	VdrGroup *Location_Group_Location_CrossReference `json:"vdrGroup,omitempty"`
 }
 
+// SoftLayer_Location_Datacenter extends the [[SoftLayer_Location]] data type to include datacenter-specific properties.
 type Location_Datacenter struct {
 	Location
 
-	ActiveItemPresaleEventCount  *uint                                        `json:"activeItemPresaleEventCount,omitempty"`
-	ActiveItemPresaleEvents      []Sales_Presale_Event                        `json:"activeItemPresaleEvents,omitempty"`
-	ActivePresaleEventCount      *uint                                        `json:"activePresaleEventCount,omitempty"`
-	ActivePresaleEvents          []Sales_Presale_Event                        `json:"activePresaleEvents,omitempty"`
-	BackendHardwareRouterCount   *uint                                        `json:"backendHardwareRouterCount,omitempty"`
-	BackendHardwareRouters       []Hardware                                   `json:"backendHardwareRouters,omitempty"`
-	BoundSubnetCount             *uint                                        `json:"boundSubnetCount,omitempty"`
-	BoundSubnets                 []Network_Subnet                             `json:"boundSubnets,omitempty"`
-	BrandCountryRestrictionCount *uint                                        `json:"brandCountryRestrictionCount,omitempty"`
-	BrandCountryRestrictions     []Brand_Restriction_Location_CustomerCountry `json:"brandCountryRestrictions,omitempty"`
-	FrontendHardwareRouterCount  *uint                                        `json:"frontendHardwareRouterCount,omitempty"`
-	FrontendHardwareRouters      []Hardware                                   `json:"frontendHardwareRouters,omitempty"`
-	HardwareRouterCount          *uint                                        `json:"hardwareRouterCount,omitempty"`
-	HardwareRouters              []Hardware                                   `json:"hardwareRouters,omitempty"`
-	PresaleEventCount            *uint                                        `json:"presaleEventCount,omitempty"`
-	PresaleEvents                []Sales_Presale_Event                        `json:"presaleEvents,omitempty"`
-	RegionalGroup                *Location_Group_Regional                     `json:"regionalGroup,omitempty"`
-	RegionalInternetRegistry     *Network_Regional_Internet_Registry          `json:"regionalInternetRegistry,omitempty"`
-	RoutableBoundSubnetCount     *uint                                        `json:"routableBoundSubnetCount,omitempty"`
-	RoutableBoundSubnets         []Network_Subnet                             `json:"routableBoundSubnets,omitempty"`
+	// A count of
+	ActiveItemPresaleEventCount *uint `json:"activeItemPresaleEventCount,omitempty"`
+
+	//
+	ActiveItemPresaleEvents []Sales_Presale_Event `json:"activeItemPresaleEvents,omitempty"`
+
+	// A count of
+	ActivePresaleEventCount *uint `json:"activePresaleEventCount,omitempty"`
+
+	//
+	ActivePresaleEvents []Sales_Presale_Event `json:"activePresaleEvents,omitempty"`
+
+	// A count of
+	BackendHardwareRouterCount *uint `json:"backendHardwareRouterCount,omitempty"`
+
+	//
+	BackendHardwareRouters []Hardware `json:"backendHardwareRouters,omitempty"`
+
+	// A count of subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
+	BoundSubnetCount *uint `json:"boundSubnetCount,omitempty"`
+
+	// Subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
+	BoundSubnets []Network_Subnet `json:"boundSubnets,omitempty"`
+
+	// A count of this references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
+	BrandCountryRestrictionCount *uint `json:"brandCountryRestrictionCount,omitempty"`
+
+	// This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
+	BrandCountryRestrictions []Brand_Restriction_Location_CustomerCountry `json:"brandCountryRestrictions,omitempty"`
+
+	// A count of
+	FrontendHardwareRouterCount *uint `json:"frontendHardwareRouterCount,omitempty"`
+
+	//
+	FrontendHardwareRouters []Hardware `json:"frontendHardwareRouters,omitempty"`
+
+	// A count of
+	HardwareRouterCount *uint `json:"hardwareRouterCount,omitempty"`
+
+	//
+	HardwareRouters []Hardware `json:"hardwareRouters,omitempty"`
+
+	// A count of
+	PresaleEventCount *uint `json:"presaleEventCount,omitempty"`
+
+	//
+	PresaleEvents []Sales_Presale_Event `json:"presaleEvents,omitempty"`
+
+	// The regional group this datacenter belongs to.
+	RegionalGroup *Location_Group_Regional `json:"regionalGroup,omitempty"`
+
+	//
+	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty"`
+
+	// A count of retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
+	RoutableBoundSubnetCount *uint `json:"routableBoundSubnetCount,omitempty"`
+
+	// Retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
+	RoutableBoundSubnets []Network_Subnet `json:"routableBoundSubnets,omitempty"`
 }
 
+//
 type Location_Group struct {
 	Entity
 
-	Description         *string              `json:"description,omitempty"`
-	Id                  *int                 `json:"id,omitempty"`
-	LocationCount       *uint                `json:"locationCount,omitempty"`
-	LocationGroupType   *Location_Group_Type `json:"locationGroupType,omitempty"`
-	LocationGroupTypeId *int                 `json:"locationGroupTypeId,omitempty"`
-	Locations           []Location           `json:"locations,omitempty"`
-	Name                *string              `json:"name,omitempty"`
-	SecurityLevelId     *int                 `json:"securityLevelId,omitempty"`
+	//
+	Description *string `json:"description,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	// A count of the locations in a group.
+	LocationCount *uint `json:"locationCount,omitempty"`
+
+	// The type for this location group.
+	LocationGroupType *Location_Group_Type `json:"locationGroupType,omitempty"`
+
+	//
+	LocationGroupTypeId *int `json:"locationGroupTypeId,omitempty"`
+
+	// The locations in a group.
+	Locations []Location `json:"locations,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
+
+	//
+	SecurityLevelId *int `json:"securityLevelId,omitempty"`
 }
 
+//
 type Location_Group_Location_CrossReference struct {
 	Entity
 
-	Location        *Location       `json:"location,omitempty"`
-	LocationGroup   *Location_Group `json:"locationGroup,omitempty"`
-	LocationGroupId *int            `json:"locationGroupId,omitempty"`
-	LocationId      *int            `json:"locationId,omitempty"`
-	Priority        *int            `json:"priority,omitempty"`
+	//
+	Location *Location `json:"location,omitempty"`
+
+	//
+	LocationGroup *Location_Group `json:"locationGroup,omitempty"`
+
+	//
+	LocationGroupId *int `json:"locationGroupId,omitempty"`
+
+	//
+	LocationId *int `json:"locationId,omitempty"`
+
+	// If set, this is the priority of this cross reference record in the group.
+	Priority *int `json:"priority,omitempty"`
 }
 
+//
 type Location_Group_Pricing struct {
 	Location_Group
 
-	PriceCount *uint                `json:"priceCount,omitempty"`
-	Prices     []Product_Item_Price `json:"prices,omitempty"`
+	// A count of the prices that this pricing location group limits. All of these prices will only be available in the locations defined by this pricing location group.
+	PriceCount *uint `json:"priceCount,omitempty"`
+
+	// The prices that this pricing location group limits. All of these prices will only be available in the locations defined by this pricing location group.
+	Prices []Product_Item_Price `json:"prices,omitempty"`
 }
 
+//
 type Location_Group_Regional struct {
 	Location_Group
 
-	DatacenterCount     *uint                `json:"datacenterCount,omitempty"`
-	Datacenters         []Location           `json:"datacenters,omitempty"`
+	// A count of the datacenters in a group.
+	DatacenterCount *uint `json:"datacenterCount,omitempty"`
+
+	// The datacenters in a group.
+	Datacenters []Location `json:"datacenters,omitempty"`
+
+	// The preferred datacenters of a group.
 	PreferredDatacenter *Location_Datacenter `json:"preferredDatacenter,omitempty"`
 }
 
+//
 type Location_Group_Type struct {
 	Entity
 
+	//
 	Name *string `json:"name,omitempty"`
 }
 
+// SoftLayer_Location_Inventory_Room extends the [[SoftLayer_Location]] data type to include inventory room-specific properties.
 type Location_Inventory_Room struct {
 	Location
 }
 
+// SoftLayer_Location_Network_Operations_Center extends the [[SoftLayer_Location]] data type to include network operation center-specific properties.
 type Location_Network_Operations_Center struct {
 	Location
 }
 
+// SoftLayer_Location_Office extends the [[SoftLayer_Location]] data type to include office-specific properties.
 type Location_Office struct {
 	Location
 }
 
+// SoftLayer_Location_Rack extends the [[SoftLayer_Location]] data type to include rack-specific properties.
 type Location_Rack struct {
 	Location
 }
 
+// A region is made up of a keyname and a description of that region. A region keyname can be used as part of an order. Check the SoftLayer_Product_Order service for more details.
 type Location_Region struct {
 	Entity
 
-	Description *string                   `json:"description,omitempty"`
-	Keyname     *string                   `json:"keyname,omitempty"`
-	Location    *Location_Region_Location `json:"location,omitempty"`
-	SortOrder   *int                      `json:"sortOrder,omitempty"`
+	// A short description of a region's name. This description is seen on the order forms.
+	Description *string `json:"description,omitempty"`
+
+	// A unique key name for a region. Provided for easy debugging. This is to be sent in with an order.
+	Keyname *string `json:"keyname,omitempty"`
+
+	// Each region can have many datacenter locations tied to it. However, this is the location we currently provision to for a region. This location is the current valid location for a region.
+	Location *Location_Region_Location `json:"location,omitempty"`
+
+	// An integer representing the order in which this element is displayed.
+	SortOrder *int `json:"sortOrder,omitempty"`
 }
 
+// The SoftLayer_Location_Region_Location is very specific to the location where services will actually be provisioned. When accessed through a package, this location is the top priority location for a region. All new servers and services are provisioned at this location. When a server is ordered and a region is selected, this is the location within that region where the server will actually exist and have software/services installed.
 type Location_Region_Location struct {
 	Entity
 
-	Location                   *Location                   `json:"location,omitempty"`
-	LocationPackageDetailCount *uint                       `json:"locationPackageDetailCount,omitempty"`
-	LocationPackageDetails     []Product_Package_Locations `json:"locationPackageDetails,omitempty"`
-	Region                     *Location_Region            `json:"region,omitempty"`
+	// The SoftLayer_Location tied to a region's location. This provides more information about the location, including specific datacenter information.
+	Location *Location `json:"location,omitempty"`
+
+	// A count of a region's location also has delivery information as well as other information to be determined. For now, availability is provided and could weigh into the decision as to where to decide to have a server provisioned.'
+	LocationPackageDetailCount *uint `json:"locationPackageDetailCount,omitempty"`
+
+	// A region's location also has delivery information as well as other information to be determined. For now, availability is provided and could weigh into the decision as to where to decide to have a server provisioned.'
+	LocationPackageDetails []Product_Package_Locations `json:"locationPackageDetails,omitempty"`
+
+	// The region to which this location belongs.
+	Region *Location_Region `json:"region,omitempty"`
 }
 
+//
 type Location_Reservation struct {
 	Entity
 
-	Account                 *Account                              `json:"account,omitempty"`
-	Allotment               *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty"`
-	AllotmentId             *int                                  `json:"allotmentId,omitempty"`
-	BillingItem             *Billing_Item                         `json:"billingItem,omitempty"`
-	Id                      *int                                  `json:"id,omitempty"`
-	Location                *Location                             `json:"location,omitempty"`
-	LocationId              *int                                  `json:"locationId,omitempty"`
-	LocationReservationRack *Location_Reservation_Rack            `json:"locationReservationRack,omitempty"`
-	Name                    *string                               `json:"name,omitempty"`
-	Notes                   *string                               `json:"notes,omitempty"`
+	// The account that a billing item belongs to.
+	Account *Account `json:"account,omitempty"`
+
+	// The bandwidth allotment that the reservation belongs to.
+	Allotment *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty"`
+
+	//
+	AllotmentId *int `json:"allotmentId,omitempty"`
+
+	// The bandwidth allotment that the reservation belongs to.
+	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+
+	//
+	Id *int `json:"id,omitempty"`
+
+	// The datacenter location that the reservation belongs to.
+	Location *Location `json:"location,omitempty"`
+
+	//
+	LocationId *int `json:"locationId,omitempty"`
+
+	// Rack information for the reservation
+	LocationReservationRack *Location_Reservation_Rack `json:"locationReservationRack,omitempty"`
+
+	//
+	Name *string `json:"name,omitempty"`
+
+	//
+	Notes *string `json:"notes,omitempty"`
 }
 
+//
 type Location_Reservation_Rack struct {
 	Entity
 
-	Allotment                    *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty"`
-	Children                     []Location_Reservation_Rack_Member    `json:"children,omitempty"`
-	ChildrenCount                *uint                                 `json:"childrenCount,omitempty"`
-	Location                     *Location                             `json:"location,omitempty"`
-	LocationId                   *int                                  `json:"locationId,omitempty"`
-	LocationReservation          *Location_Reservation                 `json:"locationReservation,omitempty"`
-	LocationReservationId        *int                                  `json:"locationReservationId,omitempty"`
-	NetworkConnectionCapacity    *int                                  `json:"networkConnectionCapacity,omitempty"`
-	NetworkConnectionReservation *int                                  `json:"networkConnectionReservation,omitempty"`
-	PowerConnectionCapacity      *int                                  `json:"powerConnectionCapacity,omitempty"`
-	PowerConnectionReservation   *int                                  `json:"powerConnectionReservation,omitempty"`
-	SlotCapacity                 *int                                  `json:"slotCapacity,omitempty"`
-	SlotReservation              *int                                  `json:"slotReservation,omitempty"`
+	// The bandwidth allotment that the reservation belongs to.
+	Allotment *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty"`
+
+	// Members of the rack.
+	Children []Location_Reservation_Rack_Member `json:"children,omitempty"`
+
+	// A count of members of the rack.
+	ChildrenCount *uint `json:"childrenCount,omitempty"`
+
+	//
+	Location *Location `json:"location,omitempty"`
+
+	//
+	LocationId *int `json:"locationId,omitempty"`
+
+	//
+	LocationReservation *Location_Reservation `json:"locationReservation,omitempty"`
+
+	//
+	LocationReservationId *int `json:"locationReservationId,omitempty"`
+
+	//
+	NetworkConnectionCapacity *int `json:"networkConnectionCapacity,omitempty"`
+
+	//
+	NetworkConnectionReservation *int `json:"networkConnectionReservation,omitempty"`
+
+	//
+	PowerConnectionCapacity *int `json:"powerConnectionCapacity,omitempty"`
+
+	//
+	PowerConnectionReservation *int `json:"powerConnectionReservation,omitempty"`
+
+	//
+	SlotCapacity *int `json:"slotCapacity,omitempty"`
+
+	//
+	SlotReservation *int `json:"slotReservation,omitempty"`
 }
 
+//
 type Location_Reservation_Rack_Member struct {
 	Entity
 
-	Id                      *int                  `json:"id,omitempty"`
-	Location                *Location             `json:"location,omitempty"`
-	LocationId              *int                  `json:"locationId,omitempty"`
+	//
+	Id *int `json:"id,omitempty"`
+
+	// Location relation for the rack member
+	Location *Location `json:"location,omitempty"`
+
+	//
+	LocationId *int `json:"locationId,omitempty"`
+
+	//
 	LocationReservationRack *Location_Reservation `json:"locationReservationRack,omitempty"`
 }
 
+// SoftLayer_Location_Root extends the [[SoftLayer_Location]] data type to include root-specific properties.
 type Location_Root struct {
 	Location
 }
 
+// SoftLayer_Location_Server_Room extends the [[SoftLayer_Location]] data type to include server room-specific properties.
 type Location_Server_Room struct {
 	Location
 }
 
+// SoftLayer_Location_Slot extends the [[SoftLayer_Location]] data type to include slot-specific properties.
 type Location_Slot struct {
 	Location
 }
 
+// SoftLayer_Location_Status models the state of any location. SoftLayer uses the following status codes:
+//
+//
+// *'''ACTIVE''': The location is currently active and available for public usage.
+// *'''PLANNED''': Used when a location is planned but not yet active.
+// *'''RETIRED''': Used when a location has been retired and no longer active.
+//
+//
+// Locations in use should stay in the ACTIVE state. If a locations status ever reads anything else and contains active hardware then please contact SoftLayer support.
 type Location_Status struct {
 	Entity
 
-	Id     *int    `json:"id,omitempty"`
+	// A locations status's internal identifier.
+	Id *int `json:"id,omitempty"`
+
+	// A Location's status code. See the SoftLayer_Locaiton_Status Overview for ''status''' possible values.
 	Status *string `json:"status,omitempty"`
 }
 
+// SoftLayer_Location_Storage_Room extends the [[SoftLayer_Location]] data type to include storage room-specific properties.
 type Location_Storage_Room struct {
 	Location
 }
