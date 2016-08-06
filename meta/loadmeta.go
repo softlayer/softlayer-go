@@ -283,6 +283,7 @@ func GoDoc(args ...interface{}) string {
 
 	return "// " + strings.Replace(s, "\n", "\n// ", -1)
 }
+
 // private
 
 func createGetters(service *Type) {
