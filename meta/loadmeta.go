@@ -180,6 +180,13 @@ func main() {
 		}
 	}
 
+	// Services can be subclasses of other services. Copy methods from each service's 'Base' entity to
+	// the child service, only if a same-named method does not already exist (i.e., overridden by the
+	// child service)
+	for i, service := range sortedServices {
+		sortedServices[i].Methods = getBaseMethods(service, meta)
+	}
+
 	err = writePackage(*outputPath, "datatypes", sortedTypes, datatype)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
@@ -271,6 +278,41 @@ func createGetters(service *Type) {
 		}
 	}
 
+}
+
+func combineMethods(baseMethods map[string]Method, subclassMethods map[string]Method) map[string]Method {
+	r := map[string]Method{}
+
+	// Copy all subclass methods into the result set
+	for k, v := range subclassMethods {
+		r[k] = v
+	}
+
+	// Copy each method from the base class into the result set, but only if a like-named method
+	// does not already exist (a method in the child should override a same-named method in the parent)
+	for k, v := range baseMethods {
+		if _, ok := r[k]; !ok {
+			r[k] = v
+		}
+	}
+
+	return r
+}
+
+func getBaseMethods(s Type, typeMap map[string]Type) map[string]Method {
+	var methods, baseMethods map[string]Method
+
+	methods = s.Methods
+
+	if s.Base != "SoftLayer_Entity" {
+		baseMethods = getBaseMethods(typeMap[s.Base], typeMap)
+
+		// Add base methods to current service methods
+		methods = combineMethods(baseMethods, methods)
+	}
+
+	// return my methods
+	return methods
 }
 
 func getSortedKeys(m map[string]Type) []string {
