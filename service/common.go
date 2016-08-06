@@ -110,16 +110,19 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	// Parse any method parameters and determine the HTTP method
 	var parameters []byte
 	var restMethod string
+
+	restMethod = httpMethod(apiMethod)
+
 	if len(args) > 0 {
 		// parse the parameters
 		parameters, _ = json.Marshal(
 			map[string]interface{}{
 				"parameters": args,
 			})
-		restMethod = "POST"
-	} else {
-		restMethod = httpMethod(apiMethod)
 
+		if restMethod == "GET" {
+			restMethod = "POST"
+		}
 	}
 
 	path := service
