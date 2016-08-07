@@ -66,11 +66,12 @@ func encodeQuery(opts *Options) string {
 	// resultLimit=<offset>,<limit>
 	// If offset unspecified, default to 0
 	if opts.ResultLimit != nil {
+		startOffset := 0
 		if opts.StartOffset != nil {
-			query.Add("resultLimit", fmt.Sprintf("%d,%d", *opts.StartOffset, *opts.ResultLimit))
-		} else {
-			query.Add("resultLimit", fmt.Sprintf("0,%d", *opts.ResultLimit))
+			startOffset = *opts.StartOffset
 		}
+
+		query.Add("resultLimit", fmt.Sprintf("%d,%d", startOffset, *opts.ResultLimit))
 	}
 
 	return query.Encode()
