@@ -23,6 +23,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
@@ -49,7 +50,17 @@ func NewSession(u string, k string, args ...interface{}) Session {
 		e = DEFAULT_ENDPOINT
 	}
 
+	// TODO: Read credentials from ~/.softlayer. Requires dependency for parsing ini file
+	envFallback("SOFTLAYER_USERNAME", &u)
+	envFallback("SOFTLAYER_API_KEY", &k)
+
 	return Session{UserName: u, ApiKey: k, Endpoint: e}
+}
+
+func envFallback(keyName string, value *string) {
+	if *value == "" {
+		*value = os.Getenv(keyName)
+	}
 }
 
 func encodeQuery(opts *Options) string {
