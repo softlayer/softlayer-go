@@ -91,7 +91,13 @@ func encodeQuery(opts *Options) string {
 func makeHttpRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *Options) ([]byte, int, error) {
 	client := http.DefaultClient
 
-	url := session.Endpoint + "/" + path
+	var url string
+	if session.Endpoint == "" {
+		url = url + DEFAULT_ENDPOINT
+	} else {
+		url = url + session.Endpoint
+	}
+	url = url + "/" + path
 	req, err := http.NewRequest(requestType, url, requestBody)
 	if err != nil {
 		return nil, 0, err
