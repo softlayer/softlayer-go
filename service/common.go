@@ -59,13 +59,13 @@ func (r *Options) Offset(offset int) *Options {
 	return r
 }
 
-func httpMethod(name string) string {
+func httpMethod(name string, args []interface{}) string {
 	if name == "deleteObject" {
 		return "DELETE"
-	} else if name == "createObject" || name == "createObjects" {
-		return "POST"
 	} else if name == "editObject" || name == "editObjects" {
 		return "PUT"
+	} else if name == "createObject" || name == "createObjects" || len(args) > 0 {
+		return "POST"
 	}
 
 	return "GET"
@@ -111,7 +111,7 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	var parameters []byte
 	var restMethod string
 
-	restMethod = httpMethod(apiMethod)
+	restMethod = httpMethod(apiMethod, args)
 
 	if len(args) > 0 {
 		// parse the parameters
@@ -119,10 +119,6 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 			map[string]interface{}{
 				"parameters": args,
 			})
-
-		if restMethod == "GET" {
-			restMethod = "POST"
-		}
 	}
 
 	path := service
