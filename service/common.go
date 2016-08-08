@@ -107,12 +107,10 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	// camelCase the method name
 	apiMethod = strings.ToLower(string(apiMethod[0])) + apiMethod[1:]
 
+	restMethod := httpMethod(apiMethod, args)
+
 	// Parse any method parameters and determine the HTTP method
 	var parameters []byte
-	var restMethod string
-
-	restMethod = httpMethod(apiMethod, args)
-
 	if len(args) > 0 {
 		// parse the parameters
 		parameters, _ = json.Marshal(
