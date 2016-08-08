@@ -72,24 +72,6 @@ func httpMethod(name string, args []interface{}) string {
 }
 
 func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {
-
-	// Static Method Call:
-	// <service_name>/<method_name>.json?objectMask=<mask>&objectFilter=<>&limit=<limit>&offset=<offset>
-
-	// Instance Method Call:
-	// <service_name>/<id>/<method_name>.json?objectMask=<mask>&objectFilter=<>&limit=<limit>&offset=<offset>
-
-	// Parameters:
-	// {"parameters": [ <param>, ... ]}
-
-	// If Parameters array is len 0, method is GET, otherwise POST
-
-	// Service name = receiver of caller + 'SoftLayer_' (except special case of McAfee* resources)
-	// Method name = caller method name camelCased
-	// Id, Mask, filter, offset, limit - from entity
-
-	// method params: map[string] interface{}
-
 	// Get the caller information, which gives us the service and method name
 	pc, _, _, _ := runtime.Caller(1)
 	f := runtime.FuncForPC(pc)
@@ -119,12 +101,14 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 			})
 	}
 
+	// Start building the request path
 	path := service
 
 	if options.ObjectId != nil {
 		path = path + "/" + strconv.Itoa(*options.ObjectId)
 	}
 
+	// omit the API method name if the method represents one of the basic REST methods
 	if apiMethod != "getObject" && apiMethod != "deleteObject" && apiMethod != "createObject" &&
 		apiMethod != "createObjects" && apiMethod != "editObject" && apiMethod != "editObjects" {
 		path = path + "/" + apiMethod
@@ -148,6 +132,8 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	}
 
 	returnType := reflect.TypeOf(pResult).String()
+
+	// Some APIs that normally return a collection, omit the []'s when the API returns a single value
 	if strings.Index(returnType, "[]") == 1 && strings.Index(string(resp), "[") != 0 {
 		resp = []byte("[" + string(resp) + "]")
 	}
@@ -167,7 +153,6 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	case "*bool":
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
 		return err
-	//case "*time.Time":
 	case "float64":
 		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
 		return err
