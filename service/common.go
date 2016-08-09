@@ -17,12 +17,7 @@
 package service
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"reflect"
 	"runtime"
-	"strconv"
 	"strings"
 )
 
@@ -59,24 +54,12 @@ func (r *Options) Offset(offset int) *Options {
 	return r
 }
 
-func httpMethod(name string, args []interface{}) string {
-	if name == "deleteObject" {
-		return "DELETE"
-	} else if name == "editObject" || name == "editObjects" {
-		return "PUT"
-	} else if name == "createObject" || name == "createObjects" || len(args) > 0 {
-		return "POST"
-	}
-
-	return "GET"
-}
-
 func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {
 	// Get the caller information, which gives us the service and method name
 	pc, _, _, _ := runtime.Caller(1)
 	f := runtime.FuncForPC(pc)
 	segments := strings.Split(f.Name(), ".")
-	service, apiMethod := segments[len(segments)-2], segments[len(segments)-1]
+	service, method := segments[len(segments)-2], segments[len(segments)-1]
 
 	// The receiver has the form "(*Type)".  Strip the unnecessary characters
 	service = service[2 : len(service)-1]
@@ -87,80 +70,7 @@ func invokeMethod(args []interface{}, session *Session, options *Options, pResul
 	}
 
 	// camelCase the method name
-	apiMethod = strings.ToLower(string(apiMethod[0])) + apiMethod[1:]
+	method = strings.ToLower(string(method[0])) + method[1:]
 
-	restMethod := httpMethod(apiMethod, args)
-
-	// Parse any method parameters and determine the HTTP method
-	var parameters []byte
-	if len(args) > 0 {
-		// parse the parameters
-		parameters, _ = json.Marshal(
-			map[string]interface{}{
-				"parameters": args,
-			})
-	}
-
-	// Start building the request path
-	path := service
-
-	if options.ObjectId != nil {
-		path = path + "/" + strconv.Itoa(*options.ObjectId)
-	}
-
-	// omit the API method name if the method represents one of the basic REST methods
-	if apiMethod != "getObject" && apiMethod != "deleteObject" && apiMethod != "createObject" &&
-		apiMethod != "createObjects" && apiMethod != "editObject" && apiMethod != "editObjects" {
-		path = path + "/" + apiMethod
-	}
-
-	path = path + ".json"
-
-	resp, code, err := makeHttpRequest(
-		session,
-		path,
-		restMethod,
-		bytes.NewBuffer(parameters),
-		options)
-
-	if err != nil {
-		return fmt.Errorf("Error during HTTP request: %s", err)
-	}
-
-	if code < 200 || code > 299 {
-		return fmt.Errorf("An HTTP Error was returned: %d: %s", code, string(resp))
-	}
-
-	returnType := reflect.TypeOf(pResult).String()
-
-	// Some APIs that normally return a collection, omit the []'s when the API returns a single value
-	if strings.Index(returnType, "[]") == 1 && strings.Index(string(resp), "[") != 0 {
-		resp = []byte("[" + string(resp) + "]")
-	}
-
-	// At this point, all that's left to do is parse the return value to the appropriate type, and return
-	// any parse errors (or nil if successful)
-
-	switch returnType {
-	case "[]byte":
-		pResult = &resp
-		return nil
-	case "*void":
-		return nil
-	case "*uint":
-		*pResult.(*int), err = strconv.Atoi(string(resp))
-		return err
-	case "*bool":
-		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-		return err
-	case "float64":
-		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
-		return err
-	case "string":
-		*pResult.(*string) = string(resp)
-		return nil
-	}
-
-	// Must be a json representation of one of the many softlayer datatypes
-	return json.Unmarshal(resp, pResult)
+	return session.DoRequest(service, method, args, options, pResult)
 }

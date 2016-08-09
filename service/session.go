@@ -18,12 +18,16 @@ package service
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
+	"strconv"
+	"strings"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
@@ -39,6 +43,83 @@ func (r *Session) String() string {
 	return "Username: " + r.UserName +
 		", ApiKey: " + r.ApiKey +
 		", Endpoint: " + r.Endpoint
+}
+
+func (r *Session) DoRequest(service string, method string, args []interface{}, options *Options, pResult interface{}) error {
+	restMethod := httpMethod(method, args)
+
+	// Parse any method parameters and determine the HTTP method
+	var parameters []byte
+	if len(args) > 0 {
+		// parse the parameters
+		parameters, _ = json.Marshal(
+			map[string]interface{}{
+				"parameters": args,
+			})
+	}
+
+	// Start building the request path
+	path := service
+
+	if options.ObjectId != nil {
+		path = path + "/" + strconv.Itoa(*options.ObjectId)
+	}
+
+	// omit the API method name if the method represents one of the basic REST methods
+	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
+		method != "createObjects" && method != "editObject" && method != "editObjects" {
+		path = path + "/" + method
+	}
+
+	path = path + ".json"
+
+	resp, code, err := makeHttpRequest(
+		r,
+		path,
+		restMethod,
+		bytes.NewBuffer(parameters),
+		options)
+
+	if err != nil {
+		return fmt.Errorf("Error during HTTP request: %s", err)
+	}
+
+	if code < 200 || code > 299 {
+		return fmt.Errorf("An HTTP Error was returned: %d: %s", code, string(resp))
+	}
+
+	returnType := reflect.TypeOf(pResult).String()
+
+	// Some APIs that normally return a collection, omit the []'s when the API returns a single value
+	if strings.Index(returnType, "[]") == 1 && strings.Index(string(resp), "[") != 0 {
+		resp = []byte("[" + string(resp) + "]")
+	}
+
+	// At this point, all that's left to do is parse the return value to the appropriate type, and return
+	// any parse errors (or nil if successful)
+
+	switch returnType {
+	case "[]byte":
+		pResult = &resp
+		return nil
+	case "*void":
+		return nil
+	case "*uint":
+		*pResult.(*int), err = strconv.Atoi(string(resp))
+		return err
+	case "*bool":
+		*pResult.(*bool), err = strconv.ParseBool(string(resp))
+		return err
+	case "float64":
+		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
+		return err
+	case "string":
+		*pResult.(*string) = string(resp)
+		return nil
+	}
+
+	// Must be a json representation of one of the many softlayer datatypes
+	return json.Unmarshal(resp, pResult)
 }
 
 func NewSession(u string, k string, args ...interface{}) Session {
@@ -125,4 +206,16 @@ func makeHttpRequest(session *Session, path string, requestType string, requestB
 	}
 
 	return responseBody, resp.StatusCode, nil
+}
+
+func httpMethod(name string, args []interface{}) string {
+	if name == "deleteObject" {
+		return "DELETE"
+	} else if name == "editObject" || name == "editObjects" {
+		return "PUT"
+	} else if name == "createObject" || name == "createObjects" || len(args) > 0 {
+		return "POST"
+	}
+
+	return "GET"
 }
