@@ -3617,12 +3617,6 @@ type Network_Storage_Hub_Cleversafe_Account struct {
 	//
 	Credentials []Network_Storage_Credential `json:"credentials,omitempty"`
 
-	// A count of
-	EventCount *uint `json:"eventCount,omitempty"`
-
-	//
-	Events []Network_Storage_Event `json:"events,omitempty"`
-
 	// The IMS ID of the SoftLayer_Network_Storage_Hub_Cleversafe_Account.
 	Id *int `json:"id,omitempty"`
 
