@@ -123,11 +123,11 @@ type {{.Name|removePrefix}} struct {
 {{end}}
 `, license, codegenWarning)
 
-var service = fmt.Sprintf(`%s
+var services = fmt.Sprintf(`%s
 
 %s
 
-package service
+package services
 
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
 	type {{$base}} struct {
@@ -208,7 +208,7 @@ func main() {
 		fmt.Printf("Error writing to file: %s", err)
 	}
 
-	err = writePackage(*outputPath, "service", sortedServices, service)
+	err = writePackage(*outputPath, "services", sortedServices, services)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
 	}
@@ -385,7 +385,7 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 	t := template.New(pkg).Funcs(fMap)
 	template.Must(t.Parse(ts)).Execute(&buf, meta)
 
-	/*if pkg == "service" && name == "Account"{
+	/*if pkg == "services" && name == "Account"{
 		fmt.Println(string(buf.String()))
 		os.Exit(0)
 	}*/
