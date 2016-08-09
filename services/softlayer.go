@@ -25,10 +25,12 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/user"
 	"reflect"
 	"runtime"
 	"strconv"
 	"strings"
+	"github.ibm.com/riethm/gopherlayer/config"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
@@ -73,20 +75,49 @@ type Session struct {
 	Debug    bool
 }
 
-func NewSession(u string, k string, args ...interface{}) Session {
-	var e string
+func NewSession(args ...interface{}) Session {
+	keys := map[string]int{"username": 0, "api_key": 1, "endpoint_url": 2}
+	values := []string{"", "", DEFAULT_ENDPOINT}
 
-	if len(args) > 0 {
-		e = args[0].(string)
-	} else {
-		e = DEFAULT_ENDPOINT
+	if endpoint_url := os.Getenv("SOFTLAYER_ENDPOINT_URL"); endpoint_url != "" {
+		values[keys["endpoint_url"]] = endpoint_url
 	}
 
-	// TODO: Read credentials from ~/.softlayer. Requires dependency for parsing ini file
-	envFallback("SOFTLAYER_USERNAME", &u)
-	envFallback("SOFTLAYER_API_KEY", &k)
+	for i := 0; i < len(args); i++ {
+		values[i] = args[i].(string)
+	}
 
-	return Session{UserName: u, ApiKey: k, Endpoint: e}
+	// Default to the environment variables
+	envFallback("SOFTLAYER_USERNAME", &values[keys["username"]])
+	envFallback("SOFTLAYER_API_KEY", &values[keys["api_key"]])
+
+	// Read ~/.softlayer for configuration
+	u, err := user.Current()
+	if err != nil {
+		panic("session: Could not determine current user.")
+	}
+
+	configPath := fmt.Sprintf("%s/.softlayer", u.HomeDir)
+	if _, err = os.Stat(configPath); !os.IsNotExist(err) {
+		// config file exists
+		file, err := config.LoadFile(configPath)
+		if err != nil {
+			log.Println(fmt.Sprintf("[WARN] session: Could not parse %s : %s", configPath, err))
+		} else {
+			for k, v := range keys {
+				value, ok := file.Get("softlayer", k)
+				if ok && values[v] == "" {
+					values[v] = value
+				}
+			}
+		}
+	}
+
+	return Session{
+		UserName: values[keys["username"]],
+		ApiKey:   values[keys["api_key"]],
+		Endpoint: values[keys["endpoint_url"]],
+	}
 }
 
 func (r *Session) String() string {
