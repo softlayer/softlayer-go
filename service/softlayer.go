@@ -26,17 +26,67 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"runtime"
 	"strconv"
 	"strings"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
 
+type Options struct {
+	ObjectId     *int
+	ObjectMask   string
+	ObjectFilter string
+	ResultLimit  *int
+	StartOffset  *int
+}
+
+func (r *Options) Id(id int) *Options {
+	r.ObjectId = &id
+	return r
+}
+
+func (r *Options) Mask(mask string) *Options {
+	r.ObjectMask = mask
+	return r
+}
+
+func (r *Options) Filter(filter string) *Options {
+	r.ObjectFilter = filter
+	return r
+}
+
+func (r *Options) Limit(limit int) *Options {
+	r.ResultLimit = &limit
+	return r
+}
+
+func (r *Options) Offset(offset int) *Options {
+	r.StartOffset = &offset
+	return r
+}
+
 type Session struct {
 	UserName string
 	ApiKey   string
 	Endpoint string
 	Debug    bool
+}
+
+func NewSession(u string, k string, args ...interface{}) Session {
+	var e string
+
+	if len(args) > 0 {
+		e = args[0].(string)
+	} else {
+		e = DEFAULT_ENDPOINT
+	}
+
+	// TODO: Read credentials from ~/.softlayer. Requires dependency for parsing ini file
+	envFallback("SOFTLAYER_USERNAME", &u)
+	envFallback("SOFTLAYER_API_KEY", &k)
+
+	return Session{UserName: u, ApiKey: k, Endpoint: e}
 }
 
 func (r *Session) String() string {
@@ -122,20 +172,25 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	return json.Unmarshal(resp, pResult)
 }
 
-func NewSession(u string, k string, args ...interface{}) Session {
-	var e string
+func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {
+	// Get the caller information, which gives us the service and method name
+	pc, _, _, _ := runtime.Caller(1)
+	f := runtime.FuncForPC(pc)
+	segments := strings.Split(f.Name(), ".")
+	service, method := segments[len(segments)-2], segments[len(segments)-1]
 
-	if len(args) > 0 {
-		e = args[0].(string)
-	} else {
-		e = DEFAULT_ENDPOINT
+	// The receiver has the form "(*Type)".  Strip the unnecessary characters
+	service = service[2 : len(service)-1]
+
+	// Most services need to be prefixed with "SoftLayer_"
+	if service[:6] != "McAfee" {
+		service = "SoftLayer_" + service
 	}
 
-	// TODO: Read credentials from ~/.softlayer. Requires dependency for parsing ini file
-	envFallback("SOFTLAYER_USERNAME", &u)
-	envFallback("SOFTLAYER_API_KEY", &k)
+	// camelCase the method name
+	method = strings.ToLower(string(method[0])) + method[1:]
 
-	return Session{UserName: u, ApiKey: k, Endpoint: e}
+	return session.DoRequest(service, method, args, options, pResult)
 }
 
 func envFallback(keyName string, value *string) {
