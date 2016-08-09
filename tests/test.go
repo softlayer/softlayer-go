@@ -20,7 +20,7 @@ import (
 	"fmt"
 
 	"github.ibm.com/riethm/gopherlayer/datatypes"
-	"github.ibm.com/riethm/gopherlayer/service"
+	"github.ibm.com/riethm/gopherlayer/services"
 	"github.ibm.com/riethm/gopherlayer/sl"
 	"reflect"
 	"time"
@@ -47,7 +47,7 @@ func main() {
 	//doGetLatestBillDate(&session)
 }
 
-func doListAccountVMsTest(session *service.Session) {
+func doListAccountVMsTest(session *services.Session) {
 	// Get the Account service
 	service := session.GetAccountService()
 
@@ -68,7 +68,7 @@ func doListAccountVMsTest(session *service.Session) {
 	}
 }
 
-func doExecuteRemoteScriptTest(session *service.Session) {
+func doExecuteRemoteScriptTest(session *services.Session) {
 	// Get the VirtualGuest service
 	service := session.GetVirtualGuestService()
 
@@ -84,7 +84,7 @@ func doExecuteRemoteScriptTest(session *service.Session) {
 	}
 }
 
-func doCreateVMTest(session *service.Session) {
+func doCreateVMTest(session *services.Session) {
 	service := session.GetVirtualGuestService()
 
 	// Create a Virtual_Guest instance as a template
@@ -135,7 +135,7 @@ func doCreateVMTest(session *service.Session) {
 	}
 }
 
-func doGetDiskUsageMetricsTest(session *service.Session) {
+func doGetDiskUsageMetricsTest(session *services.Session) {
 	service := session.GetAccountService()
 
 	tEnd := sl.Time(time.Now())
@@ -155,7 +155,7 @@ func doGetDiskUsageMetricsTest(session *service.Session) {
 	}
 }
 
-func doGetLatestBillDate(session *service.Session) {
+func doGetLatestBillDate(session *services.Session) {
 	service := session.GetAccountService()
 
 	d, _ := service.GetLatestBillDate()
