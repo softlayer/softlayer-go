@@ -77,11 +77,7 @@ type Session struct {
 
 func NewSession(args ...interface{}) Session {
 	keys := map[string]int{"username": 0, "api_key": 1, "endpoint_url": 2}
-	values := []string{"", "", DEFAULT_ENDPOINT}
-
-	if endpoint_url := os.Getenv("SOFTLAYER_ENDPOINT_URL"); endpoint_url != "" {
-		values[keys["endpoint_url"]] = endpoint_url
-	}
+	values := []string{"", "", ""}
 
 	for i := 0; i < len(args); i++ {
 		values[i] = args[i].(string)
@@ -90,6 +86,7 @@ func NewSession(args ...interface{}) Session {
 	// Default to the environment variables
 	envFallback("SOFTLAYER_USERNAME", &values[keys["username"]])
 	envFallback("SOFTLAYER_API_KEY", &values[keys["api_key"]])
+	envFallback("SOFTLAYER_ENDPOINT_URL", &values[keys["endpoint_url"]])
 
 	// Read ~/.softlayer for configuration
 	u, err := user.Current()
@@ -113,10 +110,15 @@ func NewSession(args ...interface{}) Session {
 		}
 	}
 
+	endpointUrl := values[keys["endpoint_url"]]
+	if endpointUrl == "" || !strings.Contains(endpointUrl, "/rest/") {
+		endpointUrl = DEFAULT_ENDPOINT
+	}
+
 	return Session{
 		UserName: values[keys["username"]],
 		ApiKey:   values[keys["api_key"]],
-		Endpoint: values[keys["endpoint_url"]],
+		Endpoint: endpointUrl,
 	}
 }
 
