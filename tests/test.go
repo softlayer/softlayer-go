@@ -27,7 +27,7 @@ import (
 )
 
 func main() {
-	session := service.NewSession("username", "apikey") // default endpoint
+	session := services.NewSession("username", "apikey") // default endpoint
 
 	session.Debug = true
 
