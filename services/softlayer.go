@@ -25,10 +25,12 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/user"
 	"reflect"
 	"runtime"
 	"strconv"
 	"strings"
+	"github.ibm.com/riethm/gopherlayer/config"
 )
 
 const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
@@ -73,20 +75,51 @@ type Session struct {
 	Debug    bool
 }
 
-func NewSession(u string, k string, args ...interface{}) Session {
-	var e string
+func NewSession(args ...interface{}) Session {
+	keys := map[string]int{"username": 0, "api_key": 1, "endpoint_url": 2}
+	values := []string{"", "", ""}
 
-	if len(args) > 0 {
-		e = args[0].(string)
-	} else {
-		e = DEFAULT_ENDPOINT
+	for i := 0; i < len(args); i++ {
+		values[i] = args[i].(string)
 	}
 
-	// TODO: Read credentials from ~/.softlayer. Requires dependency for parsing ini file
-	envFallback("SOFTLAYER_USERNAME", &u)
-	envFallback("SOFTLAYER_API_KEY", &k)
+	// Default to the environment variables
+	envFallback("SOFTLAYER_USERNAME", &values[keys["username"]])
+	envFallback("SOFTLAYER_API_KEY", &values[keys["api_key"]])
+	envFallback("SOFTLAYER_ENDPOINT_URL", &values[keys["endpoint_url"]])
 
-	return Session{UserName: u, ApiKey: k, Endpoint: e}
+	// Read ~/.softlayer for configuration
+	u, err := user.Current()
+	if err != nil {
+		panic("session: Could not determine current user.")
+	}
+
+	configPath := fmt.Sprintf("%s/.softlayer", u.HomeDir)
+	if _, err = os.Stat(configPath); !os.IsNotExist(err) {
+		// config file exists
+		file, err := config.LoadFile(configPath)
+		if err != nil {
+			log.Println(fmt.Sprintf("[WARN] session: Could not parse %s : %s", configPath, err))
+		} else {
+			for k, v := range keys {
+				value, ok := file.Get("softlayer", k)
+				if ok && values[v] == "" {
+					values[v] = value
+				}
+			}
+		}
+	}
+
+	endpointUrl := values[keys["endpoint_url"]]
+	if endpointUrl == "" || !strings.Contains(endpointUrl, "/rest/") {
+		endpointUrl = DEFAULT_ENDPOINT
+	}
+
+	return Session{
+		UserName: values[keys["username"]],
+		ApiKey:   values[keys["api_key"]],
+		Endpoint: endpointUrl,
+	}
 }
 
 func (r *Session) String() string {
