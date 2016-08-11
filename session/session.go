@@ -42,7 +42,7 @@ type Session struct {
 	ApiKey           string
 	Endpoint         string
 	Debug            bool
-	TransportHandler transportHandlerFunc
+	transportHandler transportHandlerFunc
 }
 
 func New(args ...interface{}) *Session {
@@ -89,12 +89,12 @@ func New(args ...interface{}) *Session {
 		UserName:         values[keys["username"]],
 		ApiKey:           values[keys["api_key"]],
 		Endpoint:         endpointUrl,
-		TransportHandler: doRestRequest,
+		transportHandler: doRestRequest,
 	}
 }
 
 func (r *Session) DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
-	return r.TransportHandler(r, service, method, args, options, pResult)
+	return r.transportHandler(r, service, method, args, options, pResult)
 }
 
 func envFallback(keyName string, value *string) {
