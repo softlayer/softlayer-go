@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Marketplace_Partner struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMarketplacePartnerService() Marketplace_Partner {
-	return Marketplace_Partner{Session: r}
+func GetMarketplacePartnerService(sess *session.Session) Marketplace_Partner {
+	return Marketplace_Partner{Session: sess}
 }
 
 //

@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The presale event data types indicate the information regarding an individual presale event. The '''locationId''' will indicate the datacenter associated with the presale event. The '''itemId''' will indicate the product item associated with a particular presale event - however these are more rare. The '''startDate''' and '''endDate''' will provide information regarding when the presale event is available for use. At the end of the presale event, the server or services purchased will be available once approved and provisioned.
 type Sales_Presale_Event struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSalesPresaleEventService() Sales_Presale_Event {
-	return Sales_Presale_Event{Session: r}
+func GetSalesPresaleEventService(sess *session.Session) Sales_Presale_Event {
+	return Sales_Presale_Event{Session: sess}
 }
 
 // Retrieve A flag to indicate that the presale event is currently active. A presale event is active if the current time is between the start and end dates.

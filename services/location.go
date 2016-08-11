@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // Every piece of hardware and network connection owned by SoftLayer is tracked physically by location and stored in the SoftLayer_Location data type. SoftLayer locations exist in parent/child relationships, a convenient way to track equipment from it's city, datacenter, server room, rack, then slot. Network backbones are tied to datacenters only, not to a room, rack, or slot.
 type Location struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationService() Location {
-	return Location{Session: r}
+func GetLocationService(sess *session.Session) Location {
+	return Location{Session: sess}
 }
 
 // Object Storage is only available in select datacenters. This method will return all the datacenters where object storage is available.
@@ -166,12 +170,12 @@ func (r *Location) GetpointOfPresence() (resp []datatypes.Location, err error) {
 
 // SoftLayer_Location_Datacenter extends the [[SoftLayer_Location]] data type to include datacenter-specific properties.
 type Location_Datacenter struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationDatacenterService() Location_Datacenter {
-	return Location_Datacenter{Session: r}
+func GetLocationDatacenterService(sess *session.Session) Location_Datacenter {
+	return Location_Datacenter{Session: sess}
 }
 
 // Retrieve
@@ -380,12 +384,12 @@ func (r *Location_Datacenter) GetpointOfPresence() (resp []datatypes.Location, e
 
 //
 type Location_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationGroupService() Location_Group {
-	return Location_Group{Session: r}
+func GetLocationGroupService(sess *session.Session) Location_Group {
+	return Location_Group{Session: sess}
 }
 
 //
@@ -414,12 +418,12 @@ func (r *Location_Group) GetObject() (resp datatypes.Location_Group, err error) 
 
 //
 type Location_Group_Pricing struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationGroupPricingService() Location_Group_Pricing {
-	return Location_Group_Pricing{Session: r}
+func GetLocationGroupPricingService(sess *session.Session) Location_Group_Pricing {
+	return Location_Group_Pricing{Session: sess}
 }
 
 //
@@ -454,12 +458,12 @@ func (r *Location_Group_Pricing) GetPrices() (resp []datatypes.Product_Item_Pric
 
 //
 type Location_Group_Regional struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationGroupRegionalService() Location_Group_Regional {
-	return Location_Group_Regional{Session: r}
+func GetLocationGroupRegionalService(sess *session.Session) Location_Group_Regional {
+	return Location_Group_Regional{Session: sess}
 }
 
 //
@@ -500,12 +504,12 @@ func (r *Location_Group_Regional) GetPreferredDatacenter() (resp datatypes.Locat
 
 //
 type Location_Reservation struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationReservationService() Location_Reservation {
-	return Location_Reservation{Session: r}
+func GetLocationReservationService(sess *session.Session) Location_Reservation {
+	return Location_Reservation{Session: sess}
 }
 
 // Retrieve The account that a billing item belongs to.
@@ -552,12 +556,12 @@ func (r *Location_Reservation) GetObject() (resp datatypes.Location_Reservation,
 
 //
 type Location_Reservation_Rack struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationReservationRackService() Location_Reservation_Rack {
-	return Location_Reservation_Rack{Session: r}
+func GetLocationReservationRackService(sess *session.Session) Location_Reservation_Rack {
+	return Location_Reservation_Rack{Session: sess}
 }
 
 // Retrieve The bandwidth allotment that the reservation belongs to.
@@ -592,12 +596,12 @@ func (r *Location_Reservation_Rack) GetObject() (resp datatypes.Location_Reserva
 
 //
 type Location_Reservation_Rack_Member struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocationReservationRackMemberService() Location_Reservation_Rack_Member {
-	return Location_Reservation_Rack_Member{Session: r}
+func GetLocationReservationRackMemberService(sess *session.Session) Location_Reservation_Rack_Member {
+	return Location_Reservation_Rack_Member{Session: sess}
 }
 
 // Retrieve Location relation for the rack member

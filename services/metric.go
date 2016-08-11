@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // Metric tracking objects provides a common interface to all metrics provided by SoftLayer. These metrics range from network component traffic for a server to aggregated Bandwidth Pooling traffic and more. Every object within SoftLayer's range of objects that has data that can be tracked over time has an associated tracking object. Use the [[SoftLayer_Metric_Tracking_Object]] service to retrieve raw and graph data from a tracking object.
 type Metric_Tracking_Object struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMetricTrackingObjectService() Metric_Tracking_Object {
-	return Metric_Tracking_Object{Session: r}
+func GetMetricTrackingObjectService(sess *session.Session) Metric_Tracking_Object {
+	return Metric_Tracking_Object{Session: sess}
 }
 
 // Retrieve a PNG image of the last 24 hours of bandwidth usage of one of SoftLayer's network backbones.
@@ -152,12 +156,12 @@ func (r *Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Objec
 
 // This data type provides commonly used bandwidth summary components for the current billing cycle.
 type Metric_Tracking_Object_Bandwidth_Summary struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMetricTrackingObjectBandwidthSummaryService() Metric_Tracking_Object_Bandwidth_Summary {
-	return Metric_Tracking_Object_Bandwidth_Summary{Session: r}
+func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) Metric_Tracking_Object_Bandwidth_Summary {
+	return Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
 }
 
 //

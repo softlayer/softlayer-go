@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // Details provided for the notification are basic.  Details such as the related preferences, name and keyname for the notification can be retrieved.  The keyname property for the notification can be used to refer to a notification when integrating into the SoftLayer Notification system.  The name property can used more for display purposes.
 type Notification struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationService() Notification {
-	return Notification{Session: r}
+func GetNotificationService(sess *session.Session) Notification {
+	return Notification{Session: sess}
 }
 
 // Use this method to retrieve all active notifications that can be subscribed to.
@@ -58,12 +62,12 @@ func (r *Notification) GetRequiredPreferences() (resp []datatypes.Notification_P
 
 // This is an extension of the SoftLayer_Notification class.  These are implementation details specific to those notifications which can be subscribed to and received on a mobile device.
 type Notification_Mobile struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationMobileService() Notification_Mobile {
-	return Notification_Mobile{Session: r}
+func GetNotificationMobileService(sess *session.Session) Notification_Mobile {
+	return Notification_Mobile{Session: sess}
 }
 
 // Create a new subscriber for a given resource.
@@ -103,12 +107,12 @@ func (r *Notification_Mobile) GetRequiredPreferences() (resp []datatypes.Notific
 
 //
 type Notification_Occurrence_Event struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationOccurrenceEventService() Notification_Occurrence_Event {
-	return Notification_Occurrence_Event{Session: r}
+func GetNotificationOccurrenceEventService(sess *session.Session) Notification_Occurrence_Event {
+	return Notification_Occurrence_Event{Session: sess}
 }
 
 // <<<< EOT
@@ -218,12 +222,12 @@ func (r *Notification_Occurrence_Event) GetUpdates() (resp []datatypes.Notificat
 
 // This type contains general information relating to a user that may be impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_User struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationOccurrenceUserService() Notification_Occurrence_User {
-	return Notification_Occurrence_User{Session: r}
+func GetNotificationOccurrenceUserService(sess *session.Session) Notification_Occurrence_User {
+	return Notification_Occurrence_User{Session: sess}
 }
 
 //
@@ -272,12 +276,12 @@ func (r *Notification_Occurrence_User) GetUser() (resp datatypes.User_Customer, 
 //
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationUserSubscriberService() Notification_User_Subscriber {
-	return Notification_User_Subscriber{Session: r}
+func GetNotificationUserSubscriberService(sess *session.Session) Notification_User_Subscriber {
+	return Notification_User_Subscriber{Session: sess}
 }
 
 // Use the method to create a new subscription for a notification.  This method is the entry method to the notification system. Certain properties are required to create a subscription while others are optional.
@@ -376,12 +380,12 @@ func (r *Notification_User_Subscriber) GetUserRecord() (resp datatypes.User_Cust
 //
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Billing struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationUserSubscriberBillingService() Notification_User_Subscriber_Billing {
-	return Notification_User_Subscriber_Billing{Session: r}
+func GetNotificationUserSubscriberBillingService(sess *session.Session) Notification_User_Subscriber_Billing {
+	return Notification_User_Subscriber_Billing{Session: sess}
 }
 
 // Use the method to create a new subscription for a notification.  This method is the entry method to the notification system. Certain properties are required to create a subscription while others are optional.
@@ -480,12 +484,12 @@ func (r *Notification_User_Subscriber_Billing) GetUserRecord() (resp datatypes.U
 //
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Mobile struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationUserSubscriberMobileService() Notification_User_Subscriber_Mobile {
-	return Notification_User_Subscriber_Mobile{Session: r}
+func GetNotificationUserSubscriberMobileService(sess *session.Session) Notification_User_Subscriber_Mobile {
+	return Notification_User_Subscriber_Mobile{Session: sess}
 }
 
 //
@@ -600,12 +604,12 @@ func (r *Notification_User_Subscriber_Mobile) SetSnoozeTimer(start *int, end *in
 //
 // NOTE: Some preferences have certain restrictions on values that can be set.
 type Notification_User_Subscriber_Preference struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNotificationUserSubscriberPreferenceService() Notification_User_Subscriber_Preference {
-	return Notification_User_Subscriber_Preference{Session: r}
+func GetNotificationUserSubscriberPreferenceService(sess *session.Session) Notification_User_Subscriber_Preference {
+	return Notification_User_Subscriber_Preference{Session: sess}
 }
 
 // Use the method to create a new notification preference for a subscriber

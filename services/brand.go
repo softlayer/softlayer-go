@@ -20,18 +20,22 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Brand data type contains brand information relating to the single SoftLayer customer account.
 //
 // SoftLayer customers are unable to change their brand information in the portal or the API.
 type Brand struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBrandService() Brand {
-	return Brand{Session: r}
+func GetBrandService(sess *session.Session) Brand {
+	return Brand{Session: sess}
 }
 
 // Create a new customer account record.
@@ -193,12 +197,12 @@ func (r *Brand) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 
 // The [[SoftLayer_Brand_Restriction_Location_CustomerCountry]] data type defines the relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on the SoftLayer US brand for customers that live in Great Britain.
 type Brand_Restriction_Location_CustomerCountry struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBrandRestrictionLocationCustomerCountryService() Brand_Restriction_Location_CustomerCountry {
-	return Brand_Restriction_Location_CustomerCountry{Session: r}
+func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) Brand_Restriction_Location_CustomerCountry {
+	return Brand_Restriction_Location_CustomerCountry{Session: sess}
 }
 
 //

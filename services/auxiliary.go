@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Auxiliary_Marketing_Event struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryMarketingEventService() Auxiliary_Marketing_Event {
-	return Auxiliary_Marketing_Event{Session: r}
+func GetAuxiliaryMarketingEventService(sess *session.Session) Auxiliary_Marketing_Event {
+	return Auxiliary_Marketing_Event{Session: sess}
 }
 
 // This method will return a collection of SoftLayer_Auxiliary_Marketing_Event objects ordered in ascending order by start date.
@@ -46,12 +50,12 @@ func (r *Auxiliary_Marketing_Event) GetObject() (resp datatypes.Auxiliary_Market
 
 //
 type Auxiliary_Network_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryNetworkStatusService() Auxiliary_Network_Status {
-	return Auxiliary_Network_Status{Session: r}
+func GetAuxiliaryNetworkStatusService(sess *session.Session) Auxiliary_Network_Status {
+	return Auxiliary_Network_Status{Session: sess}
 }
 
 // Return the current network status of and latency information for a given target from numerous points around the world. Valid Targets:
@@ -76,12 +80,12 @@ func (r *Auxiliary_Network_Status) GetNetworkStatus(target *string) (resp []data
 
 // A SoftLayer_Auxiliary_Notification_Emergency data object represents a notification event being broadcast to the SoftLayer customer base. It is used to provide information regarding outages or current known issues.
 type Auxiliary_Notification_Emergency struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryNotificationEmergencyService() Auxiliary_Notification_Emergency {
-	return Auxiliary_Notification_Emergency{Session: r}
+func GetAuxiliaryNotificationEmergencyService(sess *session.Session) Auxiliary_Notification_Emergency {
+	return Auxiliary_Notification_Emergency{Session: sess}
 }
 
 // Retrieve an array of SoftLayer_Auxiliary_Notification_Emergency data types, which contain all notification events regardless of status.
@@ -116,12 +120,12 @@ func (r *Auxiliary_Notification_Emergency) GetStatus() (resp datatypes.Auxiliary
 
 //
 type Auxiliary_Press_Release struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseService() Auxiliary_Press_Release {
-	return Auxiliary_Press_Release{Session: r}
+func GetAuxiliaryPressReleaseService(sess *session.Session) Auxiliary_Press_Release {
+	return Auxiliary_Press_Release{Session: sess}
 }
 
 // Retrieve
@@ -184,12 +188,12 @@ func (r *Auxiliary_Press_Release) GetWebsiteHighlightPressReleases() (resp []dat
 
 //
 type Auxiliary_Press_Release_About struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseAboutService() Auxiliary_Press_Release_About {
-	return Auxiliary_Press_Release_About{Session: r}
+func GetAuxiliaryPressReleaseAboutService(sess *session.Session) Auxiliary_Press_Release_About {
+	return Auxiliary_Press_Release_About{Session: sess}
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_About object whose about id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
@@ -200,12 +204,12 @@ func (r *Auxiliary_Press_Release_About) GetObject() (resp datatypes.Auxiliary_Pr
 
 //
 type Auxiliary_Press_Release_About_Press_Release struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseAboutPressReleaseService() Auxiliary_Press_Release_About_Press_Release {
-	return Auxiliary_Press_Release_About_Press_Release{Session: r}
+func GetAuxiliaryPressReleaseAboutPressReleaseService(sess *session.Session) Auxiliary_Press_Release_About_Press_Release {
+	return Auxiliary_Press_Release_About_Press_Release{Session: sess}
 }
 
 // Retrieve
@@ -228,12 +232,12 @@ func (r *Auxiliary_Press_Release_About_Press_Release) GetPressReleases() (resp [
 
 //
 type Auxiliary_Press_Release_Contact struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseContactService() Auxiliary_Press_Release_Contact {
-	return Auxiliary_Press_Release_Contact{Session: r}
+func GetAuxiliaryPressReleaseContactService(sess *session.Session) Auxiliary_Press_Release_Contact {
+	return Auxiliary_Press_Release_Contact{Session: sess}
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Contact object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
@@ -244,12 +248,12 @@ func (r *Auxiliary_Press_Release_Contact) GetObject() (resp datatypes.Auxiliary_
 
 //
 type Auxiliary_Press_Release_Contact_Press_Release struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseContactPressReleaseService() Auxiliary_Press_Release_Contact_Press_Release {
-	return Auxiliary_Press_Release_Contact_Press_Release{Session: r}
+func GetAuxiliaryPressReleaseContactPressReleaseService(sess *session.Session) Auxiliary_Press_Release_Contact_Press_Release {
+	return Auxiliary_Press_Release_Contact_Press_Release{Session: sess}
 }
 
 // Retrieve
@@ -272,12 +276,12 @@ func (r *Auxiliary_Press_Release_Contact_Press_Release) GetPressReleases() (resp
 
 //
 type Auxiliary_Press_Release_Content struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseContentService() Auxiliary_Press_Release_Content {
-	return Auxiliary_Press_Release_Content{Session: r}
+func GetAuxiliaryPressReleaseContentService(sess *session.Session) Auxiliary_Press_Release_Content {
+	return Auxiliary_Press_Release_Content{Session: sess}
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Content object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
@@ -288,12 +292,12 @@ func (r *Auxiliary_Press_Release_Content) GetObject() (resp datatypes.Auxiliary_
 
 //
 type Auxiliary_Press_Release_Media_Partner struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseMediaPartnerService() Auxiliary_Press_Release_Media_Partner {
-	return Auxiliary_Press_Release_Media_Partner{Session: r}
+func GetAuxiliaryPressReleaseMediaPartnerService(sess *session.Session) Auxiliary_Press_Release_Media_Partner {
+	return Auxiliary_Press_Release_Media_Partner{Session: sess}
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Contact object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
@@ -304,12 +308,12 @@ func (r *Auxiliary_Press_Release_Media_Partner) GetObject() (resp datatypes.Auxi
 
 //
 type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryPressReleaseMediaPartnerPressReleaseService() Auxiliary_Press_Release_Media_Partner_Press_Release {
-	return Auxiliary_Press_Release_Media_Partner_Press_Release{Session: r}
+func GetAuxiliaryPressReleaseMediaPartnerPressReleaseService(sess *session.Session) Auxiliary_Press_Release_Media_Partner_Press_Release {
+	return Auxiliary_Press_Release_Media_Partner_Press_Release{Session: sess}
 }
 
 // Retrieve
@@ -332,12 +336,12 @@ func (r *Auxiliary_Press_Release_Media_Partner_Press_Release) GetPressReleases()
 
 //
 type Auxiliary_Shipping_Courier_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAuxiliaryShippingCourierTypeService() Auxiliary_Shipping_Courier_Type {
-	return Auxiliary_Shipping_Courier_Type{Session: r}
+func GetAuxiliaryShippingCourierTypeService(sess *session.Session) Auxiliary_Shipping_Courier_Type {
+	return Auxiliary_Shipping_Courier_Type{Session: sess}
 }
 
 // Retrieve

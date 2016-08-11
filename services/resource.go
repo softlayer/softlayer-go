@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Resource_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetResourceGroupService() Resource_Group {
-	return Resource_Group{Session: r}
+func GetResourceGroupService(sess *session.Session) Resource_Group {
+	return Resource_Group{Session: sess}
 }
 
 //
@@ -97,12 +101,12 @@ func (r *Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Membe
 
 //
 type Resource_Group_Template struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetResourceGroupTemplateService() Resource_Group_Template {
-	return Resource_Group_Template{Session: r}
+func GetResourceGroupTemplateService(sess *session.Session) Resource_Group_Template {
+	return Resource_Group_Template{Session: sess}
 }
 
 //
@@ -137,12 +141,12 @@ func (r *Resource_Group_Template) GetPackage() (resp datatypes.Product_Package, 
 
 //
 type Resource_Metadata struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetResourceMetadataService() Resource_Metadata {
-	return Resource_Metadata{Session: r}
+func GetResourceMetadataService(sess *session.Session) Resource_Metadata {
+	return Resource_Metadata{Session: sess}
 }
 
 // The getBackendMacAddresses method retrieves a list of backend MAC addresses for the resource

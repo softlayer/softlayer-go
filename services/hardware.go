@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Hardware data type contains general information relating to a single SoftLayer hardware.
 type Hardware struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareService() Hardware {
-	return Hardware{Session: r}
+func GetHardwareService(sess *session.Session) Hardware {
+	return Hardware{Session: sess}
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -1469,12 +1473,12 @@ func (r *Hardware) SetTags(tags *string) (resp bool, err error) {
 
 // The SoftLayer_Hardware_Benchmark_Certification data type contains general information relating to a single SoftLayer hardware benchmark certification document.
 type Hardware_Benchmark_Certification struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareBenchmarkCertificationService() Hardware_Benchmark_Certification {
-	return Hardware_Benchmark_Certification{Session: r}
+func GetHardwareBenchmarkCertificationService(sess *session.Session) Hardware_Benchmark_Certification {
+	return Hardware_Benchmark_Certification{Session: sess}
 }
 
 // Retrieve Information regarding a benchmark certification result's associated SoftLayer customer account.
@@ -1503,12 +1507,12 @@ func (r *Hardware_Benchmark_Certification) GetResultFile() (resp []byte, err err
 
 // The SoftLayer_Hardware_Component_Model data type contains general information relating to a single SoftLayer component model.  A component model represents a vendor specific representation of a hardware component.  Every piece of hardware on a server will have a specific hardware component model.
 type Hardware_Component_Model struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareComponentModelService() Hardware_Component_Model {
-	return Hardware_Component_Model{Session: r}
+func GetHardwareComponentModelService(sess *session.Session) Hardware_Component_Model {
+	return Hardware_Component_Model{Session: sess}
 }
 
 // Retrieve
@@ -1591,12 +1595,12 @@ func (r *Hardware_Component_Model) GetValidAttributeTypes() (resp []datatypes.Ha
 
 // The SoftLayer_Hardware_Component_Partition_OperatingSystem data type contains general information relating to a single SoftLayer Operating System Partition Template.
 type Hardware_Component_Partition_OperatingSystem struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareComponentPartitionOperatingSystemService() Hardware_Component_Partition_OperatingSystem {
-	return Hardware_Component_Partition_OperatingSystem{Session: r}
+func GetHardwareComponentPartitionOperatingSystemService(sess *session.Session) Hardware_Component_Partition_OperatingSystem {
+	return Hardware_Component_Partition_OperatingSystem{Session: sess}
 }
 
 //
@@ -1628,12 +1632,12 @@ func (r *Hardware_Component_Partition_OperatingSystem) GetPartitionTemplates() (
 
 // The SoftLayer_Hardware_Component_Partition_Template data type contains general information relating to a single SoftLayer partition template.  Partition templates group 1 or more partition configurations that can be used to predefined how a hard drives partitions will be configured.
 type Hardware_Component_Partition_Template struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareComponentPartitionTemplateService() Hardware_Component_Partition_Template {
-	return Hardware_Component_Partition_Template{Session: r}
+func GetHardwareComponentPartitionTemplateService(sess *session.Session) Hardware_Component_Partition_Template {
+	return Hardware_Component_Partition_Template{Session: sess}
 }
 
 // Retrieve A partition template's associated [[SoftLayer_Account|Account]].
@@ -1674,12 +1678,12 @@ func (r *Hardware_Component_Partition_Template) GetPartitionTemplatePartition() 
 
 // The SoftLayer_Hardware_Router data type contains general information relating to a single SoftLayer router.
 type Hardware_Router struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareRouterService() Hardware_Router {
-	return Hardware_Router{Session: r}
+func GetHardwareRouterService(sess *session.Session) Hardware_Router {
+	return Hardware_Router{Session: sess}
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -3137,12 +3141,12 @@ func (r *Hardware_Router) SetTags(tags *string) (resp bool, err error) {
 
 //
 type Hardware_SecurityModule struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareSecurityModuleService() Hardware_SecurityModule {
-	return Hardware_SecurityModule{Session: r}
+func GetHardwareSecurityModuleService(sess *session.Session) Hardware_SecurityModule {
+	return Hardware_SecurityModule{Session: sess}
 }
 
 // Activates the private network port
@@ -5212,12 +5216,12 @@ func (r *Hardware_SecurityModule) ValidatePartitionsForOperatingSystem(operating
 
 // The SoftLayer_Hardware_Server data type contains general information relating to a single SoftLayer server.
 type Hardware_Server struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetHardwareServerService() Hardware_Server {
-	return Hardware_Server{Session: r}
+func GetHardwareServerService(sess *session.Session) Hardware_Server {
+	return Hardware_Server{Session: sess}
 }
 
 // Activates the private network port

@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Event_Log data type contains an event detail occurred upon various SoftLayer resources.
 type Event_Log struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetEventLogService() Event_Log {
-	return Event_Log{Session: r}
+func GetEventLogService(sess *session.Session) Event_Log {
+	return Event_Log{Session: sess}
 }
 
 // This all indexed event names.

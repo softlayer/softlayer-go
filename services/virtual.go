@@ -20,18 +20,22 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The virtual disk image data type presents the structure in which a virtual disk image will be presented.
 //
 // Virtual block devices are assigned to disk images.
 type Virtual_Disk_Image struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualDiskImageService() Virtual_Disk_Image {
-	return Virtual_Disk_Image{Session: r}
+func GetVirtualDiskImageService(sess *session.Session) Virtual_Disk_Image {
+	return Virtual_Disk_Image{Session: sess}
 }
 
 //
@@ -137,12 +141,12 @@ func (r *Virtual_Disk_Image) GetType() (resp datatypes.Virtual_Disk_Image_Type, 
 //
 // A guest, also known as a virtual server, represents an allocation of resources on a virtual host.
 type Virtual_Guest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualGuestService() Virtual_Guest {
-	return Virtual_Guest{Session: r}
+func GetVirtualGuestService(sess *session.Session) Virtual_Guest {
+	return Virtual_Guest{Session: sess}
 }
 
 // Activate the private network port
@@ -1852,12 +1856,12 @@ func (r *Virtual_Guest) VerifyReloadOperatingSystem(config *datatypes.Container_
 //
 // A virtual block device template group, also known as an image template group, represents an image of a virtual guest instance.
 type Virtual_Guest_Block_Device_Template_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualGuestBlockDeviceTemplateGroupService() Virtual_Guest_Block_Device_Template_Group {
-	return Virtual_Guest_Block_Device_Template_Group{Session: r}
+func GetVirtualGuestBlockDeviceTemplateGroupService(sess *session.Session) Virtual_Guest_Block_Device_Template_Group {
+	return Virtual_Guest_Block_Device_Template_Group{Session: sess}
 }
 
 // This method will create transaction(s) to add available locations to an archive image template.
@@ -2099,12 +2103,12 @@ func (r *Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp 
 
 //
 type Virtual_Guest_Boot_Parameter struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualGuestBootParameterService() Virtual_Guest_Boot_Parameter {
-	return Virtual_Guest_Boot_Parameter{Session: r}
+func GetVirtualGuestBootParameterService(sess *session.Session) Virtual_Guest_Boot_Parameter {
+	return Virtual_Guest_Boot_Parameter{Session: sess}
 }
 
 //
@@ -2151,12 +2155,12 @@ func (r *Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest
 
 // Describes a virtual guest boot parameter. In this the word class is used in the context of arguments sent to cloud computing instances such as single user mode and boot into bash.
 type Virtual_Guest_Boot_Parameter_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualGuestBootParameterTypeService() Virtual_Guest_Boot_Parameter_Type {
-	return Virtual_Guest_Boot_Parameter_Type{Session: r}
+func GetVirtualGuestBootParameterTypeService(sess *session.Session) Virtual_Guest_Boot_Parameter_Type {
+	return Virtual_Guest_Boot_Parameter_Type{Session: sess}
 }
 
 //
@@ -2175,12 +2179,12 @@ func (r *Virtual_Guest_Boot_Parameter_Type) GetObject() (resp datatypes.Virtual_
 //
 // A guest, also known as a virtual server, represents an allocation of resources on a virtual host.
 type Virtual_Guest_Network_Component struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualGuestNetworkComponentService() Virtual_Guest_Network_Component {
-	return Virtual_Guest_Network_Component{Session: r}
+func GetVirtualGuestNetworkComponentService(sess *session.Session) Virtual_Guest_Network_Component {
+	return Virtual_Guest_Network_Component{Session: sess}
 }
 
 // Completely restrict all incoming and outgoing bandwidth traffic to a network component
@@ -2275,12 +2279,12 @@ func (r *Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
 
 // The virtual host represents the platform on which virtual guests reside. At times a virtual host has no allocations on the physical server, however with many modern platforms it is a virtual machine with small CPU and Memory allocations that runs in the Control Domain.
 type Virtual_Host struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualHostService() Virtual_Host {
-	return Virtual_Host{Session: r}
+func GetVirtualHostService(sess *session.Session) Virtual_Host {
+	return Virtual_Host{Session: sess}
 }
 
 // Retrieve The account which a virtual host belongs to.
@@ -2408,12 +2412,12 @@ func (r *Virtual_Host) ResumeLiveGuest(uuid *string) (resp bool, err error) {
 
 // The SoftLayer_Virtual_Storage_Repository represents a web based storage system that can be accessed through many types of devices, interfaces, and other resources.
 type Virtual_Storage_Repository struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetVirtualStorageRepositoryService() Virtual_Storage_Repository {
-	return Virtual_Storage_Repository{Session: r}
+func GetVirtualStorageRepositoryService(sess *session.Session) Virtual_Storage_Repository {
+	return Virtual_Storage_Repository{Session: sess}
 }
 
 // Retrieve The [[SoftLayer_Account|account]] that a storage repository belongs to.

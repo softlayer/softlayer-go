@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Billing_Currency struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingCurrencyService() Billing_Currency {
-	return Billing_Currency{Session: r}
+func GetBillingCurrencyService(sess *session.Session) Billing_Currency {
+	return Billing_Currency{Session: sess}
 }
 
 //
@@ -56,12 +60,12 @@ func (r *Billing_Currency) GetPrice(price *float64, formatOptions *datatypes.Con
 
 //
 type Billing_Currency_ExchangeRate struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingCurrencyExchangeRateService() Billing_Currency_ExchangeRate {
-	return Billing_Currency_ExchangeRate{Session: r}
+func GetBillingCurrencyExchangeRateService(sess *session.Session) Billing_Currency_ExchangeRate {
+	return Billing_Currency_ExchangeRate{Session: sess}
 }
 
 //
@@ -120,12 +124,12 @@ func (r *Billing_Currency_ExchangeRate) GetPrice(price *float64, formatOptions *
 
 // Every SoftLayer customer account has billing specific information which is kept in the SoftLayer_Billing_Info data type. This information is used by the SoftLayer accounting group when sending invoices and making billing inquiries.
 type Billing_Info struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInfoService() Billing_Info {
-	return Billing_Info{Session: r}
+func GetBillingInfoService(sess *session.Session) Billing_Info {
+	return Billing_Info{Session: sess}
 }
 
 // Retrieve The SoftLayer customer account associated with this billing information.
@@ -172,12 +176,12 @@ func (r *Billing_Info) GetObject() (resp datatypes.Billing_Info, err error) {
 
 // The SoftLayer_Billing_Invoice data type contains general information relating to an individual invoice applied to a SoftLayer customer account. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the invoice is generated.
 type Billing_Invoice struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInvoiceService() Billing_Invoice {
-	return Billing_Invoice{Session: r}
+func GetBillingInvoiceService(sess *session.Session) Billing_Invoice {
+	return Billing_Invoice{Session: sess}
 }
 
 // Create a transaction to email PDF and/or Excel invoice links to the requesting user's email address. You must have a PDF reader installed in order to view these files.
@@ -378,12 +382,12 @@ func (r *Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Pro
 
 // Each billing invoice item makes up a record within an invoice. This provides you with a detailed record of everything related to an invoice item. When you are billed, our system takes active billing items and creates an invoice. These invoice items are a copy of your active billing items, and make up the contents of your invoice.
 type Billing_Invoice_Item struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInvoiceItemService() Billing_Invoice_Item {
-	return Billing_Invoice_Item{Session: r}
+func GetBillingInvoiceItemService(sess *session.Session) Billing_Invoice_Item {
+	return Billing_Invoice_Item{Session: sess}
 }
 
 // Retrieve An Invoice Item's associated child invoice items. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
@@ -484,12 +488,12 @@ func (r *Billing_Invoice_Item) GetTotalRecurringTaxAmount() (resp float64, err e
 
 //
 type Billing_Invoice_Next struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInvoiceNextService() Billing_Invoice_Next {
-	return Billing_Invoice_Next{Session: r}
+func GetBillingInvoiceNextService(sess *session.Session) Billing_Invoice_Next {
+	return Billing_Invoice_Next{Session: sess}
 }
 
 // Return an account's next invoice in a Microsoft excel format.
@@ -521,12 +525,12 @@ func (r *Billing_Invoice_Next) GetPdfDetailed(documentCreateDate *datatypes.Time
 
 // The invoice tax status data type models a single status or state that an invoice can reflect in regard to an integration with a third-party tax calculation service.
 type Billing_Invoice_Tax_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInvoiceTaxStatusService() Billing_Invoice_Tax_Status {
-	return Billing_Invoice_Tax_Status{Session: r}
+func GetBillingInvoiceTaxStatusService(sess *session.Session) Billing_Invoice_Tax_Status {
+	return Billing_Invoice_Tax_Status{Session: sess}
 }
 
 //
@@ -543,12 +547,12 @@ func (r *Billing_Invoice_Tax_Status) GetObject() (resp datatypes.Billing_Invoice
 
 // The invoice tax type data type models a single strategy for handling tax calculations.
 type Billing_Invoice_Tax_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingInvoiceTaxTypeService() Billing_Invoice_Tax_Type {
-	return Billing_Invoice_Tax_Type{Session: r}
+func GetBillingInvoiceTaxTypeService(sess *session.Session) Billing_Invoice_Tax_Type {
+	return Billing_Invoice_Tax_Type{Session: sess}
 }
 
 //
@@ -567,12 +571,12 @@ func (r *Billing_Invoice_Tax_Type) GetObject() (resp datatypes.Billing_Invoice_T
 //
 // Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Item struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingItemService() Billing_Item {
-	return Billing_Item{Session: r}
+func GetBillingItemService(sess *session.Session) Billing_Item {
+	return Billing_Item{Session: sess}
 }
 
 // Cancel the resource or service for a billing Item. By default the billing item will be cancelled immediately and reclaim of the resource will begin shortly. Setting the "cancelImmediately" property to false will delay the cancellation until the next bill date.
@@ -953,12 +957,12 @@ func (r *Billing_Item) VoidCancelService() (resp bool, err error) {
 
 // The SoftLayer_Billing_Item_Cancellation_Reason data type contains cancellation reasons.
 type Billing_Item_Cancellation_Reason struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingItemCancellationReasonService() Billing_Item_Cancellation_Reason {
-	return Billing_Item_Cancellation_Reason{Session: r}
+func GetBillingItemCancellationReasonService(sess *session.Session) Billing_Item_Cancellation_Reason {
+	return Billing_Item_Cancellation_Reason{Session: sess}
 }
 
 // getAllCancellationReasons() retrieves a list of all cancellation reasons that a server/service may be assigned to.
@@ -993,12 +997,12 @@ func (r *Billing_Item_Cancellation_Reason) GetTranslatedReason() (resp string, e
 
 // The SoftLayer_Billing_Item_Cancellation_Reason_Category data type contains cancellation reason categories.
 type Billing_Item_Cancellation_Reason_Category struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingItemCancellationReasonCategoryService() Billing_Item_Cancellation_Reason_Category {
-	return Billing_Item_Cancellation_Reason_Category{Session: r}
+func GetBillingItemCancellationReasonCategoryService(sess *session.Session) Billing_Item_Cancellation_Reason_Category {
+	return Billing_Item_Cancellation_Reason_Category{Session: sess}
 }
 
 // getAllCancellationReasonCategories() retrieves a list of all cancellation reason categories
@@ -1021,12 +1025,12 @@ func (r *Billing_Item_Cancellation_Reason_Category) GetObject() (resp datatypes.
 
 // SoftLayer_Billing_Item_Cancellation_Request data type is used to cancel service billing items.
 type Billing_Item_Cancellation_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingItemCancellationRequestService() Billing_Item_Cancellation_Request {
-	return Billing_Item_Cancellation_Request{Session: r}
+func GetBillingItemCancellationRequestService(sess *session.Session) Billing_Item_Cancellation_Request {
+	return Billing_Item_Cancellation_Request{Session: sess}
 }
 
 // This method creates a service cancellation request.
@@ -1125,12 +1129,12 @@ func (r *Billing_Item_Cancellation_Request) Void(closeRelatedTicketFlag *bool) (
 
 // The SoftLayer_Billing_Order data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the order is generated for existing SoftLayer customer.
 type Billing_Order struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingOrderService() Billing_Order {
-	return Billing_Order{Session: r}
+func GetBillingOrderService(sess *session.Session) Billing_Order {
+	return Billing_Order{Session: sess}
 }
 
 // When an order has been modified, the customer will need to approve the changes. This method will allow the customer to approve the changes.
@@ -1355,12 +1359,12 @@ func (r *Billing_Order) IsPendingEditApproval() (resp bool, err error) {
 
 //
 type Billing_Order_Cart struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingOrderCartService() Billing_Order_Cart {
-	return Billing_Order_Cart{Session: r}
+func GetBillingOrderCartService(sess *session.Session) Billing_Order_Cart {
+	return Billing_Order_Cart{Session: sess}
 }
 
 // This method is used to transfer an anonymous quote to the active user and associated account. An anonymous quote is one that was created by a user without being authenticated. If a quote was created anonymously and then the customer attempts to access that anonymous quote via the API (which requires authentication), the customer will be unable to retrieve the quote due to the security restrictions in place. By providing the ability for a customer to claim a quote, s/he will be able to pull the anonymous quote onto his/her account and successfully view the quote.
@@ -1504,12 +1508,12 @@ func (r *Billing_Order_Cart) VerifyOrder(orderData *datatypes.Container_Product_
 //
 // Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Order_Item struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingOrderItemService() Billing_Order_Item {
-	return Billing_Order_Item{Session: r}
+func GetBillingOrderItemService(sess *session.Session) Billing_Order_Item {
+	return Billing_Order_Item{Session: sess}
 }
 
 // Retrieve The SoftLayer_Billing_Item tied to the order item.
@@ -1646,12 +1650,12 @@ func (r *Billing_Order_Item) GetUpgradeItem() (resp datatypes.Product_Item, err 
 
 // The SoftLayer_Billing_Oder_Quote data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the quote is generated for existing SoftLayer customer.
 type Billing_Order_Quote struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetBillingOrderQuoteService() Billing_Order_Quote {
-	return Billing_Order_Quote{Session: r}
+func GetBillingOrderQuoteService(sess *session.Session) Billing_Order_Quote {
+	return Billing_Order_Quote{Session: sess}
 }
 
 // This method is used to transfer an anonymous quote to the active user and associated account. An anonymous quote is one that was created by a user without being authenticated. If a quote was created anonymously and then the customer attempts to access that anonymous quote via the API (which requires authentication), the customer will be unable to retrieve the quote due to the security restrictions in place. By providing the ability for a customer to claim a quote, s/he will be able to pull the anonymous quote onto his/her account and successfully view the quote.

@@ -20,18 +20,22 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Account data type contains general information relating to a single SoftLayer customer account. Personal information in this type such as names, addresses, and phone numbers are assigned to the account only and not to users belonging to the account. The SoftLayer_Account data type contains a number of relational properties that are used by the SoftLayer customer portal to quickly present a variety of account related services to it's users.
 //
 // SoftLayer customers are unable to change their company account information in the portal or the API. If you need to change this information please open a sales ticket in our customer portal and our account management staff will assist you.
 type Account struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountService() Account {
-	return Account{Session: r}
+func GetAccountService(sess *session.Session) Account {
+	return Account{Session: sess}
 }
 
 //
@@ -1967,12 +1971,12 @@ func (r *Account) ValidateManualPaymentAmount(amount *string) (resp bool, err er
 
 // The SoftLayer_Account_Address data type contains information on an address associated with a SoftLayer account.
 type Account_Address struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAddressService() Account_Address {
-	return Account_Address{Session: r}
+func GetAccountAddressService(sess *session.Session) Account_Address {
+	return Account_Address{Session: sess}
 }
 
 // Create a new address record. The ''typeId'', ''accountId'', ''description'', ''address1'', ''city'', ''state'', ''country'', and ''postalCode'' properties in the templateObject parameter are required properties and may not be null or empty. Users will be restricted to creating addresses for their account.
@@ -2052,12 +2056,12 @@ func (r *Account_Address) GetType() (resp datatypes.Account_Address_Type, err er
 
 //
 type Account_Address_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAddressTypeService() Account_Address_Type {
-	return Account_Address_Type{Session: r}
+func GetAccountAddressTypeService(sess *session.Session) Account_Address_Type {
+	return Account_Address_Type{Session: sess}
 }
 
 //
@@ -2068,12 +2072,12 @@ func (r *Account_Address_Type) GetObject() (resp datatypes.Account_Address_Type,
 
 // This service allows for a unique identifier to be associated to an existing customer account.
 type Account_Affiliation struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAffiliationService() Account_Affiliation {
-	return Account_Affiliation{Session: r}
+func GetAccountAffiliationService(sess *session.Session) Account_Affiliation {
+	return Account_Affiliation{Session: sess}
 }
 
 // Create a new affiliation to associate with an existing account.
@@ -2123,12 +2127,12 @@ func (r *Account_Affiliation) GetObject() (resp datatypes.Account_Affiliation, e
 
 //
 type Account_Agreement struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAgreementService() Account_Agreement {
-	return Account_Agreement{Session: r}
+func GetAccountAgreementService(sess *session.Session) Account_Agreement {
+	return Account_Agreement{Session: sess}
 }
 
 // Retrieve
@@ -2175,12 +2179,12 @@ func (r *Account_Agreement) GetTopLevelBillingItems() (resp []datatypes.Billing_
 
 // Account authentication has many different settings that can be set. This class allows the customer or employee to set these settigns.
 type Account_Authentication_Attribute struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAuthenticationAttributeService() Account_Authentication_Attribute {
-	return Account_Authentication_Attribute{Session: r}
+func GetAccountAuthenticationAttributeService(sess *session.Session) Account_Authentication_Attribute {
+	return Account_Authentication_Attribute{Session: sess}
 }
 
 // Retrieve The SoftLayer customer account.
@@ -2209,12 +2213,12 @@ func (r *Account_Authentication_Attribute) GetType() (resp datatypes.Account_Aut
 
 // SoftLayer_Account_Authentication_Attribute_Type models the type of attribute that can be assigned to a SoftLayer customer account authentication.
 type Account_Authentication_Attribute_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAuthenticationAttributeTypeService() Account_Authentication_Attribute_Type {
-	return Account_Authentication_Attribute_Type{Session: r}
+func GetAccountAuthenticationAttributeTypeService(sess *session.Session) Account_Authentication_Attribute_Type {
+	return Account_Authentication_Attribute_Type{Session: sess}
 }
 
 //
@@ -2231,12 +2235,12 @@ func (r *Account_Authentication_Attribute_Type) GetObject() (resp datatypes.Acco
 
 //
 type Account_Authentication_Saml struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountAuthenticationSamlService() Account_Authentication_Saml {
-	return Account_Authentication_Saml{Session: r}
+func GetAccountAuthenticationSamlService(sess *session.Session) Account_Authentication_Saml {
+	return Account_Authentication_Saml{Session: sess}
 }
 
 //
@@ -2289,12 +2293,12 @@ func (r *Account_Authentication_Saml) GetObject() (resp datatypes.Account_Authen
 
 //
 type Account_Contact struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountContactService() Account_Contact {
-	return Account_Contact{Session: r}
+func GetAccountContactService(sess *session.Session) Account_Contact {
+	return Account_Contact{Session: sess}
 }
 
 // This method creates an account contact. The accountId is fixed, other properties can be set during creation. The typeId indicates the SoftLayer_Account_Contact_Type for the contact. This method returns the SoftLayer_Account_Contact object that is created.
@@ -2347,12 +2351,12 @@ func (r *Account_Contact) GetType() (resp datatypes.Account_Contact_Type, err er
 
 //
 type Account_Historical_Report struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountHistoricalReportService() Account_Historical_Report {
-	return Account_Historical_Report{Session: r}
+func GetAccountHistoricalReportService(sess *session.Session) Account_Historical_Report {
+	return Account_Historical_Report{Session: sess}
 }
 
 //
@@ -2441,12 +2445,12 @@ func (r *Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *
 
 //
 type Account_Link_Bluemix struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountLinkBluemixService() Account_Link_Bluemix {
-	return Account_Link_Bluemix{Session: r}
+func GetAccountLinkBluemixService(sess *session.Session) Account_Link_Bluemix {
+	return Account_Link_Bluemix{Session: sess}
 }
 
 //
@@ -2463,12 +2467,12 @@ func (r *Account_Link_Bluemix) GetSupportTierType() (resp string, err error) {
 
 //
 type Account_Link_OpenStack struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountLinkOpenStackService() Account_Link_OpenStack {
-	return Account_Link_OpenStack{Session: r}
+func GetAccountLinkOpenStackService(sess *session.Session) Account_Link_OpenStack {
+	return Account_Link_OpenStack{Session: sess}
 }
 
 //
@@ -2536,12 +2540,12 @@ func (r *Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link
 
 // The SoftLayer_Account_Lockdown_Request data type holds information on API requests from brand customers.
 type Account_Lockdown_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountLockdownRequestService() Account_Lockdown_Request {
-	return Account_Lockdown_Request{Session: r}
+func GetAccountLockdownRequestService(sess *session.Session) Account_Lockdown_Request {
+	return Account_Lockdown_Request{Session: sess}
 }
 
 // Will cancel a lockdown request scheduled in the future. Once canceled, the lockdown request cannot be reconciled and new requests must be made for subsequent actions on the account.
@@ -2596,12 +2600,12 @@ func (r *Account_Lockdown_Request) ReconnectCompute(reconnectDate *string) (resp
 
 //
 type Account_MasterServiceAgreement struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountMasterServiceAgreementService() Account_MasterServiceAgreement {
-	return Account_MasterServiceAgreement{Session: r}
+func GetAccountMasterServiceAgreementService(sess *session.Session) Account_MasterServiceAgreement {
+	return Account_MasterServiceAgreement{Session: sess}
 }
 
 // Retrieve
@@ -2624,12 +2628,12 @@ func (r *Account_MasterServiceAgreement) GetObject() (resp datatypes.Account_Mas
 
 // The SoftLayer_Account_Media data type contains information on a single piece of media associated with a Data Transfer Service request.
 type Account_Media struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountMediaService() Account_Media {
-	return Account_Media{Session: r}
+func GetAccountMediaService(sess *session.Session) Account_Media {
+	return Account_Media{Session: sess}
 }
 
 // Edit the properties of a media record by passing in a modified instance of a SoftLayer_Account_Media object.
@@ -2712,12 +2716,12 @@ func (r *Account_Media) RemoveMediaFromList(mediaTemplate *datatypes.Account_Med
 
 // The SoftLayer_Account_Media_Data_Transfer_Request data type contains information on a single Data Transfer Service request. Creation of these requests is limited to SoftLayer customers through the SoftLayer Customer Portal.
 type Account_Media_Data_Transfer_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountMediaDataTransferRequestService() Account_Media_Data_Transfer_Request {
-	return Account_Media_Data_Transfer_Request{Session: r}
+func GetAccountMediaDataTransferRequestService(sess *session.Session) Account_Media_Data_Transfer_Request {
+	return Account_Media_Data_Transfer_Request{Session: sess}
 }
 
 // Edit the properties of a data transfer request record by passing in a modified instance of a SoftLayer_Account_Media_Data_Transfer_Request object.
@@ -2803,12 +2807,12 @@ func (r *Account_Media_Data_Transfer_Request) GetTickets() (resp []datatypes.Tic
 
 //
 type Account_Note struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountNoteService() Account_Note {
-	return Account_Note{Session: r}
+func GetAccountNoteService(sess *session.Session) Account_Note {
+	return Account_Note{Session: sess}
 }
 
 //
@@ -2867,12 +2871,12 @@ func (r *Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 
 //
 type Account_Note_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountNoteTypeService() Account_Note_Type {
-	return Account_Note_Type{Session: r}
+func GetAccountNoteTypeService(sess *session.Session) Account_Note_Type {
+	return Account_Note_Type{Session: sess}
 }
 
 //
@@ -2913,12 +2917,12 @@ func (r *Account_Note_Type) GetObject() (resp datatypes.Account_Note_Type, err e
 
 //
 type Account_Partner_Referral_Prospect struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountPartnerReferralProspectService() Account_Partner_Referral_Prospect {
-	return Account_Partner_Referral_Prospect{Session: r}
+func GetAccountPartnerReferralProspectService(sess *session.Session) Account_Partner_Referral_Prospect {
+	return Account_Partner_Referral_Prospect{Session: sess}
 }
 
 // Create a new Referral Partner Prospect
@@ -2945,12 +2949,12 @@ func (r *Account_Partner_Referral_Prospect) GetSurveyQuestions() (resp []datatyp
 
 // The SoftLayer_Account_Password contains username, passwords and notes for services that may require for external applications such the Webcc interface for the EVault Storage service.
 type Account_Password struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountPasswordService() Account_Password {
-	return Account_Password{Session: r}
+func GetAccountPasswordService(sess *session.Session) Account_Password {
+	return Account_Password{Session: sess}
 }
 
 // The password and/or notes may be modified.  Modifying the EVault passwords here will also update the password the Webcc interface will use.
@@ -2986,12 +2990,12 @@ func (r *Account_Password) GetType() (resp datatypes.Account_Password_Type, err 
 //
 //
 type Account_Regional_Registry_Detail struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountRegionalRegistryDetailService() Account_Regional_Registry_Detail {
-	return Account_Regional_Registry_Detail{Session: r}
+func GetAccountRegionalRegistryDetailService(sess *session.Session) Account_Regional_Registry_Detail {
+	return Account_Regional_Registry_Detail{Session: sess}
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail object.
@@ -3064,12 +3068,12 @@ func (r *Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp
 
 // Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
 type Account_Regional_Registry_Detail_Property struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountRegionalRegistryDetailPropertyService() Account_Regional_Registry_Detail_Property {
-	return Account_Regional_Registry_Detail_Property{Session: r}
+func GetAccountRegionalRegistryDetailPropertyService(sess *session.Session) Account_Regional_Registry_Detail_Property {
+	return Account_Regional_Registry_Detail_Property{Session: sess}
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail_Property object.
@@ -3136,12 +3140,12 @@ func (r *Account_Regional_Registry_Detail_Property) GetPropertyType() (resp data
 
 // Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
 type Account_Regional_Registry_Detail_Property_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountRegionalRegistryDetailPropertyTypeService() Account_Regional_Registry_Detail_Property_Type {
-	return Account_Regional_Registry_Detail_Property_Type{Session: r}
+func GetAccountRegionalRegistryDetailPropertyTypeService(sess *session.Session) Account_Regional_Registry_Detail_Property_Type {
+	return Account_Regional_Registry_Detail_Property_Type{Session: sess}
 }
 
 //
@@ -3160,12 +3164,12 @@ func (r *Account_Regional_Registry_Detail_Property_Type) GetObject() (resp datat
 //
 // The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
 type Account_Regional_Registry_Detail_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountRegionalRegistryDetailTypeService() Account_Regional_Registry_Detail_Type {
-	return Account_Regional_Registry_Detail_Type{Session: r}
+func GetAccountRegionalRegistryDetailTypeService(sess *session.Session) Account_Regional_Registry_Detail_Type {
+	return Account_Regional_Registry_Detail_Type{Session: sess}
 }
 
 //
@@ -3182,12 +3186,12 @@ func (r *Account_Regional_Registry_Detail_Type) GetObject() (resp datatypes.Acco
 
 //
 type Account_Reports_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountReportsRequestService() Account_Reports_Request {
-	return Account_Reports_Request{Session: r}
+func GetAccountReportsRequestService(sess *session.Session) Account_Reports_Request {
+	return Account_Reports_Request{Session: sess}
 }
 
 //
@@ -3272,12 +3276,12 @@ func (r *Account_Reports_Request) UpdateTicketOnDecline(request *datatypes.Accou
 
 // The SoftLayer_Account_Shipment data type contains information relating to a shipment. Basic information such as addresses, the shipment courier, and any tracking information for as shipment is accessible with this data type.
 type Account_Shipment struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentService() Account_Shipment {
-	return Account_Shipment{Session: r}
+func GetAccountShipmentService(sess *session.Session) Account_Shipment {
+	return Account_Shipment{Session: sess}
 }
 
 // Edit the properties of a shipment record by passing in a modified instance of a SoftLayer_Account_Shipment object.
@@ -3396,12 +3400,12 @@ func (r *Account_Shipment) GetType() (resp datatypes.Account_Shipment_Type, err 
 
 // The SoftLayer_Account_Shipment_Item data type contains information relating to a shipment's item. Basic information such as addresses, the shipment courier, and any tracking information for as shipment is accessible with this data type.
 type Account_Shipment_Item struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentItemService() Account_Shipment_Item {
-	return Account_Shipment_Item{Session: r}
+func GetAccountShipmentItemService(sess *session.Session) Account_Shipment_Item {
+	return Account_Shipment_Item{Session: sess}
 }
 
 // Edit the properties of a shipment record by passing in a modified instance of a SoftLayer_Account_Shipment_Item object.
@@ -3433,12 +3437,12 @@ func (r *Account_Shipment_Item) GetShipmentItemType() (resp datatypes.Account_Sh
 
 //
 type Account_Shipment_Item_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentItemTypeService() Account_Shipment_Item_Type {
-	return Account_Shipment_Item_Type{Session: r}
+func GetAccountShipmentItemTypeService(sess *session.Session) Account_Shipment_Item_Type {
+	return Account_Shipment_Item_Type{Session: sess}
 }
 
 //
@@ -3449,12 +3453,12 @@ func (r *Account_Shipment_Item_Type) GetObject() (resp datatypes.Account_Shipmen
 
 //
 type Account_Shipment_Resource_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentResourceTypeService() Account_Shipment_Resource_Type {
-	return Account_Shipment_Resource_Type{Session: r}
+func GetAccountShipmentResourceTypeService(sess *session.Session) Account_Shipment_Resource_Type {
+	return Account_Shipment_Resource_Type{Session: sess}
 }
 
 //
@@ -3465,12 +3469,12 @@ func (r *Account_Shipment_Resource_Type) GetObject() (resp datatypes.Account_Shi
 
 //
 type Account_Shipment_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentStatusService() Account_Shipment_Status {
-	return Account_Shipment_Status{Session: r}
+func GetAccountShipmentStatusService(sess *session.Session) Account_Shipment_Status {
+	return Account_Shipment_Status{Session: sess}
 }
 
 //
@@ -3481,12 +3485,12 @@ func (r *Account_Shipment_Status) GetObject() (resp datatypes.Account_Shipment_S
 
 // The SoftLayer_Account_Shipment_Tracking_Data data type contains information on a single piece of tracking information pertaining to a shipment. This tracking information tracking numbers by which the shipment may be tracked through the shipping courier.
 type Account_Shipment_Tracking_Data struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentTrackingDataService() Account_Shipment_Tracking_Data {
-	return Account_Shipment_Tracking_Data{Session: r}
+func GetAccountShipmentTrackingDataService(sess *session.Session) Account_Shipment_Tracking_Data {
+	return Account_Shipment_Tracking_Data{Session: sess}
 }
 
 // Create a new shipment tracking data. The ''shipmentId'', ''sequence'', and ''trackingData'' properties in the templateObject parameter are required parameters to create a tracking data record.
@@ -3560,12 +3564,12 @@ func (r *Account_Shipment_Tracking_Data) GetShipment() (resp datatypes.Account_S
 
 //
 type Account_Shipment_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetAccountShipmentTypeService() Account_Shipment_Type {
-	return Account_Shipment_Type{Session: r}
+func GetAccountShipmentTypeService(sess *session.Session) Account_Shipment_Type {
+	return Account_Shipment_Type{Session: sess}
 }
 
 //

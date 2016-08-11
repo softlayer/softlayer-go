@@ -18,41 +18,42 @@ package main
 
 import (
 	"fmt"
+	"reflect"
+	"time"
 
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/services"
+	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
-	"reflect"
-	"time"
 )
 
 func main() {
-	session := services.NewSession("username", "apikey") // default endpoint
+	sess := session.New("username", "apikey") // default endpoint
 
-	session.Debug = true
+	sess.Debug = true
 
 	// List all Virtual Guests for an account
-	//doListAccountVMsTest(&session)
+	doListAccountVMsTest(sess)
 
 	// Execute a remote script on a Virtual Guest
-	//doExecuteRemoteScriptTest(&session)
+	//doExecuteRemoteScriptTest(sess)
 
 	// Example: Provision and destroy a Virtual Guest
-	//doCreateVMTest(&session)
+	//doCreateVMTest(sess)
 
 	// Example: Get disk usage metrics by date
-	//doGetDiskUsageMetricsTest(&session)
+	doGetDiskUsageMetricsTest(sess)
 
 	// Example: Get the last bill date
-	//doGetLatestBillDate(&session)
+	doGetLatestBillDate(sess)
 
 	// Demonstrate API Error
-	//doError(&session)
+	doError(sess)
 }
 
-func doListAccountVMsTest(session *services.Session) {
+func doListAccountVMsTest(sess *session.Session) {
 	// Get the Account service
-	service := session.GetAccountService()
+	service := services.GetAccountService(sess)
 
 	//Set an object mask and a result limit
 	service.Mask("id;hostname;domain").Limit(10)
@@ -71,9 +72,9 @@ func doListAccountVMsTest(session *services.Session) {
 	}
 }
 
-func doExecuteRemoteScriptTest(session *services.Session) {
+func doExecuteRemoteScriptTest(sess *session.Session) {
 	// Get the VirtualGuest service
-	service := session.GetVirtualGuestService()
+	service := services.GetVirtualGuestService(sess)
 
 	// Set the object ID for the service to act upon
 	service.Id(22870595)
@@ -87,8 +88,8 @@ func doExecuteRemoteScriptTest(session *services.Session) {
 	}
 }
 
-func doCreateVMTest(session *services.Session) {
-	service := session.GetVirtualGuestService()
+func doCreateVMTest(sess *session.Session) {
+	service := services.GetVirtualGuestService(sess)
 
 	// Create a Virtual_Guest instance as a template
 	vGuestTemplate := datatypes.Virtual_Guest{}
@@ -138,8 +139,8 @@ func doCreateVMTest(session *services.Session) {
 	}
 }
 
-func doGetDiskUsageMetricsTest(session *services.Session) {
-	service := session.GetAccountService()
+func doGetDiskUsageMetricsTest(sess *session.Session) {
+	service := services.GetAccountService(sess)
 
 	tEnd := sl.Time(time.Now())
 	tStart := sl.Time(tEnd.AddDate(0, -6, 0))
@@ -158,8 +159,8 @@ func doGetDiskUsageMetricsTest(session *services.Session) {
 	}
 }
 
-func doGetLatestBillDate(session *services.Session) {
-	service := session.GetAccountService()
+func doGetLatestBillDate(sess *session.Session) {
+	service := services.GetAccountService(sess)
 
 	d, _ := service.GetLatestBillDate()
 
@@ -168,7 +169,7 @@ func doGetLatestBillDate(session *services.Session) {
 }
 
 func handleError(err error) {
-	apiErr := err.(services.Error)
+	apiErr := err.(sl.Error)
 	fmt.Printf(
 		"Exception: %s\nMessage: %s\nHTTP Status Code: %d\n",
 		apiErr.Exception,
@@ -180,29 +181,29 @@ func handleError(err error) {
 	//fmt.Println("Error:", err)
 }
 
-func doError(session *services.Session) {
-	service := session.GetVirtualGuestService()
+func doError(sess *session.Session) {
+	service := services.GetVirtualGuestService(sess)
 
 	// Example of an API error
-	service.Id(0)  // invalid object ID
+	service.Id(0) // invalid object ID
 	_, err := service.GetObject()
 	if err != nil {
 		handleError(err)
 	}
 
 	// Example of an HTTP, but non-API error
-	session.Endpoint = "http://example.com"  // invalid endpoint
+	sess.Endpoint = "http://example.com" // invalid endpoint
 	_, err = service.GetObject()
 	if err != nil {
 		handleError(err)
 	}
 
 	// Example of a non-HTTP, non-API error
-	session.Endpoint = services.DEFAULT_ENDPOINT
+	sess.Endpoint = session.DEFAULT_ENDPOINT
 	var result struct {
-		Id string `json:"id"`  // type mismatch (unmarshal an integer value into a string)
+		Id string `json:"id"` // type mismatch (unmarshal an integer value into a string)
 	}
-	err = session.DoRequest("SoftLayer_Account", "getObject", nil, &services.Options{}, &result)
+	err = sess.DoRequest("SoftLayer_Account", "getObject", nil, &sl.Options{}, &result)
 	if err != nil {
 		handleError(err)
 	}

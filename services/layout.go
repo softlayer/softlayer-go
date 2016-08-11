@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Layout_Container contains definitions for default page layouts
 type Layout_Container struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutContainerService() Layout_Container {
-	return Layout_Container{Session: r}
+func GetLayoutContainerService(sess *session.Session) Layout_Container {
+	return Layout_Container{Session: sess}
 }
 
 // Use this method to retrieve all active layout containers that can be customized.
@@ -58,12 +62,12 @@ func (r *Layout_Container) GetObject() (resp datatypes.Layout_Container, err err
 
 // The SoftLayer_Layout_Item contains definitions for default layout items
 type Layout_Item struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutItemService() Layout_Item {
-	return Layout_Item{Session: r}
+func GetLayoutItemService(sess *session.Session) Layout_Item {
+	return Layout_Item{Session: sess}
 }
 
 // Retrieve The layout preferences assigned to this layout item
@@ -86,12 +90,12 @@ func (r *Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
 
 // The SoftLayer_Layout_Profile contains the definition of the layout profile
 type Layout_Profile struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutProfileService() Layout_Profile {
-	return Layout_Profile{Session: r}
+func GetLayoutProfileService(sess *session.Session) Layout_Profile {
+	return Layout_Profile{Session: sess}
 }
 
 // This method creates a new layout profile object.
@@ -160,12 +164,12 @@ func (r *Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.L
 
 //
 type Layout_Profile_Containers struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutProfileContainersService() Layout_Profile_Containers {
-	return Layout_Profile_Containers{Session: r}
+func GetLayoutProfileContainersService(sess *session.Session) Layout_Profile_Containers {
+	return Layout_Profile_Containers{Session: sess}
 }
 
 //
@@ -206,12 +210,12 @@ func (r *Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_C
 
 //
 type Layout_Profile_Customer struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutProfileCustomerService() Layout_Profile_Customer {
-	return Layout_Profile_Customer{Session: r}
+func GetLayoutProfileCustomerService(sess *session.Session) Layout_Profile_Customer {
+	return Layout_Profile_Customer{Session: sess}
 }
 
 // This method creates a new layout profile object.
@@ -286,12 +290,12 @@ func (r *Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []da
 
 // The SoftLayer_Layout_Profile_Preference contains definitions for layout preferences
 type Layout_Profile_Preference struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLayoutProfilePreferenceService() Layout_Profile_Preference {
-	return Layout_Profile_Preference{Session: r}
+func GetLayoutProfilePreferenceService(sess *session.Session) Layout_Profile_Preference {
+	return Layout_Profile_Preference{Session: sess}
 }
 
 // Retrieve

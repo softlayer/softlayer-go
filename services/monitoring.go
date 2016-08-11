@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // A monitoring agent object contains information describing the agent.
 type Monitoring_Agent struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringAgentService() Monitoring_Agent {
-	return Monitoring_Agent{Session: r}
+func GetMonitoringAgentService(sess *session.Session) Monitoring_Agent {
+	return Monitoring_Agent{Session: sess}
 }
 
 // This method activates a SoftLayer_Monitoring_Agent.
@@ -223,12 +227,12 @@ func (r *Monitoring_Agent) SetActiveAlarmSubscriber(userRecordId *int) (resp boo
 
 // The SoftLayer_Monitoring_Agent_Configuration_Template_Group class is consisted of configuration templates for agents in a monitoring package.
 type Monitoring_Agent_Configuration_Template_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringAgentConfigurationTemplateGroupService() Monitoring_Agent_Configuration_Template_Group {
-	return Monitoring_Agent_Configuration_Template_Group{Session: r}
+func GetMonitoringAgentConfigurationTemplateGroupService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group {
+	return Monitoring_Agent_Configuration_Template_Group{Session: sess}
 }
 
 // This method creates a SoftLayer_Monitoring_Agent_Configuration_Template_Group using the values provided in the template object. The template objects accountId will be overridden to use the active user's accountId as it shows on their associated SoftLayer_User_Customer object.
@@ -302,12 +306,12 @@ func (r *Monitoring_Agent_Configuration_Template_Group) GetObject() (resp dataty
 
 // SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference class holds the reference information, essentially a SQL join, between a monitoring configuration group and agent configuration templates.
 type Monitoring_Agent_Configuration_Template_Group_Reference struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringAgentConfigurationTemplateGroupReferenceService() Monitoring_Agent_Configuration_Template_Group_Reference {
-	return Monitoring_Agent_Configuration_Template_Group_Reference{Session: r}
+func GetMonitoringAgentConfigurationTemplateGroupReferenceService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group_Reference {
+	return Monitoring_Agent_Configuration_Template_Group_Reference{Session: sess}
 }
 
 // This method creates a monitoring agent configuration template group reference by passing in an object with the SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference structure as the $templateObject parameter.
@@ -372,12 +376,12 @@ func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetTemplateGro
 
 // Monitoring agent configuration value
 type Monitoring_Agent_Configuration_Value struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringAgentConfigurationValueService() Monitoring_Agent_Configuration_Value {
-	return Monitoring_Agent_Configuration_Value{Session: r}
+func GetMonitoringAgentConfigurationValueService(sess *session.Session) Monitoring_Agent_Configuration_Value {
+	return Monitoring_Agent_Configuration_Value{Session: sess}
 }
 
 // Retrieve
@@ -412,12 +416,12 @@ func (r *Monitoring_Agent_Configuration_Value) GetProfile() (resp datatypes.Conf
 
 // Monitoring agent status
 type Monitoring_Agent_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringAgentStatusService() Monitoring_Agent_Status {
-	return Monitoring_Agent_Status{Session: r}
+func GetMonitoringAgentStatusService(sess *session.Session) Monitoring_Agent_Status {
+	return Monitoring_Agent_Status{Session: sess}
 }
 
 //
@@ -428,12 +432,12 @@ func (r *Monitoring_Agent_Status) GetObject() (resp datatypes.Monitoring_Agent_S
 
 // The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
 type Monitoring_Robot struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetMonitoringRobotService() Monitoring_Robot {
-	return Monitoring_Robot{Session: r}
+func GetMonitoringRobotService(sess *session.Session) Monitoring_Robot {
+	return Monitoring_Robot{Session: sess}
 }
 
 // Checks if a monitoring robot can communicate with SoftLayer monitoring management system via the private network.

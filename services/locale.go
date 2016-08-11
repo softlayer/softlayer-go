@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Locale struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocaleService() Locale {
-	return Locale{Session: r}
+func GetLocaleService(sess *session.Session) Locale {
+	return Locale{Session: sess}
 }
 
 //
@@ -49,12 +53,12 @@ func (r *Locale) GetObject() (resp datatypes.Locale, err error) {
 
 //
 type Locale_Country struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocaleCountryService() Locale_Country {
-	return Locale_Country{Session: r}
+func GetLocaleCountryService(sess *session.Session) Locale_Country {
+	return Locale_Country{Session: sess}
 }
 
 // Use this method to retrieve a list of countries and locale information available to the current user.
@@ -83,12 +87,12 @@ func (r *Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err
 
 // Each User is assigned a timezone allowing for a precise local timestamp.
 type Locale_Timezone struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetLocaleTimezoneService() Locale_Timezone {
-	return Locale_Timezone{Session: r}
+func GetLocaleTimezoneService(sess *session.Session) Locale_Timezone {
+	return Locale_Timezone{Session: sess}
 }
 
 // Retrieve all timezone objects.

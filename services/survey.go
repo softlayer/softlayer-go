@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Survey data type contains general information relating to a single SoftLayer survey.
 type Survey struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSurveyService() Survey {
-	return Survey{Session: r}
+func GetSurveyService(sess *session.Session) Survey {
+	return Survey{Session: sess}
 }
 
 // Provides survey details for the given type

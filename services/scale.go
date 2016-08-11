@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Scale_Asset struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleAssetService() Scale_Asset {
-	return Scale_Asset{Session: r}
+func GetScaleAssetService(sess *session.Session) Scale_Asset {
+	return Scale_Asset{Session: sess}
 }
 
 //
@@ -52,12 +56,12 @@ func (r *Scale_Asset) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 
 //
 type Scale_Asset_Hardware struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleAssetHardwareService() Scale_Asset_Hardware {
-	return Scale_Asset_Hardware{Session: r}
+func GetScaleAssetHardwareService(sess *session.Session) Scale_Asset_Hardware {
+	return Scale_Asset_Hardware{Session: sess}
 }
 
 //
@@ -101,12 +105,12 @@ func (r *Scale_Asset_Hardware) GetScaleGroup() (resp datatypes.Scale_Group, err 
 
 //
 type Scale_Asset_Virtual_Guest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleAssetVirtualGuestService() Scale_Asset_Virtual_Guest {
-	return Scale_Asset_Virtual_Guest{Session: r}
+func GetScaleAssetVirtualGuestService(sess *session.Session) Scale_Asset_Virtual_Guest {
+	return Scale_Asset_Virtual_Guest{Session: sess}
 }
 
 //
@@ -150,12 +154,12 @@ func (r *Scale_Asset_Virtual_Guest) GetVirtualGuestId() (resp int, err error) {
 
 //
 type Scale_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleGroupService() Scale_Group {
-	return Scale_Group{Session: r}
+func GetScaleGroupService(sess *session.Session) Scale_Group {
+	return Scale_Group{Session: sess}
 }
 
 //
@@ -300,12 +304,12 @@ func (r *Scale_Group) Suspend() (err error) {
 
 //
 type Scale_Group_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleGroupStatusService() Scale_Group_Status {
-	return Scale_Group_Status{Session: r}
+func GetScaleGroupStatusService(sess *session.Session) Scale_Group_Status {
+	return Scale_Group_Status{Session: sess}
 }
 
 //
@@ -322,12 +326,12 @@ func (r *Scale_Group_Status) GetObject() (resp datatypes.Scale_Group_Status, err
 
 //
 type Scale_LoadBalancer struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleLoadBalancerService() Scale_LoadBalancer {
-	return Scale_LoadBalancer{Session: r}
+func GetScaleLoadBalancerService(sess *session.Session) Scale_LoadBalancer {
+	return Scale_LoadBalancer{Session: sess}
 }
 
 //
@@ -410,12 +414,12 @@ func (r *Scale_LoadBalancer) GetVirtualServerPort() (resp int, err error) {
 
 //
 type Scale_Member struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleMemberService() Scale_Member {
-	return Scale_Member{Session: r}
+func GetScaleMemberService(sess *session.Session) Scale_Member {
+	return Scale_Member{Session: sess}
 }
 
 //
@@ -438,12 +442,12 @@ func (r *Scale_Member) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 
 //
 type Scale_Member_Virtual_Guest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleMemberVirtualGuestService() Scale_Member_Virtual_Guest {
-	return Scale_Member_Virtual_Guest{Session: r}
+func GetScaleMemberVirtualGuestService(sess *session.Session) Scale_Member_Virtual_Guest {
+	return Scale_Member_Virtual_Guest{Session: sess}
 }
 
 //
@@ -478,12 +482,12 @@ func (r *Scale_Member_Virtual_Guest) GetVirtualGuestId() (resp int, err error) {
 
 //
 type Scale_Network_Vlan struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleNetworkVlanService() Scale_Network_Vlan {
-	return Scale_Network_Vlan{Session: r}
+func GetScaleNetworkVlanService(sess *session.Session) Scale_Network_Vlan {
+	return Scale_Network_Vlan{Session: sess}
 }
 
 //
@@ -521,12 +525,12 @@ func (r *Scale_Network_Vlan) GetScaleGroup() (resp datatypes.Scale_Group, err er
 
 //
 type Scale_Policy struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyService() Scale_Policy {
-	return Scale_Policy{Session: r}
+func GetScalePolicyService(sess *session.Session) Scale_Policy {
+	return Scale_Policy{Session: sess}
 }
 
 //
@@ -609,12 +613,12 @@ func (r *Scale_Policy) Trigger() (resp []datatypes.Scale_Member, err error) {
 
 //
 type Scale_Policy_Action struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyActionService() Scale_Policy_Action {
-	return Scale_Policy_Action{Session: r}
+func GetScalePolicyActionService(sess *session.Session) Scale_Policy_Action {
+	return Scale_Policy_Action{Session: sess}
 }
 
 //
@@ -652,12 +656,12 @@ func (r *Scale_Policy_Action) GetType() (resp datatypes.Scale_Policy_Action_Type
 
 //
 type Scale_Policy_Action_Scale struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyActionScaleService() Scale_Policy_Action_Scale {
-	return Scale_Policy_Action_Scale{Session: r}
+func GetScalePolicyActionScaleService(sess *session.Session) Scale_Policy_Action_Scale {
+	return Scale_Policy_Action_Scale{Session: sess}
 }
 
 //
@@ -704,12 +708,12 @@ func (r *Scale_Policy_Action_Scale) GetType() (resp datatypes.Scale_Policy_Actio
 
 //
 type Scale_Policy_Action_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyActionTypeService() Scale_Policy_Action_Type {
-	return Scale_Policy_Action_Type{Session: r}
+func GetScalePolicyActionTypeService(sess *session.Session) Scale_Policy_Action_Type {
+	return Scale_Policy_Action_Type{Session: sess}
 }
 
 //
@@ -726,12 +730,12 @@ func (r *Scale_Policy_Action_Type) GetObject() (resp datatypes.Scale_Policy_Acti
 
 //
 type Scale_Policy_Trigger struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerService() Scale_Policy_Trigger {
-	return Scale_Policy_Trigger{Session: r}
+func GetScalePolicyTriggerService(sess *session.Session) Scale_Policy_Trigger {
+	return Scale_Policy_Trigger{Session: sess}
 }
 
 //
@@ -778,12 +782,12 @@ func (r *Scale_Policy_Trigger) GetType() (resp datatypes.Scale_Policy_Trigger_Ty
 
 //
 type Scale_Policy_Trigger_OneTime struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerOneTimeService() Scale_Policy_Trigger_OneTime {
-	return Scale_Policy_Trigger_OneTime{Session: r}
+func GetScalePolicyTriggerOneTimeService(sess *session.Session) Scale_Policy_Trigger_OneTime {
+	return Scale_Policy_Trigger_OneTime{Session: sess}
 }
 
 //
@@ -830,12 +834,12 @@ func (r *Scale_Policy_Trigger_OneTime) GetType() (resp datatypes.Scale_Policy_Tr
 
 //
 type Scale_Policy_Trigger_Repeating struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerRepeatingService() Scale_Policy_Trigger_Repeating {
-	return Scale_Policy_Trigger_Repeating{Session: r}
+func GetScalePolicyTriggerRepeatingService(sess *session.Session) Scale_Policy_Trigger_Repeating {
+	return Scale_Policy_Trigger_Repeating{Session: sess}
 }
 
 //
@@ -892,12 +896,12 @@ func (r *Scale_Policy_Trigger_Repeating) ValidateCronExpression(expression *stri
 
 //
 type Scale_Policy_Trigger_ResourceUse struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerResourceUseService() Scale_Policy_Trigger_ResourceUse {
-	return Scale_Policy_Trigger_ResourceUse{Session: r}
+func GetScalePolicyTriggerResourceUseService(sess *session.Session) Scale_Policy_Trigger_ResourceUse {
+	return Scale_Policy_Trigger_ResourceUse{Session: sess}
 }
 
 //
@@ -950,12 +954,12 @@ func (r *Scale_Policy_Trigger_ResourceUse) GetWatches() (resp []datatypes.Scale_
 
 //
 type Scale_Policy_Trigger_ResourceUse_Watch struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerResourceUseWatchService() Scale_Policy_Trigger_ResourceUse_Watch {
-	return Scale_Policy_Trigger_ResourceUse_Watch{Session: r}
+func GetScalePolicyTriggerResourceUseWatchService(sess *session.Session) Scale_Policy_Trigger_ResourceUse_Watch {
+	return Scale_Policy_Trigger_ResourceUse_Watch{Session: sess}
 }
 
 //
@@ -1014,12 +1018,12 @@ func (r *Scale_Policy_Trigger_ResourceUse_Watch) GetScalePolicyTrigger() (resp d
 
 //
 type Scale_Policy_Trigger_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScalePolicyTriggerTypeService() Scale_Policy_Trigger_Type {
-	return Scale_Policy_Trigger_Type{Session: r}
+func GetScalePolicyTriggerTypeService(sess *session.Session) Scale_Policy_Trigger_Type {
+	return Scale_Policy_Trigger_Type{Session: sess}
 }
 
 //
@@ -1036,12 +1040,12 @@ func (r *Scale_Policy_Trigger_Type) GetObject() (resp datatypes.Scale_Policy_Tri
 
 //
 type Scale_Termination_Policy struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetScaleTerminationPolicyService() Scale_Termination_Policy {
-	return Scale_Termination_Policy{Session: r}
+func GetScaleTerminationPolicyService(sess *session.Session) Scale_Termination_Policy {
+	return Scale_Termination_Policy{Session: sess}
 }
 
 //

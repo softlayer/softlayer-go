@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Search struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSearchService() Search {
-	return Search{Session: r}
+func GetSearchService(sess *session.Session) Search {
+	return Search{Session: sess}
 }
 
 // This method allows for searching for SoftLayer resources by simple terms and operators.  Fields that are used for searching will be available at sldn.softlayer.com. It returns a collection or array of <b>[[SoftLayer_Container_Search_Result (type)|SoftLayer_Container_Search_Result]]</b> objects that have search metadata for each result and the resulting resource found.
