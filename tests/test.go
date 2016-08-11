@@ -172,7 +172,7 @@ func handleError(err error) {
 	fmt.Printf(
 		"Exception: %s\nMessage: %s\nHTTP Status Code: %d\n",
 		apiErr.Exception,
-		apiErr.Desc,
+		apiErr.Message,
 		apiErr.StatusCode)
 
 	// Note that we could instead just dump the error, if we are not interested
