@@ -117,14 +117,12 @@ error type is returned, with individual fields that can be parsed separately.
 service.Id(0)  // invalid object ID
 _, err := service.GetObject()
 if err != nil {
-	if apiErr, ok := err.(services.Error); ok {
-		fmt.Printf("API Error:")
-		fmt.Printf("HTTP Status Code: %d\n", apiErr.HTTPCode)
-		fmt.Printf("API Code: %s\n", apiErr.APICode)
-		fmt.Printf("API Error: %s\n", apiErr.APIError)
-	} else {
-		fmt.Println("Non-API error", err)
-	}
+	// Note: type assertion is only necessary for inspecting individual fields
+	apiErr := err.(services.Error)
+	fmt.Printf("API Error:")
+	fmt.Printf("HTTP Status Code: %d\n", apiErr.StatusCode)
+	fmt.Printf("API Code: %s\n", apiErr.Exception)
+	fmt.Printf("API Error: %s\n", apiErr.Message)
 }
 ```
 
