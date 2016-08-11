@@ -108,6 +108,36 @@ For convenience, the above methods, as well as the `Id()` method seen earlier, c
 service.Id(123456).Mask("id;hostname").Filter("...").Limit(25).Offset(100)
 ```
 
+### Handling Errors
+
+For any error that occurs within one of the SoftLayer API services, a custom
+error type is returned, with individual fields that can be parsed separately.
+
+```go
+service.Id(0)  // invalid object ID
+_, err := service.GetObject()
+if err != nil {
+	if apiErr, ok := err.(services.Error); ok {
+		fmt.Printf("API Error:")
+		fmt.Printf("HTTP Status Code: %d\n", apiErr.HTTPCode)
+		fmt.Printf("API Code: %s\n", apiErr.APICode)
+		fmt.Printf("API Error: %s\n", apiErr.APIError)
+	} else {
+		fmt.Println("Non-API error", err)
+	}
+}
+```
+
+Note that `services.Error` implements the standard `error` interface, so it can
+be handled like any other error, if the above granularity is not needed:
+
+```go
+_, err := service.GetObject()
+if err != nil {
+	fmt.Println("Error during processing: ", err)
+}
+```
+
 ### Session Options
 
 To set a different endpoint (e.g., the backend network endpoint):
