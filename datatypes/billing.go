@@ -1688,7 +1688,7 @@ type Billing_Item_Workspace struct {
 type Billing_Order struct {
 	Entity
 
-	// The account to which an order belongs.
+	// The [[SoftLayer_Account|account]] to which an order belongs.
 	Account *Account `json:"account,omitempty"`
 
 	// The account ID to which an order belongs.

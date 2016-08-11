@@ -3048,6 +3048,9 @@ type Network_Storage struct {
 	// The server that is associated with a Storage service.
 	HardwareId *int `json:"hardwareId,omitempty"`
 
+	//
+	HasEncryptionAtRest *bool `json:"hasEncryptionAtRest,omitempty"`
+
 	// The unique identification number of the host associated with a Storage volume.
 	HostId *int `json:"hostId,omitempty"`
 
@@ -3194,6 +3197,9 @@ type Network_Storage struct {
 
 	// The snapshots associated with this SoftLayer_Network_Storage volume.
 	Snapshots []Network_Storage `json:"snapshots,omitempty"`
+
+	//
+	StaasVersion *string `json:"staasVersion,omitempty"`
 
 	// A count of the network storage groups this volume is attached to.
 	StorageGroupCount *uint `json:"storageGroupCount,omitempty"`

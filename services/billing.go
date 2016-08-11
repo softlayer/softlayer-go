@@ -1139,7 +1139,7 @@ func (r *Billing_Order) ApproveModifiedOrder() (resp bool, err error) {
 	return
 }
 
-// Retrieve The account to which an order belongs.
+// Retrieve The [[SoftLayer_Account|account]] to which an order belongs.
 func (r *Billing_Order) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

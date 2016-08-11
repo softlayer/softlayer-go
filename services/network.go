@@ -4625,6 +4625,12 @@ func (r *Network_Storage) GetHardware() (resp datatypes.Hardware, err error) {
 	return
 }
 
+// Retrieve
+func (r *Network_Storage) GetHasEncryptionAtRest() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r *Network_Storage) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
@@ -4857,6 +4863,12 @@ func (r *Network_Storage) GetSnapshots() (resp []datatypes.Network_Storage, err 
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r *Network_Storage) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r *Network_Storage) GetStaasVersion() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -6218,6 +6230,12 @@ func (r *Network_Storage_Backup_Evault) GetHardwareWithEvaultFirst(option *strin
 	return
 }
 
+// Retrieve
+func (r *Network_Storage_Backup_Evault) GetHasEncryptionAtRest() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r *Network_Storage_Backup_Evault) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
@@ -6448,6 +6466,12 @@ func (r *Network_Storage_Backup_Evault) GetSnapshots() (resp []datatypes.Network
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r *Network_Storage_Backup_Evault) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r *Network_Storage_Backup_Evault) GetStaasVersion() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -7923,6 +7947,12 @@ func (r *Network_Storage_Iscsi) GetHardware() (resp datatypes.Hardware, err erro
 	return
 }
 
+// Retrieve
+func (r *Network_Storage_Iscsi) GetHasEncryptionAtRest() (resp bool, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r *Network_Storage_Iscsi) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
@@ -8153,6 +8183,12 @@ func (r *Network_Storage_Iscsi) GetSnapshots() (resp []datatypes.Network_Storage
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r *Network_Storage_Iscsi) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
+	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r *Network_Storage_Iscsi) GetStaasVersion() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
