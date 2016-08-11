@@ -168,7 +168,17 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	}
 
 	if code < 200 || code > 299 {
-		return fmt.Errorf("An HTTP Error was returned: %d: %s", code, string(resp))
+		e := Error{StatusCode: code}
+
+		err = json.Unmarshal(resp, &e)
+
+		// If unparseable, wrap the json error
+		if err != nil {
+			e.wrapped = err
+			e.Message = err.Error()
+		}
+
+		return e
 	}
 
 	returnType := reflect.TypeOf(pResult).String()
@@ -189,20 +199,56 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 		return nil
 	case "*uint":
 		*pResult.(*int), err = strconv.Atoi(string(resp))
-		return err
+		if err != nil {
+			return Error{Message: err.Error(), wrapped: err}
+		}
+		return nil
 	case "*bool":
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-		return err
+		if err != nil {
+			return Error{Message: err.Error(), wrapped: err}
+		}
 	case "float64":
 		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
-		return err
+		if err != nil {
+			return Error{Message: err.Error(), wrapped: err}
+		}
 	case "string":
 		*pResult.(*string) = string(resp)
 		return nil
 	}
 
 	// Must be a json representation of one of the many softlayer datatypes
-	return json.Unmarshal(resp, pResult)
+	err = json.Unmarshal(resp, pResult)
+	if err != nil {
+		return Error{Message: err.Error(), wrapped: err}
+	}
+	return nil
+}
+
+type Error struct {
+	StatusCode int
+	Exception  string `json:"code"`
+	Message    string `json:"error"`
+	wrapped    error
+}
+
+func (r Error) Error() string {
+	if r.wrapped != nil {
+		return r.wrapped.Error()
+	}
+
+	var msg string
+	if r.Exception != "" {
+		msg = r.Exception + ": "
+	}
+	if r.Message != "" {
+		msg = msg + r.Message + " "
+	}
+	if r.StatusCode != 0 {
+		msg = fmt.Sprintf("%s(HTTP %d)", msg, r.StatusCode)
+	}
+	return msg
 }
 
 func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {

@@ -45,6 +45,9 @@ func main() {
 
 	// Example: Get the last bill date
 	//doGetLatestBillDate(&session)
+
+	// Demonstrate API Error
+	//doError(&session)
 }
 
 func doListAccountVMsTest(session *services.Session) {
@@ -78,7 +81,7 @@ func doExecuteRemoteScriptTest(session *services.Session) {
 	// Execute the remote script
 	err := service.ExecuteRemoteScript(sl.String("http://example.com"))
 	if err != nil {
-		fmt.Printf("Error executing remote script on VM: %s", err)
+		fmt.Println("Error executing remote script on VM:", err)
 	} else {
 		fmt.Println("Remote script sent for execution on VM")
 	}
@@ -162,4 +165,45 @@ func doGetLatestBillDate(session *services.Session) {
 
 	fmt.Printf("date of last bill: %s\n", d)
 	fmt.Printf("type of date field: %s\n", reflect.TypeOf(d))
+}
+
+func handleError(err error) {
+	apiErr := err.(services.Error)
+	fmt.Printf(
+		"Exception: %s\nMessage: %s\nHTTP Status Code: %d\n",
+		apiErr.Exception,
+		apiErr.Message,
+		apiErr.StatusCode)
+
+	// Note that we could instead just dump the error, if we are not interested
+	// in the individual fields
+	//fmt.Println("Error:", err)
+}
+
+func doError(session *services.Session) {
+	service := session.GetVirtualGuestService()
+
+	// Example of an API error
+	service.Id(0)  // invalid object ID
+	_, err := service.GetObject()
+	if err != nil {
+		handleError(err)
+	}
+
+	// Example of an HTTP, but non-API error
+	session.Endpoint = "http://example.com"  // invalid endpoint
+	_, err = service.GetObject()
+	if err != nil {
+		handleError(err)
+	}
+
+	// Example of a non-HTTP, non-API error
+	session.Endpoint = services.DEFAULT_ENDPOINT
+	var result struct {
+		Id string `json:"id"`  // type mismatch (unmarshal an integer value into a string)
+	}
+	err = session.DoRequest("SoftLayer_Account", "getObject", nil, &services.Options{}, &result)
+	if err != nil {
+		handleError(err)
+	}
 }
