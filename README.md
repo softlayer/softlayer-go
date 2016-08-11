@@ -16,21 +16,34 @@ Three easy steps:
 
 ```go
 // 1. Create a `Session`
-session := service.NewSession(username, apikey)
+sess := session.New(username, apikey)
 
 // 2. Get a service
-accountService := session.GetAccountService()
+accountService := services.GetAccountService(sess)
 
 // 3. Invoke a method:
 account, err := accountService.getObject()
 ```
+
+### Sessions
+
+In addition to the example above, sessions can also be created using values
+set in the environment, or from the local config file:
+
+```go
+sess := session.New()
+```
+
+In this example, the username and API key are read from the environment
+variables `SOFTLAYER_USERNAME` and `SOFTLAYER_API_KEY`.  If these are not
+set, the values from the local `~.softlayer` file are used.
 
 ### Instance methods
 
 To call a method on a specific instance, set the instance ID before making the call:
 
 ```go
-service := session.GetUserCustomerService()
+service := services.GetUserCustomerService(sess)
 
 service.Id(6786566)
 
@@ -58,7 +71,7 @@ A complete library of SoftLayer API data type structs exists in the `datatypes` 
 
 ```go
 // Get the Virtual_Guest service
-service := session.GetVirtualGuestService()
+service := services.GetVirtualGuestService(sess)
 
 // Create an empty Virtual_Guest struct as a template
 vGuestTemplate := datatypes.Virtual_Guest{}
@@ -86,7 +99,7 @@ fmt.Printf("New guest %d created", *newGuest.Id)
 To set an object mask or filter:
 
 ```go
-accountService := session.GetAccountService()
+accountService := services.GetAccountService(sess)
 
 accountService.Mask("id;hostname")
 
@@ -118,7 +131,7 @@ service.Id(0)  // invalid object ID
 _, err := service.GetObject()
 if err != nil {
 	// Note: type assertion is only necessary for inspecting individual fields
-	apiErr := err.(services.Error)
+	apiErr := err.(sl.Error)
 	fmt.Printf("API Error:")
 	fmt.Printf("HTTP Status Code: %d\n", apiErr.StatusCode)
 	fmt.Printf("API Code: %s\n", apiErr.Exception)
@@ -126,7 +139,7 @@ if err != nil {
 }
 ```
 
-Note that `services.Error` implements the standard `error` interface, so it can
+Note that `sl.Error` implements the standard `error` interface, so it can
 be handled like any other error, if the above granularity is not needed:
 
 ```go
