@@ -135,7 +135,16 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	}
 
 	if code < 200 || code > 299 {
-		return fmt.Errorf("An HTTP Error was returned: %d: %s", code, string(resp))
+		e := Error{HTTPCode: code}
+
+		json.Unmarshal(resp, &e)
+
+		// If unparseable, just use the response body as the Error message
+		if err != nil {
+			e.APIError = string(resp)
+		}
+
+		return e
 	}
 
 	returnType := reflect.TypeOf(pResult).String()
@@ -170,6 +179,26 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 
 	// Must be a json representation of one of the many softlayer datatypes
 	return json.Unmarshal(resp, pResult)
+}
+
+type Error struct {
+	HTTPCode   int
+	APICode    string `json:"code"`
+	APIError   string `json:"error"`
+}
+
+func (r Error) Error() string {
+	var msg string
+	if r.APICode != "" {
+		msg = r.APICode + ": "
+	}
+	if r.APIError != "" {
+		msg = msg + r.APIError + " "
+	}
+	if r.HTTPCode != 0 {
+		msg = fmt.Sprintf("%s(HTTP %d)", msg, r.HTTPCode)
+	}
+	return msg
 }
 
 func invokeMethod(args []interface{}, session *Session, options *Options, pResult interface{}) error {
