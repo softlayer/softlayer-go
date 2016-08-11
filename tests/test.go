@@ -47,7 +47,7 @@ func main() {
 	//doGetLatestBillDate(&session)
 
 	// Demonstrate API Error
-	doError(&session)
+	//doError(&session)
 }
 
 func doListAccountVMsTest(session *services.Session) {
@@ -168,15 +168,16 @@ func doGetLatestBillDate(session *services.Session) {
 }
 
 func handleError(err error) {
-	if apiErr, ok := err.(services.Error); ok {
-		fmt.Printf(
-			"Exception: %s\nMessage: %s\nHTTP Status Code: %d\n",
-			apiErr.APICode,
-			apiErr.APIError,
-			apiErr.HTTPCode)
-	} else {
-		fmt.Println("Error received from API:", err)
-	}
+	apiErr := err.(services.Error)
+	fmt.Printf(
+		"Exception: %s\nMessage: %s\nHTTP Status Code: %d\n",
+		apiErr.Exception,
+		apiErr.Desc,
+		apiErr.StatusCode)
+
+	// Note that we could instead just dump the error, if we are not interested
+	// in the individual fields
+	//fmt.Println("Error:", err)
 }
 
 func doError(session *services.Session) {

@@ -135,13 +135,14 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	}
 
 	if code < 200 || code > 299 {
-		e := Error{HTTPCode: code}
+		e := Error{StatusCode: code}
 
-		json.Unmarshal(resp, &e)
+		err = json.Unmarshal(resp, &e)
 
-		// If unparseable, just use the response body as the Error message
+		// If unparseable, wrap the json error
 		if err != nil {
-			e.APIError = string(resp)
+			e.wrapped = err
+			e.Desc = err.Error()
 		}
 
 		return e
@@ -165,38 +166,54 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 		return nil
 	case "*uint":
 		*pResult.(*int), err = strconv.Atoi(string(resp))
-		return err
+		if err != nil {
+			return Error{Desc: err.Error(), wrapped: err}
+		}
+		return nil
 	case "*bool":
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-		return err
+		if err != nil {
+			return Error{Desc: err.Error(), wrapped: err}
+		}
 	case "float64":
 		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
-		return err
+		if err != nil {
+			return Error{Desc: err.Error(), wrapped: err}
+		}
 	case "string":
 		*pResult.(*string) = string(resp)
 		return nil
 	}
 
 	// Must be a json representation of one of the many softlayer datatypes
-	return json.Unmarshal(resp, pResult)
+	err = json.Unmarshal(resp, pResult)
+	if err != nil {
+		return Error{Desc: err.Error(), wrapped: err}
+	}
+	return nil
 }
 
 type Error struct {
-	HTTPCode   int
-	APICode    string `json:"code"`
-	APIError   string `json:"error"`
+	StatusCode int
+	Exception  string `json:"code"`
+	Desc       string `json:"error"`
+	wrapped    error
 }
 
 func (r Error) Error() string {
+	if r.wrapped != nil {
+		return r.wrapped.Error()
+	}
+
 	var msg string
-	if r.APICode != "" {
-		msg = r.APICode + ": "
+	if r.Exception != "" {
+		msg = r.Exception + ": "
 	}
-	if r.APIError != "" {
-		msg = msg + r.APIError + " "
+	if r.Desc != "" {
+		msg = msg + r.Desc + " "
 	}
-	if r.HTTPCode != 0 {
-		msg = fmt.Sprintf("%s(HTTP %d)", msg, r.HTTPCode)
+	if r.StatusCode != 0 {
+		msg = fmt.Sprintf("%s(HTTP %d)", msg, r.StatusCode)
 	}
 	return msg
 }
