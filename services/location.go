@@ -29,11 +29,36 @@ import (
 // Every piece of hardware and network connection owned by SoftLayer is tracked physically by location and stored in the SoftLayer_Location data type. SoftLayer locations exist in parent/child relationships, a convenient way to track equipment from it's city, datacenter, server room, rack, then slot. Network backbones are tied to datacenters only, not to a room, rack, or slot.
 type Location struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationService(sess *session.Session) Location {
-	return Location{Session: sess}
+func GetLocationService(sess *session.Session) *Location {
+	return &Location{Session: sess}
+}
+
+func (r Location) Id(id int) *Location {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location) Mask(mask string) *Location {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location) Filter(filter string) *Location {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location) Limit(limit int) *Location {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location) Offset(offset int) *Location {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Object Storage is only available in select datacenters. This method will return all the datacenters where object storage is available.
@@ -171,11 +196,36 @@ func (r *Location) GetpointOfPresence() (resp []datatypes.Location, err error) {
 // SoftLayer_Location_Datacenter extends the [[SoftLayer_Location]] data type to include datacenter-specific properties.
 type Location_Datacenter struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationDatacenterService(sess *session.Session) Location_Datacenter {
-	return Location_Datacenter{Session: sess}
+func GetLocationDatacenterService(sess *session.Session) *Location_Datacenter {
+	return &Location_Datacenter{Session: sess}
+}
+
+func (r Location_Datacenter) Id(id int) *Location_Datacenter {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Datacenter) Mask(mask string) *Location_Datacenter {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Datacenter) Filter(filter string) *Location_Datacenter {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Datacenter) Limit(limit int) *Location_Datacenter {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Datacenter) Offset(offset int) *Location_Datacenter {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -385,11 +435,36 @@ func (r *Location_Datacenter) GetpointOfPresence() (resp []datatypes.Location, e
 //
 type Location_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationGroupService(sess *session.Session) Location_Group {
-	return Location_Group{Session: sess}
+func GetLocationGroupService(sess *session.Session) *Location_Group {
+	return &Location_Group{Session: sess}
+}
+
+func (r Location_Group) Id(id int) *Location_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Group) Mask(mask string) *Location_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Group) Filter(filter string) *Location_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Group) Limit(limit int) *Location_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Group) Offset(offset int) *Location_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -419,11 +494,36 @@ func (r *Location_Group) GetObject() (resp datatypes.Location_Group, err error) 
 //
 type Location_Group_Pricing struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationGroupPricingService(sess *session.Session) Location_Group_Pricing {
-	return Location_Group_Pricing{Session: sess}
+func GetLocationGroupPricingService(sess *session.Session) *Location_Group_Pricing {
+	return &Location_Group_Pricing{Session: sess}
+}
+
+func (r Location_Group_Pricing) Id(id int) *Location_Group_Pricing {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Group_Pricing) Mask(mask string) *Location_Group_Pricing {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Group_Pricing) Filter(filter string) *Location_Group_Pricing {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Group_Pricing) Limit(limit int) *Location_Group_Pricing {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Group_Pricing) Offset(offset int) *Location_Group_Pricing {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -459,11 +559,36 @@ func (r *Location_Group_Pricing) GetPrices() (resp []datatypes.Product_Item_Pric
 //
 type Location_Group_Regional struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationGroupRegionalService(sess *session.Session) Location_Group_Regional {
-	return Location_Group_Regional{Session: sess}
+func GetLocationGroupRegionalService(sess *session.Session) *Location_Group_Regional {
+	return &Location_Group_Regional{Session: sess}
+}
+
+func (r Location_Group_Regional) Id(id int) *Location_Group_Regional {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Group_Regional) Mask(mask string) *Location_Group_Regional {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Group_Regional) Filter(filter string) *Location_Group_Regional {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Group_Regional) Limit(limit int) *Location_Group_Regional {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Group_Regional) Offset(offset int) *Location_Group_Regional {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -505,11 +630,36 @@ func (r *Location_Group_Regional) GetPreferredDatacenter() (resp datatypes.Locat
 //
 type Location_Reservation struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationReservationService(sess *session.Session) Location_Reservation {
-	return Location_Reservation{Session: sess}
+func GetLocationReservationService(sess *session.Session) *Location_Reservation {
+	return &Location_Reservation{Session: sess}
+}
+
+func (r Location_Reservation) Id(id int) *Location_Reservation {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Reservation) Mask(mask string) *Location_Reservation {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Reservation) Filter(filter string) *Location_Reservation {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Reservation) Limit(limit int) *Location_Reservation {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Reservation) Offset(offset int) *Location_Reservation {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The account that a billing item belongs to.
@@ -557,11 +707,36 @@ func (r *Location_Reservation) GetObject() (resp datatypes.Location_Reservation,
 //
 type Location_Reservation_Rack struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationReservationRackService(sess *session.Session) Location_Reservation_Rack {
-	return Location_Reservation_Rack{Session: sess}
+func GetLocationReservationRackService(sess *session.Session) *Location_Reservation_Rack {
+	return &Location_Reservation_Rack{Session: sess}
+}
+
+func (r Location_Reservation_Rack) Id(id int) *Location_Reservation_Rack {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Reservation_Rack) Mask(mask string) *Location_Reservation_Rack {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Reservation_Rack) Filter(filter string) *Location_Reservation_Rack {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Reservation_Rack) Limit(limit int) *Location_Reservation_Rack {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Reservation_Rack) Offset(offset int) *Location_Reservation_Rack {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The bandwidth allotment that the reservation belongs to.
@@ -597,11 +772,36 @@ func (r *Location_Reservation_Rack) GetObject() (resp datatypes.Location_Reserva
 //
 type Location_Reservation_Rack_Member struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocationReservationRackMemberService(sess *session.Session) Location_Reservation_Rack_Member {
-	return Location_Reservation_Rack_Member{Session: sess}
+func GetLocationReservationRackMemberService(sess *session.Session) *Location_Reservation_Rack_Member {
+	return &Location_Reservation_Rack_Member{Session: sess}
+}
+
+func (r Location_Reservation_Rack_Member) Id(id int) *Location_Reservation_Rack_Member {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Location_Reservation_Rack_Member) Mask(mask string) *Location_Reservation_Rack_Member {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Location_Reservation_Rack_Member) Filter(filter string) *Location_Reservation_Rack_Member {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Location_Reservation_Rack_Member) Limit(limit int) *Location_Reservation_Rack_Member {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Location_Reservation_Rack_Member) Offset(offset int) *Location_Reservation_Rack_Member {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve Location relation for the rack member

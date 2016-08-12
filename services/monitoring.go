@@ -29,11 +29,36 @@ import (
 // A monitoring agent object contains information describing the agent.
 type Monitoring_Agent struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringAgentService(sess *session.Session) Monitoring_Agent {
-	return Monitoring_Agent{Session: sess}
+func GetMonitoringAgentService(sess *session.Session) *Monitoring_Agent {
+	return &Monitoring_Agent{Session: sess}
+}
+
+func (r Monitoring_Agent) Id(id int) *Monitoring_Agent {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Agent) Mask(mask string) *Monitoring_Agent {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Agent) Filter(filter string) *Monitoring_Agent {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Agent) Limit(limit int) *Monitoring_Agent {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Agent) Offset(offset int) *Monitoring_Agent {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method activates a SoftLayer_Monitoring_Agent.
@@ -228,11 +253,36 @@ func (r *Monitoring_Agent) SetActiveAlarmSubscriber(userRecordId *int) (resp boo
 // The SoftLayer_Monitoring_Agent_Configuration_Template_Group class is consisted of configuration templates for agents in a monitoring package.
 type Monitoring_Agent_Configuration_Template_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringAgentConfigurationTemplateGroupService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group {
-	return Monitoring_Agent_Configuration_Template_Group{Session: sess}
+func GetMonitoringAgentConfigurationTemplateGroupService(sess *session.Session) *Monitoring_Agent_Configuration_Template_Group {
+	return &Monitoring_Agent_Configuration_Template_Group{Session: sess}
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group) Id(id int) *Monitoring_Agent_Configuration_Template_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group) Mask(mask string) *Monitoring_Agent_Configuration_Template_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group) Filter(filter string) *Monitoring_Agent_Configuration_Template_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group) Limit(limit int) *Monitoring_Agent_Configuration_Template_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group) Offset(offset int) *Monitoring_Agent_Configuration_Template_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates a SoftLayer_Monitoring_Agent_Configuration_Template_Group using the values provided in the template object. The template objects accountId will be overridden to use the active user's accountId as it shows on their associated SoftLayer_User_Customer object.
@@ -307,11 +357,36 @@ func (r *Monitoring_Agent_Configuration_Template_Group) GetObject() (resp dataty
 // SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference class holds the reference information, essentially a SQL join, between a monitoring configuration group and agent configuration templates.
 type Monitoring_Agent_Configuration_Template_Group_Reference struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringAgentConfigurationTemplateGroupReferenceService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group_Reference {
-	return Monitoring_Agent_Configuration_Template_Group_Reference{Session: sess}
+func GetMonitoringAgentConfigurationTemplateGroupReferenceService(sess *session.Session) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	return &Monitoring_Agent_Configuration_Template_Group_Reference{Session: sess}
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Id(id int) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Mask(mask string) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Filter(filter string) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Limit(limit int) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Offset(offset int) *Monitoring_Agent_Configuration_Template_Group_Reference {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates a monitoring agent configuration template group reference by passing in an object with the SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference structure as the $templateObject parameter.
@@ -377,11 +452,36 @@ func (r *Monitoring_Agent_Configuration_Template_Group_Reference) GetTemplateGro
 // Monitoring agent configuration value
 type Monitoring_Agent_Configuration_Value struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringAgentConfigurationValueService(sess *session.Session) Monitoring_Agent_Configuration_Value {
-	return Monitoring_Agent_Configuration_Value{Session: sess}
+func GetMonitoringAgentConfigurationValueService(sess *session.Session) *Monitoring_Agent_Configuration_Value {
+	return &Monitoring_Agent_Configuration_Value{Session: sess}
+}
+
+func (r Monitoring_Agent_Configuration_Value) Id(id int) *Monitoring_Agent_Configuration_Value {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Value) Mask(mask string) *Monitoring_Agent_Configuration_Value {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Value) Filter(filter string) *Monitoring_Agent_Configuration_Value {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Value) Limit(limit int) *Monitoring_Agent_Configuration_Value {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Agent_Configuration_Value) Offset(offset int) *Monitoring_Agent_Configuration_Value {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -417,11 +517,36 @@ func (r *Monitoring_Agent_Configuration_Value) GetProfile() (resp datatypes.Conf
 // Monitoring agent status
 type Monitoring_Agent_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringAgentStatusService(sess *session.Session) Monitoring_Agent_Status {
-	return Monitoring_Agent_Status{Session: sess}
+func GetMonitoringAgentStatusService(sess *session.Session) *Monitoring_Agent_Status {
+	return &Monitoring_Agent_Status{Session: sess}
+}
+
+func (r Monitoring_Agent_Status) Id(id int) *Monitoring_Agent_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Agent_Status) Mask(mask string) *Monitoring_Agent_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Agent_Status) Filter(filter string) *Monitoring_Agent_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Agent_Status) Limit(limit int) *Monitoring_Agent_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Agent_Status) Offset(offset int) *Monitoring_Agent_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -433,11 +558,36 @@ func (r *Monitoring_Agent_Status) GetObject() (resp datatypes.Monitoring_Agent_S
 // The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
 type Monitoring_Robot struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMonitoringRobotService(sess *session.Session) Monitoring_Robot {
-	return Monitoring_Robot{Session: sess}
+func GetMonitoringRobotService(sess *session.Session) *Monitoring_Robot {
+	return &Monitoring_Robot{Session: sess}
+}
+
+func (r Monitoring_Robot) Id(id int) *Monitoring_Robot {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Monitoring_Robot) Mask(mask string) *Monitoring_Robot {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Monitoring_Robot) Filter(filter string) *Monitoring_Robot {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Monitoring_Robot) Limit(limit int) *Monitoring_Robot {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Monitoring_Robot) Offset(offset int) *Monitoring_Robot {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Checks if a monitoring robot can communicate with SoftLayer monitoring management system via the private network.

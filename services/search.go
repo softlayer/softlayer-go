@@ -29,11 +29,36 @@ import (
 //
 type Search struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSearchService(sess *session.Session) Search {
-	return Search{Session: sess}
+func GetSearchService(sess *session.Session) *Search {
+	return &Search{Session: sess}
+}
+
+func (r Search) Id(id int) *Search {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Search) Mask(mask string) *Search {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Search) Filter(filter string) *Search {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Search) Limit(limit int) *Search {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Search) Offset(offset int) *Search {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method allows for searching for SoftLayer resources by simple terms and operators.  Fields that are used for searching will be available at sldn.softlayer.com. It returns a collection or array of <b>[[SoftLayer_Container_Search_Result (type)|SoftLayer_Container_Search_Result]]</b> objects that have search metadata for each result and the resulting resource found.

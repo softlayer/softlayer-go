@@ -29,11 +29,36 @@ import (
 //
 type Resource_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetResourceGroupService(sess *session.Session) Resource_Group {
-	return Resource_Group{Session: sess}
+func GetResourceGroupService(sess *session.Session) *Resource_Group {
+	return &Resource_Group{Session: sess}
+}
+
+func (r Resource_Group) Id(id int) *Resource_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Resource_Group) Mask(mask string) *Resource_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Resource_Group) Filter(filter string) *Resource_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Resource_Group) Limit(limit int) *Resource_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Resource_Group) Offset(offset int) *Resource_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -102,11 +127,36 @@ func (r *Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Membe
 //
 type Resource_Group_Template struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetResourceGroupTemplateService(sess *session.Session) Resource_Group_Template {
-	return Resource_Group_Template{Session: sess}
+func GetResourceGroupTemplateService(sess *session.Session) *Resource_Group_Template {
+	return &Resource_Group_Template{Session: sess}
+}
+
+func (r Resource_Group_Template) Id(id int) *Resource_Group_Template {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Resource_Group_Template) Mask(mask string) *Resource_Group_Template {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Resource_Group_Template) Filter(filter string) *Resource_Group_Template {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Resource_Group_Template) Limit(limit int) *Resource_Group_Template {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Resource_Group_Template) Offset(offset int) *Resource_Group_Template {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -142,11 +192,36 @@ func (r *Resource_Group_Template) GetPackage() (resp datatypes.Product_Package, 
 //
 type Resource_Metadata struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetResourceMetadataService(sess *session.Session) Resource_Metadata {
-	return Resource_Metadata{Session: sess}
+func GetResourceMetadataService(sess *session.Session) *Resource_Metadata {
+	return &Resource_Metadata{Session: sess}
+}
+
+func (r Resource_Metadata) Id(id int) *Resource_Metadata {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Resource_Metadata) Mask(mask string) *Resource_Metadata {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Resource_Metadata) Filter(filter string) *Resource_Metadata {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Resource_Metadata) Limit(limit int) *Resource_Metadata {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Resource_Metadata) Offset(offset int) *Resource_Metadata {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // The getBackendMacAddresses method retrieves a list of backend MAC addresses for the resource

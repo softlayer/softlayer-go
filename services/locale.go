@@ -29,11 +29,36 @@ import (
 //
 type Locale struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocaleService(sess *session.Session) Locale {
-	return Locale{Session: sess}
+func GetLocaleService(sess *session.Session) *Locale {
+	return &Locale{Session: sess}
+}
+
+func (r Locale) Id(id int) *Locale {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Locale) Mask(mask string) *Locale {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Locale) Filter(filter string) *Locale {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Locale) Limit(limit int) *Locale {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Locale) Offset(offset int) *Locale {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -54,11 +79,36 @@ func (r *Locale) GetObject() (resp datatypes.Locale, err error) {
 //
 type Locale_Country struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocaleCountryService(sess *session.Session) Locale_Country {
-	return Locale_Country{Session: sess}
+func GetLocaleCountryService(sess *session.Session) *Locale_Country {
+	return &Locale_Country{Session: sess}
+}
+
+func (r Locale_Country) Id(id int) *Locale_Country {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Locale_Country) Mask(mask string) *Locale_Country {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Locale_Country) Filter(filter string) *Locale_Country {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Locale_Country) Limit(limit int) *Locale_Country {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Locale_Country) Offset(offset int) *Locale_Country {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve a list of countries and locale information available to the current user.
@@ -88,11 +138,36 @@ func (r *Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err
 // Each User is assigned a timezone allowing for a precise local timestamp.
 type Locale_Timezone struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLocaleTimezoneService(sess *session.Session) Locale_Timezone {
-	return Locale_Timezone{Session: sess}
+func GetLocaleTimezoneService(sess *session.Session) *Locale_Timezone {
+	return &Locale_Timezone{Session: sess}
+}
+
+func (r Locale_Timezone) Id(id int) *Locale_Timezone {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Locale_Timezone) Mask(mask string) *Locale_Timezone {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Locale_Timezone) Filter(filter string) *Locale_Timezone {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Locale_Timezone) Limit(limit int) *Locale_Timezone {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Locale_Timezone) Offset(offset int) *Locale_Timezone {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve all timezone objects.

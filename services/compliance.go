@@ -29,11 +29,36 @@ import (
 //
 type Compliance_Report_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetComplianceReportTypeService(sess *session.Session) Compliance_Report_Type {
-	return Compliance_Report_Type{Session: sess}
+func GetComplianceReportTypeService(sess *session.Session) *Compliance_Report_Type {
+	return &Compliance_Report_Type{Session: sess}
+}
+
+func (r Compliance_Report_Type) Id(id int) *Compliance_Report_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Compliance_Report_Type) Mask(mask string) *Compliance_Report_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Compliance_Report_Type) Filter(filter string) *Compliance_Report_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Compliance_Report_Type) Limit(limit int) *Compliance_Report_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Compliance_Report_Type) Offset(offset int) *Compliance_Report_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

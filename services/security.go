@@ -29,11 +29,36 @@ import (
 //
 type Security_Certificate struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSecurityCertificateService(sess *session.Session) Security_Certificate {
-	return Security_Certificate{Session: sess}
+func GetSecurityCertificateService(sess *session.Session) *Security_Certificate {
+	return &Security_Certificate{Session: sess}
+}
+
+func (r Security_Certificate) Id(id int) *Security_Certificate {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Security_Certificate) Mask(mask string) *Security_Certificate {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Security_Certificate) Filter(filter string) *Security_Certificate {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Security_Certificate) Limit(limit int) *Security_Certificate {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Security_Certificate) Offset(offset int) *Security_Certificate {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Add a certificate to your account for your records, or for use with various services. Only the certificate and private key are usually required. If your issuer provided an intermediate certificate, you must also provide that certificate. Details will be extracted from the certificate. Validation will be performed between the certificate and the private key as well as the certificate and the intermediate certificate, if provided.
@@ -98,11 +123,36 @@ func (r *Security_Certificate) GetPemFormat() (resp string, err error) {
 // SoftLayer_Security_Certificate_Request data type is used to harness your SSL certificate order to a Certificate Authority. This contains data that is required by a Certificate Authority to place an SSL certificate order.
 type Security_Certificate_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSecurityCertificateRequestService(sess *session.Session) Security_Certificate_Request {
-	return Security_Certificate_Request{Session: sess}
+func GetSecurityCertificateRequestService(sess *session.Session) *Security_Certificate_Request {
+	return &Security_Certificate_Request{Session: sess}
+}
+
+func (r Security_Certificate_Request) Id(id int) *Security_Certificate_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Security_Certificate_Request) Mask(mask string) *Security_Certificate_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Security_Certificate_Request) Filter(filter string) *Security_Certificate_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Security_Certificate_Request) Limit(limit int) *Security_Certificate_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Security_Certificate_Request) Offset(offset int) *Security_Certificate_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Cancels a pending SSL certificate order at Certificate Authority
@@ -203,11 +253,36 @@ func (r *Security_Certificate_Request) ValidateCsr(csr *string, validityMonths *
 // Represents a server type that can be specified when ordering an SSL certificate.
 type Security_Certificate_Request_ServerType struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSecurityCertificateRequestServerTypeService(sess *session.Session) Security_Certificate_Request_ServerType {
-	return Security_Certificate_Request_ServerType{Session: sess}
+func GetSecurityCertificateRequestServerTypeService(sess *session.Session) *Security_Certificate_Request_ServerType {
+	return &Security_Certificate_Request_ServerType{Session: sess}
+}
+
+func (r Security_Certificate_Request_ServerType) Id(id int) *Security_Certificate_Request_ServerType {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Security_Certificate_Request_ServerType) Mask(mask string) *Security_Certificate_Request_ServerType {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Security_Certificate_Request_ServerType) Filter(filter string) *Security_Certificate_Request_ServerType {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Security_Certificate_Request_ServerType) Limit(limit int) *Security_Certificate_Request_ServerType {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Security_Certificate_Request_ServerType) Offset(offset int) *Security_Certificate_Request_ServerType {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Returns all SSL certificate server types, which  passed in on a certificate order.
@@ -225,11 +300,36 @@ func (r *Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Se
 // SoftLayer_Security_Certificate_Request_Status data type represents the status of an SSL certificate request.
 type Security_Certificate_Request_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSecurityCertificateRequestStatusService(sess *session.Session) Security_Certificate_Request_Status {
-	return Security_Certificate_Request_Status{Session: sess}
+func GetSecurityCertificateRequestStatusService(sess *session.Session) *Security_Certificate_Request_Status {
+	return &Security_Certificate_Request_Status{Session: sess}
+}
+
+func (r Security_Certificate_Request_Status) Id(id int) *Security_Certificate_Request_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Security_Certificate_Request_Status) Mask(mask string) *Security_Certificate_Request_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Security_Certificate_Request_Status) Filter(filter string) *Security_Certificate_Request_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Security_Certificate_Request_Status) Limit(limit int) *Security_Certificate_Request_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Security_Certificate_Request_Status) Offset(offset int) *Security_Certificate_Request_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -247,11 +347,36 @@ func (r *Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []da
 //
 type Security_Ssh_Key struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSecuritySshKeyService(sess *session.Session) Security_Ssh_Key {
-	return Security_Ssh_Key{Session: sess}
+func GetSecuritySshKeyService(sess *session.Session) *Security_Ssh_Key {
+	return &Security_Ssh_Key{Session: sess}
+}
+
+func (r Security_Ssh_Key) Id(id int) *Security_Ssh_Key {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Security_Ssh_Key) Mask(mask string) *Security_Ssh_Key {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Security_Ssh_Key) Filter(filter string) *Security_Ssh_Key {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Security_Ssh_Key) Limit(limit int) *Security_Ssh_Key {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Security_Ssh_Key) Offset(offset int) *Security_Ssh_Key {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Add a ssh key to your account for use during server provisioning and os reloads.

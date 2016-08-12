@@ -28,11 +28,36 @@ import (
 //
 type Utility_Network struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUtilityNetworkService(sess *session.Session) Utility_Network {
-	return Utility_Network{Session: sess}
+func GetUtilityNetworkService(sess *session.Session) *Utility_Network {
+	return &Utility_Network{Session: sess}
+}
+
+func (r Utility_Network) Id(id int) *Utility_Network {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Utility_Network) Mask(mask string) *Utility_Network {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Utility_Network) Filter(filter string) *Utility_Network {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Utility_Network) Limit(limit int) *Utility_Network {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Utility_Network) Offset(offset int) *Utility_Network {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // A method used to return the nameserver information for a given address

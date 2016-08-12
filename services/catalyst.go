@@ -29,11 +29,36 @@ import (
 //
 type Catalyst_Company_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetCatalystCompanyTypeService(sess *session.Session) Catalyst_Company_Type {
-	return Catalyst_Company_Type{Session: sess}
+func GetCatalystCompanyTypeService(sess *session.Session) *Catalyst_Company_Type {
+	return &Catalyst_Company_Type{Session: sess}
+}
+
+func (r Catalyst_Company_Type) Id(id int) *Catalyst_Company_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Catalyst_Company_Type) Mask(mask string) *Catalyst_Company_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Catalyst_Company_Type) Filter(filter string) *Catalyst_Company_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Catalyst_Company_Type) Limit(limit int) *Catalyst_Company_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Catalyst_Company_Type) Offset(offset int) *Catalyst_Company_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // <<<EOT
@@ -51,11 +76,36 @@ func (r *Catalyst_Company_Type) GetObject() (resp datatypes.Catalyst_Company_Typ
 //
 type Catalyst_Enrollment struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetCatalystEnrollmentService(sess *session.Session) Catalyst_Enrollment {
-	return Catalyst_Enrollment{Session: sess}
+func GetCatalystEnrollmentService(sess *session.Session) *Catalyst_Enrollment {
+	return &Catalyst_Enrollment{Session: sess}
+}
+
+func (r Catalyst_Enrollment) Id(id int) *Catalyst_Enrollment {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Catalyst_Enrollment) Mask(mask string) *Catalyst_Enrollment {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Catalyst_Enrollment) Filter(filter string) *Catalyst_Enrollment {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Catalyst_Enrollment) Limit(limit int) *Catalyst_Enrollment {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Catalyst_Enrollment) Offset(offset int) *Catalyst_Enrollment {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve

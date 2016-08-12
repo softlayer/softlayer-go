@@ -29,11 +29,36 @@ import (
 //
 type Scale_Asset struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleAssetService(sess *session.Session) Scale_Asset {
-	return Scale_Asset{Session: sess}
+func GetScaleAssetService(sess *session.Session) *Scale_Asset {
+	return &Scale_Asset{Session: sess}
+}
+
+func (r Scale_Asset) Id(id int) *Scale_Asset {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Asset) Mask(mask string) *Scale_Asset {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Asset) Filter(filter string) *Scale_Asset {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Asset) Limit(limit int) *Scale_Asset {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Asset) Offset(offset int) *Scale_Asset {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -57,11 +82,36 @@ func (r *Scale_Asset) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 //
 type Scale_Asset_Hardware struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleAssetHardwareService(sess *session.Session) Scale_Asset_Hardware {
-	return Scale_Asset_Hardware{Session: sess}
+func GetScaleAssetHardwareService(sess *session.Session) *Scale_Asset_Hardware {
+	return &Scale_Asset_Hardware{Session: sess}
+}
+
+func (r Scale_Asset_Hardware) Id(id int) *Scale_Asset_Hardware {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Asset_Hardware) Mask(mask string) *Scale_Asset_Hardware {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Asset_Hardware) Filter(filter string) *Scale_Asset_Hardware {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Asset_Hardware) Limit(limit int) *Scale_Asset_Hardware {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Asset_Hardware) Offset(offset int) *Scale_Asset_Hardware {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -106,11 +156,36 @@ func (r *Scale_Asset_Hardware) GetScaleGroup() (resp datatypes.Scale_Group, err 
 //
 type Scale_Asset_Virtual_Guest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleAssetVirtualGuestService(sess *session.Session) Scale_Asset_Virtual_Guest {
-	return Scale_Asset_Virtual_Guest{Session: sess}
+func GetScaleAssetVirtualGuestService(sess *session.Session) *Scale_Asset_Virtual_Guest {
+	return &Scale_Asset_Virtual_Guest{Session: sess}
+}
+
+func (r Scale_Asset_Virtual_Guest) Id(id int) *Scale_Asset_Virtual_Guest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Asset_Virtual_Guest) Mask(mask string) *Scale_Asset_Virtual_Guest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Asset_Virtual_Guest) Filter(filter string) *Scale_Asset_Virtual_Guest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Asset_Virtual_Guest) Limit(limit int) *Scale_Asset_Virtual_Guest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Asset_Virtual_Guest) Offset(offset int) *Scale_Asset_Virtual_Guest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -155,11 +230,36 @@ func (r *Scale_Asset_Virtual_Guest) GetVirtualGuestId() (resp int, err error) {
 //
 type Scale_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleGroupService(sess *session.Session) Scale_Group {
-	return Scale_Group{Session: sess}
+func GetScaleGroupService(sess *session.Session) *Scale_Group {
+	return &Scale_Group{Session: sess}
+}
+
+func (r Scale_Group) Id(id int) *Scale_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Group) Mask(mask string) *Scale_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Group) Filter(filter string) *Scale_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Group) Limit(limit int) *Scale_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Group) Offset(offset int) *Scale_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -305,11 +405,36 @@ func (r *Scale_Group) Suspend() (err error) {
 //
 type Scale_Group_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleGroupStatusService(sess *session.Session) Scale_Group_Status {
-	return Scale_Group_Status{Session: sess}
+func GetScaleGroupStatusService(sess *session.Session) *Scale_Group_Status {
+	return &Scale_Group_Status{Session: sess}
+}
+
+func (r Scale_Group_Status) Id(id int) *Scale_Group_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Group_Status) Mask(mask string) *Scale_Group_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Group_Status) Filter(filter string) *Scale_Group_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Group_Status) Limit(limit int) *Scale_Group_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Group_Status) Offset(offset int) *Scale_Group_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -327,11 +452,36 @@ func (r *Scale_Group_Status) GetObject() (resp datatypes.Scale_Group_Status, err
 //
 type Scale_LoadBalancer struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleLoadBalancerService(sess *session.Session) Scale_LoadBalancer {
-	return Scale_LoadBalancer{Session: sess}
+func GetScaleLoadBalancerService(sess *session.Session) *Scale_LoadBalancer {
+	return &Scale_LoadBalancer{Session: sess}
+}
+
+func (r Scale_LoadBalancer) Id(id int) *Scale_LoadBalancer {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_LoadBalancer) Mask(mask string) *Scale_LoadBalancer {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_LoadBalancer) Filter(filter string) *Scale_LoadBalancer {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_LoadBalancer) Limit(limit int) *Scale_LoadBalancer {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_LoadBalancer) Offset(offset int) *Scale_LoadBalancer {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -415,11 +565,36 @@ func (r *Scale_LoadBalancer) GetVirtualServerPort() (resp int, err error) {
 //
 type Scale_Member struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleMemberService(sess *session.Session) Scale_Member {
-	return Scale_Member{Session: sess}
+func GetScaleMemberService(sess *session.Session) *Scale_Member {
+	return &Scale_Member{Session: sess}
+}
+
+func (r Scale_Member) Id(id int) *Scale_Member {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Member) Mask(mask string) *Scale_Member {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Member) Filter(filter string) *Scale_Member {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Member) Limit(limit int) *Scale_Member {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Member) Offset(offset int) *Scale_Member {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -443,11 +618,36 @@ func (r *Scale_Member) GetScaleGroup() (resp datatypes.Scale_Group, err error) {
 //
 type Scale_Member_Virtual_Guest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleMemberVirtualGuestService(sess *session.Session) Scale_Member_Virtual_Guest {
-	return Scale_Member_Virtual_Guest{Session: sess}
+func GetScaleMemberVirtualGuestService(sess *session.Session) *Scale_Member_Virtual_Guest {
+	return &Scale_Member_Virtual_Guest{Session: sess}
+}
+
+func (r Scale_Member_Virtual_Guest) Id(id int) *Scale_Member_Virtual_Guest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Member_Virtual_Guest) Mask(mask string) *Scale_Member_Virtual_Guest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Member_Virtual_Guest) Filter(filter string) *Scale_Member_Virtual_Guest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Member_Virtual_Guest) Limit(limit int) *Scale_Member_Virtual_Guest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Member_Virtual_Guest) Offset(offset int) *Scale_Member_Virtual_Guest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -483,11 +683,36 @@ func (r *Scale_Member_Virtual_Guest) GetVirtualGuestId() (resp int, err error) {
 //
 type Scale_Network_Vlan struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleNetworkVlanService(sess *session.Session) Scale_Network_Vlan {
-	return Scale_Network_Vlan{Session: sess}
+func GetScaleNetworkVlanService(sess *session.Session) *Scale_Network_Vlan {
+	return &Scale_Network_Vlan{Session: sess}
+}
+
+func (r Scale_Network_Vlan) Id(id int) *Scale_Network_Vlan {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Network_Vlan) Mask(mask string) *Scale_Network_Vlan {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Network_Vlan) Filter(filter string) *Scale_Network_Vlan {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Network_Vlan) Limit(limit int) *Scale_Network_Vlan {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Network_Vlan) Offset(offset int) *Scale_Network_Vlan {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -526,11 +751,36 @@ func (r *Scale_Network_Vlan) GetScaleGroup() (resp datatypes.Scale_Group, err er
 //
 type Scale_Policy struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyService(sess *session.Session) Scale_Policy {
-	return Scale_Policy{Session: sess}
+func GetScalePolicyService(sess *session.Session) *Scale_Policy {
+	return &Scale_Policy{Session: sess}
+}
+
+func (r Scale_Policy) Id(id int) *Scale_Policy {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy) Mask(mask string) *Scale_Policy {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy) Filter(filter string) *Scale_Policy {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy) Limit(limit int) *Scale_Policy {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy) Offset(offset int) *Scale_Policy {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -614,11 +864,36 @@ func (r *Scale_Policy) Trigger() (resp []datatypes.Scale_Member, err error) {
 //
 type Scale_Policy_Action struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyActionService(sess *session.Session) Scale_Policy_Action {
-	return Scale_Policy_Action{Session: sess}
+func GetScalePolicyActionService(sess *session.Session) *Scale_Policy_Action {
+	return &Scale_Policy_Action{Session: sess}
+}
+
+func (r Scale_Policy_Action) Id(id int) *Scale_Policy_Action {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Action) Mask(mask string) *Scale_Policy_Action {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Action) Filter(filter string) *Scale_Policy_Action {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Action) Limit(limit int) *Scale_Policy_Action {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Action) Offset(offset int) *Scale_Policy_Action {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -657,11 +932,36 @@ func (r *Scale_Policy_Action) GetType() (resp datatypes.Scale_Policy_Action_Type
 //
 type Scale_Policy_Action_Scale struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyActionScaleService(sess *session.Session) Scale_Policy_Action_Scale {
-	return Scale_Policy_Action_Scale{Session: sess}
+func GetScalePolicyActionScaleService(sess *session.Session) *Scale_Policy_Action_Scale {
+	return &Scale_Policy_Action_Scale{Session: sess}
+}
+
+func (r Scale_Policy_Action_Scale) Id(id int) *Scale_Policy_Action_Scale {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Action_Scale) Mask(mask string) *Scale_Policy_Action_Scale {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Action_Scale) Filter(filter string) *Scale_Policy_Action_Scale {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Action_Scale) Limit(limit int) *Scale_Policy_Action_Scale {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Action_Scale) Offset(offset int) *Scale_Policy_Action_Scale {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -709,11 +1009,36 @@ func (r *Scale_Policy_Action_Scale) GetType() (resp datatypes.Scale_Policy_Actio
 //
 type Scale_Policy_Action_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyActionTypeService(sess *session.Session) Scale_Policy_Action_Type {
-	return Scale_Policy_Action_Type{Session: sess}
+func GetScalePolicyActionTypeService(sess *session.Session) *Scale_Policy_Action_Type {
+	return &Scale_Policy_Action_Type{Session: sess}
+}
+
+func (r Scale_Policy_Action_Type) Id(id int) *Scale_Policy_Action_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Action_Type) Mask(mask string) *Scale_Policy_Action_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Action_Type) Filter(filter string) *Scale_Policy_Action_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Action_Type) Limit(limit int) *Scale_Policy_Action_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Action_Type) Offset(offset int) *Scale_Policy_Action_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -731,11 +1056,36 @@ func (r *Scale_Policy_Action_Type) GetObject() (resp datatypes.Scale_Policy_Acti
 //
 type Scale_Policy_Trigger struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerService(sess *session.Session) Scale_Policy_Trigger {
-	return Scale_Policy_Trigger{Session: sess}
+func GetScalePolicyTriggerService(sess *session.Session) *Scale_Policy_Trigger {
+	return &Scale_Policy_Trigger{Session: sess}
+}
+
+func (r Scale_Policy_Trigger) Id(id int) *Scale_Policy_Trigger {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger) Mask(mask string) *Scale_Policy_Trigger {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger) Filter(filter string) *Scale_Policy_Trigger {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger) Limit(limit int) *Scale_Policy_Trigger {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger) Offset(offset int) *Scale_Policy_Trigger {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -783,11 +1133,36 @@ func (r *Scale_Policy_Trigger) GetType() (resp datatypes.Scale_Policy_Trigger_Ty
 //
 type Scale_Policy_Trigger_OneTime struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerOneTimeService(sess *session.Session) Scale_Policy_Trigger_OneTime {
-	return Scale_Policy_Trigger_OneTime{Session: sess}
+func GetScalePolicyTriggerOneTimeService(sess *session.Session) *Scale_Policy_Trigger_OneTime {
+	return &Scale_Policy_Trigger_OneTime{Session: sess}
+}
+
+func (r Scale_Policy_Trigger_OneTime) Id(id int) *Scale_Policy_Trigger_OneTime {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger_OneTime) Mask(mask string) *Scale_Policy_Trigger_OneTime {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger_OneTime) Filter(filter string) *Scale_Policy_Trigger_OneTime {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger_OneTime) Limit(limit int) *Scale_Policy_Trigger_OneTime {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger_OneTime) Offset(offset int) *Scale_Policy_Trigger_OneTime {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -835,11 +1210,36 @@ func (r *Scale_Policy_Trigger_OneTime) GetType() (resp datatypes.Scale_Policy_Tr
 //
 type Scale_Policy_Trigger_Repeating struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerRepeatingService(sess *session.Session) Scale_Policy_Trigger_Repeating {
-	return Scale_Policy_Trigger_Repeating{Session: sess}
+func GetScalePolicyTriggerRepeatingService(sess *session.Session) *Scale_Policy_Trigger_Repeating {
+	return &Scale_Policy_Trigger_Repeating{Session: sess}
+}
+
+func (r Scale_Policy_Trigger_Repeating) Id(id int) *Scale_Policy_Trigger_Repeating {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Repeating) Mask(mask string) *Scale_Policy_Trigger_Repeating {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Repeating) Filter(filter string) *Scale_Policy_Trigger_Repeating {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Repeating) Limit(limit int) *Scale_Policy_Trigger_Repeating {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Repeating) Offset(offset int) *Scale_Policy_Trigger_Repeating {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -897,11 +1297,36 @@ func (r *Scale_Policy_Trigger_Repeating) ValidateCronExpression(expression *stri
 //
 type Scale_Policy_Trigger_ResourceUse struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerResourceUseService(sess *session.Session) Scale_Policy_Trigger_ResourceUse {
-	return Scale_Policy_Trigger_ResourceUse{Session: sess}
+func GetScalePolicyTriggerResourceUseService(sess *session.Session) *Scale_Policy_Trigger_ResourceUse {
+	return &Scale_Policy_Trigger_ResourceUse{Session: sess}
+}
+
+func (r Scale_Policy_Trigger_ResourceUse) Id(id int) *Scale_Policy_Trigger_ResourceUse {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse) Mask(mask string) *Scale_Policy_Trigger_ResourceUse {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse) Filter(filter string) *Scale_Policy_Trigger_ResourceUse {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse) Limit(limit int) *Scale_Policy_Trigger_ResourceUse {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse) Offset(offset int) *Scale_Policy_Trigger_ResourceUse {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -955,11 +1380,36 @@ func (r *Scale_Policy_Trigger_ResourceUse) GetWatches() (resp []datatypes.Scale_
 //
 type Scale_Policy_Trigger_ResourceUse_Watch struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerResourceUseWatchService(sess *session.Session) Scale_Policy_Trigger_ResourceUse_Watch {
-	return Scale_Policy_Trigger_ResourceUse_Watch{Session: sess}
+func GetScalePolicyTriggerResourceUseWatchService(sess *session.Session) *Scale_Policy_Trigger_ResourceUse_Watch {
+	return &Scale_Policy_Trigger_ResourceUse_Watch{Session: sess}
+}
+
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Id(id int) *Scale_Policy_Trigger_ResourceUse_Watch {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Mask(mask string) *Scale_Policy_Trigger_ResourceUse_Watch {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Filter(filter string) *Scale_Policy_Trigger_ResourceUse_Watch {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Limit(limit int) *Scale_Policy_Trigger_ResourceUse_Watch {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Offset(offset int) *Scale_Policy_Trigger_ResourceUse_Watch {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1019,11 +1469,36 @@ func (r *Scale_Policy_Trigger_ResourceUse_Watch) GetScalePolicyTrigger() (resp d
 //
 type Scale_Policy_Trigger_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScalePolicyTriggerTypeService(sess *session.Session) Scale_Policy_Trigger_Type {
-	return Scale_Policy_Trigger_Type{Session: sess}
+func GetScalePolicyTriggerTypeService(sess *session.Session) *Scale_Policy_Trigger_Type {
+	return &Scale_Policy_Trigger_Type{Session: sess}
+}
+
+func (r Scale_Policy_Trigger_Type) Id(id int) *Scale_Policy_Trigger_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Type) Mask(mask string) *Scale_Policy_Trigger_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Type) Filter(filter string) *Scale_Policy_Trigger_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Type) Limit(limit int) *Scale_Policy_Trigger_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Policy_Trigger_Type) Offset(offset int) *Scale_Policy_Trigger_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1041,11 +1516,36 @@ func (r *Scale_Policy_Trigger_Type) GetObject() (resp datatypes.Scale_Policy_Tri
 //
 type Scale_Termination_Policy struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetScaleTerminationPolicyService(sess *session.Session) Scale_Termination_Policy {
-	return Scale_Termination_Policy{Session: sess}
+func GetScaleTerminationPolicyService(sess *session.Session) *Scale_Termination_Policy {
+	return &Scale_Termination_Policy{Session: sess}
+}
+
+func (r Scale_Termination_Policy) Id(id int) *Scale_Termination_Policy {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Scale_Termination_Policy) Mask(mask string) *Scale_Termination_Policy {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Scale_Termination_Policy) Filter(filter string) *Scale_Termination_Policy {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Scale_Termination_Policy) Limit(limit int) *Scale_Termination_Policy {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Scale_Termination_Policy) Offset(offset int) *Scale_Termination_Policy {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

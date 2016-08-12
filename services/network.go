@@ -29,11 +29,36 @@ import (
 //
 type Network struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkService(sess *session.Session) Network {
-	return Network{Session: sess}
+func GetNetworkService(sess *session.Session) *Network {
+	return &Network{Session: sess}
+}
+
+func (r Network) Id(id int) *Network {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network) Mask(mask string) *Network {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network) Filter(filter string) *Network {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network) Limit(limit int) *Network {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network) Offset(offset int) *Network {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Provide a template containing the following properties to create a Network:
@@ -165,11 +190,36 @@ func (r *Network) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 // The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ''notes'' property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
 type Network_Application_Delivery_Controller struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerService(sess *session.Session) Network_Application_Delivery_Controller {
-	return Network_Application_Delivery_Controller{Session: sess}
+func GetNetworkApplicationDeliveryControllerService(sess *session.Session) *Network_Application_Delivery_Controller {
+	return &Network_Application_Delivery_Controller{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller) Id(id int) *Network_Application_Delivery_Controller {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller) Mask(mask string) *Network_Application_Delivery_Controller {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller) Filter(filter string) *Network_Application_Delivery_Controller {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller) Limit(limit int) *Network_Application_Delivery_Controller {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller) Offset(offset int) *Network_Application_Delivery_Controller {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create or add to an application delivery controller based load balancer service. The loadBalancer parameter must have its ''name'', ''type'', ''sourcePort'', and ''virtualIpAddress'' properties populated. Changes are reflected immediately in the application delivery controller.
@@ -424,11 +474,36 @@ func (r *Network_Application_Delivery_Controller) UpdateNetScalerLicense() (resp
 // The SoftLayer_Network_Application_Delivery_Controller_Configuration_History data type models a single instance of a configuration history entry for an application delivery controller. The configuration history entries are used to support creating backups of an application delivery controller's configuration state in order to restore them later if needed.
 type Network_Application_Delivery_Controller_Configuration_History struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerConfigurationHistoryService(sess *session.Session) Network_Application_Delivery_Controller_Configuration_History {
-	return Network_Application_Delivery_Controller_Configuration_History{Session: sess}
+func GetNetworkApplicationDeliveryControllerConfigurationHistoryService(sess *session.Session) *Network_Application_Delivery_Controller_Configuration_History {
+	return &Network_Application_Delivery_Controller_Configuration_History{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_Configuration_History) Id(id int) *Network_Application_Delivery_Controller_Configuration_History {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_Configuration_History) Mask(mask string) *Network_Application_Delivery_Controller_Configuration_History {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_Configuration_History) Filter(filter string) *Network_Application_Delivery_Controller_Configuration_History {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_Configuration_History) Limit(limit int) *Network_Application_Delivery_Controller_Configuration_History {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_Configuration_History) Offset(offset int) *Network_Application_Delivery_Controller_Configuration_History {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // deleteObject permanently removes a configuration history record
@@ -452,11 +527,36 @@ func (r *Network_Application_Delivery_Controller_Configuration_History) GetObjec
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -480,11 +580,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeTypeService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -502,11 +627,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_T
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Health_Check{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -542,11 +692,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetT
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckTypeService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -564,11 +739,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type)
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Method struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingMethodService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
-	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Method{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingMethodService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Routing_Method{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -586,11 +786,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Ge
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Type{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingTypeService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Routing_Type{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -608,11 +833,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetO
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerServiceService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Service {
-	return Network_Application_Delivery_Controller_LoadBalancer_Service{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerServiceService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Service{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -684,11 +934,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleSta
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerServiceGroupService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
-	return Network_Application_Delivery_Controller_LoadBalancer_Service_Group{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerServiceGroupService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	return &Network_Application_Delivery_Controller_LoadBalancer_Service_Group{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Get the graph image for a load balancer service group based on the supplied graph type and metric.  The only available graph type currently is: 'connections', and the available metrics are: 'day', 'week' and 'month'.
@@ -754,11 +1029,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Kic
 //
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	return &Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Like any other API object, the load balancers can have their exposed properties edited by passing in a modified version of the object.  The load balancer object also can modify its services in this way.  Simply request the load balancer object you wish to edit, then modify the objects in the services array and pass the modified object to this function.  WARNING:  Services cannot be deleted in this manner, you must call deleteObject() on the service to physically remove them from the load balancer.
@@ -893,11 +1193,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{Session: sess}
+func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService(sess *session.Session) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	return &Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Id(id int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Mask(mask string) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Filter(filter string) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Limit(limit int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Offset(offset int) *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -951,11 +1276,36 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Sto
 // A SoftLayer_Network_Backbone represents a single backbone connection from SoftLayer to the public Internet, from the Internet to the SoftLayer private network, or a link that connects the private networks between SoftLayer's datacenters. The SoftLayer_Network_Backbone data type is a collection of data associated with one of those connections.
 type Network_Backbone struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkBackboneService(sess *session.Session) Network_Backbone {
-	return Network_Backbone{Session: sess}
+func GetNetworkBackboneService(sess *session.Session) *Network_Backbone {
+	return &Network_Backbone{Session: sess}
+}
+
+func (r Network_Backbone) Id(id int) *Network_Backbone {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Backbone) Mask(mask string) *Network_Backbone {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Backbone) Filter(filter string) *Network_Backbone {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Backbone) Limit(limit int) *Network_Backbone {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Backbone) Offset(offset int) *Network_Backbone {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve a list of all SoftLayer backbone connections. Use this method if you need all backbones or don't know the id number of a specific backbone.
@@ -1006,11 +1356,36 @@ func (r *Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err err
 //
 type Network_Backbone_Location_Dependent struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkBackboneLocationDependentService(sess *session.Session) Network_Backbone_Location_Dependent {
-	return Network_Backbone_Location_Dependent{Session: sess}
+func GetNetworkBackboneLocationDependentService(sess *session.Session) *Network_Backbone_Location_Dependent {
+	return &Network_Backbone_Location_Dependent{Session: sess}
+}
+
+func (r Network_Backbone_Location_Dependent) Id(id int) *Network_Backbone_Location_Dependent {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Backbone_Location_Dependent) Mask(mask string) *Network_Backbone_Location_Dependent {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Backbone_Location_Dependent) Filter(filter string) *Network_Backbone_Location_Dependent {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Backbone_Location_Dependent) Limit(limit int) *Network_Backbone_Location_Dependent {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Backbone_Location_Dependent) Offset(offset int) *Network_Backbone_Location_Dependent {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1049,11 +1424,36 @@ func (r *Network_Backbone_Location_Dependent) GetSourceLocation() (resp datatype
 // The SoftLayer_Network_Bandwidth_Version1_Allotment class provides methods and data structures necessary to work with an array of hardware objects associated with a single Bandwidth Pooling.
 type Network_Bandwidth_Version1_Allotment struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkBandwidthVersion1AllotmentService(sess *session.Session) Network_Bandwidth_Version1_Allotment {
-	return Network_Bandwidth_Version1_Allotment{Session: sess}
+func GetNetworkBandwidthVersion1AllotmentService(sess *session.Session) *Network_Bandwidth_Version1_Allotment {
+	return &Network_Bandwidth_Version1_Allotment{Session: sess}
+}
+
+func (r Network_Bandwidth_Version1_Allotment) Id(id int) *Network_Bandwidth_Version1_Allotment {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Bandwidth_Version1_Allotment) Mask(mask string) *Network_Bandwidth_Version1_Allotment {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Bandwidth_Version1_Allotment) Filter(filter string) *Network_Bandwidth_Version1_Allotment {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Bandwidth_Version1_Allotment) Limit(limit int) *Network_Bandwidth_Version1_Allotment {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Bandwidth_Version1_Allotment) Offset(offset int) *Network_Bandwidth_Version1_Allotment {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a allotment for servers to pool bandwidth and avoid overages in billing if they use more than there allocated bandwidth.
@@ -1390,11 +1790,36 @@ func (r *Network_Bandwidth_Version1_Allotment) VoidPendingVdrCancellation() (res
 // Every piece of hardware running in SoftLayer's datacenters connected to the public, private, or management networks (where applicable) have a corresponding network component. These network components are modeled by the SoftLayer_Network_Component data type. These data types reflect the servers' local ethernet and remote management interfaces.
 type Network_Component struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkComponentService(sess *session.Session) Network_Component {
-	return Network_Component{Session: sess}
+func GetNetworkComponentService(sess *session.Session) *Network_Component {
+	return &Network_Component{Session: sess}
+}
+
+func (r Network_Component) Id(id int) *Network_Component {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Component) Mask(mask string) *Network_Component {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Component) Filter(filter string) *Network_Component {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Component) Limit(limit int) *Network_Component {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Component) Offset(offset int) *Network_Component {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Add VLANs as trunks to a network component. The VLANs given must be assigned to your account, and on the router to which this network component is connected. The current native VLAN (networkVlanId/networkVlan) cannot be added as a trunk. This method should be called on a network component attached directly to customer assigned hardware, though all trunking operations will occur on the uplinkComponent. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
@@ -1626,11 +2051,36 @@ func (r *Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Net
 // The SoftLayer_Network_Component_Firewall data type contains general information relating to a single SoftLayer network component firewall. This is the object which ties the running rules to a specific downstream server. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Component_Firewall struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkComponentFirewallService(sess *session.Session) Network_Component_Firewall {
-	return Network_Component_Firewall{Session: sess}
+func GetNetworkComponentFirewallService(sess *session.Session) *Network_Component_Firewall {
+	return &Network_Component_Firewall{Session: sess}
+}
+
+func (r Network_Component_Firewall) Id(id int) *Network_Component_Firewall {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Component_Firewall) Mask(mask string) *Network_Component_Firewall {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Component_Firewall) Filter(filter string) *Network_Component_Firewall {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Component_Firewall) Limit(limit int) *Network_Component_Firewall {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Component_Firewall) Offset(offset int) *Network_Component_Firewall {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The additional subnets linked to this network component firewall, that inherit rules from the host that the context slot is attached to.
@@ -1684,11 +2134,36 @@ func (r *Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subn
 // The SoftLayer_Network_ContentDelivery_Account data type models an individual CDN account. CDN accounts contain references to the SoftLayer customer account they belong to, login credentials for upload services, and a CDN account's status. Please contact SoftLayer sales to purchase or cancel a CDN account
 type Network_ContentDelivery_Account struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkContentDeliveryAccountService(sess *session.Session) Network_ContentDelivery_Account {
-	return Network_ContentDelivery_Account{Session: sess}
+func GetNetworkContentDeliveryAccountService(sess *session.Session) *Network_ContentDelivery_Account {
+	return &Network_ContentDelivery_Account{Session: sess}
+}
+
+func (r Network_ContentDelivery_Account) Id(id int) *Network_ContentDelivery_Account {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_ContentDelivery_Account) Mask(mask string) *Network_ContentDelivery_Account {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_ContentDelivery_Account) Filter(filter string) *Network_ContentDelivery_Account {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_ContentDelivery_Account) Limit(limit int) *Network_ContentDelivery_Account {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_ContentDelivery_Account) Offset(offset int) *Network_ContentDelivery_Account {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Internap servers attempts to validate a token before serving a protected content. SoftLayer customer does not need to invoke this method.  Please refer to [[SoftLayer_Network_ContentDelivery_Authentication_Token|Authentication Token]] object for more details on Content Authentication Service.
@@ -2158,11 +2633,36 @@ func (r *Network_ContentDelivery_Account) UploadStream(source *datatypes.Contain
 // The SoftLayer_Network_ContentDelivery_Authentication_Address data type models an individual IP address that CDN allow or deny access from.
 type Network_ContentDelivery_Authentication_Address struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkContentDeliveryAuthenticationAddressService(sess *session.Session) Network_ContentDelivery_Authentication_Address {
-	return Network_ContentDelivery_Authentication_Address{Session: sess}
+func GetNetworkContentDeliveryAuthenticationAddressService(sess *session.Session) *Network_ContentDelivery_Authentication_Address {
+	return &Network_ContentDelivery_Authentication_Address{Session: sess}
+}
+
+func (r Network_ContentDelivery_Authentication_Address) Id(id int) *Network_ContentDelivery_Authentication_Address {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Address) Mask(mask string) *Network_ContentDelivery_Authentication_Address {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Address) Filter(filter string) *Network_ContentDelivery_Authentication_Address {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Address) Limit(limit int) *Network_ContentDelivery_Authentication_Address {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Address) Offset(offset int) *Network_ContentDelivery_Authentication_Address {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates an authentication IP record.  Required parameters are
@@ -2215,11 +2715,36 @@ func (r *Network_ContentDelivery_Authentication_Address) RearrangeAuthentication
 // The SoftLayer_Network_ContentDelivery_Authentication_Address data type models an individual IP address that CDN allow or deny access from.
 type Network_ContentDelivery_Authentication_Token struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkContentDeliveryAuthenticationTokenService(sess *session.Session) Network_ContentDelivery_Authentication_Token {
-	return Network_ContentDelivery_Authentication_Token{Session: sess}
+func GetNetworkContentDeliveryAuthenticationTokenService(sess *session.Session) *Network_ContentDelivery_Authentication_Token {
+	return &Network_ContentDelivery_Authentication_Token{Session: sess}
+}
+
+func (r Network_ContentDelivery_Authentication_Token) Id(id int) *Network_ContentDelivery_Authentication_Token {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Token) Mask(mask string) *Network_ContentDelivery_Authentication_Token {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Token) Filter(filter string) *Network_ContentDelivery_Authentication_Token {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Token) Limit(limit int) *Network_ContentDelivery_Authentication_Token {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_ContentDelivery_Authentication_Token) Offset(offset int) *Network_ContentDelivery_Authentication_Token {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is deprecated! Use the [[SoftLayer_Network_ContentDelivery_Authentication_Token::getTimedToken|getTimedToken]] method.
@@ -2323,11 +2848,36 @@ func (r *Network_ContentDelivery_Authentication_Token) RevokeManagedTokens(templ
 // The SoftLayer_Network_Customer_Subnet data type contains general information relating to a single customer subnet (remote).
 type Network_Customer_Subnet struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkCustomerSubnetService(sess *session.Session) Network_Customer_Subnet {
-	return Network_Customer_Subnet{Session: sess}
+func GetNetworkCustomerSubnetService(sess *session.Session) *Network_Customer_Subnet {
+	return &Network_Customer_Subnet{Session: sess}
+}
+
+func (r Network_Customer_Subnet) Id(id int) *Network_Customer_Subnet {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Customer_Subnet) Mask(mask string) *Network_Customer_Subnet {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Customer_Subnet) Filter(filter string) *Network_Customer_Subnet {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Customer_Subnet) Limit(limit int) *Network_Customer_Subnet {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Customer_Subnet) Offset(offset int) *Network_Customer_Subnet {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // For IPSec network tunnels, customers can create their local subnets using this method.  After the customer is created successfully, the customer subnet can then be added to the IPSec network tunnel.
@@ -2354,11 +2904,36 @@ func (r *Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_S
 // The SoftLayer_Network_Firewall_AccessControlList data type contains general information relating to a single SoftLayer firewall access to controll list. This is the object which ties the running rules to a specific context. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_AccessControlList struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallAccessControlListService(sess *session.Session) Network_Firewall_AccessControlList {
-	return Network_Firewall_AccessControlList{Session: sess}
+func GetNetworkFirewallAccessControlListService(sess *session.Session) *Network_Firewall_AccessControlList {
+	return &Network_Firewall_AccessControlList{Session: sess}
+}
+
+func (r Network_Firewall_AccessControlList) Id(id int) *Network_Firewall_AccessControlList {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_AccessControlList) Mask(mask string) *Network_Firewall_AccessControlList {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_AccessControlList) Filter(filter string) *Network_Firewall_AccessControlList {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_AccessControlList) Limit(limit int) *Network_Firewall_AccessControlList {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_AccessControlList) Offset(offset int) *Network_Firewall_AccessControlList {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The update requests made for this firewall.
@@ -2388,11 +2963,36 @@ func (r *Network_Firewall_AccessControlList) GetRules() (resp []datatypes.Networ
 // The SoftLayer_Network_Firewall_Interface data type contains general information relating to a single SoftLayer firewall interface. This is the object which ties the firewall context access control list to a firewall. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_Interface struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallInterfaceService(sess *session.Session) Network_Firewall_Interface {
-	return Network_Firewall_Interface{Session: sess}
+func GetNetworkFirewallInterfaceService(sess *session.Session) *Network_Firewall_Interface {
+	return &Network_Firewall_Interface{Session: sess}
+}
+
+func (r Network_Firewall_Interface) Id(id int) *Network_Firewall_Interface {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_Interface) Mask(mask string) *Network_Firewall_Interface {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_Interface) Filter(filter string) *Network_Firewall_Interface {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_Interface) Limit(limit int) *Network_Firewall_Interface {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_Interface) Offset(offset int) *Network_Firewall_Interface {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -2416,11 +3016,36 @@ func (r *Network_Firewall_Interface) GetObject() (resp datatypes.Network_Firewal
 //
 type Network_Firewall_Module_Context_Interface struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallModuleContextInterfaceService(sess *session.Session) Network_Firewall_Module_Context_Interface {
-	return Network_Firewall_Module_Context_Interface{Session: sess}
+func GetNetworkFirewallModuleContextInterfaceService(sess *session.Session) *Network_Firewall_Module_Context_Interface {
+	return &Network_Firewall_Module_Context_Interface{Session: sess}
+}
+
+func (r Network_Firewall_Module_Context_Interface) Id(id int) *Network_Firewall_Module_Context_Interface {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_Module_Context_Interface) Mask(mask string) *Network_Firewall_Module_Context_Interface {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_Module_Context_Interface) Filter(filter string) *Network_Firewall_Module_Context_Interface {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_Module_Context_Interface) Limit(limit int) *Network_Firewall_Module_Context_Interface {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_Module_Context_Interface) Offset(offset int) *Network_Firewall_Module_Context_Interface {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -2446,11 +3071,36 @@ func (r *Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.
 // Firewall templates are recommend rule sets for use with SoftLayer Hardware Firewall (Dedicated).  These optimized templates are designed to balance security restriction with application availability.  The templates given may be altered to provide custom network security, or may be used as-is for basic security. At least one rule set MUST be applied for the firewall to block traffic. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_Template struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallTemplateService(sess *session.Session) Network_Firewall_Template {
-	return Network_Firewall_Template{Session: sess}
+func GetNetworkFirewallTemplateService(sess *session.Session) *Network_Firewall_Template {
+	return &Network_Firewall_Template{Session: sess}
+}
+
+func (r Network_Firewall_Template) Id(id int) *Network_Firewall_Template {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_Template) Mask(mask string) *Network_Firewall_Template {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_Template) Filter(filter string) *Network_Firewall_Template {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_Template) Limit(limit int) *Network_Firewall_Template {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_Template) Offset(offset int) *Network_Firewall_Template {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Get all available firewall template objects.
@@ -2478,11 +3128,36 @@ func (r *Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewal
 // The SoftLayer_Network_Firewall_Update_Request data type contains information relating to a SoftLayer network firewall update request. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates.
 type Network_Firewall_Update_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallUpdateRequestService(sess *session.Session) Network_Firewall_Update_Request {
-	return Network_Firewall_Update_Request{Session: sess}
+func GetNetworkFirewallUpdateRequestService(sess *session.Session) *Network_Firewall_Update_Request {
+	return &Network_Firewall_Update_Request{Session: sess}
+}
+
+func (r Network_Firewall_Update_Request) Id(id int) *Network_Firewall_Update_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_Update_Request) Mask(mask string) *Network_Firewall_Update_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_Update_Request) Filter(filter string) *Network_Firewall_Update_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_Update_Request) Limit(limit int) *Network_Firewall_Update_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_Update_Request) Offset(offset int) *Network_Firewall_Update_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
@@ -2553,11 +3228,36 @@ func (r *Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Netwo
 // The SoftLayer_Network_Firewall_Update_Request_Rule type contains information relating to a SoftLayer network firewall update request rule. This rule is a member of a [[SoftLayer Network Firewall Update Request]]. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates.
 type Network_Firewall_Update_Request_Rule struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkFirewallUpdateRequestRuleService(sess *session.Session) Network_Firewall_Update_Request_Rule {
-	return Network_Firewall_Update_Request_Rule{Session: sess}
+func GetNetworkFirewallUpdateRequestRuleService(sess *session.Session) *Network_Firewall_Update_Request_Rule {
+	return &Network_Firewall_Update_Request_Rule{Session: sess}
+}
+
+func (r Network_Firewall_Update_Request_Rule) Id(id int) *Network_Firewall_Update_Request_Rule {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Firewall_Update_Request_Rule) Mask(mask string) *Network_Firewall_Update_Request_Rule {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Firewall_Update_Request_Rule) Filter(filter string) *Network_Firewall_Update_Request_Rule {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Firewall_Update_Request_Rule) Limit(limit int) *Network_Firewall_Update_Request_Rule {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Firewall_Update_Request_Rule) Offset(offset int) *Network_Firewall_Update_Request_Rule {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
@@ -2600,11 +3300,36 @@ func (r *Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netw
 //
 type Network_Gateway struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkGatewayService(sess *session.Session) Network_Gateway {
-	return Network_Gateway{Session: sess}
+func GetNetworkGatewayService(sess *session.Session) *Network_Gateway {
+	return &Network_Gateway{Session: sess}
+}
+
+func (r Network_Gateway) Id(id int) *Network_Gateway {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Gateway) Mask(mask string) *Network_Gateway {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Gateway) Filter(filter string) *Network_Gateway {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Gateway) Limit(limit int) *Network_Gateway {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Gateway) Offset(offset int) *Network_Gateway {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Start the asynchronous process to bypass all VLANs. Any VLANs that are already bypassed will be ignored. The status field can be checked for progress.
@@ -2728,11 +3453,36 @@ func (r *Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) 
 //
 type Network_Gateway_Member struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkGatewayMemberService(sess *session.Session) Network_Gateway_Member {
-	return Network_Gateway_Member{Session: sess}
+func GetNetworkGatewayMemberService(sess *session.Session) *Network_Gateway_Member {
+	return &Network_Gateway_Member{Session: sess}
+}
+
+func (r Network_Gateway_Member) Id(id int) *Network_Gateway_Member {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Gateway_Member) Mask(mask string) *Network_Gateway_Member {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Gateway_Member) Filter(filter string) *Network_Gateway_Member {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Gateway_Member) Limit(limit int) *Network_Gateway_Member {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Gateway_Member) Offset(offset int) *Network_Gateway_Member {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new hardware member on the gateway. This also asynchronously sets up the network for this member. Progress of this process can be monitored via the gateway status. All members created with this object must have no VLANs attached.
@@ -2774,11 +3524,36 @@ func (r *Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Mem
 //
 type Network_Gateway_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkGatewayStatusService(sess *session.Session) Network_Gateway_Status {
-	return Network_Gateway_Status{Session: sess}
+func GetNetworkGatewayStatusService(sess *session.Session) *Network_Gateway_Status {
+	return &Network_Gateway_Status{Session: sess}
+}
+
+func (r Network_Gateway_Status) Id(id int) *Network_Gateway_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Gateway_Status) Mask(mask string) *Network_Gateway_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Gateway_Status) Filter(filter string) *Network_Gateway_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Gateway_Status) Limit(limit int) *Network_Gateway_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Gateway_Status) Offset(offset int) *Network_Gateway_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2790,11 +3565,36 @@ func (r *Network_Gateway_Status) GetObject() (resp datatypes.Network_Gateway_Sta
 //
 type Network_Gateway_Vlan struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkGatewayVlanService(sess *session.Session) Network_Gateway_Vlan {
-	return Network_Gateway_Vlan{Session: sess}
+func GetNetworkGatewayVlanService(sess *session.Session) *Network_Gateway_Vlan {
+	return &Network_Gateway_Vlan{Session: sess}
+}
+
+func (r Network_Gateway_Vlan) Id(id int) *Network_Gateway_Vlan {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Gateway_Vlan) Mask(mask string) *Network_Gateway_Vlan {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Gateway_Vlan) Filter(filter string) *Network_Gateway_Vlan {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Gateway_Vlan) Limit(limit int) *Network_Gateway_Vlan {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Gateway_Vlan) Offset(offset int) *Network_Gateway_Vlan {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Start the asynchronous process to bypass/unroute the VLAN from this gateway.
@@ -2866,11 +3666,36 @@ func (r *Network_Gateway_Vlan) Unbypass() (err error) {
 // The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
 type Network_LoadBalancer_Global_Account struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkLoadBalancerGlobalAccountService(sess *session.Session) Network_LoadBalancer_Global_Account {
-	return Network_LoadBalancer_Global_Account{Session: sess}
+func GetNetworkLoadBalancerGlobalAccountService(sess *session.Session) *Network_LoadBalancer_Global_Account {
+	return &Network_LoadBalancer_Global_Account{Session: sess}
+}
+
+func (r Network_LoadBalancer_Global_Account) Id(id int) *Network_LoadBalancer_Global_Account {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Account) Mask(mask string) *Network_LoadBalancer_Global_Account {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Account) Filter(filter string) *Network_LoadBalancer_Global_Account {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Account) Limit(limit int) *Network_LoadBalancer_Global_Account {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Account) Offset(offset int) *Network_LoadBalancer_Global_Account {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.  A NS resource record is required to be able to use your SoftLayer global load balancer account. Please make sure the zone file for the hostname listed on your SoftLayer global load balancer account is setup prior to using this method.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to add the required NS record.
@@ -2962,11 +3787,36 @@ func (r *Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err e
 // The order of the host is only important if you are using the 'failover' load balance method, and the weight is only important if you are using the 'weighted round robin' load balance method.
 type Network_LoadBalancer_Global_Host struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkLoadBalancerGlobalHostService(sess *session.Session) Network_LoadBalancer_Global_Host {
-	return Network_LoadBalancer_Global_Host{Session: sess}
+func GetNetworkLoadBalancerGlobalHostService(sess *session.Session) *Network_LoadBalancer_Global_Host {
+	return &Network_LoadBalancer_Global_Host{Session: sess}
+}
+
+func (r Network_LoadBalancer_Global_Host) Id(id int) *Network_LoadBalancer_Global_Host {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Host) Mask(mask string) *Network_LoadBalancer_Global_Host {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Host) Filter(filter string) *Network_LoadBalancer_Global_Host {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Host) Limit(limit int) *Network_LoadBalancer_Global_Host {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_LoadBalancer_Global_Host) Offset(offset int) *Network_LoadBalancer_Global_Host {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Remove a host from the load balancing pool of a global load balancer account.
@@ -2992,11 +3842,36 @@ func (r *Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_L
 // Information retained on the object itself is the the source and destination of the service, routing type, weight, and whether or not the service is currently enabled.
 type Network_LoadBalancer_Service struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkLoadBalancerServiceService(sess *session.Session) Network_LoadBalancer_Service {
-	return Network_LoadBalancer_Service{Session: sess}
+func GetNetworkLoadBalancerServiceService(sess *session.Session) *Network_LoadBalancer_Service {
+	return &Network_LoadBalancer_Service{Session: sess}
+}
+
+func (r Network_LoadBalancer_Service) Id(id int) *Network_LoadBalancer_Service {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_LoadBalancer_Service) Mask(mask string) *Network_LoadBalancer_Service {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_LoadBalancer_Service) Filter(filter string) *Network_LoadBalancer_Service {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_LoadBalancer_Service) Limit(limit int) *Network_LoadBalancer_Service {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_LoadBalancer_Service) Offset(offset int) *Network_LoadBalancer_Service {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Calling deleteObject on a particular server will remove it from the load balancer.  This is the only way to remove a service from your load balancer.  If you wish to remove a server, first call this function, then reload the virtualIpAddress object and edit the remaining services to reflect the other changes that you wish to make.
@@ -3061,11 +3936,36 @@ func (r *Network_LoadBalancer_Service) ResetPeakConnections() (resp bool, err er
 // Information retained on the object itself is the virtual IP address, load balancing method, and any notes that are related to the load balancer.  There is also an array of SoftLayer_Network_LoadBalancer_Service objects, which represent the load balancer services, explained more fully in the SoftLayer_Network_LoadBalancer_Service documentation.
 type Network_LoadBalancer_VirtualIpAddress struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkLoadBalancerVirtualIpAddressService(sess *session.Session) Network_LoadBalancer_VirtualIpAddress {
-	return Network_LoadBalancer_VirtualIpAddress{Session: sess}
+func GetNetworkLoadBalancerVirtualIpAddressService(sess *session.Session) *Network_LoadBalancer_VirtualIpAddress {
+	return &Network_LoadBalancer_VirtualIpAddress{Session: sess}
+}
+
+func (r Network_LoadBalancer_VirtualIpAddress) Id(id int) *Network_LoadBalancer_VirtualIpAddress {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_LoadBalancer_VirtualIpAddress) Mask(mask string) *Network_LoadBalancer_VirtualIpAddress {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_LoadBalancer_VirtualIpAddress) Filter(filter string) *Network_LoadBalancer_VirtualIpAddress {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_LoadBalancer_VirtualIpAddress) Limit(limit int) *Network_LoadBalancer_VirtualIpAddress {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_LoadBalancer_VirtualIpAddress) Offset(offset int) *Network_LoadBalancer_VirtualIpAddress {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Disable a Virtual IP Address, removing it from load balancer rotation and denying all connections to that IP address.
@@ -3140,11 +4040,36 @@ func (r *Network_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp b
 // The SoftLayer_Network_Media_Transcode_Account contains information regarding a transcode account.
 type Network_Media_Transcode_Account struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMediaTranscodeAccountService(sess *session.Session) Network_Media_Transcode_Account {
-	return Network_Media_Transcode_Account{Session: sess}
+func GetNetworkMediaTranscodeAccountService(sess *session.Session) *Network_Media_Transcode_Account {
+	return &Network_Media_Transcode_Account{Session: sess}
+}
+
+func (r Network_Media_Transcode_Account) Id(id int) *Network_Media_Transcode_Account {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Media_Transcode_Account) Mask(mask string) *Network_Media_Transcode_Account {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Media_Transcode_Account) Filter(filter string) *Network_Media_Transcode_Account {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Media_Transcode_Account) Limit(limit int) *Network_Media_Transcode_Account {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Media_Transcode_Account) Offset(offset int) *Network_Media_Transcode_Account {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // With this method, you can create a transcode account.  Individual SoftLayer account can have a single Transcode account. You have to pass your SoftLayer account id as a parameter.
@@ -3251,11 +4176,36 @@ func (r *Network_Media_Transcode_Account) GetTranscodeJobs() (resp []datatypes.N
 // The SoftLayer_Network_Media_Transcode_Job contains information regarding a transcode job such as input file, output format, user id and so on.
 type Network_Media_Transcode_Job struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMediaTranscodeJobService(sess *session.Session) Network_Media_Transcode_Job {
-	return Network_Media_Transcode_Job{Session: sess}
+func GetNetworkMediaTranscodeJobService(sess *session.Session) *Network_Media_Transcode_Job {
+	return &Network_Media_Transcode_Job{Session: sess}
+}
+
+func (r Network_Media_Transcode_Job) Id(id int) *Network_Media_Transcode_Job {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Media_Transcode_Job) Mask(mask string) *Network_Media_Transcode_Job {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Media_Transcode_Job) Filter(filter string) *Network_Media_Transcode_Job {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Media_Transcode_Job) Limit(limit int) *Network_Media_Transcode_Job {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Media_Transcode_Job) Offset(offset int) *Network_Media_Transcode_Job {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // With this method, you can create a transcode job.
@@ -3330,11 +4280,36 @@ func (r *Network_Media_Transcode_Job) GetUser() (resp datatypes.User_Customer, e
 // The SoftLayer_Network_Media_Transcode_Job_Status contains information on a transcode job status.
 type Network_Media_Transcode_Job_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMediaTranscodeJobStatusService(sess *session.Session) Network_Media_Transcode_Job_Status {
-	return Network_Media_Transcode_Job_Status{Session: sess}
+func GetNetworkMediaTranscodeJobStatusService(sess *session.Session) *Network_Media_Transcode_Job_Status {
+	return &Network_Media_Transcode_Job_Status{Session: sess}
+}
+
+func (r Network_Media_Transcode_Job_Status) Id(id int) *Network_Media_Transcode_Job_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Media_Transcode_Job_Status) Mask(mask string) *Network_Media_Transcode_Job_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Media_Transcode_Job_Status) Filter(filter string) *Network_Media_Transcode_Job_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Media_Transcode_Job_Status) Limit(limit int) *Network_Media_Transcode_Job_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Media_Transcode_Job_Status) Offset(offset int) *Network_Media_Transcode_Job_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method returns all transcode job statuses.
@@ -3352,11 +4327,36 @@ func (r *Network_Media_Transcode_Job_Status) GetObject() (resp datatypes.Network
 //
 type Network_Message_Delivery struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMessageDeliveryService(sess *session.Session) Network_Message_Delivery {
-	return Network_Message_Delivery{Session: sess}
+func GetNetworkMessageDeliveryService(sess *session.Session) *Network_Message_Delivery {
+	return &Network_Message_Delivery{Session: sess}
+}
+
+func (r Network_Message_Delivery) Id(id int) *Network_Message_Delivery {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Message_Delivery) Mask(mask string) *Network_Message_Delivery {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Message_Delivery) Filter(filter string) *Network_Message_Delivery {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Message_Delivery) Limit(limit int) *Network_Message_Delivery {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Message_Delivery) Offset(offset int) *Network_Message_Delivery {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3401,11 +4401,36 @@ func (r *Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_D
 //
 type Network_Message_Delivery_Email_Sendgrid struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMessageDeliveryEmailSendgridService(sess *session.Session) Network_Message_Delivery_Email_Sendgrid {
-	return Network_Message_Delivery_Email_Sendgrid{Session: sess}
+func GetNetworkMessageDeliveryEmailSendgridService(sess *session.Session) *Network_Message_Delivery_Email_Sendgrid {
+	return &Network_Message_Delivery_Email_Sendgrid{Session: sess}
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) Id(id int) *Network_Message_Delivery_Email_Sendgrid {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) Mask(mask string) *Network_Message_Delivery_Email_Sendgrid {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) Filter(filter string) *Network_Message_Delivery_Email_Sendgrid {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) Limit(limit int) *Network_Message_Delivery_Email_Sendgrid {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) Offset(offset int) *Network_Message_Delivery_Email_Sendgrid {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3556,11 +4581,36 @@ func (r *Network_Message_Delivery_Email_Sendgrid) UpdateEmailAddress(emailAddres
 // The SoftLayer_Network_Message_Queue data type contains general information relating to Message Queue account
 type Network_Message_Queue struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMessageQueueService(sess *session.Session) Network_Message_Queue {
-	return Network_Message_Queue{Session: sess}
+func GetNetworkMessageQueueService(sess *session.Session) *Network_Message_Queue {
+	return &Network_Message_Queue{Session: sess}
+}
+
+func (r Network_Message_Queue) Id(id int) *Network_Message_Queue {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Message_Queue) Mask(mask string) *Network_Message_Queue {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Message_Queue) Filter(filter string) *Network_Message_Queue {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Message_Queue) Limit(limit int) *Network_Message_Queue {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Message_Queue) Offset(offset int) *Network_Message_Queue {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The account that a message queue belongs to.
@@ -3596,11 +4646,36 @@ func (r *Network_Message_Queue) GetStatus() (resp datatypes.Network_Message_Queu
 // The SoftLayer_Network_Message_Queue_Node data type contains general information relating to Message Queue node
 type Network_Message_Queue_Node struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMessageQueueNodeService(sess *session.Session) Network_Message_Queue_Node {
-	return Network_Message_Queue_Node{Session: sess}
+func GetNetworkMessageQueueNodeService(sess *session.Session) *Network_Message_Queue_Node {
+	return &Network_Message_Queue_Node{Session: sess}
+}
+
+func (r Network_Message_Queue_Node) Id(id int) *Network_Message_Queue_Node {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Message_Queue_Node) Mask(mask string) *Network_Message_Queue_Node {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Message_Queue_Node) Filter(filter string) *Network_Message_Queue_Node {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Message_Queue_Node) Limit(limit int) *Network_Message_Queue_Node {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Message_Queue_Node) Offset(offset int) *Network_Message_Queue_Node {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3673,11 +4748,36 @@ func (r *Network_Message_Queue_Node) GetUsageGraph(graphData *datatypes.Containe
 // The SoftLayer_Network_Message_Queue_Status data type contains general information relating to Message Queue account status.
 type Network_Message_Queue_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMessageQueueStatusService(sess *session.Session) Network_Message_Queue_Status {
-	return Network_Message_Queue_Status{Session: sess}
+func GetNetworkMessageQueueStatusService(sess *session.Session) *Network_Message_Queue_Status {
+	return &Network_Message_Queue_Status{Session: sess}
+}
+
+func (r Network_Message_Queue_Status) Id(id int) *Network_Message_Queue_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Message_Queue_Status) Mask(mask string) *Network_Message_Queue_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Message_Queue_Status) Filter(filter string) *Network_Message_Queue_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Message_Queue_Status) Limit(limit int) *Network_Message_Queue_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Message_Queue_Status) Offset(offset int) *Network_Message_Queue_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3689,11 +4789,36 @@ func (r *Network_Message_Queue_Status) GetObject() (resp datatypes.Network_Messa
 //
 type Network_Monitor struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMonitorService(sess *session.Session) Network_Monitor {
-	return Network_Monitor{Session: sess}
+func GetNetworkMonitorService(sess *session.Session) *Network_Monitor {
+	return &Network_Monitor{Session: sess}
+}
+
+func (r Network_Monitor) Id(id int) *Network_Monitor {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Monitor) Mask(mask string) *Network_Monitor {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Monitor) Filter(filter string) *Network_Monitor {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Monitor) Limit(limit int) *Network_Monitor {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Monitor) Offset(offset int) *Network_Monitor {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This will return an arrayObject of objects containing the ipaddresses.  Using an string parameter you can send a partial ipaddress to search within a given ipaddress.  You can also set the max limit as well using the setting the resultLimit.
@@ -3719,11 +4844,36 @@ func (r *Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_
 // The Monitoring_Query_Host type represents a monitoring instance.  It consists of a hardware ID to monitor, an IP address attached to that hardware ID, a method of monitoring, and what to do in the instance that the monitor ever fails.
 type Network_Monitor_Version1_Query_Host struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMonitorVersion1QueryHostService(sess *session.Session) Network_Monitor_Version1_Query_Host {
-	return Network_Monitor_Version1_Query_Host{Session: sess}
+func GetNetworkMonitorVersion1QueryHostService(sess *session.Session) *Network_Monitor_Version1_Query_Host {
+	return &Network_Monitor_Version1_Query_Host{Session: sess}
+}
+
+func (r Network_Monitor_Version1_Query_Host) Id(id int) *Network_Monitor_Version1_Query_Host {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host) Mask(mask string) *Network_Monitor_Version1_Query_Host {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host) Filter(filter string) *Network_Monitor_Version1_Query_Host {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host) Limit(limit int) *Network_Monitor_Version1_Query_Host {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host) Offset(offset int) *Network_Monitor_Version1_Query_Host {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Passing in an unsaved instances of a Query_Host object into this function will create the object and return the results to the user.
@@ -3828,11 +4978,36 @@ func (r *Network_Monitor_Version1_Query_Host) GetResponseAction() (resp datatype
 // Also note that the query type and response types are available through getAllQueryTypes and getAllResponseTypes, respectively.
 type Network_Monitor_Version1_Query_Host_Stratum struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkMonitorVersion1QueryHostStratumService(sess *session.Session) Network_Monitor_Version1_Query_Host_Stratum {
-	return Network_Monitor_Version1_Query_Host_Stratum{Session: sess}
+func GetNetworkMonitorVersion1QueryHostStratumService(sess *session.Session) *Network_Monitor_Version1_Query_Host_Stratum {
+	return &Network_Monitor_Version1_Query_Host_Stratum{Session: sess}
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) Id(id int) *Network_Monitor_Version1_Query_Host_Stratum {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) Mask(mask string) *Network_Monitor_Version1_Query_Host_Stratum {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) Filter(filter string) *Network_Monitor_Version1_Query_Host_Stratum {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) Limit(limit int) *Network_Monitor_Version1_Query_Host_Stratum {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) Offset(offset int) *Network_Monitor_Version1_Query_Host_Stratum {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Calling this function returns all possible query type objects. These objects are to be used to set the values on the SoftLayer_Network_Monitor_Version1_Query_Host when creating new monitoring instances.
@@ -3867,11 +5042,36 @@ func (r *Network_Monitor_Version1_Query_Host_Stratum) GetObject() (resp datatype
 // * ams01.pod01 = Amsterdam 1, Pod 1 (ie. bcr01)
 type Network_Pod struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkPodService(sess *session.Session) Network_Pod {
-	return Network_Pod{Session: sess}
+func GetNetworkPodService(sess *session.Session) *Network_Pod {
+	return &Network_Pod{Session: sess}
+}
+
+func (r Network_Pod) Id(id int) *Network_Pod {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Pod) Mask(mask string) *Network_Pod {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Pod) Filter(filter string) *Network_Pod {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Pod) Limit(limit int) *Network_Pod {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Pod) Offset(offset int) *Network_Pod {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3906,11 +5106,36 @@ func (r *Network_Pod) ListCapabilities() (resp []string, err error) {
 // *Generating Report.
 type Network_Security_Scanner_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSecurityScannerRequestService(sess *session.Session) Network_Security_Scanner_Request {
-	return Network_Security_Scanner_Request{Session: sess}
+func GetNetworkSecurityScannerRequestService(sess *session.Session) *Network_Security_Scanner_Request {
+	return &Network_Security_Scanner_Request{Session: sess}
+}
+
+func (r Network_Security_Scanner_Request) Id(id int) *Network_Security_Scanner_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Security_Scanner_Request) Mask(mask string) *Network_Security_Scanner_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Security_Scanner_Request) Filter(filter string) *Network_Security_Scanner_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Security_Scanner_Request) Limit(limit int) *Network_Security_Scanner_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Security_Scanner_Request) Offset(offset int) *Network_Security_Scanner_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new vulnerability scan request. New scan requests are picked up every five minutes, and the time to complete an actual scan may vary. Once the scan is finished, it can take up to another five minutes for the report to be generated and accessible.
@@ -3967,11 +5192,36 @@ func (r *Network_Security_Scanner_Request) GetStatus() (resp datatypes.Network_S
 // The SoftLayer_Network_Service_Vpn_Overrides data type contains information relating user ids to subnet ids when VPN access is manually configured.  It is essentially an entry in a 'white list' of subnets a SoftLayer portal VPN user may access.
 type Network_Service_Vpn_Overrides struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkServiceVpnOverridesService(sess *session.Session) Network_Service_Vpn_Overrides {
-	return Network_Service_Vpn_Overrides{Session: sess}
+func GetNetworkServiceVpnOverridesService(sess *session.Session) *Network_Service_Vpn_Overrides {
+	return &Network_Service_Vpn_Overrides{Session: sess}
+}
+
+func (r Network_Service_Vpn_Overrides) Id(id int) *Network_Service_Vpn_Overrides {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Service_Vpn_Overrides) Mask(mask string) *Network_Service_Vpn_Overrides {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Service_Vpn_Overrides) Filter(filter string) *Network_Service_Vpn_Overrides {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Service_Vpn_Overrides) Limit(limit int) *Network_Service_Vpn_Overrides {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Service_Vpn_Overrides) Offset(offset int) *Network_Service_Vpn_Overrides {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create Softlayer portal user VPN overrides.
@@ -4019,11 +5269,36 @@ func (r *Network_Service_Vpn_Overrides) GetUser() (resp datatypes.User_Customer,
 // The SoftLayer_Network_Storage data type contains general information regarding a Storage product such as account id, access username and password, the Storage product type, and the server the Storage service is associated with. Currently, only EVault backup storage has an associated server.
 type Network_Storage struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageService(sess *session.Session) Network_Storage {
-	return Network_Storage{Session: sess}
+func GetNetworkStorageService(sess *session.Session) *Network_Storage {
+	return &Network_Storage{Session: sess}
+}
+
+func (r Network_Storage) Id(id int) *Network_Storage {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage) Mask(mask string) *Network_Storage {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage) Filter(filter string) *Network_Storage {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage) Limit(limit int) *Network_Storage {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage) Offset(offset int) *Network_Storage {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -5202,11 +6477,36 @@ func (r *Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Enti
 //
 type Network_Storage_Allowed_Host struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageAllowedHostService(sess *session.Session) Network_Storage_Allowed_Host {
-	return Network_Storage_Allowed_Host{Session: sess}
+func GetNetworkStorageAllowedHostService(sess *session.Session) *Network_Storage_Allowed_Host {
+	return &Network_Storage_Allowed_Host{Session: sess}
+}
+
+func (r Network_Storage_Allowed_Host) Id(id int) *Network_Storage_Allowed_Host {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host) Mask(mask string) *Network_Storage_Allowed_Host {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host) Filter(filter string) *Network_Storage_Allowed_Host {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host) Limit(limit int) *Network_Storage_Allowed_Host {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host) Offset(offset int) *Network_Storage_Allowed_Host {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -5275,11 +6575,36 @@ func (r *Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (
 //
 type Network_Storage_Allowed_Host_Hardware struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageAllowedHostHardwareService(sess *session.Session) Network_Storage_Allowed_Host_Hardware {
-	return Network_Storage_Allowed_Host_Hardware{Session: sess}
+func GetNetworkStorageAllowedHostHardwareService(sess *session.Session) *Network_Storage_Allowed_Host_Hardware {
+	return &Network_Storage_Allowed_Host_Hardware{Session: sess}
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) Id(id int) *Network_Storage_Allowed_Host_Hardware {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) Mask(mask string) *Network_Storage_Allowed_Host_Hardware {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) Filter(filter string) *Network_Storage_Allowed_Host_Hardware {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) Limit(limit int) *Network_Storage_Allowed_Host_Hardware {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) Offset(offset int) *Network_Storage_Allowed_Host_Hardware {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -5354,11 +6679,36 @@ func (r *Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *
 //
 type Network_Storage_Allowed_Host_IpAddress struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageAllowedHostIpAddressService(sess *session.Session) Network_Storage_Allowed_Host_IpAddress {
-	return Network_Storage_Allowed_Host_IpAddress{Session: sess}
+func GetNetworkStorageAllowedHostIpAddressService(sess *session.Session) *Network_Storage_Allowed_Host_IpAddress {
+	return &Network_Storage_Allowed_Host_IpAddress{Session: sess}
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) Id(id int) *Network_Storage_Allowed_Host_IpAddress {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) Mask(mask string) *Network_Storage_Allowed_Host_IpAddress {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) Filter(filter string) *Network_Storage_Allowed_Host_IpAddress {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) Limit(limit int) *Network_Storage_Allowed_Host_IpAddress {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) Offset(offset int) *Network_Storage_Allowed_Host_IpAddress {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -5433,11 +6783,36 @@ func (r *Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password 
 //
 type Network_Storage_Allowed_Host_Subnet struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageAllowedHostSubnetService(sess *session.Session) Network_Storage_Allowed_Host_Subnet {
-	return Network_Storage_Allowed_Host_Subnet{Session: sess}
+func GetNetworkStorageAllowedHostSubnetService(sess *session.Session) *Network_Storage_Allowed_Host_Subnet {
+	return &Network_Storage_Allowed_Host_Subnet{Session: sess}
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) Id(id int) *Network_Storage_Allowed_Host_Subnet {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) Mask(mask string) *Network_Storage_Allowed_Host_Subnet {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) Filter(filter string) *Network_Storage_Allowed_Host_Subnet {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) Limit(limit int) *Network_Storage_Allowed_Host_Subnet {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) Offset(offset int) *Network_Storage_Allowed_Host_Subnet {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -5512,11 +6887,36 @@ func (r *Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *st
 //
 type Network_Storage_Allowed_Host_VirtualGuest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageAllowedHostVirtualGuestService(sess *session.Session) Network_Storage_Allowed_Host_VirtualGuest {
-	return Network_Storage_Allowed_Host_VirtualGuest{Session: sess}
+func GetNetworkStorageAllowedHostVirtualGuestService(sess *session.Session) *Network_Storage_Allowed_Host_VirtualGuest {
+	return &Network_Storage_Allowed_Host_VirtualGuest{Session: sess}
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) Id(id int) *Network_Storage_Allowed_Host_VirtualGuest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) Mask(mask string) *Network_Storage_Allowed_Host_VirtualGuest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) Filter(filter string) *Network_Storage_Allowed_Host_VirtualGuest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) Limit(limit int) *Network_Storage_Allowed_Host_VirtualGuest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) Offset(offset int) *Network_Storage_Allowed_Host_VirtualGuest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -5591,11 +6991,36 @@ func (r *Network_Storage_Allowed_Host_VirtualGuest) SetCredentialPassword(passwo
 // The SoftLayer_Network_Storage_Backup_Evault contains general information regarding an EVault Storage service such as account id, username, maximum capacity, password, Storage's product type and the server id.
 type Network_Storage_Backup_Evault struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageBackupEvaultService(sess *session.Session) Network_Storage_Backup_Evault {
-	return Network_Storage_Backup_Evault{Session: sess}
+func GetNetworkStorageBackupEvaultService(sess *session.Session) *Network_Storage_Backup_Evault {
+	return &Network_Storage_Backup_Evault{Session: sess}
+}
+
+func (r Network_Storage_Backup_Evault) Id(id int) *Network_Storage_Backup_Evault {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Backup_Evault) Mask(mask string) *Network_Storage_Backup_Evault {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Backup_Evault) Filter(filter string) *Network_Storage_Backup_Evault {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Backup_Evault) Limit(limit int) *Network_Storage_Backup_Evault {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Backup_Evault) Offset(offset int) *Network_Storage_Backup_Evault {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -6826,11 +8251,36 @@ func (r *Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Uti
 //
 type Network_Storage_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageGroupService(sess *session.Session) Network_Storage_Group {
-	return Network_Storage_Group{Session: sess}
+func GetNetworkStorageGroupService(sess *session.Session) *Network_Storage_Group {
+	return &Network_Storage_Group{Session: sess}
+}
+
+func (r Network_Storage_Group) Id(id int) *Network_Storage_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Group) Mask(mask string) *Network_Storage_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Group) Filter(filter string) *Network_Storage_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Group) Limit(limit int) *Network_Storage_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Group) Offset(offset int) *Network_Storage_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -6950,11 +8400,36 @@ func (r *Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Stora
 //
 type Network_Storage_Group_Iscsi struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageGroupIscsiService(sess *session.Session) Network_Storage_Group_Iscsi {
-	return Network_Storage_Group_Iscsi{Session: sess}
+func GetNetworkStorageGroupIscsiService(sess *session.Session) *Network_Storage_Group_Iscsi {
+	return &Network_Storage_Group_Iscsi{Session: sess}
+}
+
+func (r Network_Storage_Group_Iscsi) Id(id int) *Network_Storage_Group_Iscsi {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Group_Iscsi) Mask(mask string) *Network_Storage_Group_Iscsi {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Group_Iscsi) Filter(filter string) *Network_Storage_Group_Iscsi {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Group_Iscsi) Limit(limit int) *Network_Storage_Group_Iscsi {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Group_Iscsi) Offset(offset int) *Network_Storage_Group_Iscsi {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -7074,11 +8549,36 @@ func (r *Network_Storage_Group_Iscsi) RemoveFromVolume(volume *datatypes.Network
 //
 type Network_Storage_Group_Nfs struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageGroupNfsService(sess *session.Session) Network_Storage_Group_Nfs {
-	return Network_Storage_Group_Nfs{Session: sess}
+func GetNetworkStorageGroupNfsService(sess *session.Session) *Network_Storage_Group_Nfs {
+	return &Network_Storage_Group_Nfs{Session: sess}
+}
+
+func (r Network_Storage_Group_Nfs) Id(id int) *Network_Storage_Group_Nfs {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Group_Nfs) Mask(mask string) *Network_Storage_Group_Nfs {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Group_Nfs) Filter(filter string) *Network_Storage_Group_Nfs {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Group_Nfs) Limit(limit int) *Network_Storage_Group_Nfs {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Group_Nfs) Offset(offset int) *Network_Storage_Group_Nfs {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -7198,11 +8698,36 @@ func (r *Network_Storage_Group_Nfs) RemoveFromVolume(volume *datatypes.Network_S
 //
 type Network_Storage_Group_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageGroupTypeService(sess *session.Session) Network_Storage_Group_Type {
-	return Network_Storage_Group_Type{Session: sess}
+func GetNetworkStorageGroupTypeService(sess *session.Session) *Network_Storage_Group_Type {
+	return &Network_Storage_Group_Type{Session: sess}
+}
+
+func (r Network_Storage_Group_Type) Id(id int) *Network_Storage_Group_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Group_Type) Mask(mask string) *Network_Storage_Group_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Group_Type) Filter(filter string) *Network_Storage_Group_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Group_Type) Limit(limit int) *Network_Storage_Group_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Group_Type) Offset(offset int) *Network_Storage_Group_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve all storage group types available.
@@ -7220,11 +8745,36 @@ func (r *Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage
 //
 type Network_Storage_Hub_Cleversafe_Account struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageHubCleversafeAccountService(sess *session.Session) Network_Storage_Hub_Cleversafe_Account {
-	return Network_Storage_Hub_Cleversafe_Account{Session: sess}
+func GetNetworkStorageHubCleversafeAccountService(sess *session.Session) *Network_Storage_Hub_Cleversafe_Account {
+	return &Network_Storage_Hub_Cleversafe_Account{Session: sess}
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) Id(id int) *Network_Storage_Hub_Cleversafe_Account {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) Mask(mask string) *Network_Storage_Hub_Cleversafe_Account {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) Filter(filter string) *Network_Storage_Hub_Cleversafe_Account {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) Limit(limit int) *Network_Storage_Hub_Cleversafe_Account {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) Offset(offset int) *Network_Storage_Hub_Cleversafe_Account {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -7305,11 +8855,36 @@ func (r *Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err err
 //
 type Network_Storage_Hub_Swift_Share struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageHubSwiftShareService(sess *session.Session) Network_Storage_Hub_Swift_Share {
-	return Network_Storage_Hub_Swift_Share{Session: sess}
+func GetNetworkStorageHubSwiftShareService(sess *session.Session) *Network_Storage_Hub_Swift_Share {
+	return &Network_Storage_Hub_Swift_Share{Session: sess}
+}
+
+func (r Network_Storage_Hub_Swift_Share) Id(id int) *Network_Storage_Hub_Swift_Share {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Hub_Swift_Share) Mask(mask string) *Network_Storage_Hub_Swift_Share {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Hub_Swift_Share) Filter(filter string) *Network_Storage_Hub_Swift_Share {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Hub_Swift_Share) Limit(limit int) *Network_Storage_Hub_Swift_Share {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Hub_Swift_Share) Offset(offset int) *Network_Storage_Hub_Swift_Share {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method returns a collection of container objects.
@@ -7341,11 +8916,36 @@ func (r *Network_Storage_Hub_Swift_Share) GetFileList(container *string, path *s
 // The iscsi data type provides access to additional information about an iscsi volume such as the snapshot capacity limit and replication partners.
 type Network_Storage_Iscsi struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageIscsiService(sess *session.Session) Network_Storage_Iscsi {
-	return Network_Storage_Iscsi{Session: sess}
+func GetNetworkStorageIscsiService(sess *session.Session) *Network_Storage_Iscsi {
+	return &Network_Storage_Iscsi{Session: sess}
+}
+
+func (r Network_Storage_Iscsi) Id(id int) *Network_Storage_Iscsi {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Iscsi) Mask(mask string) *Network_Storage_Iscsi {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Iscsi) Filter(filter string) *Network_Storage_Iscsi {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Iscsi) Limit(limit int) *Network_Storage_Iscsi {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Iscsi) Offset(offset int) *Network_Storage_Iscsi {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -8522,11 +10122,36 @@ func (r *Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_Fil
 //
 type Network_Storage_Iscsi_OS_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageIscsiOSTypeService(sess *session.Session) Network_Storage_Iscsi_OS_Type {
-	return Network_Storage_Iscsi_OS_Type{Session: sess}
+func GetNetworkStorageIscsiOSTypeService(sess *session.Session) *Network_Storage_Iscsi_OS_Type {
+	return &Network_Storage_Iscsi_OS_Type{Session: sess}
+}
+
+func (r Network_Storage_Iscsi_OS_Type) Id(id int) *Network_Storage_Iscsi_OS_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Iscsi_OS_Type) Mask(mask string) *Network_Storage_Iscsi_OS_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Iscsi_OS_Type) Filter(filter string) *Network_Storage_Iscsi_OS_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Iscsi_OS_Type) Limit(limit int) *Network_Storage_Iscsi_OS_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Iscsi_OS_Type) Offset(offset int) *Network_Storage_Iscsi_OS_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve all iSCSI OS Types.
@@ -8544,11 +10169,36 @@ func (r *Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Stor
 // Schedules can be created for select Storage services, such as iscsi. These schedules are used to perform various tasks such as scheduling snapshots or synchronizing replicants.
 type Network_Storage_Schedule struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageScheduleService(sess *session.Session) Network_Storage_Schedule {
-	return Network_Storage_Schedule{Session: sess}
+func GetNetworkStorageScheduleService(sess *session.Session) *Network_Storage_Schedule {
+	return &Network_Storage_Schedule{Session: sess}
+}
+
+func (r Network_Storage_Schedule) Id(id int) *Network_Storage_Schedule {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Schedule) Mask(mask string) *Network_Storage_Schedule {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Schedule) Filter(filter string) *Network_Storage_Schedule {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Schedule) Limit(limit int) *Network_Storage_Schedule {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Schedule) Offset(offset int) *Network_Storage_Schedule {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a nas volume schedule
@@ -8662,11 +10312,36 @@ func (r *Network_Storage_Schedule) GetVolume() (resp datatypes.Network_Storage, 
 // A schedule property type is used to allow for a standardized method of defining network storage schedules.
 type Network_Storage_Schedule_Property_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkStorageSchedulePropertyTypeService(sess *session.Session) Network_Storage_Schedule_Property_Type {
-	return Network_Storage_Schedule_Property_Type{Session: sess}
+func GetNetworkStorageSchedulePropertyTypeService(sess *session.Session) *Network_Storage_Schedule_Property_Type {
+	return &Network_Storage_Schedule_Property_Type{Session: sess}
+}
+
+func (r Network_Storage_Schedule_Property_Type) Id(id int) *Network_Storage_Schedule_Property_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Storage_Schedule_Property_Type) Mask(mask string) *Network_Storage_Schedule_Property_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Storage_Schedule_Property_Type) Filter(filter string) *Network_Storage_Schedule_Property_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Storage_Schedule_Property_Type) Limit(limit int) *Network_Storage_Schedule_Property_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Storage_Schedule_Property_Type) Offset(offset int) *Network_Storage_Schedule_Property_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve all network storage schedule property types.
@@ -8684,11 +10359,36 @@ func (r *Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Net
 // The SoftLayer_Network_Subnet data type contains general information relating to a single SoftLayer subnet. Personal information in this type such as names, addresses, and phone numbers are assigned to the account only and not to users belonging to the account.
 type Network_Subnet struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetService(sess *session.Session) Network_Subnet {
-	return Network_Subnet{Session: sess}
+func GetNetworkSubnetService(sess *session.Session) *Network_Subnet {
+	return &Network_Subnet{Session: sess}
+}
+
+func (r Network_Subnet) Id(id int) *Network_Subnet {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet) Mask(mask string) *Network_Subnet {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet) Filter(filter string) *Network_Subnet {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet) Limit(limit int) *Network_Subnet {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet) Offset(offset int) *Network_Subnet {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -9034,11 +10734,36 @@ func (r *Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplate
 // The SoftLayer_Network_Subnet_IpAddress data type contains general information relating to a single SoftLayer IPv4 address.
 type Network_Subnet_IpAddress struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetIpAddressService(sess *session.Session) Network_Subnet_IpAddress {
-	return Network_Subnet_IpAddress{Session: sess}
+func GetNetworkSubnetIpAddressService(sess *session.Session) *Network_Subnet_IpAddress {
+	return &Network_Subnet_IpAddress{Session: sess}
+}
+
+func (r Network_Subnet_IpAddress) Id(id int) *Network_Subnet_IpAddress {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_IpAddress) Mask(mask string) *Network_Subnet_IpAddress {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_IpAddress) Filter(filter string) *Network_Subnet_IpAddress {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_IpAddress) Limit(limit int) *Network_Subnet_IpAddress {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_IpAddress) Offset(offset int) *Network_Subnet_IpAddress {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -9293,11 +11018,36 @@ func (r *Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStora
 //
 type Network_Subnet_IpAddress_Global struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetIpAddressGlobalService(sess *session.Session) Network_Subnet_IpAddress_Global {
-	return Network_Subnet_IpAddress_Global{Session: sess}
+func GetNetworkSubnetIpAddressGlobalService(sess *session.Session) *Network_Subnet_IpAddress_Global {
+	return &Network_Subnet_IpAddress_Global{Session: sess}
+}
+
+func (r Network_Subnet_IpAddress_Global) Id(id int) *Network_Subnet_IpAddress_Global {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_IpAddress_Global) Mask(mask string) *Network_Subnet_IpAddress_Global {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_IpAddress_Global) Filter(filter string) *Network_Subnet_IpAddress_Global {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_IpAddress_Global) Limit(limit int) *Network_Subnet_IpAddress_Global {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_IpAddress_Global) Offset(offset int) *Network_Subnet_IpAddress_Global {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -9354,11 +11104,36 @@ func (r *Network_Subnet_IpAddress_Global) Unroute() (resp datatypes.Provisioning
 // The subnet registration data type contains general information relating to a single subnet registration instance. These registration instances can be updated to reflect changes, and will record the changes in the [[SoftLayer_Network_Subnet_Registration_Event|events]].
 type Network_Subnet_Registration struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetRegistrationService(sess *session.Session) Network_Subnet_Registration {
-	return Network_Subnet_Registration{Session: sess}
+func GetNetworkSubnetRegistrationService(sess *session.Session) *Network_Subnet_Registration {
+	return &Network_Subnet_Registration{Session: sess}
+}
+
+func (r Network_Subnet_Registration) Id(id int) *Network_Subnet_Registration {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_Registration) Mask(mask string) *Network_Subnet_Registration {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_Registration) Filter(filter string) *Network_Subnet_Registration {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_Registration) Limit(limit int) *Network_Subnet_Registration {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_Registration) Offset(offset int) *Network_Subnet_Registration {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method will initiate the removal of a subnet registration.
@@ -9460,11 +11235,36 @@ func (r *Network_Subnet_Registration) GetSubnet() (resp datatypes.Network_Subnet
 // The SoftLayer_Network_Subnet_Registration_Details objects are used to relate [[SoftLayer_Account_Regional_Registry_Detail]] objects to a [[SoftLayer_Network_Subnet_Registration]] object. This allows for easy reuse of registration details. It is important to note that only one detail object per type may be associated to a registration object.
 type Network_Subnet_Registration_Details struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetRegistrationDetailsService(sess *session.Session) Network_Subnet_Registration_Details {
-	return Network_Subnet_Registration_Details{Session: sess}
+func GetNetworkSubnetRegistrationDetailsService(sess *session.Session) *Network_Subnet_Registration_Details {
+	return &Network_Subnet_Registration_Details{Session: sess}
+}
+
+func (r Network_Subnet_Registration_Details) Id(id int) *Network_Subnet_Registration_Details {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_Registration_Details) Mask(mask string) *Network_Subnet_Registration_Details {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_Registration_Details) Filter(filter string) *Network_Subnet_Registration_Details {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_Registration_Details) Limit(limit int) *Network_Subnet_Registration_Details {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_Registration_Details) Offset(offset int) *Network_Subnet_Registration_Details {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Network_Subnet_Registration_Details object.
@@ -9507,11 +11307,36 @@ func (r *Network_Subnet_Registration_Details) GetRegistration() (resp datatypes.
 // The standard values for these objects are as follows: <ul> <li><strong>OPEN</strong> - Indicates that the registration object is new and has yet to be submitted to the RIR</li> <li><strong>PENDING</strong> - Indicates that the registration object has been submitted to the RIR and is awaiting response</li> <li><strong>COMPLETE</strong> - Indicates that the RIR action has completed</li> <li><strong>DELETED</strong> - Indicates that the registration object has been gracefully removed is no longer valid</li> <li><strong>CANCELLED</strong> - Indicates that the registration object has been abruptly removed is no longer valid</li> </ul>
 type Network_Subnet_Registration_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetRegistrationStatusService(sess *session.Session) Network_Subnet_Registration_Status {
-	return Network_Subnet_Registration_Status{Session: sess}
+func GetNetworkSubnetRegistrationStatusService(sess *session.Session) *Network_Subnet_Registration_Status {
+	return &Network_Subnet_Registration_Status{Session: sess}
+}
+
+func (r Network_Subnet_Registration_Status) Id(id int) *Network_Subnet_Registration_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_Registration_Status) Mask(mask string) *Network_Subnet_Registration_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_Registration_Status) Filter(filter string) *Network_Subnet_Registration_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_Registration_Status) Limit(limit int) *Network_Subnet_Registration_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_Registration_Status) Offset(offset int) *Network_Subnet_Registration_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -9531,11 +11356,36 @@ func (r *Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network
 // A SoftLayer customer's RWHOIS data may not necessarily match their account or portal users' contact information.
 type Network_Subnet_Rwhois_Data struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetRwhoisDataService(sess *session.Session) Network_Subnet_Rwhois_Data {
-	return Network_Subnet_Rwhois_Data{Session: sess}
+func GetNetworkSubnetRwhoisDataService(sess *session.Session) *Network_Subnet_Rwhois_Data {
+	return &Network_Subnet_Rwhois_Data{Session: sess}
+}
+
+func (r Network_Subnet_Rwhois_Data) Id(id int) *Network_Subnet_Rwhois_Data {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_Rwhois_Data) Mask(mask string) *Network_Subnet_Rwhois_Data {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_Rwhois_Data) Filter(filter string) *Network_Subnet_Rwhois_Data {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_Rwhois_Data) Limit(limit int) *Network_Subnet_Rwhois_Data {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_Rwhois_Data) Offset(offset int) *Network_Subnet_Rwhois_Data {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit the RWHOIS record by passing in a modified version of the record object.  All fields are editable.
@@ -9575,11 +11425,36 @@ func (r *Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_
 // * SOFTLAYER MANUALLY PROCESSING:  Sometimes a request doesn't go through correctly and has to be manually processed by SoftLayer.  This may take some time.
 type Network_Subnet_Swip_Transaction struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkSubnetSwipTransactionService(sess *session.Session) Network_Subnet_Swip_Transaction {
-	return Network_Subnet_Swip_Transaction{Session: sess}
+func GetNetworkSubnetSwipTransactionService(sess *session.Session) *Network_Subnet_Swip_Transaction {
+	return &Network_Subnet_Swip_Transaction{Session: sess}
+}
+
+func (r Network_Subnet_Swip_Transaction) Id(id int) *Network_Subnet_Swip_Transaction {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Subnet_Swip_Transaction) Mask(mask string) *Network_Subnet_Swip_Transaction {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Subnet_Swip_Transaction) Filter(filter string) *Network_Subnet_Swip_Transaction {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Subnet_Swip_Transaction) Limit(limit int) *Network_Subnet_Swip_Transaction {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Subnet_Swip_Transaction) Offset(offset int) *Network_Subnet_Swip_Transaction {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
@@ -9639,11 +11514,36 @@ func (r *Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err 
 //
 type Network_TippingPointReporting struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkTippingPointReportingService(sess *session.Session) Network_TippingPointReporting {
-	return Network_TippingPointReporting{Session: sess}
+func GetNetworkTippingPointReportingService(sess *session.Session) *Network_TippingPointReporting {
+	return &Network_TippingPointReporting{Session: sess}
+}
+
+func (r Network_TippingPointReporting) Id(id int) *Network_TippingPointReporting {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_TippingPointReporting) Mask(mask string) *Network_TippingPointReporting {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_TippingPointReporting) Filter(filter string) *Network_TippingPointReporting {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_TippingPointReporting) Limit(limit int) *Network_TippingPointReporting {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_TippingPointReporting) Offset(offset int) *Network_TippingPointReporting {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method, when given an attack signature ID (available in the return values of getReportForIpAddressOrSubnet and  getSubnetReportForEntireAccount) and an IP Address and subnet mask, returns all attacks for that subnet in the specified time frame and direction.  Once the results have been filtered, additional data is available, including starting and ending times for the attack, originating IP address and port, and destination IP address and port.
@@ -9716,11 +11616,36 @@ func (r *Network_TippingPointReporting) GetSubnetReportForEntireAccount(timeFram
 // The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.
 type Network_Tunnel_Module_Context struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkTunnelModuleContextService(sess *session.Session) Network_Tunnel_Module_Context {
-	return Network_Tunnel_Module_Context{Session: sess}
+func GetNetworkTunnelModuleContextService(sess *session.Session) *Network_Tunnel_Module_Context {
+	return &Network_Tunnel_Module_Context{Session: sess}
+}
+
+func (r Network_Tunnel_Module_Context) Id(id int) *Network_Tunnel_Module_Context {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Tunnel_Module_Context) Mask(mask string) *Network_Tunnel_Module_Context {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Tunnel_Module_Context) Filter(filter string) *Network_Tunnel_Module_Context {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Tunnel_Module_Context) Limit(limit int) *Network_Tunnel_Module_Context {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Tunnel_Module_Context) Offset(offset int) *Network_Tunnel_Module_Context {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Associates a remote subnet to the network tunnel.  When a remote subnet is associated, a network tunnel will allow the customer (remote) network to communicate with the private and service subnets on the SoftLayer network which are on the other end of this network tunnel.
@@ -10091,11 +12016,36 @@ func (r *Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(sub
 // The SoftLayer_Network_Vlan data type models a single VLAN within SoftLayer's public and private networks. a Virtual LAN is a structure that associates network interfaces on routers, switches, and servers in different locations to act as if they were on the same local network broadcast domain. VLANs are a central part of the SoftLayer network. They can determine how new IP subnets are routed and how individual servers communicate to each other.
 type Network_Vlan struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkVlanService(sess *session.Session) Network_Vlan {
-	return Network_Vlan{Session: sess}
+func GetNetworkVlanService(sess *session.Session) *Network_Vlan {
+	return &Network_Vlan{Session: sess}
+}
+
+func (r Network_Vlan) Id(id int) *Network_Vlan {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Vlan) Mask(mask string) *Network_Vlan {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Vlan) Filter(filter string) *Network_Vlan {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Vlan) Limit(limit int) *Network_Vlan {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Vlan) Offset(offset int) *Network_Vlan {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit a VLAN's properties
@@ -10426,11 +12376,36 @@ func (r *Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err 
 // The SoftLayer_Network_Vlan_Firewall data type contains general information relating to a single SoftLayer VLAN firewall. This is the object which ties the running rules to a specific downstream server. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Vlan_Firewall struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkVlanFirewallService(sess *session.Session) Network_Vlan_Firewall {
-	return Network_Vlan_Firewall{Session: sess}
+func GetNetworkVlanFirewallService(sess *session.Session) *Network_Vlan_Firewall {
+	return &Network_Vlan_Firewall{Session: sess}
+}
+
+func (r Network_Vlan_Firewall) Id(id int) *Network_Vlan_Firewall {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Vlan_Firewall) Mask(mask string) *Network_Vlan_Firewall {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Vlan_Firewall) Filter(filter string) *Network_Vlan_Firewall {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Vlan_Firewall) Limit(limit int) *Network_Vlan_Firewall {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Vlan_Firewall) Offset(offset int) *Network_Vlan_Firewall {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The billing item for a Hardware Firewall (Dedicated).
@@ -10526,11 +12501,36 @@ func (r *Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.
 //
 type Network_Vlan_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNetworkVlanTypeService(sess *session.Session) Network_Vlan_Type {
-	return Network_Vlan_Type{Session: sess}
+func GetNetworkVlanTypeService(sess *session.Session) *Network_Vlan_Type {
+	return &Network_Vlan_Type{Session: sess}
+}
+
+func (r Network_Vlan_Type) Id(id int) *Network_Vlan_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Network_Vlan_Type) Mask(mask string) *Network_Vlan_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Network_Vlan_Type) Filter(filter string) *Network_Vlan_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Network_Vlan_Type) Limit(limit int) *Network_Vlan_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Network_Vlan_Type) Offset(offset int) *Network_Vlan_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

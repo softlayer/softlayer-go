@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Product_Item_Category data type contains general category information for prices.
 type Product_Item_Category struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductItemCategoryService(sess *session.Session) Product_Item_Category {
-	return Product_Item_Category{Session: sess}
+func GetProductItemCategoryService(sess *session.Session) *Product_Item_Category {
+	return &Product_Item_Category{Session: sess}
+}
+
+func (r Product_Item_Category) Id(id int) *Product_Item_Category {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Item_Category) Mask(mask string) *Product_Item_Category {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Item_Category) Filter(filter string) *Product_Item_Category {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Item_Category) Limit(limit int) *Product_Item_Category {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Item_Category) Offset(offset int) *Product_Item_Category {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Returns a list of of active Items in the "Additional Services" package with their active prices for a given product item category and sorts them by price.
@@ -153,11 +178,36 @@ func (r *Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_It
 // The SoftLayer_Product_Item_Category_Group data type contains general category group information.
 type Product_Item_Category_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductItemCategoryGroupService(sess *session.Session) Product_Item_Category_Group {
-	return Product_Item_Category_Group{Session: sess}
+func GetProductItemCategoryGroupService(sess *session.Session) *Product_Item_Category_Group {
+	return &Product_Item_Category_Group{Session: sess}
+}
+
+func (r Product_Item_Category_Group) Id(id int) *Product_Item_Category_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Item_Category_Group) Mask(mask string) *Product_Item_Category_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Item_Category_Group) Filter(filter string) *Product_Item_Category_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Item_Category_Group) Limit(limit int) *Product_Item_Category_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Item_Category_Group) Offset(offset int) *Product_Item_Category_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Each product item category must be tied to a category group. These category groups describe how a particular product item category is categorized. For example, the disk0, disk1, ... disk11 can be categorized as Server and Attached Services. There are different groups for each of this product item category depending on the function of the item product in the subject category.
@@ -169,11 +219,36 @@ func (r *Product_Item_Category_Group) GetObject() (resp datatypes.Product_Item_C
 // Represents the assignment of a policy to a product. The existence of a record means that the associated product is subject to the terms defined in the document content of the policy.
 type Product_Item_Policy_Assignment struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductItemPolicyAssignmentService(sess *session.Session) Product_Item_Policy_Assignment {
-	return Product_Item_Policy_Assignment{Session: sess}
+func GetProductItemPolicyAssignmentService(sess *session.Session) *Product_Item_Policy_Assignment {
+	return &Product_Item_Policy_Assignment{Session: sess}
+}
+
+func (r Product_Item_Policy_Assignment) Id(id int) *Product_Item_Policy_Assignment {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Item_Policy_Assignment) Mask(mask string) *Product_Item_Policy_Assignment {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Item_Policy_Assignment) Filter(filter string) *Product_Item_Policy_Assignment {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Item_Policy_Assignment) Limit(limit int) *Product_Item_Policy_Assignment {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Item_Policy_Assignment) Offset(offset int) *Product_Item_Policy_Assignment {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Register the acceptance of the associated policy to product assignment, and link the created record to a Ticket.
@@ -212,11 +287,36 @@ func (r *Product_Item_Policy_Assignment) GetProduct() (resp datatypes.Product_It
 // The SoftLayer_Product_Item_Price data type contains general information relating to a single SoftLayer product item price. You can find out what packages each price is in as well as which category under which this price is sold. All prices are returned in floating point values measured in US Dollars ($USD).
 type Product_Item_Price struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductItemPriceService(sess *session.Session) Product_Item_Price {
-	return Product_Item_Price{Session: sess}
+func GetProductItemPriceService(sess *session.Session) *Product_Item_Price {
+	return &Product_Item_Price{Session: sess}
+}
+
+func (r Product_Item_Price) Id(id int) *Product_Item_Price {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Item_Price) Mask(mask string) *Product_Item_Price {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Item_Price) Filter(filter string) *Product_Item_Price {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Item_Price) Limit(limit int) *Product_Item_Price {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Item_Price) Offset(offset int) *Product_Item_Price {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The account that the item price is restricted to.
@@ -340,11 +440,36 @@ func (r *Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, it
 //
 type Product_Item_Price_Premium struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductItemPricePremiumService(sess *session.Session) Product_Item_Price_Premium {
-	return Product_Item_Price_Premium{Session: sess}
+func GetProductItemPricePremiumService(sess *session.Session) *Product_Item_Price_Premium {
+	return &Product_Item_Price_Premium{Session: sess}
+}
+
+func (r Product_Item_Price_Premium) Id(id int) *Product_Item_Price_Premium {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Item_Price_Premium) Mask(mask string) *Product_Item_Price_Premium {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Item_Price_Premium) Filter(filter string) *Product_Item_Price_Premium {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Item_Price_Premium) Limit(limit int) *Product_Item_Price_Premium {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Item_Price_Premium) Offset(offset int) *Product_Item_Price_Premium {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -374,11 +499,36 @@ func (r *Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Packag
 //
 type Product_Order struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductOrderService(sess *session.Session) Product_Order {
-	return Product_Order{Session: sess}
+func GetProductOrderService(sess *session.Session) *Product_Order {
+	return &Product_Order{Session: sess}
+}
+
+func (r Product_Order) Id(id int) *Product_Order {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Order) Mask(mask string) *Product_Order {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Order) Filter(filter string) *Product_Order {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Order) Limit(limit int) *Product_Order {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Order) Offset(offset int) *Product_Order {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -938,11 +1088,36 @@ func (r *Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order
 // The SoftLayer_Product_Package data type contains information about packages from which orders can be generated. Packages contain general information regarding what is in them, where they are currently sold, availability, and pricing.
 type Product_Package struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductPackageService(sess *session.Session) Product_Package {
-	return Product_Package{Session: sess}
+func GetProductPackageService(sess *session.Session) *Product_Package {
+	return &Product_Package{Session: sess}
+}
+
+func (r Product_Package) Id(id int) *Product_Package {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Package) Mask(mask string) *Product_Package {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Package) Filter(filter string) *Product_Package {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Package) Limit(limit int) *Product_Package {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Package) Offset(offset int) *Product_Package {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The results from this call are similar to [[SoftLayer_Product_Package/getCategories|getCategories]], but these ONLY include account-restricted prices. Not all accounts have restricted pricing.
@@ -1347,11 +1522,36 @@ func (r *Product_Package) GetType() (resp datatypes.Product_Package_Type, err er
 // Orders submitted with a preset id defined will use the prices included in the package preset. Prices submitted on an order with a preset id will replace the prices included in the package preset for that prices category. If the package preset has a fixed configuration flag <em>(fixedConfigurationFlag)</em> set then the prices included in the preset configuration cannot be replaced by prices submitted on the order. The only exception to the fixed configuration flag would be if a price submitted on the order is an account-restricted price for the same product item.
 type Product_Package_Preset struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductPackagePresetService(sess *session.Session) Product_Package_Preset {
-	return Product_Package_Preset{Session: sess}
+func GetProductPackagePresetService(sess *session.Session) *Product_Package_Preset {
+	return &Product_Package_Preset{Session: sess}
+}
+
+func (r Product_Package_Preset) Id(id int) *Product_Package_Preset {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Package_Preset) Mask(mask string) *Product_Package_Preset {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Package_Preset) Filter(filter string) *Product_Package_Preset {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Package_Preset) Limit(limit int) *Product_Package_Preset {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Package_Preset) Offset(offset int) *Product_Package_Preset {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method returns all the active package presets.
@@ -1435,11 +1635,36 @@ func (r *Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, er
 // The SoftLayer_Product_Package_Server data type contains summarized information for bare metal servers regarding pricing, processor stats, and feature sets.
 type Product_Package_Server struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductPackageServerService(sess *session.Session) Product_Package_Server {
-	return Product_Package_Server{Session: sess}
+func GetProductPackageServerService(sess *session.Session) *Product_Package_Server {
+	return &Product_Package_Server{Session: sess}
+}
+
+func (r Product_Package_Server) Id(id int) *Product_Package_Server {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Package_Server) Mask(mask string) *Product_Package_Server {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Package_Server) Filter(filter string) *Product_Package_Server {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Package_Server) Limit(limit int) *Product_Package_Server {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Package_Server) Offset(offset int) *Product_Package_Server {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method will grab all the package servers.
@@ -1487,11 +1712,36 @@ func (r *Product_Package_Server) GetPreset() (resp datatypes.Product_Package_Pre
 // The [[SoftLayer_Product_Package_Server_Option]] data type contains various data points associated with package servers that can be used in selection criteria.
 type Product_Package_Server_Option struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductPackageServerOptionService(sess *session.Session) Product_Package_Server_Option {
-	return Product_Package_Server_Option{Session: sess}
+func GetProductPackageServerOptionService(sess *session.Session) *Product_Package_Server_Option {
+	return &Product_Package_Server_Option{Session: sess}
+}
+
+func (r Product_Package_Server_Option) Id(id int) *Product_Package_Server_Option {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Package_Server_Option) Mask(mask string) *Product_Package_Server_Option {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Package_Server_Option) Filter(filter string) *Product_Package_Server_Option {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Package_Server_Option) Limit(limit int) *Product_Package_Server_Option {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Package_Server_Option) Offset(offset int) *Product_Package_Server_Option {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method will grab all the package server options.
@@ -1518,11 +1768,36 @@ func (r *Product_Package_Server_Option) GetOptions(typ *string) (resp []datatype
 // The [[SoftLayer_Product_Package_Type]] object indicates the type for a service offering (package). The type can be used to filter packages. For example, if you are looking for the package representing virtual servers, you can filter on the type's key name of '''VIRTUAL_SERVER_INSTANCE'''. For bare metal servers by core or CPU, filter on '''BARE_METAL_CORE''' or '''BARE_METAL_CPU''', respectively.
 type Product_Package_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductPackageTypeService(sess *session.Session) Product_Package_Type {
-	return Product_Package_Type{Session: sess}
+func GetProductPackageTypeService(sess *session.Session) *Product_Package_Type {
+	return &Product_Package_Type{Session: sess}
+}
+
+func (r Product_Package_Type) Id(id int) *Product_Package_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Package_Type) Mask(mask string) *Product_Package_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Package_Type) Filter(filter string) *Product_Package_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Package_Type) Limit(limit int) *Product_Package_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Package_Type) Offset(offset int) *Product_Package_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method will return all of the available package types.
@@ -1546,11 +1821,36 @@ func (r *Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, 
 // The SoftLayer_Product_Upgrade_Request data type contains general information relating to a hardware, virtual server, or service upgrade. It also relates a [[SoftLayer_Billing_Order]] to a [[SoftLayer_Ticket]].
 type Product_Upgrade_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetProductUpgradeRequestService(sess *session.Session) Product_Upgrade_Request {
-	return Product_Upgrade_Request{Session: sess}
+func GetProductUpgradeRequestService(sess *session.Session) *Product_Upgrade_Request {
+	return &Product_Upgrade_Request{Session: sess}
+}
+
+func (r Product_Upgrade_Request) Id(id int) *Product_Upgrade_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Product_Upgrade_Request) Mask(mask string) *Product_Upgrade_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Product_Upgrade_Request) Filter(filter string) *Product_Upgrade_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Product_Upgrade_Request) Limit(limit int) *Product_Upgrade_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Product_Upgrade_Request) Offset(offset int) *Product_Upgrade_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // When a change is made to an upgrade by Sales, this method will approve the changes that were made. A customer must acknowledge the change and approve it so that the upgrade request can proceed.

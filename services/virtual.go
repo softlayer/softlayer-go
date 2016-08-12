@@ -31,11 +31,36 @@ import (
 // Virtual block devices are assigned to disk images.
 type Virtual_Disk_Image struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualDiskImageService(sess *session.Session) Virtual_Disk_Image {
-	return Virtual_Disk_Image{Session: sess}
+func GetVirtualDiskImageService(sess *session.Session) *Virtual_Disk_Image {
+	return &Virtual_Disk_Image{Session: sess}
+}
+
+func (r Virtual_Disk_Image) Id(id int) *Virtual_Disk_Image {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Disk_Image) Mask(mask string) *Virtual_Disk_Image {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Disk_Image) Filter(filter string) *Virtual_Disk_Image {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Disk_Image) Limit(limit int) *Virtual_Disk_Image {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Disk_Image) Offset(offset int) *Virtual_Disk_Image {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -142,11 +167,36 @@ func (r *Virtual_Disk_Image) GetType() (resp datatypes.Virtual_Disk_Image_Type, 
 // A guest, also known as a virtual server, represents an allocation of resources on a virtual host.
 type Virtual_Guest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualGuestService(sess *session.Session) Virtual_Guest {
-	return Virtual_Guest{Session: sess}
+func GetVirtualGuestService(sess *session.Session) *Virtual_Guest {
+	return &Virtual_Guest{Session: sess}
+}
+
+func (r Virtual_Guest) Id(id int) *Virtual_Guest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Guest) Mask(mask string) *Virtual_Guest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Guest) Filter(filter string) *Virtual_Guest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Guest) Limit(limit int) *Virtual_Guest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Guest) Offset(offset int) *Virtual_Guest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Activate the private network port
@@ -1857,11 +1907,36 @@ func (r *Virtual_Guest) VerifyReloadOperatingSystem(config *datatypes.Container_
 // A virtual block device template group, also known as an image template group, represents an image of a virtual guest instance.
 type Virtual_Guest_Block_Device_Template_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualGuestBlockDeviceTemplateGroupService(sess *session.Session) Virtual_Guest_Block_Device_Template_Group {
-	return Virtual_Guest_Block_Device_Template_Group{Session: sess}
+func GetVirtualGuestBlockDeviceTemplateGroupService(sess *session.Session) *Virtual_Guest_Block_Device_Template_Group {
+	return &Virtual_Guest_Block_Device_Template_Group{Session: sess}
+}
+
+func (r Virtual_Guest_Block_Device_Template_Group) Id(id int) *Virtual_Guest_Block_Device_Template_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Guest_Block_Device_Template_Group) Mask(mask string) *Virtual_Guest_Block_Device_Template_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Guest_Block_Device_Template_Group) Filter(filter string) *Virtual_Guest_Block_Device_Template_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Guest_Block_Device_Template_Group) Limit(limit int) *Virtual_Guest_Block_Device_Template_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Guest_Block_Device_Template_Group) Offset(offset int) *Virtual_Guest_Block_Device_Template_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method will create transaction(s) to add available locations to an archive image template.
@@ -2104,11 +2179,36 @@ func (r *Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp 
 //
 type Virtual_Guest_Boot_Parameter struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualGuestBootParameterService(sess *session.Session) Virtual_Guest_Boot_Parameter {
-	return Virtual_Guest_Boot_Parameter{Session: sess}
+func GetVirtualGuestBootParameterService(sess *session.Session) *Virtual_Guest_Boot_Parameter {
+	return &Virtual_Guest_Boot_Parameter{Session: sess}
+}
+
+func (r Virtual_Guest_Boot_Parameter) Id(id int) *Virtual_Guest_Boot_Parameter {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter) Mask(mask string) *Virtual_Guest_Boot_Parameter {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter) Filter(filter string) *Virtual_Guest_Boot_Parameter {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter) Limit(limit int) *Virtual_Guest_Boot_Parameter {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter) Offset(offset int) *Virtual_Guest_Boot_Parameter {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2156,11 +2256,36 @@ func (r *Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest
 // Describes a virtual guest boot parameter. In this the word class is used in the context of arguments sent to cloud computing instances such as single user mode and boot into bash.
 type Virtual_Guest_Boot_Parameter_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualGuestBootParameterTypeService(sess *session.Session) Virtual_Guest_Boot_Parameter_Type {
-	return Virtual_Guest_Boot_Parameter_Type{Session: sess}
+func GetVirtualGuestBootParameterTypeService(sess *session.Session) *Virtual_Guest_Boot_Parameter_Type {
+	return &Virtual_Guest_Boot_Parameter_Type{Session: sess}
+}
+
+func (r Virtual_Guest_Boot_Parameter_Type) Id(id int) *Virtual_Guest_Boot_Parameter_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter_Type) Mask(mask string) *Virtual_Guest_Boot_Parameter_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter_Type) Filter(filter string) *Virtual_Guest_Boot_Parameter_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter_Type) Limit(limit int) *Virtual_Guest_Boot_Parameter_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Guest_Boot_Parameter_Type) Offset(offset int) *Virtual_Guest_Boot_Parameter_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2180,11 +2305,36 @@ func (r *Virtual_Guest_Boot_Parameter_Type) GetObject() (resp datatypes.Virtual_
 // A guest, also known as a virtual server, represents an allocation of resources on a virtual host.
 type Virtual_Guest_Network_Component struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualGuestNetworkComponentService(sess *session.Session) Virtual_Guest_Network_Component {
-	return Virtual_Guest_Network_Component{Session: sess}
+func GetVirtualGuestNetworkComponentService(sess *session.Session) *Virtual_Guest_Network_Component {
+	return &Virtual_Guest_Network_Component{Session: sess}
+}
+
+func (r Virtual_Guest_Network_Component) Id(id int) *Virtual_Guest_Network_Component {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Guest_Network_Component) Mask(mask string) *Virtual_Guest_Network_Component {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Guest_Network_Component) Filter(filter string) *Virtual_Guest_Network_Component {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Guest_Network_Component) Limit(limit int) *Virtual_Guest_Network_Component {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Guest_Network_Component) Offset(offset int) *Virtual_Guest_Network_Component {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Completely restrict all incoming and outgoing bandwidth traffic to a network component
@@ -2280,11 +2430,36 @@ func (r *Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
 // The virtual host represents the platform on which virtual guests reside. At times a virtual host has no allocations on the physical server, however with many modern platforms it is a virtual machine with small CPU and Memory allocations that runs in the Control Domain.
 type Virtual_Host struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualHostService(sess *session.Session) Virtual_Host {
-	return Virtual_Host{Session: sess}
+func GetVirtualHostService(sess *session.Session) *Virtual_Host {
+	return &Virtual_Host{Session: sess}
+}
+
+func (r Virtual_Host) Id(id int) *Virtual_Host {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Host) Mask(mask string) *Virtual_Host {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Host) Filter(filter string) *Virtual_Host {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Host) Limit(limit int) *Virtual_Host {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Host) Offset(offset int) *Virtual_Host {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The account which a virtual host belongs to.
@@ -2413,11 +2588,36 @@ func (r *Virtual_Host) ResumeLiveGuest(uuid *string) (resp bool, err error) {
 // The SoftLayer_Virtual_Storage_Repository represents a web based storage system that can be accessed through many types of devices, interfaces, and other resources.
 type Virtual_Storage_Repository struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetVirtualStorageRepositoryService(sess *session.Session) Virtual_Storage_Repository {
-	return Virtual_Storage_Repository{Session: sess}
+func GetVirtualStorageRepositoryService(sess *session.Session) *Virtual_Storage_Repository {
+	return &Virtual_Storage_Repository{Session: sess}
+}
+
+func (r Virtual_Storage_Repository) Id(id int) *Virtual_Storage_Repository {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Virtual_Storage_Repository) Mask(mask string) *Virtual_Storage_Repository {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Virtual_Storage_Repository) Filter(filter string) *Virtual_Storage_Repository {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Virtual_Storage_Repository) Limit(limit int) *Virtual_Storage_Repository {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Virtual_Storage_Repository) Offset(offset int) *Virtual_Storage_Repository {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The [[SoftLayer_Account|account]] that a storage repository belongs to.

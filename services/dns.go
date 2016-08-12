@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Dns_Domain data type represents a single DNS domain record hosted on the SoftLayer nameservers. Domains contain general information about the domain name such as name and serial. Individual records such as A, AAAA, CTYPE, and MX records are stored in the domain's associated [[SoftLayer_Dns_Domain_ResourceRecord (type)|SoftLayer_Dns_Domain_ResourceRecord]] records.
 type Dns_Domain struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainService(sess *session.Session) Dns_Domain {
-	return Dns_Domain{Session: sess}
+func GetDnsDomainService(sess *session.Session) *Dns_Domain {
+	return &Dns_Domain{Session: sess}
+}
+
+func (r Dns_Domain) Id(id int) *Dns_Domain {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain) Mask(mask string) *Dns_Domain {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain) Filter(filter string) *Dns_Domain {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain) Limit(limit int) *Dns_Domain {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain) Offset(offset int) *Dns_Domain {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create an A record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createARecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_AType.
@@ -213,11 +238,36 @@ func (r *Dns_Domain) GetZoneFileContents() (resp string, err error) {
 // The SoftLayer_Dns_Domain_Registration data type represents a domain registration record.
 type Dns_Domain_Registration struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainRegistrationService(sess *session.Session) Dns_Domain_Registration {
-	return Dns_Domain_Registration{Session: sess}
+func GetDnsDomainRegistrationService(sess *session.Session) *Dns_Domain_Registration {
+	return &Dns_Domain_Registration{Session: sess}
+}
+
+func (r Dns_Domain_Registration) Id(id int) *Dns_Domain_Registration {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_Registration) Mask(mask string) *Dns_Domain_Registration {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_Registration) Filter(filter string) *Dns_Domain_Registration {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_Registration) Limit(limit int) *Dns_Domain_Registration {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_Registration) Offset(offset int) *Dns_Domain_Registration {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // The addNameserversToDomain method adds nameservers to a domain for a domain that already has nameservers assigned to it. This method does not create a nameserver; the nameserver must already exist.
@@ -418,11 +468,36 @@ func (r *Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
 //
 type Dns_Domain_Registration_Registrant_Verification_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) Dns_Domain_Registration_Registrant_Verification_Status {
-	return Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
+func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) *Dns_Domain_Registration_Registrant_Verification_Status {
+	return &Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
+}
+
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Id(id int) *Dns_Domain_Registration_Registrant_Verification_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Mask(mask string) *Dns_Domain_Registration_Registrant_Verification_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Filter(filter string) *Dns_Domain_Registration_Registrant_Verification_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Limit(limit int) *Dns_Domain_Registration_Registrant_Verification_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Offset(offset int) *Dns_Domain_Registration_Registrant_Verification_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -449,11 +524,36 @@ func (r *Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (re
 //
 type Dns_Domain_Registration_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainRegistrationStatusService(sess *session.Session) Dns_Domain_Registration_Status {
-	return Dns_Domain_Registration_Status{Session: sess}
+func GetDnsDomainRegistrationStatusService(sess *session.Session) *Dns_Domain_Registration_Status {
+	return &Dns_Domain_Registration_Status{Session: sess}
+}
+
+func (r Dns_Domain_Registration_Status) Id(id int) *Dns_Domain_Registration_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_Registration_Status) Mask(mask string) *Dns_Domain_Registration_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_Registration_Status) Filter(filter string) *Dns_Domain_Registration_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_Registration_Status) Limit(limit int) *Dns_Domain_Registration_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_Registration_Status) Offset(offset int) *Dns_Domain_Registration_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -484,11 +584,36 @@ func (r *Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_
 // As ''SoftLayer_Dns_Domain_ResourceRecord'' objects are created and loaded, the API verifies the ''type'' property and casts the object as the appropriate type.
 type Dns_Domain_ResourceRecord struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordService(sess *session.Session) Dns_Domain_ResourceRecord {
-	return Dns_Domain_ResourceRecord{Session: sess}
+func GetDnsDomainResourceRecordService(sess *session.Session) *Dns_Domain_ResourceRecord {
+	return &Dns_Domain_ResourceRecord{Session: sess}
+}
+
+func (r Dns_Domain_ResourceRecord) Id(id int) *Dns_Domain_ResourceRecord {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord) Mask(mask string) *Dns_Domain_ResourceRecord {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord) Filter(filter string) *Dns_Domain_ResourceRecord {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord) Limit(limit int) *Dns_Domain_ResourceRecord {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord) Offset(offset int) *Dns_Domain_ResourceRecord {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // createObject creates a new domain resource record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating a resource record updates the serial number of the domain the resource record is associated with.
@@ -573,11 +698,36 @@ func (r *Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_Resou
 // MX records must be defined for hosts with accompanying A or AAAA resource records. They may not point mail towards a host defined by a CNAME record.
 type Dns_Domain_ResourceRecord_MxType struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) Dns_Domain_ResourceRecord_MxType {
-	return Dns_Domain_ResourceRecord_MxType{Session: sess}
+func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) *Dns_Domain_ResourceRecord_MxType {
+	return &Dns_Domain_ResourceRecord_MxType{Session: sess}
+}
+
+func (r Dns_Domain_ResourceRecord_MxType) Id(id int) *Dns_Domain_ResourceRecord_MxType {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_MxType) Mask(mask string) *Dns_Domain_ResourceRecord_MxType {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_MxType) Filter(filter string) *Dns_Domain_ResourceRecord_MxType {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_MxType) Limit(limit int) *Dns_Domain_ResourceRecord_MxType {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_MxType) Offset(offset int) *Dns_Domain_ResourceRecord_MxType {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // createObject creates a new MX record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating an MX record updates the serial number of the domain the resource record is associated with.
@@ -656,11 +806,36 @@ func (r *Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domai
 // SoftLayer_Dns_Domain_ResourceRecord_SrvType is a SoftLayer_Dns_Domain_ResourceRecord object whose ''type'' property is set to "srv" and defines a DNS SRV record on a SoftLayer hosted domain.
 type Dns_Domain_ResourceRecord_SrvType struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) Dns_Domain_ResourceRecord_SrvType {
-	return Dns_Domain_ResourceRecord_SrvType{Session: sess}
+func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) *Dns_Domain_ResourceRecord_SrvType {
+	return &Dns_Domain_ResourceRecord_SrvType{Session: sess}
+}
+
+func (r Dns_Domain_ResourceRecord_SrvType) Id(id int) *Dns_Domain_ResourceRecord_SrvType {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_SrvType) Mask(mask string) *Dns_Domain_ResourceRecord_SrvType {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_SrvType) Filter(filter string) *Dns_Domain_ResourceRecord_SrvType {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_SrvType) Limit(limit int) *Dns_Domain_ResourceRecord_SrvType {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Domain_ResourceRecord_SrvType) Offset(offset int) *Dns_Domain_ResourceRecord_SrvType {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // createObject creates a new SRV record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating an SRV record updates the serial number of the domain the resource record is associated with.
@@ -739,11 +914,36 @@ func (r *Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Doma
 // The SoftLayer_Dns_Secondary data type contains information on a single secondary DNS zone which is managed through SoftLayer's zone transfer service. Domains created via zone transfer may not be modified by the SoftLayer portal or API.
 type Dns_Secondary struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetDnsSecondaryService(sess *session.Session) Dns_Secondary {
-	return Dns_Secondary{Session: sess}
+func GetDnsSecondaryService(sess *session.Session) *Dns_Secondary {
+	return &Dns_Secondary{Session: sess}
+}
+
+func (r Dns_Secondary) Id(id int) *Dns_Secondary {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Dns_Secondary) Mask(mask string) *Dns_Secondary {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Dns_Secondary) Filter(filter string) *Dns_Secondary {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Dns_Secondary) Limit(limit int) *Dns_Secondary {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Dns_Secondary) Offset(offset int) *Dns_Secondary {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // A secondary DNS record may be converted to a primary DNS record. By converting a secondary DNS record, the SoftLayer name servers will be the authoritative nameserver for this domain and will be directly editable in the SoftLayer API and Portal.

@@ -31,11 +31,36 @@ import (
 // To create a support ticket execute the [[SoftLayer_Ticket::createStandardTicket|createStandardTicket]] or [[SoftLayer_Ticket::createAdministrativeTicket|createAdministrativeTicket]] methods in the SoftLayer_Ticket service. To create an upgrade ticket for the SoftLayer sales group execute the [[SoftLayer_Ticket::createUpgradeTicket|createUpgradeTicket]].
 type Ticket struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketService(sess *session.Session) Ticket {
-	return Ticket{Session: sess}
+func GetTicketService(sess *session.Session) *Ticket {
+	return &Ticket{Session: sess}
+}
+
+func (r Ticket) Id(id int) *Ticket {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket) Mask(mask string) *Ticket {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket) Filter(filter string) *Ticket {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket) Limit(limit int) *Ticket {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket) Offset(offset int) *Ticket {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -562,11 +587,36 @@ func (r *Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err
 // SoftLayer tickets can have have files attached to them. Attaching a file to a ticket is a good way to report issues, provide documentation, and give examples of an issue. Both SoftLayer customers and employees have the ability to attach files to a ticket. The SoftLayer_Ticket_Attachment_File data type models a single file attached to a ticket.
 type Ticket_Attachment_File struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketAttachmentFileService(sess *session.Session) Ticket_Attachment_File {
-	return Ticket_Attachment_File{Session: sess}
+func GetTicketAttachmentFileService(sess *session.Session) *Ticket_Attachment_File {
+	return &Ticket_Attachment_File{Session: sess}
+}
+
+func (r Ticket_Attachment_File) Id(id int) *Ticket_Attachment_File {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket_Attachment_File) Mask(mask string) *Ticket_Attachment_File {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket_Attachment_File) Filter(filter string) *Ticket_Attachment_File {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket_Attachment_File) Limit(limit int) *Ticket_Attachment_File {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket_Attachment_File) Offset(offset int) *Ticket_Attachment_File {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -596,11 +646,36 @@ func (r *Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err 
 //
 type Ticket_Priority struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketPriorityService(sess *session.Session) Ticket_Priority {
-	return Ticket_Priority{Session: sess}
+func GetTicketPriorityService(sess *session.Session) *Ticket_Priority {
+	return &Ticket_Priority{Session: sess}
+}
+
+func (r Ticket_Priority) Id(id int) *Ticket_Priority {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket_Priority) Mask(mask string) *Ticket_Priority {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket_Priority) Filter(filter string) *Ticket_Priority {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket_Priority) Limit(limit int) *Ticket_Priority {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket_Priority) Offset(offset int) *Ticket_Priority {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -612,11 +687,36 @@ func (r *Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Pri
 // The SoftLayer_Ticket_Subject data type models one of the possible subjects that a standard support ticket may belong to. A basic support ticket's title matches it's corresponding subject's name.
 type Ticket_Subject struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketSubjectService(sess *session.Session) Ticket_Subject {
-	return Ticket_Subject{Session: sess}
+func GetTicketSubjectService(sess *session.Session) *Ticket_Subject {
+	return &Ticket_Subject{Session: sess}
+}
+
+func (r Ticket_Subject) Id(id int) *Ticket_Subject {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket_Subject) Mask(mask string) *Ticket_Subject {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket_Subject) Filter(filter string) *Ticket_Subject {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket_Subject) Limit(limit int) *Ticket_Subject {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket_Subject) Offset(offset int) *Ticket_Subject {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve all possible ticket subjects. The SoftLayer customer portal uses this method in the add standard support ticket form.
@@ -646,11 +746,36 @@ func (r *Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.C
 //
 type Ticket_Survey struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketSurveyService(sess *session.Session) Ticket_Survey {
-	return Ticket_Survey{Session: sess}
+func GetTicketSurveyService(sess *session.Session) *Ticket_Survey {
+	return &Ticket_Survey{Session: sess}
+}
+
+func (r Ticket_Survey) Id(id int) *Ticket_Survey {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket_Survey) Mask(mask string) *Ticket_Survey {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket_Survey) Filter(filter string) *Ticket_Survey {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket_Survey) Limit(limit int) *Ticket_Survey {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket_Survey) Offset(offset int) *Ticket_Survey {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve the ticket survey preferences. It will return your [[SoftLayer_Container_Ticket_Survey_Preference|survey preference]] which indicates if your account is applicable to receive a survey and if you're opted in. You can control the survey opt via the [[SoftLayer_Ticket_Survey::optIn|opt-in]] or [[SoftLayer_Ticket_Survey::optOut|opt-out]] method.
@@ -678,11 +803,36 @@ func (r *Ticket_Survey) OptOut() (resp datatypes.Container_Ticket_Survey_Prefere
 // The SoftLayer_Ticket_Update_Employee data type models an update to a ticket made by a SoftLayer employee.
 type Ticket_Update_Employee struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTicketUpdateEmployeeService(sess *session.Session) Ticket_Update_Employee {
-	return Ticket_Update_Employee{Session: sess}
+func GetTicketUpdateEmployeeService(sess *session.Session) *Ticket_Update_Employee {
+	return &Ticket_Update_Employee{Session: sess}
+}
+
+func (r Ticket_Update_Employee) Id(id int) *Ticket_Update_Employee {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Ticket_Update_Employee) Mask(mask string) *Ticket_Update_Employee {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Ticket_Update_Employee) Filter(filter string) *Ticket_Update_Employee {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Ticket_Update_Employee) Limit(limit int) *Ticket_Update_Employee {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Ticket_Update_Employee) Offset(offset int) *Ticket_Update_Employee {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // As part of the customer service process SoftLayer has provided a quick feedback mechanism for its customers to rate the responses that its employees give on tickets. addResponseRating() sets the rating for a single ticket update made by a SoftLayer employee. Ticket ratings have the integer values 1 through 5, with 1 being the worst and 5 being the best. Once the rating is set ''addResponseRating()'' returns a boolean true.

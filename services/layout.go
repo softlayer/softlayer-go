@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Layout_Container contains definitions for default page layouts
 type Layout_Container struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutContainerService(sess *session.Session) Layout_Container {
-	return Layout_Container{Session: sess}
+func GetLayoutContainerService(sess *session.Session) *Layout_Container {
+	return &Layout_Container{Session: sess}
+}
+
+func (r Layout_Container) Id(id int) *Layout_Container {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Container) Mask(mask string) *Layout_Container {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Container) Filter(filter string) *Layout_Container {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Container) Limit(limit int) *Layout_Container {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Container) Offset(offset int) *Layout_Container {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve all active layout containers that can be customized.
@@ -63,11 +88,36 @@ func (r *Layout_Container) GetObject() (resp datatypes.Layout_Container, err err
 // The SoftLayer_Layout_Item contains definitions for default layout items
 type Layout_Item struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutItemService(sess *session.Session) Layout_Item {
-	return Layout_Item{Session: sess}
+func GetLayoutItemService(sess *session.Session) *Layout_Item {
+	return &Layout_Item{Session: sess}
+}
+
+func (r Layout_Item) Id(id int) *Layout_Item {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Item) Mask(mask string) *Layout_Item {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Item) Filter(filter string) *Layout_Item {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Item) Limit(limit int) *Layout_Item {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Item) Offset(offset int) *Layout_Item {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The layout preferences assigned to this layout item
@@ -91,11 +141,36 @@ func (r *Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
 // The SoftLayer_Layout_Profile contains the definition of the layout profile
 type Layout_Profile struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutProfileService(sess *session.Session) Layout_Profile {
-	return Layout_Profile{Session: sess}
+func GetLayoutProfileService(sess *session.Session) *Layout_Profile {
+	return &Layout_Profile{Session: sess}
+}
+
+func (r Layout_Profile) Id(id int) *Layout_Profile {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Profile) Mask(mask string) *Layout_Profile {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Profile) Filter(filter string) *Layout_Profile {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Profile) Limit(limit int) *Layout_Profile {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Profile) Offset(offset int) *Layout_Profile {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates a new layout profile object.
@@ -165,11 +240,36 @@ func (r *Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.L
 //
 type Layout_Profile_Containers struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutProfileContainersService(sess *session.Session) Layout_Profile_Containers {
-	return Layout_Profile_Containers{Session: sess}
+func GetLayoutProfileContainersService(sess *session.Session) *Layout_Profile_Containers {
+	return &Layout_Profile_Containers{Session: sess}
+}
+
+func (r Layout_Profile_Containers) Id(id int) *Layout_Profile_Containers {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Profile_Containers) Mask(mask string) *Layout_Profile_Containers {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Profile_Containers) Filter(filter string) *Layout_Profile_Containers {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Profile_Containers) Limit(limit int) *Layout_Profile_Containers {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Profile_Containers) Offset(offset int) *Layout_Profile_Containers {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -211,11 +311,36 @@ func (r *Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_C
 //
 type Layout_Profile_Customer struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutProfileCustomerService(sess *session.Session) Layout_Profile_Customer {
-	return Layout_Profile_Customer{Session: sess}
+func GetLayoutProfileCustomerService(sess *session.Session) *Layout_Profile_Customer {
+	return &Layout_Profile_Customer{Session: sess}
+}
+
+func (r Layout_Profile_Customer) Id(id int) *Layout_Profile_Customer {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Profile_Customer) Mask(mask string) *Layout_Profile_Customer {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Profile_Customer) Filter(filter string) *Layout_Profile_Customer {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Profile_Customer) Limit(limit int) *Layout_Profile_Customer {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Profile_Customer) Offset(offset int) *Layout_Profile_Customer {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates a new layout profile object.
@@ -291,11 +416,36 @@ func (r *Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []da
 // The SoftLayer_Layout_Profile_Preference contains definitions for layout preferences
 type Layout_Profile_Preference struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetLayoutProfilePreferenceService(sess *session.Session) Layout_Profile_Preference {
-	return Layout_Profile_Preference{Session: sess}
+func GetLayoutProfilePreferenceService(sess *session.Session) *Layout_Profile_Preference {
+	return &Layout_Profile_Preference{Session: sess}
+}
+
+func (r Layout_Profile_Preference) Id(id int) *Layout_Profile_Preference {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Layout_Profile_Preference) Mask(mask string) *Layout_Profile_Preference {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Layout_Profile_Preference) Filter(filter string) *Layout_Profile_Preference {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Layout_Profile_Preference) Limit(limit int) *Layout_Profile_Preference {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Layout_Profile_Preference) Offset(offset int) *Layout_Profile_Preference {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve

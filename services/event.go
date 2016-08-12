@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Event_Log data type contains an event detail occurred upon various SoftLayer resources.
 type Event_Log struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetEventLogService(sess *session.Session) Event_Log {
-	return Event_Log{Session: sess}
+func GetEventLogService(sess *session.Session) *Event_Log {
+	return &Event_Log{Session: sess}
+}
+
+func (r Event_Log) Id(id int) *Event_Log {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Event_Log) Mask(mask string) *Event_Log {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Event_Log) Filter(filter string) *Event_Log {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Event_Log) Limit(limit int) *Event_Log {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Event_Log) Offset(offset int) *Event_Log {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This all indexed event names.

@@ -29,11 +29,36 @@ import (
 // Details provided for the notification are basic.  Details such as the related preferences, name and keyname for the notification can be retrieved.  The keyname property for the notification can be used to refer to a notification when integrating into the SoftLayer Notification system.  The name property can used more for display purposes.
 type Notification struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationService(sess *session.Session) Notification {
-	return Notification{Session: sess}
+func GetNotificationService(sess *session.Session) *Notification {
+	return &Notification{Session: sess}
+}
+
+func (r Notification) Id(id int) *Notification {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification) Mask(mask string) *Notification {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification) Filter(filter string) *Notification {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification) Limit(limit int) *Notification {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification) Offset(offset int) *Notification {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use this method to retrieve all active notifications that can be subscribed to.
@@ -63,11 +88,36 @@ func (r *Notification) GetRequiredPreferences() (resp []datatypes.Notification_P
 // This is an extension of the SoftLayer_Notification class.  These are implementation details specific to those notifications which can be subscribed to and received on a mobile device.
 type Notification_Mobile struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationMobileService(sess *session.Session) Notification_Mobile {
-	return Notification_Mobile{Session: sess}
+func GetNotificationMobileService(sess *session.Session) *Notification_Mobile {
+	return &Notification_Mobile{Session: sess}
+}
+
+func (r Notification_Mobile) Id(id int) *Notification_Mobile {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_Mobile) Mask(mask string) *Notification_Mobile {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_Mobile) Filter(filter string) *Notification_Mobile {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_Mobile) Limit(limit int) *Notification_Mobile {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_Mobile) Offset(offset int) *Notification_Mobile {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new subscriber for a given resource.
@@ -108,11 +158,36 @@ func (r *Notification_Mobile) GetRequiredPreferences() (resp []datatypes.Notific
 //
 type Notification_Occurrence_Event struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationOccurrenceEventService(sess *session.Session) Notification_Occurrence_Event {
-	return Notification_Occurrence_Event{Session: sess}
+func GetNotificationOccurrenceEventService(sess *session.Session) *Notification_Occurrence_Event {
+	return &Notification_Occurrence_Event{Session: sess}
+}
+
+func (r Notification_Occurrence_Event) Id(id int) *Notification_Occurrence_Event {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_Occurrence_Event) Mask(mask string) *Notification_Occurrence_Event {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_Occurrence_Event) Filter(filter string) *Notification_Occurrence_Event {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_Occurrence_Event) Limit(limit int) *Notification_Occurrence_Event {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_Occurrence_Event) Offset(offset int) *Notification_Occurrence_Event {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // <<<< EOT
@@ -223,11 +298,36 @@ func (r *Notification_Occurrence_Event) GetUpdates() (resp []datatypes.Notificat
 // This type contains general information relating to a user that may be impacted by a [[SoftLayer_Notification_Occurrence_Event]].
 type Notification_Occurrence_User struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationOccurrenceUserService(sess *session.Session) Notification_Occurrence_User {
-	return Notification_Occurrence_User{Session: sess}
+func GetNotificationOccurrenceUserService(sess *session.Session) *Notification_Occurrence_User {
+	return &Notification_Occurrence_User{Session: sess}
+}
+
+func (r Notification_Occurrence_User) Id(id int) *Notification_Occurrence_User {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_Occurrence_User) Mask(mask string) *Notification_Occurrence_User {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_Occurrence_User) Filter(filter string) *Notification_Occurrence_User {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_Occurrence_User) Limit(limit int) *Notification_Occurrence_User {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_Occurrence_User) Offset(offset int) *Notification_Occurrence_User {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -277,11 +377,36 @@ func (r *Notification_Occurrence_User) GetUser() (resp datatypes.User_Customer, 
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationUserSubscriberService(sess *session.Session) Notification_User_Subscriber {
-	return Notification_User_Subscriber{Session: sess}
+func GetNotificationUserSubscriberService(sess *session.Session) *Notification_User_Subscriber {
+	return &Notification_User_Subscriber{Session: sess}
+}
+
+func (r Notification_User_Subscriber) Id(id int) *Notification_User_Subscriber {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_User_Subscriber) Mask(mask string) *Notification_User_Subscriber {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_User_Subscriber) Filter(filter string) *Notification_User_Subscriber {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_User_Subscriber) Limit(limit int) *Notification_User_Subscriber {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_User_Subscriber) Offset(offset int) *Notification_User_Subscriber {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use the method to create a new subscription for a notification.  This method is the entry method to the notification system. Certain properties are required to create a subscription while others are optional.
@@ -381,11 +506,36 @@ func (r *Notification_User_Subscriber) GetUserRecord() (resp datatypes.User_Cust
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Billing struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationUserSubscriberBillingService(sess *session.Session) Notification_User_Subscriber_Billing {
-	return Notification_User_Subscriber_Billing{Session: sess}
+func GetNotificationUserSubscriberBillingService(sess *session.Session) *Notification_User_Subscriber_Billing {
+	return &Notification_User_Subscriber_Billing{Session: sess}
+}
+
+func (r Notification_User_Subscriber_Billing) Id(id int) *Notification_User_Subscriber_Billing {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_User_Subscriber_Billing) Mask(mask string) *Notification_User_Subscriber_Billing {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_User_Subscriber_Billing) Filter(filter string) *Notification_User_Subscriber_Billing {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_User_Subscriber_Billing) Limit(limit int) *Notification_User_Subscriber_Billing {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_User_Subscriber_Billing) Offset(offset int) *Notification_User_Subscriber_Billing {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use the method to create a new subscription for a notification.  This method is the entry method to the notification system. Certain properties are required to create a subscription while others are optional.
@@ -485,11 +635,36 @@ func (r *Notification_User_Subscriber_Billing) GetUserRecord() (resp datatypes.U
 // NOTE: There are preferences and delivery methods that cannot be modified.  Also, there are some subscriptions that are required.
 type Notification_User_Subscriber_Mobile struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationUserSubscriberMobileService(sess *session.Session) Notification_User_Subscriber_Mobile {
-	return Notification_User_Subscriber_Mobile{Session: sess}
+func GetNotificationUserSubscriberMobileService(sess *session.Session) *Notification_User_Subscriber_Mobile {
+	return &Notification_User_Subscriber_Mobile{Session: sess}
+}
+
+func (r Notification_User_Subscriber_Mobile) Id(id int) *Notification_User_Subscriber_Mobile {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_User_Subscriber_Mobile) Mask(mask string) *Notification_User_Subscriber_Mobile {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_User_Subscriber_Mobile) Filter(filter string) *Notification_User_Subscriber_Mobile {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_User_Subscriber_Mobile) Limit(limit int) *Notification_User_Subscriber_Mobile {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_User_Subscriber_Mobile) Offset(offset int) *Notification_User_Subscriber_Mobile {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -605,11 +780,36 @@ func (r *Notification_User_Subscriber_Mobile) SetSnoozeTimer(start *int, end *in
 // NOTE: Some preferences have certain restrictions on values that can be set.
 type Notification_User_Subscriber_Preference struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetNotificationUserSubscriberPreferenceService(sess *session.Session) Notification_User_Subscriber_Preference {
-	return Notification_User_Subscriber_Preference{Session: sess}
+func GetNotificationUserSubscriberPreferenceService(sess *session.Session) *Notification_User_Subscriber_Preference {
+	return &Notification_User_Subscriber_Preference{Session: sess}
+}
+
+func (r Notification_User_Subscriber_Preference) Id(id int) *Notification_User_Subscriber_Preference {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Notification_User_Subscriber_Preference) Mask(mask string) *Notification_User_Subscriber_Preference {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Notification_User_Subscriber_Preference) Filter(filter string) *Notification_User_Subscriber_Preference {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Notification_User_Subscriber_Preference) Limit(limit int) *Notification_User_Subscriber_Preference {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Notification_User_Subscriber_Preference) Offset(offset int) *Notification_User_Subscriber_Preference {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Use the method to create a new notification preference for a subscriber

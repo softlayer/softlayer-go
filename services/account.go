@@ -31,11 +31,36 @@ import (
 // SoftLayer customers are unable to change their company account information in the portal or the API. If you need to change this information please open a sales ticket in our customer portal and our account management staff will assist you.
 type Account struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountService(sess *session.Session) Account {
-	return Account{Session: sess}
+func GetAccountService(sess *session.Session) *Account {
+	return &Account{Session: sess}
+}
+
+func (r Account) Id(id int) *Account {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account) Mask(mask string) *Account {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account) Filter(filter string) *Account {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account) Limit(limit int) *Account {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account) Offset(offset int) *Account {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1972,11 +1997,36 @@ func (r *Account) ValidateManualPaymentAmount(amount *string) (resp bool, err er
 // The SoftLayer_Account_Address data type contains information on an address associated with a SoftLayer account.
 type Account_Address struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAddressService(sess *session.Session) Account_Address {
-	return Account_Address{Session: sess}
+func GetAccountAddressService(sess *session.Session) *Account_Address {
+	return &Account_Address{Session: sess}
+}
+
+func (r Account_Address) Id(id int) *Account_Address {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Address) Mask(mask string) *Account_Address {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Address) Filter(filter string) *Account_Address {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Address) Limit(limit int) *Account_Address {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Address) Offset(offset int) *Account_Address {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new address record. The ''typeId'', ''accountId'', ''description'', ''address1'', ''city'', ''state'', ''country'', and ''postalCode'' properties in the templateObject parameter are required properties and may not be null or empty. Users will be restricted to creating addresses for their account.
@@ -2057,11 +2107,36 @@ func (r *Account_Address) GetType() (resp datatypes.Account_Address_Type, err er
 //
 type Account_Address_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAddressTypeService(sess *session.Session) Account_Address_Type {
-	return Account_Address_Type{Session: sess}
+func GetAccountAddressTypeService(sess *session.Session) *Account_Address_Type {
+	return &Account_Address_Type{Session: sess}
+}
+
+func (r Account_Address_Type) Id(id int) *Account_Address_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Address_Type) Mask(mask string) *Account_Address_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Address_Type) Filter(filter string) *Account_Address_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Address_Type) Limit(limit int) *Account_Address_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Address_Type) Offset(offset int) *Account_Address_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2073,11 +2148,36 @@ func (r *Account_Address_Type) GetObject() (resp datatypes.Account_Address_Type,
 // This service allows for a unique identifier to be associated to an existing customer account.
 type Account_Affiliation struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAffiliationService(sess *session.Session) Account_Affiliation {
-	return Account_Affiliation{Session: sess}
+func GetAccountAffiliationService(sess *session.Session) *Account_Affiliation {
+	return &Account_Affiliation{Session: sess}
+}
+
+func (r Account_Affiliation) Id(id int) *Account_Affiliation {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Affiliation) Mask(mask string) *Account_Affiliation {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Affiliation) Filter(filter string) *Account_Affiliation {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Affiliation) Limit(limit int) *Account_Affiliation {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Affiliation) Offset(offset int) *Account_Affiliation {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new affiliation to associate with an existing account.
@@ -2128,11 +2228,36 @@ func (r *Account_Affiliation) GetObject() (resp datatypes.Account_Affiliation, e
 //
 type Account_Agreement struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAgreementService(sess *session.Session) Account_Agreement {
-	return Account_Agreement{Session: sess}
+func GetAccountAgreementService(sess *session.Session) *Account_Agreement {
+	return &Account_Agreement{Session: sess}
+}
+
+func (r Account_Agreement) Id(id int) *Account_Agreement {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Agreement) Mask(mask string) *Account_Agreement {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Agreement) Filter(filter string) *Account_Agreement {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Agreement) Limit(limit int) *Account_Agreement {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Agreement) Offset(offset int) *Account_Agreement {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -2180,11 +2305,36 @@ func (r *Account_Agreement) GetTopLevelBillingItems() (resp []datatypes.Billing_
 // Account authentication has many different settings that can be set. This class allows the customer or employee to set these settigns.
 type Account_Authentication_Attribute struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAuthenticationAttributeService(sess *session.Session) Account_Authentication_Attribute {
-	return Account_Authentication_Attribute{Session: sess}
+func GetAccountAuthenticationAttributeService(sess *session.Session) *Account_Authentication_Attribute {
+	return &Account_Authentication_Attribute{Session: sess}
+}
+
+func (r Account_Authentication_Attribute) Id(id int) *Account_Authentication_Attribute {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Authentication_Attribute) Mask(mask string) *Account_Authentication_Attribute {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Authentication_Attribute) Filter(filter string) *Account_Authentication_Attribute {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Authentication_Attribute) Limit(limit int) *Account_Authentication_Attribute {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Authentication_Attribute) Offset(offset int) *Account_Authentication_Attribute {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The SoftLayer customer account.
@@ -2214,11 +2364,36 @@ func (r *Account_Authentication_Attribute) GetType() (resp datatypes.Account_Aut
 // SoftLayer_Account_Authentication_Attribute_Type models the type of attribute that can be assigned to a SoftLayer customer account authentication.
 type Account_Authentication_Attribute_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAuthenticationAttributeTypeService(sess *session.Session) Account_Authentication_Attribute_Type {
-	return Account_Authentication_Attribute_Type{Session: sess}
+func GetAccountAuthenticationAttributeTypeService(sess *session.Session) *Account_Authentication_Attribute_Type {
+	return &Account_Authentication_Attribute_Type{Session: sess}
+}
+
+func (r Account_Authentication_Attribute_Type) Id(id int) *Account_Authentication_Attribute_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Authentication_Attribute_Type) Mask(mask string) *Account_Authentication_Attribute_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Authentication_Attribute_Type) Filter(filter string) *Account_Authentication_Attribute_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Authentication_Attribute_Type) Limit(limit int) *Account_Authentication_Attribute_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Authentication_Attribute_Type) Offset(offset int) *Account_Authentication_Attribute_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2236,11 +2411,36 @@ func (r *Account_Authentication_Attribute_Type) GetObject() (resp datatypes.Acco
 //
 type Account_Authentication_Saml struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountAuthenticationSamlService(sess *session.Session) Account_Authentication_Saml {
-	return Account_Authentication_Saml{Session: sess}
+func GetAccountAuthenticationSamlService(sess *session.Session) *Account_Authentication_Saml {
+	return &Account_Authentication_Saml{Session: sess}
+}
+
+func (r Account_Authentication_Saml) Id(id int) *Account_Authentication_Saml {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Authentication_Saml) Mask(mask string) *Account_Authentication_Saml {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Authentication_Saml) Filter(filter string) *Account_Authentication_Saml {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Authentication_Saml) Limit(limit int) *Account_Authentication_Saml {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Authentication_Saml) Offset(offset int) *Account_Authentication_Saml {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2294,11 +2494,36 @@ func (r *Account_Authentication_Saml) GetObject() (resp datatypes.Account_Authen
 //
 type Account_Contact struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountContactService(sess *session.Session) Account_Contact {
-	return Account_Contact{Session: sess}
+func GetAccountContactService(sess *session.Session) *Account_Contact {
+	return &Account_Contact{Session: sess}
+}
+
+func (r Account_Contact) Id(id int) *Account_Contact {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Contact) Mask(mask string) *Account_Contact {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Contact) Filter(filter string) *Account_Contact {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Contact) Limit(limit int) *Account_Contact {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Contact) Offset(offset int) *Account_Contact {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates an account contact. The accountId is fixed, other properties can be set during creation. The typeId indicates the SoftLayer_Account_Contact_Type for the contact. This method returns the SoftLayer_Account_Contact object that is created.
@@ -2352,11 +2577,36 @@ func (r *Account_Contact) GetType() (resp datatypes.Account_Contact_Type, err er
 //
 type Account_Historical_Report struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountHistoricalReportService(sess *session.Session) Account_Historical_Report {
-	return Account_Historical_Report{Session: sess}
+func GetAccountHistoricalReportService(sess *session.Session) *Account_Historical_Report {
+	return &Account_Historical_Report{Session: sess}
+}
+
+func (r Account_Historical_Report) Id(id int) *Account_Historical_Report {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Historical_Report) Mask(mask string) *Account_Historical_Report {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Historical_Report) Filter(filter string) *Account_Historical_Report {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Historical_Report) Limit(limit int) *Account_Historical_Report {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Historical_Report) Offset(offset int) *Account_Historical_Report {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2446,11 +2696,36 @@ func (r *Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *
 //
 type Account_Link_Bluemix struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountLinkBluemixService(sess *session.Session) Account_Link_Bluemix {
-	return Account_Link_Bluemix{Session: sess}
+func GetAccountLinkBluemixService(sess *session.Session) *Account_Link_Bluemix {
+	return &Account_Link_Bluemix{Session: sess}
+}
+
+func (r Account_Link_Bluemix) Id(id int) *Account_Link_Bluemix {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Link_Bluemix) Mask(mask string) *Account_Link_Bluemix {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Link_Bluemix) Filter(filter string) *Account_Link_Bluemix {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Link_Bluemix) Limit(limit int) *Account_Link_Bluemix {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Link_Bluemix) Offset(offset int) *Account_Link_Bluemix {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2468,11 +2743,36 @@ func (r *Account_Link_Bluemix) GetSupportTierType() (resp string, err error) {
 //
 type Account_Link_OpenStack struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountLinkOpenStackService(sess *session.Session) Account_Link_OpenStack {
-	return Account_Link_OpenStack{Session: sess}
+func GetAccountLinkOpenStackService(sess *session.Session) *Account_Link_OpenStack {
+	return &Account_Link_OpenStack{Session: sess}
+}
+
+func (r Account_Link_OpenStack) Id(id int) *Account_Link_OpenStack {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Link_OpenStack) Mask(mask string) *Account_Link_OpenStack {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Link_OpenStack) Filter(filter string) *Account_Link_OpenStack {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Link_OpenStack) Limit(limit int) *Account_Link_OpenStack {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Link_OpenStack) Offset(offset int) *Account_Link_OpenStack {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2541,11 +2841,36 @@ func (r *Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link
 // The SoftLayer_Account_Lockdown_Request data type holds information on API requests from brand customers.
 type Account_Lockdown_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountLockdownRequestService(sess *session.Session) Account_Lockdown_Request {
-	return Account_Lockdown_Request{Session: sess}
+func GetAccountLockdownRequestService(sess *session.Session) *Account_Lockdown_Request {
+	return &Account_Lockdown_Request{Session: sess}
+}
+
+func (r Account_Lockdown_Request) Id(id int) *Account_Lockdown_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Lockdown_Request) Mask(mask string) *Account_Lockdown_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Lockdown_Request) Filter(filter string) *Account_Lockdown_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Lockdown_Request) Limit(limit int) *Account_Lockdown_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Lockdown_Request) Offset(offset int) *Account_Lockdown_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Will cancel a lockdown request scheduled in the future. Once canceled, the lockdown request cannot be reconciled and new requests must be made for subsequent actions on the account.
@@ -2601,11 +2926,36 @@ func (r *Account_Lockdown_Request) ReconnectCompute(reconnectDate *string) (resp
 //
 type Account_MasterServiceAgreement struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountMasterServiceAgreementService(sess *session.Session) Account_MasterServiceAgreement {
-	return Account_MasterServiceAgreement{Session: sess}
+func GetAccountMasterServiceAgreementService(sess *session.Session) *Account_MasterServiceAgreement {
+	return &Account_MasterServiceAgreement{Session: sess}
+}
+
+func (r Account_MasterServiceAgreement) Id(id int) *Account_MasterServiceAgreement {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_MasterServiceAgreement) Mask(mask string) *Account_MasterServiceAgreement {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_MasterServiceAgreement) Filter(filter string) *Account_MasterServiceAgreement {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_MasterServiceAgreement) Limit(limit int) *Account_MasterServiceAgreement {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_MasterServiceAgreement) Offset(offset int) *Account_MasterServiceAgreement {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -2629,11 +2979,36 @@ func (r *Account_MasterServiceAgreement) GetObject() (resp datatypes.Account_Mas
 // The SoftLayer_Account_Media data type contains information on a single piece of media associated with a Data Transfer Service request.
 type Account_Media struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountMediaService(sess *session.Session) Account_Media {
-	return Account_Media{Session: sess}
+func GetAccountMediaService(sess *session.Session) *Account_Media {
+	return &Account_Media{Session: sess}
+}
+
+func (r Account_Media) Id(id int) *Account_Media {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Media) Mask(mask string) *Account_Media {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Media) Filter(filter string) *Account_Media {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Media) Limit(limit int) *Account_Media {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Media) Offset(offset int) *Account_Media {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit the properties of a media record by passing in a modified instance of a SoftLayer_Account_Media object.
@@ -2717,11 +3092,36 @@ func (r *Account_Media) RemoveMediaFromList(mediaTemplate *datatypes.Account_Med
 // The SoftLayer_Account_Media_Data_Transfer_Request data type contains information on a single Data Transfer Service request. Creation of these requests is limited to SoftLayer customers through the SoftLayer Customer Portal.
 type Account_Media_Data_Transfer_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountMediaDataTransferRequestService(sess *session.Session) Account_Media_Data_Transfer_Request {
-	return Account_Media_Data_Transfer_Request{Session: sess}
+func GetAccountMediaDataTransferRequestService(sess *session.Session) *Account_Media_Data_Transfer_Request {
+	return &Account_Media_Data_Transfer_Request{Session: sess}
+}
+
+func (r Account_Media_Data_Transfer_Request) Id(id int) *Account_Media_Data_Transfer_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Media_Data_Transfer_Request) Mask(mask string) *Account_Media_Data_Transfer_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Media_Data_Transfer_Request) Filter(filter string) *Account_Media_Data_Transfer_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Media_Data_Transfer_Request) Limit(limit int) *Account_Media_Data_Transfer_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Media_Data_Transfer_Request) Offset(offset int) *Account_Media_Data_Transfer_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit the properties of a data transfer request record by passing in a modified instance of a SoftLayer_Account_Media_Data_Transfer_Request object.
@@ -2808,11 +3208,36 @@ func (r *Account_Media_Data_Transfer_Request) GetTickets() (resp []datatypes.Tic
 //
 type Account_Note struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountNoteService(sess *session.Session) Account_Note {
-	return Account_Note{Session: sess}
+func GetAccountNoteService(sess *session.Session) *Account_Note {
+	return &Account_Note{Session: sess}
+}
+
+func (r Account_Note) Id(id int) *Account_Note {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Note) Mask(mask string) *Account_Note {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Note) Filter(filter string) *Account_Note {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Note) Limit(limit int) *Account_Note {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Note) Offset(offset int) *Account_Note {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2872,11 +3297,36 @@ func (r *Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 //
 type Account_Note_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountNoteTypeService(sess *session.Session) Account_Note_Type {
-	return Account_Note_Type{Session: sess}
+func GetAccountNoteTypeService(sess *session.Session) *Account_Note_Type {
+	return &Account_Note_Type{Session: sess}
+}
+
+func (r Account_Note_Type) Id(id int) *Account_Note_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Note_Type) Mask(mask string) *Account_Note_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Note_Type) Filter(filter string) *Account_Note_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Note_Type) Limit(limit int) *Account_Note_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Note_Type) Offset(offset int) *Account_Note_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2918,11 +3368,36 @@ func (r *Account_Note_Type) GetObject() (resp datatypes.Account_Note_Type, err e
 //
 type Account_Partner_Referral_Prospect struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountPartnerReferralProspectService(sess *session.Session) Account_Partner_Referral_Prospect {
-	return Account_Partner_Referral_Prospect{Session: sess}
+func GetAccountPartnerReferralProspectService(sess *session.Session) *Account_Partner_Referral_Prospect {
+	return &Account_Partner_Referral_Prospect{Session: sess}
+}
+
+func (r Account_Partner_Referral_Prospect) Id(id int) *Account_Partner_Referral_Prospect {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Partner_Referral_Prospect) Mask(mask string) *Account_Partner_Referral_Prospect {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Partner_Referral_Prospect) Filter(filter string) *Account_Partner_Referral_Prospect {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Partner_Referral_Prospect) Limit(limit int) *Account_Partner_Referral_Prospect {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Partner_Referral_Prospect) Offset(offset int) *Account_Partner_Referral_Prospect {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new Referral Partner Prospect
@@ -2950,11 +3425,36 @@ func (r *Account_Partner_Referral_Prospect) GetSurveyQuestions() (resp []datatyp
 // The SoftLayer_Account_Password contains username, passwords and notes for services that may require for external applications such the Webcc interface for the EVault Storage service.
 type Account_Password struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountPasswordService(sess *session.Session) Account_Password {
-	return Account_Password{Session: sess}
+func GetAccountPasswordService(sess *session.Session) *Account_Password {
+	return &Account_Password{Session: sess}
+}
+
+func (r Account_Password) Id(id int) *Account_Password {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Password) Mask(mask string) *Account_Password {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Password) Filter(filter string) *Account_Password {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Password) Limit(limit int) *Account_Password {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Password) Offset(offset int) *Account_Password {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // The password and/or notes may be modified.  Modifying the EVault passwords here will also update the password the Webcc interface will use.
@@ -2991,11 +3491,36 @@ func (r *Account_Password) GetType() (resp datatypes.Account_Password_Type, err 
 //
 type Account_Regional_Registry_Detail struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountRegionalRegistryDetailService(sess *session.Session) Account_Regional_Registry_Detail {
-	return Account_Regional_Registry_Detail{Session: sess}
+func GetAccountRegionalRegistryDetailService(sess *session.Session) *Account_Regional_Registry_Detail {
+	return &Account_Regional_Registry_Detail{Session: sess}
+}
+
+func (r Account_Regional_Registry_Detail) Id(id int) *Account_Regional_Registry_Detail {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail) Mask(mask string) *Account_Regional_Registry_Detail {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail) Filter(filter string) *Account_Regional_Registry_Detail {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail) Limit(limit int) *Account_Regional_Registry_Detail {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail) Offset(offset int) *Account_Regional_Registry_Detail {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail object.
@@ -3069,11 +3594,36 @@ func (r *Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp
 // Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
 type Account_Regional_Registry_Detail_Property struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountRegionalRegistryDetailPropertyService(sess *session.Session) Account_Regional_Registry_Detail_Property {
-	return Account_Regional_Registry_Detail_Property{Session: sess}
+func GetAccountRegionalRegistryDetailPropertyService(sess *session.Session) *Account_Regional_Registry_Detail_Property {
+	return &Account_Regional_Registry_Detail_Property{Session: sess}
+}
+
+func (r Account_Regional_Registry_Detail_Property) Id(id int) *Account_Regional_Registry_Detail_Property {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property) Mask(mask string) *Account_Regional_Registry_Detail_Property {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property) Filter(filter string) *Account_Regional_Registry_Detail_Property {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property) Limit(limit int) *Account_Regional_Registry_Detail_Property {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property) Offset(offset int) *Account_Regional_Registry_Detail_Property {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail_Property object.
@@ -3141,11 +3691,36 @@ func (r *Account_Regional_Registry_Detail_Property) GetPropertyType() (resp data
 // Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
 type Account_Regional_Registry_Detail_Property_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountRegionalRegistryDetailPropertyTypeService(sess *session.Session) Account_Regional_Registry_Detail_Property_Type {
-	return Account_Regional_Registry_Detail_Property_Type{Session: sess}
+func GetAccountRegionalRegistryDetailPropertyTypeService(sess *session.Session) *Account_Regional_Registry_Detail_Property_Type {
+	return &Account_Regional_Registry_Detail_Property_Type{Session: sess}
+}
+
+func (r Account_Regional_Registry_Detail_Property_Type) Id(id int) *Account_Regional_Registry_Detail_Property_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property_Type) Mask(mask string) *Account_Regional_Registry_Detail_Property_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property_Type) Filter(filter string) *Account_Regional_Registry_Detail_Property_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property_Type) Limit(limit int) *Account_Regional_Registry_Detail_Property_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Property_Type) Offset(offset int) *Account_Regional_Registry_Detail_Property_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3165,11 +3740,36 @@ func (r *Account_Regional_Registry_Detail_Property_Type) GetObject() (resp datat
 // The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
 type Account_Regional_Registry_Detail_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountRegionalRegistryDetailTypeService(sess *session.Session) Account_Regional_Registry_Detail_Type {
-	return Account_Regional_Registry_Detail_Type{Session: sess}
+func GetAccountRegionalRegistryDetailTypeService(sess *session.Session) *Account_Regional_Registry_Detail_Type {
+	return &Account_Regional_Registry_Detail_Type{Session: sess}
+}
+
+func (r Account_Regional_Registry_Detail_Type) Id(id int) *Account_Regional_Registry_Detail_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Type) Mask(mask string) *Account_Regional_Registry_Detail_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Type) Filter(filter string) *Account_Regional_Registry_Detail_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Type) Limit(limit int) *Account_Regional_Registry_Detail_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Regional_Registry_Detail_Type) Offset(offset int) *Account_Regional_Registry_Detail_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3187,11 +3787,36 @@ func (r *Account_Regional_Registry_Detail_Type) GetObject() (resp datatypes.Acco
 //
 type Account_Reports_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountReportsRequestService(sess *session.Session) Account_Reports_Request {
-	return Account_Reports_Request{Session: sess}
+func GetAccountReportsRequestService(sess *session.Session) *Account_Reports_Request {
+	return &Account_Reports_Request{Session: sess}
+}
+
+func (r Account_Reports_Request) Id(id int) *Account_Reports_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Reports_Request) Mask(mask string) *Account_Reports_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Reports_Request) Filter(filter string) *Account_Reports_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Reports_Request) Limit(limit int) *Account_Reports_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Reports_Request) Offset(offset int) *Account_Reports_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3277,11 +3902,36 @@ func (r *Account_Reports_Request) UpdateTicketOnDecline(request *datatypes.Accou
 // The SoftLayer_Account_Shipment data type contains information relating to a shipment. Basic information such as addresses, the shipment courier, and any tracking information for as shipment is accessible with this data type.
 type Account_Shipment struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentService(sess *session.Session) Account_Shipment {
-	return Account_Shipment{Session: sess}
+func GetAccountShipmentService(sess *session.Session) *Account_Shipment {
+	return &Account_Shipment{Session: sess}
+}
+
+func (r Account_Shipment) Id(id int) *Account_Shipment {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment) Mask(mask string) *Account_Shipment {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment) Filter(filter string) *Account_Shipment {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment) Limit(limit int) *Account_Shipment {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment) Offset(offset int) *Account_Shipment {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit the properties of a shipment record by passing in a modified instance of a SoftLayer_Account_Shipment object.
@@ -3401,11 +4051,36 @@ func (r *Account_Shipment) GetType() (resp datatypes.Account_Shipment_Type, err 
 // The SoftLayer_Account_Shipment_Item data type contains information relating to a shipment's item. Basic information such as addresses, the shipment courier, and any tracking information for as shipment is accessible with this data type.
 type Account_Shipment_Item struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentItemService(sess *session.Session) Account_Shipment_Item {
-	return Account_Shipment_Item{Session: sess}
+func GetAccountShipmentItemService(sess *session.Session) *Account_Shipment_Item {
+	return &Account_Shipment_Item{Session: sess}
+}
+
+func (r Account_Shipment_Item) Id(id int) *Account_Shipment_Item {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Item) Mask(mask string) *Account_Shipment_Item {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Item) Filter(filter string) *Account_Shipment_Item {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Item) Limit(limit int) *Account_Shipment_Item {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Item) Offset(offset int) *Account_Shipment_Item {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Edit the properties of a shipment record by passing in a modified instance of a SoftLayer_Account_Shipment_Item object.
@@ -3438,11 +4113,36 @@ func (r *Account_Shipment_Item) GetShipmentItemType() (resp datatypes.Account_Sh
 //
 type Account_Shipment_Item_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentItemTypeService(sess *session.Session) Account_Shipment_Item_Type {
-	return Account_Shipment_Item_Type{Session: sess}
+func GetAccountShipmentItemTypeService(sess *session.Session) *Account_Shipment_Item_Type {
+	return &Account_Shipment_Item_Type{Session: sess}
+}
+
+func (r Account_Shipment_Item_Type) Id(id int) *Account_Shipment_Item_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Item_Type) Mask(mask string) *Account_Shipment_Item_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Item_Type) Filter(filter string) *Account_Shipment_Item_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Item_Type) Limit(limit int) *Account_Shipment_Item_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Item_Type) Offset(offset int) *Account_Shipment_Item_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3454,11 +4154,36 @@ func (r *Account_Shipment_Item_Type) GetObject() (resp datatypes.Account_Shipmen
 //
 type Account_Shipment_Resource_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentResourceTypeService(sess *session.Session) Account_Shipment_Resource_Type {
-	return Account_Shipment_Resource_Type{Session: sess}
+func GetAccountShipmentResourceTypeService(sess *session.Session) *Account_Shipment_Resource_Type {
+	return &Account_Shipment_Resource_Type{Session: sess}
+}
+
+func (r Account_Shipment_Resource_Type) Id(id int) *Account_Shipment_Resource_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Resource_Type) Mask(mask string) *Account_Shipment_Resource_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Resource_Type) Filter(filter string) *Account_Shipment_Resource_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Resource_Type) Limit(limit int) *Account_Shipment_Resource_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Resource_Type) Offset(offset int) *Account_Shipment_Resource_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3470,11 +4195,36 @@ func (r *Account_Shipment_Resource_Type) GetObject() (resp datatypes.Account_Shi
 //
 type Account_Shipment_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentStatusService(sess *session.Session) Account_Shipment_Status {
-	return Account_Shipment_Status{Session: sess}
+func GetAccountShipmentStatusService(sess *session.Session) *Account_Shipment_Status {
+	return &Account_Shipment_Status{Session: sess}
+}
+
+func (r Account_Shipment_Status) Id(id int) *Account_Shipment_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Status) Mask(mask string) *Account_Shipment_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Status) Filter(filter string) *Account_Shipment_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Status) Limit(limit int) *Account_Shipment_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Status) Offset(offset int) *Account_Shipment_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3486,11 +4236,36 @@ func (r *Account_Shipment_Status) GetObject() (resp datatypes.Account_Shipment_S
 // The SoftLayer_Account_Shipment_Tracking_Data data type contains information on a single piece of tracking information pertaining to a shipment. This tracking information tracking numbers by which the shipment may be tracked through the shipping courier.
 type Account_Shipment_Tracking_Data struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentTrackingDataService(sess *session.Session) Account_Shipment_Tracking_Data {
-	return Account_Shipment_Tracking_Data{Session: sess}
+func GetAccountShipmentTrackingDataService(sess *session.Session) *Account_Shipment_Tracking_Data {
+	return &Account_Shipment_Tracking_Data{Session: sess}
+}
+
+func (r Account_Shipment_Tracking_Data) Id(id int) *Account_Shipment_Tracking_Data {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Tracking_Data) Mask(mask string) *Account_Shipment_Tracking_Data {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Tracking_Data) Filter(filter string) *Account_Shipment_Tracking_Data {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Tracking_Data) Limit(limit int) *Account_Shipment_Tracking_Data {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Tracking_Data) Offset(offset int) *Account_Shipment_Tracking_Data {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new shipment tracking data. The ''shipmentId'', ''sequence'', and ''trackingData'' properties in the templateObject parameter are required parameters to create a tracking data record.
@@ -3565,11 +4340,36 @@ func (r *Account_Shipment_Tracking_Data) GetShipment() (resp datatypes.Account_S
 //
 type Account_Shipment_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetAccountShipmentTypeService(sess *session.Session) Account_Shipment_Type {
-	return Account_Shipment_Type{Session: sess}
+func GetAccountShipmentTypeService(sess *session.Session) *Account_Shipment_Type {
+	return &Account_Shipment_Type{Session: sess}
+}
+
+func (r Account_Shipment_Type) Id(id int) *Account_Shipment_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Account_Shipment_Type) Mask(mask string) *Account_Shipment_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Account_Shipment_Type) Filter(filter string) *Account_Shipment_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Account_Shipment_Type) Limit(limit int) *Account_Shipment_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Account_Shipment_Type) Offset(offset int) *Account_Shipment_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

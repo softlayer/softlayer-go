@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Hardware data type contains general information relating to a single SoftLayer hardware.
 type Hardware struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareService(sess *session.Session) Hardware {
-	return Hardware{Session: sess}
+func GetHardwareService(sess *session.Session) *Hardware {
+	return &Hardware{Session: sess}
+}
+
+func (r Hardware) Id(id int) *Hardware {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware) Mask(mask string) *Hardware {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware) Filter(filter string) *Hardware {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware) Limit(limit int) *Hardware {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware) Offset(offset int) *Hardware {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -1474,11 +1499,36 @@ func (r *Hardware) SetTags(tags *string) (resp bool, err error) {
 // The SoftLayer_Hardware_Benchmark_Certification data type contains general information relating to a single SoftLayer hardware benchmark certification document.
 type Hardware_Benchmark_Certification struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareBenchmarkCertificationService(sess *session.Session) Hardware_Benchmark_Certification {
-	return Hardware_Benchmark_Certification{Session: sess}
+func GetHardwareBenchmarkCertificationService(sess *session.Session) *Hardware_Benchmark_Certification {
+	return &Hardware_Benchmark_Certification{Session: sess}
+}
+
+func (r Hardware_Benchmark_Certification) Id(id int) *Hardware_Benchmark_Certification {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Benchmark_Certification) Mask(mask string) *Hardware_Benchmark_Certification {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Benchmark_Certification) Filter(filter string) *Hardware_Benchmark_Certification {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Benchmark_Certification) Limit(limit int) *Hardware_Benchmark_Certification {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Benchmark_Certification) Offset(offset int) *Hardware_Benchmark_Certification {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve Information regarding a benchmark certification result's associated SoftLayer customer account.
@@ -1508,11 +1558,36 @@ func (r *Hardware_Benchmark_Certification) GetResultFile() (resp []byte, err err
 // The SoftLayer_Hardware_Component_Model data type contains general information relating to a single SoftLayer component model.  A component model represents a vendor specific representation of a hardware component.  Every piece of hardware on a server will have a specific hardware component model.
 type Hardware_Component_Model struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareComponentModelService(sess *session.Session) Hardware_Component_Model {
-	return Hardware_Component_Model{Session: sess}
+func GetHardwareComponentModelService(sess *session.Session) *Hardware_Component_Model {
+	return &Hardware_Component_Model{Session: sess}
+}
+
+func (r Hardware_Component_Model) Id(id int) *Hardware_Component_Model {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Component_Model) Mask(mask string) *Hardware_Component_Model {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Component_Model) Filter(filter string) *Hardware_Component_Model {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Component_Model) Limit(limit int) *Hardware_Component_Model {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Component_Model) Offset(offset int) *Hardware_Component_Model {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -1596,11 +1671,36 @@ func (r *Hardware_Component_Model) GetValidAttributeTypes() (resp []datatypes.Ha
 // The SoftLayer_Hardware_Component_Partition_OperatingSystem data type contains general information relating to a single SoftLayer Operating System Partition Template.
 type Hardware_Component_Partition_OperatingSystem struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareComponentPartitionOperatingSystemService(sess *session.Session) Hardware_Component_Partition_OperatingSystem {
-	return Hardware_Component_Partition_OperatingSystem{Session: sess}
+func GetHardwareComponentPartitionOperatingSystemService(sess *session.Session) *Hardware_Component_Partition_OperatingSystem {
+	return &Hardware_Component_Partition_OperatingSystem{Session: sess}
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) Id(id int) *Hardware_Component_Partition_OperatingSystem {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) Mask(mask string) *Hardware_Component_Partition_OperatingSystem {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) Filter(filter string) *Hardware_Component_Partition_OperatingSystem {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) Limit(limit int) *Hardware_Component_Partition_OperatingSystem {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) Offset(offset int) *Hardware_Component_Partition_OperatingSystem {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1633,11 +1733,36 @@ func (r *Hardware_Component_Partition_OperatingSystem) GetPartitionTemplates() (
 // The SoftLayer_Hardware_Component_Partition_Template data type contains general information relating to a single SoftLayer partition template.  Partition templates group 1 or more partition configurations that can be used to predefined how a hard drives partitions will be configured.
 type Hardware_Component_Partition_Template struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareComponentPartitionTemplateService(sess *session.Session) Hardware_Component_Partition_Template {
-	return Hardware_Component_Partition_Template{Session: sess}
+func GetHardwareComponentPartitionTemplateService(sess *session.Session) *Hardware_Component_Partition_Template {
+	return &Hardware_Component_Partition_Template{Session: sess}
+}
+
+func (r Hardware_Component_Partition_Template) Id(id int) *Hardware_Component_Partition_Template {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Component_Partition_Template) Mask(mask string) *Hardware_Component_Partition_Template {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Component_Partition_Template) Filter(filter string) *Hardware_Component_Partition_Template {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Component_Partition_Template) Limit(limit int) *Hardware_Component_Partition_Template {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Component_Partition_Template) Offset(offset int) *Hardware_Component_Partition_Template {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve A partition template's associated [[SoftLayer_Account|Account]].
@@ -1679,11 +1804,36 @@ func (r *Hardware_Component_Partition_Template) GetPartitionTemplatePartition() 
 // The SoftLayer_Hardware_Router data type contains general information relating to a single SoftLayer router.
 type Hardware_Router struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareRouterService(sess *session.Session) Hardware_Router {
-	return Hardware_Router{Session: sess}
+func GetHardwareRouterService(sess *session.Session) *Hardware_Router {
+	return &Hardware_Router{Session: sess}
+}
+
+func (r Hardware_Router) Id(id int) *Hardware_Router {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Router) Mask(mask string) *Hardware_Router {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Router) Filter(filter string) *Hardware_Router {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Router) Limit(limit int) *Hardware_Router {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Router) Offset(offset int) *Hardware_Router {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -3142,11 +3292,36 @@ func (r *Hardware_Router) SetTags(tags *string) (resp bool, err error) {
 //
 type Hardware_SecurityModule struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareSecurityModuleService(sess *session.Session) Hardware_SecurityModule {
-	return Hardware_SecurityModule{Session: sess}
+func GetHardwareSecurityModuleService(sess *session.Session) *Hardware_SecurityModule {
+	return &Hardware_SecurityModule{Session: sess}
+}
+
+func (r Hardware_SecurityModule) Id(id int) *Hardware_SecurityModule {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_SecurityModule) Mask(mask string) *Hardware_SecurityModule {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_SecurityModule) Filter(filter string) *Hardware_SecurityModule {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_SecurityModule) Limit(limit int) *Hardware_SecurityModule {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_SecurityModule) Offset(offset int) *Hardware_SecurityModule {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Activates the private network port
@@ -5217,11 +5392,36 @@ func (r *Hardware_SecurityModule) ValidatePartitionsForOperatingSystem(operating
 // The SoftLayer_Hardware_Server data type contains general information relating to a single SoftLayer server.
 type Hardware_Server struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetHardwareServerService(sess *session.Session) Hardware_Server {
-	return Hardware_Server{Session: sess}
+func GetHardwareServerService(sess *session.Session) *Hardware_Server {
+	return &Hardware_Server{Session: sess}
+}
+
+func (r Hardware_Server) Id(id int) *Hardware_Server {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Hardware_Server) Mask(mask string) *Hardware_Server {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Hardware_Server) Filter(filter string) *Hardware_Server {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Hardware_Server) Limit(limit int) *Hardware_Server {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Hardware_Server) Offset(offset int) *Hardware_Server {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Activates the private network port

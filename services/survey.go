@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Survey data type contains general information relating to a single SoftLayer survey.
 type Survey struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSurveyService(sess *session.Session) Survey {
-	return Survey{Session: sess}
+func GetSurveyService(sess *session.Session) *Survey {
+	return &Survey{Session: sess}
+}
+
+func (r Survey) Id(id int) *Survey {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Survey) Mask(mask string) *Survey {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Survey) Filter(filter string) *Survey {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Survey) Limit(limit int) *Survey {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Survey) Offset(offset int) *Survey {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Provides survey details for the given type

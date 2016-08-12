@@ -29,11 +29,36 @@ import (
 // Metric tracking objects provides a common interface to all metrics provided by SoftLayer. These metrics range from network component traffic for a server to aggregated Bandwidth Pooling traffic and more. Every object within SoftLayer's range of objects that has data that can be tracked over time has an associated tracking object. Use the [[SoftLayer_Metric_Tracking_Object]] service to retrieve raw and graph data from a tracking object.
 type Metric_Tracking_Object struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMetricTrackingObjectService(sess *session.Session) Metric_Tracking_Object {
-	return Metric_Tracking_Object{Session: sess}
+func GetMetricTrackingObjectService(sess *session.Session) *Metric_Tracking_Object {
+	return &Metric_Tracking_Object{Session: sess}
+}
+
+func (r Metric_Tracking_Object) Id(id int) *Metric_Tracking_Object {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Metric_Tracking_Object) Mask(mask string) *Metric_Tracking_Object {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Metric_Tracking_Object) Filter(filter string) *Metric_Tracking_Object {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Metric_Tracking_Object) Limit(limit int) *Metric_Tracking_Object {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Metric_Tracking_Object) Offset(offset int) *Metric_Tracking_Object {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve a PNG image of the last 24 hours of bandwidth usage of one of SoftLayer's network backbones.
@@ -157,11 +182,36 @@ func (r *Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Objec
 // This data type provides commonly used bandwidth summary components for the current billing cycle.
 type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) Metric_Tracking_Object_Bandwidth_Summary {
-	return Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
+func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) *Metric_Tracking_Object_Bandwidth_Summary {
+	return &Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
+}
+
+func (r Metric_Tracking_Object_Bandwidth_Summary) Id(id int) *Metric_Tracking_Object_Bandwidth_Summary {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Metric_Tracking_Object_Bandwidth_Summary) Mask(mask string) *Metric_Tracking_Object_Bandwidth_Summary {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Metric_Tracking_Object_Bandwidth_Summary) Filter(filter string) *Metric_Tracking_Object_Bandwidth_Summary {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Metric_Tracking_Object_Bandwidth_Summary) Limit(limit int) *Metric_Tracking_Object_Bandwidth_Summary {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Metric_Tracking_Object_Bandwidth_Summary) Offset(offset int) *Metric_Tracking_Object_Bandwidth_Summary {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

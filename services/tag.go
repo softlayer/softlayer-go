@@ -29,11 +29,36 @@ import (
 // The SoftLayer_Tag data type is an optional type associated with hardware. The account ID that the tag is tied to, and the tag itself are stored in this data type. There is also a flag to denote whether the tag is internal or not.
 type Tag struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetTagService(sess *session.Session) Tag {
-	return Tag{Session: sess}
+func GetTagService(sess *session.Session) *Tag {
+	return &Tag{Session: sess}
+}
+
+func (r Tag) Id(id int) *Tag {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Tag) Mask(mask string) *Tag {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Tag) Filter(filter string) *Tag {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Tag) Limit(limit int) *Tag {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Tag) Offset(offset int) *Tag {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This function is responsible for setting the Tags values. The internal flag is set to 0 if the user is a customer, and 1 otherwise. AccountId is set to the account bound to the user, and the tags name is set to the clean version of the tag inputted by the user.

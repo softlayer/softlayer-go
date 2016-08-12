@@ -29,11 +29,36 @@ import (
 //
 type Marketplace_Partner struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetMarketplacePartnerService(sess *session.Session) Marketplace_Partner {
-	return Marketplace_Partner{Session: sess}
+func GetMarketplacePartnerService(sess *session.Session) *Marketplace_Partner {
+	return &Marketplace_Partner{Session: sess}
+}
+
+func (r Marketplace_Partner) Id(id int) *Marketplace_Partner {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Marketplace_Partner) Mask(mask string) *Marketplace_Partner {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Marketplace_Partner) Filter(filter string) *Marketplace_Partner {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Marketplace_Partner) Limit(limit int) *Marketplace_Partner {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Marketplace_Partner) Offset(offset int) *Marketplace_Partner {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

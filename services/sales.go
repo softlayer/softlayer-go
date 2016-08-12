@@ -29,11 +29,36 @@ import (
 // The presale event data types indicate the information regarding an individual presale event. The '''locationId''' will indicate the datacenter associated with the presale event. The '''itemId''' will indicate the product item associated with a particular presale event - however these are more rare. The '''startDate''' and '''endDate''' will provide information regarding when the presale event is available for use. At the end of the presale event, the server or services purchased will be available once approved and provisioned.
 type Sales_Presale_Event struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetSalesPresaleEventService(sess *session.Session) Sales_Presale_Event {
-	return Sales_Presale_Event{Session: sess}
+func GetSalesPresaleEventService(sess *session.Session) *Sales_Presale_Event {
+	return &Sales_Presale_Event{Session: sess}
+}
+
+func (r Sales_Presale_Event) Id(id int) *Sales_Presale_Event {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Sales_Presale_Event) Mask(mask string) *Sales_Presale_Event {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Sales_Presale_Event) Filter(filter string) *Sales_Presale_Event {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Sales_Presale_Event) Limit(limit int) *Sales_Presale_Event {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Sales_Presale_Event) Offset(offset int) *Sales_Presale_Event {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve A flag to indicate that the presale event is currently active. A presale event is active if the current time is between the start and end dates.

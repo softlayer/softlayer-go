@@ -29,11 +29,36 @@ import (
 // Supported hardware raid modes
 type Configuration_Storage_Group_Array_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationStorageGroupArrayTypeService(sess *session.Session) Configuration_Storage_Group_Array_Type {
-	return Configuration_Storage_Group_Array_Type{Session: sess}
+func GetConfigurationStorageGroupArrayTypeService(sess *session.Session) *Configuration_Storage_Group_Array_Type {
+	return &Configuration_Storage_Group_Array_Type{Session: sess}
+}
+
+func (r Configuration_Storage_Group_Array_Type) Id(id int) *Configuration_Storage_Group_Array_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Storage_Group_Array_Type) Mask(mask string) *Configuration_Storage_Group_Array_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Storage_Group_Array_Type) Filter(filter string) *Configuration_Storage_Group_Array_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Storage_Group_Array_Type) Limit(limit int) *Configuration_Storage_Group_Array_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Storage_Group_Array_Type) Offset(offset int) *Configuration_Storage_Group_Array_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -57,11 +82,36 @@ func (r *Configuration_Storage_Group_Array_Type) GetObject() (resp datatypes.Con
 // The SoftLayer_Configuration_Template data type contains general information of an arbitrary resource.
 type Configuration_Template struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateService(sess *session.Session) Configuration_Template {
-	return Configuration_Template{Session: sess}
+func GetConfigurationTemplateService(sess *session.Session) *Configuration_Template {
+	return &Configuration_Template{Session: sess}
+}
+
+func (r Configuration_Template) Id(id int) *Configuration_Template {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template) Mask(mask string) *Configuration_Template {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template) Filter(filter string) *Configuration_Template {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template) Limit(limit int) *Configuration_Template {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template) Offset(offset int) *Configuration_Template {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Copy a configuration template and returns a newly created template copy
@@ -168,11 +218,36 @@ func (r *Configuration_Template) UpdateDefaultValues(configurationValues []datat
 // Configuration can contain sub-sections.
 type Configuration_Template_Section struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionService(sess *session.Session) Configuration_Template_Section {
-	return Configuration_Template_Section{Session: sess}
+func GetConfigurationTemplateSectionService(sess *session.Session) *Configuration_Template_Section {
+	return &Configuration_Template_Section{Session: sess}
+}
+
+func (r Configuration_Template_Section) Id(id int) *Configuration_Template_Section {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section) Mask(mask string) *Configuration_Template_Section {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section) Filter(filter string) *Configuration_Template_Section {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section) Limit(limit int) *Configuration_Template_Section {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section) Offset(offset int) *Configuration_Template_Section {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -248,11 +323,36 @@ func (r *Configuration_Template_Section) HasSubSections() (resp bool, err error)
 // See [[SoftLayer_Monitoring_Agent::getAvailableConfigurationValues|Monitoring Agent]] service to retrieve your system specific values.
 type Configuration_Template_Section_Definition struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionDefinitionService(sess *session.Session) Configuration_Template_Section_Definition {
-	return Configuration_Template_Section_Definition{Session: sess}
+func GetConfigurationTemplateSectionDefinitionService(sess *session.Session) *Configuration_Template_Section_Definition {
+	return &Configuration_Template_Section_Definition{Session: sess}
+}
+
+func (r Configuration_Template_Section_Definition) Id(id int) *Configuration_Template_Section_Definition {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition) Mask(mask string) *Configuration_Template_Section_Definition {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition) Filter(filter string) *Configuration_Template_Section_Definition {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition) Limit(limit int) *Configuration_Template_Section_Definition {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition) Offset(offset int) *Configuration_Template_Section_Definition {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -302,11 +402,36 @@ func (r *Configuration_Template_Section_Definition) GetValueType() (resp datatyp
 //
 type Configuration_Template_Section_Definition_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionDefinitionGroupService(sess *session.Session) Configuration_Template_Section_Definition_Group {
-	return Configuration_Template_Section_Definition_Group{Session: sess}
+func GetConfigurationTemplateSectionDefinitionGroupService(sess *session.Session) *Configuration_Template_Section_Definition_Group {
+	return &Configuration_Template_Section_Definition_Group{Session: sess}
+}
+
+func (r Configuration_Template_Section_Definition_Group) Id(id int) *Configuration_Template_Section_Definition_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Group) Mask(mask string) *Configuration_Template_Section_Definition_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Group) Filter(filter string) *Configuration_Template_Section_Definition_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Group) Limit(limit int) *Configuration_Template_Section_Definition_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Group) Offset(offset int) *Configuration_Template_Section_Definition_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Get all configuration definition group objects.
@@ -332,11 +457,36 @@ func (r *Configuration_Template_Section_Definition_Group) GetParent() (resp data
 // SoftLayer_Configuration_Template_Section_Definition_Type further defines the value of a configuration definition.
 type Configuration_Template_Section_Definition_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionDefinitionTypeService(sess *session.Session) Configuration_Template_Section_Definition_Type {
-	return Configuration_Template_Section_Definition_Type{Session: sess}
+func GetConfigurationTemplateSectionDefinitionTypeService(sess *session.Session) *Configuration_Template_Section_Definition_Type {
+	return &Configuration_Template_Section_Definition_Type{Session: sess}
+}
+
+func (r Configuration_Template_Section_Definition_Type) Id(id int) *Configuration_Template_Section_Definition_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Type) Mask(mask string) *Configuration_Template_Section_Definition_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Type) Filter(filter string) *Configuration_Template_Section_Definition_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Type) Limit(limit int) *Configuration_Template_Section_Definition_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Type) Offset(offset int) *Configuration_Template_Section_Definition_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -348,11 +498,36 @@ func (r *Configuration_Template_Section_Definition_Type) GetObject() (resp datat
 // SoftLayer_Configuration_Section_Value is used to set the value for a configuration definition
 type Configuration_Template_Section_Definition_Value struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionDefinitionValueService(sess *session.Session) Configuration_Template_Section_Definition_Value {
-	return Configuration_Template_Section_Definition_Value{Session: sess}
+func GetConfigurationTemplateSectionDefinitionValueService(sess *session.Session) *Configuration_Template_Section_Definition_Value {
+	return &Configuration_Template_Section_Definition_Value{Session: sess}
+}
+
+func (r Configuration_Template_Section_Definition_Value) Id(id int) *Configuration_Template_Section_Definition_Value {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Value) Mask(mask string) *Configuration_Template_Section_Definition_Value {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Value) Filter(filter string) *Configuration_Template_Section_Definition_Value {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Value) Limit(limit int) *Configuration_Template_Section_Definition_Value {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Definition_Value) Offset(offset int) *Configuration_Template_Section_Definition_Value {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -378,11 +553,36 @@ func (r *Configuration_Template_Section_Definition_Value) GetTemplate() (resp da
 // For example, you can create multiple configuration profiles to monitor multiple hard drives with "CPU/Memory/Disk Monitoring Agent". SoftLayer_Configuration_Template_Section_Profile help you keep track of custom configuration profiles.
 type Configuration_Template_Section_Profile struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionProfileService(sess *session.Session) Configuration_Template_Section_Profile {
-	return Configuration_Template_Section_Profile{Session: sess}
+func GetConfigurationTemplateSectionProfileService(sess *session.Session) *Configuration_Template_Section_Profile {
+	return &Configuration_Template_Section_Profile{Session: sess}
+}
+
+func (r Configuration_Template_Section_Profile) Id(id int) *Configuration_Template_Section_Profile {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Profile) Mask(mask string) *Configuration_Template_Section_Profile {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Profile) Filter(filter string) *Configuration_Template_Section_Profile {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Profile) Limit(limit int) *Configuration_Template_Section_Profile {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Profile) Offset(offset int) *Configuration_Template_Section_Profile {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -406,11 +606,36 @@ func (r *Configuration_Template_Section_Profile) GetObject() (resp datatypes.Con
 // The SoftLayer_Configuration_Template_Section_Reference data type contains information of a configuration section and its associated configuration template.
 type Configuration_Template_Section_Reference struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionReferenceService(sess *session.Session) Configuration_Template_Section_Reference {
-	return Configuration_Template_Section_Reference{Session: sess}
+func GetConfigurationTemplateSectionReferenceService(sess *session.Session) *Configuration_Template_Section_Reference {
+	return &Configuration_Template_Section_Reference{Session: sess}
+}
+
+func (r Configuration_Template_Section_Reference) Id(id int) *Configuration_Template_Section_Reference {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Reference) Mask(mask string) *Configuration_Template_Section_Reference {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Reference) Filter(filter string) *Configuration_Template_Section_Reference {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Reference) Limit(limit int) *Configuration_Template_Section_Reference {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Reference) Offset(offset int) *Configuration_Template_Section_Reference {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -436,11 +661,36 @@ func (r *Configuration_Template_Section_Reference) GetTemplate() (resp datatypes
 // Configuration can contain sub-sections.
 type Configuration_Template_Section_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateSectionTypeService(sess *session.Session) Configuration_Template_Section_Type {
-	return Configuration_Template_Section_Type{Session: sess}
+func GetConfigurationTemplateSectionTypeService(sess *session.Session) *Configuration_Template_Section_Type {
+	return &Configuration_Template_Section_Type{Session: sess}
+}
+
+func (r Configuration_Template_Section_Type) Id(id int) *Configuration_Template_Section_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Section_Type) Mask(mask string) *Configuration_Template_Section_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Section_Type) Filter(filter string) *Configuration_Template_Section_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Section_Type) Limit(limit int) *Configuration_Template_Section_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Section_Type) Offset(offset int) *Configuration_Template_Section_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -452,11 +702,36 @@ func (r *Configuration_Template_Section_Type) GetObject() (resp datatypes.Config
 // The SoftLayer_Configuration_Template_Type data type contains configuration template type information.
 type Configuration_Template_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetConfigurationTemplateTypeService(sess *session.Session) Configuration_Template_Type {
-	return Configuration_Template_Type{Session: sess}
+func GetConfigurationTemplateTypeService(sess *session.Session) *Configuration_Template_Type {
+	return &Configuration_Template_Type{Session: sess}
+}
+
+func (r Configuration_Template_Type) Id(id int) *Configuration_Template_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Configuration_Template_Type) Mask(mask string) *Configuration_Template_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Configuration_Template_Type) Filter(filter string) *Configuration_Template_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Configuration_Template_Type) Limit(limit int) *Configuration_Template_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Configuration_Template_Type) Offset(offset int) *Configuration_Template_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

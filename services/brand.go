@@ -31,11 +31,36 @@ import (
 // SoftLayer customers are unable to change their brand information in the portal or the API.
 type Brand struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBrandService(sess *session.Session) Brand {
-	return Brand{Session: sess}
+func GetBrandService(sess *session.Session) *Brand {
+	return &Brand{Session: sess}
+}
+
+func (r Brand) Id(id int) *Brand {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Brand) Mask(mask string) *Brand {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Brand) Filter(filter string) *Brand {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Brand) Limit(limit int) *Brand {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Brand) Offset(offset int) *Brand {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new customer account record.
@@ -198,11 +223,36 @@ func (r *Brand) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 // The [[SoftLayer_Brand_Restriction_Location_CustomerCountry]] data type defines the relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on the SoftLayer US brand for customers that live in Great Britain.
 type Brand_Restriction_Location_CustomerCountry struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) Brand_Restriction_Location_CustomerCountry {
-	return Brand_Restriction_Location_CustomerCountry{Session: sess}
+func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) *Brand_Restriction_Location_CustomerCountry {
+	return &Brand_Restriction_Location_CustomerCountry{Session: sess}
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) Id(id int) *Brand_Restriction_Location_CustomerCountry {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) Mask(mask string) *Brand_Restriction_Location_CustomerCountry {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) Filter(filter string) *Brand_Restriction_Location_CustomerCountry {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) Limit(limit int) *Brand_Restriction_Location_CustomerCountry {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) Offset(offset int) *Brand_Restriction_Location_CustomerCountry {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //

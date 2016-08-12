@@ -29,11 +29,36 @@ import (
 // The SoftLayer_User_Customer data type contains general information relating to a single SoftLayer customer portal user. Personal information in this type such as names, addresses, and phone numbers are not necessarily associated with the customer account the user is assigned to.
 type User_Customer struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerService(sess *session.Session) User_Customer {
-	return User_Customer{Session: sess}
+func GetUserCustomerService(sess *session.Session) *User_Customer {
+	return &User_Customer{Session: sess}
+}
+
+func (r User_Customer) Id(id int) *User_Customer {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer) Mask(mask string) *User_Customer {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer) Filter(filter string) *User_Customer {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer) Limit(limit int) *User_Customer {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer) Offset(offset int) *User_Customer {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1029,11 +1054,36 @@ func (r *User_Customer) ValidateAuthenticationToken(authenticationToken *datatyp
 // The SoftLayer_User_Customer_ApiAuthentication type contains user's authentication key(s).
 type User_Customer_ApiAuthentication struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerApiAuthenticationService(sess *session.Session) User_Customer_ApiAuthentication {
-	return User_Customer_ApiAuthentication{Session: sess}
+func GetUserCustomerApiAuthenticationService(sess *session.Session) *User_Customer_ApiAuthentication {
+	return &User_Customer_ApiAuthentication{Session: sess}
+}
+
+func (r User_Customer_ApiAuthentication) Id(id int) *User_Customer_ApiAuthentication {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_ApiAuthentication) Mask(mask string) *User_Customer_ApiAuthentication {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_ApiAuthentication) Filter(filter string) *User_Customer_ApiAuthentication {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_ApiAuthentication) Limit(limit int) *User_Customer_ApiAuthentication {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_ApiAuthentication) Offset(offset int) *User_Customer_ApiAuthentication {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1060,11 +1110,36 @@ func (r *User_Customer_ApiAuthentication) GetUser() (resp datatypes.User_Custome
 // Each SoftLayer portal account is assigned a series of permissions that determine what access the user has to functions within the SoftLayer customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Permissions differ from user status in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 type User_Customer_CustomerPermission_Permission struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerCustomerPermissionPermissionService(sess *session.Session) User_Customer_CustomerPermission_Permission {
-	return User_Customer_CustomerPermission_Permission{Session: sess}
+func GetUserCustomerCustomerPermissionPermissionService(sess *session.Session) *User_Customer_CustomerPermission_Permission {
+	return &User_Customer_CustomerPermission_Permission{Session: sess}
+}
+
+func (r User_Customer_CustomerPermission_Permission) Id(id int) *User_Customer_CustomerPermission_Permission {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_CustomerPermission_Permission) Mask(mask string) *User_Customer_CustomerPermission_Permission {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_CustomerPermission_Permission) Filter(filter string) *User_Customer_CustomerPermission_Permission {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_CustomerPermission_Permission) Limit(limit int) *User_Customer_CustomerPermission_Permission {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_CustomerPermission_Permission) Offset(offset int) *User_Customer_CustomerPermission_Permission {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve all available permissions.
@@ -1082,11 +1157,36 @@ func (r *User_Customer_CustomerPermission_Permission) GetObject() (resp datatype
 // The SoftLayer_User_Customer_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_Customer_External_Binding struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerExternalBindingService(sess *session.Session) User_Customer_External_Binding {
-	return User_Customer_External_Binding{Session: sess}
+func GetUserCustomerExternalBindingService(sess *session.Session) *User_Customer_External_Binding {
+	return &User_Customer_External_Binding{Session: sess}
+}
+
+func (r User_Customer_External_Binding) Id(id int) *User_Customer_External_Binding {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_External_Binding) Mask(mask string) *User_Customer_External_Binding {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_External_Binding) Filter(filter string) *User_Customer_External_Binding {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_External_Binding) Limit(limit int) *User_Customer_External_Binding {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_External_Binding) Offset(offset int) *User_Customer_External_Binding {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Delete an external authentication binding.  If the external binding currently has an active billing item associated you will be prevented from deleting the binding.  The alternative method to remove an external authentication binding is to use the service cancellation form.
@@ -1174,11 +1274,36 @@ func (r *User_Customer_External_Binding) UpdateNote(text *string) (resp bool, er
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Phone struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerExternalBindingPhoneService(sess *session.Session) User_Customer_External_Binding_Phone {
-	return User_Customer_External_Binding_Phone{Session: sess}
+func GetUserCustomerExternalBindingPhoneService(sess *session.Session) *User_Customer_External_Binding_Phone {
+	return &User_Customer_External_Binding_Phone{Session: sess}
+}
+
+func (r User_Customer_External_Binding_Phone) Id(id int) *User_Customer_External_Binding_Phone {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_External_Binding_Phone) Mask(mask string) *User_Customer_External_Binding_Phone {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_External_Binding_Phone) Filter(filter string) *User_Customer_External_Binding_Phone {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_External_Binding_Phone) Limit(limit int) *User_Customer_External_Binding_Phone {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_External_Binding_Phone) Offset(offset int) *User_Customer_External_Binding_Phone {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Return a phone validation result.
@@ -1362,11 +1487,36 @@ func (r *User_Customer_External_Binding_Phone) UpdatePhone(phoneData []datatypes
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Totp struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerExternalBindingTotpService(sess *session.Session) User_Customer_External_Binding_Totp {
-	return User_Customer_External_Binding_Totp{Session: sess}
+func GetUserCustomerExternalBindingTotpService(sess *session.Session) *User_Customer_External_Binding_Totp {
+	return &User_Customer_External_Binding_Totp{Session: sess}
+}
+
+func (r User_Customer_External_Binding_Totp) Id(id int) *User_Customer_External_Binding_Totp {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_External_Binding_Totp) Mask(mask string) *User_Customer_External_Binding_Totp {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_External_Binding_Totp) Filter(filter string) *User_Customer_External_Binding_Totp {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_External_Binding_Totp) Limit(limit int) *User_Customer_External_Binding_Totp {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_External_Binding_Totp) Offset(offset int) *User_Customer_External_Binding_Totp {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1470,11 +1620,36 @@ func (r *User_Customer_External_Binding_Totp) UpdateNote(text *string) (resp boo
 // The SoftLayer_User_Customer_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_Customer_External_Binding_Vendor struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerExternalBindingVendorService(sess *session.Session) User_Customer_External_Binding_Vendor {
-	return User_Customer_External_Binding_Vendor{Session: sess}
+func GetUserCustomerExternalBindingVendorService(sess *session.Session) *User_Customer_External_Binding_Vendor {
+	return &User_Customer_External_Binding_Vendor{Session: sess}
+}
+
+func (r User_Customer_External_Binding_Vendor) Id(id int) *User_Customer_External_Binding_Vendor {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_External_Binding_Vendor) Mask(mask string) *User_Customer_External_Binding_Vendor {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_External_Binding_Vendor) Filter(filter string) *User_Customer_External_Binding_Vendor {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_External_Binding_Vendor) Limit(limit int) *User_Customer_External_Binding_Vendor {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_External_Binding_Vendor) Offset(offset int) *User_Customer_External_Binding_Vendor {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // getAllObjects() will return a list of the available external binding vendors that SoftLayer supports.  Use this list to select the appropriate vendor when creating a new external binding.
@@ -1504,11 +1679,36 @@ func (r *User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Verisign struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerExternalBindingVerisignService(sess *session.Session) User_Customer_External_Binding_Verisign {
-	return User_Customer_External_Binding_Verisign{Session: sess}
+func GetUserCustomerExternalBindingVerisignService(sess *session.Session) *User_Customer_External_Binding_Verisign {
+	return &User_Customer_External_Binding_Verisign{Session: sess}
+}
+
+func (r User_Customer_External_Binding_Verisign) Id(id int) *User_Customer_External_Binding_Verisign {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_External_Binding_Verisign) Mask(mask string) *User_Customer_External_Binding_Verisign {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_External_Binding_Verisign) Filter(filter string) *User_Customer_External_Binding_Verisign {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_External_Binding_Verisign) Limit(limit int) *User_Customer_External_Binding_Verisign {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_External_Binding_Verisign) Offset(offset int) *User_Customer_External_Binding_Verisign {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Delete a VeriSign external binding.  The only VeriSign external binding that can be deleted through this method is the free VeriSign external binding for the master user of a SoftLayer account. All other external bindings must be canceled using the SoftLayer service cancellation form.
@@ -1645,11 +1845,36 @@ func (r *User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *i
 //
 type User_Customer_Invitation struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerInvitationService(sess *session.Session) User_Customer_Invitation {
-	return User_Customer_Invitation{Session: sess}
+func GetUserCustomerInvitationService(sess *session.Session) *User_Customer_Invitation {
+	return &User_Customer_Invitation{Session: sess}
+}
+
+func (r User_Customer_Invitation) Id(id int) *User_Customer_Invitation {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Invitation) Mask(mask string) *User_Customer_Invitation {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Invitation) Filter(filter string) *User_Customer_Invitation {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Invitation) Limit(limit int) *User_Customer_Invitation {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Invitation) Offset(offset int) *User_Customer_Invitation {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1667,11 +1892,36 @@ func (r *User_Customer_Invitation) GetUser() (resp datatypes.User_Customer, err 
 // This class represents a mobile device belonging to a user.  The device can be a phone, tablet, or possibly even some Android based net books.  The purpose is to tie just enough info with the device and the user to enable push notifications through non-softlayer entities (Google, Apple, RIM).
 type User_Customer_MobileDevice struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerMobileDeviceService(sess *session.Session) User_Customer_MobileDevice {
-	return User_Customer_MobileDevice{Session: sess}
+func GetUserCustomerMobileDeviceService(sess *session.Session) *User_Customer_MobileDevice {
+	return &User_Customer_MobileDevice{Session: sess}
+}
+
+func (r User_Customer_MobileDevice) Id(id int) *User_Customer_MobileDevice {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_MobileDevice) Mask(mask string) *User_Customer_MobileDevice {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_MobileDevice) Filter(filter string) *User_Customer_MobileDevice {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_MobileDevice) Limit(limit int) *User_Customer_MobileDevice {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_MobileDevice) Offset(offset int) *User_Customer_MobileDevice {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new mobile device association for a user.
@@ -1737,11 +1987,36 @@ func (r *User_Customer_MobileDevice) GetType() (resp datatypes.User_Customer_Mob
 // This class represents the mobile operating system installed on a user's registered mobile device. It assists us when determining the how to get a push notification to the user.
 type User_Customer_MobileDevice_OperatingSystem struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerMobileDeviceOperatingSystemService(sess *session.Session) User_Customer_MobileDevice_OperatingSystem {
-	return User_Customer_MobileDevice_OperatingSystem{Session: sess}
+func GetUserCustomerMobileDeviceOperatingSystemService(sess *session.Session) *User_Customer_MobileDevice_OperatingSystem {
+	return &User_Customer_MobileDevice_OperatingSystem{Session: sess}
+}
+
+func (r User_Customer_MobileDevice_OperatingSystem) Id(id int) *User_Customer_MobileDevice_OperatingSystem {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_MobileDevice_OperatingSystem) Mask(mask string) *User_Customer_MobileDevice_OperatingSystem {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_MobileDevice_OperatingSystem) Filter(filter string) *User_Customer_MobileDevice_OperatingSystem {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_MobileDevice_OperatingSystem) Limit(limit int) *User_Customer_MobileDevice_OperatingSystem {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_MobileDevice_OperatingSystem) Offset(offset int) *User_Customer_MobileDevice_OperatingSystem {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1759,11 +2034,36 @@ func (r *User_Customer_MobileDevice_OperatingSystem) GetObject() (resp datatypes
 // Describes a supported class of mobile device. In this the word class is used in the context of classes of consumer electronic devices, the two most prominent examples being mobile phones and tablets.
 type User_Customer_MobileDevice_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerMobileDeviceTypeService(sess *session.Session) User_Customer_MobileDevice_Type {
-	return User_Customer_MobileDevice_Type{Session: sess}
+func GetUserCustomerMobileDeviceTypeService(sess *session.Session) *User_Customer_MobileDevice_Type {
+	return &User_Customer_MobileDevice_Type{Session: sess}
+}
+
+func (r User_Customer_MobileDevice_Type) Id(id int) *User_Customer_MobileDevice_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_MobileDevice_Type) Mask(mask string) *User_Customer_MobileDevice_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_MobileDevice_Type) Filter(filter string) *User_Customer_MobileDevice_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_MobileDevice_Type) Limit(limit int) *User_Customer_MobileDevice_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_MobileDevice_Type) Offset(offset int) *User_Customer_MobileDevice_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -1781,11 +2081,36 @@ func (r *User_Customer_MobileDevice_Type) GetObject() (resp datatypes.User_Custo
 // The Customer_Notification_Hardware object stores links between customers and the hardware devices they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
 type User_Customer_Notification_Hardware struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerNotificationHardwareService(sess *session.Session) User_Customer_Notification_Hardware {
-	return User_Customer_Notification_Hardware{Session: sess}
+func GetUserCustomerNotificationHardwareService(sess *session.Session) *User_Customer_Notification_Hardware {
+	return &User_Customer_Notification_Hardware{Session: sess}
+}
+
+func (r User_Customer_Notification_Hardware) Id(id int) *User_Customer_Notification_Hardware {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Notification_Hardware) Mask(mask string) *User_Customer_Notification_Hardware {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Notification_Hardware) Filter(filter string) *User_Customer_Notification_Hardware {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Notification_Hardware) Limit(limit int) *User_Customer_Notification_Hardware {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Notification_Hardware) Offset(offset int) *User_Customer_Notification_Hardware {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Passing in an unsaved instances of a Customer_Notification_Hardware object into this function will create the object and return the results to the user.
@@ -1847,11 +2172,36 @@ func (r *User_Customer_Notification_Hardware) GetUser() (resp datatypes.User_Cus
 // The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
 type User_Customer_Notification_Virtual_Guest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerNotificationVirtualGuestService(sess *session.Session) User_Customer_Notification_Virtual_Guest {
-	return User_Customer_Notification_Virtual_Guest{Session: sess}
+func GetUserCustomerNotificationVirtualGuestService(sess *session.Session) *User_Customer_Notification_Virtual_Guest {
+	return &User_Customer_Notification_Virtual_Guest{Session: sess}
+}
+
+func (r User_Customer_Notification_Virtual_Guest) Id(id int) *User_Customer_Notification_Virtual_Guest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Notification_Virtual_Guest) Mask(mask string) *User_Customer_Notification_Virtual_Guest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Notification_Virtual_Guest) Filter(filter string) *User_Customer_Notification_Virtual_Guest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Notification_Virtual_Guest) Limit(limit int) *User_Customer_Notification_Virtual_Guest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Notification_Virtual_Guest) Offset(offset int) *User_Customer_Notification_Virtual_Guest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Passing in an unsaved instance of a SoftLayer_Customer_Notification_Virtual_Guest object into this function will create the object and return the results to the user.
@@ -1913,11 +2263,36 @@ func (r *User_Customer_Notification_Virtual_Guest) GetUser() (resp datatypes.Use
 //
 type User_Customer_OpenIdConnect struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerOpenIdConnectService(sess *session.Session) User_Customer_OpenIdConnect {
-	return User_Customer_OpenIdConnect{Session: sess}
+func GetUserCustomerOpenIdConnectService(sess *session.Session) *User_Customer_OpenIdConnect {
+	return &User_Customer_OpenIdConnect{Session: sess}
+}
+
+func (r User_Customer_OpenIdConnect) Id(id int) *User_Customer_OpenIdConnect {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_OpenIdConnect) Mask(mask string) *User_Customer_OpenIdConnect {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_OpenIdConnect) Filter(filter string) *User_Customer_OpenIdConnect {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_OpenIdConnect) Limit(limit int) *User_Customer_OpenIdConnect {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_OpenIdConnect) Offset(offset int) *User_Customer_OpenIdConnect {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -2997,11 +3372,36 @@ func (r *User_Customer_OpenIdConnect) ValidateAuthenticationToken(authentication
 // Contains user information for Service Provider Enrollment.
 type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerProspectServiceProviderEnrollRequestService(sess *session.Session) User_Customer_Prospect_ServiceProvider_EnrollRequest {
-	return User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: sess}
+func GetUserCustomerProspectServiceProviderEnrollRequestService(sess *session.Session) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	return &User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: sess}
+}
+
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Id(id int) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Mask(mask string) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Filter(filter string) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Limit(limit int) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Offset(offset int) *User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a new Service Provider Enrollment
@@ -3028,11 +3428,36 @@ func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp
 // The SoftLayer_User_Customer_Security_Answer type contains user's answers to security questions.
 type User_Customer_Security_Answer struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerSecurityAnswerService(sess *session.Session) User_Customer_Security_Answer {
-	return User_Customer_Security_Answer{Session: sess}
+func GetUserCustomerSecurityAnswerService(sess *session.Session) *User_Customer_Security_Answer {
+	return &User_Customer_Security_Answer{Session: sess}
+}
+
+func (r User_Customer_Security_Answer) Id(id int) *User_Customer_Security_Answer {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Security_Answer) Mask(mask string) *User_Customer_Security_Answer {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Security_Answer) Filter(filter string) *User_Customer_Security_Answer {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Security_Answer) Limit(limit int) *User_Customer_Security_Answer {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Security_Answer) Offset(offset int) *User_Customer_Security_Answer {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // getObject retrieves the SoftLayer_User_Customer_Security_Answer object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer_Security_Answer service.
@@ -3056,11 +3481,36 @@ func (r *User_Customer_Security_Answer) GetUser() (resp datatypes.User_Customer,
 // Each SoftLayer portal account is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 type User_Customer_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserCustomerStatusService(sess *session.Session) User_Customer_Status {
-	return User_Customer_Status{Session: sess}
+func GetUserCustomerStatusService(sess *session.Session) *User_Customer_Status {
+	return &User_Customer_Status{Session: sess}
+}
+
+func (r User_Customer_Status) Id(id int) *User_Customer_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Customer_Status) Mask(mask string) *User_Customer_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Customer_Status) Filter(filter string) *User_Customer_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Customer_Status) Limit(limit int) *User_Customer_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Customer_Status) Offset(offset int) *User_Customer_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve all user status objects.
@@ -3078,11 +3528,36 @@ func (r *User_Customer_Status) GetObject() (resp datatypes.User_Customer_Status,
 // The SoftLayer_User_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_External_Binding struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserExternalBindingService(sess *session.Session) User_External_Binding {
-	return User_External_Binding{Session: sess}
+func GetUserExternalBindingService(sess *session.Session) *User_External_Binding {
+	return &User_External_Binding{Session: sess}
+}
+
+func (r User_External_Binding) Id(id int) *User_External_Binding {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_External_Binding) Mask(mask string) *User_External_Binding {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_External_Binding) Filter(filter string) *User_External_Binding {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_External_Binding) Limit(limit int) *User_External_Binding {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_External_Binding) Offset(offset int) *User_External_Binding {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Delete an external authentication binding.  If the external binding currently has an active billing item associated you will be prevented from deleting the binding.  The alternative method to remove an external authentication binding is to use the service cancellation form.
@@ -3139,11 +3614,36 @@ func (r *User_External_Binding) UpdateNote(text *string) (resp bool, err error) 
 // The SoftLayer_User_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_External_Binding_Vendor struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserExternalBindingVendorService(sess *session.Session) User_External_Binding_Vendor {
-	return User_External_Binding_Vendor{Session: sess}
+func GetUserExternalBindingVendorService(sess *session.Session) *User_External_Binding_Vendor {
+	return &User_External_Binding_Vendor{Session: sess}
+}
+
+func (r User_External_Binding_Vendor) Id(id int) *User_External_Binding_Vendor {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_External_Binding_Vendor) Mask(mask string) *User_External_Binding_Vendor {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_External_Binding_Vendor) Filter(filter string) *User_External_Binding_Vendor {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_External_Binding_Vendor) Limit(limit int) *User_External_Binding_Vendor {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_External_Binding_Vendor) Offset(offset int) *User_External_Binding_Vendor {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // getAllObjects() will return a list of the available external binding vendors that SoftLayer supports.  Use this list to select the appropriate vendor when creating a new external binding.
@@ -3161,11 +3661,36 @@ func (r *User_External_Binding_Vendor) GetObject() (resp datatypes.User_External
 //
 type User_Permission_Action struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserPermissionActionService(sess *session.Session) User_Permission_Action {
-	return User_Permission_Action{Session: sess}
+func GetUserPermissionActionService(sess *session.Session) *User_Permission_Action {
+	return &User_Permission_Action{Session: sess}
+}
+
+func (r User_Permission_Action) Id(id int) *User_Permission_Action {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Permission_Action) Mask(mask string) *User_Permission_Action {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Permission_Action) Filter(filter string) *User_Permission_Action {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Permission_Action) Limit(limit int) *User_Permission_Action {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Permission_Action) Offset(offset int) *User_Permission_Action {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3183,11 +3708,36 @@ func (r *User_Permission_Action) GetObject() (resp datatypes.User_Permission_Act
 //
 type User_Permission_Group struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserPermissionGroupService(sess *session.Session) User_Permission_Group {
-	return User_Permission_Group{Session: sess}
+func GetUserPermissionGroupService(sess *session.Session) *User_Permission_Group {
+	return &User_Permission_Group{Session: sess}
+}
+
+func (r User_Permission_Group) Id(id int) *User_Permission_Group {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Permission_Group) Mask(mask string) *User_Permission_Group {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Permission_Group) Filter(filter string) *User_Permission_Group {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Permission_Group) Limit(limit int) *User_Permission_Group {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Permission_Group) Offset(offset int) *User_Permission_Group {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3347,11 +3897,36 @@ func (r *User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role)
 //
 type User_Permission_Group_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserPermissionGroupTypeService(sess *session.Session) User_Permission_Group_Type {
-	return User_Permission_Group_Type{Session: sess}
+func GetUserPermissionGroupTypeService(sess *session.Session) *User_Permission_Group_Type {
+	return &User_Permission_Group_Type{Session: sess}
+}
+
+func (r User_Permission_Group_Type) Id(id int) *User_Permission_Group_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Permission_Group_Type) Mask(mask string) *User_Permission_Group_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Permission_Group_Type) Filter(filter string) *User_Permission_Group_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Permission_Group_Type) Limit(limit int) *User_Permission_Group_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Permission_Group_Type) Offset(offset int) *User_Permission_Group_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve
@@ -3369,11 +3944,36 @@ func (r *User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission
 //
 type User_Permission_Role struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserPermissionRoleService(sess *session.Session) User_Permission_Role {
-	return User_Permission_Role{Session: sess}
+func GetUserPermissionRoleService(sess *session.Session) *User_Permission_Role {
+	return &User_Permission_Role{Session: sess}
+}
+
+func (r User_Permission_Role) Id(id int) *User_Permission_Role {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Permission_Role) Mask(mask string) *User_Permission_Role {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Permission_Role) Filter(filter string) *User_Permission_Role {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Permission_Role) Limit(limit int) *User_Permission_Role {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Permission_Role) Offset(offset int) *User_Permission_Role {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -3473,11 +4073,36 @@ func (r *User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Grou
 // The SoftLayer_User_Security_Question data type contains questions.
 type User_Security_Question struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetUserSecurityQuestionService(sess *session.Session) User_Security_Question {
-	return User_Security_Question{Session: sess}
+func GetUserSecurityQuestionService(sess *session.Session) *User_Security_Question {
+	return &User_Security_Question{Session: sess}
+}
+
+func (r User_Security_Question) Id(id int) *User_Security_Question {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r User_Security_Question) Mask(mask string) *User_Security_Question {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r User_Security_Question) Filter(filter string) *User_Security_Question {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r User_Security_Question) Limit(limit int) *User_Security_Question {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r User_Security_Question) Offset(offset int) *User_Security_Question {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve all viewable security questions.

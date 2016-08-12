@@ -29,11 +29,36 @@ import (
 //
 type Billing_Currency struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingCurrencyService(sess *session.Session) Billing_Currency {
-	return Billing_Currency{Session: sess}
+func GetBillingCurrencyService(sess *session.Session) *Billing_Currency {
+	return &Billing_Currency{Session: sess}
+}
+
+func (r Billing_Currency) Id(id int) *Billing_Currency {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Currency) Mask(mask string) *Billing_Currency {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Currency) Filter(filter string) *Billing_Currency {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Currency) Limit(limit int) *Billing_Currency {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Currency) Offset(offset int) *Billing_Currency {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -61,11 +86,36 @@ func (r *Billing_Currency) GetPrice(price *float64, formatOptions *datatypes.Con
 //
 type Billing_Currency_ExchangeRate struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingCurrencyExchangeRateService(sess *session.Session) Billing_Currency_ExchangeRate {
-	return Billing_Currency_ExchangeRate{Session: sess}
+func GetBillingCurrencyExchangeRateService(sess *session.Session) *Billing_Currency_ExchangeRate {
+	return &Billing_Currency_ExchangeRate{Session: sess}
+}
+
+func (r Billing_Currency_ExchangeRate) Id(id int) *Billing_Currency_ExchangeRate {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Currency_ExchangeRate) Mask(mask string) *Billing_Currency_ExchangeRate {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Currency_ExchangeRate) Filter(filter string) *Billing_Currency_ExchangeRate {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Currency_ExchangeRate) Limit(limit int) *Billing_Currency_ExchangeRate {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Currency_ExchangeRate) Offset(offset int) *Billing_Currency_ExchangeRate {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -125,11 +175,36 @@ func (r *Billing_Currency_ExchangeRate) GetPrice(price *float64, formatOptions *
 // Every SoftLayer customer account has billing specific information which is kept in the SoftLayer_Billing_Info data type. This information is used by the SoftLayer accounting group when sending invoices and making billing inquiries.
 type Billing_Info struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInfoService(sess *session.Session) Billing_Info {
-	return Billing_Info{Session: sess}
+func GetBillingInfoService(sess *session.Session) *Billing_Info {
+	return &Billing_Info{Session: sess}
+}
+
+func (r Billing_Info) Id(id int) *Billing_Info {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Info) Mask(mask string) *Billing_Info {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Info) Filter(filter string) *Billing_Info {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Info) Limit(limit int) *Billing_Info {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Info) Offset(offset int) *Billing_Info {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The SoftLayer customer account associated with this billing information.
@@ -177,11 +252,36 @@ func (r *Billing_Info) GetObject() (resp datatypes.Billing_Info, err error) {
 // The SoftLayer_Billing_Invoice data type contains general information relating to an individual invoice applied to a SoftLayer customer account. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the invoice is generated.
 type Billing_Invoice struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInvoiceService(sess *session.Session) Billing_Invoice {
-	return Billing_Invoice{Session: sess}
+func GetBillingInvoiceService(sess *session.Session) *Billing_Invoice {
+	return &Billing_Invoice{Session: sess}
+}
+
+func (r Billing_Invoice) Id(id int) *Billing_Invoice {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Invoice) Mask(mask string) *Billing_Invoice {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Invoice) Filter(filter string) *Billing_Invoice {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Invoice) Limit(limit int) *Billing_Invoice {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Invoice) Offset(offset int) *Billing_Invoice {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Create a transaction to email PDF and/or Excel invoice links to the requesting user's email address. You must have a PDF reader installed in order to view these files.
@@ -383,11 +483,36 @@ func (r *Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Pro
 // Each billing invoice item makes up a record within an invoice. This provides you with a detailed record of everything related to an invoice item. When you are billed, our system takes active billing items and creates an invoice. These invoice items are a copy of your active billing items, and make up the contents of your invoice.
 type Billing_Invoice_Item struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInvoiceItemService(sess *session.Session) Billing_Invoice_Item {
-	return Billing_Invoice_Item{Session: sess}
+func GetBillingInvoiceItemService(sess *session.Session) *Billing_Invoice_Item {
+	return &Billing_Invoice_Item{Session: sess}
+}
+
+func (r Billing_Invoice_Item) Id(id int) *Billing_Invoice_Item {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Invoice_Item) Mask(mask string) *Billing_Invoice_Item {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Invoice_Item) Filter(filter string) *Billing_Invoice_Item {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Invoice_Item) Limit(limit int) *Billing_Invoice_Item {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Invoice_Item) Offset(offset int) *Billing_Invoice_Item {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve An Invoice Item's associated child invoice items. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
@@ -489,11 +614,36 @@ func (r *Billing_Invoice_Item) GetTotalRecurringTaxAmount() (resp float64, err e
 //
 type Billing_Invoice_Next struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInvoiceNextService(sess *session.Session) Billing_Invoice_Next {
-	return Billing_Invoice_Next{Session: sess}
+func GetBillingInvoiceNextService(sess *session.Session) *Billing_Invoice_Next {
+	return &Billing_Invoice_Next{Session: sess}
+}
+
+func (r Billing_Invoice_Next) Id(id int) *Billing_Invoice_Next {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Invoice_Next) Mask(mask string) *Billing_Invoice_Next {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Invoice_Next) Filter(filter string) *Billing_Invoice_Next {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Invoice_Next) Limit(limit int) *Billing_Invoice_Next {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Invoice_Next) Offset(offset int) *Billing_Invoice_Next {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Return an account's next invoice in a Microsoft excel format.
@@ -526,11 +676,36 @@ func (r *Billing_Invoice_Next) GetPdfDetailed(documentCreateDate *datatypes.Time
 // The invoice tax status data type models a single status or state that an invoice can reflect in regard to an integration with a third-party tax calculation service.
 type Billing_Invoice_Tax_Status struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInvoiceTaxStatusService(sess *session.Session) Billing_Invoice_Tax_Status {
-	return Billing_Invoice_Tax_Status{Session: sess}
+func GetBillingInvoiceTaxStatusService(sess *session.Session) *Billing_Invoice_Tax_Status {
+	return &Billing_Invoice_Tax_Status{Session: sess}
+}
+
+func (r Billing_Invoice_Tax_Status) Id(id int) *Billing_Invoice_Tax_Status {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Status) Mask(mask string) *Billing_Invoice_Tax_Status {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Status) Filter(filter string) *Billing_Invoice_Tax_Status {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Status) Limit(limit int) *Billing_Invoice_Tax_Status {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Status) Offset(offset int) *Billing_Invoice_Tax_Status {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -548,11 +723,36 @@ func (r *Billing_Invoice_Tax_Status) GetObject() (resp datatypes.Billing_Invoice
 // The invoice tax type data type models a single strategy for handling tax calculations.
 type Billing_Invoice_Tax_Type struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingInvoiceTaxTypeService(sess *session.Session) Billing_Invoice_Tax_Type {
-	return Billing_Invoice_Tax_Type{Session: sess}
+func GetBillingInvoiceTaxTypeService(sess *session.Session) *Billing_Invoice_Tax_Type {
+	return &Billing_Invoice_Tax_Type{Session: sess}
+}
+
+func (r Billing_Invoice_Tax_Type) Id(id int) *Billing_Invoice_Tax_Type {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Type) Mask(mask string) *Billing_Invoice_Tax_Type {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Type) Filter(filter string) *Billing_Invoice_Tax_Type {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Type) Limit(limit int) *Billing_Invoice_Tax_Type {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Invoice_Tax_Type) Offset(offset int) *Billing_Invoice_Tax_Type {
+	r.Options.Offset = &offset
+	return &r
 }
 
 //
@@ -572,11 +772,36 @@ func (r *Billing_Invoice_Tax_Type) GetObject() (resp datatypes.Billing_Invoice_T
 // Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Item struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingItemService(sess *session.Session) Billing_Item {
-	return Billing_Item{Session: sess}
+func GetBillingItemService(sess *session.Session) *Billing_Item {
+	return &Billing_Item{Session: sess}
+}
+
+func (r Billing_Item) Id(id int) *Billing_Item {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Item) Mask(mask string) *Billing_Item {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Item) Filter(filter string) *Billing_Item {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Item) Limit(limit int) *Billing_Item {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Item) Offset(offset int) *Billing_Item {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Cancel the resource or service for a billing Item. By default the billing item will be cancelled immediately and reclaim of the resource will begin shortly. Setting the "cancelImmediately" property to false will delay the cancellation until the next bill date.
@@ -958,11 +1183,36 @@ func (r *Billing_Item) VoidCancelService() (resp bool, err error) {
 // The SoftLayer_Billing_Item_Cancellation_Reason data type contains cancellation reasons.
 type Billing_Item_Cancellation_Reason struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingItemCancellationReasonService(sess *session.Session) Billing_Item_Cancellation_Reason {
-	return Billing_Item_Cancellation_Reason{Session: sess}
+func GetBillingItemCancellationReasonService(sess *session.Session) *Billing_Item_Cancellation_Reason {
+	return &Billing_Item_Cancellation_Reason{Session: sess}
+}
+
+func (r Billing_Item_Cancellation_Reason) Id(id int) *Billing_Item_Cancellation_Reason {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason) Mask(mask string) *Billing_Item_Cancellation_Reason {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason) Filter(filter string) *Billing_Item_Cancellation_Reason {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason) Limit(limit int) *Billing_Item_Cancellation_Reason {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason) Offset(offset int) *Billing_Item_Cancellation_Reason {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // getAllCancellationReasons() retrieves a list of all cancellation reasons that a server/service may be assigned to.
@@ -998,11 +1248,36 @@ func (r *Billing_Item_Cancellation_Reason) GetTranslatedReason() (resp string, e
 // The SoftLayer_Billing_Item_Cancellation_Reason_Category data type contains cancellation reason categories.
 type Billing_Item_Cancellation_Reason_Category struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingItemCancellationReasonCategoryService(sess *session.Session) Billing_Item_Cancellation_Reason_Category {
-	return Billing_Item_Cancellation_Reason_Category{Session: sess}
+func GetBillingItemCancellationReasonCategoryService(sess *session.Session) *Billing_Item_Cancellation_Reason_Category {
+	return &Billing_Item_Cancellation_Reason_Category{Session: sess}
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) Id(id int) *Billing_Item_Cancellation_Reason_Category {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) Mask(mask string) *Billing_Item_Cancellation_Reason_Category {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) Filter(filter string) *Billing_Item_Cancellation_Reason_Category {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) Limit(limit int) *Billing_Item_Cancellation_Reason_Category {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) Offset(offset int) *Billing_Item_Cancellation_Reason_Category {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // getAllCancellationReasonCategories() retrieves a list of all cancellation reason categories
@@ -1026,11 +1301,36 @@ func (r *Billing_Item_Cancellation_Reason_Category) GetObject() (resp datatypes.
 // SoftLayer_Billing_Item_Cancellation_Request data type is used to cancel service billing items.
 type Billing_Item_Cancellation_Request struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingItemCancellationRequestService(sess *session.Session) Billing_Item_Cancellation_Request {
-	return Billing_Item_Cancellation_Request{Session: sess}
+func GetBillingItemCancellationRequestService(sess *session.Session) *Billing_Item_Cancellation_Request {
+	return &Billing_Item_Cancellation_Request{Session: sess}
+}
+
+func (r Billing_Item_Cancellation_Request) Id(id int) *Billing_Item_Cancellation_Request {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Request) Mask(mask string) *Billing_Item_Cancellation_Request {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Request) Filter(filter string) *Billing_Item_Cancellation_Request {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Request) Limit(limit int) *Billing_Item_Cancellation_Request {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Item_Cancellation_Request) Offset(offset int) *Billing_Item_Cancellation_Request {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method creates a service cancellation request.
@@ -1130,11 +1430,36 @@ func (r *Billing_Item_Cancellation_Request) Void(closeRelatedTicketFlag *bool) (
 // The SoftLayer_Billing_Order data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the order is generated for existing SoftLayer customer.
 type Billing_Order struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingOrderService(sess *session.Session) Billing_Order {
-	return Billing_Order{Session: sess}
+func GetBillingOrderService(sess *session.Session) *Billing_Order {
+	return &Billing_Order{Session: sess}
+}
+
+func (r Billing_Order) Id(id int) *Billing_Order {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Order) Mask(mask string) *Billing_Order {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Order) Filter(filter string) *Billing_Order {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Order) Limit(limit int) *Billing_Order {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Order) Offset(offset int) *Billing_Order {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // When an order has been modified, the customer will need to approve the changes. This method will allow the customer to approve the changes.
@@ -1360,11 +1685,36 @@ func (r *Billing_Order) IsPendingEditApproval() (resp bool, err error) {
 //
 type Billing_Order_Cart struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingOrderCartService(sess *session.Session) Billing_Order_Cart {
-	return Billing_Order_Cart{Session: sess}
+func GetBillingOrderCartService(sess *session.Session) *Billing_Order_Cart {
+	return &Billing_Order_Cart{Session: sess}
+}
+
+func (r Billing_Order_Cart) Id(id int) *Billing_Order_Cart {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Order_Cart) Mask(mask string) *Billing_Order_Cart {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Order_Cart) Filter(filter string) *Billing_Order_Cart {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Order_Cart) Limit(limit int) *Billing_Order_Cart {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Order_Cart) Offset(offset int) *Billing_Order_Cart {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to transfer an anonymous quote to the active user and associated account. An anonymous quote is one that was created by a user without being authenticated. If a quote was created anonymously and then the customer attempts to access that anonymous quote via the API (which requires authentication), the customer will be unable to retrieve the quote due to the security restrictions in place. By providing the ability for a customer to claim a quote, s/he will be able to pull the anonymous quote onto his/her account and successfully view the quote.
@@ -1509,11 +1859,36 @@ func (r *Billing_Order_Cart) VerifyOrder(orderData *datatypes.Container_Product_
 // Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
 type Billing_Order_Item struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingOrderItemService(sess *session.Session) Billing_Order_Item {
-	return Billing_Order_Item{Session: sess}
+func GetBillingOrderItemService(sess *session.Session) *Billing_Order_Item {
+	return &Billing_Order_Item{Session: sess}
+}
+
+func (r Billing_Order_Item) Id(id int) *Billing_Order_Item {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Order_Item) Mask(mask string) *Billing_Order_Item {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Order_Item) Filter(filter string) *Billing_Order_Item {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Order_Item) Limit(limit int) *Billing_Order_Item {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Order_Item) Offset(offset int) *Billing_Order_Item {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // Retrieve The SoftLayer_Billing_Item tied to the order item.
@@ -1651,11 +2026,36 @@ func (r *Billing_Order_Item) GetUpgradeItem() (resp datatypes.Product_Item, err 
 // The SoftLayer_Billing_Oder_Quote data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the quote is generated for existing SoftLayer customer.
 type Billing_Order_Quote struct {
 	Session *session.Session
-	sl.Options
+	Options sl.Options
 }
 
-func GetBillingOrderQuoteService(sess *session.Session) Billing_Order_Quote {
-	return Billing_Order_Quote{Session: sess}
+func GetBillingOrderQuoteService(sess *session.Session) *Billing_Order_Quote {
+	return &Billing_Order_Quote{Session: sess}
+}
+
+func (r Billing_Order_Quote) Id(id int) *Billing_Order_Quote {
+	r.Options.Id = &id
+	return &r
+}
+
+func (r Billing_Order_Quote) Mask(mask string) *Billing_Order_Quote {
+	r.Options.Mask = mask
+	return &r
+}
+
+func (r Billing_Order_Quote) Filter(filter string) *Billing_Order_Quote {
+	r.Options.Filter = filter
+	return &r
+}
+
+func (r Billing_Order_Quote) Limit(limit int) *Billing_Order_Quote {
+	r.Options.Limit = &limit
+	return &r
+}
+
+func (r Billing_Order_Quote) Offset(offset int) *Billing_Order_Quote {
+	r.Options.Offset = &offset
+	return &r
 }
 
 // This method is used to transfer an anonymous quote to the active user and associated account. An anonymous quote is one that was created by a user without being authenticated. If a quote was created anonymously and then the customer attempts to access that anonymous quote via the API (which requires authentication), the customer will be unable to retrieve the quote due to the security restrictions in place. By providing the ability for a customer to claim a quote, s/he will be able to pull the anonymous quote onto his/her account and successfully view the quote.
