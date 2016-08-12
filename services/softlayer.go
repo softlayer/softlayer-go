@@ -191,39 +191,29 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	// At this point, all that's left to do is parse the return value to the appropriate type, and return
 	// any parse errors (or nil if successful)
 
+	err = nil
 	switch returnType {
 	case "[]byte":
 		pResult = &resp
-		return nil
 	case "*void":
-		return nil
 	case "*uint":
 		*pResult.(*int), err = strconv.Atoi(string(resp))
-		if err != nil {
-			return Error{Message: err.Error(), wrapped: err}
-		}
-		return nil
 	case "*bool":
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-		if err != nil {
-			return Error{Message: err.Error(), wrapped: err}
-		}
 	case "float64":
 		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
-		if err != nil {
-			return Error{Message: err.Error(), wrapped: err}
-		}
 	case "string":
 		*pResult.(*string) = string(resp)
-		return nil
+	default:
+		// Must be a json representation of one of the many softlayer datatypes
+		err = json.Unmarshal(resp, pResult)
 	}
 
-	// Must be a json representation of one of the many softlayer datatypes
-	err = json.Unmarshal(resp, pResult)
 	if err != nil {
-		return Error{Message: err.Error(), wrapped: err}
+		err = Error{Message: err.Error(), wrapped: err}
 	}
-	return nil
+
+	return err
 }
 
 type Error struct {
