@@ -36,7 +36,7 @@ sess := session.New()
 
 In this example, the username and API key are read from the environment
 variables `SOFTLAYER_USERNAME` and `SOFTLAYER_API_KEY`.  If these are not
-set, the values from the local `~.softlayer` file are used.
+set, the values from the local `~/.softlayer` file are used.
 
 ### Instance methods
 
