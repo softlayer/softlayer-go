@@ -47,8 +47,8 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 	// Start building the request path
 	path := service
 
-	if options.ObjectId != nil {
-		path = path + "/" + strconv.Itoa(*options.ObjectId)
+	if options.Id != nil {
+		path = path + "/" + strconv.Itoa(*options.Id)
 	}
 
 	// omit the API method name if the method represents one of the basic REST methods
@@ -122,23 +122,23 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 func encodeQuery(opts *sl.Options) string {
 	query := new(url.URL).Query()
 
-	if opts.ObjectMask != "" {
-		query.Add("objectMask", opts.ObjectMask)
+	if opts.Mask != "" {
+		query.Add("objectMask", opts.Mask)
 	}
 
-	if opts.ObjectFilter != "" {
-		query.Add("objectFilter", opts.ObjectFilter)
+	if opts.Filter != "" {
+		query.Add("objectFilter", opts.Filter)
 	}
 
 	// resultLimit=<offset>,<limit>
 	// If offset unspecified, default to 0
-	if opts.ResultLimit != nil {
+	if opts.Limit != nil {
 		startOffset := 0
-		if opts.StartOffset != nil {
-			startOffset = *opts.StartOffset
+		if opts.Offset != nil {
+			startOffset = *opts.Offset
 		}
 
-		query.Add("resultLimit", fmt.Sprintf("%d,%d", startOffset, *opts.ResultLimit))
+		query.Add("resultLimit", fmt.Sprintf("%d,%d", startOffset, *opts.Limit))
 	}
 
 	return query.Encode()

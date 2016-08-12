@@ -55,11 +55,8 @@ func doListAccountVMsTest(sess *session.Session) {
 	// Get the Account service
 	service := services.GetAccountService(sess)
 
-	//Set an object mask and a result limit
-	service.Mask("id;hostname;domain").Limit(10)
-
 	// List VMs
-	vms, err := service.GetVirtualGuests()
+	vms, err := service.Mask("id;hostname;domain").Limit(10).GetVirtualGuests()
 	if err != nil {
 		fmt.Printf("Error retrieving Virtual Guests from Account: %s\n", err)
 		return
@@ -76,11 +73,8 @@ func doExecuteRemoteScriptTest(sess *session.Session) {
 	// Get the VirtualGuest service
 	service := services.GetVirtualGuestService(sess)
 
-	// Set the object ID for the service to act upon
-	service.Id(22870595)
-
 	// Execute the remote script
-	err := service.ExecuteRemoteScript(sl.String("http://example.com"))
+	err := service.Id(22870595).ExecuteRemoteScript(sl.String("http://example.com"))
 	if err != nil {
 		fmt.Println("Error executing remote script on VM:", err)
 	} else {
@@ -103,9 +97,7 @@ func doCreateVMTest(sess *session.Session) {
 	vGuestTemplate.OperatingSystemReferenceCode = sl.String("UBUNTU_LATEST")
 	vGuestTemplate.LocalDiskFlag = sl.Bool(true)
 
-	service.Mask("id;domain")
-
-	vGuest, err := service.CreateObject(&vGuestTemplate)
+	vGuest, err := service.Mask("id;domain").CreateObject(&vGuestTemplate)
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		return
@@ -116,7 +108,7 @@ func doCreateVMTest(sess *session.Session) {
 
 	// Wait for transactions to finish
 	fmt.Printf("Waiting for transactions to complete before destroying.")
-	service.Id(*vGuest.Id)
+	service = service.Id(*vGuest.Id)
 
 	// Delay to allow transactions to be registered
 	time.Sleep(10 * time.Second)
@@ -185,8 +177,7 @@ func doError(sess *session.Session) {
 	service := services.GetVirtualGuestService(sess)
 
 	// Example of an API error
-	service.Id(0) // invalid object ID
-	_, err := service.GetObject()
+	_, err := service.Id(0).GetObject() // invalid object ID
 	if err != nil {
 		handleError(err)
 	}

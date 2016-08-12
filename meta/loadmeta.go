@@ -132,11 +132,36 @@ package services
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
 	type {{$base}} struct {
 		Session *session.Session
-		sl.Options
+		Options sl.Options
 	}
 
-	func Get{{$base | desnake}}Service(sess *session.Session) {{$base}} {
-		return {{$base}}{Session: sess}
+	func Get{{$base | desnake}}Service(sess *session.Session) *{{$base}} {
+		return &{{$base}}{Session: sess}
+	}
+
+	func (r {{$base}}) Id(id int) *{{$base}} {
+		r.Options.Id = &id
+		return &r
+	}
+
+	func (r {{$base}}) Mask(mask string) *{{$base}} {
+		r.Options.Mask = mask
+		return &r
+	}
+
+	func (r {{$base}}) Filter(filter string) *{{$base}} {
+		r.Options.Filter = filter
+		return &r
+	}
+
+	func (r {{$base}}) Limit(limit int) *{{$base}} {
+		r.Options.Limit = &limit
+		return &r
+	}
+
+	func (r {{$base}}) Offset(offset int) *{{$base}} {
+		r.Options.Offset = &offset
+		return &r
 	}
 
 	{{range .Methods}}{{.Doc|goDoc}}

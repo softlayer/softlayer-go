@@ -17,34 +17,9 @@
 package sl
 
 type Options struct {
-	ObjectId     *int
-	ObjectMask   string
-	ObjectFilter string
-	ResultLimit  *int
-	StartOffset  *int
-}
-
-func (r *Options) Id(id int) *Options {
-	r.ObjectId = &id
-	return r
-}
-
-func (r *Options) Mask(mask string) *Options {
-	r.ObjectMask = mask
-	return r
-}
-
-func (r *Options) Filter(filter string) *Options {
-	r.ObjectFilter = filter
-	return r
-}
-
-func (r *Options) Limit(limit int) *Options {
-	r.ResultLimit = &limit
-	return r
-}
-
-func (r *Options) Offset(offset int) *Options {
-	r.StartOffset = &offset
-	return r
+	Id     *int
+	Mask   string
+	Filter string
+	Limit  *int
+	Offset *int
 }
