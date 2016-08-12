@@ -131,12 +131,12 @@ package services
 
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
 	type {{$base}} struct {
-		Session *Session
-		Options
+		Session *session.Session
+		sl.Options
 	}
 
-	func (r *Session) Get{{$base | desnake}}Service() {{$base}} {
-		return {{$base}}{Session: r}
+	func Get{{$base | desnake}}Service(sess *session.Session) {{$base}} {
+		return {{$base}}{Session: sess}
 	}
 
 	{{range .Methods}}{{.Doc|goDoc}}

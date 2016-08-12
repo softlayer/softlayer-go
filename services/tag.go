@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Tag data type is an optional type associated with hardware. The account ID that the tag is tied to, and the tag itself are stored in this data type. There is also a flag to denote whether the tag is internal or not.
 type Tag struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetTagService() Tag {
-	return Tag{Session: r}
+func GetTagService(sess *session.Session) Tag {
+	return Tag{Session: sess}
 }
 
 // This function is responsible for setting the Tags values. The internal flag is set to 0 if the user is a customer, and 1 otherwise. AccountId is set to the account bound to the user, and the tags name is set to the clean version of the tag inputted by the user.

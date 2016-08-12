@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Compliance_Report_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetComplianceReportTypeService() Compliance_Report_Type {
-	return Compliance_Report_Type{Session: r}
+func GetComplianceReportTypeService(sess *session.Session) Compliance_Report_Type {
+	return Compliance_Report_Type{Session: sess}
 }
 
 //

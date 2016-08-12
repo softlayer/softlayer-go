@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_User_Customer data type contains general information relating to a single SoftLayer customer portal user. Personal information in this type such as names, addresses, and phone numbers are not necessarily associated with the customer account the user is assigned to.
 type User_Customer struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerService() User_Customer {
-	return User_Customer{Session: r}
+func GetUserCustomerService(sess *session.Session) User_Customer {
+	return User_Customer{Session: sess}
 }
 
 //
@@ -1024,12 +1028,12 @@ func (r *User_Customer) ValidateAuthenticationToken(authenticationToken *datatyp
 
 // The SoftLayer_User_Customer_ApiAuthentication type contains user's authentication key(s).
 type User_Customer_ApiAuthentication struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerApiAuthenticationService() User_Customer_ApiAuthentication {
-	return User_Customer_ApiAuthentication{Session: r}
+func GetUserCustomerApiAuthenticationService(sess *session.Session) User_Customer_ApiAuthentication {
+	return User_Customer_ApiAuthentication{Session: sess}
 }
 
 //
@@ -1055,12 +1059,12 @@ func (r *User_Customer_ApiAuthentication) GetUser() (resp datatypes.User_Custome
 
 // Each SoftLayer portal account is assigned a series of permissions that determine what access the user has to functions within the SoftLayer customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Permissions differ from user status in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 type User_Customer_CustomerPermission_Permission struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerCustomerPermissionPermissionService() User_Customer_CustomerPermission_Permission {
-	return User_Customer_CustomerPermission_Permission{Session: r}
+func GetUserCustomerCustomerPermissionPermissionService(sess *session.Session) User_Customer_CustomerPermission_Permission {
+	return User_Customer_CustomerPermission_Permission{Session: sess}
 }
 
 // Retrieve all available permissions.
@@ -1077,12 +1081,12 @@ func (r *User_Customer_CustomerPermission_Permission) GetObject() (resp datatype
 
 // The SoftLayer_User_Customer_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_Customer_External_Binding struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerExternalBindingService() User_Customer_External_Binding {
-	return User_Customer_External_Binding{Session: r}
+func GetUserCustomerExternalBindingService(sess *session.Session) User_Customer_External_Binding {
+	return User_Customer_External_Binding{Session: sess}
 }
 
 // Delete an external authentication binding.  If the external binding currently has an active billing item associated you will be prevented from deleting the binding.  The alternative method to remove an external authentication binding is to use the service cancellation form.
@@ -1169,12 +1173,12 @@ func (r *User_Customer_External_Binding) UpdateNote(text *string) (resp bool, er
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Phone struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerExternalBindingPhoneService() User_Customer_External_Binding_Phone {
-	return User_Customer_External_Binding_Phone{Session: r}
+func GetUserCustomerExternalBindingPhoneService(sess *session.Session) User_Customer_External_Binding_Phone {
+	return User_Customer_External_Binding_Phone{Session: sess}
 }
 
 // Return a phone validation result.
@@ -1357,12 +1361,12 @@ func (r *User_Customer_External_Binding_Phone) UpdatePhone(phoneData []datatypes
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Totp struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerExternalBindingTotpService() User_Customer_External_Binding_Totp {
-	return User_Customer_External_Binding_Totp{Session: r}
+func GetUserCustomerExternalBindingTotpService(sess *session.Session) User_Customer_External_Binding_Totp {
+	return User_Customer_External_Binding_Totp{Session: sess}
 }
 
 //
@@ -1465,12 +1469,12 @@ func (r *User_Customer_External_Binding_Totp) UpdateNote(text *string) (resp boo
 
 // The SoftLayer_User_Customer_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_Customer_External_Binding_Vendor struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerExternalBindingVendorService() User_Customer_External_Binding_Vendor {
-	return User_Customer_External_Binding_Vendor{Session: r}
+func GetUserCustomerExternalBindingVendorService(sess *session.Session) User_Customer_External_Binding_Vendor {
+	return User_Customer_External_Binding_Vendor{Session: sess}
 }
 
 // getAllObjects() will return a list of the available external binding vendors that SoftLayer supports.  Use this list to select the appropriate vendor when creating a new external binding.
@@ -1499,12 +1503,12 @@ func (r *User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Verisign struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerExternalBindingVerisignService() User_Customer_External_Binding_Verisign {
-	return User_Customer_External_Binding_Verisign{Session: r}
+func GetUserCustomerExternalBindingVerisignService(sess *session.Session) User_Customer_External_Binding_Verisign {
+	return User_Customer_External_Binding_Verisign{Session: sess}
 }
 
 // Delete a VeriSign external binding.  The only VeriSign external binding that can be deleted through this method is the free VeriSign external binding for the master user of a SoftLayer account. All other external bindings must be canceled using the SoftLayer service cancellation form.
@@ -1640,12 +1644,12 @@ func (r *User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *i
 
 //
 type User_Customer_Invitation struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerInvitationService() User_Customer_Invitation {
-	return User_Customer_Invitation{Session: r}
+func GetUserCustomerInvitationService(sess *session.Session) User_Customer_Invitation {
+	return User_Customer_Invitation{Session: sess}
 }
 
 //
@@ -1662,12 +1666,12 @@ func (r *User_Customer_Invitation) GetUser() (resp datatypes.User_Customer, err 
 
 // This class represents a mobile device belonging to a user.  The device can be a phone, tablet, or possibly even some Android based net books.  The purpose is to tie just enough info with the device and the user to enable push notifications through non-softlayer entities (Google, Apple, RIM).
 type User_Customer_MobileDevice struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerMobileDeviceService() User_Customer_MobileDevice {
-	return User_Customer_MobileDevice{Session: r}
+func GetUserCustomerMobileDeviceService(sess *session.Session) User_Customer_MobileDevice {
+	return User_Customer_MobileDevice{Session: sess}
 }
 
 // Create a new mobile device association for a user.
@@ -1732,12 +1736,12 @@ func (r *User_Customer_MobileDevice) GetType() (resp datatypes.User_Customer_Mob
 
 // This class represents the mobile operating system installed on a user's registered mobile device. It assists us when determining the how to get a push notification to the user.
 type User_Customer_MobileDevice_OperatingSystem struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerMobileDeviceOperatingSystemService() User_Customer_MobileDevice_OperatingSystem {
-	return User_Customer_MobileDevice_OperatingSystem{Session: r}
+func GetUserCustomerMobileDeviceOperatingSystemService(sess *session.Session) User_Customer_MobileDevice_OperatingSystem {
+	return User_Customer_MobileDevice_OperatingSystem{Session: sess}
 }
 
 //
@@ -1754,12 +1758,12 @@ func (r *User_Customer_MobileDevice_OperatingSystem) GetObject() (resp datatypes
 
 // Describes a supported class of mobile device. In this the word class is used in the context of classes of consumer electronic devices, the two most prominent examples being mobile phones and tablets.
 type User_Customer_MobileDevice_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerMobileDeviceTypeService() User_Customer_MobileDevice_Type {
-	return User_Customer_MobileDevice_Type{Session: r}
+func GetUserCustomerMobileDeviceTypeService(sess *session.Session) User_Customer_MobileDevice_Type {
+	return User_Customer_MobileDevice_Type{Session: sess}
 }
 
 //
@@ -1776,12 +1780,12 @@ func (r *User_Customer_MobileDevice_Type) GetObject() (resp datatypes.User_Custo
 
 // The Customer_Notification_Hardware object stores links between customers and the hardware devices they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
 type User_Customer_Notification_Hardware struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerNotificationHardwareService() User_Customer_Notification_Hardware {
-	return User_Customer_Notification_Hardware{Session: r}
+func GetUserCustomerNotificationHardwareService(sess *session.Session) User_Customer_Notification_Hardware {
+	return User_Customer_Notification_Hardware{Session: sess}
 }
 
 // Passing in an unsaved instances of a Customer_Notification_Hardware object into this function will create the object and return the results to the user.
@@ -1842,12 +1846,12 @@ func (r *User_Customer_Notification_Hardware) GetUser() (resp datatypes.User_Cus
 
 // The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
 type User_Customer_Notification_Virtual_Guest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerNotificationVirtualGuestService() User_Customer_Notification_Virtual_Guest {
-	return User_Customer_Notification_Virtual_Guest{Session: r}
+func GetUserCustomerNotificationVirtualGuestService(sess *session.Session) User_Customer_Notification_Virtual_Guest {
+	return User_Customer_Notification_Virtual_Guest{Session: sess}
 }
 
 // Passing in an unsaved instance of a SoftLayer_Customer_Notification_Virtual_Guest object into this function will create the object and return the results to the user.
@@ -1908,12 +1912,12 @@ func (r *User_Customer_Notification_Virtual_Guest) GetUser() (resp datatypes.Use
 
 //
 type User_Customer_OpenIdConnect struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerOpenIdConnectService() User_Customer_OpenIdConnect {
-	return User_Customer_OpenIdConnect{Session: r}
+func GetUserCustomerOpenIdConnectService(sess *session.Session) User_Customer_OpenIdConnect {
+	return User_Customer_OpenIdConnect{Session: sess}
 }
 
 //
@@ -2992,12 +2996,12 @@ func (r *User_Customer_OpenIdConnect) ValidateAuthenticationToken(authentication
 
 // Contains user information for Service Provider Enrollment.
 type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerProspectServiceProviderEnrollRequestService() User_Customer_Prospect_ServiceProvider_EnrollRequest {
-	return User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: r}
+func GetUserCustomerProspectServiceProviderEnrollRequestService(sess *session.Session) User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	return User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: sess}
 }
 
 // Create a new Service Provider Enrollment
@@ -3023,12 +3027,12 @@ func (r *User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp
 
 // The SoftLayer_User_Customer_Security_Answer type contains user's answers to security questions.
 type User_Customer_Security_Answer struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerSecurityAnswerService() User_Customer_Security_Answer {
-	return User_Customer_Security_Answer{Session: r}
+func GetUserCustomerSecurityAnswerService(sess *session.Session) User_Customer_Security_Answer {
+	return User_Customer_Security_Answer{Session: sess}
 }
 
 // getObject retrieves the SoftLayer_User_Customer_Security_Answer object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer_Security_Answer service.
@@ -3051,12 +3055,12 @@ func (r *User_Customer_Security_Answer) GetUser() (resp datatypes.User_Customer,
 
 // Each SoftLayer portal account is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 type User_Customer_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserCustomerStatusService() User_Customer_Status {
-	return User_Customer_Status{Session: r}
+func GetUserCustomerStatusService(sess *session.Session) User_Customer_Status {
+	return User_Customer_Status{Session: sess}
 }
 
 // Retrieve all user status objects.
@@ -3073,12 +3077,12 @@ func (r *User_Customer_Status) GetObject() (resp datatypes.User_Customer_Status,
 
 // The SoftLayer_User_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_External_Binding struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserExternalBindingService() User_External_Binding {
-	return User_External_Binding{Session: r}
+func GetUserExternalBindingService(sess *session.Session) User_External_Binding {
+	return User_External_Binding{Session: sess}
 }
 
 // Delete an external authentication binding.  If the external binding currently has an active billing item associated you will be prevented from deleting the binding.  The alternative method to remove an external authentication binding is to use the service cancellation form.
@@ -3134,12 +3138,12 @@ func (r *User_External_Binding) UpdateNote(text *string) (resp bool, err error) 
 
 // The SoftLayer_User_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_External_Binding_Vendor struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserExternalBindingVendorService() User_External_Binding_Vendor {
-	return User_External_Binding_Vendor{Session: r}
+func GetUserExternalBindingVendorService(sess *session.Session) User_External_Binding_Vendor {
+	return User_External_Binding_Vendor{Session: sess}
 }
 
 // getAllObjects() will return a list of the available external binding vendors that SoftLayer supports.  Use this list to select the appropriate vendor when creating a new external binding.
@@ -3156,12 +3160,12 @@ func (r *User_External_Binding_Vendor) GetObject() (resp datatypes.User_External
 
 //
 type User_Permission_Action struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserPermissionActionService() User_Permission_Action {
-	return User_Permission_Action{Session: r}
+func GetUserPermissionActionService(sess *session.Session) User_Permission_Action {
+	return User_Permission_Action{Session: sess}
 }
 
 //
@@ -3178,12 +3182,12 @@ func (r *User_Permission_Action) GetObject() (resp datatypes.User_Permission_Act
 
 //
 type User_Permission_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserPermissionGroupService() User_Permission_Group {
-	return User_Permission_Group{Session: r}
+func GetUserPermissionGroupService(sess *session.Session) User_Permission_Group {
+	return User_Permission_Group{Session: sess}
 }
 
 //
@@ -3342,12 +3346,12 @@ func (r *User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role)
 
 //
 type User_Permission_Group_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserPermissionGroupTypeService() User_Permission_Group_Type {
-	return User_Permission_Group_Type{Session: r}
+func GetUserPermissionGroupTypeService(sess *session.Session) User_Permission_Group_Type {
+	return User_Permission_Group_Type{Session: sess}
 }
 
 // Retrieve
@@ -3364,12 +3368,12 @@ func (r *User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission
 
 //
 type User_Permission_Role struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserPermissionRoleService() User_Permission_Role {
-	return User_Permission_Role{Session: r}
+func GetUserPermissionRoleService(sess *session.Session) User_Permission_Role {
+	return User_Permission_Role{Session: sess}
 }
 
 //
@@ -3468,12 +3472,12 @@ func (r *User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Grou
 
 // The SoftLayer_User_Security_Question data type contains questions.
 type User_Security_Question struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUserSecurityQuestionService() User_Security_Question {
-	return User_Security_Question{Session: r}
+func GetUserSecurityQuestionService(sess *session.Session) User_Security_Question {
+	return User_Security_Question{Session: sess}
 }
 
 // Retrieve all viewable security questions.

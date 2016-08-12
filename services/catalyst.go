@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Catalyst_Company_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetCatalystCompanyTypeService() Catalyst_Company_Type {
-	return Catalyst_Company_Type{Session: r}
+func GetCatalystCompanyTypeService(sess *session.Session) Catalyst_Company_Type {
+	return Catalyst_Company_Type{Session: sess}
 }
 
 // <<<EOT
@@ -46,12 +50,12 @@ func (r *Catalyst_Company_Type) GetObject() (resp datatypes.Catalyst_Company_Typ
 
 //
 type Catalyst_Enrollment struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetCatalystEnrollmentService() Catalyst_Enrollment {
-	return Catalyst_Enrollment{Session: r}
+func GetCatalystEnrollmentService(sess *session.Session) Catalyst_Enrollment {
+	return Catalyst_Enrollment{Session: sess}
 }
 
 // Retrieve

@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Security_Certificate struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSecurityCertificateService() Security_Certificate {
-	return Security_Certificate{Session: r}
+func GetSecurityCertificateService(sess *session.Session) Security_Certificate {
+	return Security_Certificate{Session: sess}
 }
 
 // Add a certificate to your account for your records, or for use with various services. Only the certificate and private key are usually required. If your issuer provided an intermediate certificate, you must also provide that certificate. Details will be extracted from the certificate. Validation will be performed between the certificate and the private key as well as the certificate and the intermediate certificate, if provided.
@@ -93,12 +97,12 @@ func (r *Security_Certificate) GetPemFormat() (resp string, err error) {
 
 // SoftLayer_Security_Certificate_Request data type is used to harness your SSL certificate order to a Certificate Authority. This contains data that is required by a Certificate Authority to place an SSL certificate order.
 type Security_Certificate_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSecurityCertificateRequestService() Security_Certificate_Request {
-	return Security_Certificate_Request{Session: r}
+func GetSecurityCertificateRequestService(sess *session.Session) Security_Certificate_Request {
+	return Security_Certificate_Request{Session: sess}
 }
 
 // Cancels a pending SSL certificate order at Certificate Authority
@@ -198,12 +202,12 @@ func (r *Security_Certificate_Request) ValidateCsr(csr *string, validityMonths *
 
 // Represents a server type that can be specified when ordering an SSL certificate.
 type Security_Certificate_Request_ServerType struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSecurityCertificateRequestServerTypeService() Security_Certificate_Request_ServerType {
-	return Security_Certificate_Request_ServerType{Session: r}
+func GetSecurityCertificateRequestServerTypeService(sess *session.Session) Security_Certificate_Request_ServerType {
+	return Security_Certificate_Request_ServerType{Session: sess}
 }
 
 // Returns all SSL certificate server types, which  passed in on a certificate order.
@@ -220,12 +224,12 @@ func (r *Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Se
 
 // SoftLayer_Security_Certificate_Request_Status data type represents the status of an SSL certificate request.
 type Security_Certificate_Request_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSecurityCertificateRequestStatusService() Security_Certificate_Request_Status {
-	return Security_Certificate_Request_Status{Session: r}
+func GetSecurityCertificateRequestStatusService(sess *session.Session) Security_Certificate_Request_Status {
+	return Security_Certificate_Request_Status{Session: sess}
 }
 
 //
@@ -242,12 +246,12 @@ func (r *Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []da
 
 //
 type Security_Ssh_Key struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSecuritySshKeyService() Security_Ssh_Key {
-	return Security_Ssh_Key{Session: r}
+func GetSecuritySshKeyService(sess *session.Session) Security_Ssh_Key {
+	return Security_Ssh_Key{Session: sess}
 }
 
 // Add a ssh key to your account for use during server provisioning and os reloads.

@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type FlexibleCredit_Program struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetFlexibleCreditProgramService() FlexibleCredit_Program {
-	return FlexibleCredit_Program{Session: r}
+func GetFlexibleCreditProgramService(sess *session.Session) FlexibleCredit_Program {
+	return FlexibleCredit_Program{Session: sess}
 }
 
 //

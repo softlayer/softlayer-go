@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Provisioning_Hook contains all the information needed to add a hook into a server/Virtual provision and os reload.
 type Provisioning_Hook struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningHookService() Provisioning_Hook {
-	return Provisioning_Hook{Session: r}
+func GetProvisioningHookService(sess *session.Session) Provisioning_Hook {
+	return Provisioning_Hook{Session: sess}
 }
 
 //
@@ -76,12 +80,12 @@ func (r *Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err e
 
 //
 type Provisioning_Hook_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningHookTypeService() Provisioning_Hook_Type {
-	return Provisioning_Hook_Type{Session: r}
+func GetProvisioningHookTypeService(sess *session.Session) Provisioning_Hook_Type {
+	return Provisioning_Hook_Type{Session: sess}
 }
 
 //
@@ -98,12 +102,12 @@ func (r *Provisioning_Hook_Type) GetObject() (resp datatypes.Provisioning_Hook_T
 
 // The SoftLayer_Provisioning_Maintenance_Classification represent a maintenance type for the specific hardware maintenance desired.
 type Provisioning_Maintenance_Classification struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningMaintenanceClassificationService() Provisioning_Maintenance_Classification {
-	return Provisioning_Maintenance_Classification{Session: r}
+func GetProvisioningMaintenanceClassificationService(sess *session.Session) Provisioning_Maintenance_Classification {
+	return Provisioning_Maintenance_Classification{Session: sess}
 }
 
 // Retrieve
@@ -135,12 +139,12 @@ func (r *Provisioning_Maintenance_Classification) GetObject() (resp datatypes.Pr
 
 //
 type Provisioning_Maintenance_Classification_Item_Category struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningMaintenanceClassificationItemCategoryService() Provisioning_Maintenance_Classification_Item_Category {
-	return Provisioning_Maintenance_Classification_Item_Category{Session: r}
+func GetProvisioningMaintenanceClassificationItemCategoryService(sess *session.Session) Provisioning_Maintenance_Classification_Item_Category {
+	return Provisioning_Maintenance_Classification_Item_Category{Session: sess}
 }
 
 // Retrieve
@@ -157,12 +161,12 @@ func (r *Provisioning_Maintenance_Classification_Item_Category) GetObject() (res
 
 // The SoftLayer_Provisioning_Maintenance_Slots represent the available slots for a given maintenance window at a SoftLayer data center.
 type Provisioning_Maintenance_Slots struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningMaintenanceSlotsService() Provisioning_Maintenance_Slots {
-	return Provisioning_Maintenance_Slots{Session: r}
+func GetProvisioningMaintenanceSlotsService(sess *session.Session) Provisioning_Maintenance_Slots {
+	return Provisioning_Maintenance_Slots{Session: sess}
 }
 
 //
@@ -173,12 +177,12 @@ func (r *Provisioning_Maintenance_Slots) GetObject() (resp datatypes.Provisionin
 
 //
 type Provisioning_Maintenance_Ticket struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningMaintenanceTicketService() Provisioning_Maintenance_Ticket {
-	return Provisioning_Maintenance_Ticket{Session: r}
+func GetProvisioningMaintenanceTicketService(sess *session.Session) Provisioning_Maintenance_Ticket {
+	return Provisioning_Maintenance_Ticket{Session: sess}
 }
 
 // Retrieve
@@ -207,12 +211,12 @@ func (r *Provisioning_Maintenance_Ticket) GetTicket() (resp datatypes.Ticket, er
 
 // The SoftLayer_Provisioning_Maintenance_Window represent a time window that SoftLayer performs a hardware or software maintenance and upgrades.
 type Provisioning_Maintenance_Window struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningMaintenanceWindowService() Provisioning_Maintenance_Window {
-	return Provisioning_Maintenance_Window{Session: r}
+func GetProvisioningMaintenanceWindowService(sess *session.Session) Provisioning_Maintenance_Window {
+	return Provisioning_Maintenance_Window{Session: sess}
 }
 
 // getMaintenceWindowForTicket() returns a boolean
@@ -296,12 +300,12 @@ func (r *Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenanc
 //
 // SoftLayer customers are unable to change their hardware transactions or the hardware transaction group.
 type Provisioning_Version1_Transaction_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProvisioningVersion1TransactionGroupService() Provisioning_Version1_Transaction_Group {
-	return Provisioning_Version1_Transaction_Group{Session: r}
+func GetProvisioningVersion1TransactionGroupService(sess *session.Session) Provisioning_Version1_Transaction_Group {
+	return Provisioning_Version1_Transaction_Group{Session: sess}
 }
 
 //

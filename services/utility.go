@@ -20,14 +20,19 @@
 
 package services
 
+import (
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
+
 //
 type Utility_Network struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetUtilityNetworkService() Utility_Network {
-	return Utility_Network{Session: r}
+func GetUtilityNetworkService(sess *session.Session) Utility_Network {
+	return Utility_Network{Session: sess}
 }
 
 // A method used to return the nameserver information for a given address

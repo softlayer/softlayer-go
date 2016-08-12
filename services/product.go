@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // The SoftLayer_Product_Item_Category data type contains general category information for prices.
 type Product_Item_Category struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductItemCategoryService() Product_Item_Category {
-	return Product_Item_Category{Session: r}
+func GetProductItemCategoryService(sess *session.Session) Product_Item_Category {
+	return Product_Item_Category{Session: sess}
 }
 
 // Returns a list of of active Items in the "Additional Services" package with their active prices for a given product item category and sorts them by price.
@@ -148,12 +152,12 @@ func (r *Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_It
 
 // The SoftLayer_Product_Item_Category_Group data type contains general category group information.
 type Product_Item_Category_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductItemCategoryGroupService() Product_Item_Category_Group {
-	return Product_Item_Category_Group{Session: r}
+func GetProductItemCategoryGroupService(sess *session.Session) Product_Item_Category_Group {
+	return Product_Item_Category_Group{Session: sess}
 }
 
 // Each product item category must be tied to a category group. These category groups describe how a particular product item category is categorized. For example, the disk0, disk1, ... disk11 can be categorized as Server and Attached Services. There are different groups for each of this product item category depending on the function of the item product in the subject category.
@@ -164,12 +168,12 @@ func (r *Product_Item_Category_Group) GetObject() (resp datatypes.Product_Item_C
 
 // Represents the assignment of a policy to a product. The existence of a record means that the associated product is subject to the terms defined in the document content of the policy.
 type Product_Item_Policy_Assignment struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductItemPolicyAssignmentService() Product_Item_Policy_Assignment {
-	return Product_Item_Policy_Assignment{Session: r}
+func GetProductItemPolicyAssignmentService(sess *session.Session) Product_Item_Policy_Assignment {
+	return Product_Item_Policy_Assignment{Session: sess}
 }
 
 // Register the acceptance of the associated policy to product assignment, and link the created record to a Ticket.
@@ -207,12 +211,12 @@ func (r *Product_Item_Policy_Assignment) GetProduct() (resp datatypes.Product_It
 
 // The SoftLayer_Product_Item_Price data type contains general information relating to a single SoftLayer product item price. You can find out what packages each price is in as well as which category under which this price is sold. All prices are returned in floating point values measured in US Dollars ($USD).
 type Product_Item_Price struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductItemPriceService() Product_Item_Price {
-	return Product_Item_Price{Session: r}
+func GetProductItemPriceService(sess *session.Session) Product_Item_Price {
+	return Product_Item_Price{Session: sess}
 }
 
 // Retrieve The account that the item price is restricted to.
@@ -335,12 +339,12 @@ func (r *Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, it
 
 //
 type Product_Item_Price_Premium struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductItemPricePremiumService() Product_Item_Price_Premium {
-	return Product_Item_Price_Premium{Session: r}
+func GetProductItemPricePremiumService(sess *session.Session) Product_Item_Price_Premium {
+	return Product_Item_Price_Premium{Session: sess}
 }
 
 // Retrieve
@@ -369,12 +373,12 @@ func (r *Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Packag
 
 //
 type Product_Order struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductOrderService() Product_Order {
-	return Product_Order{Session: r}
+func GetProductOrderService(sess *session.Session) Product_Order {
+	return Product_Order{Session: sess}
 }
 
 //
@@ -933,12 +937,12 @@ func (r *Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order
 
 // The SoftLayer_Product_Package data type contains information about packages from which orders can be generated. Packages contain general information regarding what is in them, where they are currently sold, availability, and pricing.
 type Product_Package struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductPackageService() Product_Package {
-	return Product_Package{Session: r}
+func GetProductPackageService(sess *session.Session) Product_Package {
+	return Product_Package{Session: sess}
 }
 
 // Retrieve The results from this call are similar to [[SoftLayer_Product_Package/getCategories|getCategories]], but these ONLY include account-restricted prices. Not all accounts have restricted pricing.
@@ -1342,12 +1346,12 @@ func (r *Product_Package) GetType() (resp datatypes.Product_Package_Type, err er
 //
 // Orders submitted with a preset id defined will use the prices included in the package preset. Prices submitted on an order with a preset id will replace the prices included in the package preset for that prices category. If the package preset has a fixed configuration flag <em>(fixedConfigurationFlag)</em> set then the prices included in the preset configuration cannot be replaced by prices submitted on the order. The only exception to the fixed configuration flag would be if a price submitted on the order is an account-restricted price for the same product item.
 type Product_Package_Preset struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductPackagePresetService() Product_Package_Preset {
-	return Product_Package_Preset{Session: r}
+func GetProductPackagePresetService(sess *session.Session) Product_Package_Preset {
+	return Product_Package_Preset{Session: sess}
 }
 
 // This method returns all the active package presets.
@@ -1430,12 +1434,12 @@ func (r *Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, er
 
 // The SoftLayer_Product_Package_Server data type contains summarized information for bare metal servers regarding pricing, processor stats, and feature sets.
 type Product_Package_Server struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductPackageServerService() Product_Package_Server {
-	return Product_Package_Server{Session: r}
+func GetProductPackageServerService(sess *session.Session) Product_Package_Server {
+	return Product_Package_Server{Session: sess}
 }
 
 // This method will grab all the package servers.
@@ -1482,12 +1486,12 @@ func (r *Product_Package_Server) GetPreset() (resp datatypes.Product_Package_Pre
 
 // The [[SoftLayer_Product_Package_Server_Option]] data type contains various data points associated with package servers that can be used in selection criteria.
 type Product_Package_Server_Option struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductPackageServerOptionService() Product_Package_Server_Option {
-	return Product_Package_Server_Option{Session: r}
+func GetProductPackageServerOptionService(sess *session.Session) Product_Package_Server_Option {
+	return Product_Package_Server_Option{Session: sess}
 }
 
 // This method will grab all the package server options.
@@ -1513,12 +1517,12 @@ func (r *Product_Package_Server_Option) GetOptions(typ *string) (resp []datatype
 
 // The [[SoftLayer_Product_Package_Type]] object indicates the type for a service offering (package). The type can be used to filter packages. For example, if you are looking for the package representing virtual servers, you can filter on the type's key name of '''VIRTUAL_SERVER_INSTANCE'''. For bare metal servers by core or CPU, filter on '''BARE_METAL_CORE''' or '''BARE_METAL_CPU''', respectively.
 type Product_Package_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductPackageTypeService() Product_Package_Type {
-	return Product_Package_Type{Session: r}
+func GetProductPackageTypeService(sess *session.Session) Product_Package_Type {
+	return Product_Package_Type{Session: sess}
 }
 
 // This method will return all of the available package types.
@@ -1541,12 +1545,12 @@ func (r *Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, 
 
 // The SoftLayer_Product_Upgrade_Request data type contains general information relating to a hardware, virtual server, or service upgrade. It also relates a [[SoftLayer_Billing_Order]] to a [[SoftLayer_Ticket]].
 type Product_Upgrade_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetProductUpgradeRequestService() Product_Upgrade_Request {
-	return Product_Upgrade_Request{Session: r}
+func GetProductUpgradeRequestService(sess *session.Session) Product_Upgrade_Request {
+	return Product_Upgrade_Request{Session: sess}
 }
 
 // When a change is made to an upgrade by Sales, this method will approve the changes that were made. A customer must acknowledge the change and approve it so that the upgrade request can proceed.

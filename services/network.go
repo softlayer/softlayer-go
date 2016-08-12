@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 //
 type Network struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkService() Network {
-	return Network{Session: r}
+func GetNetworkService(sess *session.Session) Network {
+	return Network{Session: sess}
 }
 
 // Provide a template containing the following properties to create a Network:
@@ -160,12 +164,12 @@ func (r *Network) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 
 // The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ''notes'' property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
 type Network_Application_Delivery_Controller struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerService() Network_Application_Delivery_Controller {
-	return Network_Application_Delivery_Controller{Session: r}
+func GetNetworkApplicationDeliveryControllerService(sess *session.Session) Network_Application_Delivery_Controller {
+	return Network_Application_Delivery_Controller{Session: sess}
 }
 
 // Create or add to an application delivery controller based load balancer service. The loadBalancer parameter must have its ''name'', ''type'', ''sourcePort'', and ''virtualIpAddress'' properties populated. Changes are reflected immediately in the application delivery controller.
@@ -419,12 +423,12 @@ func (r *Network_Application_Delivery_Controller) UpdateNetScalerLicense() (resp
 
 // The SoftLayer_Network_Application_Delivery_Controller_Configuration_History data type models a single instance of a configuration history entry for an application delivery controller. The configuration history entries are used to support creating backups of an application delivery controller's configuration state in order to restore them later if needed.
 type Network_Application_Delivery_Controller_Configuration_History struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerConfigurationHistoryService() Network_Application_Delivery_Controller_Configuration_History {
-	return Network_Application_Delivery_Controller_Configuration_History{Session: r}
+func GetNetworkApplicationDeliveryControllerConfigurationHistoryService(sess *session.Session) Network_Application_Delivery_Controller_Configuration_History {
+	return Network_Application_Delivery_Controller_Configuration_History{Session: sess}
 }
 
 // deleteObject permanently removes a configuration history record
@@ -447,12 +451,12 @@ func (r *Network_Application_Delivery_Controller_Configuration_History) GetObjec
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeService() Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{Session: sess}
 }
 
 // Retrieve
@@ -475,12 +479,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) 
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeTypeService() Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthAttributeTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	return Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type{Session: sess}
 }
 
 //
@@ -497,12 +501,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_T
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckService() Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check{Session: sess}
 }
 
 // Retrieve
@@ -537,12 +541,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetT
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckTypeService() Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerHealthCheckTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	return Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type{Session: sess}
 }
 
 //
@@ -559,12 +563,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type)
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Method struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerRoutingMethodService() Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
-	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Method{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingMethodService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Method{Session: sess}
 }
 
 //
@@ -581,12 +585,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Ge
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerRoutingTypeService() Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
-	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Type{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerRoutingTypeService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	return Network_Application_Delivery_Controller_LoadBalancer_Routing_Type{Session: sess}
 }
 
 //
@@ -603,12 +607,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetO
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerServiceService() Network_Application_Delivery_Controller_LoadBalancer_Service {
-	return Network_Application_Delivery_Controller_LoadBalancer_Service{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerServiceService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	return Network_Application_Delivery_Controller_LoadBalancer_Service{Session: sess}
 }
 
 //
@@ -679,12 +683,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleSta
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerServiceGroupService() Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
-	return Network_Application_Delivery_Controller_LoadBalancer_Service_Group{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerServiceGroupService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	return Network_Application_Delivery_Controller_LoadBalancer_Service_Group{Session: sess}
 }
 
 // Get the graph image for a load balancer service group based on the supplied graph type and metric.  The only available graph type currently is: 'connections', and the available metrics are: 'day', 'week' and 'month'.
@@ -749,12 +753,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Kic
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressService() Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualIpAddressService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	return Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{Session: sess}
 }
 
 // Like any other API object, the load balancers can have their exposed properties edited by passing in a modified version of the object.  The load balancer object also can modify its services in this way.  Simply request the load balancer object you wish to edit, then modify the objects in the services array and pass the modified object to this function.  WARNING:  Services cannot be deleted in this manner, you must call deleteObject() on the service to physically remove them from the load balancer.
@@ -888,12 +892,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) 
 
 //
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService() Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
-	return Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{Session: r}
+func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService(sess *session.Session) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	return Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{Session: sess}
 }
 
 //
@@ -946,12 +950,12 @@ func (r *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Sto
 
 // A SoftLayer_Network_Backbone represents a single backbone connection from SoftLayer to the public Internet, from the Internet to the SoftLayer private network, or a link that connects the private networks between SoftLayer's datacenters. The SoftLayer_Network_Backbone data type is a collection of data associated with one of those connections.
 type Network_Backbone struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkBackboneService() Network_Backbone {
-	return Network_Backbone{Session: r}
+func GetNetworkBackboneService(sess *session.Session) Network_Backbone {
+	return Network_Backbone{Session: sess}
 }
 
 // Retrieve a list of all SoftLayer backbone connections. Use this method if you need all backbones or don't know the id number of a specific backbone.
@@ -1001,12 +1005,12 @@ func (r *Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err err
 
 //
 type Network_Backbone_Location_Dependent struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkBackboneLocationDependentService() Network_Backbone_Location_Dependent {
-	return Network_Backbone_Location_Dependent{Session: r}
+func GetNetworkBackboneLocationDependentService(sess *session.Session) Network_Backbone_Location_Dependent {
+	return Network_Backbone_Location_Dependent{Session: sess}
 }
 
 //
@@ -1044,12 +1048,12 @@ func (r *Network_Backbone_Location_Dependent) GetSourceLocation() (resp datatype
 
 // The SoftLayer_Network_Bandwidth_Version1_Allotment class provides methods and data structures necessary to work with an array of hardware objects associated with a single Bandwidth Pooling.
 type Network_Bandwidth_Version1_Allotment struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkBandwidthVersion1AllotmentService() Network_Bandwidth_Version1_Allotment {
-	return Network_Bandwidth_Version1_Allotment{Session: r}
+func GetNetworkBandwidthVersion1AllotmentService(sess *session.Session) Network_Bandwidth_Version1_Allotment {
+	return Network_Bandwidth_Version1_Allotment{Session: sess}
 }
 
 // Create a allotment for servers to pool bandwidth and avoid overages in billing if they use more than there allocated bandwidth.
@@ -1385,12 +1389,12 @@ func (r *Network_Bandwidth_Version1_Allotment) VoidPendingVdrCancellation() (res
 
 // Every piece of hardware running in SoftLayer's datacenters connected to the public, private, or management networks (where applicable) have a corresponding network component. These network components are modeled by the SoftLayer_Network_Component data type. These data types reflect the servers' local ethernet and remote management interfaces.
 type Network_Component struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkComponentService() Network_Component {
-	return Network_Component{Session: r}
+func GetNetworkComponentService(sess *session.Session) Network_Component {
+	return Network_Component{Session: sess}
 }
 
 // Add VLANs as trunks to a network component. The VLANs given must be assigned to your account, and on the router to which this network component is connected. The current native VLAN (networkVlanId/networkVlan) cannot be added as a trunk. This method should be called on a network component attached directly to customer assigned hardware, though all trunking operations will occur on the uplinkComponent. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
@@ -1621,12 +1625,12 @@ func (r *Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Net
 
 // The SoftLayer_Network_Component_Firewall data type contains general information relating to a single SoftLayer network component firewall. This is the object which ties the running rules to a specific downstream server. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Component_Firewall struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkComponentFirewallService() Network_Component_Firewall {
-	return Network_Component_Firewall{Session: r}
+func GetNetworkComponentFirewallService(sess *session.Session) Network_Component_Firewall {
+	return Network_Component_Firewall{Session: sess}
 }
 
 // Retrieve The additional subnets linked to this network component firewall, that inherit rules from the host that the context slot is attached to.
@@ -1679,12 +1683,12 @@ func (r *Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subn
 
 // The SoftLayer_Network_ContentDelivery_Account data type models an individual CDN account. CDN accounts contain references to the SoftLayer customer account they belong to, login credentials for upload services, and a CDN account's status. Please contact SoftLayer sales to purchase or cancel a CDN account
 type Network_ContentDelivery_Account struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkContentDeliveryAccountService() Network_ContentDelivery_Account {
-	return Network_ContentDelivery_Account{Session: r}
+func GetNetworkContentDeliveryAccountService(sess *session.Session) Network_ContentDelivery_Account {
+	return Network_ContentDelivery_Account{Session: sess}
 }
 
 // Internap servers attempts to validate a token before serving a protected content. SoftLayer customer does not need to invoke this method.  Please refer to [[SoftLayer_Network_ContentDelivery_Authentication_Token|Authentication Token]] object for more details on Content Authentication Service.
@@ -2153,12 +2157,12 @@ func (r *Network_ContentDelivery_Account) UploadStream(source *datatypes.Contain
 
 // The SoftLayer_Network_ContentDelivery_Authentication_Address data type models an individual IP address that CDN allow or deny access from.
 type Network_ContentDelivery_Authentication_Address struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkContentDeliveryAuthenticationAddressService() Network_ContentDelivery_Authentication_Address {
-	return Network_ContentDelivery_Authentication_Address{Session: r}
+func GetNetworkContentDeliveryAuthenticationAddressService(sess *session.Session) Network_ContentDelivery_Authentication_Address {
+	return Network_ContentDelivery_Authentication_Address{Session: sess}
 }
 
 // This method creates an authentication IP record.  Required parameters are
@@ -2210,12 +2214,12 @@ func (r *Network_ContentDelivery_Authentication_Address) RearrangeAuthentication
 
 // The SoftLayer_Network_ContentDelivery_Authentication_Address data type models an individual IP address that CDN allow or deny access from.
 type Network_ContentDelivery_Authentication_Token struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkContentDeliveryAuthenticationTokenService() Network_ContentDelivery_Authentication_Token {
-	return Network_ContentDelivery_Authentication_Token{Session: r}
+func GetNetworkContentDeliveryAuthenticationTokenService(sess *session.Session) Network_ContentDelivery_Authentication_Token {
+	return Network_ContentDelivery_Authentication_Token{Session: sess}
 }
 
 // This method is deprecated! Use the [[SoftLayer_Network_ContentDelivery_Authentication_Token::getTimedToken|getTimedToken]] method.
@@ -2318,12 +2322,12 @@ func (r *Network_ContentDelivery_Authentication_Token) RevokeManagedTokens(templ
 
 // The SoftLayer_Network_Customer_Subnet data type contains general information relating to a single customer subnet (remote).
 type Network_Customer_Subnet struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkCustomerSubnetService() Network_Customer_Subnet {
-	return Network_Customer_Subnet{Session: r}
+func GetNetworkCustomerSubnetService(sess *session.Session) Network_Customer_Subnet {
+	return Network_Customer_Subnet{Session: sess}
 }
 
 // For IPSec network tunnels, customers can create their local subnets using this method.  After the customer is created successfully, the customer subnet can then be added to the IPSec network tunnel.
@@ -2349,12 +2353,12 @@ func (r *Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_S
 
 // The SoftLayer_Network_Firewall_AccessControlList data type contains general information relating to a single SoftLayer firewall access to controll list. This is the object which ties the running rules to a specific context. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_AccessControlList struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallAccessControlListService() Network_Firewall_AccessControlList {
-	return Network_Firewall_AccessControlList{Session: r}
+func GetNetworkFirewallAccessControlListService(sess *session.Session) Network_Firewall_AccessControlList {
+	return Network_Firewall_AccessControlList{Session: sess}
 }
 
 // Retrieve The update requests made for this firewall.
@@ -2383,12 +2387,12 @@ func (r *Network_Firewall_AccessControlList) GetRules() (resp []datatypes.Networ
 
 // The SoftLayer_Network_Firewall_Interface data type contains general information relating to a single SoftLayer firewall interface. This is the object which ties the firewall context access control list to a firewall. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_Interface struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallInterfaceService() Network_Firewall_Interface {
-	return Network_Firewall_Interface{Session: r}
+func GetNetworkFirewallInterfaceService(sess *session.Session) Network_Firewall_Interface {
+	return Network_Firewall_Interface{Session: sess}
 }
 
 // Retrieve
@@ -2411,12 +2415,12 @@ func (r *Network_Firewall_Interface) GetObject() (resp datatypes.Network_Firewal
 
 //
 type Network_Firewall_Module_Context_Interface struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallModuleContextInterfaceService() Network_Firewall_Module_Context_Interface {
-	return Network_Firewall_Module_Context_Interface{Session: r}
+func GetNetworkFirewallModuleContextInterfaceService(sess *session.Session) Network_Firewall_Module_Context_Interface {
+	return Network_Firewall_Module_Context_Interface{Session: sess}
 }
 
 // Retrieve
@@ -2441,12 +2445,12 @@ func (r *Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.
 //
 // Firewall templates are recommend rule sets for use with SoftLayer Hardware Firewall (Dedicated).  These optimized templates are designed to balance security restriction with application availability.  The templates given may be altered to provide custom network security, or may be used as-is for basic security. At least one rule set MUST be applied for the firewall to block traffic. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_Template struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallTemplateService() Network_Firewall_Template {
-	return Network_Firewall_Template{Session: r}
+func GetNetworkFirewallTemplateService(sess *session.Session) Network_Firewall_Template {
+	return Network_Firewall_Template{Session: sess}
 }
 
 // Get all available firewall template objects.
@@ -2473,12 +2477,12 @@ func (r *Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewal
 
 // The SoftLayer_Network_Firewall_Update_Request data type contains information relating to a SoftLayer network firewall update request. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates.
 type Network_Firewall_Update_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallUpdateRequestService() Network_Firewall_Update_Request {
-	return Network_Firewall_Update_Request{Session: r}
+func GetNetworkFirewallUpdateRequestService(sess *session.Session) Network_Firewall_Update_Request {
+	return Network_Firewall_Update_Request{Session: sess}
 }
 
 // Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
@@ -2548,12 +2552,12 @@ func (r *Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Netwo
 
 // The SoftLayer_Network_Firewall_Update_Request_Rule type contains information relating to a SoftLayer network firewall update request rule. This rule is a member of a [[SoftLayer Network Firewall Update Request]]. Use the [[SoftLayer Network Component Firewall]] service to view current rules. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates.
 type Network_Firewall_Update_Request_Rule struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkFirewallUpdateRequestRuleService() Network_Firewall_Update_Request_Rule {
-	return Network_Firewall_Update_Request_Rule{Session: r}
+func GetNetworkFirewallUpdateRequestRuleService(sess *session.Session) Network_Firewall_Update_Request_Rule {
+	return Network_Firewall_Update_Request_Rule{Session: sess}
 }
 
 // Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
@@ -2595,12 +2599,12 @@ func (r *Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netw
 
 //
 type Network_Gateway struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkGatewayService() Network_Gateway {
-	return Network_Gateway{Session: r}
+func GetNetworkGatewayService(sess *session.Session) Network_Gateway {
+	return Network_Gateway{Session: sess}
 }
 
 // Start the asynchronous process to bypass all VLANs. Any VLANs that are already bypassed will be ignored. The status field can be checked for progress.
@@ -2723,12 +2727,12 @@ func (r *Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) 
 
 //
 type Network_Gateway_Member struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkGatewayMemberService() Network_Gateway_Member {
-	return Network_Gateway_Member{Session: r}
+func GetNetworkGatewayMemberService(sess *session.Session) Network_Gateway_Member {
+	return Network_Gateway_Member{Session: sess}
 }
 
 // Create a new hardware member on the gateway. This also asynchronously sets up the network for this member. Progress of this process can be monitored via the gateway status. All members created with this object must have no VLANs attached.
@@ -2769,12 +2773,12 @@ func (r *Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Mem
 
 //
 type Network_Gateway_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkGatewayStatusService() Network_Gateway_Status {
-	return Network_Gateway_Status{Session: r}
+func GetNetworkGatewayStatusService(sess *session.Session) Network_Gateway_Status {
+	return Network_Gateway_Status{Session: sess}
 }
 
 //
@@ -2785,12 +2789,12 @@ func (r *Network_Gateway_Status) GetObject() (resp datatypes.Network_Gateway_Sta
 
 //
 type Network_Gateway_Vlan struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkGatewayVlanService() Network_Gateway_Vlan {
-	return Network_Gateway_Vlan{Session: r}
+func GetNetworkGatewayVlanService(sess *session.Session) Network_Gateway_Vlan {
+	return Network_Gateway_Vlan{Session: sess}
 }
 
 // Start the asynchronous process to bypass/unroute the VLAN from this gateway.
@@ -2861,12 +2865,12 @@ func (r *Network_Gateway_Vlan) Unbypass() (err error) {
 
 // The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
 type Network_LoadBalancer_Global_Account struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkLoadBalancerGlobalAccountService() Network_LoadBalancer_Global_Account {
-	return Network_LoadBalancer_Global_Account{Session: r}
+func GetNetworkLoadBalancerGlobalAccountService(sess *session.Session) Network_LoadBalancer_Global_Account {
+	return Network_LoadBalancer_Global_Account{Session: sess}
 }
 
 // If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.  A NS resource record is required to be able to use your SoftLayer global load balancer account. Please make sure the zone file for the hostname listed on your SoftLayer global load balancer account is setup prior to using this method.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to add the required NS record.
@@ -2957,12 +2961,12 @@ func (r *Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err e
 //
 // The order of the host is only important if you are using the 'failover' load balance method, and the weight is only important if you are using the 'weighted round robin' load balance method.
 type Network_LoadBalancer_Global_Host struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkLoadBalancerGlobalHostService() Network_LoadBalancer_Global_Host {
-	return Network_LoadBalancer_Global_Host{Session: r}
+func GetNetworkLoadBalancerGlobalHostService(sess *session.Session) Network_LoadBalancer_Global_Host {
+	return Network_LoadBalancer_Global_Host{Session: sess}
 }
 
 // Remove a host from the load balancing pool of a global load balancer account.
@@ -2987,12 +2991,12 @@ func (r *Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_L
 //
 // Information retained on the object itself is the the source and destination of the service, routing type, weight, and whether or not the service is currently enabled.
 type Network_LoadBalancer_Service struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkLoadBalancerServiceService() Network_LoadBalancer_Service {
-	return Network_LoadBalancer_Service{Session: r}
+func GetNetworkLoadBalancerServiceService(sess *session.Session) Network_LoadBalancer_Service {
+	return Network_LoadBalancer_Service{Session: sess}
 }
 
 // Calling deleteObject on a particular server will remove it from the load balancer.  This is the only way to remove a service from your load balancer.  If you wish to remove a server, first call this function, then reload the virtualIpAddress object and edit the remaining services to reflect the other changes that you wish to make.
@@ -3056,12 +3060,12 @@ func (r *Network_LoadBalancer_Service) ResetPeakConnections() (resp bool, err er
 //
 // Information retained on the object itself is the virtual IP address, load balancing method, and any notes that are related to the load balancer.  There is also an array of SoftLayer_Network_LoadBalancer_Service objects, which represent the load balancer services, explained more fully in the SoftLayer_Network_LoadBalancer_Service documentation.
 type Network_LoadBalancer_VirtualIpAddress struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkLoadBalancerVirtualIpAddressService() Network_LoadBalancer_VirtualIpAddress {
-	return Network_LoadBalancer_VirtualIpAddress{Session: r}
+func GetNetworkLoadBalancerVirtualIpAddressService(sess *session.Session) Network_LoadBalancer_VirtualIpAddress {
+	return Network_LoadBalancer_VirtualIpAddress{Session: sess}
 }
 
 // Disable a Virtual IP Address, removing it from load balancer rotation and denying all connections to that IP address.
@@ -3135,12 +3139,12 @@ func (r *Network_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp b
 
 // The SoftLayer_Network_Media_Transcode_Account contains information regarding a transcode account.
 type Network_Media_Transcode_Account struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMediaTranscodeAccountService() Network_Media_Transcode_Account {
-	return Network_Media_Transcode_Account{Session: r}
+func GetNetworkMediaTranscodeAccountService(sess *session.Session) Network_Media_Transcode_Account {
+	return Network_Media_Transcode_Account{Session: sess}
 }
 
 // With this method, you can create a transcode account.  Individual SoftLayer account can have a single Transcode account. You have to pass your SoftLayer account id as a parameter.
@@ -3246,12 +3250,12 @@ func (r *Network_Media_Transcode_Account) GetTranscodeJobs() (resp []datatypes.N
 
 // The SoftLayer_Network_Media_Transcode_Job contains information regarding a transcode job such as input file, output format, user id and so on.
 type Network_Media_Transcode_Job struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMediaTranscodeJobService() Network_Media_Transcode_Job {
-	return Network_Media_Transcode_Job{Session: r}
+func GetNetworkMediaTranscodeJobService(sess *session.Session) Network_Media_Transcode_Job {
+	return Network_Media_Transcode_Job{Session: sess}
 }
 
 // With this method, you can create a transcode job.
@@ -3325,12 +3329,12 @@ func (r *Network_Media_Transcode_Job) GetUser() (resp datatypes.User_Customer, e
 
 // The SoftLayer_Network_Media_Transcode_Job_Status contains information on a transcode job status.
 type Network_Media_Transcode_Job_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMediaTranscodeJobStatusService() Network_Media_Transcode_Job_Status {
-	return Network_Media_Transcode_Job_Status{Session: r}
+func GetNetworkMediaTranscodeJobStatusService(sess *session.Session) Network_Media_Transcode_Job_Status {
+	return Network_Media_Transcode_Job_Status{Session: sess}
 }
 
 // This method returns all transcode job statuses.
@@ -3347,12 +3351,12 @@ func (r *Network_Media_Transcode_Job_Status) GetObject() (resp datatypes.Network
 
 //
 type Network_Message_Delivery struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMessageDeliveryService() Network_Message_Delivery {
-	return Network_Message_Delivery{Session: r}
+func GetNetworkMessageDeliveryService(sess *session.Session) Network_Message_Delivery {
+	return Network_Message_Delivery{Session: sess}
 }
 
 //
@@ -3396,12 +3400,12 @@ func (r *Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_D
 
 //
 type Network_Message_Delivery_Email_Sendgrid struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMessageDeliveryEmailSendgridService() Network_Message_Delivery_Email_Sendgrid {
-	return Network_Message_Delivery_Email_Sendgrid{Session: r}
+func GetNetworkMessageDeliveryEmailSendgridService(sess *session.Session) Network_Message_Delivery_Email_Sendgrid {
+	return Network_Message_Delivery_Email_Sendgrid{Session: sess}
 }
 
 //
@@ -3551,12 +3555,12 @@ func (r *Network_Message_Delivery_Email_Sendgrid) UpdateEmailAddress(emailAddres
 
 // The SoftLayer_Network_Message_Queue data type contains general information relating to Message Queue account
 type Network_Message_Queue struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMessageQueueService() Network_Message_Queue {
-	return Network_Message_Queue{Session: r}
+func GetNetworkMessageQueueService(sess *session.Session) Network_Message_Queue {
+	return Network_Message_Queue{Session: sess}
 }
 
 // Retrieve The account that a message queue belongs to.
@@ -3591,12 +3595,12 @@ func (r *Network_Message_Queue) GetStatus() (resp datatypes.Network_Message_Queu
 
 // The SoftLayer_Network_Message_Queue_Node data type contains general information relating to Message Queue node
 type Network_Message_Queue_Node struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMessageQueueNodeService() Network_Message_Queue_Node {
-	return Network_Message_Queue_Node{Session: r}
+func GetNetworkMessageQueueNodeService(sess *session.Session) Network_Message_Queue_Node {
+	return Network_Message_Queue_Node{Session: sess}
 }
 
 //
@@ -3668,12 +3672,12 @@ func (r *Network_Message_Queue_Node) GetUsageGraph(graphData *datatypes.Containe
 
 // The SoftLayer_Network_Message_Queue_Status data type contains general information relating to Message Queue account status.
 type Network_Message_Queue_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMessageQueueStatusService() Network_Message_Queue_Status {
-	return Network_Message_Queue_Status{Session: r}
+func GetNetworkMessageQueueStatusService(sess *session.Session) Network_Message_Queue_Status {
+	return Network_Message_Queue_Status{Session: sess}
 }
 
 //
@@ -3684,12 +3688,12 @@ func (r *Network_Message_Queue_Status) GetObject() (resp datatypes.Network_Messa
 
 //
 type Network_Monitor struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMonitorService() Network_Monitor {
-	return Network_Monitor{Session: r}
+func GetNetworkMonitorService(sess *session.Session) Network_Monitor {
+	return Network_Monitor{Session: sess}
 }
 
 // This will return an arrayObject of objects containing the ipaddresses.  Using an string parameter you can send a partial ipaddress to search within a given ipaddress.  You can also set the max limit as well using the setting the resultLimit.
@@ -3714,12 +3718,12 @@ func (r *Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_
 
 // The Monitoring_Query_Host type represents a monitoring instance.  It consists of a hardware ID to monitor, an IP address attached to that hardware ID, a method of monitoring, and what to do in the instance that the monitor ever fails.
 type Network_Monitor_Version1_Query_Host struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMonitorVersion1QueryHostService() Network_Monitor_Version1_Query_Host {
-	return Network_Monitor_Version1_Query_Host{Session: r}
+func GetNetworkMonitorVersion1QueryHostService(sess *session.Session) Network_Monitor_Version1_Query_Host {
+	return Network_Monitor_Version1_Query_Host{Session: sess}
 }
 
 // Passing in an unsaved instances of a Query_Host object into this function will create the object and return the results to the user.
@@ -3823,12 +3827,12 @@ func (r *Network_Monitor_Version1_Query_Host) GetResponseAction() (resp datatype
 //
 // Also note that the query type and response types are available through getAllQueryTypes and getAllResponseTypes, respectively.
 type Network_Monitor_Version1_Query_Host_Stratum struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkMonitorVersion1QueryHostStratumService() Network_Monitor_Version1_Query_Host_Stratum {
-	return Network_Monitor_Version1_Query_Host_Stratum{Session: r}
+func GetNetworkMonitorVersion1QueryHostStratumService(sess *session.Session) Network_Monitor_Version1_Query_Host_Stratum {
+	return Network_Monitor_Version1_Query_Host_Stratum{Session: sess}
 }
 
 // Calling this function returns all possible query type objects. These objects are to be used to set the values on the SoftLayer_Network_Monitor_Version1_Query_Host when creating new monitoring instances.
@@ -3862,12 +3866,12 @@ func (r *Network_Monitor_Version1_Query_Host_Stratum) GetObject() (resp datatype
 // * sjc01.pod04 = San Jose 1, Pod 4 (ie. bcr04)
 // * ams01.pod01 = Amsterdam 1, Pod 1 (ie. bcr01)
 type Network_Pod struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkPodService() Network_Pod {
-	return Network_Pod{Session: r}
+func GetNetworkPodService(sess *session.Session) Network_Pod {
+	return Network_Pod{Session: sess}
 }
 
 //
@@ -3901,12 +3905,12 @@ func (r *Network_Pod) ListCapabilities() (resp []string, err error) {
 // *Scan Cancelled
 // *Generating Report.
 type Network_Security_Scanner_Request struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSecurityScannerRequestService() Network_Security_Scanner_Request {
-	return Network_Security_Scanner_Request{Session: r}
+func GetNetworkSecurityScannerRequestService(sess *session.Session) Network_Security_Scanner_Request {
+	return Network_Security_Scanner_Request{Session: sess}
 }
 
 // Create a new vulnerability scan request. New scan requests are picked up every five minutes, and the time to complete an actual scan may vary. Once the scan is finished, it can take up to another five minutes for the report to be generated and accessible.
@@ -3962,12 +3966,12 @@ func (r *Network_Security_Scanner_Request) GetStatus() (resp datatypes.Network_S
 
 // The SoftLayer_Network_Service_Vpn_Overrides data type contains information relating user ids to subnet ids when VPN access is manually configured.  It is essentially an entry in a 'white list' of subnets a SoftLayer portal VPN user may access.
 type Network_Service_Vpn_Overrides struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkServiceVpnOverridesService() Network_Service_Vpn_Overrides {
-	return Network_Service_Vpn_Overrides{Session: r}
+func GetNetworkServiceVpnOverridesService(sess *session.Session) Network_Service_Vpn_Overrides {
+	return Network_Service_Vpn_Overrides{Session: sess}
 }
 
 // Create Softlayer portal user VPN overrides.
@@ -4014,12 +4018,12 @@ func (r *Network_Service_Vpn_Overrides) GetUser() (resp datatypes.User_Customer,
 
 // The SoftLayer_Network_Storage data type contains general information regarding a Storage product such as account id, access username and password, the Storage product type, and the server the Storage service is associated with. Currently, only EVault backup storage has an associated server.
 type Network_Storage struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageService() Network_Storage {
-	return Network_Storage{Session: r}
+func GetNetworkStorageService(sess *session.Session) Network_Storage {
+	return Network_Storage{Session: sess}
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -5197,12 +5201,12 @@ func (r *Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Enti
 
 //
 type Network_Storage_Allowed_Host struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageAllowedHostService() Network_Storage_Allowed_Host {
-	return Network_Storage_Allowed_Host{Session: r}
+func GetNetworkStorageAllowedHostService(sess *session.Session) Network_Storage_Allowed_Host {
+	return Network_Storage_Allowed_Host{Session: sess}
 }
 
 //
@@ -5270,12 +5274,12 @@ func (r *Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (
 
 //
 type Network_Storage_Allowed_Host_Hardware struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageAllowedHostHardwareService() Network_Storage_Allowed_Host_Hardware {
-	return Network_Storage_Allowed_Host_Hardware{Session: r}
+func GetNetworkStorageAllowedHostHardwareService(sess *session.Session) Network_Storage_Allowed_Host_Hardware {
+	return Network_Storage_Allowed_Host_Hardware{Session: sess}
 }
 
 //
@@ -5349,12 +5353,12 @@ func (r *Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *
 
 //
 type Network_Storage_Allowed_Host_IpAddress struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageAllowedHostIpAddressService() Network_Storage_Allowed_Host_IpAddress {
-	return Network_Storage_Allowed_Host_IpAddress{Session: r}
+func GetNetworkStorageAllowedHostIpAddressService(sess *session.Session) Network_Storage_Allowed_Host_IpAddress {
+	return Network_Storage_Allowed_Host_IpAddress{Session: sess}
 }
 
 //
@@ -5428,12 +5432,12 @@ func (r *Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password 
 
 //
 type Network_Storage_Allowed_Host_Subnet struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageAllowedHostSubnetService() Network_Storage_Allowed_Host_Subnet {
-	return Network_Storage_Allowed_Host_Subnet{Session: r}
+func GetNetworkStorageAllowedHostSubnetService(sess *session.Session) Network_Storage_Allowed_Host_Subnet {
+	return Network_Storage_Allowed_Host_Subnet{Session: sess}
 }
 
 //
@@ -5507,12 +5511,12 @@ func (r *Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *st
 
 //
 type Network_Storage_Allowed_Host_VirtualGuest struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageAllowedHostVirtualGuestService() Network_Storage_Allowed_Host_VirtualGuest {
-	return Network_Storage_Allowed_Host_VirtualGuest{Session: r}
+func GetNetworkStorageAllowedHostVirtualGuestService(sess *session.Session) Network_Storage_Allowed_Host_VirtualGuest {
+	return Network_Storage_Allowed_Host_VirtualGuest{Session: sess}
 }
 
 //
@@ -5586,12 +5590,12 @@ func (r *Network_Storage_Allowed_Host_VirtualGuest) SetCredentialPassword(passwo
 
 // The SoftLayer_Network_Storage_Backup_Evault contains general information regarding an EVault Storage service such as account id, username, maximum capacity, password, Storage's product type and the server id.
 type Network_Storage_Backup_Evault struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageBackupEvaultService() Network_Storage_Backup_Evault {
-	return Network_Storage_Backup_Evault{Session: r}
+func GetNetworkStorageBackupEvaultService(sess *session.Session) Network_Storage_Backup_Evault {
+	return Network_Storage_Backup_Evault{Session: sess}
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -6821,12 +6825,12 @@ func (r *Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Uti
 
 //
 type Network_Storage_Group struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageGroupService() Network_Storage_Group {
-	return Network_Storage_Group{Session: r}
+func GetNetworkStorageGroupService(sess *session.Session) Network_Storage_Group {
+	return Network_Storage_Group{Session: sess}
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -6945,12 +6949,12 @@ func (r *Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Stora
 
 //
 type Network_Storage_Group_Iscsi struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageGroupIscsiService() Network_Storage_Group_Iscsi {
-	return Network_Storage_Group_Iscsi{Session: r}
+func GetNetworkStorageGroupIscsiService(sess *session.Session) Network_Storage_Group_Iscsi {
+	return Network_Storage_Group_Iscsi{Session: sess}
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -7069,12 +7073,12 @@ func (r *Network_Storage_Group_Iscsi) RemoveFromVolume(volume *datatypes.Network
 
 //
 type Network_Storage_Group_Nfs struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageGroupNfsService() Network_Storage_Group_Nfs {
-	return Network_Storage_Group_Nfs{Session: r}
+func GetNetworkStorageGroupNfsService(sess *session.Session) Network_Storage_Group_Nfs {
+	return Network_Storage_Group_Nfs{Session: sess}
 }
 
 // Use this method to attach a SoftLayer_Network_Storage_Allowed_Host object to this group.  This will automatically enable access from this host to any SoftLayer_Network_Storage volumes currently attached to this group.
@@ -7193,12 +7197,12 @@ func (r *Network_Storage_Group_Nfs) RemoveFromVolume(volume *datatypes.Network_S
 
 //
 type Network_Storage_Group_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageGroupTypeService() Network_Storage_Group_Type {
-	return Network_Storage_Group_Type{Session: r}
+func GetNetworkStorageGroupTypeService(sess *session.Session) Network_Storage_Group_Type {
+	return Network_Storage_Group_Type{Session: sess}
 }
 
 // Use this method to retrieve all storage group types available.
@@ -7215,12 +7219,12 @@ func (r *Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage
 
 //
 type Network_Storage_Hub_Cleversafe_Account struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageHubCleversafeAccountService() Network_Storage_Hub_Cleversafe_Account {
-	return Network_Storage_Hub_Cleversafe_Account{Session: r}
+func GetNetworkStorageHubCleversafeAccountService(sess *session.Session) Network_Storage_Hub_Cleversafe_Account {
+	return Network_Storage_Hub_Cleversafe_Account{Session: sess}
 }
 
 //
@@ -7300,12 +7304,12 @@ func (r *Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err err
 
 //
 type Network_Storage_Hub_Swift_Share struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageHubSwiftShareService() Network_Storage_Hub_Swift_Share {
-	return Network_Storage_Hub_Swift_Share{Session: r}
+func GetNetworkStorageHubSwiftShareService(sess *session.Session) Network_Storage_Hub_Swift_Share {
+	return Network_Storage_Hub_Swift_Share{Session: sess}
 }
 
 // This method returns a collection of container objects.
@@ -7336,12 +7340,12 @@ func (r *Network_Storage_Hub_Swift_Share) GetFileList(container *string, path *s
 
 // The iscsi data type provides access to additional information about an iscsi volume such as the snapshot capacity limit and replication partners.
 type Network_Storage_Iscsi struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageIscsiService() Network_Storage_Iscsi {
-	return Network_Storage_Iscsi{Session: r}
+func GetNetworkStorageIscsiService(sess *session.Session) Network_Storage_Iscsi {
+	return Network_Storage_Iscsi{Session: sess}
 }
 
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
@@ -8517,12 +8521,12 @@ func (r *Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_Fil
 
 //
 type Network_Storage_Iscsi_OS_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageIscsiOSTypeService() Network_Storage_Iscsi_OS_Type {
-	return Network_Storage_Iscsi_OS_Type{Session: r}
+func GetNetworkStorageIscsiOSTypeService(sess *session.Session) Network_Storage_Iscsi_OS_Type {
+	return Network_Storage_Iscsi_OS_Type{Session: sess}
 }
 
 // Use this method to retrieve all iSCSI OS Types.
@@ -8539,12 +8543,12 @@ func (r *Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Stor
 
 // Schedules can be created for select Storage services, such as iscsi. These schedules are used to perform various tasks such as scheduling snapshots or synchronizing replicants.
 type Network_Storage_Schedule struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageScheduleService() Network_Storage_Schedule {
-	return Network_Storage_Schedule{Session: r}
+func GetNetworkStorageScheduleService(sess *session.Session) Network_Storage_Schedule {
+	return Network_Storage_Schedule{Session: sess}
 }
 
 // Create a nas volume schedule
@@ -8657,12 +8661,12 @@ func (r *Network_Storage_Schedule) GetVolume() (resp datatypes.Network_Storage, 
 
 // A schedule property type is used to allow for a standardized method of defining network storage schedules.
 type Network_Storage_Schedule_Property_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkStorageSchedulePropertyTypeService() Network_Storage_Schedule_Property_Type {
-	return Network_Storage_Schedule_Property_Type{Session: r}
+func GetNetworkStorageSchedulePropertyTypeService(sess *session.Session) Network_Storage_Schedule_Property_Type {
+	return Network_Storage_Schedule_Property_Type{Session: sess}
 }
 
 // Use this method to retrieve all network storage schedule property types.
@@ -8679,12 +8683,12 @@ func (r *Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Net
 
 // The SoftLayer_Network_Subnet data type contains general information relating to a single SoftLayer subnet. Personal information in this type such as names, addresses, and phone numbers are assigned to the account only and not to users belonging to the account.
 type Network_Subnet struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetService() Network_Subnet {
-	return Network_Subnet{Session: r}
+func GetNetworkSubnetService(sess *session.Session) Network_Subnet {
+	return Network_Subnet{Session: sess}
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -9029,12 +9033,12 @@ func (r *Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplate
 
 // The SoftLayer_Network_Subnet_IpAddress data type contains general information relating to a single SoftLayer IPv4 address.
 type Network_Subnet_IpAddress struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetIpAddressService() Network_Subnet_IpAddress {
-	return Network_Subnet_IpAddress{Session: r}
+func GetNetworkSubnetIpAddressService(sess *session.Session) Network_Subnet_IpAddress {
+	return Network_Subnet_IpAddress{Session: sess}
 }
 
 // This method is used to allow access to a SoftLayer_Network_Storage volume that supports host- or network-level access control.
@@ -9288,12 +9292,12 @@ func (r *Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStora
 
 //
 type Network_Subnet_IpAddress_Global struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetIpAddressGlobalService() Network_Subnet_IpAddress_Global {
-	return Network_Subnet_IpAddress_Global{Session: r}
+func GetNetworkSubnetIpAddressGlobalService(sess *session.Session) Network_Subnet_IpAddress_Global {
+	return Network_Subnet_IpAddress_Global{Session: sess}
 }
 
 // Retrieve
@@ -9349,12 +9353,12 @@ func (r *Network_Subnet_IpAddress_Global) Unroute() (resp datatypes.Provisioning
 
 // The subnet registration data type contains general information relating to a single subnet registration instance. These registration instances can be updated to reflect changes, and will record the changes in the [[SoftLayer_Network_Subnet_Registration_Event|events]].
 type Network_Subnet_Registration struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetRegistrationService() Network_Subnet_Registration {
-	return Network_Subnet_Registration{Session: r}
+func GetNetworkSubnetRegistrationService(sess *session.Session) Network_Subnet_Registration {
+	return Network_Subnet_Registration{Session: sess}
 }
 
 // This method will initiate the removal of a subnet registration.
@@ -9455,12 +9459,12 @@ func (r *Network_Subnet_Registration) GetSubnet() (resp datatypes.Network_Subnet
 
 // The SoftLayer_Network_Subnet_Registration_Details objects are used to relate [[SoftLayer_Account_Regional_Registry_Detail]] objects to a [[SoftLayer_Network_Subnet_Registration]] object. This allows for easy reuse of registration details. It is important to note that only one detail object per type may be associated to a registration object.
 type Network_Subnet_Registration_Details struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetRegistrationDetailsService() Network_Subnet_Registration_Details {
-	return Network_Subnet_Registration_Details{Session: r}
+func GetNetworkSubnetRegistrationDetailsService(sess *session.Session) Network_Subnet_Registration_Details {
+	return Network_Subnet_Registration_Details{Session: sess}
 }
 
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Network_Subnet_Registration_Details object.
@@ -9502,12 +9506,12 @@ func (r *Network_Subnet_Registration_Details) GetRegistration() (resp datatypes.
 //
 // The standard values for these objects are as follows: <ul> <li><strong>OPEN</strong> - Indicates that the registration object is new and has yet to be submitted to the RIR</li> <li><strong>PENDING</strong> - Indicates that the registration object has been submitted to the RIR and is awaiting response</li> <li><strong>COMPLETE</strong> - Indicates that the RIR action has completed</li> <li><strong>DELETED</strong> - Indicates that the registration object has been gracefully removed is no longer valid</li> <li><strong>CANCELLED</strong> - Indicates that the registration object has been abruptly removed is no longer valid</li> </ul>
 type Network_Subnet_Registration_Status struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetRegistrationStatusService() Network_Subnet_Registration_Status {
-	return Network_Subnet_Registration_Status{Session: r}
+func GetNetworkSubnetRegistrationStatusService(sess *session.Session) Network_Subnet_Registration_Status {
+	return Network_Subnet_Registration_Status{Session: sess}
 }
 
 //
@@ -9526,12 +9530,12 @@ func (r *Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network
 //
 // A SoftLayer customer's RWHOIS data may not necessarily match their account or portal users' contact information.
 type Network_Subnet_Rwhois_Data struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetRwhoisDataService() Network_Subnet_Rwhois_Data {
-	return Network_Subnet_Rwhois_Data{Session: r}
+func GetNetworkSubnetRwhoisDataService(sess *session.Session) Network_Subnet_Rwhois_Data {
+	return Network_Subnet_Rwhois_Data{Session: sess}
 }
 
 // Edit the RWHOIS record by passing in a modified version of the record object.  All fields are editable.
@@ -9570,12 +9574,12 @@ func (r *Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_
 // * DELETED:  This specific SWIP Transaction has been removed from ARIN and is no longer in effect
 // * SOFTLAYER MANUALLY PROCESSING:  Sometimes a request doesn't go through correctly and has to be manually processed by SoftLayer.  This may take some time.
 type Network_Subnet_Swip_Transaction struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkSubnetSwipTransactionService() Network_Subnet_Swip_Transaction {
-	return Network_Subnet_Swip_Transaction{Session: r}
+func GetNetworkSubnetSwipTransactionService(sess *session.Session) Network_Subnet_Swip_Transaction {
+	return Network_Subnet_Swip_Transaction{Session: sess}
 }
 
 // This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
@@ -9634,12 +9638,12 @@ func (r *Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err 
 
 //
 type Network_TippingPointReporting struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkTippingPointReportingService() Network_TippingPointReporting {
-	return Network_TippingPointReporting{Session: r}
+func GetNetworkTippingPointReportingService(sess *session.Session) Network_TippingPointReporting {
+	return Network_TippingPointReporting{Session: sess}
 }
 
 // This method, when given an attack signature ID (available in the return values of getReportForIpAddressOrSubnet and  getSubnetReportForEntireAccount) and an IP Address and subnet mask, returns all attacks for that subnet in the specified time frame and direction.  Once the results have been filtered, additional data is available, including starting and ending times for the attack, originating IP address and port, and destination IP address and port.
@@ -9711,12 +9715,12 @@ func (r *Network_TippingPointReporting) GetSubnetReportForEntireAccount(timeFram
 
 // The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.
 type Network_Tunnel_Module_Context struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkTunnelModuleContextService() Network_Tunnel_Module_Context {
-	return Network_Tunnel_Module_Context{Session: r}
+func GetNetworkTunnelModuleContextService(sess *session.Session) Network_Tunnel_Module_Context {
+	return Network_Tunnel_Module_Context{Session: sess}
 }
 
 // Associates a remote subnet to the network tunnel.  When a remote subnet is associated, a network tunnel will allow the customer (remote) network to communicate with the private and service subnets on the SoftLayer network which are on the other end of this network tunnel.
@@ -10086,12 +10090,12 @@ func (r *Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(sub
 
 // The SoftLayer_Network_Vlan data type models a single VLAN within SoftLayer's public and private networks. a Virtual LAN is a structure that associates network interfaces on routers, switches, and servers in different locations to act as if they were on the same local network broadcast domain. VLANs are a central part of the SoftLayer network. They can determine how new IP subnets are routed and how individual servers communicate to each other.
 type Network_Vlan struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkVlanService() Network_Vlan {
-	return Network_Vlan{Session: r}
+func GetNetworkVlanService(sess *session.Session) Network_Vlan {
+	return Network_Vlan{Session: sess}
 }
 
 // Edit a VLAN's properties
@@ -10421,12 +10425,12 @@ func (r *Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err 
 
 // The SoftLayer_Network_Vlan_Firewall data type contains general information relating to a single SoftLayer VLAN firewall. This is the object which ties the running rules to a specific downstream server. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Vlan_Firewall struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkVlanFirewallService() Network_Vlan_Firewall {
-	return Network_Vlan_Firewall{Session: r}
+func GetNetworkVlanFirewallService(sess *session.Session) Network_Vlan_Firewall {
+	return Network_Vlan_Firewall{Session: sess}
 }
 
 // Retrieve The billing item for a Hardware Firewall (Dedicated).
@@ -10521,12 +10525,12 @@ func (r *Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.
 
 //
 type Network_Vlan_Type struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetNetworkVlanTypeService() Network_Vlan_Type {
-	return Network_Vlan_Type{Session: r}
+func GetNetworkVlanTypeService(sess *session.Session) Network_Vlan_Type {
+	return Network_Vlan_Type{Session: sess}
 }
 
 //

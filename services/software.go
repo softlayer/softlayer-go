@@ -20,16 +20,20 @@
 
 package services
 
-import "github.ibm.com/riethm/gopherlayer/datatypes"
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
+)
 
 // SoftLayer_Software_AccountLicense is a class that represents software licenses that are tied only to a customer's account and not to any particular hardware, IP address, etc.
 type Software_AccountLicense struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareAccountLicenseService() Software_AccountLicense {
-	return Software_AccountLicense{Session: r}
+func GetSoftwareAccountLicenseService(sess *session.Session) Software_AccountLicense {
+	return Software_AccountLicense{Session: sess}
 }
 
 // Retrieve The customer account this Account License belongs to.
@@ -68,12 +72,12 @@ func (r *Software_AccountLicense) GetSoftwareDescription() (resp datatypes.Softw
 //
 // <ul> <li>SoftLayer_Software_Component is the installation of a specific piece of software onto a specific piece of hardware in accordance to a software license. <ul> <li>SoftLayer_Software_License dictates when and how a specific piece of software may be installed onto a piece of hardware. <ul> <li>SoftLayer_Software_Description describes a specific piece of software which can be installed onto hardware in accordance with it's license agreement. </li></ul></li></ul></li></ul>
 type Software_Component struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareComponentService() Software_Component {
-	return Software_Component{Session: r}
+func GetSoftwareComponentService(sess *session.Session) Software_Component {
+	return Software_Component{Session: sess}
 }
 
 // Retrieve The average amount of time that a software component takes to install.
@@ -146,12 +150,12 @@ func (r *Software_Component) GetVirtualGuest() (resp datatypes.Virtual_Guest, er
 
 // This object specifies a specific type of Software Component:  An Anti-virus/spyware instance. Anti-virus/spyware installations have specific properties and methods such as SoftLayer_Software_Component_AntivirusSpyware::updateAntivirusSpywarePolicy. Defaults are initiated by this object.
 type Software_Component_AntivirusSpyware struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareComponentAntivirusSpywareService() Software_Component_AntivirusSpyware {
-	return Software_Component_AntivirusSpyware{Session: r}
+func GetSoftwareComponentAntivirusSpywareService(sess *session.Session) Software_Component_AntivirusSpyware {
+	return Software_Component_AntivirusSpyware{Session: sess}
 }
 
 // Retrieve The average amount of time that a software component takes to install.
@@ -237,12 +241,12 @@ func (r *Software_Component_AntivirusSpyware) UpdateAntivirusSpywarePolicy(newPo
 
 // This object specifies a specific type of Software Component:  A Host Intrusion Protection System instance.
 type Software_Component_HostIps struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareComponentHostIpsService() Software_Component_HostIps {
-	return Software_Component_HostIps{Session: r}
+func GetSoftwareComponentHostIpsService(sess *session.Session) Software_Component_HostIps {
+	return Software_Component_HostIps{Session: sess}
 }
 
 // Retrieve The average amount of time that a software component takes to install.
@@ -334,12 +338,12 @@ func (r *Software_Component_HostIps) UpdateHipsPolicies(newIpsMode *string, newI
 
 // This SoftLayer_Software_Component_Password data type contains a password for a specific software component instance.
 type Software_Component_Password struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareComponentPasswordService() Software_Component_Password {
-	return Software_Component_Password{Session: r}
+func GetSoftwareComponentPasswordService(sess *session.Session) Software_Component_Password {
+	return Software_Component_Password{Session: sess}
 }
 
 // Create a password for a software component.
@@ -417,12 +421,12 @@ func (r *Software_Component_Password) GetSshKeys() (resp []datatypes.Security_Ss
 //
 // The "Manufacturer" and "Name" properties of a SoftLayer_Software_Description are used by the framework to factory specific objects, objects that may have special methods for that specific piece of software, or objects that contain application specific data, such as default ports.  For example, if you create a SoftLayer_Software_Component who's SoftLayer_Software_License points to the SoftLayer_Software_Description for "Swsoft" "Plesk", you'll actually get a SoftLayer_Software_Component_Swsoft_Plesk object.
 type Software_Description struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareDescriptionService() Software_Description {
-	return Software_Description{Session: r}
+func GetSoftwareDescriptionService(sess *session.Session) Software_Description {
+	return Software_Description{Session: sess}
 }
 
 //
@@ -517,12 +521,12 @@ func (r *Software_Description) GetValidFilesystemTypes() (resp []datatypes.Confi
 
 // SoftLayer_Software_VirtualLicense is the application class that handles a special type of Software License.  Most software licenses are licensed to a specific hardware ID;  virtual licenses are designed for virtual machines and therefore are assigned to an IP Address.  Not all software packages can be "virtual licensed".
 type Software_VirtualLicense struct {
-	Session *Session
-	Options
+	Session *session.Session
+	sl.Options
 }
 
-func (r *Session) GetSoftwareVirtualLicenseService() Software_VirtualLicense {
-	return Software_VirtualLicense{Session: r}
+func GetSoftwareVirtualLicenseService(sess *session.Session) Software_VirtualLicense {
+	return Software_VirtualLicense{Session: sess}
 }
 
 // Retrieve The customer account this Virtual License belongs to.
