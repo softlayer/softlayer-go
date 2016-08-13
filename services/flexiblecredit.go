@@ -32,37 +32,37 @@ type FlexibleCredit_Program struct {
 	Options sl.Options
 }
 
-func GetFlexibleCreditProgramService(sess *session.Session) *FlexibleCredit_Program {
-	return &FlexibleCredit_Program{Session: sess}
+func GetFlexibleCreditProgramService(sess *session.Session) FlexibleCredit_Program {
+	return FlexibleCredit_Program{Session: sess}
 }
 
-func (r FlexibleCredit_Program) Id(id int) *FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Id(id int) FlexibleCredit_Program {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r FlexibleCredit_Program) Mask(mask string) *FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Mask(mask string) FlexibleCredit_Program {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r FlexibleCredit_Program) Filter(filter string) *FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Filter(filter string) FlexibleCredit_Program {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r FlexibleCredit_Program) Limit(limit int) *FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Limit(limit int) FlexibleCredit_Program {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r FlexibleCredit_Program) Offset(offset int) *FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Offset(offset int) FlexibleCredit_Program {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerificationType(verificationTypeKeyName *string) (resp []datatypes.FlexibleCredit_Affiliate, err error) {
+func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerificationType(verificationTypeKeyName *string) (resp []datatypes.FlexibleCredit_Affiliate, err error) {
 	params := []interface{}{
 		verificationTypeKeyName,
 	}
@@ -71,19 +71,19 @@ func (r *FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerifi
 }
 
 //
-func (r *FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
+func (r FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *FlexibleCredit_Program) GetObject() (resp datatypes.FlexibleCredit_Program, err error) {
+func (r FlexibleCredit_Program) GetObject() (resp datatypes.FlexibleCredit_Program, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *FlexibleCredit_Program) SelfEnrollNewAccount(accountTemplate *datatypes.Account) (resp datatypes.Account, err error) {
+func (r FlexibleCredit_Program) SelfEnrollNewAccount(accountTemplate *datatypes.Account) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		accountTemplate,
 	}

@@ -32,43 +32,43 @@ type Marketplace_Partner struct {
 	Options sl.Options
 }
 
-func GetMarketplacePartnerService(sess *session.Session) *Marketplace_Partner {
-	return &Marketplace_Partner{Session: sess}
+func GetMarketplacePartnerService(sess *session.Session) Marketplace_Partner {
+	return Marketplace_Partner{Session: sess}
 }
 
-func (r Marketplace_Partner) Id(id int) *Marketplace_Partner {
+func (r Marketplace_Partner) Id(id int) Marketplace_Partner {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Marketplace_Partner) Mask(mask string) *Marketplace_Partner {
+func (r Marketplace_Partner) Mask(mask string) Marketplace_Partner {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Marketplace_Partner) Filter(filter string) *Marketplace_Partner {
+func (r Marketplace_Partner) Filter(filter string) Marketplace_Partner {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Marketplace_Partner) Limit(limit int) *Marketplace_Partner {
+func (r Marketplace_Partner) Limit(limit int) Marketplace_Partner {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Marketplace_Partner) Offset(offset int) *Marketplace_Partner {
+func (r Marketplace_Partner) Offset(offset int) Marketplace_Partner {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partner, err error) {
+func (r Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
+func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		searchTerm,
 	}
@@ -77,13 +77,13 @@ func (r *Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp 
 }
 
 // Retrieve
-func (r *Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
+func (r Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
+func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		non,
 	}
@@ -92,7 +92,7 @@ func (r *Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.M
 }
 
 //
-func (r *Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_Partner_File, err error) {
+func (r Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_Partner_File, err error) {
 	params := []interface{}{
 		name,
 	}
@@ -101,37 +101,37 @@ func (r *Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_
 }
 
 // Retrieve
-func (r *Marketplace_Partner) GetLogoMedium() (resp datatypes.Marketplace_Partner_Attachment, err error) {
+func (r Marketplace_Partner) GetLogoMedium() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Marketplace_Partner) GetLogoMediumTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
+func (r Marketplace_Partner) GetLogoMediumTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner_Attachment, err error) {
+func (r Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
+func (r Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
+func (r Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
+func (r Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		urlIdentifier,
 	}

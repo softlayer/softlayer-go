@@ -34,39 +34,39 @@ type Ticket struct {
 	Options sl.Options
 }
 
-func GetTicketService(sess *session.Session) *Ticket {
-	return &Ticket{Session: sess}
+func GetTicketService(sess *session.Session) Ticket {
+	return Ticket{Session: sess}
 }
 
-func (r Ticket) Id(id int) *Ticket {
+func (r Ticket) Id(id int) Ticket {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket) Mask(mask string) *Ticket {
+func (r Ticket) Mask(mask string) Ticket {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket) Filter(filter string) *Ticket {
+func (r Ticket) Filter(filter string) Ticket {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket) Limit(limit int) *Ticket {
+func (r Ticket) Limit(limit int) Ticket {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket) Offset(offset int) *Ticket {
+func (r Ticket) Offset(offset int) Ticket {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
 //
 //
-func (r *Ticket) AddAssignedAgent(agentId *int) (err error) {
+func (r Ticket) AddAssignedAgent(agentId *int) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		agentId,
@@ -76,7 +76,7 @@ func (r *Ticket) AddAssignedAgent(agentId *int) (err error) {
 }
 
 // Creates new additional emails for assigned user if new emails are provided. Attaches any newly created additional emails to ticket.
-func (r *Ticket) AddAttachedAdditionalEmails(emails []string) (resp bool, err error) {
+func (r Ticket) AddAttachedAdditionalEmails(emails []string) (resp bool, err error) {
 	params := []interface{}{
 		emails,
 	}
@@ -85,7 +85,7 @@ func (r *Ticket) AddAttachedAdditionalEmails(emails []string) (resp bool, err er
 }
 
 // Attach the given file to a SoftLayer ticket. A file attachment is a convenient way to submit non-textual error reports to SoftLayer employees in a ticket. File attachments to tickets must have a unique name.
-func (r *Ticket) AddAttachedFile(fileAttachment *datatypes.Container_Utility_File_Attachment) (resp datatypes.Ticket_Attachment_File, err error) {
+func (r Ticket) AddAttachedFile(fileAttachment *datatypes.Container_Utility_File_Attachment) (resp datatypes.Ticket_Attachment_File, err error) {
 	params := []interface{}{
 		fileAttachment,
 	}
@@ -94,7 +94,7 @@ func (r *Ticket) AddAttachedFile(fileAttachment *datatypes.Container_Utility_Fil
 }
 
 // Attach the given hardware to a SoftLayer ticket. A hardware attachment provides an easy way for SoftLayer's employees to quickly look up your hardware records in the case of hardware-specific issues.
-func (r *Ticket) AddAttachedHardware(hardwareId *int) (resp datatypes.Ticket_Attachment_Hardware, err error) {
+func (r Ticket) AddAttachedHardware(hardwareId *int) (resp datatypes.Ticket_Attachment_Hardware, err error) {
 	params := []interface{}{
 		hardwareId,
 	}
@@ -103,7 +103,7 @@ func (r *Ticket) AddAttachedHardware(hardwareId *int) (resp datatypes.Ticket_Att
 }
 
 // Attach the given CloudLayer Computing Instance to a SoftLayer ticket. An attachment provides an easy way for SoftLayer's employees to quickly look up your records in the case of specific issues.
-func (r *Ticket) AddAttachedVirtualGuest(guestId *int) (resp datatypes.Ticket_Attachment_Virtual_Guest, err error) {
+func (r Ticket) AddAttachedVirtualGuest(guestId *int) (resp datatypes.Ticket_Attachment_Virtual_Guest, err error) {
 	params := []interface{}{
 		guestId,
 	}
@@ -112,7 +112,7 @@ func (r *Ticket) AddAttachedVirtualGuest(guestId *int) (resp datatypes.Ticket_At
 }
 
 // As part of the customer service process SoftLayer has provided a quick feedback mechanism for its customers to rate their overall experience with SoftLayer after a ticket is closed. addFinalComments() sets these comments for a ticket update made by a SoftLayer employee. Final comments may only be set on closed tickets, can only be set once, and may not exceed 4000 characters in length. Once the comments are set ''addFinalComments()'' returns a boolean true.
-func (r *Ticket) AddFinalComments(finalComments *string) (resp bool, err error) {
+func (r Ticket) AddFinalComments(finalComments *string) (resp bool, err error) {
 	params := []interface{}{
 		finalComments,
 	}
@@ -121,7 +121,7 @@ func (r *Ticket) AddFinalComments(finalComments *string) (resp bool, err error) 
 }
 
 //
-func (r *Ticket) AddScheduledAlert(activationTime *string) (err error) {
+func (r Ticket) AddScheduledAlert(activationTime *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		activationTime,
@@ -131,7 +131,7 @@ func (r *Ticket) AddScheduledAlert(activationTime *string) (err error) {
 }
 
 //
-func (r *Ticket) AddScheduledAutoClose(activationTime *string) (err error) {
+func (r Ticket) AddScheduledAutoClose(activationTime *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		activationTime,
@@ -141,7 +141,7 @@ func (r *Ticket) AddScheduledAutoClose(activationTime *string) (err error) {
 }
 
 // Add an update to a ticket. A ticket update's entry has a maximum length of 4000 characters, so ''addUpdate()'' splits the ''entry'' property in the ''templateObject'' parameter into 3900 character blocks and creates one entry per 3900 character block. Once complete ''addUpdate()'' emails the ticket's owner and additional email addresses with an update message if the ticket's ''notifyUserOnUpdateFlag'' is set. If the ticket is a Legal or Abuse ticket, then the account's abuse emails are also notified when the updates are processed. Finally, ''addUpdate()'' returns an array of the newly created ticket updates.
-func (r *Ticket) AddUpdate(templateObject *datatypes.Ticket_Update, attachedFiles []datatypes.Container_Utility_File_Attachment) (resp []datatypes.Ticket_Update, err error) {
+func (r Ticket) AddUpdate(templateObject *datatypes.Ticket_Update, attachedFiles []datatypes.Container_Utility_File_Attachment) (resp []datatypes.Ticket_Update, err error) {
 	params := []interface{}{
 		templateObject,
 		attachedFiles,
@@ -157,7 +157,7 @@ func (r *Ticket) AddUpdate(templateObject *datatypes.Ticket_Update, attachedFile
 // Once your ticket is created it is placed in a queue for SoftLayer employees to work. As they update the ticket new [[SoftLayer_Ticket_Update]] entries are added to the ticket object.
 //
 // Administrative support tickets add a one-time $3USD charge to your account.
-func (r *Ticket) CreateAdministrativeTicket(templateObject *datatypes.Ticket, contents *string, attachmentId *int, rootPassword *string, controlPanelPassword *string, accessPort *string, attachedFiles []datatypes.Container_Utility_File_Attachment, attachmentType *string) (resp datatypes.Ticket, err error) {
+func (r Ticket) CreateAdministrativeTicket(templateObject *datatypes.Ticket, contents *string, attachmentId *int, rootPassword *string, controlPanelPassword *string, accessPort *string, attachedFiles []datatypes.Container_Utility_File_Attachment, attachmentType *string) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		templateObject,
 		contents,
@@ -188,7 +188,7 @@ func (r *Ticket) CreateAdministrativeTicket(templateObject *datatypes.Ticket, co
 //
 //
 // The content parameter describes further the reason for cancelling the server.
-func (r *Ticket) CreateCancelServerTicket(attachmentId *int, reason *string, content *string, cancelAssociatedItems *bool, attachmentType *string) (resp datatypes.Ticket, err error) {
+func (r Ticket) CreateCancelServerTicket(attachmentId *int, reason *string, content *string, cancelAssociatedItems *bool, attachmentType *string) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		attachmentId,
 		reason,
@@ -216,7 +216,7 @@ func (r *Ticket) CreateCancelServerTicket(attachmentId *int, reason *string, con
 //
 //
 // The content parameter describes further the reason for cancelling service.
-func (r *Ticket) CreateCancelServiceTicket(attachmentId *int, reason *string, content *string, attachmentType *string) (resp datatypes.Ticket, err error) {
+func (r Ticket) CreateCancelServiceTicket(attachmentId *int, reason *string, content *string, attachmentType *string) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		attachmentId,
 		reason,
@@ -232,7 +232,7 @@ func (r *Ticket) CreateCancelServiceTicket(attachmentId *int, reason *string, co
 // Support tickets may only be created in the open state. The SoftLayer API defaults new ticket properties ''userEditableFlag'' to true, ''accountId'' to the id of the account that your API user belongs to, and ''statusId'' to 1001 (or "open"). You may not assign your new to ticket to users that your API user does not have access to.
 //
 // Once your ticket is created it is placed in a queue for SoftLayer employees to work. As they update the ticket new [[SoftLayer_Ticket_Update]] entries are added to the ticket object.
-func (r *Ticket) CreateStandardTicket(templateObject *datatypes.Ticket, contents *string, attachmentId *int, rootPassword *string, controlPanelPassword *string, accessPort *string, attachedFiles []datatypes.Container_Utility_File_Attachment, attachmentType *string) (resp datatypes.Ticket, err error) {
+func (r Ticket) CreateStandardTicket(templateObject *datatypes.Ticket, contents *string, attachmentId *int, rootPassword *string, controlPanelPassword *string, accessPort *string, attachedFiles []datatypes.Container_Utility_File_Attachment, attachmentType *string) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		templateObject,
 		contents,
@@ -248,7 +248,7 @@ func (r *Ticket) CreateStandardTicket(templateObject *datatypes.Ticket, contents
 }
 
 // Create a ticket for the SoftLayer sales team to perform a hardware or service upgrade. Our sales team will work with you on upgrade feasibility and pricing and then send the upgrade ticket to the proper department to perform the actual upgrade. Service affecting upgrades, such as server hardware or CloudLayer Computing Instance upgrades that require the server powered down must have a two hour maintenance specified for our datacenter engineers to perform your upgrade. Account level upgrades, such as adding PPTP VPN users, CDNLayer accounts, and monitoring services are processed much faster and do not require a maintenance window.
-func (r *Ticket) CreateUpgradeTicket(attachmentId *int, genericUpgrade *string, upgradeMaintenanceWindow *string, details *string, attachmentType *string, title *string) (resp datatypes.Ticket, err error) {
+func (r Ticket) CreateUpgradeTicket(attachmentId *int, genericUpgrade *string, upgradeMaintenanceWindow *string, details *string, attachmentType *string, title *string) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		attachmentId,
 		genericUpgrade,
@@ -264,7 +264,7 @@ func (r *Ticket) CreateUpgradeTicket(attachmentId *int, genericUpgrade *string, 
 // Edit a SoftLayer ticket. The edit method is two-fold. You may either edit a ticket itself, add an update to a ticket, attach up to two files to a ticket, or perform all of these tasks. The SoftLayer API ignores changes made to the ''userEditableFlag''  and ''accountId'' properties. You may not assign a ticket to a user that your API account does not have access to. You may not enter a custom title for standard support tickets, buy may do so when editing an administrative ticket. Finally, you may not close a ticket using this method. Please contact SoftLayer if you need a ticket closed.
 //
 // If you need to only add an update to a ticket then please use the [[SoftLayer_Ticket::addUpdate|addUpdate]] method in this service. Likewise if you need to only attach a file to a ticket then use the [[SoftLayer_Ticket::addAttachedFile|addAttachedFile]] method. The edit method exists as a convenience if you need to perform all these tasks at once.
-func (r *Ticket) Edit(templateObject *datatypes.Ticket, contents *string, attachedFiles []datatypes.Container_Utility_File_Attachment) (resp datatypes.Ticket, err error) {
+func (r Ticket) Edit(templateObject *datatypes.Ticket, contents *string, attachedFiles []datatypes.Container_Utility_File_Attachment) (resp datatypes.Ticket, err error) {
 	params := []interface{}{
 		templateObject,
 		contents,
@@ -275,7 +275,7 @@ func (r *Ticket) Edit(templateObject *datatypes.Ticket, contents *string, attach
 }
 
 // Retrieve The SoftLayer customer account associated with a ticket.
-func (r *Ticket) GetAccount() (resp datatypes.Account, err error) {
+func (r Ticket) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -283,7 +283,7 @@ func (r *Ticket) GetAccount() (resp datatypes.Account, err error) {
 // getAllTicketGroups() retrieves a list of all groups that a ticket may be assigned to. Ticket groups represent the internal department at SoftLayer who a ticket is assigned to.
 //
 // Every SoftLayer ticket has groupId and ticketGroup properties that correspond to one of the groups returned by getAllTicketGroups().
-func (r *Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) {
+func (r Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -291,31 +291,31 @@ func (r *Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error)
 // getAllTicketStatuses() retrieves a list of all statuses that a ticket may exist in. Ticket status represent the current state of a ticket, usually "open", "assigned", and "closed".
 //
 // Every SoftLayer ticket has statusId and status properties that correspond to one of the statuses returned by getAllTicketStatuses().
-func (r *Ticket) GetAllTicketStatuses() (resp []datatypes.Ticket_Status, err error) {
+func (r Ticket) GetAllTicketStatuses() (resp []datatypes.Ticket_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetAssignedAgents() (resp []datatypes.User_Customer, err error) {
+func (r Ticket) GetAssignedAgents() (resp []datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The portal user that a ticket is assigned to.
-func (r *Ticket) GetAssignedUser() (resp datatypes.User_Customer, err error) {
+func (r Ticket) GetAssignedUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The list of additional emails to notify when a ticket update is made.
-func (r *Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
+func (r Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve the file attached to a SoftLayer ticket by it's given identifier. To retrieve a list of files attached to a ticket either call the SoftLayer_Ticket::getAttachedFiles method or call SoftLayer_Ticket::getObject with ''attachedFiles'' defined in an object mask.
-func (r *Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
+func (r Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
 	params := []interface{}{
 		attachmentId,
 	}
@@ -324,169 +324,169 @@ func (r *Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
 }
 
 // Retrieve The files attached to a ticket.
-func (r *Ticket) GetAttachedFiles() (resp []datatypes.Ticket_Attachment_File, err error) {
+func (r Ticket) GetAttachedFiles() (resp []datatypes.Ticket_Attachment_File, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware associated with a ticket. This is used in cases where a ticket is directly associated with one or more pieces of hardware.
-func (r *Ticket) GetAttachedHardware() (resp []datatypes.Hardware, err error) {
+func (r Ticket) GetAttachedHardware() (resp []datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetAttachedHardwareCount() (resp uint, err error) {
+func (r Ticket) GetAttachedHardwareCount() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetAttachedResources() (resp []datatypes.Ticket_Attachment, err error) {
+func (r Ticket) GetAttachedResources() (resp []datatypes.Ticket_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
-func (r *Ticket) GetAttachedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+func (r Ticket) GetAttachedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last update made to a ticket.
-func (r *Ticket) GetAwaitingUserResponseFlag() (resp bool, err error) {
+func (r Ticket) GetAwaitingUserResponseFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A service cancellation request.
-func (r *Ticket) GetCancellationRequest() (resp datatypes.Billing_Item_Cancellation_Request, err error) {
+func (r Ticket) GetCancellationRequest() (resp datatypes.Billing_Item_Cancellation_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetEmployeeAttachments() (resp []datatypes.User_Employee, err error) {
+func (r Ticket) GetEmployeeAttachments() (resp []datatypes.User_Employee, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The first physical or virtual server attached to a ticket.
-func (r *Ticket) GetFirstAttachedResource() (resp datatypes.Ticket_Attachment, err error) {
+func (r Ticket) GetFirstAttachedResource() (resp datatypes.Ticket_Attachment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The first update made to a ticket. This is typically the contents of a ticket when it's created.
-func (r *Ticket) GetFirstUpdate() (resp datatypes.Ticket_Update, err error) {
+func (r Ticket) GetFirstUpdate() (resp datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer department that a ticket is assigned to.
-func (r *Ticket) GetGroup() (resp datatypes.Ticket_Group, err error) {
+func (r Ticket) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
-func (r *Ticket) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, err error) {
+func (r Ticket) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetLastActivity() (resp datatypes.Ticket_Activity, err error) {
+func (r Ticket) GetLastActivity() (resp datatypes.Ticket_Activity, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetLastEditor() (resp datatypes.User_Interface, err error) {
+func (r Ticket) GetLastEditor() (resp datatypes.User_Interface, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last update made to a ticket.
-func (r *Ticket) GetLastUpdate() (resp datatypes.Ticket_Update, err error) {
+func (r Ticket) GetLastUpdate() (resp datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A timestamp of the last time the Ticket was viewed by the active user.
-func (r *Ticket) GetLastViewedDate() (resp datatypes.Time, err error) {
+func (r Ticket) GetLastViewedDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's associated location within the SoftLayer location hierarchy.
-func (r *Ticket) GetLocation() (resp datatypes.Location, err error) {
+func (r Ticket) GetLocation() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve True if there are new, unread updates to this ticket for the current user, False otherwise.
-func (r *Ticket) GetNewUpdatesFlag() (resp bool, err error) {
+func (r Ticket) GetNewUpdatesFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Ticket object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket service. You can only retrieve tickets that are associated with your SoftLayer customer account.
-func (r *Ticket) GetObject() (resp datatypes.Ticket, err error) {
+func (r Ticket) GetObject() (resp datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetScheduledActions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+func (r Ticket) GetScheduledActions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The invoice associated with a ticket. Only tickets with an associated administrative charge have an invoice.
-func (r *Ticket) GetServerAdministrationBillingInvoice() (resp datatypes.Billing_Invoice, err error) {
+func (r Ticket) GetServerAdministrationBillingInvoice() (resp datatypes.Billing_Invoice, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The refund invoice associated with a ticket. Only tickets with a refund applied in them have an associated refund invoice.
-func (r *Ticket) GetServerAdministrationRefundInvoice() (resp datatypes.Billing_Invoice, err error) {
+func (r Ticket) GetServerAdministrationRefundInvoice() (resp datatypes.Billing_Invoice, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
+func (r Ticket) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetState() (resp []datatypes.Ticket_State, err error) {
+func (r Ticket) GetState() (resp []datatypes.Ticket_State, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's status.
-func (r *Ticket) GetStatus() (resp datatypes.Ticket_Status, err error) {
+func (r Ticket) GetStatus() (resp datatypes.Ticket_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's subject. Only standard support tickets have an associated subject. A standard support ticket's title corresponds with it's subject's name.
-func (r *Ticket) GetSubject() (resp datatypes.Ticket_Subject, err error) {
+func (r Ticket) GetSubject() (resp datatypes.Ticket_Subject, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
+func (r Ticket) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve all tickets closed since a given date.
-func (r *Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
+func (r Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
 	params := []interface{}{
 		closeDate,
 	}
@@ -495,13 +495,13 @@ func (r *Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []da
 }
 
 // Retrieve A ticket's updates.
-func (r *Ticket) GetUpdates() (resp []datatypes.Ticket_Update, err error) {
+func (r Ticket) GetUpdates() (resp []datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Mark a ticket as viewed.  All currently posted updates will be marked as viewed. The lastViewedDate property will be updated to the current time.
-func (r *Ticket) MarkAsViewed() (err error) {
+func (r Ticket) MarkAsViewed() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -510,7 +510,7 @@ func (r *Ticket) MarkAsViewed() (err error) {
 //
 //
 //
-func (r *Ticket) RemoveAssignedAgent(agentId *int) (err error) {
+func (r Ticket) RemoveAssignedAgent(agentId *int) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		agentId,
@@ -520,7 +520,7 @@ func (r *Ticket) RemoveAssignedAgent(agentId *int) (err error) {
 }
 
 // removeAttachedAdditionalEmails() removes the specified email addresses from a ticket's notification list. If one of the provided email addresses is not attached to the ticket then ''removeAttachedAdditiaonalEmails()'' ignores it and continues to the next one. Once the email addresses are removed ''removeAttachedAdditiaonalEmails()'' returns a boolean true.
-func (r *Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err error) {
+func (r Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err error) {
 	params := []interface{}{
 		emails,
 	}
@@ -529,7 +529,7 @@ func (r *Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err
 }
 
 // detach the given hardware from a SoftLayer ticket. Removing a hardware attachment may delay ticket processing time if the hardware removed is relevant to the ticket's issue. Return a boolean true upon successful hardware detachment.
-func (r *Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) {
+func (r Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) {
 	params := []interface{}{
 		hardwareId,
 	}
@@ -538,7 +538,7 @@ func (r *Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) 
 }
 
 // Detach the given CloudLayer Computing Instance from a SoftLayer ticket. Removing an attachment may delay ticket processing time if the instance removed is relevant to the ticket's issue. Return a boolean true upon successful detachment.
-func (r *Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) {
+func (r Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) {
 	params := []interface{}{
 		guestId,
 	}
@@ -547,21 +547,21 @@ func (r *Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error)
 }
 
 //
-func (r *Ticket) RemoveScheduledAlert() (err error) {
+func (r Ticket) RemoveScheduledAlert() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Ticket) RemoveScheduledAutoClose() (err error) {
+func (r Ticket) RemoveScheduledAutoClose() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Ticket) SetTags(tags *string) (resp bool, err error) {
+func (r Ticket) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 	}
@@ -570,13 +570,13 @@ func (r *Ticket) SetTags(tags *string) (resp bool, err error) {
 }
 
 // (DEPRECATED) Use [[SoftLayer_Ticket_Survey::getPreference]] method.
-func (r *Ticket) SurveyEligible() (resp bool, err error) {
+func (r Ticket) SurveyEligible() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Creates new additional emails for assigned user if new emails are provided. Attaches any newly created additional emails to ticket. Remove any additional emails from a ticket that are not provided as part of $emails
-func (r *Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err error) {
+func (r Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err error) {
 	params := []interface{}{
 		emails,
 	}
@@ -590,55 +590,55 @@ type Ticket_Attachment_File struct {
 	Options sl.Options
 }
 
-func GetTicketAttachmentFileService(sess *session.Session) *Ticket_Attachment_File {
-	return &Ticket_Attachment_File{Session: sess}
+func GetTicketAttachmentFileService(sess *session.Session) Ticket_Attachment_File {
+	return Ticket_Attachment_File{Session: sess}
 }
 
-func (r Ticket_Attachment_File) Id(id int) *Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Id(id int) Ticket_Attachment_File {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket_Attachment_File) Mask(mask string) *Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Mask(mask string) Ticket_Attachment_File {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket_Attachment_File) Filter(filter string) *Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Filter(filter string) Ticket_Attachment_File {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket_Attachment_File) Limit(limit int) *Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Limit(limit int) Ticket_Attachment_File {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket_Attachment_File) Offset(offset int) *Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Offset(offset int) Ticket_Attachment_File {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Ticket_Attachment_File) GetExtensionWhitelist() (resp []string, err error) {
+func (r Ticket_Attachment_File) GetExtensionWhitelist() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_File, err error) {
+func (r Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_File, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket_Attachment_File) GetTicket() (resp datatypes.Ticket, err error) {
+func (r Ticket_Attachment_File) GetTicket() (resp datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ticket that a file is attached to.
-func (r *Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err error) {
+func (r Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -649,37 +649,37 @@ type Ticket_Priority struct {
 	Options sl.Options
 }
 
-func GetTicketPriorityService(sess *session.Session) *Ticket_Priority {
-	return &Ticket_Priority{Session: sess}
+func GetTicketPriorityService(sess *session.Session) Ticket_Priority {
+	return Ticket_Priority{Session: sess}
 }
 
-func (r Ticket_Priority) Id(id int) *Ticket_Priority {
+func (r Ticket_Priority) Id(id int) Ticket_Priority {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket_Priority) Mask(mask string) *Ticket_Priority {
+func (r Ticket_Priority) Mask(mask string) Ticket_Priority {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket_Priority) Filter(filter string) *Ticket_Priority {
+func (r Ticket_Priority) Filter(filter string) Ticket_Priority {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket_Priority) Limit(limit int) *Ticket_Priority {
+func (r Ticket_Priority) Limit(limit int) Ticket_Priority {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket_Priority) Offset(offset int) *Ticket_Priority {
+func (r Ticket_Priority) Offset(offset int) Ticket_Priority {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Priority, err error) {
+func (r Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Priority, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -690,55 +690,55 @@ type Ticket_Subject struct {
 	Options sl.Options
 }
 
-func GetTicketSubjectService(sess *session.Session) *Ticket_Subject {
-	return &Ticket_Subject{Session: sess}
+func GetTicketSubjectService(sess *session.Session) Ticket_Subject {
+	return Ticket_Subject{Session: sess}
 }
 
-func (r Ticket_Subject) Id(id int) *Ticket_Subject {
+func (r Ticket_Subject) Id(id int) Ticket_Subject {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket_Subject) Mask(mask string) *Ticket_Subject {
+func (r Ticket_Subject) Mask(mask string) Ticket_Subject {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket_Subject) Filter(filter string) *Ticket_Subject {
+func (r Ticket_Subject) Filter(filter string) Ticket_Subject {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket_Subject) Limit(limit int) *Ticket_Subject {
+func (r Ticket_Subject) Limit(limit int) Ticket_Subject {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket_Subject) Offset(offset int) *Ticket_Subject {
+func (r Ticket_Subject) Offset(offset int) Ticket_Subject {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve all possible ticket subjects. The SoftLayer customer portal uses this method in the add standard support ticket form.
-func (r *Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err error) {
+func (r Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
+func (r Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Ticket_Subject object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket_Subject service.
-func (r *Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
+func (r Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // SoftLayer maintains relationships between the generic subjects for standard administration and the top five commonly asked questions about these subjects. getTopFileKnowledgeLayerQuestions() retrieves the top five questions and answers from the SoftLayer KnowledgeLayer related to the given ticket subject.
-func (r *Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
+func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -749,37 +749,37 @@ type Ticket_Survey struct {
 	Options sl.Options
 }
 
-func GetTicketSurveyService(sess *session.Session) *Ticket_Survey {
-	return &Ticket_Survey{Session: sess}
+func GetTicketSurveyService(sess *session.Session) Ticket_Survey {
+	return Ticket_Survey{Session: sess}
 }
 
-func (r Ticket_Survey) Id(id int) *Ticket_Survey {
+func (r Ticket_Survey) Id(id int) Ticket_Survey {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket_Survey) Mask(mask string) *Ticket_Survey {
+func (r Ticket_Survey) Mask(mask string) Ticket_Survey {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket_Survey) Filter(filter string) *Ticket_Survey {
+func (r Ticket_Survey) Filter(filter string) Ticket_Survey {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket_Survey) Limit(limit int) *Ticket_Survey {
+func (r Ticket_Survey) Limit(limit int) Ticket_Survey {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket_Survey) Offset(offset int) *Ticket_Survey {
+func (r Ticket_Survey) Offset(offset int) Ticket_Survey {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Use this method to retrieve the ticket survey preferences. It will return your [[SoftLayer_Container_Ticket_Survey_Preference|survey preference]] which indicates if your account is applicable to receive a survey and if you're opted in. You can control the survey opt via the [[SoftLayer_Ticket_Survey::optIn|opt-in]] or [[SoftLayer_Ticket_Survey::optOut|opt-out]] method.
-func (r *Ticket_Survey) GetPreference() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
+func (r Ticket_Survey) GetPreference() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -787,7 +787,7 @@ func (r *Ticket_Survey) GetPreference() (resp datatypes.Container_Ticket_Survey_
 // You will not receive a ticket survey if you are opted out. Use this method to opt back in if you wish to provide feedback to our support team. You may use the [[SoftLayer_Ticket_Survey::getPreference|getPreference]] method to check your current opt status.
 //
 // This method is depricated. Use [[SoftLayer_User_Customer::changePreference]] instead.
-func (r *Ticket_Survey) OptIn() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
+func (r Ticket_Survey) OptIn() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -795,7 +795,7 @@ func (r *Ticket_Survey) OptIn() (resp datatypes.Container_Ticket_Survey_Preferen
 // By default, customers will occasionally receive a ticket survey upon closing of a ticket. Use this method to opt out of it for the next 90 days. Ticket surveys may not be applicable for some customers. Use the [[SoftLayer_Ticket_Survey::getPreference|getPreference]] method to retrieve your survey preference. The "applicable" property of the [[SoftLayer_Container_Ticket_Survey_Preference|survey preference]] indicates if the survey is relevant to your account or not.
 //
 // This method is depricated. Use [[SoftLayer_User_Customer::changePreference]] instead.
-func (r *Ticket_Survey) OptOut() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
+func (r Ticket_Survey) OptOut() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -806,37 +806,37 @@ type Ticket_Update_Employee struct {
 	Options sl.Options
 }
 
-func GetTicketUpdateEmployeeService(sess *session.Session) *Ticket_Update_Employee {
-	return &Ticket_Update_Employee{Session: sess}
+func GetTicketUpdateEmployeeService(sess *session.Session) Ticket_Update_Employee {
+	return Ticket_Update_Employee{Session: sess}
 }
 
-func (r Ticket_Update_Employee) Id(id int) *Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Id(id int) Ticket_Update_Employee {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Ticket_Update_Employee) Mask(mask string) *Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Mask(mask string) Ticket_Update_Employee {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Ticket_Update_Employee) Filter(filter string) *Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Filter(filter string) Ticket_Update_Employee {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Ticket_Update_Employee) Limit(limit int) *Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Limit(limit int) Ticket_Update_Employee {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Ticket_Update_Employee) Offset(offset int) *Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Offset(offset int) Ticket_Update_Employee {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // As part of the customer service process SoftLayer has provided a quick feedback mechanism for its customers to rate the responses that its employees give on tickets. addResponseRating() sets the rating for a single ticket update made by a SoftLayer employee. Ticket ratings have the integer values 1 through 5, with 1 being the worst and 5 being the best. Once the rating is set ''addResponseRating()'' returns a boolean true.
-func (r *Ticket_Update_Employee) AddResponseRating(responseRating *int) (resp bool, err error) {
+func (r Ticket_Update_Employee) AddResponseRating(responseRating *int) (resp bool, err error) {
 	params := []interface{}{
 		responseRating,
 	}
@@ -845,7 +845,7 @@ func (r *Ticket_Update_Employee) AddResponseRating(responseRating *int) (resp bo
 }
 
 // getObject retrieves the SoftLayer_Ticket_Update_Employee object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket_Update_Employee service. You can only retrieve employee updates to tickets that your API account has access to.
-func (r *Ticket_Update_Employee) GetObject() (resp datatypes.Ticket_Update_Employee, err error) {
+func (r Ticket_Update_Employee) GetObject() (resp datatypes.Ticket_Update_Employee, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

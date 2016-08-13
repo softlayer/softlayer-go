@@ -32,55 +32,55 @@ type Layout_Container struct {
 	Options sl.Options
 }
 
-func GetLayoutContainerService(sess *session.Session) *Layout_Container {
-	return &Layout_Container{Session: sess}
+func GetLayoutContainerService(sess *session.Session) Layout_Container {
+	return Layout_Container{Session: sess}
 }
 
-func (r Layout_Container) Id(id int) *Layout_Container {
+func (r Layout_Container) Id(id int) Layout_Container {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Container) Mask(mask string) *Layout_Container {
+func (r Layout_Container) Mask(mask string) Layout_Container {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Container) Filter(filter string) *Layout_Container {
+func (r Layout_Container) Filter(filter string) Layout_Container {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Container) Limit(limit int) *Layout_Container {
+func (r Layout_Container) Limit(limit int) Layout_Container {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Container) Offset(offset int) *Layout_Container {
+func (r Layout_Container) Offset(offset int) Layout_Container {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Use this method to retrieve all active layout containers that can be customized.
-func (r *Layout_Container) GetAllObjects() (resp []datatypes.Layout_Container, err error) {
+func (r Layout_Container) GetAllObjects() (resp []datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of the layout container object
-func (r *Layout_Container) GetLayoutContainerType() (resp datatypes.Layout_Container_Type, err error) {
+func (r Layout_Container) GetLayoutContainerType() (resp datatypes.Layout_Container_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The layout items assigned to this layout container
-func (r *Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err error) {
+func (r Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Container) GetObject() (resp datatypes.Layout_Container, err error) {
+func (r Layout_Container) GetObject() (resp datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -91,49 +91,49 @@ type Layout_Item struct {
 	Options sl.Options
 }
 
-func GetLayoutItemService(sess *session.Session) *Layout_Item {
-	return &Layout_Item{Session: sess}
+func GetLayoutItemService(sess *session.Session) Layout_Item {
+	return Layout_Item{Session: sess}
 }
 
-func (r Layout_Item) Id(id int) *Layout_Item {
+func (r Layout_Item) Id(id int) Layout_Item {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Item) Mask(mask string) *Layout_Item {
+func (r Layout_Item) Mask(mask string) Layout_Item {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Item) Filter(filter string) *Layout_Item {
+func (r Layout_Item) Filter(filter string) Layout_Item {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Item) Limit(limit int) *Layout_Item {
+func (r Layout_Item) Limit(limit int) Layout_Item {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Item) Offset(offset int) *Layout_Item {
+func (r Layout_Item) Offset(offset int) Layout_Item {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve The layout preferences assigned to this layout item
-func (r *Layout_Item) GetLayoutItemPreferences() (resp []datatypes.Layout_Preference, err error) {
+func (r Layout_Item) GetLayoutItemPreferences() (resp []datatypes.Layout_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of the layout item object
-func (r *Layout_Item) GetLayoutItemType() (resp datatypes.Layout_Item_Type, err error) {
+func (r Layout_Item) GetLayoutItemType() (resp datatypes.Layout_Item_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
+func (r Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -144,37 +144,37 @@ type Layout_Profile struct {
 	Options sl.Options
 }
 
-func GetLayoutProfileService(sess *session.Session) *Layout_Profile {
-	return &Layout_Profile{Session: sess}
+func GetLayoutProfileService(sess *session.Session) Layout_Profile {
+	return Layout_Profile{Session: sess}
 }
 
-func (r Layout_Profile) Id(id int) *Layout_Profile {
+func (r Layout_Profile) Id(id int) Layout_Profile {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Profile) Mask(mask string) *Layout_Profile {
+func (r Layout_Profile) Mask(mask string) Layout_Profile {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Profile) Filter(filter string) *Layout_Profile {
+func (r Layout_Profile) Filter(filter string) Layout_Profile {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Profile) Limit(limit int) *Layout_Profile {
+func (r Layout_Profile) Limit(limit int) Layout_Profile {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Profile) Offset(offset int) *Layout_Profile {
+func (r Layout_Profile) Offset(offset int) Layout_Profile {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method creates a new layout profile object.
-func (r *Layout_Profile) CreateObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
+func (r Layout_Profile) CreateObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -183,13 +183,13 @@ func (r *Layout_Profile) CreateObject(templateObject *datatypes.Layout_Profile) 
 }
 
 // This method deletes an existing layout profile and associated custom preferences
-func (r *Layout_Profile) DeleteObject() (resp bool, err error) {
+func (r Layout_Profile) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method edits an existing layout profile object by passing in a modified instance of the object.
-func (r *Layout_Profile) EditObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
+func (r Layout_Profile) EditObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -198,19 +198,19 @@ func (r *Layout_Profile) EditObject(templateObject *datatypes.Layout_Profile) (r
 }
 
 // Retrieve
-func (r *Layout_Profile) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
+func (r Layout_Profile) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Profile) GetObject() (resp datatypes.Layout_Profile, err error) {
+func (r Layout_Profile) GetObject() (resp datatypes.Layout_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -218,7 +218,7 @@ func (r *Layout_Profile) GetObject() (resp datatypes.Layout_Profile, err error) 
 // This method modifies an existing associated [[SoftLayer_Layout_Profile_Preference]] object. If the preference object being modified is a default value object, a new record is created to override the default value.
 //
 // Only preferences that are assigned to a profile may be updated. Attempts to update a non-existent preference object will result in an exception being thrown.
-func (r *Layout_Profile) ModifyPreference(templateObject *datatypes.Layout_Profile_Preference) (resp datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile) ModifyPreference(templateObject *datatypes.Layout_Profile_Preference) (resp datatypes.Layout_Profile_Preference, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -229,7 +229,7 @@ func (r *Layout_Profile) ModifyPreference(templateObject *datatypes.Layout_Profi
 // Using this method, multiple [[SoftLayer_Layout_Profile_Preference]] objects may be updated at once.
 //
 // Refer to [[SoftLayer_Layout_Profile::modifyPreference()]] for more information.
-func (r *Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
 	params := []interface{}{
 		layoutPreferenceObjects,
 	}
@@ -243,37 +243,37 @@ type Layout_Profile_Containers struct {
 	Options sl.Options
 }
 
-func GetLayoutProfileContainersService(sess *session.Session) *Layout_Profile_Containers {
-	return &Layout_Profile_Containers{Session: sess}
+func GetLayoutProfileContainersService(sess *session.Session) Layout_Profile_Containers {
+	return Layout_Profile_Containers{Session: sess}
 }
 
-func (r Layout_Profile_Containers) Id(id int) *Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Id(id int) Layout_Profile_Containers {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Containers) Mask(mask string) *Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Mask(mask string) Layout_Profile_Containers {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Containers) Filter(filter string) *Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Filter(filter string) Layout_Profile_Containers {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Containers) Limit(limit int) *Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Limit(limit int) Layout_Profile_Containers {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Containers) Offset(offset int) *Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Offset(offset int) Layout_Profile_Containers {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
+func (r Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -282,7 +282,7 @@ func (r *Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layou
 }
 
 //
-func (r *Layout_Profile_Containers) EditObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
+func (r Layout_Profile_Containers) EditObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -291,19 +291,19 @@ func (r *Layout_Profile_Containers) EditObject(templateObject *datatypes.Layout_
 }
 
 // Retrieve The container to be contained
-func (r *Layout_Profile_Containers) GetLayoutContainerType() (resp datatypes.Layout_Container, err error) {
+func (r Layout_Profile_Containers) GetLayoutContainerType() (resp datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The profile containing this container
-func (r *Layout_Profile_Containers) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
+func (r Layout_Profile_Containers) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_Containers, err error) {
+func (r Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_Containers, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -314,37 +314,37 @@ type Layout_Profile_Customer struct {
 	Options sl.Options
 }
 
-func GetLayoutProfileCustomerService(sess *session.Session) *Layout_Profile_Customer {
-	return &Layout_Profile_Customer{Session: sess}
+func GetLayoutProfileCustomerService(sess *session.Session) Layout_Profile_Customer {
+	return Layout_Profile_Customer{Session: sess}
 }
 
-func (r Layout_Profile_Customer) Id(id int) *Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Id(id int) Layout_Profile_Customer {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Customer) Mask(mask string) *Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Mask(mask string) Layout_Profile_Customer {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Customer) Filter(filter string) *Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Filter(filter string) Layout_Profile_Customer {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Customer) Limit(limit int) *Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Limit(limit int) Layout_Profile_Customer {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Customer) Offset(offset int) *Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Offset(offset int) Layout_Profile_Customer {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method creates a new layout profile object.
-func (r *Layout_Profile_Customer) CreateObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
+func (r Layout_Profile_Customer) CreateObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -353,13 +353,13 @@ func (r *Layout_Profile_Customer) CreateObject(templateObject *datatypes.Layout_
 }
 
 // This method deletes an existing layout profile and associated custom preferences
-func (r *Layout_Profile_Customer) DeleteObject() (resp bool, err error) {
+func (r Layout_Profile_Customer) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method edits an existing layout profile object by passing in a modified instance of the object.
-func (r *Layout_Profile_Customer) EditObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
+func (r Layout_Profile_Customer) EditObject(templateObject *datatypes.Layout_Profile) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -368,25 +368,25 @@ func (r *Layout_Profile_Customer) EditObject(templateObject *datatypes.Layout_Pr
 }
 
 // Retrieve
-func (r *Layout_Profile_Customer) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
+func (r Layout_Profile_Customer) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile_Customer) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile_Customer) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Profile_Customer) GetObject() (resp datatypes.Layout_Profile_Customer, err error) {
+func (r Layout_Profile_Customer) GetObject() (resp datatypes.Layout_Profile_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile_Customer) GetUserRecord() (resp datatypes.User_Customer, err error) {
+func (r Layout_Profile_Customer) GetUserRecord() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -394,7 +394,7 @@ func (r *Layout_Profile_Customer) GetUserRecord() (resp datatypes.User_Customer,
 // This method modifies an existing associated [[SoftLayer_Layout_Profile_Preference]] object. If the preference object being modified is a default value object, a new record is created to override the default value.
 //
 // Only preferences that are assigned to a profile may be updated. Attempts to update a non-existent preference object will result in an exception being thrown.
-func (r *Layout_Profile_Customer) ModifyPreference(templateObject *datatypes.Layout_Profile_Preference) (resp datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile_Customer) ModifyPreference(templateObject *datatypes.Layout_Profile_Preference) (resp datatypes.Layout_Profile_Preference, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -405,7 +405,7 @@ func (r *Layout_Profile_Customer) ModifyPreference(templateObject *datatypes.Lay
 // Using this method, multiple [[SoftLayer_Layout_Profile_Preference]] objects may be updated at once.
 //
 // Refer to [[SoftLayer_Layout_Profile::modifyPreference()]] for more information.
-func (r *Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
 	params := []interface{}{
 		layoutPreferenceObjects,
 	}
@@ -419,61 +419,61 @@ type Layout_Profile_Preference struct {
 	Options sl.Options
 }
 
-func GetLayoutProfilePreferenceService(sess *session.Session) *Layout_Profile_Preference {
-	return &Layout_Profile_Preference{Session: sess}
+func GetLayoutProfilePreferenceService(sess *session.Session) Layout_Profile_Preference {
+	return Layout_Profile_Preference{Session: sess}
 }
 
-func (r Layout_Profile_Preference) Id(id int) *Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Id(id int) Layout_Profile_Preference {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Preference) Mask(mask string) *Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Mask(mask string) Layout_Profile_Preference {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Preference) Filter(filter string) *Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Filter(filter string) Layout_Profile_Preference {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Preference) Limit(limit int) *Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Limit(limit int) Layout_Profile_Preference {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Layout_Profile_Preference) Offset(offset int) *Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Offset(offset int) Layout_Profile_Preference {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve
-func (r *Layout_Profile_Preference) GetLayoutContainer() (resp datatypes.Layout_Container, err error) {
+func (r Layout_Profile_Preference) GetLayoutContainer() (resp datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile_Preference) GetLayoutItem() (resp datatypes.Layout_Item, err error) {
+func (r Layout_Profile_Preference) GetLayoutItem() (resp datatypes.Layout_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile_Preference) GetLayoutPreference() (resp datatypes.Layout_Preference, err error) {
+func (r Layout_Profile_Preference) GetLayoutPreference() (resp datatypes.Layout_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Layout_Profile_Preference) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
+func (r Layout_Profile_Preference) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Layout_Profile_Preference) GetObject() (resp datatypes.Layout_Profile_Preference, err error) {
+func (r Layout_Profile_Preference) GetObject() (resp datatypes.Layout_Profile_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

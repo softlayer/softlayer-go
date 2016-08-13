@@ -32,55 +32,55 @@ type Product_Item_Category struct {
 	Options sl.Options
 }
 
-func GetProductItemCategoryService(sess *session.Session) *Product_Item_Category {
-	return &Product_Item_Category{Session: sess}
+func GetProductItemCategoryService(sess *session.Session) Product_Item_Category {
+	return Product_Item_Category{Session: sess}
 }
 
-func (r Product_Item_Category) Id(id int) *Product_Item_Category {
+func (r Product_Item_Category) Id(id int) Product_Item_Category {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Item_Category) Mask(mask string) *Product_Item_Category {
+func (r Product_Item_Category) Mask(mask string) Product_Item_Category {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Item_Category) Filter(filter string) *Product_Item_Category {
+func (r Product_Item_Category) Filter(filter string) Product_Item_Category {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Item_Category) Limit(limit int) *Product_Item_Category {
+func (r Product_Item_Category) Limit(limit int) Product_Item_Category {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Item_Category) Offset(offset int) *Product_Item_Category {
+func (r Product_Item_Category) Offset(offset int) Product_Item_Category {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Returns a list of of active Items in the "Additional Services" package with their active prices for a given product item category and sorts them by price.
-func (r *Product_Item_Category) GetAdditionalProductsForCategory() (resp []datatypes.Product_Item, err error) {
+func (r Product_Item_Category) GetAdditionalProductsForCategory() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Item_Category) GetBandwidthCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetBandwidthCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing items associated with an account that share a category code with an item category's category code.
-func (r *Product_Item_Category) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
+func (r Product_Item_Category) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns a collection of computing categories. These categories are also top level items in a service offering.
-func (r *Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
 	params := []interface{}{
 		resetCache,
 	}
@@ -89,73 +89,73 @@ func (r *Product_Item_Category) GetComputingCategories(resetCache *bool) (resp [
 }
 
 //
-func (r *Product_Item_Category) GetCustomUsageRatesCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetCustomUsageRatesCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This invoice item's "item category group".
-func (r *Product_Item_Category) GetGroup() (resp datatypes.Product_Item_Category_Group, err error) {
+func (r Product_Item_Category) GetGroup() (resp datatypes.Product_Item_Category_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of service offering category groups. Each group contains a collection of items associated with this category.
-func (r *Product_Item_Category) GetGroups() (resp []datatypes.Product_Package_Item_Category_Group, err error) {
+func (r Product_Item_Category) GetGroups() (resp []datatypes.Product_Package_Item_Category_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Each product item price must be tied to a category for it to be sold. These categories describe how a particular product item is sold. For example, the 250GB hard drive can be sold as disk0, disk1, ... disk11. There are different prices for this product item depending on which category it is. This keeps down the number of products in total.
-func (r *Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Any unique options associated with an itme category.
-func (r *Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
+func (r Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of configuration available in this category.'
-func (r *Product_Item_Category) GetPackageConfigurations() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+func (r Product_Item_Category) GetPackageConfigurations() (resp []datatypes.Product_Package_Order_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of preset configurations this category is used in.'
-func (r *Product_Item_Category) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+func (r Product_Item_Category) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The question references that are associated with an item category.
-func (r *Product_Item_Category) GetQuestionReferences() (resp []datatypes.Product_Item_Category_Question_Xref, err error) {
+func (r Product_Item_Category) GetQuestionReferences() (resp []datatypes.Product_Item_Category_Question_Xref, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The questions that are associated with an item category.
-func (r *Product_Item_Category) GetQuestions() (resp []datatypes.Product_Item_Category_Question, err error) {
+func (r Product_Item_Category) GetQuestions() (resp []datatypes.Product_Item_Category_Question, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Item_Category) GetSoftwareCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetSoftwareCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns a list of subnet categories.
-func (r *Product_Item_Category) GetSubnetCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetSubnetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns a collection of computing categories. These categories are also top level items in a service offering.
-func (r *Product_Item_Category) GetTopLevelCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetTopLevelCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
 	params := []interface{}{
 		resetCache,
 	}
@@ -164,13 +164,13 @@ func (r *Product_Item_Category) GetTopLevelCategories(resetCache *bool) (resp []
 }
 
 // This method returns service product categories that can be canceled via API.  You can use these categories to find the billing items you wish to cancel.
-func (r *Product_Item_Category) GetValidCancelableServiceItemCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetValidCancelableServiceItemCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -181,37 +181,37 @@ type Product_Item_Category_Group struct {
 	Options sl.Options
 }
 
-func GetProductItemCategoryGroupService(sess *session.Session) *Product_Item_Category_Group {
-	return &Product_Item_Category_Group{Session: sess}
+func GetProductItemCategoryGroupService(sess *session.Session) Product_Item_Category_Group {
+	return Product_Item_Category_Group{Session: sess}
 }
 
-func (r Product_Item_Category_Group) Id(id int) *Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Id(id int) Product_Item_Category_Group {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Item_Category_Group) Mask(mask string) *Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Mask(mask string) Product_Item_Category_Group {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Item_Category_Group) Filter(filter string) *Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Filter(filter string) Product_Item_Category_Group {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Item_Category_Group) Limit(limit int) *Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Limit(limit int) Product_Item_Category_Group {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Item_Category_Group) Offset(offset int) *Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Offset(offset int) Product_Item_Category_Group {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Each product item category must be tied to a category group. These category groups describe how a particular product item category is categorized. For example, the disk0, disk1, ... disk11 can be categorized as Server and Attached Services. There are different groups for each of this product item category depending on the function of the item product in the subject category.
-func (r *Product_Item_Category_Group) GetObject() (resp datatypes.Product_Item_Category_Group, err error) {
+func (r Product_Item_Category_Group) GetObject() (resp datatypes.Product_Item_Category_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -222,37 +222,37 @@ type Product_Item_Policy_Assignment struct {
 	Options sl.Options
 }
 
-func GetProductItemPolicyAssignmentService(sess *session.Session) *Product_Item_Policy_Assignment {
-	return &Product_Item_Policy_Assignment{Session: sess}
+func GetProductItemPolicyAssignmentService(sess *session.Session) Product_Item_Policy_Assignment {
+	return Product_Item_Policy_Assignment{Session: sess}
 }
 
-func (r Product_Item_Policy_Assignment) Id(id int) *Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Id(id int) Product_Item_Policy_Assignment {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Item_Policy_Assignment) Mask(mask string) *Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Mask(mask string) Product_Item_Policy_Assignment {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Item_Policy_Assignment) Filter(filter string) *Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Filter(filter string) Product_Item_Policy_Assignment {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Item_Policy_Assignment) Limit(limit int) *Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Limit(limit int) Product_Item_Policy_Assignment {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Item_Policy_Assignment) Offset(offset int) *Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Offset(offset int) Product_Item_Policy_Assignment {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Register the acceptance of the associated policy to product assignment, and link the created record to a Ticket.
-func (r *Product_Item_Policy_Assignment) AcceptFromTicket(ticketId *int) (resp bool, err error) {
+func (r Product_Item_Policy_Assignment) AcceptFromTicket(ticketId *int) (resp bool, err error) {
 	params := []interface{}{
 		ticketId,
 	}
@@ -261,25 +261,25 @@ func (r *Product_Item_Policy_Assignment) AcceptFromTicket(ticketId *int) (resp b
 }
 
 //
-func (r *Product_Item_Policy_Assignment) GetObject() (resp datatypes.Product_Item_Policy_Assignment, err error) {
+func (r Product_Item_Policy_Assignment) GetObject() (resp datatypes.Product_Item_Policy_Assignment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve the binary contents of the associated PDF policy document.
-func (r *Product_Item_Policy_Assignment) GetPolicyDocumentContents() (resp []byte, err error) {
+func (r Product_Item_Policy_Assignment) GetPolicyDocumentContents() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of the assigned policy.
-func (r *Product_Item_Policy_Assignment) GetPolicyName() (resp string, err error) {
+func (r Product_Item_Policy_Assignment) GetPolicyName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Product_Item]] for this policy assignment.
-func (r *Product_Item_Policy_Assignment) GetProduct() (resp datatypes.Product_Item, err error) {
+func (r Product_Item_Policy_Assignment) GetProduct() (resp datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -290,145 +290,145 @@ type Product_Item_Price struct {
 	Options sl.Options
 }
 
-func GetProductItemPriceService(sess *session.Session) *Product_Item_Price {
-	return &Product_Item_Price{Session: sess}
+func GetProductItemPriceService(sess *session.Session) Product_Item_Price {
+	return Product_Item_Price{Session: sess}
 }
 
-func (r Product_Item_Price) Id(id int) *Product_Item_Price {
+func (r Product_Item_Price) Id(id int) Product_Item_Price {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Item_Price) Mask(mask string) *Product_Item_Price {
+func (r Product_Item_Price) Mask(mask string) Product_Item_Price {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Item_Price) Filter(filter string) *Product_Item_Price {
+func (r Product_Item_Price) Filter(filter string) Product_Item_Price {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Item_Price) Limit(limit int) *Product_Item_Price {
+func (r Product_Item_Price) Limit(limit int) Product_Item_Price {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Item_Price) Offset(offset int) *Product_Item_Price {
+func (r Product_Item_Price) Offset(offset int) Product_Item_Price {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve The account that the item price is restricted to.
-func (r *Product_Item_Price) GetAccountRestrictions() (resp []datatypes.Product_Item_Price_Account_Restriction, err error) {
+func (r Product_Item_Price) GetAccountRestrictions() (resp []datatypes.Product_Item_Price_Account_Restriction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Item_Price) GetAttributes() (resp []datatypes.Product_Item_Price_Attribute, err error) {
+func (r Product_Item_Price) GetAttributes() (resp []datatypes.Product_Item_Price_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the price is for Big Data OS/Journal disks only. (Deprecated)
-func (r *Product_Item_Price) GetBigDataOsJournalDiskFlag() (resp bool, err error) {
+func (r Product_Item_Price) GetBigDataOsJournalDiskFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for bundles
-func (r *Product_Item_Price) GetBundleReferences() (resp []datatypes.Product_Item_Bundles, err error) {
+func (r Product_Item_Price) GetBundleReferences() (resp []datatypes.Product_Item_Bundles, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum capacity value for which this price is suitable.
-func (r *Product_Item_Price) GetCapacityRestrictionMaximum() (resp string, err error) {
+func (r Product_Item_Price) GetCapacityRestrictionMaximum() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The minimum capacity value for which this price is suitable.
-func (r *Product_Item_Price) GetCapacityRestrictionMinimum() (resp string, err error) {
+func (r Product_Item_Price) GetCapacityRestrictionMinimum() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of capacity restriction by which this price must abide.
-func (r *Product_Item_Price) GetCapacityRestrictionType() (resp string, err error) {
+func (r Product_Item_Price) GetCapacityRestrictionType() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All categories which this item is a member.
-func (r *Product_Item_Price) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Item_Price) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether this price defines a software license for its product item.
-func (r *Product_Item_Price) GetDefinedSoftwareLicenseFlag() (resp bool, err error) {
+func (r Product_Item_Price) GetDefinedSoftwareLicenseFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An item price's inventory status per datacenter.
-func (r *Product_Item_Price) GetInventory() (resp []datatypes.Product_Package_Inventory, err error) {
+func (r Product_Item_Price) GetInventory() (resp []datatypes.Product_Package_Inventory, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The product item a price is tied to.
-func (r *Product_Item_Price) GetItem() (resp datatypes.Product_Item, err error) {
+func (r Product_Item_Price) GetItem() (resp datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Item_Price) GetObject() (resp datatypes.Product_Item_Price, err error) {
+func (r Product_Item_Price) GetObject() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Item_Price) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
+func (r Product_Item_Price) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for packages
-func (r *Product_Item_Price) GetPackageReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
+func (r Product_Item_Price) GetPackageReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A price's packages under which this item is sold.
-func (r *Product_Item_Price) GetPackages() (resp []datatypes.Product_Package, err error) {
+func (r Product_Item_Price) GetPackages() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of preset configurations this price is used in.'
-func (r *Product_Item_Price) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+func (r Product_Item_Price) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The pricing location group that this price is applicable for. Prices that have a pricing location group will only be available for ordering with the locations specified on the location group.
-func (r *Product_Item_Price) GetPricingLocationGroup() (resp datatypes.Location_Group_Pricing, err error) {
+func (r Product_Item_Price) GetPricingLocationGroup() (resp datatypes.Location_Group_Pricing, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The number of server cores required to order this item. This is deprecated. Use [[SoftLayer_Product_Item_Price/getCapacityRestrictionMinimum|getCapacityRestrictionMinimum]] and [[SoftLayer_Product_Item_Price/getCapacityRestrictionMaximum|getCapacityRestrictionMaximum]]
-func (r *Product_Item_Price) GetRequiredCoreCount() (resp int, err error) {
+func (r Product_Item_Price) GetRequiredCoreCount() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns a collection of rate-based [[SoftLayer_Product_Item_Price]] objects associated with the [[SoftLayer_Product_Item]] objects and the [[SoftLayer_Location]] specified. The location is required to get the appropriate rate-based prices because the usage rates may vary from datacenter to datacenter.
-func (r *Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, items []datatypes.Product_Item) (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, items []datatypes.Product_Item) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		location,
 		items,
@@ -443,55 +443,55 @@ type Product_Item_Price_Premium struct {
 	Options sl.Options
 }
 
-func GetProductItemPricePremiumService(sess *session.Session) *Product_Item_Price_Premium {
-	return &Product_Item_Price_Premium{Session: sess}
+func GetProductItemPricePremiumService(sess *session.Session) Product_Item_Price_Premium {
+	return Product_Item_Price_Premium{Session: sess}
 }
 
-func (r Product_Item_Price_Premium) Id(id int) *Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Id(id int) Product_Item_Price_Premium {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Item_Price_Premium) Mask(mask string) *Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Mask(mask string) Product_Item_Price_Premium {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Item_Price_Premium) Filter(filter string) *Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Filter(filter string) Product_Item_Price_Premium {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Item_Price_Premium) Limit(limit int) *Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Limit(limit int) Product_Item_Price_Premium {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Item_Price_Premium) Offset(offset int) *Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Offset(offset int) Product_Item_Price_Premium {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve
-func (r *Product_Item_Price_Premium) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
+func (r Product_Item_Price_Premium) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Item_Price_Premium) GetLocation() (resp datatypes.Location, err error) {
+func (r Product_Item_Price_Premium) GetLocation() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Item_Price_Premium) GetObject() (resp datatypes.Product_Item_Price_Premium, err error) {
+func (r Product_Item_Price_Premium) GetObject() (resp datatypes.Product_Item_Price_Premium, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Package, err error) {
+func (r Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -502,37 +502,37 @@ type Product_Order struct {
 	Options sl.Options
 }
 
-func GetProductOrderService(sess *session.Session) *Product_Order {
-	return &Product_Order{Session: sess}
+func GetProductOrderService(sess *session.Session) Product_Order {
+	return Product_Order{Session: sess}
 }
 
-func (r Product_Order) Id(id int) *Product_Order {
+func (r Product_Order) Id(id int) Product_Order {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Order) Mask(mask string) *Product_Order {
+func (r Product_Order) Mask(mask string) Product_Order {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Order) Filter(filter string) *Product_Order {
+func (r Product_Order) Filter(filter string) Product_Order {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Order) Limit(limit int) *Product_Order {
+func (r Product_Order) Limit(limit int) Product_Order {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Order) Offset(offset int) *Product_Order {
+func (r Product_Order) Offset(offset int) Product_Order {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Item_Price, accountId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
+func (r Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Item_Price, accountId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		itemPrices,
 		accountId,
@@ -543,7 +543,7 @@ func (r *Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Ite
 }
 
 //
-func (r *Product_Order) CheckItemAvailabilityForImageTemplate(imageTemplateId *int, accountId *int, packageId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
+func (r Product_Order) CheckItemAvailabilityForImageTemplate(imageTemplateId *int, accountId *int, packageId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		imageTemplateId,
 		accountId,
@@ -555,7 +555,7 @@ func (r *Product_Order) CheckItemAvailabilityForImageTemplate(imageTemplateId *i
 }
 
 // Check order items for conflicts
-func (r *Product_Order) CheckItemConflicts(itemPrices []datatypes.Product_Item_Price) (resp bool, err error) {
+func (r Product_Order) CheckItemConflicts(itemPrices []datatypes.Product_Item_Price) (resp bool, err error) {
 	params := []interface{}{
 		itemPrices,
 	}
@@ -564,7 +564,7 @@ func (r *Product_Order) CheckItemConflicts(itemPrices []datatypes.Product_Item_P
 }
 
 // This method simply returns a receipt for a previously finalized payment authorization from PayPal. The response matches the response returned from placeOrder when the order was originally placed with PayPal as the payment type.
-func (r *Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, payerId *string) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, payerId *string) (resp datatypes.Container_Product_Order_Receipt, err error) {
 	params := []interface{}{
 		token,
 		payerId,
@@ -580,7 +580,7 @@ func (r *Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, pa
 // If a package id is supplied, the list of public VLANs and subnets will be trimmed down to those that are available for that particular package.
 //
 // The account id is for internal use only and will be ignored when supplied by customers.
-func (r *Product_Order) GetNetworks(locationId *int, packageId *int, accountId *int) (resp []datatypes.Container_Product_Order_Network, err error) {
+func (r Product_Order) GetNetworks(locationId *int, packageId *int, accountId *int) (resp []datatypes.Container_Product_Order_Network, err error) {
 	params := []interface{}{
 		locationId,
 		packageId,
@@ -591,7 +591,7 @@ func (r *Product_Order) GetNetworks(locationId *int, packageId *int, accountId *
 }
 
 // When the account is on an external reseller brand, this service will provide a SoftLayer_Product_Order with the the pricing adjusted by the external reseller.
-func (r *Product_Order) GetResellerOrder(orderContainer *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
+func (r Product_Order) GetResellerOrder(orderContainer *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
 		orderContainer,
 	}
@@ -600,7 +600,7 @@ func (r *Product_Order) GetResellerOrder(orderContainer *datatypes.Container_Pro
 }
 
 // Sometimes taxes cannot be calculated immediately, so we start the calculations and let them run in the background. This method will return the current progress and information related to a specific tax calculation, which allows real-time progress updates on tax calculations.
-func (r *Product_Order) GetTaxCalculationResult(orderHash *string) (resp datatypes.Container_Tax_Cache, err error) {
+func (r Product_Order) GetTaxCalculationResult(orderHash *string) (resp datatypes.Container_Tax_Cache, err error) {
 	params := []interface{}{
 		orderHash,
 	}
@@ -619,7 +619,7 @@ func (r *Product_Order) GetTaxCalculationResult(orderHash *string) (resp datatyp
 // <ul> <li><code>port_speed</code></li> <li>A disk category, such as <code>guest_disk0</code> or <code>disk0</code>, with values of either <code>LOCAL_DISK</code> or <code>SAN_DISK</code></li> <li><code>private_network_only</code></li> <li><code>dual_path_network</code></li> </ul>
 //
 // For most customers, it's sufficient to only provide the first 2 parameters.
-func (r *Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *string, vlanIds []int, subnetIds []int, accountId *int, orderContainer *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Network_Vlans, err error) {
+func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *string, vlanIds []int, subnetIds []int, accountId *int, orderContainer *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Network_Vlans, err error) {
 	params := []interface{}{
 		locationId,
 		packageId,
@@ -1033,7 +1033,7 @@ func (r *Product_Order) GetVlans(locationId *int, packageId *int, selectedItems 
 // </http>
 //
 //
-func (r *Product_Order) PlaceOrder(orderData *datatypes.Container_Product_Order, saveAsQuote *bool) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Product_Order) PlaceOrder(orderData *datatypes.Container_Product_Order, saveAsQuote *bool) (resp datatypes.Container_Product_Order_Receipt, err error) {
 	params := []interface{}{
 		orderData,
 		saveAsQuote,
@@ -1043,7 +1043,7 @@ func (r *Product_Order) PlaceOrder(orderData *datatypes.Container_Product_Order,
 }
 
 // Use this method for placing server quotes and additional services quotes. The same applies for this as with verifyOrder. Send in the SoftLayer_Container_Product_Order_Hardware_Server for server quotes. After placing the quote, you must go to this URL to finish the order process. After going to this URL, it will direct you back to a SoftLayer webpage that tells us you have finished the process. After this, it will go to sales for final approval.
-func (r *Product_Order) PlaceQuote(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Product_Order) PlaceQuote(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Receipt, err error) {
 	params := []interface{}{
 		orderData,
 	}
@@ -1052,7 +1052,7 @@ func (r *Product_Order) PlaceQuote(orderData *datatypes.Container_Product_Order)
 }
 
 // This method simply finalizes an authorization from PayPal. It tells SoftLayer that the customer has completed the PayPal process. This is ONLY needed if you, the customer, have your own API into PayPal and wish to automate authorizations from PayPal and our system. For most, this method will not be needed. Once an order is placed using placeOrder() for PayPal customers, a URL is given back to the customer. In it is the token and PayerID. If you want to systematically pay with PayPal, do so then call this method with the token and PayerID.
-func (r *Product_Order) ProcessExternalPaymentAuthorization(token *string, payerId *string) (resp datatypes.Container_Product_Order, err error) {
+func (r Product_Order) ProcessExternalPaymentAuthorization(token *string, payerId *string) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
 		token,
 		payerId,
@@ -1062,7 +1062,7 @@ func (r *Product_Order) ProcessExternalPaymentAuthorization(token *string, payer
 }
 
 // Get list of items that are required with the item prices provided
-func (r *Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price) (resp []datatypes.Product_Item, err error) {
+func (r Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price) (resp []datatypes.Product_Item, err error) {
 	params := []interface{}{
 		itemPrices,
 	}
@@ -1077,7 +1077,7 @@ func (r *Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price)
 // <code>verifyOrder</code> accepts the same [[SoftLayer_Container_Product_Order (type)|container types]] as <code>placeOrder</code>, so see [[SoftLayer_Product_Order/placeOrder|placeOrder]] for more details.
 //
 //
-func (r *Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
+func (r Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
 		orderData,
 	}
@@ -1091,49 +1091,49 @@ type Product_Package struct {
 	Options sl.Options
 }
 
-func GetProductPackageService(sess *session.Session) *Product_Package {
-	return &Product_Package{Session: sess}
+func GetProductPackageService(sess *session.Session) Product_Package {
+	return Product_Package{Session: sess}
 }
 
-func (r Product_Package) Id(id int) *Product_Package {
+func (r Product_Package) Id(id int) Product_Package {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Package) Mask(mask string) *Product_Package {
+func (r Product_Package) Mask(mask string) Product_Package {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Package) Filter(filter string) *Product_Package {
+func (r Product_Package) Filter(filter string) Product_Package {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Package) Limit(limit int) *Product_Package {
+func (r Product_Package) Limit(limit int) Product_Package {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Package) Offset(offset int) *Product_Package {
+func (r Product_Package) Offset(offset int) Product_Package {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve The results from this call are similar to [[SoftLayer_Product_Package/getCategories|getCategories]], but these ONLY include account-restricted prices. Not all accounts have restricted pricing.
-func (r *Product_Package) GetAccountRestrictedCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Package) GetAccountRestrictedCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The flag to indicate if there are any restricted prices in a package for the currently-active account.
-func (r *Product_Package) GetAccountRestrictedPricesFlag() (resp bool, err error) {
+func (r Product_Package) GetAccountRestrictedPricesFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Return a list of Items in the package with their active prices.
-func (r *Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1141,7 +1141,7 @@ func (r *Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err e
 // <strong>This method is deprecated and should not be used in production code.</strong>
 //
 // This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software filtered by an attribute type associated with the package. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information.
-func (r *Product_Package) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		attributeKeyName,
 	}
@@ -1150,43 +1150,43 @@ func (r *Product_Package) GetActivePackagesByAttribute(attributeKeyName *string)
 }
 
 // Retrieve The available preset configurations for this package.
-func (r *Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Preset, err error) {
+func (r Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Preset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
-func (r *Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid RAM items available for purchase in this package.
-func (r *Product_Package) GetActiveRamItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetActiveRamItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid server items available for purchase in this package.
-func (r *Product_Package) GetActiveServerItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetActiveServerItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid software items available for purchase in this package.
-func (r *Product_Package) GetActiveSoftwareItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetActiveSoftwareItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of [[SoftLayer_Product_Item_Price]] objects for pay-as-you-go usage.
-func (r *Product_Package) GetActiveUsagePrices() (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Package) GetActiveUsagePrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns a collection of active usage rate [[SoftLayer_Product_Item_Price]] objects for the current package and specified datacenter. Optionally you can retrieve the active usage rate prices for a particular [[SoftLayer_Product_Item_Category]] by specifying a category code as the first parameter. This information is useful so that you can see "pay as you go" rates (if any) for the current package, location and optionally category.
-func (r *Product_Package) GetActiveUsageRatePrices(locationId *int, categoryCode *string) (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Package) GetActiveUsageRatePrices(locationId *int, categoryCode *string) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		locationId,
 		categoryCode,
@@ -1196,31 +1196,31 @@ func (r *Product_Package) GetActiveUsageRatePrices(locationId *int, categoryCode
 }
 
 // Retrieve This flag indicates that the package is an additional service.
-func (r *Product_Package) GetAdditionalServiceFlag() (resp bool, err error) {
+func (r Product_Package) GetAdditionalServiceFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method pulls all the active packages. This will give you a basic description of the packages that are currently active
-func (r *Product_Package) GetAllObjects() (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetAllObjects() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package) GetAttributes() (resp []datatypes.Product_Package_Attribute, err error) {
+func (r Product_Package) GetAttributes() (resp []datatypes.Product_Package_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
-func (r *Product_Package) GetAvailableLocations() (resp []datatypes.Product_Package_Locations, err error) {
+func (r Product_Package) GetAvailableLocations() (resp []datatypes.Product_Package_Locations, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		imageTemplate,
 	}
@@ -1229,25 +1229,25 @@ func (r *Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *da
 }
 
 // Retrieve The maximum number of available disk storage units associated with the servers in a package.
-func (r *Product_Package) GetAvailableStorageUnits() (resp uint, err error) {
+func (r Product_Package) GetAvailableStorageUnits() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This is a collection of categories ([[SoftLayer_Product_Item_Category]]) associated with a package which can be used for ordering. These categories have several objects prepopulated which are useful when determining the available products for purchase. The categories contain groups ([[SoftLayer_Product_Package_Item_Category_Group]]) that organize the products and prices by similar features. For example, operating systems will be grouped by their manufacturer and virtual server disks will be grouped by their disk type (SAN vs. local). Each group will contain prices ([[SoftLayer_Product_Item_Price]]) which you can use determine the cost of each product. Each price has a product ([[SoftLayer_Product_Item]]) which provides the name and other useful information about the server, service or software you may purchase.
-func (r *Product_Package) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Package) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package) GetCdnItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetCdnItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.Product_Item, err error) {
 	params := []interface{}{
 		provider,
 	}
@@ -1256,103 +1256,103 @@ func (r *Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.
 }
 
 // Retrieve The item categories associated with a package, including information detailing which item categories are required as part of a SoftLayer product order.
-func (r *Product_Package) GetConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+func (r Product_Package) GetConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid RAM items available for purchase in this package.
-func (r *Product_Package) GetDefaultRamItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetDefaultRamItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The node type for a package in a solution deployment.
-func (r *Product_Package) GetDeploymentNodeType() (resp string, err error) {
+func (r Product_Package) GetDeploymentNodeType() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The packages that are allowed in a multi-server solution. (Deprecated)
-func (r *Product_Package) GetDeploymentPackages() (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetDeploymentPackages() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The solution deployment type.
-func (r *Product_Package) GetDeploymentType() (resp string, err error) {
+func (r Product_Package) GetDeploymentType() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The package that represents a multi-server solution. (Deprecated)
-func (r *Product_Package) GetDeployments() (resp []datatypes.Product_Package, err error) {
+func (r Product_Package) GetDeployments() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package does not allow custom disk partitions.
-func (r *Product_Package) GetDisallowCustomDiskPartitions() (resp bool, err error) {
+func (r Product_Package) GetDisallowCustomDiskPartitions() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Softlayer order step is optionally step-based. This returns the first SoftLayer_Product_Package_Order_Step in the step-based order process.
-func (r *Product_Package) GetFirstOrderStep() (resp datatypes.Product_Package_Order_Step, err error) {
+func (r Product_Package) GetFirstOrderStep() (resp datatypes.Product_Package_Order_Step, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package is a specialized network gateway appliance package.
-func (r *Product_Package) GetGatewayApplianceFlag() (resp bool, err error) {
+func (r Product_Package) GetGatewayApplianceFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates that the package supports GPUs.
-func (r *Product_Package) GetGpuFlag() (resp bool, err error) {
+func (r Product_Package) GetGpuFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Determines whether the package contains prices that can be ordered hourly.
-func (r *Product_Package) GetHourlyBillingAvailableFlag() (resp bool, err error) {
+func (r Product_Package) GetHourlyBillingAvailableFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns a collection of SoftLayer_Product_Item_Attribute_Type objects.  These item attribute types specifically deal with when an item, SoftLayer_Product_Item, from the product catalog may no longer be available.  The keynames for these attribute types start with 'UNAVAILABLE_AFTER_DATE_*', where the '*' may represent any string.  For example, 'UNAVAILABLE_AFTER_DATE_NEW_ORDERS', signifies that the item is not available for new orders.  There is a catch all attribute type, 'UNAVAILABLE_AFTER_DATE_ALL'.  If an item has one of these availability attributes set, the value should be a valid date in MM/DD/YYYY, indicating the date after which the item will no longer be available.
-func (r *Product_Package) GetItemAvailabilityTypes() (resp []datatypes.Product_Item_Attribute_Type, err error) {
+func (r Product_Package) GetItemAvailabilityTypes() (resp []datatypes.Product_Item_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item-item conflicts associated with a package.
-func (r *Product_Package) GetItemConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+func (r Product_Package) GetItemConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item-location conflicts associated with a package.
-func (r *Product_Package) GetItemLocationConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+func (r Product_Package) GetItemLocationConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for item prices
-func (r *Product_Package) GetItemPriceReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
+func (r Product_Package) GetItemPriceReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of SoftLayer_Product_Item_Prices that are valid for this package.
-func (r *Product_Package) GetItemPrices() (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Package) GetItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Return a collection of SoftLayer_Item_Price objects from a collection of SoftLayer_Software_Description
-func (r *Product_Package) GetItemPricesFromSoftwareDescriptions(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Package) GetItemPricesFromSoftwareDescriptions(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		softwareDescriptions,
 		includeTranslationsFlag,
@@ -1363,13 +1363,13 @@ func (r *Product_Package) GetItemPricesFromSoftwareDescriptions(softwareDescript
 }
 
 // Retrieve A collection of valid items available for purchase in this package.
-func (r *Product_Package) GetItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Return a collection of [[SoftLayer_Product_Item]] objects from a [[SoftLayer_Virtual_Guest_Block_Device_Template_Group]] object
-func (r *Product_Package) GetItemsFromImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetItemsFromImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Item, err error) {
 	params := []interface{}{
 		imageTemplate,
 	}
@@ -1378,139 +1378,139 @@ func (r *Product_Package) GetItemsFromImageTemplate(imageTemplate *datatypes.Vir
 }
 
 // Retrieve A collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
-func (r *Product_Package) GetLocations() (resp []datatypes.Location, err error) {
+func (r Product_Package) GetLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The lowest server [[SoftLayer_Product_Item_Price]] related to this package.
-func (r *Product_Package) GetLowestServerPrice() (resp datatypes.Product_Item_Price, err error) {
+func (r Product_Package) GetLowestServerPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum available network speed associated with the package.
-func (r *Product_Package) GetMaximumPortSpeed() (resp uint, err error) {
+func (r Product_Package) GetMaximumPortSpeed() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package) GetMessageQueueItems() (resp []datatypes.Product_Item, err error) {
+func (r Product_Package) GetMessageQueueItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The minimum available network speed associated with the package.
-func (r *Product_Package) GetMinimumPortSpeed() (resp uint, err error) {
+func (r Product_Package) GetMinimumPortSpeed() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates that this is a MongoDB engineered package. (Deprecated)
-func (r *Product_Package) GetMongoDbEngineeredFlag() (resp bool, err error) {
+func (r Product_Package) GetMongoDbEngineeredFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package) GetObject() (resp datatypes.Product_Package, err error) {
+func (r Product_Package) GetObject() (resp datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will return a collection of [[SoftLayer_Container_Product_Order_Network_Storage_Hub_Datacenter]] objects which contain a datacenter location and all the associated active usage rate prices where object storage is available. This method is really only applicable to the object storage additional service package which has a [[SoftLayer_Product_Package_Type]] of '''ADDITIONAL_SERVICES_OBJECT_STORAGE'''. This information is useful so that you can see the "pay as you go" rates per datacenter.
-func (r *Product_Package) GetObjectStorageDatacenters() (resp []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter, err error) {
+func (r Product_Package) GetObjectStorageDatacenters() (resp []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The premium price modifiers associated with the [[SoftLayer_Product_Item_Price]] and [[SoftLayer_Location]] objects in a package.
-func (r *Product_Package) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
+func (r Product_Package) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package is pre-configured. (Deprecated)
-func (r *Product_Package) GetPreconfiguredFlag() (resp bool, err error) {
+func (r Product_Package) GetPreconfiguredFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package requires the user to define a preset configuration.
-func (r *Product_Package) GetPresetConfigurationRequiredFlag() (resp bool, err error) {
+func (r Product_Package) GetPresetConfigurationRequiredFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package prevents the user from specifying a Vlan.
-func (r *Product_Package) GetPreventVlanSelectionFlag() (resp bool, err error) {
+func (r Product_Package) GetPreventVlanSelectionFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package is for a private hosted cloud deployment. (Deprecated)
-func (r *Product_Package) GetPrivateHostedCloudPackageFlag() (resp bool, err error) {
+func (r Product_Package) GetPrivateHostedCloudPackageFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The server role of the private hosted cloud deployment. (Deprecated)
-func (r *Product_Package) GetPrivateHostedCloudPackageType() (resp string, err error) {
+func (r Product_Package) GetPrivateHostedCloudPackageType() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package only has access to the private network.
-func (r *Product_Package) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
+func (r Product_Package) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package is a specialized mass storage QuantaStor package.
-func (r *Product_Package) GetQuantaStorPackageFlag() (resp bool, err error) {
+func (r Product_Package) GetQuantaStorPackageFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package does not allow different disks with RAID.
-func (r *Product_Package) GetRaidDiskRestrictionFlag() (resp bool, err error) {
+func (r Product_Package) GetRaidDiskRestrictionFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag determines if the package contains a redundant power supply product.
-func (r *Product_Package) GetRedundantPowerFlag() (resp bool, err error) {
+func (r Product_Package) GetRedundantPowerFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The regional locations that a package is available in.
-func (r *Product_Package) GetRegions() (resp []datatypes.Location_Region, err error) {
+func (r Product_Package) GetRegions() (resp []datatypes.Location_Region, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The resource group template that describes a multi-server solution. (Deprecated)
-func (r *Product_Package) GetResourceGroupTemplate() (resp datatypes.Resource_Group_Template, err error) {
+func (r Product_Package) GetResourceGroupTemplate() (resp datatypes.Resource_Group_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This call is similar to [[SoftLayer_Product_Package/getCategories|getCategories]], except that it does not include account-restricted pricing. Not all accounts have restricted pricing.
-func (r *Product_Package) GetStandardCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Package) GetStandardCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The top level category code for this service offering.
-func (r *Product_Package) GetTopLevelItemCategoryCode() (resp string, err error) {
+func (r Product_Package) GetTopLevelItemCategoryCode() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of service offering. This property can be used to help filter packages.
-func (r *Product_Package) GetType() (resp datatypes.Product_Package_Type, err error) {
+func (r Product_Package) GetType() (resp datatypes.Product_Package_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1525,109 +1525,109 @@ type Product_Package_Preset struct {
 	Options sl.Options
 }
 
-func GetProductPackagePresetService(sess *session.Session) *Product_Package_Preset {
-	return &Product_Package_Preset{Session: sess}
+func GetProductPackagePresetService(sess *session.Session) Product_Package_Preset {
+	return Product_Package_Preset{Session: sess}
 }
 
-func (r Product_Package_Preset) Id(id int) *Product_Package_Preset {
+func (r Product_Package_Preset) Id(id int) Product_Package_Preset {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Package_Preset) Mask(mask string) *Product_Package_Preset {
+func (r Product_Package_Preset) Mask(mask string) Product_Package_Preset {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Package_Preset) Filter(filter string) *Product_Package_Preset {
+func (r Product_Package_Preset) Filter(filter string) Product_Package_Preset {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Package_Preset) Limit(limit int) *Product_Package_Preset {
+func (r Product_Package_Preset) Limit(limit int) Product_Package_Preset {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Package_Preset) Offset(offset int) *Product_Package_Preset {
+func (r Product_Package_Preset) Offset(offset int) Product_Package_Preset {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method returns all the active package presets.
-func (r *Product_Package_Preset) GetAllObjects() (resp []datatypes.Product_Package_Preset, err error) {
+func (r Product_Package_Preset) GetAllObjects() (resp []datatypes.Product_Package_Preset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Preset) GetAvailableStorageUnits() (resp uint, err error) {
+func (r Product_Package_Preset) GetAvailableStorageUnits() (resp uint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item categories that are included in this package preset configuration.
-func (r *Product_Package_Preset) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
+func (r Product_Package_Preset) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The preset configuration (category and price).
-func (r *Product_Package_Preset) GetConfiguration() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+func (r Product_Package_Preset) GetConfiguration() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A package preset with this flag set will not allow the price's defined in the preset configuration to be overriden during order placement.
-func (r *Product_Package_Preset) GetFixedConfigurationFlag() (resp bool, err error) {
+func (r Product_Package_Preset) GetFixedConfigurationFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The lowest server prices related to this package preset.
-func (r *Product_Package_Preset) GetLowestPresetServerPrice() (resp datatypes.Product_Item_Price, err error) {
+func (r Product_Package_Preset) GetLowestPresetServerPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package_Preset) GetObject() (resp datatypes.Product_Package_Preset, err error) {
+func (r Product_Package_Preset) GetObject() (resp datatypes.Product_Package_Preset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The package this preset belongs to.
-func (r *Product_Package_Preset) GetPackage() (resp datatypes.Product_Package, err error) {
+func (r Product_Package_Preset) GetPackage() (resp datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item categories associated with a package preset, including information detailing which item categories are required as part of a SoftLayer product order.
-func (r *Product_Package_Preset) GetPackageConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+func (r Product_Package_Preset) GetPackageConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item prices that are included in this package preset configuration.
-func (r *Product_Package_Preset) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
+func (r Product_Package_Preset) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Describes how all disks in this preset will be configured.
-func (r *Product_Package_Preset) GetStorageGroupTemplateArrays() (resp []datatypes.Configuration_Storage_Group_Template_Group, err error) {
+func (r Product_Package_Preset) GetStorageGroupTemplateArrays() (resp []datatypes.Configuration_Storage_Group_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting hourly price for this configuration. Additional options not defined in the preset may increase the cost.
-func (r *Product_Package_Preset) GetTotalMinimumHourlyFee() (resp float64, err error) {
+func (r Product_Package_Preset) GetTotalMinimumHourlyFee() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting monthly price for this configuration. Additional options not defined in the preset may increase the cost.
-func (r *Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, err error) {
+func (r Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1638,73 +1638,73 @@ type Product_Package_Server struct {
 	Options sl.Options
 }
 
-func GetProductPackageServerService(sess *session.Session) *Product_Package_Server {
-	return &Product_Package_Server{Session: sess}
+func GetProductPackageServerService(sess *session.Session) Product_Package_Server {
+	return Product_Package_Server{Session: sess}
 }
 
-func (r Product_Package_Server) Id(id int) *Product_Package_Server {
+func (r Product_Package_Server) Id(id int) Product_Package_Server {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Package_Server) Mask(mask string) *Product_Package_Server {
+func (r Product_Package_Server) Mask(mask string) Product_Package_Server {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Package_Server) Filter(filter string) *Product_Package_Server {
+func (r Product_Package_Server) Filter(filter string) Product_Package_Server {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Package_Server) Limit(limit int) *Product_Package_Server {
+func (r Product_Package_Server) Limit(limit int) Product_Package_Server {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Package_Server) Offset(offset int) *Product_Package_Server {
+func (r Product_Package_Server) Offset(offset int) Product_Package_Server {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method will grab all the package servers.
-func (r *Product_Package_Server) GetAllObjects() (resp []datatypes.Product_Package_Server, err error) {
+func (r Product_Package_Server) GetAllObjects() (resp []datatypes.Product_Package_Server, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Server) GetCatalog() (resp datatypes.Product_Catalog, err error) {
+func (r Product_Package_Server) GetCatalog() (resp datatypes.Product_Catalog, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Server) GetItem() (resp datatypes.Product_Item, err error) {
+func (r Product_Package_Server) GetItem() (resp datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Server) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
+func (r Product_Package_Server) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package_Server) GetObject() (resp datatypes.Product_Package_Server, err error) {
+func (r Product_Package_Server) GetObject() (resp datatypes.Product_Package_Server, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Server) GetPackage() (resp datatypes.Product_Package, err error) {
+func (r Product_Package_Server) GetPackage() (resp datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Product_Package_Server) GetPreset() (resp datatypes.Product_Package_Preset, err error) {
+func (r Product_Package_Server) GetPreset() (resp datatypes.Product_Package_Preset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1715,49 +1715,49 @@ type Product_Package_Server_Option struct {
 	Options sl.Options
 }
 
-func GetProductPackageServerOptionService(sess *session.Session) *Product_Package_Server_Option {
-	return &Product_Package_Server_Option{Session: sess}
+func GetProductPackageServerOptionService(sess *session.Session) Product_Package_Server_Option {
+	return Product_Package_Server_Option{Session: sess}
 }
 
-func (r Product_Package_Server_Option) Id(id int) *Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Id(id int) Product_Package_Server_Option {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Package_Server_Option) Mask(mask string) *Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Mask(mask string) Product_Package_Server_Option {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Package_Server_Option) Filter(filter string) *Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Filter(filter string) Product_Package_Server_Option {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Package_Server_Option) Limit(limit int) *Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Limit(limit int) Product_Package_Server_Option {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Package_Server_Option) Offset(offset int) *Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Offset(offset int) Product_Package_Server_Option {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method will grab all the package server options.
-func (r *Product_Package_Server_Option) GetAllOptions() (resp []datatypes.Product_Package_Server_Option, err error) {
+func (r Product_Package_Server_Option) GetAllOptions() (resp []datatypes.Product_Package_Server_Option, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package_Server_Option) GetObject() (resp datatypes.Product_Package_Server_Option, err error) {
+func (r Product_Package_Server_Option) GetObject() (resp datatypes.Product_Package_Server_Option, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will grab all the package server options for the specified type.
-func (r *Product_Package_Server_Option) GetOptions(typ *string) (resp []datatypes.Product_Package_Server_Option, err error) {
+func (r Product_Package_Server_Option) GetOptions(typ *string) (resp []datatypes.Product_Package_Server_Option, err error) {
 	params := []interface{}{
 		typ,
 	}
@@ -1771,49 +1771,49 @@ type Product_Package_Type struct {
 	Options sl.Options
 }
 
-func GetProductPackageTypeService(sess *session.Session) *Product_Package_Type {
-	return &Product_Package_Type{Session: sess}
+func GetProductPackageTypeService(sess *session.Session) Product_Package_Type {
+	return Product_Package_Type{Session: sess}
 }
 
-func (r Product_Package_Type) Id(id int) *Product_Package_Type {
+func (r Product_Package_Type) Id(id int) Product_Package_Type {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Package_Type) Mask(mask string) *Product_Package_Type {
+func (r Product_Package_Type) Mask(mask string) Product_Package_Type {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Package_Type) Filter(filter string) *Product_Package_Type {
+func (r Product_Package_Type) Filter(filter string) Product_Package_Type {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Package_Type) Limit(limit int) *Product_Package_Type {
+func (r Product_Package_Type) Limit(limit int) Product_Package_Type {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Package_Type) Offset(offset int) *Product_Package_Type {
+func (r Product_Package_Type) Offset(offset int) Product_Package_Type {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method will return all of the available package types.
-func (r *Product_Package_Type) GetAllObjects() (resp []datatypes.Product_Package_Type, err error) {
+func (r Product_Package_Type) GetAllObjects() (resp []datatypes.Product_Package_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, err error) {
+func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the packages associated with the given package type.
-func (r *Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, err error) {
+func (r Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -1824,103 +1824,103 @@ type Product_Upgrade_Request struct {
 	Options sl.Options
 }
 
-func GetProductUpgradeRequestService(sess *session.Session) *Product_Upgrade_Request {
-	return &Product_Upgrade_Request{Session: sess}
+func GetProductUpgradeRequestService(sess *session.Session) Product_Upgrade_Request {
+	return Product_Upgrade_Request{Session: sess}
 }
 
-func (r Product_Upgrade_Request) Id(id int) *Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Id(id int) Product_Upgrade_Request {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Product_Upgrade_Request) Mask(mask string) *Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Mask(mask string) Product_Upgrade_Request {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Product_Upgrade_Request) Filter(filter string) *Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Filter(filter string) Product_Upgrade_Request {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Product_Upgrade_Request) Limit(limit int) *Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Limit(limit int) Product_Upgrade_Request {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Product_Upgrade_Request) Offset(offset int) *Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Offset(offset int) Product_Upgrade_Request {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // When a change is made to an upgrade by Sales, this method will approve the changes that were made. A customer must acknowledge the change and approve it so that the upgrade request can proceed.
-func (r *Product_Upgrade_Request) ApproveChanges() (resp bool, err error) {
+func (r Product_Upgrade_Request) ApproveChanges() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that an order belongs to
-func (r *Product_Upgrade_Request) GetAccount() (resp datatypes.Account, err error) {
+func (r Product_Upgrade_Request) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates that the upgrade request has completed or has been cancelled.
-func (r *Product_Upgrade_Request) GetCompletedFlag() (resp bool, err error) {
+func (r Product_Upgrade_Request) GetCompletedFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve This is the invoice associated with the upgrade request. For hourly servers or services, an invoice will not be available.
-func (r *Product_Upgrade_Request) GetInvoice() (resp datatypes.Billing_Invoice, err error) {
+func (r Product_Upgrade_Request) GetInvoice() (resp datatypes.Billing_Invoice, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves a SoftLayer_Product_Upgrade_Request object on your account whose ID corresponds to the ID of the init parameter passed to the SoftLayer_Product_Upgrade_Request service.
-func (r *Product_Upgrade_Request) GetObject() (resp datatypes.Product_Upgrade_Request, err error) {
+func (r Product_Upgrade_Request) GetObject() (resp datatypes.Product_Upgrade_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order record associated to the upgrade request
-func (r *Product_Upgrade_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
+func (r Product_Upgrade_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A server object associated with the upgrade request if any.
-func (r *Product_Upgrade_Request) GetServer() (resp datatypes.Hardware, err error) {
+func (r Product_Upgrade_Request) GetServer() (resp datatypes.Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the upgrade request.
-func (r *Product_Upgrade_Request) GetStatus() (resp datatypes.Product_Upgrade_Request_Status, err error) {
+func (r Product_Upgrade_Request) GetStatus() (resp datatypes.Product_Upgrade_Request_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ticket that is used to coordinate the upgrade process.
-func (r *Product_Upgrade_Request) GetTicket() (resp datatypes.Ticket, err error) {
+func (r Product_Upgrade_Request) GetTicket() (resp datatypes.Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The user that placed the order.
-func (r *Product_Upgrade_Request) GetUser() (resp datatypes.User_Customer, err error) {
+func (r Product_Upgrade_Request) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual server object associated with the upgrade request if any.
-func (r *Product_Upgrade_Request) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
+func (r Product_Upgrade_Request) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // In case an upgrade cannot be performed, the maintenance window needs to be updated to a future date.
-func (r *Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *datatypes.Time, maintenanceWindowId *int) (resp bool, err error) {
+func (r Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *datatypes.Time, maintenanceWindowId *int) (resp bool, err error) {
 	params := []interface{}{
 		maintenanceStartTime,
 		maintenanceWindowId,

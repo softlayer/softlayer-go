@@ -32,43 +32,43 @@ type Compliance_Report_Type struct {
 	Options sl.Options
 }
 
-func GetComplianceReportTypeService(sess *session.Session) *Compliance_Report_Type {
-	return &Compliance_Report_Type{Session: sess}
+func GetComplianceReportTypeService(sess *session.Session) Compliance_Report_Type {
+	return Compliance_Report_Type{Session: sess}
 }
 
-func (r Compliance_Report_Type) Id(id int) *Compliance_Report_Type {
+func (r Compliance_Report_Type) Id(id int) Compliance_Report_Type {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Compliance_Report_Type) Mask(mask string) *Compliance_Report_Type {
+func (r Compliance_Report_Type) Mask(mask string) Compliance_Report_Type {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Compliance_Report_Type) Filter(filter string) *Compliance_Report_Type {
+func (r Compliance_Report_Type) Filter(filter string) Compliance_Report_Type {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Compliance_Report_Type) Limit(limit int) *Compliance_Report_Type {
+func (r Compliance_Report_Type) Limit(limit int) Compliance_Report_Type {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Compliance_Report_Type) Offset(offset int) *Compliance_Report_Type {
+func (r Compliance_Report_Type) Offset(offset int) Compliance_Report_Type {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Compliance_Report_Type) GetAllObjects() (resp []datatypes.Compliance_Report_Type, err error) {
+func (r Compliance_Report_Type) GetAllObjects() (resp []datatypes.Compliance_Report_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Compliance_Report_Type) GetObject() (resp datatypes.Compliance_Report_Type, err error) {
+func (r Compliance_Report_Type) GetObject() (resp datatypes.Compliance_Report_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

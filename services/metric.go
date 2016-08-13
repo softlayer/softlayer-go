@@ -32,37 +32,37 @@ type Metric_Tracking_Object struct {
 	Options sl.Options
 }
 
-func GetMetricTrackingObjectService(sess *session.Session) *Metric_Tracking_Object {
-	return &Metric_Tracking_Object{Session: sess}
+func GetMetricTrackingObjectService(sess *session.Session) Metric_Tracking_Object {
+	return Metric_Tracking_Object{Session: sess}
 }
 
-func (r Metric_Tracking_Object) Id(id int) *Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Id(id int) Metric_Tracking_Object {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object) Mask(mask string) *Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Mask(mask string) Metric_Tracking_Object {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object) Filter(filter string) *Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Filter(filter string) Metric_Tracking_Object {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object) Limit(limit int) *Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Limit(limit int) Metric_Tracking_Object {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object) Offset(offset int) *Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Offset(offset int) Metric_Tracking_Object {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve a PNG image of the last 24 hours of bandwidth usage of one of SoftLayer's network backbones.
-func (r *Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		graphTitle,
 	}
@@ -71,7 +71,7 @@ func (r *Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (
 }
 
 // Retrieve a collection of raw bandwidth data from an individual public or private network tracking object. Raw data is ideal if you with to employ your own traffic storage and graphing systems.
-func (r *Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, typ *string, rollupSeconds *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, typ *string, rollupSeconds *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -83,7 +83,7 @@ func (r *Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time,
 }
 
 // Retrieve a PNG image of a bandwidth graph representing the bandwidth usage over time recorded by SofTLayer's bandwidth pollers.
-func (r *Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -98,7 +98,7 @@ func (r *Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time
 }
 
 // Retrieve the total amount of bandwidth recorded by a tracking object within the given date range. This method will only work on SoftLayer_Metric_Tracking_Object for SoftLayer_Hardware objects, and SoftLayer_Virtual_Guest objects.
-func (r *Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, typ *string) (resp uint, err error) {
+func (r Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, typ *string) (resp uint, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -110,7 +110,7 @@ func (r *Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time
 }
 
 // Returns a graph container instance that is populated with metric data for the tracking object.
-func (r *Metric_Tracking_Object) GetCustomGraphData(graphContainer *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
+func (r Metric_Tracking_Object) GetCustomGraphData(graphContainer *datatypes.Container_Graph) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		graphContainer,
 	}
@@ -119,7 +119,7 @@ func (r *Metric_Tracking_Object) GetCustomGraphData(graphContainer *datatypes.Co
 }
 
 // Retrieve a collection of detailed metric data over a date range. Ideal if you want to employ your own graphing systems.  Note not all metrics support this method.  Those that do not return null.
-func (r *Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time, endDate *datatypes.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
+func (r Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time, endDate *datatypes.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -130,7 +130,7 @@ func (r *Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Tim
 }
 
 // Retrieve a PNG image of a metric in graph form.
-func (r *Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
+func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -141,19 +141,19 @@ func (r *Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDate
 }
 
 // Returns a collection of metric data types that can be retrieved for a metric tracking object.
-func (r *Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container_Metric_Data_Type, err error) {
+func (r Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container_Metric_Data_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Metric_Tracking_Object object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Metric_Tracking_Object service. You can only tracking objects that are associated with your SoftLayer account or services.
-func (r *Metric_Tracking_Object) GetObject() (resp datatypes.Metric_Tracking_Object, err error) {
+func (r Metric_Tracking_Object) GetObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve a metric summary. Ideal if you want to employ your own graphing systems.  Note not all metric types contain a summary.  These return null.
-func (r *Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.Container_Metric_Tracking_Object_Summary, err error) {
+func (r Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.Container_Metric_Tracking_Object_Summary, err error) {
 	params := []interface{}{
 		graphType,
 	}
@@ -162,7 +162,7 @@ func (r *Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.C
 }
 
 // Returns summarized metric data for the date range, metric type and summary period provided.
-func (r *Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+func (r Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -174,7 +174,7 @@ func (r *Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, e
 }
 
 // Retrieve The type of data that a tracking object polls.
-func (r *Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Object_Type, err error) {
+func (r Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Object_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -185,37 +185,37 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Options sl.Options
 }
 
-func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) *Metric_Tracking_Object_Bandwidth_Summary {
-	return &Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
+func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) Metric_Tracking_Object_Bandwidth_Summary {
+	return Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Id(id int) *Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Id(id int) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Mask(mask string) *Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Mask(mask string) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Filter(filter string) *Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Filter(filter string) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Limit(limit int) *Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Limit(limit int) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Offset(offset int) *Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Offset(offset int) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Metric_Tracking_Object_Bandwidth_Summary) GetObject() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
+func (r Metric_Tracking_Object_Bandwidth_Summary) GetObject() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

@@ -32,37 +32,37 @@ type Dns_Domain struct {
 	Options sl.Options
 }
 
-func GetDnsDomainService(sess *session.Session) *Dns_Domain {
-	return &Dns_Domain{Session: sess}
+func GetDnsDomainService(sess *session.Session) Dns_Domain {
+	return Dns_Domain{Session: sess}
 }
 
-func (r Dns_Domain) Id(id int) *Dns_Domain {
+func (r Dns_Domain) Id(id int) Dns_Domain {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain) Mask(mask string) *Dns_Domain {
+func (r Dns_Domain) Mask(mask string) Dns_Domain {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain) Filter(filter string) *Dns_Domain {
+func (r Dns_Domain) Filter(filter string) Dns_Domain {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain) Limit(limit int) *Dns_Domain {
+func (r Dns_Domain) Limit(limit int) Dns_Domain {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain) Offset(offset int) *Dns_Domain {
+func (r Dns_Domain) Offset(offset int) Dns_Domain {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Create an A record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createARecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_AType.
-func (r *Dns_Domain) CreateARecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_AType, err error) {
+func (r Dns_Domain) CreateARecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_AType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -73,7 +73,7 @@ func (r *Dns_Domain) CreateARecord(host *string, data *string, ttl *int) (resp d
 }
 
 // Create an AAAA record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createARecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_AaaaType.
-func (r *Dns_Domain) CreateAaaaRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_AaaaType, err error) {
+func (r Dns_Domain) CreateAaaaRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_AaaaType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -84,7 +84,7 @@ func (r *Dns_Domain) CreateAaaaRecord(host *string, data *string, ttl *int) (res
 }
 
 // Create a CNAME record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createCnameRecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_CnameType.
-func (r *Dns_Domain) CreateCnameRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_CnameType, err error) {
+func (r Dns_Domain) CreateCnameRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_CnameType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -95,7 +95,7 @@ func (r *Dns_Domain) CreateCnameRecord(host *string, data *string, ttl *int) (re
 }
 
 // Create an MX record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. MX records are created with a default priority of 10. createMxRecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_MxType.
-func (r *Dns_Domain) CreateMxRecord(host *string, data *string, ttl *int, mxPriority *int) (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
+func (r Dns_Domain) CreateMxRecord(host *string, data *string, ttl *int, mxPriority *int) (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -107,7 +107,7 @@ func (r *Dns_Domain) CreateMxRecord(host *string, data *string, ttl *int, mxPrio
 }
 
 // Create an NS record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createNsRecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_NsType.
-func (r *Dns_Domain) CreateNsRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_NsType, err error) {
+func (r Dns_Domain) CreateNsRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_NsType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -134,7 +134,7 @@ func (r *Dns_Domain) CreateNsRecord(host *string, data *string, ttl *int) (resp 
 // If your domain doesn't contain NS resource records for ns1.softlayer.com or ns2.softlayer.com then ''createObject'' will create them for you.
 //
 // ''createObject'' returns a Boolean ''true'' on successful object creation or ''false'' if your domain was unable to be created..
-func (r *Dns_Domain) CreateObject(templateObject *datatypes.Dns_Domain) (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Domain) CreateObject(templateObject *datatypes.Dns_Domain) (resp datatypes.Dns_Domain, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -143,7 +143,7 @@ func (r *Dns_Domain) CreateObject(templateObject *datatypes.Dns_Domain) (resp da
 }
 
 // Create multiple domains on the SoftLayer name servers. Each domain record passed to ''createObjects'' follows the logic in the SoftLayer_Dns_Domain ''createObject'' method.
-func (r *Dns_Domain) CreateObjects(templateObjects []datatypes.Dns_Domain) (resp []datatypes.Dns_Domain, err error) {
+func (r Dns_Domain) CreateObjects(templateObjects []datatypes.Dns_Domain) (resp []datatypes.Dns_Domain, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -152,7 +152,7 @@ func (r *Dns_Domain) CreateObjects(templateObjects []datatypes.Dns_Domain) (resp
 }
 
 // setPtrRecordForIpAddress() sets a single reverse DNS record for a single IP address and returns the newly created or edited [[SoftLayer_Dns_Domain_ResourceRecord]] record. Currently this method only supports IPv4 addresses and performs no operation when given an IPv6 address.
-func (r *Dns_Domain) CreatePtrRecord(ipAddress *string, ptrRecord *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain) CreatePtrRecord(ipAddress *string, ptrRecord *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
 		ipAddress,
 		ptrRecord,
@@ -163,7 +163,7 @@ func (r *Dns_Domain) CreatePtrRecord(ipAddress *string, ptrRecord *string, ttl *
 }
 
 // Create an SPF record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createARecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_SpfType.
-func (r *Dns_Domain) CreateSpfRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_SpfType, err error) {
+func (r Dns_Domain) CreateSpfRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_SpfType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -174,7 +174,7 @@ func (r *Dns_Domain) CreateSpfRecord(host *string, data *string, ttl *int) (resp
 }
 
 // Create a TXT record on a SoftLayer domain. This is a shortcut method, meant to take the work out of creating a SoftLayer_Dns_Domain_ResourceRecord if you already have a domain record available. createARecord returns the newly created SoftLayer_Dns_Domain_ResourceRecord_TxtType.
-func (r *Dns_Domain) CreateTxtRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_TxtType, err error) {
+func (r Dns_Domain) CreateTxtRecord(host *string, data *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord_TxtType, err error) {
 	params := []interface{}{
 		host,
 		data,
@@ -185,19 +185,19 @@ func (r *Dns_Domain) CreateTxtRecord(host *string, data *string, ttl *int) (resp
 }
 
 // deleteObject permanently removes a domain and all of it's associated resource records from the softlayer name servers. '''This cannot be undone.''' Be wary of running this method. If you remove a domain in error you will need to re-create it by creating a new SoftLayer_Dns_Domain object.
-func (r *Dns_Domain) DeleteObject() (resp bool, err error) {
+func (r Dns_Domain) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that owns a domain.
-func (r *Dns_Domain) GetAccount() (resp datatypes.Account, err error) {
+func (r Dns_Domain) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Search for [[SoftLayer_Dns_Domain]] records by domain name. getByDomainName() performs an inclusive search for domain records, returning multiple records based on partial name matches. Use this method to locate domain records if you don't have access to their id numbers.
-func (r *Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain, err error) {
+func (r Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain, err error) {
 	params := []interface{}{
 		name,
 	}
@@ -206,31 +206,31 @@ func (r *Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain,
 }
 
 // Retrieve A flag indicating that the dns domain record is a managed resource.
-func (r *Dns_Domain) GetManagedResourceFlag() (resp bool, err error) {
+func (r Dns_Domain) GetManagedResourceFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain service. You can only retrieve domains that are assigned to your SoftLayer account.
-func (r *Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
-func (r *Dns_Domain) GetResourceRecords() (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain) GetResourceRecords() (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The secondary DNS record that defines this domain as being managed through zone transfers.
-func (r *Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
+func (r Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Return a SoftLayer hosted domain and resource records' data formatted as zone file.
-func (r *Dns_Domain) GetZoneFileContents() (resp string, err error) {
+func (r Dns_Domain) GetZoneFileContents() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -241,37 +241,37 @@ type Dns_Domain_Registration struct {
 	Options sl.Options
 }
 
-func GetDnsDomainRegistrationService(sess *session.Session) *Dns_Domain_Registration {
-	return &Dns_Domain_Registration{Session: sess}
+func GetDnsDomainRegistrationService(sess *session.Session) Dns_Domain_Registration {
+	return Dns_Domain_Registration{Session: sess}
 }
 
-func (r Dns_Domain_Registration) Id(id int) *Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Id(id int) Dns_Domain_Registration {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration) Mask(mask string) *Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Mask(mask string) Dns_Domain_Registration {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration) Filter(filter string) *Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Filter(filter string) Dns_Domain_Registration {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration) Limit(limit int) *Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Limit(limit int) Dns_Domain_Registration {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration) Offset(offset int) *Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Offset(offset int) Dns_Domain_Registration {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // The addNameserversToDomain method adds nameservers to a domain for a domain that already has nameservers assigned to it. This method does not create a nameserver; the nameserver must already exist.
-func (r *Dns_Domain_Registration) AddNameserversToDomain(nameservers []string) (resp bool, err error) {
+func (r Dns_Domain_Registration) AddNameserversToDomain(nameservers []string) (resp bool, err error) {
 	params := []interface{}{
 		nameservers,
 	}
@@ -280,7 +280,7 @@ func (r *Dns_Domain_Registration) AddNameserversToDomain(nameservers []string) (
 }
 
 // The deleteRegisteredNameserver method deletes a nameserver that was registered, provided it is not currently serving a domain
-func (r *Dns_Domain_Registration) DeleteRegisteredNameserver(nameserver *string) (resp bool, err error) {
+func (r Dns_Domain_Registration) DeleteRegisteredNameserver(nameserver *string) (resp bool, err error) {
 	params := []interface{}{
 		nameserver,
 	}
@@ -289,37 +289,37 @@ func (r *Dns_Domain_Registration) DeleteRegisteredNameserver(nameserver *string)
 }
 
 // Retrieve The SoftLayer customer account that the domain is registered to.
-func (r *Dns_Domain_Registration) GetAccount() (resp datatypes.Account, err error) {
+func (r Dns_Domain_Registration) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getAuthenticationCode method retrieves the authentication code for the domain.
-func (r *Dns_Domain_Registration) GetAuthenticationCode() (resp string, err error) {
+func (r Dns_Domain_Registration) GetAuthenticationCode() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getDomainInformation method retrieves all the information for a domain.
-func (r *Dns_Domain_Registration) GetDomainInformation() (resp datatypes.Container_Dns_Domain_Registration_Information, err error) {
+func (r Dns_Domain_Registration) GetDomainInformation() (resp datatypes.Container_Dns_Domain_Registration_Information, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getDomainNameservers method retrieve nameservers information for domain.
-func (r *Dns_Domain_Registration) GetDomainNameservers() (resp []datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
+func (r Dns_Domain_Registration) GetDomainNameservers() (resp []datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain registration status.
-func (r *Dns_Domain_Registration) GetDomainRegistrationStatus() (resp datatypes.Dns_Domain_Registration_Status, err error) {
+func (r Dns_Domain_Registration) GetDomainRegistrationStatus() (resp datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getExtendedAttributes method determines if a country code top level domain requires extended attributes.
-func (r *Dns_Domain_Registration) GetExtendedAttributes(domainName *string) (resp []datatypes.Container_Dns_Domain_Registration_ExtendedAttribute, err error) {
+func (r Dns_Domain_Registration) GetExtendedAttributes(domainName *string) (resp []datatypes.Container_Dns_Domain_Registration_ExtendedAttribute, err error) {
 	params := []interface{}{
 		domainName,
 	}
@@ -328,37 +328,37 @@ func (r *Dns_Domain_Registration) GetExtendedAttributes(domainName *string) (res
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_Registration object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_Registration service.
-func (r *Dns_Domain_Registration) GetObject() (resp datatypes.Dns_Domain_Registration, err error) {
+func (r Dns_Domain_Registration) GetObject() (resp datatypes.Dns_Domain_Registration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getRegisteredNameserver method retrieves registered nameservers.
-func (r *Dns_Domain_Registration) GetRegisteredNameserver() (resp datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
+func (r Dns_Domain_Registration) GetRegisteredNameserver() (resp datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The registrant verification status.
-func (r *Dns_Domain_Registration) GetRegistrantVerificationStatus() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
+func (r Dns_Domain_Registration) GetRegistrantVerificationStatus() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // When a domain is registered or transferred, or when the registrant contact information is changed, the registrant must reply to an email requesting them to confirm that the submitted contact information is correct. This method returns the current state of the verification request.
-func (r *Dns_Domain_Registration) GetRegistrantVerificationStatusDetail() (resp datatypes.Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail, err error) {
+func (r Dns_Domain_Registration) GetRegistrantVerificationStatusDetail() (resp datatypes.Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Dns_Domain_Registration) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
+func (r Dns_Domain_Registration) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The getTransferInformation method checks to see if the domain can be transferred and also can be used to check the status of the last transfer request.
-func (r *Dns_Domain_Registration) GetTransferInformation(domainName *string) (resp datatypes.Container_Dns_Domain_Registration_Transfer_Information, err error) {
+func (r Dns_Domain_Registration) GetTransferInformation(domainName *string) (resp datatypes.Container_Dns_Domain_Registration_Transfer_Information, err error) {
 	params := []interface{}{
 		domainName,
 	}
@@ -369,13 +369,13 @@ func (r *Dns_Domain_Registration) GetTransferInformation(domainName *string) (re
 // The lockDomain method locks a domain to prevent unauthorized, unwanted or accidental changes to the domain name. When set, the following actions are prohibited:
 // * Transferring of the domain name
 // * Deletion of the domain name
-func (r *Dns_Domain_Registration) LockDomain() (resp bool, err error) {
+func (r Dns_Domain_Registration) LockDomain() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The lookupDomain method checks whether a specified domain name is available for registration in TLD's, and suggests other similar domain names, and checks whether they are available as well.
-func (r *Dns_Domain_Registration) LookupDomain(domainName *string) (resp []datatypes.Container_Dns_Domain_Registration_Lookup, err error) {
+func (r Dns_Domain_Registration) LookupDomain(domainName *string) (resp []datatypes.Container_Dns_Domain_Registration_Lookup, err error) {
 	params := []interface{}{
 		domainName,
 	}
@@ -384,7 +384,7 @@ func (r *Dns_Domain_Registration) LookupDomain(domainName *string) (resp []datat
 }
 
 // The modifyContact method modifies contact information (admin, billing, owner, technical) for a domain.
-func (r *Dns_Domain_Registration) ModifyContact(contact *datatypes.Container_Dns_Domain_Registration_Contact) (resp bool, err error) {
+func (r Dns_Domain_Registration) ModifyContact(contact *datatypes.Container_Dns_Domain_Registration_Contact) (resp bool, err error) {
 	params := []interface{}{
 		contact,
 	}
@@ -393,7 +393,7 @@ func (r *Dns_Domain_Registration) ModifyContact(contact *datatypes.Container_Dns
 }
 
 // The modifyRegisteredNameserver method modifies a nameserver that was registered.
-func (r *Dns_Domain_Registration) ModifyRegisteredNameserver(oldNameserver *string, newNameserver *string, ipAddress *string) (resp bool, err error) {
+func (r Dns_Domain_Registration) ModifyRegisteredNameserver(oldNameserver *string, newNameserver *string, ipAddress *string) (resp bool, err error) {
 	params := []interface{}{
 		oldNameserver,
 		newNameserver,
@@ -404,7 +404,7 @@ func (r *Dns_Domain_Registration) ModifyRegisteredNameserver(oldNameserver *stri
 }
 
 // The registerNameserver method creates a nameserver for the domain.
-func (r *Dns_Domain_Registration) RegisterNameserver(nameserver *string, ipAddress *string) (resp bool, err error) {
+func (r Dns_Domain_Registration) RegisterNameserver(nameserver *string, ipAddress *string) (resp bool, err error) {
 	params := []interface{}{
 		nameserver,
 		ipAddress,
@@ -414,7 +414,7 @@ func (r *Dns_Domain_Registration) RegisterNameserver(nameserver *string, ipAddre
 }
 
 // The removeNameserversFromDomain method removes nameservers from a domain for a domain that already has nameservers assigned to it.
-func (r *Dns_Domain_Registration) RemoveNameserversFromDomain(nameservers []string) (resp bool, err error) {
+func (r Dns_Domain_Registration) RemoveNameserversFromDomain(nameservers []string) (resp bool, err error) {
 	params := []interface{}{
 		nameservers,
 	}
@@ -423,25 +423,25 @@ func (r *Dns_Domain_Registration) RemoveNameserversFromDomain(nameservers []stri
 }
 
 // The sendAuthenticationCode method sends the authentication code to the administrative contact for the domain.
-func (r *Dns_Domain_Registration) SendAuthenticationCode() (resp bool, err error) {
+func (r Dns_Domain_Registration) SendAuthenticationCode() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // When a domain is registered or transferred, or when the registrant contact information is changed, the registrant must reply to an email requesting them to confirm that the submitted contact information is correct. This method sends the verification email to the registrant.
-func (r *Dns_Domain_Registration) SendRegistrantVerificationEmail() (resp bool, err error) {
+func (r Dns_Domain_Registration) SendRegistrantVerificationEmail() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The sendTransferApprovalEmail method resends a transfer approval email message for a transfer that is in 'pending owner approval' state, to the admin contact listed for the domain at the time that the transfer request was submitted
-func (r *Dns_Domain_Registration) SendTransferApprovalEmail() (resp bool, err error) {
+func (r Dns_Domain_Registration) SendTransferApprovalEmail() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The setAuthenticationCode method sets the authentication code for the domain. The authentication code is a transfer key and provides an extra level of security, safeguarding domain names from unauthorized transfers.
-func (r *Dns_Domain_Registration) SetAuthenticationCode(authenticationCode *string) (resp bool, err error) {
+func (r Dns_Domain_Registration) SetAuthenticationCode(authenticationCode *string) (resp bool, err error) {
 	params := []interface{}{
 		authenticationCode,
 	}
@@ -450,7 +450,7 @@ func (r *Dns_Domain_Registration) SetAuthenticationCode(authenticationCode *stri
 }
 
 // The unlockDomain method unlocks a domain
-func (r *Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
+func (r Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -471,43 +471,43 @@ type Dns_Domain_Registration_Registrant_Verification_Status struct {
 	Options sl.Options
 }
 
-func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) *Dns_Domain_Registration_Registrant_Verification_Status {
-	return &Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
+func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) Dns_Domain_Registration_Registrant_Verification_Status {
+	return Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Id(id int) *Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Id(id int) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Mask(mask string) *Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Mask(mask string) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Filter(filter string) *Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Filter(filter string) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Limit(limit int) *Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Limit(limit int) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Offset(offset int) *Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Offset(offset int) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Dns_Domain_Registration_Registrant_Verification_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -527,43 +527,43 @@ type Dns_Domain_Registration_Status struct {
 	Options sl.Options
 }
 
-func GetDnsDomainRegistrationStatusService(sess *session.Session) *Dns_Domain_Registration_Status {
-	return &Dns_Domain_Registration_Status{Session: sess}
+func GetDnsDomainRegistrationStatusService(sess *session.Session) Dns_Domain_Registration_Status {
+	return Dns_Domain_Registration_Status{Session: sess}
 }
 
-func (r Dns_Domain_Registration_Status) Id(id int) *Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Id(id int) Dns_Domain_Registration_Status {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Status) Mask(mask string) *Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Mask(mask string) Dns_Domain_Registration_Status {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Status) Filter(filter string) *Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Filter(filter string) Dns_Domain_Registration_Status {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Status) Limit(limit int) *Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Limit(limit int) Dns_Domain_Registration_Status {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_Registration_Status) Offset(offset int) *Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Offset(offset int) Dns_Domain_Registration_Status {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 //
-func (r *Dns_Domain_Registration_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Status, err error) {
+func (r Dns_Domain_Registration_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Status, err error) {
+func (r Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -587,39 +587,39 @@ type Dns_Domain_ResourceRecord struct {
 	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordService(sess *session.Session) *Dns_Domain_ResourceRecord {
-	return &Dns_Domain_ResourceRecord{Session: sess}
+func GetDnsDomainResourceRecordService(sess *session.Session) Dns_Domain_ResourceRecord {
+	return Dns_Domain_ResourceRecord{Session: sess}
 }
 
-func (r Dns_Domain_ResourceRecord) Id(id int) *Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Id(id int) Dns_Domain_ResourceRecord {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord) Mask(mask string) *Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Mask(mask string) Dns_Domain_ResourceRecord {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord) Filter(filter string) *Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Filter(filter string) Dns_Domain_ResourceRecord {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord) Limit(limit int) *Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Limit(limit int) Dns_Domain_ResourceRecord {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord) Offset(offset int) *Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Offset(offset int) Dns_Domain_ResourceRecord {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // createObject creates a new domain resource record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating a resource record updates the serial number of the domain the resource record is associated with.
 //
 // ''createObject'' returns Boolean ''true'' on successful create or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord) (resp datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain_ResourceRecord) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord) (resp datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -630,7 +630,7 @@ func (r *Dns_Domain_ResourceRecord) CreateObject(templateObject *datatypes.Dns_D
 // Create multiple resource records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this resource record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -641,7 +641,7 @@ func (r *Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dn
 // Delete a domain's resource record. '''This cannot be undone.''' Be wary of running this method. If you remove a resource record in error you will need to re-create it by creating a new SoftLayer_Dns_Domain_ResourceRecord object. The serial number of the domain associated with this resource record is updated upon deletion. You may not delete SOA, NS, or PTR resource records.
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord) DeleteObject() (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -649,7 +649,7 @@ func (r *Dns_Domain_ResourceRecord) DeleteObject() (resp bool, err error) {
 // Remove multiple resource records from a domain. This follows the same logic as ''deleteObject'' and '''cannot be undone'''. The serial number of the domain associated with this resource record is updated upon deletion. You may not delete SOA records, PTR records, or NS resource records that point to ns1.softlayer.com or ns2.softlayer.com.
 //
 // ''deleteObjects'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -660,7 +660,7 @@ func (r *Dns_Domain_ResourceRecord) DeleteObjects(templateObjects []datatypes.Dn
 // editObject edits an existing domain resource record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Editing a resource record updates the serial number of the domain the resource record is associated with.
 //
 // ''editObject'' returns Boolean ''true'' on a successful edit or ''false'' if it was unable to edit the resource record.
-func (r *Dns_Domain_ResourceRecord) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -671,7 +671,7 @@ func (r *Dns_Domain_ResourceRecord) EditObject(templateObject *datatypes.Dns_Dom
 // Edit multiple resource records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this resource record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -680,13 +680,13 @@ func (r *Dns_Domain_ResourceRecord) EditObjects(templateObjects []datatypes.Dns_
 }
 
 // Retrieve The domain that a resource record belongs to.
-func (r *Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
-func (r *Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -701,37 +701,37 @@ type Dns_Domain_ResourceRecord_MxType struct {
 	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) *Dns_Domain_ResourceRecord_MxType {
-	return &Dns_Domain_ResourceRecord_MxType{Session: sess}
+func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) Dns_Domain_ResourceRecord_MxType {
+	return Dns_Domain_ResourceRecord_MxType{Session: sess}
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Id(id int) *Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Id(id int) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Mask(mask string) *Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Mask(mask string) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Filter(filter string) *Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Filter(filter string) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Limit(limit int) *Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Limit(limit int) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Offset(offset int) *Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Offset(offset int) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // createObject creates a new MX record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating an MX record updates the serial number of the domain the resource record is associated with.
-func (r *Dns_Domain_ResourceRecord_MxType) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord_MxType) (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord_MxType) (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -742,7 +742,7 @@ func (r *Dns_Domain_ResourceRecord_MxType) CreateObject(templateObject *datatype
 // Create multiple MX records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this MX record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -753,7 +753,7 @@ func (r *Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []datat
 // Delete a domain's MX record. '''This cannot be undone.''' Be wary of running this method. If you remove a resource record in error you will need to re-create it by creating a new SoftLayer_Dns_Domain_ResourceRecord_MxType object. The serial number of the domain associated with this MX record is updated upon deletion.
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord_MxType) DeleteObject() (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -761,7 +761,7 @@ func (r *Dns_Domain_ResourceRecord_MxType) DeleteObject() (resp bool, err error)
 // Remove multiple MX records from a domain. This follows the same logic as ''deleteObject'' and '''cannot be undone'''. The serial number of the domain associated with this MX record is updated upon deletion.
 //
 // ''deleteObjects'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord_MxType) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -772,7 +772,7 @@ func (r *Dns_Domain_ResourceRecord_MxType) DeleteObjects(templateObjects []datat
 // editObject edits an existing MX resource record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Editing an MX record updates the serial number of the domain the record is associated with.
 //
 // ''editObject'' returns Boolean ''true'' on a successful edit or ''false'' if it was unable to edit the resource record.
-func (r *Dns_Domain_ResourceRecord_MxType) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -783,7 +783,7 @@ func (r *Dns_Domain_ResourceRecord_MxType) EditObject(templateObject *datatypes.
 // Edit multiple MX records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this MX record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord_MxType) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_MxType) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -792,13 +792,13 @@ func (r *Dns_Domain_ResourceRecord_MxType) EditObjects(templateObjects []datatyp
 }
 
 // Retrieve The domain that a resource record belongs to.
-func (r *Dns_Domain_ResourceRecord_MxType) GetDomain() (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord_MxType object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord_MxType service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
-func (r *Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
+func (r Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -809,37 +809,37 @@ type Dns_Domain_ResourceRecord_SrvType struct {
 	Options sl.Options
 }
 
-func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) *Dns_Domain_ResourceRecord_SrvType {
-	return &Dns_Domain_ResourceRecord_SrvType{Session: sess}
+func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) Dns_Domain_ResourceRecord_SrvType {
+	return Dns_Domain_ResourceRecord_SrvType{Session: sess}
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Id(id int) *Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Id(id int) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Mask(mask string) *Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Mask(mask string) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Filter(filter string) *Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Filter(filter string) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Limit(limit int) *Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Limit(limit int) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Offset(offset int) *Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Offset(offset int) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // createObject creates a new SRV record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Creating an SRV record updates the serial number of the domain the resource record is associated with.
-func (r *Dns_Domain_ResourceRecord_SrvType) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord_SrvType) (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) CreateObject(templateObject *datatypes.Dns_Domain_ResourceRecord_SrvType) (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -850,7 +850,7 @@ func (r *Dns_Domain_ResourceRecord_SrvType) CreateObject(templateObject *datatyp
 // Create multiple SRV records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this SRV record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -861,7 +861,7 @@ func (r *Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []data
 // Delete a domain's SRV record. '''This cannot be undone.''' Be wary of running this method. If you remove a resource record in error you will need to re-create it by creating a new SoftLayer_Dns_Domain_ResourceRecord_SrvType object. The serial number of the domain associated with this SRV record is updated upon deletion.
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord_SrvType) DeleteObject() (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -869,7 +869,7 @@ func (r *Dns_Domain_ResourceRecord_SrvType) DeleteObject() (resp bool, err error
 // Remove multiple SRV records from a domain. This follows the same logic as ''deleteObject'' and '''cannot be undone'''. The serial number of the domain associated with this SRV record is updated upon deletion.
 //
 // ''deleteObjects'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
-func (r *Dns_Domain_ResourceRecord_SrvType) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) DeleteObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -880,7 +880,7 @@ func (r *Dns_Domain_ResourceRecord_SrvType) DeleteObjects(templateObjects []data
 // editObject edits an existing SRV resource record. The ''host'' property of the templateObject parameter is scrubbed to remove all non-alpha numeric characters except for "@", "_", ".", "*", and "-". The ''data'' property of the templateObject parameter is scrubbed to remove all non-alphanumeric characters for "." and "-". Editing an SRV record updates the serial number of the domain the record is associated with.
 //
 // ''editObject'' returns Boolean ''true'' on a successful edit or ''false'' if it was unable to edit the resource record.
-func (r *Dns_Domain_ResourceRecord_SrvType) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) EditObject(templateObject *datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -891,7 +891,7 @@ func (r *Dns_Domain_ResourceRecord_SrvType) EditObject(templateObject *datatypes
 // Edit multiple SRV records on a domain. This follows the same logic as ''createObject'. The serial number of the domain associated with this SRV record is updated upon creation.
 //
 // ''createObjects'' returns Boolean ''true'' on successful creation or ''false'' if it was unable to create a resource record.
-func (r *Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []datatypes.Dns_Domain_ResourceRecord_SrvType) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -900,13 +900,13 @@ func (r *Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []dataty
 }
 
 // Retrieve The domain that a resource record belongs to.
-func (r *Dns_Domain_ResourceRecord_SrvType) GetDomain() (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord_SrvType object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord_SrvType service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
-func (r *Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
+func (r Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -917,33 +917,33 @@ type Dns_Secondary struct {
 	Options sl.Options
 }
 
-func GetDnsSecondaryService(sess *session.Session) *Dns_Secondary {
-	return &Dns_Secondary{Session: sess}
+func GetDnsSecondaryService(sess *session.Session) Dns_Secondary {
+	return Dns_Secondary{Session: sess}
 }
 
-func (r Dns_Secondary) Id(id int) *Dns_Secondary {
+func (r Dns_Secondary) Id(id int) Dns_Secondary {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Dns_Secondary) Mask(mask string) *Dns_Secondary {
+func (r Dns_Secondary) Mask(mask string) Dns_Secondary {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Dns_Secondary) Filter(filter string) *Dns_Secondary {
+func (r Dns_Secondary) Filter(filter string) Dns_Secondary {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Dns_Secondary) Limit(limit int) *Dns_Secondary {
+func (r Dns_Secondary) Limit(limit int) Dns_Secondary {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Dns_Secondary) Offset(offset int) *Dns_Secondary {
+func (r Dns_Secondary) Offset(offset int) Dns_Secondary {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // A secondary DNS record may be converted to a primary DNS record. By converting a secondary DNS record, the SoftLayer name servers will be the authoritative nameserver for this domain and will be directly editable in the SoftLayer API and Portal.
@@ -961,13 +961,13 @@ func (r Dns_Secondary) Offset(offset int) *Dns_Secondary {
 //
 //
 // This change can not be undone, and the record can not be converted back into a secondary DNS record once the conversion is complete.
-func (r *Dns_Secondary) ConvertToPrimary() (resp bool, err error) {
+func (r Dns_Secondary) ConvertToPrimary() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Create a secondary DNS record. The ''zoneName'', ''masterIpAddress'', and ''transferFrequency'' properties in the templateObject parameter are required parameters to create a secondary DNS record.
-func (r *Dns_Secondary) CreateObject(templateObject *datatypes.Dns_Secondary) (resp datatypes.Dns_Secondary, err error) {
+func (r Dns_Secondary) CreateObject(templateObject *datatypes.Dns_Secondary) (resp datatypes.Dns_Secondary, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -976,7 +976,7 @@ func (r *Dns_Secondary) CreateObject(templateObject *datatypes.Dns_Secondary) (r
 }
 
 // Create multiple secondary DNS records. Each record passed to ''createObjects'' follows the logic in the SoftLayer_Dns_Secondary [[SoftLayer_Dns_Secondary::createObject|createObject]] method.
-func (r *Dns_Secondary) CreateObjects(templateObjects []datatypes.Dns_Secondary) (resp []datatypes.Dns_Secondary, err error) {
+func (r Dns_Secondary) CreateObjects(templateObjects []datatypes.Dns_Secondary) (resp []datatypes.Dns_Secondary, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -985,13 +985,13 @@ func (r *Dns_Secondary) CreateObjects(templateObjects []datatypes.Dns_Secondary)
 }
 
 // Delete a secondary DNS Record. This will also remove any associated domain records and resource records on the SoftLayer nameservers that were created as a result of the zone transfers. This action cannot be undone.
-func (r *Dns_Secondary) DeleteObject() (resp bool, err error) {
+func (r Dns_Secondary) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Edit the properties of a secondary DNS record by passing in a modified instance of a SoftLayer_Dns_Secondary object. You may only edit the ''masterIpAddress'' and ''transferFrequency'' properties of your secondary DNS record. ''ZoneName'' may not be altered after a secondary DNS record has been created.  Please remove and re-create the record if you need to make changes to your zone name.
-func (r *Dns_Secondary) EditObject(templateObject *datatypes.Dns_Secondary) (resp bool, err error) {
+func (r Dns_Secondary) EditObject(templateObject *datatypes.Dns_Secondary) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
 	}
@@ -1000,13 +1000,13 @@ func (r *Dns_Secondary) EditObject(templateObject *datatypes.Dns_Secondary) (res
 }
 
 // Retrieve The SoftLayer account that owns a secondary DNS record.
-func (r *Dns_Secondary) GetAccount() (resp datatypes.Account, err error) {
+func (r Dns_Secondary) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Search for [[SoftLayer_Dns_Domain_Secondary]] records by domain name. getByDomainName() performs an inclusive search for secondary domain records, returning multiple records based on partial name matches. Use this method to locate secondary domain records if you don't have access to their id numbers.
-func (r *Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Secondary, err error) {
+func (r Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Secondary, err error) {
 	params := []interface{}{
 		name,
 	}
@@ -1015,31 +1015,31 @@ func (r *Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Seco
 }
 
 // Retrieve The domain record created by zone transfer from a secondary DNS record.
-func (r *Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
+func (r Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The error messages created during secondary DNS record transfer.
-func (r *Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err error) {
+func (r Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Secondary object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Dns_Secondary service. You can only retrieve a secondary DNS record that is assigned to your SoftLayer customer account.
-func (r *Dns_Secondary) GetObject() (resp datatypes.Dns_Secondary, err error) {
+func (r Dns_Secondary) GetObject() (resp datatypes.Dns_Secondary, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the secondary DNS zone.
-func (r *Dns_Secondary) GetStatus() (resp datatypes.Dns_Status, err error) {
+func (r Dns_Secondary) GetStatus() (resp datatypes.Dns_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Force a secondary DNS zone transfer by setting it's status "Transfer Now".  A zone transfer will be initiated within a minute of receiving this API call.
-func (r *Dns_Secondary) TransferNow() (resp bool, err error) {
+func (r Dns_Secondary) TransferNow() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

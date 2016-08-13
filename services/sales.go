@@ -32,73 +32,73 @@ type Sales_Presale_Event struct {
 	Options sl.Options
 }
 
-func GetSalesPresaleEventService(sess *session.Session) *Sales_Presale_Event {
-	return &Sales_Presale_Event{Session: sess}
+func GetSalesPresaleEventService(sess *session.Session) Sales_Presale_Event {
+	return Sales_Presale_Event{Session: sess}
 }
 
-func (r Sales_Presale_Event) Id(id int) *Sales_Presale_Event {
+func (r Sales_Presale_Event) Id(id int) Sales_Presale_Event {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Sales_Presale_Event) Mask(mask string) *Sales_Presale_Event {
+func (r Sales_Presale_Event) Mask(mask string) Sales_Presale_Event {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Sales_Presale_Event) Filter(filter string) *Sales_Presale_Event {
+func (r Sales_Presale_Event) Filter(filter string) Sales_Presale_Event {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Sales_Presale_Event) Limit(limit int) *Sales_Presale_Event {
+func (r Sales_Presale_Event) Limit(limit int) Sales_Presale_Event {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Sales_Presale_Event) Offset(offset int) *Sales_Presale_Event {
+func (r Sales_Presale_Event) Offset(offset int) Sales_Presale_Event {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // Retrieve A flag to indicate that the presale event is currently active. A presale event is active if the current time is between the start and end dates.
-func (r *Sales_Presale_Event) GetActiveFlag() (resp bool, err error) {
+func (r Sales_Presale_Event) GetActiveFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Sales_Presale_Event) GetAllObjects() (resp []datatypes.Sales_Presale_Event, err error) {
+func (r Sales_Presale_Event) GetAllObjects() (resp []datatypes.Sales_Presale_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag to indicate that the presale event is expired. A presale event is expired if the current time is after the end date.
-func (r *Sales_Presale_Event) GetExpiredFlag() (resp bool, err error) {
+func (r Sales_Presale_Event) GetExpiredFlag() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Product_Item]] associated with the presale event.
-func (r *Sales_Presale_Event) GetItem() (resp datatypes.Product_Item, err error) {
+func (r Sales_Presale_Event) GetItem() (resp datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Location]] associated with the presale event.
-func (r *Sales_Presale_Event) GetLocation() (resp datatypes.Location, err error) {
+func (r Sales_Presale_Event) GetLocation() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // '''getObject''' retrieves the [[SoftLayer_Sales_Presale_Event]] object whose id number corresponds to the id number of the init parameter passed to the SoftLayer_Sales_Presale_Event service. Customers may only retrieve presale events that are currently active.
-func (r *Sales_Presale_Event) GetObject() (resp datatypes.Sales_Presale_Event, err error) {
+func (r Sales_Presale_Event) GetObject() (resp datatypes.Sales_Presale_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The orders ([[SoftLayer_Billing_Order]]) associated with this presale event that were created for the customer's account.
-func (r *Sales_Presale_Event) GetOrders() (resp []datatypes.Billing_Order, err error) {
+func (r Sales_Presale_Event) GetOrders() (resp []datatypes.Billing_Order, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }

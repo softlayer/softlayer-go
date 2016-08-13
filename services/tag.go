@@ -32,37 +32,37 @@ type Tag struct {
 	Options sl.Options
 }
 
-func GetTagService(sess *session.Session) *Tag {
-	return &Tag{Session: sess}
+func GetTagService(sess *session.Session) Tag {
+	return Tag{Session: sess}
 }
 
-func (r Tag) Id(id int) *Tag {
+func (r Tag) Id(id int) Tag {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Tag) Mask(mask string) *Tag {
+func (r Tag) Mask(mask string) Tag {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Tag) Filter(filter string) *Tag {
+func (r Tag) Filter(filter string) Tag {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Tag) Limit(limit int) *Tag {
+func (r Tag) Limit(limit int) Tag {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Tag) Offset(offset int) *Tag {
+func (r Tag) Offset(offset int) Tag {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This function is responsible for setting the Tags values. The internal flag is set to 0 if the user is a customer, and 1 otherwise. AccountId is set to the account bound to the user, and the tags name is set to the clean version of the tag inputted by the user.
-func (r *Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
+func (r Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
 	params := []interface{}{
 		tag,
 	}
@@ -71,31 +71,31 @@ func (r *Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
 }
 
 // Retrieve The account to which the tag is tied.
-func (r *Tag) GetAccount() (resp datatypes.Account, err error) {
+func (r Tag) GetAccount() (resp datatypes.Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns all tags of a given object type.
-func (r *Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
+func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Tag) GetObject() (resp datatypes.Tag, err error) {
+func (r Tag) GetObject() (resp datatypes.Tag, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve References that tie object to the tag.
-func (r *Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
+func (r Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns the Tag object with a given name. The user types in the tag name and this method returns the tag with that name.
-func (r *Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) {
+func (r Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) {
 	params := []interface{}{
 		tagList,
 	}
@@ -104,7 +104,7 @@ func (r *Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error)
 }
 
 // Tag an object by passing in one or more tags separated by a comma.  Tag references are cleared out every time this method is called. If your object is already tagged you will need to pass the current tags along with any new ones.  To remove all tag references pass an empty string. To remove one or more tags omit them from the tag list.  The characters permitted are A-Z, 0-9, whitespace, _ (underscore), - (hypen), . (period), and : (colon). All other characters will be stripped away.
-func (r *Tag) SetTags(tags *string, keyName *string, resourceTableId *int) (resp bool, err error) {
+func (r Tag) SetTags(tags *string, keyName *string, resourceTableId *int) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 		keyName,

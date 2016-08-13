@@ -31,37 +31,37 @@ type Utility_Network struct {
 	Options sl.Options
 }
 
-func GetUtilityNetworkService(sess *session.Session) *Utility_Network {
-	return &Utility_Network{Session: sess}
+func GetUtilityNetworkService(sess *session.Session) Utility_Network {
+	return Utility_Network{Session: sess}
 }
 
-func (r Utility_Network) Id(id int) *Utility_Network {
+func (r Utility_Network) Id(id int) Utility_Network {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Utility_Network) Mask(mask string) *Utility_Network {
+func (r Utility_Network) Mask(mask string) Utility_Network {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Utility_Network) Filter(filter string) *Utility_Network {
+func (r Utility_Network) Filter(filter string) Utility_Network {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Utility_Network) Limit(limit int) *Utility_Network {
+func (r Utility_Network) Limit(limit int) Utility_Network {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Utility_Network) Offset(offset int) *Utility_Network {
+func (r Utility_Network) Offset(offset int) Utility_Network {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // A method used to return the nameserver information for a given address
-func (r *Utility_Network) NsLookup(address *string, typ *string) (resp string, err error) {
+func (r Utility_Network) NsLookup(address *string, typ *string) (resp string, err error) {
 	params := []interface{}{
 		address,
 		typ,
@@ -71,7 +71,7 @@ func (r *Utility_Network) NsLookup(address *string, typ *string) (resp string, e
 }
 
 // Perform a WHOIS lookup from SoftLayer's application servers on the given IP address or hostname and return the raw results of that command. The returned result is similar to the result received from running the command `whois` from a UNIX command shell. A WHOIS lookup queries a host's registrar to retrieve domain registrant information including registration date, expiry date, and the administrative, technical, billing, and abuse contacts responsible for a domain. WHOIS lookups are useful for determining a physical contact responsible for a particular domain. WHOIS lookups are also useful for determining domain availability. Running a WHOIS lookup on an IP address queries ARIN for that IP block's ownership, and is helpful for determining a physical entity responsible for a certain IP address.
-func (r *Utility_Network) Whois(address *string) (resp string, err error) {
+func (r Utility_Network) Whois(address *string) (resp string, err error) {
 	params := []interface{}{
 		address,
 	}

@@ -32,33 +32,33 @@ type Search struct {
 	Options sl.Options
 }
 
-func GetSearchService(sess *session.Session) *Search {
-	return &Search{Session: sess}
+func GetSearchService(sess *session.Session) Search {
+	return Search{Session: sess}
 }
 
-func (r Search) Id(id int) *Search {
+func (r Search) Id(id int) Search {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Search) Mask(mask string) *Search {
+func (r Search) Mask(mask string) Search {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Search) Filter(filter string) *Search {
+func (r Search) Filter(filter string) Search {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Search) Limit(limit int) *Search {
+func (r Search) Limit(limit int) Search {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Search) Offset(offset int) *Search {
+func (r Search) Offset(offset int) Search {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This method allows for searching for SoftLayer resources by simple terms and operators.  Fields that are used for searching will be available at sldn.softlayer.com. It returns a collection or array of <b>[[SoftLayer_Container_Search_Result (type)|SoftLayer_Container_Search_Result]]</b> objects that have search metadata for each result and the resulting resource found.
@@ -74,7 +74,7 @@ func (r Search) Offset(offset int) *Search {
 // <code>_objectType:Type_1 propertyA:</code><i><code>value</code></i> <code>propertyB:</code><i><code>value</code></i>
 //
 // A collection of available object types and their properties can be retrieved by calling the <b>[[SoftLayer_Search/getObjectTypes|getObjectTypes()]]</b> method.
-func (r *Search) AdvancedSearch(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
+func (r Search) AdvancedSearch(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
 	params := []interface{}{
 		searchString,
 	}
@@ -85,7 +85,7 @@ func (r *Search) AdvancedSearch(searchString *string) (resp []datatypes.Containe
 // This method returns a collection of <b>[[SoftLayer_Container_Search_ObjectType (type)|SoftLayer_Container_Search_ObjectType]]</b> containers that specify which indexed object types and properties are exposed for the current user.  These object types can be used to discover searchable data and to create or validate object index search strings.
 //
 // <p> Refer to the <b>[[SoftLayer_Search/search|search()]]</b> and <b>[[SoftLayer_Search/advancedSearch|advancedSearch()]]</b> methods for information on using object types and properties in search strings.
-func (r *Search) GetObjectTypes() (resp []datatypes.Container_Search_ObjectType, err error) {
+func (r Search) GetObjectTypes() (resp []datatypes.Container_Search_ObjectType, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
@@ -105,7 +105,7 @@ func (r *Search) GetObjectTypes() (resp []datatypes.Container_Search_ObjectType,
 // <code>_objectType:-Type_4,Type_5 </code><i><code>(other search terms...)</code></i>
 //
 // A collection of available object types can be retrieved by calling the <b>[[SoftLayer_Search/getObjectTypes|getObjectTypes()]]</b> method.
-func (r *Search) Search(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
+func (r Search) Search(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
 	params := []interface{}{
 		searchString,
 	}

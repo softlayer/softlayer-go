@@ -32,37 +32,37 @@ type Event_Log struct {
 	Options sl.Options
 }
 
-func GetEventLogService(sess *session.Session) *Event_Log {
-	return &Event_Log{Session: sess}
+func GetEventLogService(sess *session.Session) Event_Log {
+	return Event_Log{Session: sess}
 }
 
-func (r Event_Log) Id(id int) *Event_Log {
+func (r Event_Log) Id(id int) Event_Log {
 	r.Options.Id = &id
-	return &r
+	return r
 }
 
-func (r Event_Log) Mask(mask string) *Event_Log {
+func (r Event_Log) Mask(mask string) Event_Log {
 	r.Options.Mask = mask
-	return &r
+	return r
 }
 
-func (r Event_Log) Filter(filter string) *Event_Log {
+func (r Event_Log) Filter(filter string) Event_Log {
 	r.Options.Filter = filter
-	return &r
+	return r
 }
 
-func (r Event_Log) Limit(limit int) *Event_Log {
+func (r Event_Log) Limit(limit int) Event_Log {
 	r.Options.Limit = &limit
-	return &r
+	return r
 }
 
-func (r Event_Log) Offset(offset int) *Event_Log {
+func (r Event_Log) Offset(offset int) Event_Log {
 	r.Options.Offset = &offset
-	return &r
+	return r
 }
 
 // This all indexed event names.
-func (r *Event_Log) GetAllEventNames(objectName *string) (resp []string, err error) {
+func (r Event_Log) GetAllEventNames(objectName *string) (resp []string, err error) {
 	params := []interface{}{
 		objectName,
 	}
@@ -71,25 +71,25 @@ func (r *Event_Log) GetAllEventNames(objectName *string) (resp []string, err err
 }
 
 // This all indexed event object names.
-func (r *Event_Log) GetAllEventObjectNames() (resp []string, err error) {
+func (r Event_Log) GetAllEventObjectNames() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Event_Log) GetAllObjects() (resp []datatypes.Event_Log, err error) {
+func (r Event_Log) GetAllObjects() (resp []datatypes.Event_Log, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 //
-func (r *Event_Log) GetAllUserTypes() (resp []string, err error) {
+func (r Event_Log) GetAllUserTypes() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
-func (r *Event_Log) GetUser() (resp datatypes.User_Customer, err error) {
+func (r Event_Log) GetUser() (resp datatypes.User_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
