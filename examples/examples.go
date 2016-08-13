@@ -28,12 +28,12 @@ import (
 )
 
 func main() {
-	sess := session.New("username", "apikey") // default endpoint
+	sess := session.New() // default endpoint
 
 	sess.Debug = true
 
 	// List all Virtual Guests for an account
-	doListAccountVMsTest(sess)
+	//doListAccountVMsTest(sess)
 
 	// Execute a remote script on a Virtual Guest
 	//doExecuteRemoteScriptTest(sess)
@@ -42,13 +42,13 @@ func main() {
 	//doCreateVMTest(sess)
 
 	// Example: Get disk usage metrics by date
-	doGetDiskUsageMetricsTest(sess)
+	//doGetDiskUsageMetricsTest(sess)
 
 	// Example: Get the last bill date
-	doGetLatestBillDate(sess)
+	//doGetLatestBillDate(sess)
 
 	// Demonstrate API Error
-	doError(sess)
+	//doError(sess)
 }
 
 func doListAccountVMsTest(sess *session.Session) {
