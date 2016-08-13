@@ -20,8 +20,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/sl"
 	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
 func invokeMethod(args []interface{}, session *session.Session, options *sl.Options, pResult interface{}) error {
@@ -30,7 +30,7 @@ func invokeMethod(args []interface{}, session *session.Session, options *sl.Opti
 	f := runtime.FuncForPC(pc)
 	segments := strings.Split(f.Name(), ".")
 	service, method := segments[len(segments)-2], segments[len(segments)-1]
-	
+
 	// Most services need to be prefixed with "SoftLayer_"
 	if service[:6] != "McAfee" {
 		service = "SoftLayer_" + service
