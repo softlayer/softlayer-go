@@ -45,9 +45,7 @@ To call a method on a specific instance, set the instance ID before making the c
 ```go
 service := services.GetUserCustomerService(sess)
 
-service.Id(6786566)
-
-service.GetObject()
+service.Id(6786566).GetObject()
 ```
 
 ### Passing Parameters
@@ -96,29 +94,37 @@ fmt.Printf("New guest %d created", *newGuest.Id)
 
 ### Object Masks, Filters, Result Limits
 
-To set an object mask or filter:
+Object masks, object filters, and pagination (limit and offset) can be set
+by calling the `Mask()`, `Filter()`, `Limit()` and `Offset()` service methods
+prior to invoking an API method.
+
+For example, to set an object mask and filter that will be applied to
+the results of the Account.GetObject() method:
 
 ```go
 accountService := services.GetAccountService(sess)
 
-accountService.Mask("id;hostname")
+accountService.
+	Mask("id;hostname").
+	Filter(`{"virtualGuests":{"domain":{"operation":"example.com"}}}`).
+	GetObject()
+```
 
-accountService.Filter(
-	`{"virtualGuests":{"domain":{"operation":"example.com"}}}`)
+The mask and filter are applied to the current request only, and reset after the
+method returns. To preserve these options for future requests, save the return value:
+
+```go
+accountServiceWithMaskAndFilter = accountService.Mask("id;hostname").
+	Filter(`{"virtualGuests":{"domain":{"operation":"example.com"}}}`)
 ```
 
 Result limits are specified as separate `Limit` and `Offset` values:
 
 ```go
-accountSerice.Offset(100) // start at the 100th element in the list
-
-accountService.Limit(25)  // limit to 25 results
-```
-
-For convenience, the above methods, as well as the `Id()` method seen earlier, can be chained:
-
-```go
-service.Id(123456).Mask("id;hostname").Filter("...").Limit(25).Offset(100)
+accountSerice.
+	Offset(100).      // start at the 100th element in the list
+	Limit(25).        // limit to 25 results
+	GetVirtualGuests()
 ```
 
 ### Handling Errors
@@ -127,8 +133,9 @@ For any error that occurs within one of the SoftLayer API services, a custom
 error type is returned, with individual fields that can be parsed separately.
 
 ```go
-service.Id(0)  // invalid object ID
-_, err := service.GetObject()
+_, err := service.Id(0).      // invalid object ID
+	GetObject()
+
 if err != nil {
 	// Note: type assertion is only necessary for inspecting individual fields
 	apiErr := err.(sl.Error)
