@@ -127,6 +127,39 @@ accountSerice.
 	GetVirtualGuests()
 ```
 
+#### Filter Builder
+
+There is also a **filter builder** you can use to create a _Filter_ instead of writing out the raw string:
+
+```go
+// requires importing the filter package
+accountServiceWithMaskAndFilter = accountService.
+    Mask("id;hostname").
+    Filter(filter.Build(filter.Path("virtualGuests.domain", "example.com").Eq()))
+```
+
+`Build()` takes multiple filter paths as well. You can also create a filter incrementally:
+
+```go
+// Create initial filters
+filters := filter.New(
+    filter.Path("virtualGuests.hostname", "KM078").StartsWith(),
+    filter.Path("virtualGuests.id", 12345).NotEq(),
+)
+
+// ....
+// Later, append another filter
+filters = append(filters, filter.Path("virtualGuests.domain", "example.com").Eq())
+
+accountServiceWithMaskAndFilter = accountService.
+    Mask("id;hostname").
+    Filter(filters.Build())
+```
+
+See _filter/filters.go_ for the full range of operations supported.
+The file at _examples/filters.go_ will show additional examples.
+Also, [this is a good article](https://sldn.softlayer.com/article/object-filters) that describes SoftLayer filters at length.
+
 ### Handling Errors
 
 For any error that occurs within one of the SoftLayer API services, a custom
