@@ -83,7 +83,7 @@ func (fs Filters) Build() string {
 		nodes := strings.Split(filter.Path, ".")
 		for len(nodes) > 1 {
 			branch := nodes[0]
-			if cursor[branch] == nil {
+			if _, ok := cursor[branch]; !ok {
 				cursor[branch] = map[string]interface{}{}
 			}
 			cursor = cursor[branch].(map[string]interface{})
