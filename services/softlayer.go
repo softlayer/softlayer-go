@@ -30,10 +30,7 @@ func invokeMethod(args []interface{}, session *session.Session, options *sl.Opti
 	f := runtime.FuncForPC(pc)
 	segments := strings.Split(f.Name(), ".")
 	service, method := segments[len(segments)-2], segments[len(segments)-1]
-
-	// The receiver has the form "(*Type)".  Strip the unnecessary characters
-	service = service[2 : len(service)-1]
-
+	
 	// Most services need to be prefixed with "SoftLayer_"
 	if service[:6] != "McAfee" {
 		service = "SoftLayer_" + service

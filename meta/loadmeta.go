@@ -135,37 +135,37 @@ package services
 		Options sl.Options
 	}
 
-	func Get{{$base | desnake}}Service(sess *session.Session) *{{$base}} {
-		return &{{$base}}{Session: sess}
+	func Get{{$base | desnake}}Service(sess *session.Session) {{$base}} {
+		return {{$base}}{Session: sess}
 	}
 
-	func (r {{$base}}) Id(id int) *{{$base}} {
+	func (r {{$base}}) Id(id int) {{$base}} {
 		r.Options.Id = &id
-		return &r
+		return r
 	}
 
-	func (r {{$base}}) Mask(mask string) *{{$base}} {
+	func (r {{$base}}) Mask(mask string) {{$base}} {
 		r.Options.Mask = mask
-		return &r
+		return r
 	}
 
-	func (r {{$base}}) Filter(filter string) *{{$base}} {
+	func (r {{$base}}) Filter(filter string) {{$base}} {
 		r.Options.Filter = filter
-		return &r
+		return r
 	}
 
-	func (r {{$base}}) Limit(limit int) *{{$base}} {
+	func (r {{$base}}) Limit(limit int) {{$base}} {
 		r.Options.Limit = &limit
-		return &r
+		return r
 	}
 
-	func (r {{$base}}) Offset(offset int) *{{$base}} {
+	func (r {{$base}}) Offset(offset int) {{$base}} {
 		r.Options.Offset = &offset
-		return &r
+		return r
 	}
 
 	{{range .Methods}}{{.Doc|goDoc}}
-	func (r *{{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
+	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
 		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
 			{{range .Parameters}}{{.Name|removeReserved}},
