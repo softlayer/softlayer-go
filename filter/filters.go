@@ -51,8 +51,9 @@ func Build(args ...Filter) string {
 	return filters.Build()
 }
 
-// This creates a new Filter. The first argument (path) is required.
-// The second argument (val) is optional.
+// This creates a new Filter. The path is a dot-delimited path down
+// to the attribute this filter is for. The second value parameter
+// is optional.
 func Path(path string, val ...interface{}) Filter {
 	if len(val) > 0 {
 		return Filter{Path: path, Val: val[0]}
@@ -139,50 +140,58 @@ func (f Filter) Opt(name string, value interface{}) Filter {
 }
 
 // Set this filter to test if property is equal to the value
-func (f Filter) Eq() Filter {
+func (f Filter) Eq(val interface{}) Filter {
 	f.Op = ""
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is not equal to the value
-func (f Filter) NotEq() Filter {
+func (f Filter) NotEq(val interface{}) Filter {
 	f.Op = "!="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is like the value
-func (f Filter) Like() Filter {
+func (f Filter) Like(val interface{}) Filter {
 	f.Op = "~"
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is unlike value
-func (f Filter) NotLike() Filter {
+func (f Filter) NotLike(val interface{}) Filter {
 	f.Op = "!~"
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is less than value
-func (f Filter) LessThan() Filter {
+func (f Filter) LessThan(val interface{}) Filter {
 	f.Op = "<"
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is less than or equal to the value
-func (f Filter) LessThanOrEqual() Filter {
+func (f Filter) LessThanOrEqual(val interface{}) Filter {
 	f.Op = "<="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is greater than value
-func (f Filter) GreaterThan() Filter {
+func (f Filter) GreaterThan(val interface{}) Filter {
 	f.Op = ">"
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property is greater than or equal to value
-func (f Filter) GreaterThanOrEqual() Filter {
+func (f Filter) GreaterThanOrEqual(val interface{}) Filter {
 	f.Op = ">="
+	f.Val = val
 	return f
 }
 
@@ -201,38 +210,44 @@ func (f Filter) NotNull() Filter {
 }
 
 // Set this filter to test if property contains the value
-func (f Filter) Contains() Filter {
+func (f Filter) Contains(val interface{}) Filter {
 	f.Op = "*="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property does not contain the value
-func (f Filter) NotContains() Filter {
+func (f Filter) NotContains(val interface{}) Filter {
 	f.Op = "!*="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property starts with the value
-func (f Filter) StartsWith() Filter {
+func (f Filter) StartsWith(val interface{}) Filter {
 	f.Op = "^="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property does not start with the value
-func (f Filter) NotStartsWith() Filter {
+func (f Filter) NotStartsWith(val interface{}) Filter {
 	f.Op = "!^="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property ends with the value
-func (f Filter) EndsWith() Filter {
+func (f Filter) EndsWith(val interface{}) Filter {
 	f.Op = "$="
+	f.Val = val
 	return f
 }
 
 // Set this filter to test if property does not end with the value
-func (f Filter) NotEndsWith() Filter {
+func (f Filter) NotEndsWith(val interface{}) Filter {
 	f.Op = "!$="
+	f.Val = val
 	return f
 }
 
@@ -248,8 +263,9 @@ func (f Filter) In(args ...interface{}) Filter {
 }
 
 // Set this filter to test if property has a date older than the value in days.
-func (f Filter) DaysPast() Filter {
+func (f Filter) DaysPast(val interface{}) Filter {
 	f.Op = ">= currentDate -"
+	f.Val = val
 	return f
 }
 

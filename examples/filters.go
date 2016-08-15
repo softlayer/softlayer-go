@@ -24,25 +24,25 @@ import (
 func main() {
 	fmt.Println(
 		filter.New(
-			filter.Path("id", "134").Eq(),
-			filter.Path("datacenter.locationName", "Dallas").Eq(),
+			filter.Path("id").Eq("134"),
+			filter.Path("datacenter.locationName").Eq("Dallas"),
 			filter.Path("something.creationDate").Date("01/01/01"),
 		).Build(),
 	)
 
 	fmt.Println(
 		filter.Build(
-			filter.Path("virtualGuests.domain", "example.com").Eq(),
-			filter.Path("virtualGuests.id", 12345).NotEq(),
+			filter.Path("virtualGuests.domain").Eq("example.com"),
+			filter.Path("virtualGuests.id").NotEq(12345),
 		),
 	)
 
 	filters := filter.New(
-		filter.Path("virtualGuests.hostname", "KM078").StartsWith(),
-		filter.Path("virtualGuests.id", 12345).NotEq(),
+		filter.Path("virtualGuests.hostname").StartsWith("KM078"),
+		filter.Path("virtualGuests.id").NotEq(12345),
 	)
 
-	filters = append(filters, filter.Path("virtualGuests.domain", "example.com").Eq())
+	filters = append(filters, filter.Path("virtualGuests.domain").Eq("example.com"))
 
 	fmt.Println(filters.Build())
 }
