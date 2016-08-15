@@ -27,7 +27,9 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-const DEFAULT_ENDPOINT = "https://api.softlayer.com/rest/v3"
+// DefaultEndpoint is the default endpoint for API calls, when no override
+// is provided.
+const DefaultEndpoint = "https://api.softlayer.com/rest/v3"
 
 type transportHandlerFunc func(
 	sess *Session,
@@ -37,14 +39,38 @@ type transportHandlerFunc func(
 	options *sl.Options,
 	pResult interface{}) error
 
+// Session stores the information required for communication with the SoftLayer
+// API
 type Session struct {
+	// UserName is the name of the SoftLayer API user
 	UserName         string
-	ApiKey           string
+
+	// ApiKey is the secret for making API calls
+	APIKey           string
+
+	// Endpoint is the SoftLayer API endpoint to communicate with
 	Endpoint         string
+
+	// Debug controls logging of request details (URI, parameters, etc.)
 	Debug            bool
+
+	// The function that will be called for each API request.  Handles the
+	// request and any response parsing specific to the desired protocol
+	// (e.g., REST).  Set automatically for a new Session, based on the
+	// provided Endpoint.
 	transportHandler transportHandlerFunc
 }
 
+// New creates and returns a pointer to a new session object.  It takes up to
+// three parameters, all of which are optional.  If specified, they will be
+// interpreted in the following sequence:
+//
+// 1. UserName
+// 2. Api Key
+// 3. Endpoint
+//
+// If one or more are omitted, New() will attempt to retrieve these values from
+// the environment, and the ~/.softlayer config file, in that order.
 func New(args ...interface{}) *Session {
 	keys := map[string]int{"username": 0, "api_key": 1, "endpoint_url": 2}
 	values := []string{"", "", ""}
@@ -80,19 +106,43 @@ func New(args ...interface{}) *Session {
 		}
 	}
 
-	endpointUrl := values[keys["endpoint_url"]]
-	if endpointUrl == "" || !strings.Contains(endpointUrl, "/rest/") {
-		endpointUrl = DEFAULT_ENDPOINT
+	endpointURL := values[keys["endpoint_url"]]
+	if endpointURL == "" || !strings.Contains(endpointURL, "/rest/") {
+		endpointURL = DefaultEndpoint
 	}
 
 	return &Session{
 		UserName:         values[keys["username"]],
-		ApiKey:           values[keys["api_key"]],
-		Endpoint:         endpointUrl,
+		APIKey:           values[keys["api_key"]],
+		Endpoint:         endpointURL,
 		transportHandler: doRestRequest,
 	}
 }
 
+// DoRequest hands off the processing to the assigned transport handler. It is
+// normally called internally by the service objects, but is exported so that it can
+// be invoked directly by client code in exceptional cases where direct control is
+// needed over one of the parameters.
+//
+// service and method are the SoftLayer service name and method name, exactly as they
+// are documented at http://sldn.softlayer.com/reference/softlayerapi (i.e., with the
+// 'SoftLayer_' prefix and properly cased.
+//
+// args is a slice of arguments required for the service method being invoked.  The
+// types of each argument varies. See the method definitionx in the services package
+// for the expected type of each argument.
+//
+// options is an sl.Options struct, containing any mask, filter, or result limit values
+// to be applied.
+//
+// pResult is a pointer to a variable to be populated with the result of the API call.
+// The type of the variable pointed to determines how the response is handled.  E.g.,
+// for simple integer or string types, a type conversion is attempted (e.g.,
+// strconv.Atoi()). For a map or struct type, the response is unmarshaled into pResult
+//
+// A sl.Error is returned, and can be (with a type assertion) inspected for details of
+// the error (http code, API error message, etc.), or simply handled as a generic error,
+// (in which case no type assertion would be necessary)
 func (r *Session) DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
 	return r.transportHandler(r, service, method, args, options, pResult)
 }

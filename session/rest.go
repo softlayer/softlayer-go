@@ -59,7 +59,7 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 
 	path = path + ".json"
 
-	resp, code, err := makeHttpRequest(
+	resp, code, err := makeHTTPRequest(
 		sess,
 		path,
 		restMethod,
@@ -144,12 +144,12 @@ func encodeQuery(opts *sl.Options) string {
 	return query.Encode()
 }
 
-func makeHttpRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
+func makeHTTPRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
 	client := http.DefaultClient
 
 	var url string
 	if session.Endpoint == "" {
-		url = url + DEFAULT_ENDPOINT
+		url = url + DefaultEndpoint
 	} else {
 		url = url + session.Endpoint
 	}
@@ -159,7 +159,7 @@ func makeHttpRequest(session *Session, path string, requestType string, requestB
 		return nil, 0, err
 	}
 
-	req.SetBasicAuth(session.UserName, session.ApiKey)
+	req.SetBasicAuth(session.UserName, session.APIKey)
 
 	req.URL.RawQuery = encodeQuery(options)
 
