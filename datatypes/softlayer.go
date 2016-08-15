@@ -18,7 +18,7 @@ package datatypes
 
 import "time"
 
-// For identifying void return values from methods
+// Void is a dummy type for identifying void return values from methods
 type Void int
 
 // Time type overrides the default json marshaler with the SoftLayer custom format
@@ -30,10 +30,16 @@ func (r Time) String() (string) {
 	return r.Time.Format(time.RFC3339)
 }
 
+// MarshalJSON returns the json encoding of the datatypes.Time receiver.  This
+// override is necessary to ensure datetimes are formatted in the way SoftLayer
+// expects - that is, using the RFC3339 format, without nanoseconds.
 func (r Time) MarshalJSON() ([]byte, error) {
 	return []byte(`"` + r.String() + `"`), nil
 }
 
+// MarshalText returns a text encoding of the datatypes.Time receiver.  This
+// is mainly provided to complete what might be expected of a type that
+// implements the Marshaler interface.
 func (r Time) MarshalText() ([]byte, error) {
 	return []byte(r.String()), nil
 }

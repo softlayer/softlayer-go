@@ -18,6 +18,11 @@ package sl
 
 import "fmt"
 
+// Error contains detailed information about an API error, which can be useful
+// for debugging, or when finer error handling is required than just the mere
+// presence or absence of an error.
+//
+// Error implements the error interface
 type Error struct {
 	StatusCode int
 	Exception  string `json:"code"`

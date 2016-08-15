@@ -21,18 +21,25 @@ import (
 	"time"
 )
 
+// Convenience functions for returning pointers to values
+
+// Int returns a pointer to the int value provided
 func Int(v int) *int {
 	return &v
 }
 
+// String returns a pointer to the string value provided
 func String(v string) *string {
 	return &v
 }
 
+// Bool returns a pointer to the bool value provided
 func Bool(v bool) *bool {
 	return &v
 }
 
+// Time converts the time.Time value provided to a datatypes.Time value,
+// and returns a pointer to it
 func Time(v time.Time) *datatypes.Time {
 	r := datatypes.Time{Time: v}
 	return &r
