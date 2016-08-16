@@ -70,7 +70,7 @@ func (r Monitoring_Agent) Offset(offset int) Monitoring_Agent {
 
 // This method activates a SoftLayer_Monitoring_Agent.
 func (r Monitoring_Agent) Activate() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "activate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -79,7 +79,7 @@ func (r Monitoring_Agent) AddConfigurationProfile(configurationValues []datatype
 	params := []interface{}{
 		configurationValues,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "addConfigurationProfile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -88,13 +88,13 @@ func (r Monitoring_Agent) ApplyConfigurationValues(configurationValues []datatyp
 	params := []interface{}{
 		configurationValues,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "applyConfigurationValues", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will deactivate the monitoring agent, preventing it from generating any further alarms.
 func (r Monitoring_Agent) Deactivate() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "deactivate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -104,7 +104,7 @@ func (r Monitoring_Agent) DeleteConfigurationProfile(sectionId *int, profileId *
 		sectionId,
 		profileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "deleteConfigurationProfile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -113,25 +113,25 @@ func (r Monitoring_Agent) DeployMonitoringAgent(configurationTemplateId *int) (r
 	params := []interface{}{
 		configurationTemplateId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "deployMonitoringAgent", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method retrieves an array of SoftLayer_Notification_User_Subscriber objects belonging to the SoftLayer_Monitoring_Agent which are able to receive alarm notifications.
 func (r Monitoring_Agent) GetActiveAlarmSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getActiveAlarmSubscribers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the corresponding agent
 func (r Monitoring_Agent) GetAgentStatus() (resp datatypes.Monitoring_Agent_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getAgentStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns an array of available SoftLayer_Configuration_Template objects for this monitoring agent.
 func (r Monitoring_Agent) GetAvailableConfigurationTemplates() (resp []datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getAvailableConfigurationTemplates", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -141,31 +141,31 @@ func (r Monitoring_Agent) GetAvailableConfigurationValues(configurationDefinitio
 		configurationDefinitionId,
 		configValues,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getAvailableConfigurationValues", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All custom configuration profiles associated with the corresponding agent
 func (r Monitoring_Agent) GetConfigurationProfiles() (resp []datatypes.Configuration_Template_Section_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getConfigurationProfiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A template of an agent's current configuration which contains information about the structure of the configuration values.
 func (r Monitoring_Agent) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getConfigurationTemplate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The values associated with the corresponding Agent configuration.
 func (r Monitoring_Agent) GetConfigurationValues() (resp []datatypes.Monitoring_Agent_Configuration_Value, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getConfigurationValues", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns an array of SoftLayer_User_Customer objects, representing those who are allowed to be used as alarm subscribers.
 func (r Monitoring_Agent) GetEligibleAlarmSubscibers() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getEligibleAlarmSubscibers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -176,7 +176,7 @@ func (r Monitoring_Agent) GetGraph(configurationValues []datatypes.Monitoring_Ag
 		beginDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -187,43 +187,43 @@ func (r Monitoring_Agent) GetGraphData(metricDataTypes []datatypes.Container_Met
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getGraphData", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve SoftLayer hardware related to the agent.
 func (r Monitoring_Agent) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method retrieves a monitoring agent whose identifier corresponds to the value provided in the initialization parameter passed to the SoftLayer_Monitoring_Agent service.
 func (r Monitoring_Agent) GetObject() (resp datatypes.Monitoring_Agent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Contains general information relating to a single SoftLayer product.
 func (r Monitoring_Agent) GetProductItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getProductItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A description for a specific installation of a Software Component
 func (r Monitoring_Agent) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getSoftwareDescription", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Monitoring agent status name.
 func (r Monitoring_Agent) GetStatusName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getStatusName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Softlayer_Virtual_Guest object related to the monitoring agent, which this virtual guest object and hardware is on the server of the running agent.
 func (r Monitoring_Agent) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "getVirtualGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -232,19 +232,19 @@ func (r Monitoring_Agent) RemoveActiveAlarmSubscriber(userRecordId *int) (resp b
 	params := []interface{}{
 		userRecordId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "removeActiveAlarmSubscriber", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use of this method will allow removing all subscribers from the monitoring agent. The agent subscribers can be managed within the portal from the "Alarm Subscribers" tab of the monitoring agent configuration.
 func (r Monitoring_Agent) RemoveAllAlarmSubscribers() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "removeAllAlarmSubscribers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method restarts a monitoring agent and sets the agent's status to 'ACTIVE'.
 func (r Monitoring_Agent) RestartMonitoringAgent() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "restartMonitoringAgent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -253,7 +253,7 @@ func (r Monitoring_Agent) SetActiveAlarmSubscriber(userRecordId *int) (resp bool
 	params := []interface{}{
 		userRecordId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent", "setActiveAlarmSubscriber", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -301,13 +301,13 @@ func (r Monitoring_Agent_Configuration_Template_Group) CreateObject(templateObje
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Deletes a customer configuration template group.
 func (r Monitoring_Agent_Configuration_Template_Group) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -316,19 +316,19 @@ func (r Monitoring_Agent_Configuration_Template_Group) EditObject(templateObject
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Monitoring_Agent_Configuration_Template_Group) GetAllObjects() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -337,31 +337,31 @@ func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationGroups(pa
 	params := []interface{}{
 		packageId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getConfigurationGroups", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplateReferences() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getConfigurationTemplateReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplates() (resp []datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getConfigurationTemplates", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group) GetItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method retrieves a monitoring agent configuration template group whose identifier corresponds to the value provided in the initialization parameter passed to the SoftLayer_Monitoring_Agent_Configuration_Template_Group service.
 func (r Monitoring_Agent_Configuration_Template_Group) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -409,7 +409,7 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) CreateObject(te
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -418,7 +418,7 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) CreateObjects(t
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -427,7 +427,7 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) EditObject(temp
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -436,31 +436,31 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) EditObjects(tem
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "editObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method retrieves all SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference objects accessible to the active user.
 func (r Monitoring_Agent_Configuration_Template_Group_Reference) GetAllObjects() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group_Reference) GetConfigurationTemplate() (resp datatypes.Configuration_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "getConfigurationTemplate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method retrieves a monitoring agent configuration template group reference whose identifier corresponds to the value provided in the initialization parameter passed to the SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference service.
 func (r Monitoring_Agent_Configuration_Template_Group_Reference) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group_Reference) GetTemplateGroup() (resp datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Template_Group_Reference", "getTemplateGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -505,31 +505,31 @@ func (r Monitoring_Agent_Configuration_Value) Offset(offset int) Monitoring_Agen
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Value) GetDefinition() (resp datatypes.Configuration_Template_Section_Definition, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Value", "getDefinition", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The metric data type used to retrieve metric data currently being tracked.
 func (r Monitoring_Agent_Configuration_Value) GetMetricDataType() (resp datatypes.Container_Metric_Data_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Value", "getMetricDataType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Value) GetMonitoringAgent() (resp datatypes.Monitoring_Agent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Value", "getMonitoringAgent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Monitoring_Agent_Configuration_Value) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Value, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Value", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Monitoring_Agent_Configuration_Value) GetProfile() (resp datatypes.Configuration_Template_Section_Profile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Configuration_Value", "getProfile", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -574,7 +574,7 @@ func (r Monitoring_Agent_Status) Offset(offset int) Monitoring_Agent_Status {
 
 // no documentation yet
 func (r Monitoring_Agent_Status) GetObject() (resp datatypes.Monitoring_Agent_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Agent_Status", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -621,7 +621,7 @@ func (r Monitoring_Robot) Offset(offset int) Monitoring_Robot {
 //
 // TCP port 48000 - 48002 must be open on your server or your virtual server in order for this test to succeed.
 func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "checkConnection", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -630,43 +630,43 @@ func (r Monitoring_Robot) DeployMonitoringAgents(configurationTemplateGroup *dat
 	params := []interface{}{
 		configurationTemplateGroup,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "deployMonitoringAgents", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account associated with the corresponding robot.
 func (r Monitoring_Robot) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns available configuration template groups for this monitoring agent.
 func (r Monitoring_Robot) GetAvailableConfigurationGroups() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getAvailableConfigurationGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
 func (r Monitoring_Robot) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getMonitoringAgents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Monitoring_Robot) GetObject() (resp datatypes.Monitoring_Robot, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the robot.
 func (r Monitoring_Robot) GetRobotStatus() (resp datatypes.Monitoring_Robot_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getRobotStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Software_Component that corresponds to the robot installation on the server.
 func (r Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "getSoftwareComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -674,6 +674,6 @@ func (r Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Compon
 //
 // Use this method to resets monitoring robot status to "Active" to indicate the connection issue is resolved.
 func (r Monitoring_Robot) ResetStatus() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Monitoring_Robot", "resetStatus", nil, r.Session, &r.Options, &resp)
 	return
 }

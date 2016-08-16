@@ -75,97 +75,97 @@ func (r Virtual_Disk_Image) EditObject(templateObject *datatypes.Virtual_Disk_Im
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a virtual disk image.
 func (r Virtual_Disk_Image) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The block devices that a disk image is attached to. Block devices connect computing instances to disk images.
 func (r Virtual_Disk_Image) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getBlockDevices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Disk_Image) GetBootableVolumeFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getBootableVolumeFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Disk_Image) GetCoalescedDiskImages() (resp []datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getCoalescedDiskImages", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Disk_Image) GetCopyOnWriteFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getCopyOnWriteFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Disk_Image) GetLocalDiskFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getLocalDiskFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether this disk image is meant for storage of custom user data supplied with a Cloud Computing Instance order.
 func (r Virtual_Disk_Image) GetMetadataFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getMetadataFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Disk_Image) GetObject() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getPublicIsoImages", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve References to the software that resides on a disk image.
 func (r Virtual_Disk_Image) GetSoftwareReferences() (resp []datatypes.Virtual_Disk_Image_Software, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getSoftwareReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The original disk image that the current disk image was cloned from.
 func (r Virtual_Disk_Image) GetSourceDiskImage() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getSourceDiskImage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The storage repository that a disk image resides in.
 func (r Virtual_Disk_Image) GetStorageRepository() (resp datatypes.Virtual_Storage_Repository, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getStorageRepository", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of storage repository that a disk image resides in.
 func (r Virtual_Disk_Image) GetStorageRepositoryType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getStorageRepositoryType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The template that attaches a disk image to a [[SoftLayer_Virtual_Guest_Block_Device_Template_Group|archive]].
 func (r Virtual_Disk_Image) GetTemplateBlockDevice() (resp datatypes.Virtual_Guest_Block_Device_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getTemplateBlockDevice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual disk image's type.
 func (r Virtual_Disk_Image) GetType() (resp datatypes.Virtual_Disk_Image_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Disk_Image", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -212,13 +212,13 @@ func (r Virtual_Guest) Offset(offset int) Virtual_Guest {
 
 // Activate the private network port
 func (r Virtual_Guest) ActivatePrivatePort() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "activatePrivatePort", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Activate the public network port
 func (r Virtual_Guest) ActivatePublicPort() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "activatePublicPort", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -227,7 +227,7 @@ func (r Virtual_Guest) AllowAccessToNetworkStorage(networkStorageTemplateObject 
 	params := []interface{}{
 		networkStorageTemplateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "allowAccessToNetworkStorage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -236,7 +236,7 @@ func (r Virtual_Guest) AllowAccessToNetworkStorageList(networkStorageTemplateObj
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "allowAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -247,14 +247,14 @@ func (r Virtual_Guest) AttachDiskImage(imageId *int) (resp datatypes.Provisionin
 	params := []interface{}{
 		imageId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "attachDiskImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Reopens the public and/or private ports to reverse the changes made when the server was isolated for a destructive action.
 func (r Virtual_Guest) CancelIsolationForDestructiveAction() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "cancelIsolationForDestructiveAction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -263,7 +263,7 @@ func (r Virtual_Guest) CaptureImage(captureTemplate *datatypes.Container_Disk_Im
 	params := []interface{}{
 		captureTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "captureImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -272,7 +272,7 @@ func (r Virtual_Guest) CheckHostDiskAvailability(diskCapacity *int) (resp bool, 
 	params := []interface{}{
 		diskCapacity,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "checkHostDiskAvailability", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -281,7 +281,7 @@ func (r Virtual_Guest) CloseAlarm(alarmId *string) (resp bool, err error) {
 	params := []interface{}{
 		alarmId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "closeAlarm", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -289,7 +289,7 @@ func (r Virtual_Guest) CloseAlarm(alarmId *string) (resp bool, err error) {
 //
 // WARNING: The transaction created by this service will shut down the guest while the metadata disk is configured. The guest will be turned back on once this process is complete.
 func (r Virtual_Guest) ConfigureMetadataDisk() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "configureMetadataDisk", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -300,7 +300,7 @@ func (r Virtual_Guest) CreateArchiveTransaction(groupName *string, blockDevices 
 		blockDevices,
 		note,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "createArchiveTransaction", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -584,7 +584,7 @@ func (r Virtual_Guest) CreateObject(templateObject *datatypes.Virtual_Guest) (re
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -677,7 +677,7 @@ func (r Virtual_Guest) CreateObjects(templateObjects []datatypes.Virtual_Guest) 
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -687,14 +687,14 @@ func (r Virtual_Guest) CreatePostSoftwareInstallTransaction(data *string, return
 		data,
 		returnBoolean,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "createPostSoftwareInstallTransaction", params, r.Session, &r.Options, &resp)
 	return
 }
 
 //
 // This method will cancel a computing instance effective immediately. For instances billed hourly, the charges will stop immediately after the method returns.
 func (r Virtual_Guest) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -705,7 +705,7 @@ func (r Virtual_Guest) DetachDiskImage(imageId *int) (resp datatypes.Provisionin
 	params := []interface{}{
 		imageId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "detachDiskImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -714,19 +714,19 @@ func (r Virtual_Guest) EditObject(templateObject *datatypes.Virtual_Guest) (resp
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Reboot a guest into the Idera Bare Metal Restore image.
 func (r Virtual_Guest) ExecuteIderaBareMetalRestore() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "executeIderaBareMetalRestore", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Reboot a guest into the R1Soft Bare Metal Restore image.
 func (r Virtual_Guest) ExecuteR1SoftBareMetalRestore() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "executeR1SoftBareMetalRestore", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -736,13 +736,13 @@ func (r Virtual_Guest) ExecuteRemoteScript(uri *string) (err error) {
 	params := []interface{}{
 		uri,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "executeRemoteScript", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Reboot a Linux guest into the Xen rescue image.
 func (r Virtual_Guest) ExecuteRescueLayer() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "executeRescueLayer", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -751,7 +751,7 @@ func (r Virtual_Guest) FindByIpAddress(ipAddress *string) (resp datatypes.Virtua
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "findByIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -767,43 +767,43 @@ func (r Virtual_Guest) GenerateOrderTemplate(templateObject *datatypes.Virtual_G
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "generateOrderTemplate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that a virtual guest belongs to.
 func (r Virtual_Guest) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetAccountOwnedPoolFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAccountOwnedPoolFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual guest's currently active network monitoring incidents.
 func (r Virtual_Guest) GetActiveNetworkMonitorIncident() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getActiveNetworkMonitorIncident", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetActiveTickets() (resp []datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getActiveTickets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A transaction that is still be performed on a cloud server.
 func (r Virtual_Guest) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getActiveTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Any active transaction(s) that are currently running for the server (example: os reload).
 func (r Virtual_Guest) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getActiveTransactions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -812,7 +812,7 @@ func (r Virtual_Guest) GetAdditionalRequiredPricesForOsReload(config *datatypes.
 	params := []interface{}{
 		config,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAdditionalRequiredPricesForOsReload", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -823,37 +823,37 @@ func (r Virtual_Guest) GetAlarmHistory(startDate *datatypes.Time, endDate *datat
 		endDate,
 		alarmId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAlarmHistory", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Allowed_Host information to connect this Virtual Guest to Network Storage volumes that require access control lists.
 func (r Virtual_Guest) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAllowedHost", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects that this SoftLayer_Virtual_Guest has access to.
 func (r Virtual_Guest) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAllowedNetworkStorage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Virtual_Guest has access to.
 func (r Virtual_Guest) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAllowedNetworkStorageReplicas", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A antivirus / spyware software component object.
 func (r Virtual_Guest) GetAntivirusSpywareSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAntivirusSpywareSoftwareComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getApplicationDeliveryController", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -862,25 +862,25 @@ func (r Virtual_Guest) GetAttachedNetworkStorages(nasType *string) (resp []datat
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAttachedNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetAttributes() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetAvailableBlockDevicePositions() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAvailableBlockDevicePositions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Virtual_Guest) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAvailableMonitoring", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -889,43 +889,43 @@ func (r Virtual_Guest) GetAvailableNetworkStorages(nasType *string) (resp []data
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAvailableNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily private bandwidth usage for the current billing cycle.
 func (r Virtual_Guest) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAverageDailyPrivateBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
 func (r Virtual_Guest) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getAverageDailyPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guests's backend network components.
 func (r Virtual_Guest) GetBackendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBackendNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's backend or private router.
 func (r Virtual_Guest) GetBackendRouters() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBackendRouters", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's allotted bandwidth (measured in GB).
 func (r Virtual_Guest) GetBandwidthAllocation() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthAllocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's allotted detail record. Allotment details link bandwidth allocation with allotments.
 func (r Virtual_Guest) GetBandwidthAllotmentDetail() (resp datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthAllotmentDetail", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -936,7 +936,7 @@ func (r Virtual_Guest) GetBandwidthDataByDate(startDateTime *datatypes.Time, end
 		endDateTime,
 		networkType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -946,7 +946,7 @@ func (r Virtual_Guest) GetBandwidthForDateRange(startDate *datatypes.Time, endDa
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthForDateRange", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -958,7 +958,7 @@ func (r Virtual_Guest) GetBandwidthImage(networkType *string, snapshotRange *str
 		dateSpecified,
 		dateSpecifiedEnd,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -969,7 +969,7 @@ func (r Virtual_Guest) GetBandwidthImageByDate(startDateTime *datatypes.Time, en
 		endDateTime,
 		networkType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -981,91 +981,91 @@ func (r Virtual_Guest) GetBandwidthTotal(startDateTime *datatypes.Time, endDateT
 		direction,
 		side,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBandwidthTotal", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
 func (r Virtual_Guest) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBillingCycleBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The raw private bandwidth usage data for the current billing cycle.
 func (r Virtual_Guest) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBillingCyclePrivateBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The raw public bandwidth usage data for the current billing cycle.
 func (r Virtual_Guest) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBillingCyclePublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a CloudLayer Compute Instance.
 func (r Virtual_Guest) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Determines whether the instance is ineligible for cancellation because it is disconnected.
 func (r Virtual_Guest) GetBlockCancelBecauseDisconnectedFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBlockCancelBecauseDisconnectedFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The global identifier for the image template that was used to provision or reload a guest.
 func (r Virtual_Guest) GetBlockDeviceTemplateGroup() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBlockDeviceTemplateGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's block devices. Block devices link [[SoftLayer_Virtual_Disk_Image|disk images]] to computing instances.
 func (r Virtual_Guest) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBlockDevices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetBootOrder() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getBootOrder", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Gets the console access logs for a computing instance
 func (r Virtual_Guest) GetConsoleAccessLog() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getConsoleAccessLog", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating a computing instance's console IP address is assigned.
 func (r Virtual_Guest) GetConsoleIpAddressFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getConsoleIpAddressFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A record containing information about a computing instance's console IP and port number.
 func (r Virtual_Guest) GetConsoleIpAddressRecord() (resp datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getConsoleIpAddressRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A continuous data protection software component object.
 func (r Virtual_Guest) GetContinuousDataProtectionSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getContinuousDataProtectionSoftwareComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's control panel.
 func (r Virtual_Guest) GetControlPanel() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getControlPanel", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // If the virtual server currently has an operating system that has a core capacity restriction, return the associated core-restricted operating system item price. Some operating systems (e.g., Red Hat Enterprise Linux) may be billed by the number of processor cores, so therefore require that a certain number of cores be present on the server.
 func (r Virtual_Guest) GetCoreRestrictedOperatingSystemPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCoreRestrictedOperatingSystemPrice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1076,7 +1076,7 @@ func (r Virtual_Guest) GetCpuMetricDataByDate(startDateTime *datatypes.Time, end
 		endDateTime,
 		cpuIndexes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCpuMetricDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1086,7 +1086,7 @@ func (r Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *d
 		snapshotRange,
 		dateSpecified,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCpuMetricImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1097,7 +1097,7 @@ func (r Virtual_Guest) GetCpuMetricImageByDate(startDateTime *datatypes.Time, en
 		endDateTime,
 		cpuIndexes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCpuMetricImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1107,25 +1107,25 @@ func (r Virtual_Guest) GetCpuMetricImageByDate(startDateTime *datatypes.Time, en
 //
 // Detailed information on the return value can be found on the data type page for [[SoftLayer_Container_Virtual_Guest_Configuration (type)]].
 func (r Virtual_Guest) GetCreateObjectOptions() (resp datatypes.Container_Virtual_Guest_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCreateObjectOptions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An object that provides commonly used bandwidth summary components for the current billing cycle.
 func (r Virtual_Guest) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCurrentBandwidthSummary", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getUpgradeItemPrices() retrieves a list of all upgrades available to a CloudLayer Computing Instance. Upgradeable items include, but are not limited to, number of cores, amount of RAM, storage configuration, and network port speed.
 func (r Virtual_Guest) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCurrentBillingDetail", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the total billing price in US Dollars ($) for this instance. This includes all bandwidth used up to this point for this instance.
 func (r Virtual_Guest) GetCurrentBillingTotal() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCurrentBillingTotal", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1134,7 +1134,7 @@ func (r Virtual_Guest) GetCustomBandwidthDataByDate(graphData *datatypes.Contain
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCustomBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1143,109 +1143,109 @@ func (r Virtual_Guest) GetCustomMetricDataByDate(graphData *datatypes.Container_
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getCustomMetricDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The datacenter that a virtual guest resides in.
 func (r Virtual_Guest) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Return a drive retention SoftLayer_Item_Price object for a guest.
 func (r Virtual_Guest) GetDriveRetentionItemPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getDriveRetentionItemPrice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's associated EVault network storage service account.
 func (r Virtual_Guest) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getEvaultNetworkStorage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the subnets associated with this CloudLayer computing instance that are protectable by a network component firewall.
 func (r Virtual_Guest) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getFirewallProtectableSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's hardware firewall services.
 func (r Virtual_Guest) GetFirewallServiceComponent() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getFirewallServiceComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetFirstAvailableBlockDevicePosition() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getFirstAvailableBlockDevicePosition", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's frontend network components.
 func (r Virtual_Guest) GetFrontendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getFrontendNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's frontend or public router.
 func (r Virtual_Guest) GetFrontendRouters() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getFrontendRouters", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's universally unique identifier.
 func (r Virtual_Guest) GetGlobalIdentifier() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getGlobalIdentifier", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetGuestBootParameter() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getGuestBootParameter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual host on which a virtual guest resides (available only on private clouds).
 func (r Virtual_Guest) GetHost() (resp datatypes.Virtual_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getHost", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A host IPS software component object.
 func (r Virtual_Guest) GetHostIpsSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getHostIpsSoftwareComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not a computing instance is billed hourly instead of monthly.
 func (r Virtual_Guest) GetHourlyBillingFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getHourlyBillingFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private inbound bandwidth for this computing instance for the current billing cycle.
 func (r Virtual_Guest) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getInboundPrivateBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this computing instance for the current billing cycle.
 func (r Virtual_Guest) GetInboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getInboundPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetInternalTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getInternalTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetIsoBootImage() (resp datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getIsoBootImage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1256,49 +1256,49 @@ func (r Virtual_Guest) GetItemPricesFromSoftwareDescriptions(softwareDescription
 		includeTranslationsFlag,
 		returnAllPricesFlag,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getItemPricesFromSoftwareDescriptions", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last known power state of a virtual guest in the event the guest is turned off outside of IMS or has gone offline.
 func (r Virtual_Guest) GetLastKnownPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLastKnownPowerState", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last transaction that a cloud server's operating system was loaded.
 func (r Virtual_Guest) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLastOperatingSystemReload", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last transaction a cloud server had performed.
 func (r Virtual_Guest) GetLastTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLastTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual guest's latest network monitoring incident.
 func (r Virtual_Guest) GetLatestNetworkMonitorIncident() (resp datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLatestNetworkMonitorIncident", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the virtual guest has at least one disk which is local to the host it runs on. This does not include a SWAP device.
 func (r Virtual_Guest) GetLocalDiskFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLocalDiskFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Where guest is located within SoftLayer's location hierarchy.
 func (r Virtual_Guest) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the virtual guest is a managed resource.
 func (r Virtual_Guest) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getManagedResourceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1308,7 +1308,7 @@ func (r Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *datatypes.Time, 
 		startDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMemoryMetricDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1318,7 +1318,7 @@ func (r Virtual_Guest) GetMemoryMetricImage(snapshotRange *string, dateSpecified
 		snapshotRange,
 		dateSpecified,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMemoryMetricImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1328,19 +1328,19 @@ func (r Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *datatypes.Time,
 		startDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMemoryMetricImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's metric tracking object.
 func (r Virtual_Guest) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The metric tracking object id for this guest.
 func (r Virtual_Guest) GetMetricTrackingObjectId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMetricTrackingObjectId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1350,13 +1350,13 @@ func (r Virtual_Guest) GetMonitoringActiveAlarms(startDate *datatypes.Time, endD
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringActiveAlarms", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringAgents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1366,97 +1366,97 @@ func (r Virtual_Guest) GetMonitoringClosedAlarms(startDate *datatypes.Time, endD
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringClosedAlarms", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringRobot", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual guest's network monitoring services.
 func (r Virtual_Guest) GetMonitoringServiceComponent() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringServiceComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringServiceEligibilityFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetMonitoringServiceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringServiceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The monitoring notification objects for this guest. Each object links this guest instance to a user account that will be notified if monitoring on this guest object fails
 func (r Virtual_Guest) GetMonitoringUserNotification() (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getMonitoringUserNotification", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the IP addresses associated with this CloudLayer computing instance that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this CloudLayer computing instance. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Virtual_Guest) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkComponentFirewallProtectableIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guests's network components.
 func (r Virtual_Guest) GetNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All of a virtual guest's network monitoring incidents.
 func (r Virtual_Guest) GetNetworkMonitorIncidents() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkMonitorIncidents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guests's network monitors.
 func (r Virtual_Guest) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkMonitors", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's associated network storage accounts.
 func (r Virtual_Guest) GetNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkStorage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network Vlans that a guest's network components are associated with.
 func (r Virtual_Guest) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getNetworkVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetObject() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An open ticket requesting cancellation of this server, if one exists.
 func (r Virtual_Guest) GetOpenCancellationTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOpenCancellationTicket", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's operating system.
 func (r Virtual_Guest) GetOperatingSystem() (resp datatypes.Software_Component_OperatingSystem, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOperatingSystem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's operating system software description.
 func (r Virtual_Guest) GetOperatingSystemReferenceCode() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOperatingSystemReferenceCode", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1466,91 +1466,91 @@ func (r Virtual_Guest) GetOrderTemplate(billingType *string, orderPrices []datat
 		billingType,
 		orderPrices,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOrderTemplate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The original package id provided with the order for a Cloud Computing Instance.
 func (r Virtual_Guest) GetOrderedPackageId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOrderedPackageId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private outbound bandwidth for this computing instance for the current billing cycle.
 func (r Virtual_Guest) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOutboundPrivateBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this computing instance for the current billing cycle.
 func (r Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOutboundPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the bandwidth usage for this computing instance for the current billing cycle exceeds the allocation.
 func (r Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getOverBandwidthAllocationFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current power state of a virtual guest.
 func (r Virtual_Guest) GetPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPowerState", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's primary private IP address.
 func (r Virtual_Guest) GetPrimaryBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPrimaryBackendIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's primary backend network component.
 func (r Virtual_Guest) GetPrimaryBackendNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPrimaryBackendNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The guest's primary public IP address.
 func (r Virtual_Guest) GetPrimaryIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPrimaryIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's primary public network component.
 func (r Virtual_Guest) GetPrimaryNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPrimaryNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the computing instance only has access to the private network.
 func (r Virtual_Guest) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getPrivateNetworkOnlyFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the bandwidth usage for this computing instance for the current billing cycle is projected to exceed the allocation.
 func (r Virtual_Guest) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getProjectedOverBandwidthAllocationFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The projected public outbound bandwidth for this computing instance for the current billing cycle.
 func (r Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getProjectedPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) GetProvisionDate() (resp datatypes.Time, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getProvisionDate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Recent events that impact this computing instance.
 func (r Virtual_Guest) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRecentEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1559,19 +1559,19 @@ func (r Virtual_Guest) GetRecentMetricData(time *uint) (resp []datatypes.Metric_
 	params := []interface{}{
 		time,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRecentMetricData", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The regional group this guest is in.
 func (r Virtual_Guest) GetRegionalGroup() (resp datatypes.Location_Group_Regional, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRegionalGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRegionalInternetRegistry", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1583,7 +1583,7 @@ func (r Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *datatypes.Time
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRemoteMonitoringActiveAlarms", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1595,67 +1595,67 @@ func (r Virtual_Guest) GetRemoteMonitoringClosedAlarms(startDate *datatypes.Time
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getRemoteMonitoringClosedAlarms", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve the reverse domain records associated with this server.
 func (r Virtual_Guest) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getReverseDomainRecords", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Collection of scale assets this guest corresponds to.
 func (r Virtual_Guest) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getScaleAssets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The scale member for this guest, if applicable.
 func (r Virtual_Guest) GetScaleMember() (resp datatypes.Scale_Member_Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getScaleMember", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not this guest is a member of a scale group and was automatically created as part of a scale group action.
 func (r Virtual_Guest) GetScaledFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getScaledFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's vulnerability scan requests.
 func (r Virtual_Guest) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getSecurityScanRequests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The server room that a guest is located at. There may be more than one server room for every data center.
 func (r Virtual_Guest) GetServerRoom() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getServerRoom", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A guest's installed software.
 func (r Virtual_Guest) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getSoftwareComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve SSH keys to be installed on the server during provisioning or an OS reload.
 func (r Virtual_Guest) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getSshKeys", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's status.
 func (r Virtual_Guest) GetStatus() (resp datatypes.Virtual_Guest_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1666,25 +1666,25 @@ func (r Virtual_Guest) GetUpgradeItemPrices(includeDowngradeItemPrices *bool) (r
 	params := []interface{}{
 		includeDowngradeItemPrices,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getUpgradeItemPrices", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance's associated upgrade request object if any.
 func (r Virtual_Guest) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getUpgradeRequest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A base64 encoded string containing custom user data for a Cloud Computing Instance order.
 func (r Virtual_Guest) GetUserData() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getUserData", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of users that have access to this computing instance.
 func (r Virtual_Guest) GetUsers() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getUsers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1693,44 +1693,44 @@ func (r Virtual_Guest) GetValidBlockDeviceTemplateGroups(visibility *string) (re
 	params := []interface{}{
 		visibility,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getValidBlockDeviceTemplateGroups", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of the bandwidth allotment that a hardware belongs too.
 func (r Virtual_Guest) GetVirtualRack() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getVirtualRack", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The id of the bandwidth allotment that a computing instance belongs too.
 func (r Virtual_Guest) GetVirtualRackId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getVirtualRackId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of the bandwidth allotment that a computing instance belongs too.
 func (r Virtual_Guest) GetVirtualRackName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "getVirtualRackName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Issues a ping command and returns the success (true) or failure (false) of the ping command.
 func (r Virtual_Guest) IsBackendPingable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "isBackendPingable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Issues a ping command and returns the success (true) or failure (false) of the ping command.
 func (r Virtual_Guest) IsPingable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "isPingable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Closes the public or private ports to isolate the instance before a destructive action.
 func (r Virtual_Guest) IsolateInstanceForDestructiveAction() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "isolateInstanceForDestructiveAction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1739,61 +1739,61 @@ func (r Virtual_Guest) MountIsoImage(diskImageId *int) (resp datatypes.Provision
 	params := []interface{}{
 		diskImageId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "mountIsoImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Pause a virtual guest
 func (r Virtual_Guest) Pause() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "pause", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power cycle a virtual guest
 func (r Virtual_Guest) PowerCycle() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "powerCycle", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power off a virtual guest
 func (r Virtual_Guest) PowerOff() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "powerOff", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power off a virtual guest
 func (r Virtual_Guest) PowerOffSoft() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "powerOffSoft", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power on a virtual guest
 func (r Virtual_Guest) PowerOn() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "powerOn", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power cycle a virtual guest
 func (r Virtual_Guest) RebootDefault() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "rebootDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Power cycle a guest.
 func (r Virtual_Guest) RebootHard() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "rebootHard", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Attempt to complete a soft reboot of a guest by shutting down the operating system.
 func (r Virtual_Guest) RebootSoft() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "rebootSoft", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Create a transaction to perform an OS reload
 func (r Virtual_Guest) ReloadCurrentOperatingSystemConfiguration() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "reloadCurrentOperatingSystemConfiguration", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1809,7 +1809,7 @@ func (r Virtual_Guest) ReloadOperatingSystem(token *string, config *datatypes.Co
 		token,
 		config,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "reloadOperatingSystem", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1818,7 +1818,7 @@ func (r Virtual_Guest) RemoveAccessToNetworkStorage(networkStorageTemplateObject
 	params := []interface{}{
 		networkStorageTemplateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "removeAccessToNetworkStorage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1827,13 +1827,13 @@ func (r Virtual_Guest) RemoveAccessToNetworkStorageList(networkStorageTemplateOb
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "removeAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Resume a virtual guest
 func (r Virtual_Guest) Resume() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "resume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1844,7 +1844,7 @@ func (r Virtual_Guest) SetPrivateNetworkInterfaceSpeed(newSpeed *int) (resp bool
 	params := []interface{}{
 		newSpeed,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "setPrivateNetworkInterfaceSpeed", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1855,7 +1855,7 @@ func (r Virtual_Guest) SetPublicNetworkInterfaceSpeed(newSpeed *int) (resp bool,
 	params := []interface{}{
 		newSpeed,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "setPublicNetworkInterfaceSpeed", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1864,7 +1864,7 @@ func (r Virtual_Guest) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "setTags", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1873,25 +1873,25 @@ func (r Virtual_Guest) SetUserMetadata(metadata []string) (resp bool, err error)
 	params := []interface{}{
 		metadata,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "setUserMetadata", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Shuts down the private network port
 func (r Virtual_Guest) ShutdownPrivatePort() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "shutdownPrivatePort", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Shuts down the public network port
 func (r Virtual_Guest) ShutdownPublicPort() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "shutdownPublicPort", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest) UnmountIsoImage() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "unmountIsoImage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1900,7 +1900,7 @@ func (r Virtual_Guest) ValidateImageTemplate(imageTemplateId *int) (resp bool, e
 	params := []interface{}{
 		imageTemplateId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "validateImageTemplate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1909,7 +1909,7 @@ func (r Virtual_Guest) VerifyReloadOperatingSystem(config *datatypes.Container_H
 	params := []interface{}{
 		config,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest", "verifyReloadOperatingSystem", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1959,7 +1959,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) AddLocations(locations []data
 	params := []interface{}{
 		locations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "addLocations", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1968,7 +1968,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) CopyToExternalSource(configur
 	params := []interface{}{
 		configuration,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "copyToExternalSource", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1977,7 +1977,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) CreateFromExternalSource(conf
 	params := []interface{}{
 		configuration,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "createFromExternalSource", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1989,13 +1989,13 @@ func (r Virtual_Guest_Block_Device_Template_Group) CreatePublicArchiveTransactio
 		note,
 		locations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "createPublicArchiveTransaction", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Deleting a block device template group is different from the deletion of other objects.  A block device template group can contain several gigabytes of data in its disk images.  This may take some time to delete and requires a transaction to be created.  This method creates a transaction that will delete all resources associated with the block device template group.
 func (r Virtual_Guest_Block_Device_Template_Group) DeleteObject() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2004,7 +2004,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) DenySharingAccess(accountId *
 	params := []interface{}{
 		accountId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "denySharingAccess", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2013,145 +2013,145 @@ func (r Virtual_Guest_Block_Device_Template_Group) EditObject(templateObject *da
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A block device template group's [[SoftLayer_Account|account]].
 func (r Virtual_Guest_Block_Device_Template_Group) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest_Block_Device_Template_Group) GetAccountContacts() (resp []datatypes.Account_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountContacts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The accounts which may have read-only access to an image template group. Will only be populated for parent template group objects.
 func (r Virtual_Guest_Block_Device_Template_Group) GetAccountReferences() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group_Accounts, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The block devices that are part of an image template group
 func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total disk space of all images in a image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevicesDiskSpaceTotal() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevicesDiskSpaceTotal", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The image template groups that are clones of an image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetChildren() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getChildren", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The location containing this image template group. Will only be populated for child template group objects.
 func (r Virtual_Guest_Block_Device_Template_Group) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of locations containing a copy of this image template group. Will only be populated for parent template group objects.
 func (r Virtual_Guest_Block_Device_Template_Group) GetDatacenters() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getDatacenters", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating if this is a flex image.
 func (r Virtual_Guest_Block_Device_Template_Group) GetFlexImageFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getFlexImageFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An image template's universally unique identifier.
 func (r Virtual_Guest_Block_Device_Template_Group) GetGlobalIdentifier() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getGlobalIdentifier", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual disk image type of this template. Value will be populated on parent and child, but only supports object filtering on the parent.
 func (r Virtual_Guest_Block_Device_Template_Group) GetImageType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getImageType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual disk image type keyname (e.g. SYSTEM, DISK_CAPTURE, ISO, etc) of this template. Value will be populated on parent and child, but only supports object filtering on the parent.
 func (r Virtual_Guest_Block_Device_Template_Group) GetImageTypeKeyName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getImageTypeKeyName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest_Block_Device_Template_Group) GetObject() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The image template group that another image template group was cloned from.
 func (r Virtual_Guest_Block_Device_Template_Group) GetParent() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getParent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method gets all public customer owned image templates that the user is allowed to see.
 func (r Virtual_Guest_Block_Device_Template_Group) GetPublicCustomerOwnedImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicCustomerOwnedImages", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method gets all public image templates that the user is allowed to see.
 func (r Virtual_Guest_Block_Device_Template_Group) GetPublicImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicImages", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ssh keys to be implemented on the server when provisioned or reloaded from an image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSshKeys", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A template group's status.
 func (r Virtual_Guest_Block_Device_Template_Group) GetStatus() (resp datatypes.Virtual_Guest_Block_Device_Template_Group_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns the image storage locations.
 func (r Virtual_Guest_Block_Device_Template_Group) GetStorageLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStorageLocations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The storage repository that an image template group resides on.
 func (r Virtual_Guest_Block_Device_Template_Group) GetStorageRepository() (resp datatypes.Virtual_Storage_Repository, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStorageRepository", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The tags associated with this image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A transaction that is being performed on a image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns an array of SoftLayer_Software_Description that are supported for VHD imports.
 func (r Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescriptions() (resp []datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getVhdImportSoftwareDescriptions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2160,7 +2160,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) PermitSharingAccess(accountId
 	params := []interface{}{
 		accountId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "permitSharingAccess", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2169,7 +2169,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) RemoveLocations(locations []d
 	params := []interface{}{
 		locations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "removeLocations", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2178,7 +2178,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) SetAvailableLocations(locatio
 	params := []interface{}{
 		locations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "setAvailableLocations", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2187,7 +2187,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp b
 	params := []interface{}{
 		tags,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "setTags", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2235,13 +2235,13 @@ func (r Virtual_Guest_Boot_Parameter) CreateObject(templateObject *datatypes.Vir
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest_Boot_Parameter) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2250,25 +2250,25 @@ func (r Virtual_Guest_Boot_Parameter) EditObject(templateObject *datatypes.Virtu
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest_Boot_Parameter) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "getGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest_Boot_Parameter) GetGuestBootParameterType() (resp datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "getGuestBootParameterType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2313,13 +2313,13 @@ func (r Virtual_Guest_Boot_Parameter_Type) Offset(offset int) Virtual_Guest_Boot
 
 // no documentation yet
 func (r Virtual_Guest_Boot_Parameter_Type) GetAllObjects() (resp []datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest_Boot_Parameter_Type) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Boot_Parameter_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2366,91 +2366,91 @@ func (r Virtual_Guest_Network_Component) Offset(offset int) Virtual_Guest_Networ
 
 // Completely restrict all incoming and outgoing bandwidth traffic to a network component
 func (r Virtual_Guest_Network_Component) Disable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "disable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Allow incoming and outgoing bandwidth traffic to a network component
 func (r Virtual_Guest_Network_Component) Enable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "enable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The computing instance that this network component exists on.
 func (r Virtual_Guest_Network_Component) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest_Network_Component) GetHighAvailabilityFirewallFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getHighAvailabilityFirewallFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The records of all IP addresses bound to a computing instance's network component.
 func (r Virtual_Guest_Network_Component) GetIpAddressBindings() (resp []datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getIpAddressBindings", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The upstream network component firewall.
 func (r Virtual_Guest_Network_Component) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getNetworkComponentFirewall", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLAN that a computing instance network component's subnet is associated with.
 func (r Virtual_Guest_Network_Component) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Guest_Network_Component) GetObject() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A computing instance network component's primary IP address.
 func (r Virtual_Guest_Network_Component) GetPrimaryIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getPrimaryIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Guest_Network_Component) GetPrimaryIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getPrimaryIpAddressRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's subnet for its primary IP address
 func (r Virtual_Guest_Network_Component) GetPrimarySubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getPrimarySubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's primary IPv6 IP address record.
 func (r Virtual_Guest_Network_Component) GetPrimaryVersion6IpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getPrimaryVersion6IpAddressRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's routers.
 func (r Virtual_Guest_Network_Component) GetRouter() (resp datatypes.Hardware_Router, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getRouter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's subnets. A subnet is a group of IP addresses
 func (r Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Issues a ping command and returns the success (true) or failure (false) of the ping command.
 func (r Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Guest_Network_Component", "isPingable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2495,31 +2495,31 @@ func (r Virtual_Host) Offset(offset int) Virtual_Host {
 
 // Retrieve The account which a virtual host belongs to.
 func (r Virtual_Host) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Boolean flag indicating whether this virtualization platform gets billed per guest rather than at a fixed rate.
 func (r Virtual_Host) GetBilledPerGuestFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getBilledPerGuestFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Boolean flag indicating whether this virtualization platform gets billed per memory usage rather than at a fixed rate.
 func (r Virtual_Host) GetBilledPerMemoryUsageFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getBilledPerMemoryUsageFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The guests associated with a virtual host.
 func (r Virtual_Host) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware record which a virtual host resides on.
 func (r Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2528,13 +2528,13 @@ func (r Virtual_Host) GetLiveGuestByUuid(uuid *string) (resp datatypes.Virtual_G
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getLiveGuestByUuid", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Query a virtualization platform directly to retrieve a list of known guests.
 func (r Virtual_Host) GetLiveGuestList() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getLiveGuestList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2546,19 +2546,19 @@ func (r Virtual_Host) GetLiveGuestRecentMetricData(uuid *string, time *int, limi
 		limit,
 		interval,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getLiveGuestRecentMetricData", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The metric tracking object for this virtual host.
 func (r Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Host) GetObject() (resp datatypes.Virtual_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2567,7 +2567,7 @@ func (r Virtual_Host) PauseLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "pauseLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2576,7 +2576,7 @@ func (r Virtual_Host) PowerCycleLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "powerCycleLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2585,7 +2585,7 @@ func (r Virtual_Host) PowerOffLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "powerOffLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2594,7 +2594,7 @@ func (r Virtual_Host) PowerOnLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "powerOnLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2603,7 +2603,7 @@ func (r Virtual_Host) RebootSoftLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "rebootSoftLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2612,7 +2612,7 @@ func (r Virtual_Host) ResumeLiveGuest(uuid *string) (resp bool, err error) {
 	params := []interface{}{
 		uuid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Host", "resumeLiveGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2657,13 +2657,13 @@ func (r Virtual_Storage_Repository) Offset(offset int) Virtual_Storage_Repositor
 
 // Retrieve The [[SoftLayer_Account|account]] that a storage repository belongs to.
 func (r Virtual_Storage_Repository) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns the archive storage disk usage fee rate per gigabyte.
 func (r Virtual_Storage_Repository) GetArchiveDiskUsageRatePerGb() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getArchiveDiskUsageRatePerGb", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2673,67 +2673,67 @@ func (r Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTim
 		startDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getAverageUsageMetricDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a storage repository.
 func (r Virtual_Storage_Repository) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The datacenter that a virtual storage repository resides in.
 func (r Virtual_Storage_Repository) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Virtual_Disk_Image|disk images]] that are in a storage repository. Disk images are the virtual hard drives for a virtual guest.
 func (r Virtual_Storage_Repository) GetDiskImages() (resp []datatypes.Virtual_Disk_Image, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getDiskImages", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The computing instances that have disk images in a storage repository.
 func (r Virtual_Storage_Repository) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Virtual_Storage_Repository) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_Virtual_Storage_Repository, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Virtual_Storage_Repository) GetObject() (resp datatypes.Virtual_Storage_Repository, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a public storage repository.
 func (r Virtual_Storage_Repository) GetPublicImageBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getPublicImageBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns the public image storage disk usage fee rate per gigabyte.
 func (r Virtual_Storage_Repository) GetPublicImageDiskUsageRatePerGb() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getPublicImageDiskUsageRatePerGb", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Returns the public image storage locations.
 func (r Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getStorageLocations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A storage repository's [[SoftLayer_Virtual_Storage_Repository_Type|type]].
 func (r Virtual_Storage_Repository) GetType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2743,7 +2743,7 @@ func (r Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *data
 		startDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getUsageMetricDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2753,6 +2753,6 @@ func (r Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *dat
 		startDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Virtual_Storage_Repository", "getUsageMetricImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }

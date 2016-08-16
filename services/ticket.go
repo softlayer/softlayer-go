@@ -78,7 +78,7 @@ func (r Ticket) AddAssignedAgent(agentId *int) (err error) {
 	params := []interface{}{
 		agentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addAssignedAgent", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -87,7 +87,7 @@ func (r Ticket) AddAttachedAdditionalEmails(emails []string) (resp bool, err err
 	params := []interface{}{
 		emails,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addAttachedAdditionalEmails", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -96,7 +96,7 @@ func (r Ticket) AddAttachedFile(fileAttachment *datatypes.Container_Utility_File
 	params := []interface{}{
 		fileAttachment,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addAttachedFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -105,7 +105,7 @@ func (r Ticket) AddAttachedHardware(hardwareId *int) (resp datatypes.Ticket_Atta
 	params := []interface{}{
 		hardwareId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addAttachedHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -114,7 +114,7 @@ func (r Ticket) AddAttachedVirtualGuest(guestId *int) (resp datatypes.Ticket_Att
 	params := []interface{}{
 		guestId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addAttachedVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -123,7 +123,7 @@ func (r Ticket) AddFinalComments(finalComments *string) (resp bool, err error) {
 	params := []interface{}{
 		finalComments,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addFinalComments", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -133,7 +133,7 @@ func (r Ticket) AddScheduledAlert(activationTime *string) (err error) {
 	params := []interface{}{
 		activationTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addScheduledAlert", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -143,7 +143,7 @@ func (r Ticket) AddScheduledAutoClose(activationTime *string) (err error) {
 	params := []interface{}{
 		activationTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addScheduledAutoClose", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -153,7 +153,7 @@ func (r Ticket) AddUpdate(templateObject *datatypes.Ticket_Update, attachedFiles
 		templateObject,
 		attachedFiles,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "addUpdate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -175,7 +175,7 @@ func (r Ticket) CreateAdministrativeTicket(templateObject *datatypes.Ticket, con
 		attachedFiles,
 		attachmentType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "createAdministrativeTicket", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -203,7 +203,7 @@ func (r Ticket) CreateCancelServerTicket(attachmentId *int, reason *string, cont
 		cancelAssociatedItems,
 		attachmentType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "createCancelServerTicket", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -230,7 +230,7 @@ func (r Ticket) CreateCancelServiceTicket(attachmentId *int, reason *string, con
 		content,
 		attachmentType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "createCancelServiceTicket", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -250,7 +250,7 @@ func (r Ticket) CreateStandardTicket(templateObject *datatypes.Ticket, contents 
 		attachedFiles,
 		attachmentType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "createStandardTicket", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -264,7 +264,7 @@ func (r Ticket) CreateUpgradeTicket(attachmentId *int, genericUpgrade *string, u
 		attachmentType,
 		title,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "createUpgradeTicket", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -277,13 +277,13 @@ func (r Ticket) Edit(templateObject *datatypes.Ticket, contents *string, attache
 		contents,
 		attachedFiles,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "edit", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account associated with a ticket.
 func (r Ticket) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -291,7 +291,7 @@ func (r Ticket) GetAccount() (resp datatypes.Account, err error) {
 //
 // Every SoftLayer ticket has groupId and ticketGroup properties that correspond to one of the groups returned by getAllTicketGroups().
 func (r Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAllTicketGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -299,25 +299,25 @@ func (r Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) 
 //
 // Every SoftLayer ticket has statusId and status properties that correspond to one of the statuses returned by getAllTicketStatuses().
 func (r Ticket) GetAllTicketStatuses() (resp []datatypes.Ticket_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAllTicketStatuses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetAssignedAgents() (resp []datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAssignedAgents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The portal user that a ticket is assigned to.
 func (r Ticket) GetAssignedUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAssignedUser", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The list of additional emails to notify when a ticket update is made.
 func (r Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedAdditionalEmails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -326,169 +326,169 @@ func (r Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
 	params := []interface{}{
 		attachmentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The files attached to a ticket.
 func (r Ticket) GetAttachedFiles() (resp []datatypes.Ticket_Attachment_File, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware associated with a ticket. This is used in cases where a ticket is directly associated with one or more pieces of hardware.
 func (r Ticket) GetAttachedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetAttachedHardwareCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedHardwareCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetAttachedResources() (resp []datatypes.Ticket_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedResources", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
 func (r Ticket) GetAttachedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAttachedVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last update made to a ticket.
 func (r Ticket) GetAwaitingUserResponseFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getAwaitingUserResponseFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A service cancellation request.
 func (r Ticket) GetCancellationRequest() (resp datatypes.Billing_Item_Cancellation_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getCancellationRequest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetEmployeeAttachments() (resp []datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getEmployeeAttachments", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The first physical or virtual server attached to a ticket.
 func (r Ticket) GetFirstAttachedResource() (resp datatypes.Ticket_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getFirstAttachedResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The first update made to a ticket. This is typically the contents of a ticket when it's created.
 func (r Ticket) GetFirstUpdate() (resp datatypes.Ticket_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getFirstUpdate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer department that a ticket is assigned to.
 func (r Ticket) GetGroup() (resp datatypes.Ticket_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
 func (r Ticket) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getInvoiceItems", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetLastActivity() (resp datatypes.Ticket_Activity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getLastActivity", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetLastEditor() (resp datatypes.User_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getLastEditor", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last update made to a ticket.
 func (r Ticket) GetLastUpdate() (resp datatypes.Ticket_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getLastUpdate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A timestamp of the last time the Ticket was viewed by the active user.
 func (r Ticket) GetLastViewedDate() (resp datatypes.Time, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getLastViewedDate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's associated location within the SoftLayer location hierarchy.
 func (r Ticket) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve True if there are new, unread updates to this ticket for the current user, False otherwise.
 func (r Ticket) GetNewUpdatesFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getNewUpdatesFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Ticket object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket service. You can only retrieve tickets that are associated with your SoftLayer customer account.
 func (r Ticket) GetObject() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetScheduledActions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getScheduledActions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The invoice associated with a ticket. Only tickets with an associated administrative charge have an invoice.
 func (r Ticket) GetServerAdministrationBillingInvoice() (resp datatypes.Billing_Invoice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getServerAdministrationBillingInvoice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The refund invoice associated with a ticket. Only tickets with a refund applied in them have an associated refund invoice.
 func (r Ticket) GetServerAdministrationRefundInvoice() (resp datatypes.Billing_Invoice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getServerAdministrationRefundInvoice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getServiceProvider", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetState() (resp []datatypes.Ticket_State, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getState", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's status.
 func (r Ticket) GetStatus() (resp datatypes.Ticket_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's subject. Only standard support tickets have an associated subject. A standard support ticket's title corresponds with it's subject's name.
 func (r Ticket) GetSubject() (resp datatypes.Ticket_Subject, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getSubject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -497,20 +497,20 @@ func (r Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []dat
 	params := []interface{}{
 		closeDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getTicketsClosedSinceDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A ticket's updates.
 func (r Ticket) GetUpdates() (resp []datatypes.Ticket_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "getUpdates", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Mark a ticket as viewed.  All currently posted updates will be marked as viewed. The lastViewedDate property will be updated to the current time.
 func (r Ticket) MarkAsViewed() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "markAsViewed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -522,7 +522,7 @@ func (r Ticket) RemoveAssignedAgent(agentId *int) (err error) {
 	params := []interface{}{
 		agentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeAssignedAgent", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -531,7 +531,7 @@ func (r Ticket) RemoveAttachedAdditionalEmails(emails []string) (resp bool, err 
 	params := []interface{}{
 		emails,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeAttachedAdditionalEmails", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -540,7 +540,7 @@ func (r Ticket) RemoveAttachedHardware(hardwareId *int) (resp bool, err error) {
 	params := []interface{}{
 		hardwareId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeAttachedHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -549,21 +549,21 @@ func (r Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) 
 	params := []interface{}{
 		guestId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeAttachedVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Ticket) RemoveScheduledAlert() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeScheduledAlert", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Ticket) RemoveScheduledAutoClose() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "removeScheduledAutoClose", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -572,13 +572,13 @@ func (r Ticket) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "setTags", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // (DEPRECATED) Use [[SoftLayer_Ticket_Survey::getPreference]] method.
 func (r Ticket) SurveyEligible() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "surveyEligible", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -587,7 +587,7 @@ func (r Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err 
 	params := []interface{}{
 		emails,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket", "updateAttachedAdditionalEmails", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -632,25 +632,25 @@ func (r Ticket_Attachment_File) Offset(offset int) Ticket_Attachment_File {
 
 // no documentation yet
 func (r Ticket_Attachment_File) GetExtensionWhitelist() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Attachment_File", "getExtensionWhitelist", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_File, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Attachment_File", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket_Attachment_File) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Attachment_File", "getTicket", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ticket that a file is attached to.
 func (r Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Attachment_File", "getUpdate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -695,7 +695,7 @@ func (r Ticket_Priority) Offset(offset int) Ticket_Priority {
 
 // no documentation yet
 func (r Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Priority, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Priority", "getPriorities", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -740,25 +740,25 @@ func (r Ticket_Subject) Offset(offset int) Ticket_Subject {
 
 // Retrieve all possible ticket subjects. The SoftLayer customer portal uses this method in the add standard support ticket form.
 func (r Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Subject", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Subject", "getGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Ticket_Subject object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket_Subject service.
 func (r Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Subject", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // SoftLayer maintains relationships between the generic subjects for standard administration and the top five commonly asked questions about these subjects. getTopFileKnowledgeLayerQuestions() retrieves the top five questions and answers from the SoftLayer KnowledgeLayer related to the given ticket subject.
 func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Subject", "getTopFiveKnowledgeLayerQuestions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -803,7 +803,7 @@ func (r Ticket_Survey) Offset(offset int) Ticket_Survey {
 
 // Use this method to retrieve the ticket survey preferences. It will return your [[SoftLayer_Container_Ticket_Survey_Preference|survey preference]] which indicates if your account is applicable to receive a survey and if you're opted in. You can control the survey opt via the [[SoftLayer_Ticket_Survey::optIn|opt-in]] or [[SoftLayer_Ticket_Survey::optOut|opt-out]] method.
 func (r Ticket_Survey) GetPreference() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Survey", "getPreference", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -811,7 +811,7 @@ func (r Ticket_Survey) GetPreference() (resp datatypes.Container_Ticket_Survey_P
 //
 // This method is depricated. Use [[SoftLayer_User_Customer::changePreference]] instead.
 func (r Ticket_Survey) OptIn() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Survey", "optIn", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -819,7 +819,7 @@ func (r Ticket_Survey) OptIn() (resp datatypes.Container_Ticket_Survey_Preferenc
 //
 // This method is depricated. Use [[SoftLayer_User_Customer::changePreference]] instead.
 func (r Ticket_Survey) OptOut() (resp datatypes.Container_Ticket_Survey_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Survey", "optOut", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -867,12 +867,12 @@ func (r Ticket_Update_Employee) AddResponseRating(responseRating *int) (resp boo
 	params := []interface{}{
 		responseRating,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Update_Employee", "addResponseRating", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Ticket_Update_Employee object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket_Update_Employee service. You can only retrieve employee updates to tickets that your API account has access to.
 func (r Ticket_Update_Employee) GetObject() (resp datatypes.Ticket_Update_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Ticket_Update_Employee", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }

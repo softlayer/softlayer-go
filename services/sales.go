@@ -70,42 +70,42 @@ func (r Sales_Presale_Event) Offset(offset int) Sales_Presale_Event {
 
 // Retrieve A flag to indicate that the presale event is currently active. A presale event is active if the current time is between the start and end dates.
 func (r Sales_Presale_Event) GetActiveFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getActiveFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Sales_Presale_Event) GetAllObjects() (resp []datatypes.Sales_Presale_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag to indicate that the presale event is expired. A presale event is expired if the current time is after the end date.
 func (r Sales_Presale_Event) GetExpiredFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getExpiredFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Product_Item]] associated with the presale event.
 func (r Sales_Presale_Event) GetItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Location]] associated with the presale event.
 func (r Sales_Presale_Event) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // '''getObject''' retrieves the [[SoftLayer_Sales_Presale_Event]] object whose id number corresponds to the id number of the init parameter passed to the SoftLayer_Sales_Presale_Event service. Customers may only retrieve presale events that are currently active.
 func (r Sales_Presale_Event) GetObject() (resp datatypes.Sales_Presale_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The orders ([[SoftLayer_Billing_Order]]) associated with this presale event that were created for the customer's account.
 func (r Sales_Presale_Event) GetOrders() (resp []datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Sales_Presale_Event", "getOrders", nil, r.Session, &r.Options, &resp)
 	return
 }

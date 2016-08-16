@@ -73,13 +73,13 @@ func (r Locale) GetClosestToLanguageTag(languageTag *string) (resp datatypes.Loc
 	params := []interface{}{
 		languageTag,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale", "getClosestToLanguageTag", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Locale) GetObject() (resp datatypes.Locale, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -124,25 +124,25 @@ func (r Locale_Country) Offset(offset int) Locale_Country {
 
 // Use this method to retrieve a list of countries and locale information available to the current user.
 func (r Locale_Country) GetAvailableCountries() (resp []datatypes.Locale_Country, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Country", "getAvailableCountries", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve a list of countries and locale information such as country code and state/provinces.
 func (r Locale_Country) GetCountries() (resp []datatypes.Locale_Country, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Country", "getCountries", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Locale_Country) GetObject() (resp datatypes.Locale_Country, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Country", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve States that belong to this country.
 func (r Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Country", "getStates", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -187,12 +187,12 @@ func (r Locale_Timezone) Offset(offset int) Locale_Timezone {
 
 // Retrieve all timezone objects.
 func (r Locale_Timezone) GetAllObjects() (resp []datatypes.Locale_Timezone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Timezone", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Locale_Timezone object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Locale_Timezone service.
 func (r Locale_Timezone) GetObject() (resp datatypes.Locale_Timezone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Locale_Timezone", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }

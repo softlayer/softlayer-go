@@ -93,7 +93,7 @@ func (r Network) CreateObject(templateObject *datatypes.Network) (resp datatypes
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -120,13 +120,13 @@ func (r Network) CreateSubnet(subnet *datatypes.Network_Subnet, pod *datatypes.N
 		subnet,
 		pod,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "createSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Remove the specified Network. This operation may only be completed if the Network has no Subnets. Attempting to remove a Network with subnets will result in an error.
 func (r Network) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -139,7 +139,7 @@ func (r Network) DeleteSubnet(subnet *datatypes.Network_Subnet) (resp bool, err 
 	params := []interface{}{
 		subnet,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "deleteSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -148,49 +148,49 @@ func (r Network) EditObject(templateObject *datatypes.Network) (resp bool, err e
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network) GetAllObjects() (resp []datatypes.Network, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The size of the Network specified in CIDR notation. Specified in conjunction with the ``networkIdentifier`` to describe the bounding subnet size for the Network. Required for creation. See [[SoftLayer_Network/createObject]] documentation for creation details.
 func (r Network) GetCidr() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getCidr", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A name for the Network. This is required during creation of a Network and is entirely user defined.
 func (r Network) GetName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting IP address of the Network. Specified in conjunction with the ``cidr`` property to specify the bounding IP address space for the Network. Required for creation. See [[SoftLayer_Network/createObject]] documentation for creation details.
 func (r Network) GetNetworkIdentifier() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getNetworkIdentifier", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Notes, or a description of the Network. This is entirely user defined.
 func (r Network) GetNotes() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getNotes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network) GetObject() (resp datatypes.Network, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Subnets within the Network. These represent the realized segments of the Network and reside within a [[SoftLayer_Network_Pod|Pod]]. A Subnet must be specified when provisioning a compute resource within a Network.
 func (r Network) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -238,7 +238,7 @@ func (r Network_Application_Delivery_Controller) CreateLiveLoadBalancer(loadBala
 	params := []interface{}{
 		loadBalancer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "createLiveLoadBalancer", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -247,7 +247,7 @@ func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancer(loadBala
 	params := []interface{}{
 		loadBalancer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "deleteLiveLoadBalancer", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -256,7 +256,7 @@ func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancerService(s
 	params := []interface{}{
 		service,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "deleteLiveLoadBalancerService", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -265,19 +265,19 @@ func (r Network_Application_Delivery_Controller) EditObject(templateObject *data
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that owns an application delivery controller record.
 func (r Network_Application_Delivery_Controller) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
 func (r Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getAverageDailyPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -288,7 +288,7 @@ func (r Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDat
 		endDateTime,
 		networkType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -299,19 +299,19 @@ func (r Network_Application_Delivery_Controller) GetBandwidthImageByDate(startDa
 		endDateTime,
 		networkType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getBandwidthImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a Application Delivery Controller.
 func (r Network_Application_Delivery_Controller) GetBillingItem() (resp datatypes.Billing_Item_Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Previous configurations for an Application Delivery Controller.
 func (r Network_Application_Delivery_Controller) GetConfigurationHistory() (resp []datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getConfigurationHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -320,25 +320,25 @@ func (r Network_Application_Delivery_Controller) GetCustomBandwidthDataByDate(gr
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getCustomBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The datacenter that the application delivery controller resides in.
 func (r Network_Application_Delivery_Controller) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A brief description of an application delivery controller record.
 func (r Network_Application_Delivery_Controller) GetDescription() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getDescription", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The date in which the license for this application delivery controller will expire.
 func (r Network_Application_Delivery_Controller) GetLicenseExpirationDate() (resp datatypes.Time, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getLicenseExpirationDate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -351,97 +351,97 @@ func (r Network_Application_Delivery_Controller) GetLiveLoadBalancerServiceGraph
 		graphType,
 		metric,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getLiveLoadBalancerServiceGraphImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual IP address records that belong to an application delivery controller based load balancer.
 func (r Network_Application_Delivery_Controller) GetLoadBalancers() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getLoadBalancers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that this Application Delivery Controller is a managed resource.
 func (r Network_Application_Delivery_Controller) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getManagedResourceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An application delivery controller's management ip address.
 func (r Network_Application_Delivery_Controller) GetManagementIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getManagementIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network VLAN that an application delivery controller resides on.
 func (r Network_Application_Delivery_Controller) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network VLANs that an application delivery controller resides on.
 func (r Network_Application_Delivery_Controller) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getNetworkVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Application_Delivery_Controller object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Application_Delivery_Controller service. You can only retrieve application delivery controllers that are associated with your SoftLayer customer account.
 func (r Network_Application_Delivery_Controller) GetObject() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for the current billing cycle.
 func (r Network_Application_Delivery_Controller) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getOutboundPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The password used to connect to an application delivery controller's management interface when it is operating in advanced view mode.
 func (r Network_Application_Delivery_Controller) GetPassword() (resp datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getPassword", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An application delivery controller's primary public IP address.
 func (r Network_Application_Delivery_Controller) GetPrimaryIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getPrimaryIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The projected public outbound bandwidth for the current billing cycle.
 func (r Network_Application_Delivery_Controller) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getProjectedPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network application controller's subnets. A subnet is a group of IP addresses
 func (r Network_Application_Delivery_Controller) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller) GetType() (resp datatypes.Network_Application_Delivery_Controller_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller) GetVirtualIpAddresses() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "getVirtualIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Restore an application delivery controller's base configuration state. The configuration will be set to what it was when initially provisioned.
 func (r Network_Application_Delivery_Controller) RestoreBaseConfiguration() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "restoreBaseConfiguration", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -450,7 +450,7 @@ func (r Network_Application_Delivery_Controller) RestoreConfiguration(configurat
 	params := []interface{}{
 		configurationHistoryId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "restoreConfiguration", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -459,7 +459,7 @@ func (r Network_Application_Delivery_Controller) SaveCurrentConfiguration(notes 
 	params := []interface{}{
 		notes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "saveCurrentConfiguration", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -468,7 +468,7 @@ func (r Network_Application_Delivery_Controller) UpdateLiveLoadBalancer(loadBala
 	params := []interface{}{
 		loadBalancer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "updateLiveLoadBalancer", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -478,7 +478,7 @@ func (r Network_Application_Delivery_Controller) UpdateLiveLoadBalancer(loadBala
 //
 // The load balancer will be unavailable during the reboot.
 func (r Network_Application_Delivery_Controller) UpdateNetScalerLicense() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller", "updateNetScalerLicense", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -523,19 +523,19 @@ func (r Network_Application_Delivery_Controller_Configuration_History) Offset(of
 
 // deleteObject permanently removes a configuration history record
 func (r Network_Application_Delivery_Controller_Configuration_History) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_Configuration_History", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The application delivery controller that a configuration history record belongs to.
 func (r Network_Application_Delivery_Controller_Configuration_History) GetController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_Configuration_History", "getController", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_Configuration_History) GetObject() (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_Configuration_History", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -580,19 +580,19 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) O
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetHealthCheck() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute", "getHealthCheck", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetType() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -637,13 +637,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Ty
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -688,31 +688,31 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Offse
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAttributes() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Collection of scale load balancers that use this health check.
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetScaleLoadBalancers() (resp []datatypes.Scale_LoadBalancer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getScaleLoadBalancers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetServices() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getServices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetType() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -757,13 +757,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) 
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -808,13 +808,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Off
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Method", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Method", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -859,13 +859,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Offse
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -910,7 +910,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Offset(off
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -922,55 +922,55 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGraphIm
 		graphType,
 		metric,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGraphImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroupReferences() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroupReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroups() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetHealthCheck() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getHealthCheck", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetHealthChecks() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getHealthChecks", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetServiceGroup() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getServiceGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleStatus() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "toggleStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1021,55 +1021,55 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetG
 		graphType,
 		metric,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getGraphImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetRoutingMethod() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getRoutingMethod", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetRoutingType() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getRoutingType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetServiceReferences() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServiceReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetServices() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetVirtualServer() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getVirtualServer", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetVirtualServers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getVirtualServers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) KickAllConnections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "kickAllConnections", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1117,127 +1117,127 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) E
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual IP address's associated application delivery controller.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getApplicationDeliveryController", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual IP address's associated application delivery controllers.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getApplicationDeliveryControllers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Yields a list of the SSL/TLS encryption ciphers that are currently supported on this virtual IP address instance.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportCiphers() (resp []datatypes.Security_SecureTransportCipher, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportCiphers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Yields a list of the secure communication protocols that are currently supported on this virtual IP address instance. The list of supported ciphers for each protocol is culled to match availability.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportProtocols() (resp []datatypes.Security_SecureTransportProtocol, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportProtocols", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for the load balancer virtual IP. This is only valid when dedicatedFlag is false. This is an independent virtual IP, and if canceled, will only affect the associated virtual IP.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for the load balancing device housing the virtual IP. This billing item represents a device which could contain other virtual IPs. Caution should be taken when canceling. This is only valid when dedicatedFlag is true.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetDedicatedBillingItem() (resp datatypes.Billing_Item_Network_LoadBalancer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getDedicatedBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Denotes whether the virtual IP is configured within a high availability cluster.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetHighAvailabilityFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getHighAvailabilityFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetLoadBalancerHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getLoadBalancerHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the load balancer is a managed resource.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getManagedResourceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The list of security ciphers enabled for this virtual IP address
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportCiphers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportCiphers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The list of secure transport protocols enabled for this virtual IP address
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportProtocols() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportProtocols", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SSL certificate currently associated with the VIP.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecurityCertificate() (resp datatypes.Security_Certificate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecurityCertificate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SSL certificate currently associated with the VIP. Provides chosen certificate visibility to unprivileged users.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecurityCertificateEntry() (resp datatypes.Security_Certificate_Entry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecurityCertificateEntry", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetVirtualServers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getVirtualServers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Start SSL acceleration on all SSL virtual services (those with a type of HTTPS). This action should be taken only after configuring an SSL certificate for the virtual IP.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StartSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "startSsl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Stop SSL acceleration on all SSL virtual services (those with a type of HTTPS).
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) StopSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "stopSsl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Upgrades the connection limit on the Virtual IP to Address to the next, higher connection limit of the same product.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "upgradeConnectionLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1282,49 +1282,49 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Offs
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetRoutingMethod() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getRoutingMethod", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Collection of scale load balancers this virtual server applies to.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetScaleLoadBalancers() (resp []datatypes.Scale_LoadBalancer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getScaleLoadBalancers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetServiceGroups() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getServiceGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getVirtualIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Start SSL acceleration on all SSL virtual services (those with a type of HTTPS). This action should be taken only after configuring an SSL certificate for the virtual IP.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StartSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "startSsl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Stop SSL acceleration on all SSL virtual services (those with a type of HTTPS).
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StopSsl() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "stopSsl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1369,7 +1369,7 @@ func (r Network_Backbone) Offset(offset int) Network_Backbone {
 
 // Retrieve a list of all SoftLayer backbone connections. Use this method if you need all backbones or don't know the id number of a specific backbone.
 func (r Network_Backbone) GetAllBackbones() (resp []datatypes.Network_Backbone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getAllBackbones", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1378,37 +1378,37 @@ func (r Network_Backbone) GetBackbonesForLocationName(locationName *string) (res
 	params := []interface{}{
 		locationName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getBackbonesForLocationName", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve a graph of a SoftLayer backbone's last 24 hours of activity. getGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Network_Backbone) GetGraphImage() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getGraphImage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A backbone's status.
 func (r Network_Backbone) GetHealth() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getHealth", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Which of the SoftLayer datacenters a backbone is connected to.
 func (r Network_Backbone) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A backbone's primary network component.
 func (r Network_Backbone) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve an individual SoftLayer_Network_Backbone record. Use the getAllBackbones() method to retrieve a list of all SoftLayer network backbones.
 func (r Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1453,19 +1453,19 @@ func (r Network_Backbone_Location_Dependent) Offset(offset int) Network_Backbone
 
 // no documentation yet
 func (r Network_Backbone_Location_Dependent) GetAllObjects() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone_Location_Dependent", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Backbone_Location_Dependent) GetDependentLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone_Location_Dependent", "getDependentLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Backbone_Location_Dependent) GetObject() (resp datatypes.Network_Backbone_Location_Dependent, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone_Location_Dependent", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1474,13 +1474,13 @@ func (r Network_Backbone_Location_Dependent) GetSourceDependentsByName(locationN
 	params := []interface{}{
 		locationName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone_Location_Dependent", "getSourceDependentsByName", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Backbone_Location_Dependent) GetSourceLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Backbone_Location_Dependent", "getSourceLocation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1528,7 +1528,7 @@ func (r Network_Bandwidth_Version1_Allotment) CreateObject(templateObject *datat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1537,31 +1537,31 @@ func (r Network_Bandwidth_Version1_Allotment) EditObject(templateObject *datatyp
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account associated with this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The bandwidth allotment detail records associated with this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetActiveDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getActiveDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Application Delivery Controller contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getApplicationDeliveryControllers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getAverageDailyPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1570,7 +1570,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *da
 	params := []interface{}{
 		date,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBackendBandwidthByHour", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1580,7 +1580,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBackendBandwidthUse", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1590,7 +1590,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDate
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthForDateRange", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1603,49 +1603,49 @@ func (r Network_Bandwidth_Version1_Allotment) GetBandwidthImage(networkType *str
 		dateSpecified,
 		dateSpecifiedEnd,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The bare metal server instances contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetBareMetalInstances() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBareMetalInstances", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual rack's raw bandwidth usage data for an account's current billing cycle. One object is returned for each network this server is attached to.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCycleBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual rack's raw private network bandwidth usage data for an account's current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCyclePrivateBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual rack's raw public network bandwidth usage data for an account's current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCyclePublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public bandwidth used in this virtual rack for an account's current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingCyclePublicUsageTotal() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCyclePublicUsageTotal", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual rack's billing item.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An object that provides commonly used bandwidth summary components for the current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetCurrentBandwidthSummary() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getCurrentBandwidthSummary", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1654,13 +1654,13 @@ func (r Network_Bandwidth_Version1_Allotment) GetCustomBandwidthDataByDate(graph
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getCustomBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The bandwidth allotment detail records associated with this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1669,7 +1669,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *d
 	params := []interface{}{
 		date,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getFrontendBandwidthByHour", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1679,109 +1679,109 @@ func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthUse(startDate 
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getFrontendBandwidthUse", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth used in this virtual rack for an account's current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetInboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getInboundPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The location group associated with this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetLocationGroup() (resp datatypes.Location_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getLocationGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The managed bare metal server instances contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetManagedBareMetalInstances() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedBareMetalInstances", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The managed hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetManagedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The managed Virtual Server contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual rack's metric tracking object. This object records all periodic polled data available to this rack.
 func (r Network_Bandwidth_Version1_Allotment) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_VirtualDedicatedRack, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The metric tracking object id for this allotment.
 func (r Network_Bandwidth_Version1_Allotment) GetMetricTrackingObjectId() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getMetricTrackingObjectId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Bandwidth_Version1_Allotment object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Hardware service. You can only retrieve an allotment associated with the account that your portal user is assigned to.
 func (r Network_Bandwidth_Version1_Allotment) GetObject() (resp datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth used in this virtual rack for an account's current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getOutboundPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the bandwidth usage for this bandwidth pool for the current billing cycle exceeds the allocation.
 func (r Network_Bandwidth_Version1_Allotment) GetOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getOverBandwidthAllocationFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The private network only hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetPrivateNetworkOnlyHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getPrivateNetworkOnlyHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the bandwidth usage for this bandwidth pool for the current billing cycle is projected to exceed the allocation.
 func (r Network_Bandwidth_Version1_Allotment) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getProjectedOverBandwidthAllocationFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The projected public outbound bandwidth for this virtual server for the current billing cycle.
 func (r Network_Bandwidth_Version1_Allotment) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getProjectedPublicBandwidthUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Bandwidth_Version1_Allotment) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getServiceProvider", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The combined allocated bandwidth for all servers in a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetTotalBandwidthAllocated() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getTotalBandwidthAllocated", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Virtual Server contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "getVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1791,13 +1791,13 @@ func (r Network_Bandwidth_Version1_Allotment) ReassignServers(templateObjects []
 		templateObjects,
 		newAllotmentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "reassignServers", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This will remove a bandwidth pooling from a customer's allotments by cancelling the billing item.  All servers in that allotment will get moved to the account's vpr.
 func (r Network_Bandwidth_Version1_Allotment) RequestVdrCancellation() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "requestVdrCancellation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1812,7 +1812,7 @@ func (r Network_Bandwidth_Version1_Allotment) RequestVdrContentUpdates(hardwareT
 		adcToAdd,
 		adcToRemove,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "requestVdrContentUpdates", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1825,7 +1825,7 @@ func (r Network_Bandwidth_Version1_Allotment) SetVdrContent(hardware []datatypes
 		adc,
 		optionalAllotmentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "setVdrContent", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1834,7 +1834,7 @@ func (r Network_Bandwidth_Version1_Allotment) UnassignServers(templateObjects []
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "unassignServers", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1844,13 +1844,13 @@ func (r Network_Bandwidth_Version1_Allotment) VoidPendingServerMove(id *int, typ
 		id,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "voidPendingServerMove", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will void a pending cancellation on a bandwidth pool. Note however any servers that belonged to the rack will have to be restored individually using the method voidPendingServerMove($id, $type).
 func (r Network_Bandwidth_Version1_Allotment) VoidPendingVdrCancellation() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Bandwidth_Version1_Allotment", "voidPendingVdrCancellation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1902,19 +1902,19 @@ func (r Network_Component) AddNetworkVlanTrunks(networkVlans []datatypes.Network
 	params := []interface{}{
 		networkVlans,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "addNetworkVlanTrunks", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will remove all VLANs trunked to this network component. The native VLAN (networkVlanId/networkVlan) will remain active, and cannot be removed via the API. Returns a list of SoftLayer_Network_Vlan objects for which the trunks were removed.
 func (r Network_Component) ClearNetworkVlanTrunks() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "clearNetworkVlanTrunks", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Reboot/power (rebootDefault, rebootSoft, rebootHard, powerOn, powerOff and powerCycle) command currently executing by the server's remote management card.
 func (r Network_Component) GetActiveCommand() (resp datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getActiveCommand", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -1923,97 +1923,97 @@ func (r Network_Component) GetCustomBandwidthDataByDate(graphData *datatypes.Con
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getCustomBandwidthDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network component linking this object to a child device
 func (r Network_Component) GetDownlinkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getDownlinkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The duplex mode of a network component.
 func (r Network_Component) GetDuplexMode() (resp datatypes.Network_Component_Duplex_Mode, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getDuplexMode", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware that a network component resides in.
 func (r Network_Component) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Component) GetHighAvailabilityFirewallFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getHighAvailabilityFirewallFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A hardware switch's interface to the bandwidth pod.
 func (r Network_Component) GetInterface() (resp datatypes.Network_Bandwidth_Version1_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getInterface", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The records of all IP addresses bound to a network component.
 func (r Network_Component) GetIpAddressBindings() (resp []datatypes.Network_Component_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getIpAddressBindings", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Component) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Last reboot/power (rebootDefault, rebootSoft, rebootHard, powerOn, powerOff and powerCycle) command issued to the server's remote management card.
 func (r Network_Component) GetLastCommand() (resp datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getLastCommand", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The metric tracking object for this network component.
 func (r Network_Component) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The upstream network component firewall.
 func (r Network_Component) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getNetworkComponentFirewall", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's associated group.
 func (r Network_Component) GetNetworkComponentGroup() (resp datatypes.Network_Component_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getNetworkComponentGroup", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All network devices in SoftLayer's network hierarchy that this device is connected to.
 func (r Network_Component) GetNetworkHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getNetworkHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLAN that a network component's subnet is associated with.
 func (r Network_Component) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLANs that are trunked to this network component.
 func (r Network_Component) GetNetworkVlanTrunks() (resp []datatypes.Network_Component_Network_Vlan_Trunk, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getNetworkVlanTrunks", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Component) GetObject() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2030,79 +2030,79 @@ func (r Network_Component) GetObject() (resp datatypes.Network_Component, err er
 // * In Multicast Packets
 // * Out Multicast Packets
 func (r Network_Component) GetPortStatistics() (resp datatypes.Container_Network_Port_Statistic, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getPortStatistics", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The primary IPv4 Address record for a network component.
 func (r Network_Component) GetPrimaryIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getPrimaryIpAddressRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's subnet for its primary IP address
 func (r Network_Component) GetPrimarySubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getPrimarySubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The primary IPv6 Address record for a network component.
 func (r Network_Component) GetPrimaryVersion6IpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getPrimaryVersion6IpAddressRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last five reboot/power (rebootDefault, rebootSoft, rebootHard, powerOn, powerOff and powerCycle) commands issued to the server's remote management card.
 func (r Network_Component) GetRecentCommands() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getRecentCommands", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates whether the network component is participating in a group of two or more components capable of being operationally redundant, if enabled.
 func (r Network_Component) GetRedundancyCapableFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getRedundancyCapableFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates whether the network component is participating in a group of two or more components which is actively providing link redundancy.
 func (r Network_Component) GetRedundancyEnabledFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getRedundancyEnabledFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve User(s) credentials to issue commands and/or interact with the server's remote management card.
 func (r Network_Component) GetRemoteManagementUsers() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getRemoteManagementUsers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's routers.
 func (r Network_Component) GetRouter() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getRouter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether a network component's primary ip address is from a storage network subnet or not.
 func (r Network_Component) GetStorageNetworkFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getStorageNetworkFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component's subnets. A subnet is a group of IP addresses
 func (r Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network component linking this object to parent
 func (r Network_Component) GetUplinkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getUplinkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The duplex mode of the uplink network component linking to this object
 func (r Network_Component) GetUplinkDuplexMode() (resp datatypes.Network_Component_Duplex_Mode, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "getUplinkDuplexMode", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2115,7 +2115,7 @@ func (r Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Netw
 	params := []interface{}{
 		networkVlans,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component", "removeNetworkVlanTrunks", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2160,49 +2160,49 @@ func (r Network_Component_Firewall) Offset(offset int) Network_Component_Firewal
 
 // Retrieve The additional subnets linked to this network component firewall, that inherit rules from the host that the context slot is attached to.
 func (r Network_Component_Firewall) GetApplyServerRuleSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getApplyServerRuleSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a Hardware Firewall (Dedicated).
 func (r Network_Component_Firewall) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network component of the guest virtual server that this network component firewall belongs to.
 func (r Network_Component_Firewall) GetGuestNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getGuestNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network component of the switch interface that this network component firewall belongs to.
 func (r Network_Component_Firewall) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The update requests made for this firewall.
 func (r Network_Component_Firewall) GetNetworkFirewallUpdateRequest() (resp []datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getNetworkFirewallUpdateRequest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject returns a SoftLayer_Network_Firewall_Module_Context_Interface_AccessControlList_Network_Component object. You can only get objects for servers attached to your account that have a network firewall enabled.
 func (r Network_Component_Firewall) GetObject() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently running rule set of this network component firewall.
 func (r Network_Component_Firewall) GetRules() (resp []datatypes.Network_Component_Firewall_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The additional subnets linked to this network component firewall.
 func (r Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Component_Firewall", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2250,7 +2250,7 @@ func (r Network_ContentDelivery_Account) AuthenticateResourceRequest(parameter *
 	params := []interface{}{
 		parameter,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "authenticateResourceRequest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2259,7 +2259,7 @@ func (r Network_ContentDelivery_Account) CreateDirectory(directoryName *string) 
 	params := []interface{}{
 		directoryName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "createDirectory", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2273,7 +2273,7 @@ func (r Network_ContentDelivery_Account) CreateFtpUser(newPassword *string) (res
 	params := []interface{}{
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "createFtpUser", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2299,7 +2299,7 @@ func (r Network_ContentDelivery_Account) CreateOriginPullMapping(mappingObject *
 	params := []interface{}{
 		mappingObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "createOriginPullMapping", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2309,7 +2309,7 @@ func (r Network_ContentDelivery_Account) CreateOriginPullRule(originDomain *stri
 		originDomain,
 		cnameRecord,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "createOriginPullRule", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2319,13 +2319,13 @@ func (r Network_ContentDelivery_Account) CreateTokenAuthenticationDirectory(dire
 		directory,
 		mediaType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "createTokenAuthenticationDirectory", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method deletes your FTP user record on the ftp.cdnlayer.service.softlayer.com server. Refer to the service overview of [[SoftLayer_Network_ContentDelivery_Account::createFtpUser|createFtpUser]] method for more information on the CDN FTP server.
 func (r Network_ContentDelivery_Account) DeleteFtpUser() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "deleteFtpUser", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2334,25 +2334,25 @@ func (r Network_ContentDelivery_Account) DeleteOriginPullRule(originMappingId *s
 	params := []interface{}{
 		originMappingId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "deleteOriginPullRule", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method disables CDN access log.
 func (r Network_ContentDelivery_Account) DisableLogging() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "disableLogging", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method enables CDN access log.
 func (r Network_ContentDelivery_Account) EnableLogging() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "enableLogging", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The customer account that a CDN account belongs to.
 func (r Network_ContentDelivery_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2364,7 +2364,7 @@ func (r Network_ContentDelivery_Account) GetAllPopsBandwidthData(beginDateTime *
 		beginDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAllPopsBandwidthData", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2376,25 +2376,25 @@ func (r Network_ContentDelivery_Account) GetAllPopsBandwidthImage(title *string,
 		endDateTime,
 		unit,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAllPopsBandwidthImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The CDN account id that this CDN account is associated with.
 func (r Network_ContentDelivery_Account) GetAssociatedCdnAccountId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAssociatedCdnAccountId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The IP addresses that are used for the content authentication service.
 func (r Network_ContentDelivery_Account) GetAuthenticationIpAddresses() (resp []datatypes.Network_ContentDelivery_Authentication_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAuthenticationIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // CDN servers will invoke a Web Service method to validate a content authentication token. This method returns all token validation web service endpoints set for a CDN account. You can override the default web service by calling [[SoftLayer_Network_ContentDelivery_Authentication_Token|setContentAuthenticationWsdl setContentAuthenticationWsdl]] method.
 func (r Network_ContentDelivery_Account) GetAuthenticationServiceEndpoints() (resp []datatypes.Container_Network_ContentDelivery_Authentication_ServiceEndpoint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getAuthenticationServiceEndpoints", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2408,7 +2408,7 @@ func (r Network_ContentDelivery_Account) GetBandwidthData(beginDateTime *datatyp
 		beginDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getBandwidthData", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2425,7 +2425,7 @@ func (r Network_ContentDelivery_Account) GetBandwidthDataWithTypes(beginDateTime
 		endDateTime,
 		period,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getBandwidthDataWithTypes", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2436,31 +2436,31 @@ func (r Network_ContentDelivery_Account) GetBandwidthImage(title *string, beginD
 		beginDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getBandwidthImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a CDN account.
 func (r Network_ContentDelivery_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of a CDN account.
 func (r Network_ContentDelivery_Account) GetCdnAccountName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getCdnAccountName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A brief note on a CDN account.
 func (r Network_ContentDelivery_Account) GetCdnAccountNote() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getCdnAccountNote", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The solution type of a CDN account.
 func (r Network_ContentDelivery_Account) GetCdnSolutionName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getCdnSolutionName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2469,13 +2469,13 @@ func (r Network_ContentDelivery_Account) GetCustomerOrigins(mediaType *string) (
 	params := []interface{}{
 		mediaType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getCustomerOrigins", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates if CDN account is dependent on other service. If set, this CDN account is limited to these services: createOriginPullMapping, deleteOriginPullRule, getOriginPullMappingInformation, getCdnUrls, purgeCache, loadContent, manageHttpCompression
 func (r Network_ContentDelivery_Account) GetDependantServiceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getDependantServiceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2484,7 +2484,7 @@ func (r Network_ContentDelivery_Account) GetDirectoryInformation(directoryName *
 	params := []interface{}{
 		directoryName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getDirectoryInformation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2494,7 +2494,7 @@ func (r Network_ContentDelivery_Account) GetDiskSpaceUsageDataByDate(beginDateTi
 		beginDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getDiskSpaceUsageDataByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2504,7 +2504,7 @@ func (r Network_ContentDelivery_Account) GetDiskSpaceUsageImageByDate(beginDateT
 		beginDateTime,
 		endDateTime,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getDiskSpaceUsageImageByDate", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2512,91 +2512,91 @@ func (r Network_ContentDelivery_Account) GetDiskSpaceUsageImageByDate(beginDateT
 //
 // If you want to download raw log files, prefix the username with "LOGS-" (without quotes) when logging in. SoftLayer designed CDN accounts so they can have multiple CDN FTP users. However, this method returns the default CDN FTP user information: multi user support may be implemented in the future.
 func (r Network_ContentDelivery_Account) GetFtpAttributes() (resp datatypes.Container_Network_Authentication_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getFtpAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates if it is a legacy CDN or not
 func (r Network_ContentDelivery_Account) GetLegacyCdnFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getLegacyCdnFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates if CDN logging is enabled.
 func (r Network_ContentDelivery_Account) GetLogEnabledFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getLogEnabledFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns CDN URLs for static file (http), Flash streaming (rtmp) and Window Media (mms) streaming services. You can generate your CDN URLs based on the information retrieved by this method.
 func (r Network_ContentDelivery_Account) GetMediaUrls() (resp []datatypes.Container_Network_ContentDelivery_SupportedProtocol, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getMediaUrls", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_ContentDelivery_Account object whose ID number corresponds to the ID number of the initial parameter passed to the SoftLayer_Network_ContentDelivery_Account service. You can only retrieve CDN accounts assigned to your SoftLayer customer account.
 func (r Network_ContentDelivery_Account) GetObject() (resp datatypes.Network_ContentDelivery_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns a list of origin pull configuration data.
 func (r Network_ContentDelivery_Account) GetOriginPullMappingInformation() (resp []datatypes.Container_Network_ContentDelivery_OriginPull_Mapping, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getOriginPullMappingInformation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns CDN URLs that supports Origin Pull mappings.
 func (r Network_ContentDelivery_Account) GetOriginPullSupportedMediaUrls() (resp []datatypes.Container_Network_ContentDelivery_SupportedProtocol, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getOriginPullSupportedMediaUrls", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns the domain name of your Origin Pull rule.  It assumes you have already setup an Origin Pull rule.  Otherwise, it will throw an exception. A returning value is the value of the first parameter (origin pull domain) you provided to [[SoftLayer_Network_ContentDelivery_Account::createOriginPullRule|createOriginPullRule]] method. See Error Handling section below for possible errors.
 func (r Network_ContentDelivery_Account) GetOriginPullUrl() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getOriginPullUrl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns an array of CDN POPs (Points of Presence) object. [[SoftLayer_Container_Network_ContentDelivery_PointsOfPresence|POP object]] object contains the POP id and name.
 func (r Network_ContentDelivery_Account) GetPopNames() (resp []datatypes.Container_Network_ContentDelivery_PointsOfPresence, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getPopNames", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates if customer is allowed to access the CDN provider's management portal.
 func (r Network_ContentDelivery_Account) GetProviderPortalAccessFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getProviderPortalAccessFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns your login credentials to the CDN provider portal.
 func (r Network_ContentDelivery_Account) GetProviderPortalCredentials() (resp datatypes.Container_Network_Authentication_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getProviderPortalCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A CDN account's status presented in a more detailed data type.
 func (r Network_ContentDelivery_Account) GetStatus() (resp datatypes.Network_ContentDelivery_Account_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns all token authentication directories.
 func (r Network_ContentDelivery_Account) GetTokenAuthenticationDirectories() (resp []datatypes.Container_Network_Directory_Listing, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getTokenAuthenticationDirectories", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates if the token authentication service is enabled or not.
 func (r Network_ContentDelivery_Account) GetTokenAuthenticationEnabledFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getTokenAuthenticationEnabledFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method returns your login credentials to the public CDN FTP.
 func (r Network_ContentDelivery_Account) GetVendorFtpAttributes() (resp datatypes.Container_Network_Authentication_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "getVendorFtpAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2607,7 +2607,7 @@ func (r Network_ContentDelivery_Account) LoadContent(objectUrls []string) (resp 
 	params := []interface{}{
 		objectUrls,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "loadContent", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2625,7 +2625,7 @@ func (r Network_ContentDelivery_Account) ManageHttpCompression(enableFlag *bool,
 		enableFlag,
 		mimeTypes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "manageHttpCompression", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2644,7 +2644,7 @@ func (r Network_ContentDelivery_Account) PurgeCache(objectUrls []string) (resp [
 	params := []interface{}{
 		objectUrls,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "purgeCache", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2654,7 +2654,7 @@ func (r Network_ContentDelivery_Account) RemoveAuthenticationDirectory(directory
 		directory,
 		mediaType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "removeAuthenticationDirectory", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2663,7 +2663,7 @@ func (r Network_ContentDelivery_Account) RemoveFile(source *string) (resp bool, 
 	params := []interface{}{
 		source,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "removeFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2673,7 +2673,7 @@ func (r Network_ContentDelivery_Account) SetAuthenticationServiceEndpoint(webser
 		webserviceEndpoint,
 		protocol,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "setAuthenticationServiceEndpoint", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2686,7 +2686,7 @@ func (r Network_ContentDelivery_Account) SetFtpPassword(newPassword *string) (re
 	params := []interface{}{
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "setFtpPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2695,7 +2695,7 @@ func (r Network_ContentDelivery_Account) UpdateNote(note *string) (resp bool, er
 	params := []interface{}{
 		note,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "updateNote", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2705,7 +2705,7 @@ func (r Network_ContentDelivery_Account) UploadStream(source *datatypes.Containe
 		source,
 		target,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Account", "uploadStream", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2758,13 +2758,13 @@ func (r Network_ContentDelivery_Authentication_Address) CreateObject(templateObj
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Address", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method deletes an authentication IP address.
 func (r Network_ContentDelivery_Authentication_Address) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Address", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2773,13 +2773,13 @@ func (r Network_ContentDelivery_Authentication_Address) EditObject(templateObjec
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Address", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_ContentDelivery_Authentication_Address object whose ID number corresponds to the ID number of the initial parameter passed to the SoftLayer_Network_ContentDelivery_Authentication_Address service. You can only retrieve authentication IP addresses assigned to one of your CDN account.
 func (r Network_ContentDelivery_Authentication_Address) GetObject() (resp datatypes.Network_ContentDelivery_Authentication_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Address", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2791,7 +2791,7 @@ func (r Network_ContentDelivery_Authentication_Address) RearrangeAuthenticationI
 		cdnAccountId,
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Address", "rearrangeAuthenticationIp", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2848,7 +2848,7 @@ func (r Network_ContentDelivery_Authentication_Token) CreateObject(templateObjec
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2859,7 +2859,7 @@ func (r Network_ContentDelivery_Authentication_Token) GetAllManagedTokens(cdnAcc
 	params := []interface{}{
 		cdnAccountId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "getAllManagedTokens", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2867,7 +2867,7 @@ func (r Network_ContentDelivery_Authentication_Token) GetAllManagedTokens(cdnAcc
 //
 // getObject retrieves the SoftLayer_Network_ContentDelivery_Authentication_Token object whose ID number corresponds to the ID number of the initial parameter passed to the SoftLayer_Network_ContentDelivery_Authentication_Token service. You can only retrieve managed tokens assigned to one of your CDN account.
 func (r Network_ContentDelivery_Authentication_Token) GetObject() (resp datatypes.Network_ContentDelivery_Authentication_Token, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2884,7 +2884,7 @@ func (r Network_ContentDelivery_Authentication_Token) GetTimedToken(cdnAccountId
 		referrer,
 		mediaType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "getTimedToken", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2895,7 +2895,7 @@ func (r Network_ContentDelivery_Authentication_Token) RevokeAllManagedTokens(cdn
 	params := []interface{}{
 		cdnAccountId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "revokeAllManagedTokens", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2905,7 +2905,7 @@ func (r Network_ContentDelivery_Authentication_Token) RevokeAllTokens(cdnAccount
 		cdnAccountId,
 		mediaType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "revokeAllTokens", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2917,7 +2917,7 @@ func (r Network_ContentDelivery_Authentication_Token) RevokeManagedToken(cdnAcco
 		cdnAccountId,
 		token,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "revokeManagedToken", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2928,7 +2928,7 @@ func (r Network_ContentDelivery_Authentication_Token) RevokeManagedTokens(templa
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_ContentDelivery_Authentication_Token", "revokeManagedTokens", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -2976,19 +2976,19 @@ func (r Network_Customer_Subnet) CreateObject(templateObject *datatypes.Network_
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Customer_Subnet", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All ip addresses associated with a subnet.
 func (r Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Customer_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Customer_Subnet", "getIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Customer_Subnet object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Customer_Subnet service. You can only retrieve the subnet whose account matches the account that your portal user is assigned to.
 func (r Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Customer_Subnet", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3033,25 +3033,25 @@ func (r Network_Firewall_AccessControlList) Offset(offset int) Network_Firewall_
 
 // Retrieve The update requests made for this firewall.
 func (r Network_Firewall_AccessControlList) GetNetworkFirewallUpdateRequests() (resp []datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_AccessControlList", "getNetworkFirewallUpdateRequests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Firewall_AccessControlList) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_AccessControlList", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject returns a SoftLayer_Network_Firewall_AccessControlList object. You can only get objects for servers attached to your account that have a network firewall enabled.
 func (r Network_Firewall_AccessControlList) GetObject() (resp datatypes.Network_Firewall_AccessControlList, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_AccessControlList", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently running rule set of this context access control list firewall.
 func (r Network_Firewall_AccessControlList) GetRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_AccessControlList", "getRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3096,19 +3096,19 @@ func (r Network_Firewall_Interface) Offset(offset int) Network_Firewall_Interfac
 
 // Retrieve
 func (r Network_Firewall_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Interface", "getFirewallContextAccessControlLists", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Firewall_Interface) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Interface", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject returns a SoftLayer_Network_Firewall_Interface object. You can only get objects for servers attached to your account that have a network firewall enabled.
 func (r Network_Firewall_Interface) GetObject() (resp datatypes.Network_Firewall_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Interface", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3153,19 +3153,19 @@ func (r Network_Firewall_Module_Context_Interface) Offset(offset int) Network_Fi
 
 // Retrieve
 func (r Network_Firewall_Module_Context_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Module_Context_Interface", "getFirewallContextAccessControlLists", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Firewall_Module_Context_Interface) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Module_Context_Interface", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.Network_Firewall_Module_Context_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Module_Context_Interface", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3214,7 +3214,7 @@ func (r Network_Firewall_Template) Offset(offset int) Network_Firewall_Template 
 //
 // ''getAllObjects'' returns an array of SoftLayer_Network_Firewall_Template objects upon success.
 func (r Network_Firewall_Template) GetAllObjects() (resp []datatypes.Network_Firewall_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Template", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3222,13 +3222,13 @@ func (r Network_Firewall_Template) GetAllObjects() (resp []datatypes.Network_Fir
 //
 // @SLDNDocumentation Service See Also SoftLayer_Network_Firewall_Update_Request
 func (r Network_Firewall_Template) GetObject() (resp datatypes.Network_Firewall_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Template", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The rule set that belongs to this firewall rules template.
 func (r Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewall_Template_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Template", "getRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3278,13 +3278,13 @@ func (r Network_Firewall_Update_Request) CreateObject(templateObject *datatypes.
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The user that authorized this firewall update request.
 func (r Network_Firewall_Update_Request) GetAuthorizingUser() (resp datatypes.User_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getAuthorizingUser", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3292,37 +3292,37 @@ func (r Network_Firewall_Update_Request) GetAuthorizingUser() (resp datatypes.Us
 //
 // ''getFirewallUpdateRequestRuleAttributes'' returns a SoftLayer_Container_Utility_Network_Firewall_Rule_Attribute object upon success.
 func (r Network_Firewall_Update_Request) GetFirewallUpdateRequestRuleAttributes() (resp datatypes.Container_Utility_Network_Firewall_Rule_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getFirewallUpdateRequestRuleAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The downstream virtual server that the rule set will be applied to.
 func (r Network_Firewall_Update_Request) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The downstream server that the rule set will be applied to.
 func (r Network_Firewall_Update_Request) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network component firewall that the rule set will be applied to.
 func (r Network_Firewall_Update_Request) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getNetworkComponentFirewall", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // ''getObject'' returns a SoftLayer_Network_Firewall_Update_Request object. You can only get historical objects for servers attached to your account that have a network firewall enabled. ''createObject'' inserts a new SoftLayer_Network_Firewall_Update_Request object. You can only insert requests for servers attached to your account that have a network firewall enabled. ''getFirewallUpdateRequestRuleAttributes'' Get the possible attribute values for a firewall update request rule.
 func (r Network_Firewall_Update_Request) GetObject() (resp datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The group of rules contained within the update request.
 func (r Network_Firewall_Update_Request) GetRules() (resp []datatypes.Network_Firewall_Update_Request_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "getRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3332,7 +3332,7 @@ func (r Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Networ
 		fwRule,
 		note,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request", "updateRuleNote", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3382,19 +3382,19 @@ func (r Network_Firewall_Update_Request_Rule) CreateObject(templateObject *datat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request_Rule", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The update request that this rule belongs to.
 func (r Network_Firewall_Update_Request_Rule) GetFirewallUpdateRequest() (resp datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request_Rule", "getFirewallUpdateRequest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject returns a SoftLayer_Network_Firewall_Update_Request_Rule object. You can only get historical objects for servers attached to your account that have a network firewall enabled. createObject inserts a new SoftLayer_Network_Firewall_Update_Request_Rule object. Use the SoftLayer_Network_Firewall_Update_Request to create groups of rules for an update request.
 func (r Network_Firewall_Update_Request_Rule) GetObject() (resp datatypes.Network_Firewall_Update_Request_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request_Rule", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3408,7 +3408,7 @@ func (r Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netwo
 		applyToComponentId,
 		applyToAclId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Firewall_Update_Request_Rule", "validateRule", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3454,7 +3454,7 @@ func (r Network_Gateway) Offset(offset int) Network_Gateway {
 // Start the asynchronous process to bypass all VLANs. Any VLANs that are already bypassed will be ignored. The status field can be checked for progress.
 func (r Network_Gateway) BypassAllVlans() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "bypassAllVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3464,7 +3464,7 @@ func (r Network_Gateway) BypassVlans(vlans []datatypes.Network_Gateway_Vlan) (er
 	params := []interface{}{
 		vlans,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "bypassVlans", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3473,7 +3473,7 @@ func (r Network_Gateway) CreateObject(templateObject *datatypes.Network_Gateway)
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3482,80 +3482,80 @@ func (r Network_Gateway) EditObject(templateObject *datatypes.Network_Gateway) (
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account for this gateway.
 func (r Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All VLANs trunked to this gateway.
 func (r Network_Gateway) GetInsideVlans() (resp []datatypes.Network_Gateway_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getInsideVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The members for this gateway.
 func (r Network_Gateway) GetMembers() (resp []datatypes.Network_Gateway_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getMembers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Gateway) GetObject() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get all VLANs that can become inside VLANs on this gateway. This means the VLAN must not already be an inside VLAN, on the same router as this gateway, not a gateway transit VLAN, and not firewalled.
 func (r Network_Gateway) GetPossibleInsideVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPossibleInsideVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The private gateway IP address.
 func (r Network_Gateway) GetPrivateIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPrivateIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The private VLAN for accessing this gateway.
 func (r Network_Gateway) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPrivateVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The public gateway IP address.
 func (r Network_Gateway) GetPublicIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPublicIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The public gateway IPv6 address.
 func (r Network_Gateway) GetPublicIpv6Address() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPublicIpv6Address", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The public VLAN for accessing this gateway.
 func (r Network_Gateway) GetPublicVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getPublicVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the gateway.
 func (r Network_Gateway) GetStatus() (resp datatypes.Network_Gateway_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Start the asynchronous process to unbypass all VLANs. Any VLANs that are already unbypassed will be ignored. The status field can be checked for progress.
 func (r Network_Gateway) UnbypassAllVlans() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "unbypassAllVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3565,7 +3565,7 @@ func (r Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (
 	params := []interface{}{
 		vlans,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway", "unbypassVlans", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3613,7 +3613,7 @@ func (r Network_Gateway_Member) CreateObject(templateObject *datatypes.Network_G
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Member", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3622,25 +3622,25 @@ func (r Network_Gateway_Member) CreateObjects(templateObjects []datatypes.Networ
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Member", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The device for this member.
 func (r Network_Gateway_Member) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Member", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The gateway this member belongs to.
 func (r Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Member", "getNetworkGateway", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Member", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3685,7 +3685,7 @@ func (r Network_Gateway_Status) Offset(offset int) Network_Gateway_Status {
 
 // no documentation yet
 func (r Network_Gateway_Status) GetObject() (resp datatypes.Network_Gateway_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Status", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3731,7 +3731,7 @@ func (r Network_Gateway_Vlan) Offset(offset int) Network_Gateway_Vlan {
 // Start the asynchronous process to bypass/unroute the VLAN from this gateway.
 func (r Network_Gateway_Vlan) Bypass() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "bypass", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3740,7 +3740,7 @@ func (r Network_Gateway_Vlan) CreateObject(templateObject *datatypes.Network_Gat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3749,14 +3749,14 @@ func (r Network_Gateway_Vlan) CreateObjects(templateObjects []datatypes.Network_
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Start the asynchronous process to detach this VLANs from the gateway.
 func (r Network_Gateway_Vlan) DeleteObject() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3765,32 +3765,32 @@ func (r Network_Gateway_Vlan) DeleteObjects(templateObjects []datatypes.Network_
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "deleteObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The gateway this VLAN is attached to.
 func (r Network_Gateway_Vlan) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "getNetworkGateway", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network VLAN record.
 func (r Network_Gateway_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Gateway_Vlan) GetObject() (resp datatypes.Network_Gateway_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Start the asynchronous process to route the VLAN to this gateway.
 func (r Network_Gateway_Vlan) Unbypass() (err error) {
 	var resp datatypes.Void
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Gateway_Vlan", "unbypass", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3835,7 +3835,7 @@ func (r Network_LoadBalancer_Global_Account) Offset(offset int) Network_LoadBala
 
 // If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.  A NS resource record is required to be able to use your SoftLayer global load balancer account. Please make sure the zone file for the hostname listed on your SoftLayer global load balancer account is setup prior to using this method.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to add the required NS record.
 func (r Network_LoadBalancer_Global_Account) AddNsRecord() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "addNsRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3869,49 +3869,49 @@ func (r Network_LoadBalancer_Global_Account) EditObject(templateObject *datatype
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Your SoftLayer customer account.
 func (r Network_LoadBalancer_Global_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a Global Load Balancer account.
 func (r Network_LoadBalancer_Global_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hosts in the load balancing pool for a global load balancer account.
 func (r Network_LoadBalancer_Global_Account) GetHosts() (resp []datatypes.Network_LoadBalancer_Global_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The load balance method of a global load balancer account
 func (r Network_LoadBalancer_Global_Account) GetLoadBalanceType() (resp datatypes.Network_LoadBalancer_Global_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getLoadBalanceType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the global load balancer is a managed resource.
 func (r Network_LoadBalancer_Global_Account) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getManagedResourceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_LoadBalancer_Global_Account object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Network_LoadBalancer_Global_Account service. You can only retrieve a global load balancer account that is assigned to your SoftLayer customer account.
 func (r Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file. Removing the NS resource record will basically disable your global load balancer account since no DNS requests will be forwarded to the global load balancers. Any A records that were removed when the NS resource record was added will not be created for you.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to remove the required NS record.
 func (r Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Account", "removeNsRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -3960,19 +3960,19 @@ func (r Network_LoadBalancer_Global_Host) Offset(offset int) Network_LoadBalance
 
 // Remove a host from the load balancing pool of a global load balancer account.
 func (r Network_LoadBalancer_Global_Host) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Host", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The global load balancer account a host belongs to.
 func (r Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Host", "getLoadBalancerAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_LoadBalancer_Global_Host object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Network_LoadBalancer_Global_Host service. You can only retrieve a global load balancer host that is assigned to your SoftLayer global load balancer account.
 func (r Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_LoadBalancer_Global_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Global_Host", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4019,7 +4019,7 @@ func (r Network_LoadBalancer_Service) Offset(offset int) Network_LoadBalancer_Se
 
 // Calling deleteObject on a particular server will remove it from the load balancer.  This is the only way to remove a service from your load balancer.  If you wish to remove a server, first call this function, then reload the virtualIpAddress object and edit the remaining services to reflect the other changes that you wish to make.
 func (r Network_LoadBalancer_Service) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4031,13 +4031,13 @@ func (r Network_LoadBalancer_Service) GetGraphImage(graphType *string, metric *s
 		graphType,
 		metric,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "getGraphImage", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_LoadBalancer_Service object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_LoadBalancer_Service service. You can only retrieve services on load balancers assigned to your account, and it is recommended that you simply retrieve the entire load balancer, as an individual service has no explicit purpose without its "siblings".
 func (r Network_LoadBalancer_Service) GetObject() (resp datatypes.Network_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4058,19 +4058,19 @@ func (r Network_LoadBalancer_Service) GetObject() (resp datatypes.Network_LoadBa
 //
 // Not all labels are guaranteed to be returned.
 func (r Network_LoadBalancer_Service) GetStatus() (resp []datatypes.Container_Network_LoadBalancer_StatusEntry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The load balancer that this service belongs to.
 func (r Network_LoadBalancer_Service) GetVip() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "getVip", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Calling resetPeakConnections will set the peakConnections variable to zero on this particular object. Peak connections will continue to increase normally after this method call, it will only temporarily reset the statistic to zero, until the next time it is polled.
 func (r Network_LoadBalancer_Service) ResetPeakConnections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_Service", "resetPeakConnections", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4117,7 +4117,7 @@ func (r Network_LoadBalancer_VirtualIpAddress) Offset(offset int) Network_LoadBa
 
 // Disable a Virtual IP Address, removing it from load balancer rotation and denying all connections to that IP address.
 func (r Network_LoadBalancer_VirtualIpAddress) Disable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "disable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4126,61 +4126,61 @@ func (r Network_LoadBalancer_VirtualIpAddress) EditObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Enable a disabled Virtual IP Address, allowing connections back to the IP address.
 func (r Network_LoadBalancer_VirtualIpAddress) Enable() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "enable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that owns this load balancer.
 func (r Network_LoadBalancer_VirtualIpAddress) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for the Load Balancer.
 func (r Network_LoadBalancer_VirtualIpAddress) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve If false, this VIP and associated services may be edited via the portal or the API. If true, you must configure this VIP manually on the device.
 func (r Network_LoadBalancer_VirtualIpAddress) GetCustomerManagedFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getCustomerManagedFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the load balancer is a managed resource.
 func (r Network_LoadBalancer_VirtualIpAddress) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getManagedResourceFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_LoadBalancer_VirtualIpAddress object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_LoadBalancer_VirtualIpAddress service. You can only retrieve Load Balancers assigned to your account.
 func (r Network_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve the services on this load balancer.
 func (r Network_LoadBalancer_VirtualIpAddress) GetServices() (resp []datatypes.Network_LoadBalancer_Service, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getServices", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Quickly remove all active external connections to a Virtual IP Address.
 func (r Network_LoadBalancer_VirtualIpAddress) KickAllConnections() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "kickAllConnections", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Upgrades the connection limit on the VirtualIp and changes the billing item on your account to reflect the change. This function will only upgrade you to the next "level" of service.  The next level follows this pattern Current Level  =>  Next Level 50                 100 100                200 200                500 500                1000 1000               1200 1200               1500 1500               2000 2000               2500 2500               3000
 func (r Network_LoadBalancer_VirtualIpAddress) UpgradeConnectionLimit() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "upgradeConnectionLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4225,7 +4225,7 @@ func (r Network_Media_Transcode_Account) Offset(offset int) Network_Media_Transc
 
 // With this method, you can create a transcode account.  Individual SoftLayer account can have a single Transcode account. You have to pass your SoftLayer account id as a parameter.
 func (r Network_Media_Transcode_Account) CreateTranscodeAccount() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "createTranscodeAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4260,13 +4260,13 @@ func (r Network_Media_Transcode_Account) CreateTranscodeJob(newJob *datatypes.Ne
 	params := []interface{}{
 		newJob,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "createTranscodeJob", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer account information
 func (r Network_Media_Transcode_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4276,7 +4276,7 @@ func (r Network_Media_Transcode_Account) GetDirectoryInformation(directoryName *
 		directoryName,
 		extensionFilter,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getDirectoryInformation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4285,7 +4285,7 @@ func (r Network_Media_Transcode_Account) GetFileDetail(source *string) (resp dat
 	params := []interface{}{
 		source,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getFileDetail", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4293,13 +4293,13 @@ func (r Network_Media_Transcode_Account) GetFileDetail(source *string) (resp dat
 //
 // The Transcode FTP server is available via the SoftLayer private network. There is no API method that you can upload a file to Transcode server so you need to use an FTP client. You will have /in and /out directories on the Transcode FTP server.  You will have read-write privileges for /in directory and read-only privilege for /out directory. All the files in both /in and /out directories will be deleted after 72 hours from the creation date.
 func (r Network_Media_Transcode_Account) GetFtpAttributes() (resp datatypes.Container_Network_Authentication_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getFtpAttributes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject method retrieves the SoftLayer_Network_Media_Transcode_Account object whose ID number corresponds to the ID number of the initial parameter passed to the SoftLayer_Network_Media_Transcode_Account service. You can only retrieve a Transcode account assigned to your SoftLayer customer account.
 func (r Network_Media_Transcode_Account) GetObject() (resp datatypes.Network_Media_Transcode_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4308,19 +4308,19 @@ func (r Network_Media_Transcode_Account) GetPresetDetail(guid *string) (resp []d
 	params := []interface{}{
 		guid,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getPresetDetail", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // A transcode preset is a configuration that defines a certain media output. This method returns an array of transcoding preset objects supported by SoftLayer's Transcode server. Each [[SoftLayer_Container_Network_Media_Transcode_Preset|preset object]] contains a GUID property. You will need a GUID string when you create a new transcode job.
 func (r Network_Media_Transcode_Account) GetPresets() (resp []datatypes.Container_Network_Media_Transcode_Preset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getPresets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Transcode jobs
 func (r Network_Media_Transcode_Account) GetTranscodeJobs() (resp []datatypes.Network_Media_Transcode_Job, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Account", "getTranscodeJobs", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4392,43 +4392,43 @@ func (r Network_Media_Transcode_Job) CreateObject(templateObject *datatypes.Netw
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Media_Transcode_Job) GetHistory() (resp []datatypes.Network_Media_Transcode_Job_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Media_Transcode_Job) GetObject() (resp datatypes.Network_Media_Transcode_Job, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The transcode service account
 func (r Network_Media_Transcode_Job) GetTranscodeAccount() (resp datatypes.Network_Media_Transcode_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getTranscodeAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status information of a transcode job
 func (r Network_Media_Transcode_Job) GetTranscodeStatus() (resp datatypes.Network_Media_Transcode_Job_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getTranscodeStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status of a transcode job
 func (r Network_Media_Transcode_Job) GetTranscodeStatusName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getTranscodeStatusName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer user that created the transcode job
 func (r Network_Media_Transcode_Job) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job", "getUser", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4473,13 +4473,13 @@ func (r Network_Media_Transcode_Job_Status) Offset(offset int) Network_Media_Tra
 
 // This method returns all transcode job statuses.
 func (r Network_Media_Transcode_Job_Status) GetAllStatuses() (resp []datatypes.Network_Media_Transcode_Job_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job_Status", "getAllStatuses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Media_Transcode_Job_Status) GetObject() (resp datatypes.Network_Media_Transcode_Job_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Media_Transcode_Job_Status", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4527,37 +4527,37 @@ func (r Network_Message_Delivery) EditObject(templateObject *datatypes.Network_M
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that a network message delivery account belongs to.
 func (r Network_Message_Delivery) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a network message delivery account.
 func (r Network_Message_Delivery) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery) GetObject() (resp datatypes.Network_Message_Delivery, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The message delivery type of a network message delivery account.
 func (r Network_Message_Delivery) GetType() (resp datatypes.Network_Message_Delivery_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The vendor for a network message delivery account.
 func (r Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery", "getVendor", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4605,7 +4605,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) AddUnsubscribeEmailAddress(emai
 	params := []interface{}{
 		emailAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "addUnsubscribeEmailAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4615,13 +4615,13 @@ func (r Network_Message_Delivery_Email_Sendgrid) DeleteEmailListEntries(list *st
 		list,
 		entries,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "deleteEmailListEntries", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) DisableSmtpAccess() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "disableSmtpAccess", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4630,43 +4630,43 @@ func (r Network_Message_Delivery_Email_Sendgrid) EditObject(templateObject *data
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) EnableSmtpAccess() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "enableSmtpAccess", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that a network message delivery account belongs to.
 func (r Network_Message_Delivery_Email_Sendgrid) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Account_Overview, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getAccountOverview", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a network message delivery account.
 func (r Network_Message_Delivery_Email_Sendgrid) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetCategoryList() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getCategoryList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The contact e-mail address used by SendGrid.
 func (r Network_Message_Delivery_Email_Sendgrid) GetEmailAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getEmailAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4675,19 +4675,19 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetEmailList(list *string) (res
 	params := []interface{}{
 		list,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getEmailList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Network_Message_Delivery_Email_Sendgrid, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag that determines if a SendGrid e-mail delivery account has access to send mail through the SendGrid SMTP server.
 func (r Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getSmtpAccess", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4696,7 +4696,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetStatistics(options *datatype
 	params := []interface{}{
 		options,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getStatistics", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4705,25 +4705,25 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetStatisticsGraph(options *dat
 	params := []interface{}{
 		options,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getStatisticsGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The message delivery type of a network message delivery account.
 func (r Network_Message_Delivery_Email_Sendgrid) GetType() (resp datatypes.Network_Message_Delivery_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The vendor for a network message delivery account.
 func (r Network_Message_Delivery_Email_Sendgrid) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getVendor", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetVendorPortalUrl() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getVendorPortalUrl", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4732,7 +4732,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) SendEmail(emailContainer *datat
 	params := []interface{}{
 		emailContainer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "sendEmail", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4741,7 +4741,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) UpdateEmailAddress(emailAddress
 	params := []interface{}{
 		emailAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "updateEmailAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4786,31 +4786,31 @@ func (r Network_Message_Queue) Offset(offset int) Network_Message_Queue {
 
 // Retrieve The account that a message queue belongs to.
 func (r Network_Message_Queue) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for this message queue account.
 func (r Network_Message_Queue) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All available message queue nodes
 func (r Network_Message_Queue) GetNodes() (resp []datatypes.Network_Message_Queue_Node, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue", "getNodes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Queue) GetObject() (resp datatypes.Network_Message_Queue, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A message queue account status.
 func (r Network_Message_Queue) GetStatus() (resp datatypes.Network_Message_Queue_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4858,7 +4858,7 @@ func (r Network_Message_Queue_Node) AddUser(username *string) (resp bool, err er
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "addUser", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4867,37 +4867,37 @@ func (r Network_Message_Queue_Node) DeleteUser(username *string) (resp bool, err
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "deleteUser", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Queue_Node) GetAllUsers() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getAllUsers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The message queue account this node belongs to.
 func (r Network_Message_Queue_Node) GetMessageQueue() (resp datatypes.Network_Message_Queue, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getMessageQueue", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A message queue node's metric tracking object. This object records all request and notification count data for this message queue node.
 func (r Network_Message_Queue_Node) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Message_Queue_Node) GetObject() (resp datatypes.Network_Message_Queue_Node, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Message_Queue_Node) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4907,7 +4907,7 @@ func (r Network_Message_Queue_Node) GetUsage(startDate *datatypes.Time, endDate 
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getUsage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4916,7 +4916,7 @@ func (r Network_Message_Queue_Node) GetUsageGraph(graphData *datatypes.Container
 	params := []interface{}{
 		graphData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Node", "getUsageGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -4961,7 +4961,7 @@ func (r Network_Message_Queue_Status) Offset(offset int) Network_Message_Queue_S
 
 // no documentation yet
 func (r Network_Message_Queue_Status) GetObject() (resp datatypes.Network_Message_Queue_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Message_Queue_Status", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5010,7 +5010,7 @@ func (r Network_Monitor) GetIpAddressesByHardware(hardware *datatypes.Hardware, 
 		hardware,
 		partialIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor", "getIpAddressesByHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5020,7 +5020,7 @@ func (r Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_G
 		guest,
 		partialIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor", "getIpAddressesByVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5068,7 +5068,7 @@ func (r Network_Monitor_Version1_Query_Host) CreateObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5077,13 +5077,13 @@ func (r Network_Monitor_Version1_Query_Host) CreateObjects(templateObjects []dat
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Like any other API object, the monitoring objects can be deleted by passing an instance of them into this function.  The ID on the object must be set.
 func (r Network_Monitor_Version1_Query_Host) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5092,7 +5092,7 @@ func (r Network_Monitor_Version1_Query_Host) DeleteObjects(templateObjects []dat
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "deleteObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5101,7 +5101,7 @@ func (r Network_Monitor_Version1_Query_Host) EditObject(templateObject *datatype
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5110,7 +5110,7 @@ func (r Network_Monitor_Version1_Query_Host) EditObjects(templateObjects []datat
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "editObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5121,37 +5121,37 @@ func (r Network_Monitor_Version1_Query_Host) FindByHardwareId(hardwareId *int) (
 	params := []interface{}{
 		hardwareId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "findByHardwareId", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware that is being monitored by this monitoring instance
 func (r Network_Monitor_Version1_Query_Host) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The most recent result for this particular monitoring instance.
 func (r Network_Monitor_Version1_Query_Host) GetLastResult() (resp datatypes.Network_Monitor_Version1_Query_Result, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "getLastResult", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Monitor_Version1_Query_Host object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Monitor_Version1_Query_Host service. You can only retrieve query hosts attached to hardware that belong to your account.
 func (r Network_Monitor_Version1_Query_Host) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of monitoring query that is executed when this hardware is monitored.
 func (r Network_Monitor_Version1_Query_Host) GetQueryType() (resp datatypes.Network_Monitor_Version1_Query_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "getQueryType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The action taken when a monitor fails.
 func (r Network_Monitor_Version1_Query_Host) GetResponseAction() (resp datatypes.Network_Monitor_Version1_Query_ResponseType, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host", "getResponseAction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5203,25 +5203,25 @@ func (r Network_Monitor_Version1_Query_Host_Stratum) Offset(offset int) Network_
 
 // Calling this function returns all possible query type objects. These objects are to be used to set the values on the SoftLayer_Network_Monitor_Version1_Query_Host when creating new monitoring instances.
 func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllQueryTypes() (resp []datatypes.Network_Monitor_Version1_Query_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllQueryTypes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Calling this function returns all possible response type objects. These objects are to be used to set the values on the SoftLayer_Network_Monitor_Version1_Query_Host when creating new monitoring instances.
 func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllResponseTypes() (resp []datatypes.Network_Monitor_Version1_Query_ResponseType, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllResponseTypes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware object that these monitoring permissions applies to.
 func (r Network_Monitor_Version1_Query_Host_Stratum) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Monitor_Version1_Query_Host_Stratum object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Monitor_Version1_Query_Host_Stratum service. You can only retrieve strata attached to hardware that belong to your account.
 func (r Network_Monitor_Version1_Query_Host_Stratum) GetObject() (resp datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5271,25 +5271,25 @@ func (r Network_Pod) Offset(offset int) Network_Pod {
 
 // no documentation yet
 func (r Network_Pod) GetAllObjects() (resp []datatypes.Network_Pod, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Pod", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Provides the list of capabilities a Pod fulfills. See [[SoftLayer_Network_Pod/listCapabilities]] for more information on capabilities.
 func (r Network_Pod) GetCapabilities() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Pod", "getCapabilities", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Set the initialization parameter to the ``name`` of the Pod to retrieve.
 func (r Network_Pod) GetObject() (resp datatypes.Network_Pod, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Pod", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // A capability is simply a string literal that denotes the availability of a feature. Capabilities are generally self describing, but any additional details concerning the implications of a capability will be documented elsewhere; usually by the Service or Operation related to it.
 func (r Network_Pod) ListCapabilities() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Pod", "listCapabilities", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5342,49 +5342,49 @@ func (r Network_Security_Scanner_Request) CreateObject(templateObject *datatypes
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account associated with a security scan request.
 func (r Network_Security_Scanner_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guest a security scan is run against.
 func (r Network_Security_Scanner_Request) GetGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware a security scan is run against.
 func (r Network_Security_Scanner_Request) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Security_Scanner_Request object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Security_Scanner_Request service. You can only retrieve requests and reports that are assigned to your SoftLayer account.
 func (r Network_Security_Scanner_Request) GetObject() (resp datatypes.Network_Security_Scanner_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the vulnerability report for a scan request, formatted as HTML string. Previous scan reports are held indefinitely.
 func (r Network_Security_Scanner_Request) GetReport() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getReport", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Flag whether the requestor owns the hardware the scan was run on. This flag will  return for hardware servers only, virtual servers will result in a null return even if you have  a request out for them.
 func (r Network_Security_Scanner_Request) GetRequestorOwnedFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getRequestorOwnedFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A security scan request's status.
 func (r Network_Security_Scanner_Request) GetStatus() (resp datatypes.Network_Security_Scanner_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Security_Scanner_Request", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5432,13 +5432,13 @@ func (r Network_Service_Vpn_Overrides) CreateObjects(templateObjects []datatypes
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "createObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to delete a single SoftLayer portal VPN user subnet override.
 func (r Network_Service_Vpn_Overrides) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5447,25 +5447,25 @@ func (r Network_Service_Vpn_Overrides) DeleteObjects(templateObjects []datatypes
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "deleteObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Service_Vpn_Overrides) GetObject() (resp datatypes.Network_Service_Vpn_Overrides, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Subnet components accessible by a SoftLayer VPN portal user.
 func (r Network_Service_Vpn_Overrides) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "getSubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve SoftLayer VPN portal user.
 func (r Network_Service_Vpn_Overrides) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Service_Vpn_Overrides", "getUser", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5513,7 +5513,7 @@ func (r Network_Storage) AllowAccessFromHardware(hardwareObjectTemplate *datatyp
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5522,7 +5522,7 @@ func (r Network_Storage) AllowAccessFromHardwareList(hardwareObjectTemplates []d
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5532,7 +5532,7 @@ func (r Network_Storage) AllowAccessFromHost(typeClassName *string, hostId *int)
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5541,7 +5541,7 @@ func (r Network_Storage) AllowAccessFromHostList(hostObjectTemplates []datatypes
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5550,7 +5550,7 @@ func (r Network_Storage) AllowAccessFromIpAddress(ipAddressObjectTemplate *datat
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5559,7 +5559,7 @@ func (r Network_Storage) AllowAccessFromIpAddressList(ipAddressObjectTemplates [
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5568,7 +5568,7 @@ func (r Network_Storage) AllowAccessFromSubnet(subnetObjectTemplate *datatypes.N
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5577,7 +5577,7 @@ func (r Network_Storage) AllowAccessFromSubnetList(subnetObjectTemplates []datat
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5586,7 +5586,7 @@ func (r Network_Storage) AllowAccessFromVirtualGuest(virtualGuestObjectTemplate 
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5595,7 +5595,7 @@ func (r Network_Storage) AllowAccessFromVirtualGuestList(virtualGuestObjectTempl
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5604,7 +5604,7 @@ func (r Network_Storage) AllowAccessToReplicantFromHardware(hardwareObjectTempla
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5613,7 +5613,7 @@ func (r Network_Storage) AllowAccessToReplicantFromHardwareList(hardwareObjectTe
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5622,7 +5622,7 @@ func (r Network_Storage) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemp
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5631,7 +5631,7 @@ func (r Network_Storage) AllowAccessToReplicantFromIpAddressList(ipAddressObject
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5640,7 +5640,7 @@ func (r Network_Storage) AllowAccessToReplicantFromSubnet(subnetObjectTemplate *
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5649,7 +5649,7 @@ func (r Network_Storage) AllowAccessToReplicantFromSubnetList(subnetObjectTempla
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5658,7 +5658,7 @@ func (r Network_Storage) AllowAccessToReplicantFromVirtualGuest(virtualGuestObje
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5667,7 +5667,7 @@ func (r Network_Storage) AllowAccessToReplicantFromVirtualGuestList(virtualGuest
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "allowAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5676,7 +5676,7 @@ func (r Network_Storage) AssignCredential(username *string) (resp bool, err erro
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "assignCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5685,7 +5685,7 @@ func (r Network_Storage) AssignNewCredential(typ *string) (resp datatypes.Networ
 	params := []interface{}{
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "assignNewCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5696,7 +5696,7 @@ func (r Network_Storage) ChangePassword(username *string, currentPassword *strin
 		currentPassword,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "changePassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5709,7 +5709,7 @@ func (r Network_Storage) CollectBandwidth(typ *string, startDate *datatypes.Time
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "collectBandwidth", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5717,7 +5717,7 @@ func (r Network_Storage) CollectBandwidth(typ *string, startDate *datatypes.Time
 //
 // collectBytesUsed() retrieves the number of bytes capacity currently in use on a Storage account.
 func (r Network_Storage) CollectBytesUsed() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "collectBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5726,7 +5726,7 @@ func (r Network_Storage) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "createFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5735,7 +5735,7 @@ func (r Network_Storage) CreateSnapshot(notes *string) (resp datatypes.Network_S
 	params := []interface{}{
 		notes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "createSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5745,7 +5745,7 @@ func (r Network_Storage) CreateSnapshot(notes *string) (resp datatypes.Network_S
 //
 // Please note, files can not be restored once they are permanently deleted.
 func (r Network_Storage) DeleteAllFiles() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "deleteAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5758,7 +5758,7 @@ func (r Network_Storage) DeleteFile(fileId *string) (resp bool, err error) {
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "deleteFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5771,7 +5771,7 @@ func (r Network_Storage) DeleteFiles(fileIds []string) (resp bool, err error) {
 	params := []interface{}{
 		fileIds,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "deleteFiles", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5780,7 +5780,7 @@ func (r Network_Storage) DeleteFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "deleteFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5788,7 +5788,7 @@ func (r Network_Storage) DeleteFolder(folder *string) (resp bool, err error) {
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
 func (r Network_Storage) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5799,7 +5799,7 @@ func (r Network_Storage) DisableSnapshots(scheduleType *string) (resp bool, err 
 	params := []interface{}{
 		scheduleType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "disableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5808,7 +5808,7 @@ func (r Network_Storage) DownloadFile(fileId *string) (resp datatypes.Container_
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "downloadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5818,7 +5818,7 @@ func (r Network_Storage) EditCredential(username *string, newPassword *string) (
 		username,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "editCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5827,7 +5827,7 @@ func (r Network_Storage) EditObject(templateObject *datatypes.Network_Storage) (
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5842,13 +5842,13 @@ func (r Network_Storage) EnableSnapshots(scheduleType *string, retentionCount *i
 		hour,
 		dayOfWeek,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "enableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Failback from a volume replicant. In order to failback the volume must have already been failed over to a replicant.
 func (r Network_Storage) FailbackFromReplicant() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "failbackFromReplicant", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5857,31 +5857,31 @@ func (r Network_Storage) FailoverToReplicant(replicantId *int) (resp bool, err e
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "failoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that a Storage services belongs to.
 func (r Network_Storage) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Other usernames and passwords associated with a Storage volume.
 func (r Network_Storage) GetAccountPassword() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAccountPassword", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently active transactions on a network storage volume.
 func (r Network_Storage) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getActiveTransactions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5890,7 +5890,7 @@ func (r Network_Storage) GetAllFilesByFilter(filter *datatypes.Container_Utility
 	params := []interface{}{
 		filter,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllFilesByFilter", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5899,7 +5899,7 @@ func (r Network_Storage) GetAllowableHardware(filterHostname *string) (resp []da
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowableHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5909,7 +5909,7 @@ func (r Network_Storage) GetAllowableIpAddresses(subnetId *int, filterIpAddress 
 		subnetId,
 		filterIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowableIpAddresses", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5918,7 +5918,7 @@ func (r Network_Storage) GetAllowableSubnets(filterNetworkIdentifier *string) (r
 	params := []interface{}{
 		filterNetworkIdentifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowableSubnets", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -5927,73 +5927,73 @@ func (r Network_Storage) GetAllowableVirtualGuests(filterHostname *string) (resp
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowableVirtualGuests", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the total number of allowed hosts limit per volume.
 func (r Network_Storage) GetAllowedHostsLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedHostsLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedReplicationHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedReplicationIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedReplicationSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedReplicationVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getAllowedVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a Storage volume.
 func (r Network_Storage) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getBillingItemCategory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6003,49 +6003,49 @@ func (r Network_Storage) GetByUsername(username *string, typ *string) (resp []da
 		username,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getByUsername", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage) GetBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getCdnUrls", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getClusterResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedule id which was executed to create a snapshot.
 func (r Network_Storage) GetCreationScheduleId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getCreationScheduleId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getDailySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6054,13 +6054,13 @@ func (r Network_Storage) GetFileByIdentifier(identifier *string) (resp datatypes
 	params := []interface{}{
 		identifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the file number of files in a Virtual Server Storage account's root directory. This does not include the files stored in the recycle bin.
 func (r Network_Storage) GetFileCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFileCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6070,25 +6070,25 @@ func (r Network_Storage) GetFileList(folder *string, path *string) (resp []datat
 		folder,
 		path,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFileList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage) GetFilePendingDeleteCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFilePendingDeleteCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve a list of files that are pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted. This method does not download file content.
 func (r Network_Storage) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFilesPendingDelete", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getFolderList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6101,73 +6101,73 @@ func (r Network_Storage) GetGraph(startDate *datatypes.Time, endDate *datatypes.
 		endDate,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the hardware associated with a Storage service.
 func (r Network_Storage) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage) GetHasEncryptionAtRest() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getHasEncryptionAtRest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r Network_Storage) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getHourlySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage) GetIops() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getIops", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getIscsiLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage) GetLunId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getLunId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getManualSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network storage volume's metric tracking object. This object records all periodic polled data available to this volume.
 func (r Network_Storage) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage) GetMountableFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getMountableFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscribers that will be notified for usage amount warnings and overages.
 func (r Network_Storage) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getNotificationSubscribers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6175,13 +6175,13 @@ func (r Network_Storage) GetNotificationSubscribers() (resp []datatypes.Notifica
 //
 // Please use the associated methods in the [[SoftLayer_Network_Storage]] service to retrieve a Storage account's id.
 func (r Network_Storage) GetObject() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getObjectStorageConnectionInformation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6190,49 +6190,49 @@ func (r Network_Storage) GetObjectsByCredential(credentialObject *datatypes.Netw
 	params := []interface{}{
 		credentialObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getObjectsByCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type ID.
 func (r Network_Storage) GetOsTypeId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getOsTypeId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume in a parental role.
 func (r Network_Storage) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getParentPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage) GetParentVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getParentVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume.
 func (r Network_Storage) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getPermissionsGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getProperties", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6241,205 +6241,205 @@ func (r Network_Storage) GetRecycleBinFileByIdentifier(fileId *string) (resp dat
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getRecycleBinFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the remaining number of allowed hosts per volume.
 func (r Network_Storage) GetRemainingAllowedHosts() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getRemainingAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The iSCSI LUN volumes being replicated by this network storage volume.
 func (r Network_Storage) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicatingLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicatingVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volume replication events.
 func (r Network_Storage) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicationEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicationPartners", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Replication Schedule associated with a network storage volume.
 func (r Network_Storage) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicationSchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current replication status of a network storage volume. Indicates Failover or Failback status.
 func (r Network_Storage) GetReplicationStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getReplicationStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSchedules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource a Storage service is connected to.
 func (r Network_Storage) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The IP address of a Storage resource.
 func (r Network_Storage) GetServiceResourceBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getServiceResourceBackendIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of a Storage's network resource.
 func (r Network_Storage) GetServiceResourceName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getServiceResourceName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured snapshot space size.
 func (r Network_Storage) GetSnapshotCapacityGb() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotCapacityGb", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The creation timestamp of the snapshot on the storage platform.
 func (r Network_Storage) GetSnapshotCreationTimestamp() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotCreationTimestamp", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The percentage of used snapshot space after which to delete automated snapshots.
 func (r Network_Storage) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotDeletionThresholdPercentage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage) GetSnapshotSizeBytes() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotSizeBytes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's available snapshot reservation space.
 func (r Network_Storage) GetSnapshotSpaceAvailable() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotSpaceAvailable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshots associated with this SoftLayer_Network_Storage volume.
 func (r Network_Storage) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getSnapshotsForVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage) GetStaasVersion() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getStaasVersion", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage groups this volume is attached to.
 func (r Network_Storage) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getStorageGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getStorageGroupsNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage) GetStorageTierLevel() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getStorageTierLevel", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A description of the Storage object.
 func (r Network_Storage) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getStorageType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume.
 func (r Network_Storage) GetTotalBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getTotalBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total snapshot retention count of all schedules on this network storage volume.
 func (r Network_Storage) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getTotalScheduleSnapshotRetentionCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The usage notification for SL Storage services.
 func (r Network_Storage) GetUsageNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getUsageNotification", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getValidReplicationTargetDatacenterLocations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of network storage service.
 func (r Network_Storage) GetVendorName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getVendorName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getVirtualGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getVolumeHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of a network storage volume.
 func (r Network_Storage) GetVolumeStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getVolumeStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account username and password for the EVault webCC interface.
 func (r Network_Storage) GetWebccAccount() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getWebccAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Weekly Schedule which is associated with this network storage volume.
 func (r Network_Storage) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "getWeeklySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6448,7 +6448,7 @@ func (r Network_Storage) ImmediateFailoverToReplicant(replicantId *int) (resp bo
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "immediateFailoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6457,7 +6457,7 @@ func (r Network_Storage) IsBlockingOperationInProgress(exemptStatusKeyNames []st
 	params := []interface{}{
 		exemptStatusKeyNames,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "isBlockingOperationInProgress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6466,7 +6466,7 @@ func (r Network_Storage) RemoveAccessFromHardware(hardwareObjectTemplate *dataty
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6475,7 +6475,7 @@ func (r Network_Storage) RemoveAccessFromHardwareList(hardwareObjectTemplates []
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6485,7 +6485,7 @@ func (r Network_Storage) RemoveAccessFromHost(typeClassName *string, hostId *int
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6494,7 +6494,7 @@ func (r Network_Storage) RemoveAccessFromHostList(hostObjectTemplates []datatype
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6503,7 +6503,7 @@ func (r Network_Storage) RemoveAccessFromIpAddress(ipAddressObjectTemplate *data
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6512,7 +6512,7 @@ func (r Network_Storage) RemoveAccessFromIpAddressList(ipAddressObjectTemplates 
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6521,7 +6521,7 @@ func (r Network_Storage) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6530,7 +6530,7 @@ func (r Network_Storage) RemoveAccessFromSubnetList(subnetObjectTemplates []data
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6539,7 +6539,7 @@ func (r Network_Storage) RemoveAccessFromVirtualGuest(virtualGuestObjectTemplate
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6548,7 +6548,7 @@ func (r Network_Storage) RemoveAccessFromVirtualGuestList(virtualGuestObjectTemp
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6557,7 +6557,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromHardwareList(hardwareObjectT
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6566,7 +6566,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromIpAddressList(ipAddressObjec
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6575,7 +6575,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate 
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6584,7 +6584,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromSubnetList(subnetObjectTempl
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6593,7 +6593,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromVirtualGuestList(virtualGues
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6602,7 +6602,7 @@ func (r Network_Storage) RemoveCredential(username *string) (resp bool, err erro
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "removeCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6613,7 +6613,7 @@ func (r Network_Storage) RestoreFile(fileId *string) (resp datatypes.Container_U
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "restoreFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6622,7 +6622,7 @@ func (r Network_Storage) RestoreFromSnapshot(snapshotId *int) (resp bool, err er
 	params := []interface{}{
 		snapshotId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "restoreFromSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6631,7 +6631,7 @@ func (r Network_Storage) SendPasswordReminderEmail(username *string) (resp bool,
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "sendPasswordReminderEmail", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6644,7 +6644,7 @@ func (r Network_Storage) SetMountable(mountable *bool) (resp bool, err error) {
 	params := []interface{}{
 		mountable,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "setMountable", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6654,7 +6654,7 @@ func (r Network_Storage) SetSnapshotAllocation(capacityGb *int) (err error) {
 	params := []interface{}{
 		capacityGb,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "setSnapshotAllocation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6663,7 +6663,7 @@ func (r Network_Storage) UpgradeVolumeCapacity(itemId *int) (resp bool, err erro
 	params := []interface{}{
 		itemId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "upgradeVolumeCapacity", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6677,7 +6677,7 @@ func (r Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Entit
 	params := []interface{}{
 		file,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage", "uploadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6725,13 +6725,13 @@ func (r Network_Storage_Allowed_Host) CreateObject(templateObject *datatypes.Net
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6740,37 +6740,37 @@ func (r Network_Storage_Allowed_Host) EditObject(templateObject *datatypes.Netwo
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "getAssignedGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage primary volumes whose replicas are allowed access.
 func (r Network_Storage_Allowed_Host) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "getAssignedReplicationVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "getAssignedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Credential this allowed host uses.
 func (r Network_Storage_Allowed_Host) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "getCredential", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host) GetObject() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6779,7 +6779,7 @@ func (r Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (r
 	params := []interface{}{
 		password,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host", "setCredentialPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6827,13 +6827,13 @@ func (r Network_Storage_Allowed_Host_Hardware) CreateObject(templateObject *data
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6842,43 +6842,43 @@ func (r Network_Storage_Allowed_Host_Hardware) EditObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage primary volumes whose replicas are allowed access.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedReplicationVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Credential this allowed host uses.
 func (r Network_Storage_Allowed_Host_Hardware) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getCredential", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware object which this SoftLayer_Network_Storage_Allowed_Host is referencing.
 func (r Network_Storage_Allowed_Host_Hardware) GetResource() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6887,7 +6887,7 @@ func (r Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *s
 	params := []interface{}{
 		password,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Hardware", "setCredentialPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6935,13 +6935,13 @@ func (r Network_Storage_Allowed_Host_IpAddress) CreateObject(templateObject *dat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6950,43 +6950,43 @@ func (r Network_Storage_Allowed_Host_IpAddress) EditObject(templateObject *datat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage primary volumes whose replicas are allowed access.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedReplicationVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Credential this allowed host uses.
 func (r Network_Storage_Allowed_Host_IpAddress) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getCredential", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) GetObject() (resp datatypes.Network_Storage_Allowed_Host_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress object which this SoftLayer_Network_Storage_Allowed_Host is referencing.
 func (r Network_Storage_Allowed_Host_IpAddress) GetResource() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -6995,7 +6995,7 @@ func (r Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password *
 	params := []interface{}{
 		password,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "setCredentialPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7043,13 +7043,13 @@ func (r Network_Storage_Allowed_Host_Subnet) CreateObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7058,43 +7058,43 @@ func (r Network_Storage_Allowed_Host_Subnet) EditObject(templateObject *datatype
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage primary volumes whose replicas are allowed access.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedReplicationVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Credential this allowed host uses.
 func (r Network_Storage_Allowed_Host_Subnet) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getCredential", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet object which this SoftLayer_Network_Storage_Allowed_Host is referencing.
 func (r Network_Storage_Allowed_Host_Subnet) GetResource() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7103,7 +7103,7 @@ func (r Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *str
 	params := []interface{}{
 		password,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_Subnet", "setCredentialPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7151,13 +7151,13 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) CreateObject(templateObject *
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7166,43 +7166,43 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) EditObject(templateObject *da
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage primary volumes whose replicas are allowed access.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedReplicationVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedReplicationVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Credential this allowed host uses.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetCredential() (resp datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getCredential", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetObject() (resp datatypes.Network_Storage_Allowed_Host_VirtualGuest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Virtual_Guest object which this SoftLayer_Network_Storage_Allowed_Host is referencing.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetResource() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7211,7 +7211,7 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) SetCredentialPassword(passwor
 	params := []interface{}{
 		password,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "setCredentialPassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7259,7 +7259,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHardware(hardwareObjectTem
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7268,7 +7268,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHardwareList(hardwareObjec
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7278,7 +7278,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHost(typeClassName *string
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7287,7 +7287,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHostList(hostObjectTemplat
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7296,7 +7296,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromIpAddress(ipAddressObjectT
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7305,7 +7305,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromIpAddressList(ipAddressObj
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7314,7 +7314,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromSubnet(subnetObjectTemplat
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7323,7 +7323,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromSubnetList(subnetObjectTem
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7332,7 +7332,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromVirtualGuest(virtualGuestO
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7341,7 +7341,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromVirtualGuestList(virtualGu
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7350,7 +7350,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromHardware(hardwa
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7359,7 +7359,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromHardwareList(ha
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7368,7 +7368,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromIpAddress(ipAdd
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7377,7 +7377,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromIpAddressList(i
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7386,7 +7386,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromSubnet(subnetOb
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7395,7 +7395,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromSubnetList(subn
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7404,7 +7404,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromVirtualGuest(vi
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7413,7 +7413,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromVirtualGuestLis
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "allowAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7422,7 +7422,7 @@ func (r Network_Storage_Backup_Evault) AssignCredential(username *string) (resp 
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "assignCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7431,7 +7431,7 @@ func (r Network_Storage_Backup_Evault) AssignNewCredential(typ *string) (resp da
 	params := []interface{}{
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "assignNewCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7442,7 +7442,7 @@ func (r Network_Storage_Backup_Evault) ChangePassword(username *string, currentP
 		currentPassword,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "changePassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7455,7 +7455,7 @@ func (r Network_Storage_Backup_Evault) CollectBandwidth(typ *string, startDate *
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "collectBandwidth", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7463,7 +7463,7 @@ func (r Network_Storage_Backup_Evault) CollectBandwidth(typ *string, startDate *
 //
 // collectBytesUsed() retrieves the number of bytes capacity currently in use on a Storage account.
 func (r Network_Storage_Backup_Evault) CollectBytesUsed() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "collectBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7472,7 +7472,7 @@ func (r Network_Storage_Backup_Evault) CreateFolder(folder *string) (resp bool, 
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "createFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7481,7 +7481,7 @@ func (r Network_Storage_Backup_Evault) CreateSnapshot(notes *string) (resp datat
 	params := []interface{}{
 		notes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "createSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7491,7 +7491,7 @@ func (r Network_Storage_Backup_Evault) CreateSnapshot(notes *string) (resp datat
 //
 // Please note, files can not be restored once they are permanently deleted.
 func (r Network_Storage_Backup_Evault) DeleteAllFiles() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7504,7 +7504,7 @@ func (r Network_Storage_Backup_Evault) DeleteFile(fileId *string) (resp bool, er
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7517,7 +7517,7 @@ func (r Network_Storage_Backup_Evault) DeleteFiles(fileIds []string) (resp bool,
 	params := []interface{}{
 		fileIds,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteFiles", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7526,7 +7526,7 @@ func (r Network_Storage_Backup_Evault) DeleteFolder(folder *string) (resp bool, 
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7534,7 +7534,7 @@ func (r Network_Storage_Backup_Evault) DeleteFolder(folder *string) (resp bool, 
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
 func (r Network_Storage_Backup_Evault) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7547,7 +7547,7 @@ func (r Network_Storage_Backup_Evault) DeleteTasks(tasks []int) (resp bool, err 
 	params := []interface{}{
 		tasks,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "deleteTasks", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7558,7 +7558,7 @@ func (r Network_Storage_Backup_Evault) DisableSnapshots(scheduleType *string) (r
 	params := []interface{}{
 		scheduleType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "disableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7567,7 +7567,7 @@ func (r Network_Storage_Backup_Evault) DownloadFile(fileId *string) (resp dataty
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "downloadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7577,7 +7577,7 @@ func (r Network_Storage_Backup_Evault) EditCredential(username *string, newPassw
 		username,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "editCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7586,7 +7586,7 @@ func (r Network_Storage_Backup_Evault) EditObject(templateObject *datatypes.Netw
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7601,13 +7601,13 @@ func (r Network_Storage_Backup_Evault) EnableSnapshots(scheduleType *string, ret
 		hour,
 		dayOfWeek,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "enableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Failback from a volume replicant. In order to failback the volume must have already been failed over to a replicant.
 func (r Network_Storage_Backup_Evault) FailbackFromReplicant() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "failbackFromReplicant", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7616,31 +7616,31 @@ func (r Network_Storage_Backup_Evault) FailoverToReplicant(replicantId *int) (re
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "failoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that a Storage services belongs to.
 func (r Network_Storage_Backup_Evault) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Other usernames and passwords associated with a Storage volume.
 func (r Network_Storage_Backup_Evault) GetAccountPassword() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAccountPassword", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently active transactions on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getActiveTransactions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage_Backup_Evault) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7649,7 +7649,7 @@ func (r Network_Storage_Backup_Evault) GetAllFilesByFilter(filter *datatypes.Con
 	params := []interface{}{
 		filter,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllFilesByFilter", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7658,7 +7658,7 @@ func (r Network_Storage_Backup_Evault) GetAllowableHardware(filterHostname *stri
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowableHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7668,7 +7668,7 @@ func (r Network_Storage_Backup_Evault) GetAllowableIpAddresses(subnetId *int, fi
 		subnetId,
 		filterIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowableIpAddresses", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7677,7 +7677,7 @@ func (r Network_Storage_Backup_Evault) GetAllowableSubnets(filterNetworkIdentifi
 	params := []interface{}{
 		filterNetworkIdentifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowableSubnets", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7686,73 +7686,73 @@ func (r Network_Storage_Backup_Evault) GetAllowableVirtualGuests(filterHostname 
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowableVirtualGuests", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the total number of allowed hosts limit per volume.
 func (r Network_Storage_Backup_Evault) GetAllowedHostsLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedHostsLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getAllowedVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a Storage volume.
 func (r Network_Storage_Backup_Evault) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getBillingItemCategory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7762,49 +7762,49 @@ func (r Network_Storage_Backup_Evault) GetByUsername(username *string, typ *stri
 		username,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getByUsername", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage_Backup_Evault) GetBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getCdnUrls", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getClusterResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedule id which was executed to create a snapshot.
 func (r Network_Storage_Backup_Evault) GetCreationScheduleId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getCreationScheduleId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getDailySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7813,13 +7813,13 @@ func (r Network_Storage_Backup_Evault) GetFileByIdentifier(identifier *string) (
 	params := []interface{}{
 		identifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the file number of files in a Virtual Server Storage account's root directory. This does not include the files stored in the recycle bin.
 func (r Network_Storage_Backup_Evault) GetFileCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFileCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7829,25 +7829,25 @@ func (r Network_Storage_Backup_Evault) GetFileList(folder *string, path *string)
 		folder,
 		path,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFileList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage_Backup_Evault) GetFilePendingDeleteCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFilePendingDeleteCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve a list of files that are pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted. This method does not download file content.
 func (r Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFilesPendingDelete", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getFolderList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7860,13 +7860,13 @@ func (r Network_Storage_Backup_Evault) GetGraph(startDate *datatypes.Time, endDa
 		endDate,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the hardware associated with a Storage service.
 func (r Network_Storage_Backup_Evault) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7886,79 +7886,79 @@ func (r Network_Storage_Backup_Evault) GetHardwareWithEvaultFirst(option *string
 		criteria,
 		mode,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getHardwareWithEvaultFirst", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetHasEncryptionAtRest() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getHasEncryptionAtRest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r Network_Storage_Backup_Evault) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getHourlySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getIops", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Backup_Evault) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getIscsiLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage_Backup_Evault) GetLunId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getLunId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage_Backup_Evault) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getManualSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network storage volume's metric tracking object. This object records all periodic polled data available to this volume.
 func (r Network_Storage_Backup_Evault) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage_Backup_Evault) GetMountableFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getMountableFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscribers that will be notified for usage amount warnings and overages.
 func (r Network_Storage_Backup_Evault) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getNotificationSubscribers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Storage_Backup_Evault object whose ID corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Storage_Backup_Evault service.
 func (r Network_Storage_Backup_Evault) GetObject() (resp datatypes.Network_Storage_Backup_Evault, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getObjectStorageConnectionInformation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -7967,49 +7967,49 @@ func (r Network_Storage_Backup_Evault) GetObjectsByCredential(credentialObject *
 	params := []interface{}{
 		credentialObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getObjectsByCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage_Backup_Evault) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type ID.
 func (r Network_Storage_Backup_Evault) GetOsTypeId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getOsTypeId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume in a parental role.
 func (r Network_Storage_Backup_Evault) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getParentPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage_Backup_Evault) GetParentVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getParentVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume.
 func (r Network_Storage_Backup_Evault) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage_Backup_Evault) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getPermissionsGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Backup_Evault) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getProperties", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8018,211 +8018,211 @@ func (r Network_Storage_Backup_Evault) GetRecycleBinFileByIdentifier(fileId *str
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getRecycleBinFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the remaining number of allowed hosts per volume.
 func (r Network_Storage_Backup_Evault) GetRemainingAllowedHosts() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getRemainingAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The iSCSI LUN volumes being replicated by this network storage volume.
 func (r Network_Storage_Backup_Evault) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicatingLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage_Backup_Evault) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicatingVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volume replication events.
 func (r Network_Storage_Backup_Evault) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicationEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage_Backup_Evault) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicationPartners", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Replication Schedule associated with a network storage volume.
 func (r Network_Storage_Backup_Evault) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicationSchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current replication status of a network storage volume. Indicates Failover or Failback status.
 func (r Network_Storage_Backup_Evault) GetReplicationStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getReplicationStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage_Backup_Evault) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSchedules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource a Storage service is connected to.
 func (r Network_Storage_Backup_Evault) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The IP address of a Storage resource.
 func (r Network_Storage_Backup_Evault) GetServiceResourceBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getServiceResourceBackendIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of a Storage's network resource.
 func (r Network_Storage_Backup_Evault) GetServiceResourceName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getServiceResourceName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured snapshot space size.
 func (r Network_Storage_Backup_Evault) GetSnapshotCapacityGb() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotCapacityGb", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The creation timestamp of the snapshot on the storage platform.
 func (r Network_Storage_Backup_Evault) GetSnapshotCreationTimestamp() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotCreationTimestamp", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The percentage of used snapshot space after which to delete automated snapshots.
 func (r Network_Storage_Backup_Evault) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotDeletionThresholdPercentage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage_Backup_Evault) GetSnapshotSizeBytes() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotSizeBytes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's available snapshot reservation space.
 func (r Network_Storage_Backup_Evault) GetSnapshotSpaceAvailable() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotSpaceAvailable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshots associated with this SoftLayer_Network_Storage volume.
 func (r Network_Storage_Backup_Evault) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage_Backup_Evault) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotsForVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetStaasVersion() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getStaasVersion", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage groups this volume is attached to.
 func (r Network_Storage_Backup_Evault) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroupsNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetStorageTierLevel() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getStorageTierLevel", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A description of the Storage object.
 func (r Network_Storage_Backup_Evault) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getStorageType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume.
 func (r Network_Storage_Backup_Evault) GetTotalBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getTotalBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total snapshot retention count of all schedules on this network storage volume.
 func (r Network_Storage_Backup_Evault) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getTotalScheduleSnapshotRetentionCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The usage notification for SL Storage services.
 func (r Network_Storage_Backup_Evault) GetUsageNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getUsageNotification", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getValidReplicationTargetDatacenterLocations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of network storage service.
 func (r Network_Storage_Backup_Evault) GetVendorName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getVendorName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage_Backup_Evault) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getVirtualGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Backup_Evault) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getVolumeHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of a network storage volume.
 func (r Network_Storage_Backup_Evault) GetVolumeStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getVolumeStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetWebCCAuthenticationDetails() (resp datatypes.Container_Network_Storage_Backup_Evault_WebCc_Authentication_Details, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getWebCCAuthenticationDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account username and password for the EVault webCC interface.
 func (r Network_Storage_Backup_Evault) GetWebccAccount() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getWebccAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Weekly Schedule which is associated with this network storage volume.
 func (r Network_Storage_Backup_Evault) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "getWeeklySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8231,13 +8231,13 @@ func (r Network_Storage_Backup_Evault) ImmediateFailoverToReplicant(replicantId 
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "immediateFailoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Evault Bare Metal Restore is a special version of Rescue Kernel designed specifically for making full system restores made with Evault's BMR backup. This process works very similar to Rescue Kernel, except only the Evault restore program is available. The process takes approximately 10 minutes. Once completed you will be able to access your server to do a restore through VNC or your servers KVM-over-IP. IP information and credentials can be found on the hardware page of the customer portal. The Evault Application will be running automatically upon startup, and will walk you through the restore process.
 func (r Network_Storage_Backup_Evault) InitiateBareMetalRestore() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "initiateBareMetalRestore", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8246,7 +8246,7 @@ func (r Network_Storage_Backup_Evault) InitiateBareMetalRestoreForServer(hardwar
 	params := []interface{}{
 		hardwareId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "initiateBareMetalRestoreForServer", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8255,7 +8255,7 @@ func (r Network_Storage_Backup_Evault) IsBlockingOperationInProgress(exemptStatu
 	params := []interface{}{
 		exemptStatusKeyNames,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "isBlockingOperationInProgress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8264,7 +8264,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromHardware(hardwareObjectTe
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8273,7 +8273,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromHardwareList(hardwareObje
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8283,7 +8283,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromHost(typeClassName *strin
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8292,7 +8292,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromHostList(hostObjectTempla
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8301,7 +8301,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromIpAddress(ipAddressObject
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8310,7 +8310,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromIpAddressList(ipAddressOb
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8319,7 +8319,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromSubnet(subnetObjectTempla
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8328,7 +8328,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromSubnetList(subnetObjectTe
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8337,7 +8337,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromVirtualGuest(virtualGuest
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8346,7 +8346,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromVirtualGuestList(virtualG
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8355,7 +8355,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromHardwareList(h
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8364,7 +8364,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromIpAddressList(
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8373,7 +8373,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromSubnet(subnetO
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8382,7 +8382,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromSubnetList(sub
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8391,7 +8391,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromVirtualGuestLi
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8400,7 +8400,7 @@ func (r Network_Storage_Backup_Evault) RemoveCredential(username *string) (resp 
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "removeCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8411,7 +8411,7 @@ func (r Network_Storage_Backup_Evault) RestoreFile(fileId *string) (resp datatyp
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "restoreFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8420,7 +8420,7 @@ func (r Network_Storage_Backup_Evault) RestoreFromSnapshot(snapshotId *int) (res
 	params := []interface{}{
 		snapshotId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "restoreFromSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8429,7 +8429,7 @@ func (r Network_Storage_Backup_Evault) SendPasswordReminderEmail(username *strin
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "sendPasswordReminderEmail", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8442,7 +8442,7 @@ func (r Network_Storage_Backup_Evault) SetMountable(mountable *bool) (resp bool,
 	params := []interface{}{
 		mountable,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "setMountable", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8452,7 +8452,7 @@ func (r Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (e
 	params := []interface{}{
 		capacityGb,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "setSnapshotAllocation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8461,7 +8461,7 @@ func (r Network_Storage_Backup_Evault) UpgradeVolumeCapacity(itemId *int) (resp 
 	params := []interface{}{
 		itemId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "upgradeVolumeCapacity", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8475,7 +8475,7 @@ func (r Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Util
 	params := []interface{}{
 		file,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Backup_Evault", "uploadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8523,7 +8523,7 @@ func (r Network_Storage_Group) AddAllowedHost(allowedHost *datatypes.Network_Sto
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "addAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8532,7 +8532,7 @@ func (r Network_Storage_Group) AttachToVolume(volume *datatypes.Network_Storage)
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "attachToVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8541,13 +8541,13 @@ func (r Network_Storage_Group) CreateObject(templateObject *datatypes.Network_St
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8556,61 +8556,61 @@ func (r Network_Storage_Group) EditObject(templateObject *datatypes.Network_Stor
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Account which owns this group.
 func (r Network_Storage_Group) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve all network storage groups.
 func (r Network_Storage_Group) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getAttachedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type which defines this group.
 func (r Network_Storage_Group) GetGroupType() (resp datatypes.Network_Storage_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getGroupType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve network connection information for SoftLayer_Network_Storage_Allowed_Host objects within this group.
 func (r Network_Storage_Group) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group) GetObject() (resp datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The OS Type this group is configured for.
 func (r Network_Storage_Group) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource this group is created on.
 func (r Network_Storage_Group) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8619,7 +8619,7 @@ func (r Network_Storage_Group) RemoveAllowedHost(allowedHost *datatypes.Network_
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "removeAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8628,7 +8628,7 @@ func (r Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Storag
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group", "removeFromVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8676,7 +8676,7 @@ func (r Network_Storage_Group_Iscsi) AddAllowedHost(allowedHost *datatypes.Netwo
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "addAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8685,7 +8685,7 @@ func (r Network_Storage_Group_Iscsi) AttachToVolume(volume *datatypes.Network_St
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "attachToVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8694,13 +8694,13 @@ func (r Network_Storage_Group_Iscsi) CreateObject(templateObject *datatypes.Netw
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group_Iscsi) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8709,61 +8709,61 @@ func (r Network_Storage_Group_Iscsi) EditObject(templateObject *datatypes.Networ
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Account which owns this group.
 func (r Network_Storage_Group_Iscsi) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve all network storage groups.
 func (r Network_Storage_Group_Iscsi) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group_Iscsi) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group_Iscsi) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getAttachedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type which defines this group.
 func (r Network_Storage_Group_Iscsi) GetGroupType() (resp datatypes.Network_Storage_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getGroupType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve network connection information for SoftLayer_Network_Storage_Allowed_Host objects within this group.
 func (r Network_Storage_Group_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group_Iscsi) GetObject() (resp datatypes.Network_Storage_Group_Iscsi, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The OS Type this group is configured for.
 func (r Network_Storage_Group_Iscsi) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource this group is created on.
 func (r Network_Storage_Group_Iscsi) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8772,7 +8772,7 @@ func (r Network_Storage_Group_Iscsi) RemoveAllowedHost(allowedHost *datatypes.Ne
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "removeAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8781,7 +8781,7 @@ func (r Network_Storage_Group_Iscsi) RemoveFromVolume(volume *datatypes.Network_
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Iscsi", "removeFromVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8829,7 +8829,7 @@ func (r Network_Storage_Group_Nfs) AddAllowedHost(allowedHost *datatypes.Network
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "addAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8838,7 +8838,7 @@ func (r Network_Storage_Group_Nfs) AttachToVolume(volume *datatypes.Network_Stor
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "attachToVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8847,13 +8847,13 @@ func (r Network_Storage_Group_Nfs) CreateObject(templateObject *datatypes.Networ
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group_Nfs) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8862,61 +8862,61 @@ func (r Network_Storage_Group_Nfs) EditObject(templateObject *datatypes.Network_
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Account which owns this group.
 func (r Network_Storage_Group_Nfs) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve all network storage groups.
 func (r Network_Storage_Group_Nfs) GetAllObjects() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group_Nfs) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group_Nfs) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getAttachedVolumes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type which defines this group.
 func (r Network_Storage_Group_Nfs) GetGroupType() (resp datatypes.Network_Storage_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getGroupType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve network connection information for SoftLayer_Network_Storage_Allowed_Host objects within this group.
 func (r Network_Storage_Group_Nfs) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group_Nfs) GetObject() (resp datatypes.Network_Storage_Group_Nfs, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The OS Type this group is configured for.
 func (r Network_Storage_Group_Nfs) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource this group is created on.
 func (r Network_Storage_Group_Nfs) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8925,7 +8925,7 @@ func (r Network_Storage_Group_Nfs) RemoveAllowedHost(allowedHost *datatypes.Netw
 	params := []interface{}{
 		allowedHost,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "removeAllowedHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8934,7 +8934,7 @@ func (r Network_Storage_Group_Nfs) RemoveFromVolume(volume *datatypes.Network_St
 	params := []interface{}{
 		volume,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Nfs", "removeFromVolume", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -8979,13 +8979,13 @@ func (r Network_Storage_Group_Type) Offset(offset int) Network_Storage_Group_Typ
 
 // Use this method to retrieve all storage group types available.
 func (r Network_Storage_Group_Type) GetAllObjects() (resp []datatypes.Network_Storage_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage_Group_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Group_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9030,7 +9030,7 @@ func (r Network_Storage_Hub_Cleversafe_Account) Offset(offset int) Network_Stora
 
 // no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) CredentialCreate() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "credentialCreate", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9039,67 +9039,67 @@ func (r Network_Storage_Hub_Cleversafe_Account) CredentialDelete(credential *dat
 	params := []interface{}{
 		credential,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "credentialDelete", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetCancelledBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCancelledBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCapacityUsage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentialLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetEndpoints() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpoints", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetObject() (resp datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getUuid", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9144,7 +9144,7 @@ func (r Network_Storage_Hub_Swift_Share) Offset(offset int) Network_Storage_Hub_
 
 // This method returns a collection of container objects.
 func (r Network_Storage_Hub_Swift_Share) GetContainerList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Swift_Share", "getContainerList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9154,7 +9154,7 @@ func (r Network_Storage_Hub_Swift_Share) GetFile(fileName *string, container *st
 		fileName,
 		container,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Swift_Share", "getFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9164,7 +9164,7 @@ func (r Network_Storage_Hub_Swift_Share) GetFileList(container *string, path *st
 		container,
 		path,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Hub_Swift_Share", "getFileList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9212,7 +9212,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHardware(hardwareObjectTemplate *d
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9221,7 +9221,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHardwareList(hardwareObjectTemplat
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9231,7 +9231,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHost(typeClassName *string, hostId
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9240,7 +9240,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHostList(hostObjectTemplates []dat
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9249,7 +9249,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromIpAddress(ipAddressObjectTemplate 
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9258,7 +9258,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromIpAddressList(ipAddressObjectTempl
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9267,7 +9267,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromSubnet(subnetObjectTemplate *datat
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9276,7 +9276,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromSubnetList(subnetObjectTemplates [
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9285,7 +9285,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromVirtualGuest(virtualGuestObjectTem
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9294,7 +9294,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromVirtualGuestList(virtualGuestObjec
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9303,7 +9303,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromHardware(hardwareObject
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9312,7 +9312,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromHardwareList(hardwareOb
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9321,7 +9321,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromIpAddress(ipAddressObje
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9330,7 +9330,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromIpAddressList(ipAddress
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9339,7 +9339,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromSubnet(subnetObjectTemp
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9348,7 +9348,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromSubnetList(subnetObject
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9357,7 +9357,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromVirtualGuest(virtualGue
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9366,7 +9366,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromVirtualGuestList(virtua
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "allowAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9375,7 +9375,7 @@ func (r Network_Storage_Iscsi) AssignCredential(username *string) (resp bool, er
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "assignCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9384,7 +9384,7 @@ func (r Network_Storage_Iscsi) AssignNewCredential(typ *string) (resp datatypes.
 	params := []interface{}{
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "assignNewCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9395,7 +9395,7 @@ func (r Network_Storage_Iscsi) ChangePassword(username *string, currentPassword 
 		currentPassword,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "changePassword", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9408,7 +9408,7 @@ func (r Network_Storage_Iscsi) CollectBandwidth(typ *string, startDate *datatype
 		startDate,
 		endDate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "collectBandwidth", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9416,7 +9416,7 @@ func (r Network_Storage_Iscsi) CollectBandwidth(typ *string, startDate *datatype
 //
 // collectBytesUsed() retrieves the number of bytes capacity currently in use on a Storage account.
 func (r Network_Storage_Iscsi) CollectBytesUsed() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "collectBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9425,7 +9425,7 @@ func (r Network_Storage_Iscsi) CreateFolder(folder *string) (resp bool, err erro
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "createFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9434,7 +9434,7 @@ func (r Network_Storage_Iscsi) CreateSnapshot(notes *string) (resp datatypes.Net
 	params := []interface{}{
 		notes,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "createSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9444,7 +9444,7 @@ func (r Network_Storage_Iscsi) CreateSnapshot(notes *string) (resp datatypes.Net
 //
 // Please note, files can not be restored once they are permanently deleted.
 func (r Network_Storage_Iscsi) DeleteAllFiles() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "deleteAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9457,7 +9457,7 @@ func (r Network_Storage_Iscsi) DeleteFile(fileId *string) (resp bool, err error)
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "deleteFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9470,7 +9470,7 @@ func (r Network_Storage_Iscsi) DeleteFiles(fileIds []string) (resp bool, err err
 	params := []interface{}{
 		fileIds,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "deleteFiles", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9479,7 +9479,7 @@ func (r Network_Storage_Iscsi) DeleteFolder(folder *string) (resp bool, err erro
 	params := []interface{}{
 		folder,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "deleteFolder", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9487,7 +9487,7 @@ func (r Network_Storage_Iscsi) DeleteFolder(folder *string) (resp bool, err erro
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
 func (r Network_Storage_Iscsi) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9498,7 +9498,7 @@ func (r Network_Storage_Iscsi) DisableSnapshots(scheduleType *string) (resp bool
 	params := []interface{}{
 		scheduleType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "disableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9507,7 +9507,7 @@ func (r Network_Storage_Iscsi) DownloadFile(fileId *string) (resp datatypes.Cont
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "downloadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9517,7 +9517,7 @@ func (r Network_Storage_Iscsi) EditCredential(username *string, newPassword *str
 		username,
 		newPassword,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "editCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9526,7 +9526,7 @@ func (r Network_Storage_Iscsi) EditObject(templateObject *datatypes.Network_Stor
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9541,13 +9541,13 @@ func (r Network_Storage_Iscsi) EnableSnapshots(scheduleType *string, retentionCo
 		hour,
 		dayOfWeek,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "enableSnapshots", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Failback from a volume replicant. In order to failback the volume must have already been failed over to a replicant.
 func (r Network_Storage_Iscsi) FailbackFromReplicant() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "failbackFromReplicant", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9556,31 +9556,31 @@ func (r Network_Storage_Iscsi) FailoverToReplicant(replicantId *int) (resp bool,
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "failoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that a Storage services belongs to.
 func (r Network_Storage_Iscsi) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Other usernames and passwords associated with a Storage volume.
 func (r Network_Storage_Iscsi) GetAccountPassword() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAccountPassword", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently active transactions on a network storage volume.
 func (r Network_Storage_Iscsi) GetActiveTransactions() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getActiveTransactions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage_Iscsi) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllFiles", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9589,7 +9589,7 @@ func (r Network_Storage_Iscsi) GetAllFilesByFilter(filter *datatypes.Container_U
 	params := []interface{}{
 		filter,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllFilesByFilter", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9598,7 +9598,7 @@ func (r Network_Storage_Iscsi) GetAllowableHardware(filterHostname *string) (res
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowableHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9608,7 +9608,7 @@ func (r Network_Storage_Iscsi) GetAllowableIpAddresses(subnetId *int, filterIpAd
 		subnetId,
 		filterIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowableIpAddresses", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9617,7 +9617,7 @@ func (r Network_Storage_Iscsi) GetAllowableSubnets(filterNetworkIdentifier *stri
 	params := []interface{}{
 		filterNetworkIdentifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowableSubnets", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9626,73 +9626,73 @@ func (r Network_Storage_Iscsi) GetAllowableVirtualGuests(filterHostname *string)
 	params := []interface{}{
 		filterHostname,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowableVirtualGuests", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the total number of allowed hosts limit per volume.
 func (r Network_Storage_Iscsi) GetAllowedHostsLimit() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedHostsLimit", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet_IpAddress objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getAllowedVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for a Storage volume.
 func (r Network_Storage_Iscsi) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Iscsi) GetBillingItemCategory() (resp datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getBillingItemCategory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9702,49 +9702,49 @@ func (r Network_Storage_Iscsi) GetByUsername(username *string, typ *string) (res
 		username,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getByUsername", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage_Iscsi) GetBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getCdnUrls", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getClusterResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedule id which was executed to create a snapshot.
 func (r Network_Storage_Iscsi) GetCreationScheduleId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getCreationScheduleId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Iscsi) GetCredentials() (resp []datatypes.Network_Storage_Credential, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getDailySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9753,13 +9753,13 @@ func (r Network_Storage_Iscsi) GetFileByIdentifier(identifier *string) (resp dat
 	params := []interface{}{
 		identifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the file number of files in a Virtual Server Storage account's root directory. This does not include the files stored in the recycle bin.
 func (r Network_Storage_Iscsi) GetFileCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFileCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9769,25 +9769,25 @@ func (r Network_Storage_Iscsi) GetFileList(folder *string, path *string) (resp [
 		folder,
 		path,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFileList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage_Iscsi) GetFilePendingDeleteCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFilePendingDeleteCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // {{CloudLayerOnlyMethod}} Retrieve a list of files that are pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted. This method does not download file content.
 func (r Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFilesPendingDelete", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getFolderList", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9800,85 +9800,85 @@ func (r Network_Storage_Iscsi) GetGraph(startDate *datatypes.Time, endDate *data
 		endDate,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getGraph", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the hardware associated with a Storage service.
 func (r Network_Storage_Iscsi) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Iscsi) GetHasEncryptionAtRest() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getHasEncryptionAtRest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Hourly Schedule which is associated with this network storage volume.
 func (r Network_Storage_Iscsi) GetHourlySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getHourlySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage_Iscsi) GetIops() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getIops", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Iscsi) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getIscsiLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage_Iscsi) GetLunId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getLunId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage_Iscsi) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getManualSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network storage volume's metric tracking object. This object records all periodic polled data available to this volume.
 func (r Network_Storage_Iscsi) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getMetricTrackingObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage_Iscsi) GetMountableFlag() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getMountableFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscribers that will be notified for usage amount warnings and overages.
 func (r Network_Storage_Iscsi) GetNotificationSubscribers() (resp []datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getNotificationSubscribers", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetObject() (resp datatypes.Network_Storage_Iscsi, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getObjectStorageConnectionInformation", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9887,49 +9887,49 @@ func (r Network_Storage_Iscsi) GetObjectsByCredential(credentialObject *datatype
 	params := []interface{}{
 		credentialObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getObjectsByCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage_Iscsi) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getOsType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type ID.
 func (r Network_Storage_Iscsi) GetOsTypeId() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getOsTypeId", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume in a parental role.
 func (r Network_Storage_Iscsi) GetParentPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getParentPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage_Iscsi) GetParentVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getParentVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volumes or snapshots partnered with a network storage volume.
 func (r Network_Storage_Iscsi) GetPartnerships() (resp []datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getPartnerships", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage_Iscsi) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getPermissionsGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Iscsi) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getProperties", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -9938,205 +9938,205 @@ func (r Network_Storage_Iscsi) GetRecycleBinFileByIdentifier(fileId *string) (re
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getRecycleBinFileByIdentifier", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves the remaining number of allowed hosts per volume.
 func (r Network_Storage_Iscsi) GetRemainingAllowedHosts() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getRemainingAllowedHosts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The iSCSI LUN volumes being replicated by this network storage volume.
 func (r Network_Storage_Iscsi) GetReplicatingLuns() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicatingLuns", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage_Iscsi) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicatingVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The volume replication events.
 func (r Network_Storage_Iscsi) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicationEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage_Iscsi) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicationPartners", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Replication Schedule associated with a network storage volume.
 func (r Network_Storage_Iscsi) GetReplicationSchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicationSchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current replication status of a network storage volume. Indicates Failover or Failback status.
 func (r Network_Storage_Iscsi) GetReplicationStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getReplicationStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage_Iscsi) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSchedules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network resource a Storage service is connected to.
 func (r Network_Storage_Iscsi) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getServiceResource", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The IP address of a Storage resource.
 func (r Network_Storage_Iscsi) GetServiceResourceBackendIpAddress() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getServiceResourceBackendIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of a Storage's network resource.
 func (r Network_Storage_Iscsi) GetServiceResourceName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getServiceResourceName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's configured snapshot space size.
 func (r Network_Storage_Iscsi) GetSnapshotCapacityGb() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotCapacityGb", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The creation timestamp of the snapshot on the storage platform.
 func (r Network_Storage_Iscsi) GetSnapshotCreationTimestamp() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotCreationTimestamp", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The percentage of used snapshot space after which to delete automated snapshots.
 func (r Network_Storage_Iscsi) GetSnapshotDeletionThresholdPercentage() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotDeletionThresholdPercentage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage_Iscsi) GetSnapshotSizeBytes() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotSizeBytes", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A volume's available snapshot reservation space.
 func (r Network_Storage_Iscsi) GetSnapshotSpaceAvailable() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotSpaceAvailable", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The snapshots associated with this SoftLayer_Network_Storage volume.
 func (r Network_Storage_Iscsi) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage_Iscsi) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getSnapshotsForVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Iscsi) GetStaasVersion() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getStaasVersion", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network storage groups this volume is attached to.
 func (r Network_Storage_Iscsi) GetStorageGroups() (resp []datatypes.Network_Storage_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getStorageGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getStorageGroupsNetworkConnectionDetails", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Storage_Iscsi) GetStorageTierLevel() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getStorageTierLevel", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A description of the Storage object.
 func (r Network_Storage_Iscsi) GetStorageType() (resp datatypes.Network_Storage_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getStorageType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The amount of space used by the volume.
 func (r Network_Storage_Iscsi) GetTotalBytesUsed() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getTotalBytesUsed", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total snapshot retention count of all schedules on this network storage volume.
 func (r Network_Storage_Iscsi) GetTotalScheduleSnapshotRetentionCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getTotalScheduleSnapshotRetentionCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The usage notification for SL Storage services.
 func (r Network_Storage_Iscsi) GetUsageNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getUsageNotification", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getValidReplicationTargetDatacenterLocations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of network storage service.
 func (r Network_Storage_Iscsi) GetVendorName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getVendorName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage_Iscsi) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getVirtualGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Iscsi) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getVolumeHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of a network storage volume.
 func (r Network_Storage_Iscsi) GetVolumeStatus() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getVolumeStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account username and password for the EVault webCC interface.
 func (r Network_Storage_Iscsi) GetWebccAccount() (resp datatypes.Account_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getWebccAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Weekly Schedule which is associated with this network storage volume.
 func (r Network_Storage_Iscsi) GetWeeklySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "getWeeklySchedule", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10145,7 +10145,7 @@ func (r Network_Storage_Iscsi) ImmediateFailoverToReplicant(replicantId *int) (r
 	params := []interface{}{
 		replicantId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "immediateFailoverToReplicant", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10154,7 +10154,7 @@ func (r Network_Storage_Iscsi) IsBlockingOperationInProgress(exemptStatusKeyName
 	params := []interface{}{
 		exemptStatusKeyNames,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "isBlockingOperationInProgress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10163,7 +10163,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHardware(hardwareObjectTemplate *
 	params := []interface{}{
 		hardwareObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHardware", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10172,7 +10172,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHardwareList(hardwareObjectTempla
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10182,7 +10182,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHost(typeClassName *string, hostI
 		typeClassName,
 		hostId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHost", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10191,7 +10191,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHostList(hostObjectTemplates []da
 	params := []interface{}{
 		hostObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHostList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10200,7 +10200,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromIpAddress(ipAddressObjectTemplate
 	params := []interface{}{
 		ipAddressObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10209,7 +10209,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromIpAddressList(ipAddressObjectTemp
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10218,7 +10218,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromSubnet(subnetObjectTemplate *data
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10227,7 +10227,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromSubnetList(subnetObjectTemplates 
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10236,7 +10236,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromVirtualGuest(virtualGuestObjectTe
 	params := []interface{}{
 		virtualGuestObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromVirtualGuest", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10245,7 +10245,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromVirtualGuestList(virtualGuestObje
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10254,7 +10254,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromHardwareList(hardwareO
 	params := []interface{}{
 		hardwareObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessToReplicantFromHardwareList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10263,7 +10263,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromIpAddressList(ipAddres
 	params := []interface{}{
 		ipAddressObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessToReplicantFromIpAddressList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10272,7 +10272,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromSubnet(subnetObjectTem
 	params := []interface{}{
 		subnetObjectTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessToReplicantFromSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10281,7 +10281,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromSubnetList(subnetObjec
 	params := []interface{}{
 		subnetObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessToReplicantFromSubnetList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10290,7 +10290,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromVirtualGuestList(virtu
 	params := []interface{}{
 		virtualGuestObjectTemplates,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeAccessToReplicantFromVirtualGuestList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10299,7 +10299,7 @@ func (r Network_Storage_Iscsi) RemoveCredential(username *string) (resp bool, er
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "removeCredential", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10310,7 +10310,7 @@ func (r Network_Storage_Iscsi) RestoreFile(fileId *string) (resp datatypes.Conta
 	params := []interface{}{
 		fileId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "restoreFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10319,7 +10319,7 @@ func (r Network_Storage_Iscsi) RestoreFromSnapshot(snapshotId *int) (resp bool, 
 	params := []interface{}{
 		snapshotId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "restoreFromSnapshot", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10328,7 +10328,7 @@ func (r Network_Storage_Iscsi) SendPasswordReminderEmail(username *string) (resp
 	params := []interface{}{
 		username,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "sendPasswordReminderEmail", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10341,7 +10341,7 @@ func (r Network_Storage_Iscsi) SetMountable(mountable *bool) (resp bool, err err
 	params := []interface{}{
 		mountable,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "setMountable", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10351,7 +10351,7 @@ func (r Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error
 	params := []interface{}{
 		capacityGb,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "setSnapshotAllocation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10360,7 +10360,7 @@ func (r Network_Storage_Iscsi) UpgradeVolumeCapacity(itemId *int) (resp bool, er
 	params := []interface{}{
 		itemId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "upgradeVolumeCapacity", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10374,7 +10374,7 @@ func (r Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_File
 	params := []interface{}{
 		file,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi", "uploadFile", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10419,13 +10419,13 @@ func (r Network_Storage_Iscsi_OS_Type) Offset(offset int) Network_Storage_Iscsi_
 
 // Use this method to retrieve all iSCSI OS Types.
 func (r Network_Storage_Iscsi_OS_Type) GetAllObjects() (resp []datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi_OS_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Iscsi_OS_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10473,13 +10473,13 @@ func (r Network_Storage_Schedule) CreateObject(templateObject *datatypes.Network
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Delete a network storage schedule. '''This cannot be undone.''' ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a schedule;
 func (r Network_Storage_Schedule) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10488,91 +10488,91 @@ func (r Network_Storage_Schedule) EditObject(templateObject *datatypes.Network_S
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The day of the month parameter of this schedule.
 func (r Network_Storage_Schedule) GetDayOfMonth() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getDayOfMonth", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The day of the week parameter of this schedule.
 func (r Network_Storage_Schedule) GetDayOfWeek() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getDayOfWeek", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Events which have been created as the result of a schedule execution.
 func (r Network_Storage_Schedule) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hour parameter of this schedule.
 func (r Network_Storage_Schedule) GetHour() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getHour", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The minute parameter of this schedule.
 func (r Network_Storage_Schedule) GetMinute() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getMinute", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The month of the year parameter of this schedule.
 func (r Network_Storage_Schedule) GetMonthOfYear() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getMonthOfYear", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Schedule) GetObject() (resp datatypes.Network_Storage_Schedule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The associated partnership for a schedule.
 func (r Network_Storage_Schedule) GetPartnership() (resp datatypes.Network_Storage_Partnership, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getPartnership", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Properties used for configuration of a schedule.
 func (r Network_Storage_Schedule) GetProperties() (resp []datatypes.Network_Storage_Schedule_Property, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getProperties", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Replica snapshots which have been created as the result of this schedule's execution.
 func (r Network_Storage_Schedule) GetReplicaSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getReplicaSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The number of snapshots this schedule is configured to retain.
 func (r Network_Storage_Schedule) GetRetentionCount() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getRetentionCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Snapshots which have been created as the result of this schedule's execution.
 func (r Network_Storage_Schedule) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getSnapshots", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type provides a standardized definition for a schedule.
 func (r Network_Storage_Schedule) GetType() (resp datatypes.Network_Storage_Schedule_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The associated volume for a schedule.
 func (r Network_Storage_Schedule) GetVolume() (resp datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule", "getVolume", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10617,13 +10617,13 @@ func (r Network_Storage_Schedule_Property_Type) Offset(offset int) Network_Stora
 
 // Use this method to retrieve all network storage schedule property types.
 func (r Network_Storage_Schedule_Property_Type) GetAllObjects() (resp []datatypes.Network_Storage_Schedule_Property_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule_Property_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Network_Storage_Schedule_Property_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Storage_Schedule_Property_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10671,7 +10671,7 @@ func (r Network_Subnet) AllowAccessToNetworkStorage(networkStorageTemplateObject
 	params := []interface{}{
 		networkStorageTemplateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "allowAccessToNetworkStorage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10680,13 +10680,13 @@ func (r Network_Subnet) AllowAccessToNetworkStorageList(networkStorageTemplateOb
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "allowAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Create the default PTR records for this subnet
 func (r Network_Subnet) CreateReverseDomainRecords() (resp datatypes.Dns_Domain_Reverse, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "createReverseDomainRecords", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10697,13 +10697,13 @@ func (r Network_Subnet) CreateSubnetRouteUpdateTransaction(newEndPointIpAddress 
 	params := []interface{}{
 		newEndPointIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "createSubnetRouteUpdateTransaction", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This function is used to create a new SoftLayer SWIP transaction to register your RWHOIS data with ARIN. SWIP transactions can only be initiated on subnets that contain more than 8 IP addresses.
 func (r Network_Subnet) CreateSwipTransaction() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "createSwipTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10712,7 +10712,7 @@ func (r Network_Subnet) EditNote(note *string) (resp bool, err error) {
 	params := []interface{}{
 		note,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "editNote", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10720,55 +10720,55 @@ func (r Network_Subnet) EditNote(note *string) (resp bool, err error) {
 //
 // This is a special function built for SoftLayer's use on the SWIP section of the customer portal, but may also be useful for API users looking for the same data.
 func (r Network_Subnet) FindAllSubnetsAndActiveSwipTransactionStatus() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "findAllSubnetsAndActiveSwipTransactionStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve If present, the active registration for this subnet.
 func (r Network_Subnet) GetActiveRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getActiveRegistration", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the swip transactions associated with a subnet that are still active.
 func (r Network_Subnet) GetActiveSwipTransaction() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getActiveSwipTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a subnet.
 func (r Network_Subnet) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getActiveTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Identifier which distinguishes whether the subnet is public or private address space.
 func (r Network_Subnet) GetAddressSpace() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAddressSpace", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Allowed_Host information to connect this Subnet to Network Storage supporting access control lists.
 func (r Network_Subnet) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAllowedHost", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects that this SoftLayer_Hardware has access to.
 func (r Network_Subnet) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAllowedNetworkStorage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Network_Subnet) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAllowedNetworkStorageReplicas", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10777,7 +10777,7 @@ func (r Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []data
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAttachedNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10786,187 +10786,187 @@ func (r Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []dat
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getAvailableNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a subnet.
 func (r Network_Subnet) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetBoundDescendants() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getBoundDescendants", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not this subnet is associated with a router. Subnets that are not associated with a router cannot be routed.
 func (r Network_Subnet) GetBoundRouterFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getBoundRouterFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetBoundRouters() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getBoundRouters", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetChildren() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getChildren", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The data center this subnet may be routed within.
 func (r Network_Subnet) GetDatacenter() (resp datatypes.Location_Datacenter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetDescendants() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getDescendants", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetDisplayLabel() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getDisplayLabel", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A static routed ip address
 func (r Network_Subnet) GetEndPointIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getEndPointIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetGlobalIpRecord() (resp datatypes.Network_Subnet_IpAddress_Global, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getGlobalIpRecord", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware using IP addresses on this subnet.
 func (r Network_Subnet) GetHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the ip addresses associated with a subnet.
 func (r Network_Subnet) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A subnet's associated network component.
 func (r Network_Subnet) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The upstream network component firewall.
 func (r Network_Subnet) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getNetworkComponentFirewall", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetNetworkProtectionAddresses() (resp []datatypes.Network_Protection_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getNetworkProtectionAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve IPSec network tunnels that have access to a private subnet.
 func (r Network_Subnet) GetNetworkTunnelContexts() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getNetworkTunnelContexts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLAN object that a subnet is associated with.
 func (r Network_Subnet) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Subnet object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet service. You can only retrieve the subnet whose vlan is associated with the account that you portal user is assigned to.
 func (r Network_Subnet) GetObject() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The pod in which this subnet resides.
 func (r Network_Subnet) GetPodName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getPodName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetProtectedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getProtectedIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRegionalInternetRegistry", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All registrations that have been created for this subnet.
 func (r Network_Subnet) GetRegistrations() (resp []datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRegistrations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The resource groups in which this subnet is a member.
 func (r Network_Subnet) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getResourceGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The reverse DNS domain associated with this subnet.
 func (r Network_Subnet) GetReverseDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getReverseDomain", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve all reverse DNS records associated with a subnet.
 func (r Network_Subnet) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getReverseDomainRecords", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An identifier of the role the subnet is within. Roles dictate how a subnet may be used.
 func (r Network_Subnet) GetRoleKeyName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRoleKeyName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of the role the subnet is within. Roles dictate how a subnet may be used.
 func (r Network_Subnet) GetRoleName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRoleName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getRoutableEndpointAddresses retrieves valid routable endpoint addresses for a subnet. You may use any IP address in a portable subnet, but may not use the network identifier, gateway, or broadcast address for primary and secondary on VLAN subnets.
 func (r Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRoutableEndpointIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The identifier for the type of route then subnet is currently configured for.
 func (r Network_Subnet) GetRoutingTypeKeyName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRoutingTypeKeyName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name for the type of route then subnet is currently configured for.
 func (r Network_Subnet) GetRoutingTypeName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getRoutingTypeName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -10975,25 +10975,25 @@ func (r Network_Subnet) GetSubnetForIpAddress(ipAddress *string) (resp datatypes
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getSubnetForIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the swip transactions associated with a subnet.
 func (r Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getSwipTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet) GetUnboundDescendants() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getUnboundDescendants", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Virtual Servers using IP addresses on this subnet.
 func (r Network_Subnet) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "getVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11002,7 +11002,7 @@ func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateO
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet", "removeAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11050,7 +11050,7 @@ func (r Network_Subnet_IpAddress) AllowAccessToNetworkStorage(networkStorageTemp
 	params := []interface{}{
 		networkStorageTemplateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "allowAccessToNetworkStorage", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11059,7 +11059,7 @@ func (r Network_Subnet_IpAddress) AllowAccessToNetworkStorageList(networkStorage
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "allowAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11068,7 +11068,7 @@ func (r Network_Subnet_IpAddress) EditObject(templateObject *datatypes.Network_S
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11077,7 +11077,7 @@ func (r Network_Subnet_IpAddress) EditObjects(templateObjects []datatypes.Networ
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "editObjects", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11086,31 +11086,31 @@ func (r Network_Subnet_IpAddress) FindByIpv4Address(ipAddress *string) (resp dat
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "findByIpv4Address", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage_Allowed_Host information to connect this IP Address to Network Storage supporting access control lists.
 func (r Network_Subnet_IpAddress) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getAllowedHost", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects that this SoftLayer_Hardware has access to.
 func (r Network_Subnet_IpAddress) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorage", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Network_Subnet_IpAddress) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorageReplicas", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The application delivery controller using this address.
 func (r Network_Subnet_IpAddress) GetApplicationDeliveryController() (resp datatypes.Network_Application_Delivery_Controller, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getApplicationDeliveryController", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11119,7 +11119,7 @@ func (r Network_Subnet_IpAddress) GetAttachedNetworkStorages(nasType *string) (r
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getAttachedNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11128,7 +11128,7 @@ func (r Network_Subnet_IpAddress) GetAvailableNetworkStorages(nasType *string) (
 	params := []interface{}{
 		nasType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getAvailableNetworkStorages", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11137,151 +11137,151 @@ func (r Network_Subnet_IpAddress) GetByIpAddress(ipAddress *string) (resp dataty
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getByIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An IPSec network tunnel's address translations. These translations use a SoftLayer ip address from an assigned static NAT subnet to deliver the packets to the remote (customer) destination.
 func (r Network_Subnet_IpAddress) GetContextTunnelTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getContextTunnelTranslations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the subnets routed to an IP address.
 func (r Network_Subnet_IpAddress) GetEndpointSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getEndpointSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component that is statically routed to an IP address.
 func (r Network_Subnet_IpAddress) GetGuestNetworkComponent() (resp datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getGuestNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component that is statically routed to an IP address.
 func (r Network_Subnet_IpAddress) GetGuestNetworkComponentBinding() (resp datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getGuestNetworkComponentBinding", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A server that this IP address is routed to.
 func (r Network_Subnet_IpAddress) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network component that is statically routed to an IP address.
 func (r Network_Subnet_IpAddress) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Subnet_IpAddress object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet_IpAddress service. You can only retrieve the IP address whose subnet is associated with a VLAN that is associated with the account that your portal user is assigned to.
 func (r Network_Subnet_IpAddress) GetObject() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network gateway appliance using this address as the private IP address.
 func (r Network_Subnet_IpAddress) GetPrivateNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getPrivateNetworkGateway", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet_IpAddress) GetProtectionAddress() (resp []datatypes.Network_Protection_Address, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getProtectionAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network gateway appliance using this address as the public IP address.
 func (r Network_Subnet_IpAddress) GetPublicNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getPublicNetworkGateway", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An IPMI-based management network component of the IP address.
 func (r Network_Subnet_IpAddress) GetRemoteManagementNetworkComponent() (resp datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getRemoteManagementNetworkComponent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve An IP address' associated subnet.
 func (r Network_Subnet_IpAddress) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getSubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All events for this IP address stored in the datacenter syslogs from the last 24 hours
 func (r Network_Subnet_IpAddress) GetSyslogEventsOneDay() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsOneDay", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All events for this IP address stored in the datacenter syslogs from the last 7 days
 func (r Network_Subnet_IpAddress) GetSyslogEventsSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsSevenDays", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by destination port, for the last 24 hours
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortOneDay() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortOneDay", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by destination port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortSevenDays", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 24 hours
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsOneDay() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsOneDay", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsSevenDays", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source ip address, for the last 24 hours
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpOneDay() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpOneDay", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source ip address, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpSevenDays", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 24 hours
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortOneDay() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortOneDay", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortSevenDays", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual guest that this IP address is routed to.
 func (r Network_Subnet_IpAddress) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getVirtualGuest", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Virtual licenses allocated for an IP Address.
 func (r Network_Subnet_IpAddress) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "getVirtualLicenses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11290,7 +11290,7 @@ func (r Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStorag
 	params := []interface{}{
 		networkStorageTemplateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress", "removeAccessToNetworkStorageList", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11335,37 +11335,37 @@ func (r Network_Subnet_IpAddress_Global) Offset(offset int) Network_Subnet_IpAdd
 
 // Retrieve
 func (r Network_Subnet_IpAddress_Global) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The active transaction associated with this Global IP.
 func (r Network_Subnet_IpAddress_Global) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getActiveTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for this Global IP.
 func (r Network_Subnet_IpAddress_Global) GetBillingItem() (resp datatypes.Billing_Item_Network_Subnet_IpAddress_Global, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet_IpAddress_Global) GetDestinationIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getDestinationIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Subnet_IpAddress_Global) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getIpAddress", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Subnet_IpAddress_Global, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11374,13 +11374,13 @@ func (r Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (re
 	params := []interface{}{
 		newEndPointIpAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "route", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This function is used to create a new transaction to unroute a global IP address. Routes are updated in one to two minutes depending on the number of transactions that are pending for a router.
 func (r Network_Subnet_IpAddress_Global) Unroute() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_IpAddress_Global", "unroute", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11425,7 +11425,7 @@ func (r Network_Subnet_Registration) Offset(offset int) Network_Subnet_Registrat
 
 // This method will initiate the removal of a subnet registration.
 func (r Network_Subnet_Registration) ClearRegistration() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "clearRegistration", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11436,7 +11436,7 @@ func (r Network_Subnet_Registration) CreateObject(templateObject *datatypes.Netw
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11445,7 +11445,7 @@ func (r Network_Subnet_Registration) EditObject(templateObject *datatypes.Networ
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11455,67 +11455,67 @@ func (r Network_Subnet_Registration) EditRegistrationAttachedDetails(personObjec
 		personObjectSkeleton,
 		networkObjectSkeleton,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "editRegistrationAttachedDetails", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that this registration belongs to.
 func (r Network_Subnet_Registration) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
 func (r Network_Subnet_Registration) GetDetailReferences() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getDetailReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The related registration events.
 func (r Network_Subnet_Registration) GetEvents() (resp []datatypes.Network_Subnet_Registration_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The "network" detail object.
 func (r Network_Subnet_Registration) GetNetworkDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getNetworkDetail", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Subnet_Registration) GetObject() (resp datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The "person" detail object.
 func (r Network_Subnet_Registration) GetPersonDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getPersonDetail", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The related Regional Internet Registry.
 func (r Network_Subnet_Registration) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getRegionalInternetRegistry", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
 func (r Network_Subnet_Registration) GetRegionalInternetRegistryHandle() (resp datatypes.Account_Rwhois_Handle, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getRegionalInternetRegistryHandle", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status of this registration.
 func (r Network_Subnet_Registration) GetStatus() (resp datatypes.Network_Subnet_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subnet that this registration pertains to.
 func (r Network_Subnet_Registration) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration", "getSubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11565,31 +11565,31 @@ func (r Network_Subnet_Registration_Details) CreateObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Details", "createObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method will delete an existing SoftLayer_Account_Regional_Registry_Detail object.
 func (r Network_Subnet_Registration_Details) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Details", "deleteObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
 func (r Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Details", "getDetail", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Subnet_Registration_Details) GetObject() (resp datatypes.Network_Subnet_Registration_Details, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Details", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The related [[SoftLayer_Network_Subnet_Registration|registration object]].
 func (r Network_Subnet_Registration_Details) GetRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Details", "getRegistration", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11636,13 +11636,13 @@ func (r Network_Subnet_Registration_Status) Offset(offset int) Network_Subnet_Re
 
 // no documentation yet
 func (r Network_Subnet_Registration_Status) GetAllObjects() (resp []datatypes.Network_Subnet_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Status", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network_Subnet_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Registration_Status", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11692,13 +11692,13 @@ func (r Network_Subnet_Rwhois_Data) EditObject(templateObject *datatypes.Network
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Rwhois_Data", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account associated with this reverse WHOIS data.
 func (r Network_Subnet_Rwhois_Data) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Rwhois_Data", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11706,7 +11706,7 @@ func (r Network_Subnet_Rwhois_Data) GetAccount() (resp datatypes.Account, err er
 //
 // The best way to get Rwhois Data for an account is through getRhwoisData on the Account service.
 func (r Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_Rwhois_Data, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Rwhois_Data", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11762,55 +11762,55 @@ func (r Network_Subnet_Swip_Transaction) Offset(offset int) Network_Subnet_Swip_
 
 // This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
 func (r Network_Subnet_Swip_Transaction) FindMyTransactions() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Account whose RWHOIS data was used to SWIP this subnet
 func (r Network_Subnet_Swip_Transaction) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Subnet_Swip_Transaction object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet_Swip_transaction service. You can only retrieve Swip transactions tied to the account.
 func (r Network_Subnet_Swip_Transaction) GetObject() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subnet that this SWIP transaction was created for.
 func (r Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "getSubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method finds all subnets attached to your account that are in OK status and starts "DELETE" transactions with ARIN, allowing you to remove your SWIP registration information.
 func (r Network_Subnet_Swip_Transaction) RemoveAllSubnetSwips() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "removeAllSubnetSwips", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This function, when called on an instantiated SWIP transaction, will allow you to start a "DELETE" transaction with ARIN, allowing you to remove your SWIP registration information.
 func (r Network_Subnet_Swip_Transaction) RemoveSwipData() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "removeSwipData", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This function will allow you to update ARIN's registration data for a subnet to your current RWHOIS data.
 func (r Network_Subnet_Swip_Transaction) ResendSwipData() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "resendSwipData", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // swipAllSubnets finds all subnets attached to your account and attempts to create a SWIP transaction for all subnets that do not already have a SWIP transaction in progress.
 func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "swipAllSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date.
 func (r Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Subnet_Swip_Transaction", "updateAllSubnetSwips", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11864,7 +11864,7 @@ func (r Network_TippingPointReporting) DrillDownAttack(signatureId *string, IpAd
 		timeFrame,
 		direction,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_TippingPointReporting", "drillDownAttack", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11881,7 +11881,7 @@ func (r Network_TippingPointReporting) GetMainStatistics(numberOfAttacks *int) (
 	params := []interface{}{
 		numberOfAttacks,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_TippingPointReporting", "getMainStatistics", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11896,7 +11896,7 @@ func (r Network_TippingPointReporting) GetReportForIpAddressOrSubnet(IpAddress *
 		orderBy,
 		orderDirection,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_TippingPointReporting", "getReportForIpAddressOrSubnet", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11916,7 +11916,7 @@ func (r Network_TippingPointReporting) GetSubnetReportForEntireAccount(timeFrame
 		orderDirection,
 		returnSubnetGroups,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_TippingPointReporting", "getSubnetReportForEntireAccount", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11966,7 +11966,7 @@ func (r Network_Tunnel_Module_Context) AddCustomerSubnetToNetworkTunnel(subnetId
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "addCustomerSubnetToNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11977,7 +11977,7 @@ func (r Network_Tunnel_Module_Context) AddPrivateSubnetToNetworkTunnel(subnetId 
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "addPrivateSubnetToNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -11988,13 +11988,13 @@ func (r Network_Tunnel_Module_Context) AddServiceSubnetToNetworkTunnel(subnetId 
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "addServiceSubnetToNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // A transaction will be created to apply the IPSec network tunnel's configuration to SoftLayer network devices.  During this time, an IPSec network tunnel cannot be modified in anyway.  Only one network tunnel configuration transaction can be created.  If a transaction has been created or is running, a new transaction cannot be created until the previous transaction completes.
 func (r Network_Tunnel_Module_Context) ApplyConfigurationsToDevice() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "applyConfigurationsToDevice", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12007,7 +12007,7 @@ func (r Network_Tunnel_Module_Context) CreateAddressTranslation(translation *dat
 	params := []interface{}{
 		translation,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "createAddressTranslation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12018,7 +12018,7 @@ func (r Network_Tunnel_Module_Context) CreateAddressTranslations(translations []
 	params := []interface{}{
 		translations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "createAddressTranslations", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12031,19 +12031,19 @@ func (r Network_Tunnel_Module_Context) DeleteAddressTranslation(translationId *i
 	params := []interface{}{
 		translationId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "deleteAddressTranslation", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Provides all of the address translation configurations for an IPSec VPN tunnel in a text file
 func (r Network_Tunnel_Module_Context) DownloadAddressTranslationConfigurations() (resp datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "downloadAddressTranslationConfigurations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Provides all of the configurations for an IPSec VPN network tunnel in a text file
 func (r Network_Tunnel_Module_Context) DownloadParameterConfigurations() (resp datatypes.Container_Utility_File_Entity, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "downloadParameterConfigurations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12056,7 +12056,7 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslation(translation *datat
 	params := []interface{}{
 		translation,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "editAddressTranslation", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12069,7 +12069,7 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 	params := []interface{}{
 		translations,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "editAddressTranslations", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12127,19 +12127,19 @@ func (r Network_Tunnel_Module_Context) EditObject(templateObject *datatypes.Netw
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that a network tunnel belongs to.
 func (r Network_Tunnel_Module_Context) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The transaction that is currently applying configurations for the network tunnel.
 func (r Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getActiveTransaction", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12149,25 +12149,25 @@ func (r Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Pr
 //
 // {address translation SoftLayer IP Address}        {address translation name}
 func (r Network_Tunnel_Module_Context) GetAddressTranslationConfigurations() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAddressTranslationConfigurations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A network tunnel's address translations.
 func (r Network_Tunnel_Module_Context) GetAddressTranslations() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAddressTranslations", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Subnets that provide access to SoftLayer services such as the management portal and the SoftLayer API.
 func (r Network_Tunnel_Module_Context) GetAllAvailableServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAllAvailableServiceSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The default authentication type used for both phases of the negotiation process.  The default value is set to MD5.
 func (r Network_Tunnel_Module_Context) GetAuthenticationDefault() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12178,31 +12178,31 @@ func (r Network_Tunnel_Module_Context) GetAuthenticationDefault() (resp string, 
 // * SHA1
 // * SHA256
 func (r Network_Tunnel_Module_Context) GetAuthenticationOptions() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationOptions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current billing item for network tunnel.
 func (r Network_Tunnel_Module_Context) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Remote subnets that are allowed access through a network tunnel.
 func (r Network_Tunnel_Module_Context) GetCustomerSubnets() (resp []datatypes.Network_Customer_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getCustomerSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The datacenter location for one end of the network tunnel that allows access to account's private subnets.
 func (r Network_Tunnel_Module_Context) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The default Diffie-Hellman group used for both phases of the negotiation process.  The default value is set to 2.
 func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupDefault() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12214,13 +12214,13 @@ func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupDefault() (resp int,
 // * 2
 // * 5
 func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupOptions() (resp []int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupOptions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The default encryption type used for both phases of the negotiation process.  The default value is set to 3DES.
 func (r Network_Tunnel_Module_Context) GetEncryptionDefault() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12233,61 +12233,61 @@ func (r Network_Tunnel_Module_Context) GetEncryptionDefault() (resp string, err 
 // * AES192
 // * AES256
 func (r Network_Tunnel_Module_Context) GetEncryptionOptions() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionOptions", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Private subnets that can be accessed through the network tunnel.
 func (r Network_Tunnel_Module_Context) GetInternalSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getInternalSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The keylife limits.  Keylife max limit is set to 120.  Keylife min limit is set to 172800.
 func (r Network_Tunnel_Module_Context) GetKeylifeLimits() (resp []int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getKeylifeLimits", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Tunnel_Module_Context object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Tunnel_Module_Context service. The IPSec network tunnel will be returned if it is associated with the account and the user has proper permission to manage network tunnels.
 func (r Network_Tunnel_Module_Context) GetObject() (resp datatypes.Network_Tunnel_Module_Context, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // All of the IPSec VPN tunnel's configurations will be returned.  It will list all of phase one and two negotiation parameters.  Both remote and local subnets will be provided as well.  This is useful when the configurations need to be passed on to another team and/or company for internal network configuration.
 func (r Network_Tunnel_Module_Context) GetParameterConfigurationsForCustomerView() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getParameterConfigurationsForCustomerView", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The default phase 1 keylife used if a value is not provided.  The default value is set to 3600.
 func (r Network_Tunnel_Module_Context) GetPhaseOneKeylifeDefault() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getPhaseOneKeylifeDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // The default phase 2 keylife used if a value is not provided.  The default value is set to 28800.
 func (r Network_Tunnel_Module_Context) GetPhaseTwoKeylifeDefault() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getPhaseTwoKeylifeDefault", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Service subnets that can be access through the network tunnel.
 func (r Network_Tunnel_Module_Context) GetServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getServiceSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Subnets used for a network tunnel's address translations.
 func (r Network_Tunnel_Module_Context) GetStaticRouteSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getStaticRouteSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The transaction history for this network tunnel.
 func (r Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "getTransactionHistory", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12298,7 +12298,7 @@ func (r Network_Tunnel_Module_Context) RemoveCustomerSubnetFromNetworkTunnel(sub
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "removeCustomerSubnetFromNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12309,7 +12309,7 @@ func (r Network_Tunnel_Module_Context) RemovePrivateSubnetFromNetworkTunnel(subn
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "removePrivateSubnetFromNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12320,7 +12320,7 @@ func (r Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(subn
 	params := []interface{}{
 		subnetId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Tunnel_Module_Context", "removeServiceSubnetFromNetworkTunnel", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12368,193 +12368,193 @@ func (r Network_Vlan) EditObject(templateObject *datatypes.Network_Vlan) (resp b
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "editObject", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account associated with a VLAN.
 func (r Network_Vlan) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getAccount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A VLAN's additional primary subnets. These are used to extend the number of servers attached to the VLAN by adding more ip addresses to the primary IP address pool.
 func (r Network_Vlan) GetAdditionalPrimarySubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getAdditionalPrimarySubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The gateway this VLAN is inside of.
 func (r Network_Vlan) GetAttachedNetworkGateway() (resp datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getAttachedNetworkGateway", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether or not this VLAN is inside a gateway.
 func (r Network_Vlan) GetAttachedNetworkGatewayFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getAttachedNetworkGatewayFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The inside VLAN record if this VLAN is inside a network gateway.
 func (r Network_Vlan) GetAttachedNetworkGatewayVlan() (resp datatypes.Network_Gateway_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getAttachedNetworkGatewayVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a network vlan.
 func (r Network_Vlan) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get a set of reasons why this VLAN may not be cancelled. If the result is empty, this VLAN may be cancelled.
 func (r Network_Vlan) GetCancelFailureReasons() (resp []string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getCancelFailureReasons", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that a network vlan is on a Hardware Firewall (Dedicated).
 func (r Network_Vlan) GetDedicatedFirewallFlag() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getDedicatedFirewallFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The extension router that a VLAN is associated with.
 func (r Network_Vlan) GetExtensionRouter() (resp datatypes.Hardware_Router, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getExtensionRouter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A firewalled Vlan's network components.
 func (r Network_Vlan) GetFirewallGuestNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallGuestNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A firewalled vlan's inbound/outbound interfaces.
 func (r Network_Vlan) GetFirewallInterfaces() (resp []datatypes.Network_Firewall_Module_Context_Interface, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallInterfaces", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A firewalled Vlan's network components.
 func (r Network_Vlan) GetFirewallNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the IP addresses associated with this server that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this VLAN. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Network_Vlan) GetFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallProtectableIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Get the subnets associated with this server that are protectable by a network component firewall.
 func (r Network_Vlan) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallProtectableSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently running rule set of a firewalled VLAN.
 func (r Network_Vlan) GetFirewallRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getFirewallRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The networking components that are connected to a VLAN.
 func (r Network_Vlan) GetGuestNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getGuestNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All of the hardware that exists on a VLAN. Hardware is associated with a VLAN by its networking components.
 func (r Network_Vlan) GetHardware() (resp []datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getHardware", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Vlan) GetHighAvailabilityFirewallFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getHighAvailabilityFirewallFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that a vlan can be assigned to a host that has local disk functionality.
 func (r Network_Vlan) GetLocalDiskStorageCapabilityFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getLocalDiskStorageCapabilityFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network in which this VLAN resides.
 func (r Network_Vlan) GetNetwork() (resp datatypes.Network, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getNetwork", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The network components that are connected to this VLAN through a trunk.
 func (r Network_Vlan) GetNetworkComponentTrunks() (resp []datatypes.Network_Component_Network_Vlan_Trunk, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getNetworkComponentTrunks", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The networking components that are connected to a VLAN.
 func (r Network_Vlan) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getNetworkComponents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Identifier to denote whether a VLAN is used for public or private connectivity.
 func (r Network_Vlan) GetNetworkSpace() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getNetworkSpace", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Hardware Firewall (Dedicated) for a network vlan.
 func (r Network_Vlan) GetNetworkVlanFirewall() (resp datatypes.Network_Vlan_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getNetworkVlanFirewall", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Network_Vlan object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Vlan service. You can only retrieve VLANs that are associated with your SoftLayer customer account.
 func (r Network_Vlan) GetObject() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The primary router that a VLAN is associated with. Every SoftLayer VLAN is connected to more than one router for greater network redundancy.
 func (r Network_Vlan) GetPrimaryRouter() (resp datatypes.Hardware_Router, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrimaryRouter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A VLAN's primary subnet. Each VLAN has at least one subnet, usually the subnet that is assigned to a server or new IP address block when it's purchased.
 func (r Network_Vlan) GetPrimarySubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrimarySubnet", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A VLAN's primary IPv6 subnet. Some VLAN's may not have a primary IPv6 subnet.
 func (r Network_Vlan) GetPrimarySubnetVersion6() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrimarySubnetVersion6", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Vlan) GetPrimarySubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrimarySubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The gateways this VLAN is the private VLAN of.
 func (r Network_Vlan) GetPrivateNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrivateNetworkGateways", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve a VLAN's associated private network VLAN. getPrivateVlan gathers it's information by retrieving the private VLAN of a VLAN's primary hardware object.
 func (r Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrivateVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12563,19 +12563,19 @@ func (r Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatyp
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPrivateVlanByIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Vlan) GetProtectedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getProtectedIpAddresses", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The gateways this VLAN is the public VLAN of.
 func (r Network_Vlan) GetPublicNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPublicNetworkGateways", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12584,79 +12584,79 @@ func (r Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_
 	params := []interface{}{
 		fqdn,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getPublicVlanByFqdn", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The resource group member for a network vlan.
 func (r Network_Vlan) GetResourceGroupMember() (resp []datatypes.Resource_Group_Member, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getResourceGroupMember", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The resource groups in which this VLAN is a member.
 func (r Network_Vlan) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getResourceGroups", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve all reverse DNS records associated with the subnets assigned to a VLAN.
 func (r Network_Vlan) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getReverseDomainRecords", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that a vlan can be assigned to a host that has SAN disk functionality.
 func (r Network_Vlan) GetSanStorageCapabilityFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getSanStorageCapabilityFlag", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve Collection of scale VLANs this VLAN applies to.
 func (r Network_Vlan) GetScaleVlans() (resp []datatypes.Scale_Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getScaleVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The secondary router that a VLAN is associated with. Every SoftLayer VLAN is connected to more than one router for greater network redundancy.
 func (r Network_Vlan) GetSecondaryRouter() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getSecondaryRouter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subnets that exist as secondary interfaces on a VLAN
 func (r Network_Vlan) GetSecondarySubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getSecondarySubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All of the subnets that exist as VLAN interfaces.
 func (r Network_Vlan) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getSubnets", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve References to all tags for this VLAN.
 func (r Network_Vlan) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The number of primary IP addresses in a VLAN.
 func (r Network_Vlan) GetTotalPrimaryIpAddressCount() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getTotalPrimaryIpAddressCount", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of this VLAN.
 func (r Network_Vlan) GetType() (resp datatypes.Network_Vlan_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve All of the Virtual Servers that are connected to a VLAN.
 func (r Network_Vlan) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getVirtualGuests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12665,7 +12665,7 @@ func (r Network_Vlan) GetVlanForIpAddress(ipAddress *string) (resp datatypes.Net
 	params := []interface{}{
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "getVlanForIpAddress", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12674,7 +12674,7 @@ func (r Network_Vlan) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "setTags", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12684,7 +12684,7 @@ func (r Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err e
 	params := []interface{}{
 		enabled,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan", "updateFirewallIntraVlanCommunication", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12729,73 +12729,73 @@ func (r Network_Vlan_Firewall) Offset(offset int) Network_Vlan_Firewall {
 
 // Retrieve The billing item for a Hardware Firewall (Dedicated).
 func (r Network_Vlan_Firewall) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getBillingItem", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The datacenter that the firewall resides in.
 func (r Network_Vlan_Firewall) GetDatacenter() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getDatacenter", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The firewall device type.
 func (r Network_Vlan_Firewall) GetFirewallType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getFirewallType", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve A name reflecting the hostname and domain of the firewall. This is created from the combined values of the firewall's logical name and vlan number automatically, and thus can not be edited directly.
 func (r Network_Vlan_Firewall) GetFullyQualifiedDomainName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getFullyQualifiedDomainName", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The credentials to log in to a firewall device. This is only present for dedicated appliances.
 func (r Network_Vlan_Firewall) GetManagementCredentials() (resp datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getManagementCredentials", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The update requests made for this firewall.
 func (r Network_Vlan_Firewall) GetNetworkFirewallUpdateRequests() (resp []datatypes.Network_Firewall_Update_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getNetworkFirewallUpdateRequests", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLAN object that a firewall is associated with and protecting.
 func (r Network_Vlan_Firewall) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getNetworkVlan", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The VLAN objects that a firewall is associated with and protecting.
 func (r Network_Vlan_Firewall) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getNetworkVlans", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject returns a SoftLayer_Network_Vlan_Firewall object. You can only get objects for vlans attached to your account that have a network firewall enabled.
 func (r Network_Vlan_Firewall) GetObject() (resp datatypes.Network_Vlan_Firewall, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The currently running rule set of this network component firewall.
 func (r Network_Vlan_Firewall) GetRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getRules", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "getTagReferences", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // This will completely reset the firewall to factory settings. If the firewall is not a dedicated appliance an error will occur. Note, this process is performed asynchronously. During the process all traffic will not be routed through the firewall.
 func (r Network_Vlan_Firewall) RestoreDefaults() (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "restoreDefaults", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12804,7 +12804,7 @@ func (r Network_Vlan_Firewall) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "setTags", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12813,7 +12813,7 @@ func (r Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.P
 	params := []interface{}{
 		bypass,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Firewall", "updateRouteBypass", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -12858,6 +12858,6 @@ func (r Network_Vlan_Type) Offset(offset int) Network_Vlan_Type {
 
 // no documentation yet
 func (r Network_Vlan_Type) GetObject() (resp datatypes.Network_Vlan_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Network_Vlan_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }

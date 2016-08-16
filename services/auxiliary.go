@@ -70,13 +70,13 @@ func (r Auxiliary_Marketing_Event) Offset(offset int) Auxiliary_Marketing_Event 
 
 // This method will return a collection of SoftLayer_Auxiliary_Marketing_Event objects ordered in ascending order by start date.
 func (r Auxiliary_Marketing_Event) GetMarketingEvents() (resp []datatypes.Auxiliary_Marketing_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Marketing_Event", "getMarketingEvents", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Auxiliary_Marketing_Event) GetObject() (resp datatypes.Auxiliary_Marketing_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Marketing_Event", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -135,7 +135,7 @@ func (r Auxiliary_Network_Status) GetNetworkStatus(target *string) (resp []datat
 	params := []interface{}{
 		target,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Network_Status", "getNetworkStatus", params, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -180,31 +180,31 @@ func (r Auxiliary_Notification_Emergency) Offset(offset int) Auxiliary_Notificat
 
 // Retrieve an array of SoftLayer_Auxiliary_Notification_Emergency data types, which contain all notification events regardless of status.
 func (r Auxiliary_Notification_Emergency) GetAllObjects() (resp []datatypes.Auxiliary_Notification_Emergency, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Notification_Emergency", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve an array of SoftLayer_Auxiliary_Notification_Emergency data types, which contain all current notification events.
 func (r Auxiliary_Notification_Emergency) GetCurrentNotifications() (resp []datatypes.Auxiliary_Notification_Emergency, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Notification_Emergency", "getCurrentNotifications", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Notification_Emergency object, it can be used to check for current notifications being broadcast by SoftLayer.
 func (r Auxiliary_Notification_Emergency) GetObject() (resp datatypes.Auxiliary_Notification_Emergency, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Notification_Emergency", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The signature of the SoftLayer employee department associated with this notification.
 func (r Auxiliary_Notification_Emergency) GetSignature() (resp datatypes.Auxiliary_Notification_Emergency_Signature, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Notification_Emergency", "getSignature", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status of this notification.
 func (r Auxiliary_Notification_Emergency) GetStatus() (resp datatypes.Auxiliary_Notification_Emergency_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Notification_Emergency", "getStatus", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -249,43 +249,43 @@ func (r Auxiliary_Press_Release) Offset(offset int) Auxiliary_Press_Release {
 
 // Retrieve
 func (r Auxiliary_Press_Release) GetAbout() (resp []datatypes.Auxiliary_Press_Release_About_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getAbout", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve an array of SoftLayer_Auxiliary_Press_Release data types, which contain all press releases.
 func (r Auxiliary_Press_Release) GetAllObjects() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getAllObjects", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release) GetContacts() (resp []datatypes.Auxiliary_Press_Release_Contact_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getContacts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release) GetMediaPartners() (resp []datatypes.Auxiliary_Press_Release_Media_Partner_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getMediaPartners", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release) GetObject() (resp datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release) GetPressReleaseContent() (resp datatypes.Auxiliary_Press_Release_Content, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getPressReleaseContent", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve an array of SoftLayer_Auxiliary_Press_Release data types, which contain all press releases.
 func (r Auxiliary_Press_Release) GetRenderedPressRelease() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getRenderedPressRelease", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -295,13 +295,13 @@ func (r Auxiliary_Press_Release) GetRenderedPressReleases(resultLimit *string, y
 		resultLimit,
 		year,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getRenderedPressReleases", params, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve an array of SoftLayer_Auxiliary_Press_Release data types, which have the website highlight flag set.
 func (r Auxiliary_Press_Release) GetWebsiteHighlightPressReleases() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release", "getWebsiteHighlightPressReleases", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -346,7 +346,7 @@ func (r Auxiliary_Press_Release_About) Offset(offset int) Auxiliary_Press_Releas
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_About object whose about id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_About) GetObject() (resp datatypes.Auxiliary_Press_Release_About, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_About", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -391,19 +391,19 @@ func (r Auxiliary_Press_Release_About_Press_Release) Offset(offset int) Auxiliar
 
 // Retrieve
 func (r Auxiliary_Press_Release_About_Press_Release) GetAboutParagraphs() (resp []datatypes.Auxiliary_Press_Release_About, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_About_Press_Release", "getAboutParagraphs", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_About_Press_Release object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_About_Press_Release) GetObject() (resp datatypes.Auxiliary_Press_Release_About_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_About_Press_Release", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release_About_Press_Release) GetPressReleases() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_About_Press_Release", "getPressReleases", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -448,7 +448,7 @@ func (r Auxiliary_Press_Release_Contact) Offset(offset int) Auxiliary_Press_Rele
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Contact object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_Contact) GetObject() (resp datatypes.Auxiliary_Press_Release_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Contact", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -493,19 +493,19 @@ func (r Auxiliary_Press_Release_Contact_Press_Release) Offset(offset int) Auxili
 
 // Retrieve
 func (r Auxiliary_Press_Release_Contact_Press_Release) GetContacts() (resp []datatypes.Auxiliary_Press_Release_Contact, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Contact_Press_Release", "getContacts", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Contact object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_Contact_Press_Release) GetObject() (resp datatypes.Auxiliary_Press_Release_Contact_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Contact_Press_Release", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release_Contact_Press_Release) GetPressReleases() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Contact_Press_Release", "getPressReleases", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -550,7 +550,7 @@ func (r Auxiliary_Press_Release_Content) Offset(offset int) Auxiliary_Press_Rele
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Content object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_Content) GetObject() (resp datatypes.Auxiliary_Press_Release_Content, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Content", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -595,7 +595,7 @@ func (r Auxiliary_Press_Release_Media_Partner) Offset(offset int) Auxiliary_Pres
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Contact object whose contact id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_Media_Partner) GetObject() (resp datatypes.Auxiliary_Press_Release_Media_Partner, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Media_Partner", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -640,19 +640,19 @@ func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Offset(offset int) 
 
 // Retrieve
 func (r Auxiliary_Press_Release_Media_Partner_Press_Release) GetMediaPartners() (resp []datatypes.Auxiliary_Press_Release_Media_Partner, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Media_Partner_Press_Release", "getMediaPartners", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Auxiliary_Press_Release_Media_Partner_Press_Release object whose media partner id number corresponds to the ID number of the init parameter passed to the SoftLayer_Auxiliary_Press_Release service.
 func (r Auxiliary_Press_Release_Media_Partner_Press_Release) GetObject() (resp datatypes.Auxiliary_Press_Release_Media_Partner_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Media_Partner_Press_Release", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Auxiliary_Press_Release_Media_Partner_Press_Release) GetPressReleases() (resp []datatypes.Auxiliary_Press_Release, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Press_Release_Media_Partner_Press_Release", "getPressReleases", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -697,13 +697,13 @@ func (r Auxiliary_Shipping_Courier_Type) Offset(offset int) Auxiliary_Shipping_C
 
 // Retrieve
 func (r Auxiliary_Shipping_Courier_Type) GetCourier() (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Shipping_Courier_Type", "getCourier", nil, r.Session, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Auxiliary_Shipping_Courier_Type) GetObject() (resp datatypes.Auxiliary_Shipping_Courier_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Shipping_Courier_Type", "getObject", nil, r.Session, &r.Options, &resp)
 	return
 }
 
@@ -712,6 +712,6 @@ func (r Auxiliary_Shipping_Courier_Type) GetTypeByKeyName(keyName *string) (resp
 	params := []interface{}{
 		keyName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = invokeMethod("SoftLayer_Auxiliary_Shipping_Courier_Type", "getTypeByKeyName", params, r.Session, &r.Options, &resp)
 	return
 }
