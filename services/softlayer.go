@@ -31,11 +31,6 @@ func invokeMethod(args []interface{}, session *session.Session, options *sl.Opti
 	segments := strings.Split(f.Name(), ".")
 	service, method := segments[len(segments)-2], segments[len(segments)-1]
 
-	// Most services need to be prefixed with "SoftLayer_"
-	if service[:6] != "McAfee" {
-		service = "SoftLayer_" + service
-	}
-
 	// camelCase the method name
 	method = strings.ToLower(string(method[0])) + method[1:]
 
