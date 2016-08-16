@@ -1,0 +1,54 @@
+/**
+ * Copyright 2016 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package order
+
+import (
+	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer/services"
+	"github.ibm.com/riethm/gopherlayer/session"
+)
+
+// CheckBillingOrderStatus returns true if the status of the billing order for
+// the provided product order receipt is in the list of provided statuses.
+// Returns false otherwise
+func CheckBillingOrderStatus(sess *session.Session, receipt datatypes.Container_Product_Order_Receipt, statuses []string) (bool, error) {
+	service := services.GetBillingOrderItemService(sess)
+
+	item, err := service.
+		Id(*receipt.PlacedOrder.Items[0].Id).
+		Mask("mask[id,billingItem[id,provisionTransaction[id,transactionStatus[name]]]]").
+		GetObject()
+
+	if err != nil {
+		return false, err
+	}
+
+	currentStatus := *item.BillingItem.ProvisionTransaction.TransactionStatus.Name
+	for _, status := range statuses {
+		if currentStatus == status {
+			return true, nil
+		}
+	}
+
+	return false, nil
+}
+
+// CheckBillingOrderComplete returns true if the status of the billing order for
+// the provided product order receipt is "COMPLETE".  Returns false otherwise
+func CheckBillingOrderComplete(sess *session.Session, receipt datatypes.Container_Product_Order_Receipt) (bool, error) {
+	return CheckBillingOrderStatus(sess, receipt, []string{"COMPLETE"})
+}
