@@ -129,6 +129,11 @@ func (fs Filters) Build() string {
 	return string(jsonStr)
 }
 
+// Builds the filter string in JSON format
+func (f Filter) Build() string {
+	return Build(f)
+}
+
 // Add options to the filter. Can be chained for multiple options.
 func (f Filter) Opt(name string, value interface{}) Filter {
 	if f.Opts == nil {

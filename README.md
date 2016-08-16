@@ -135,10 +135,10 @@ There is also a **filter builder** you can use to create a _Filter_ instead of w
 // requires importing the filter package
 accountServiceWithMaskAndFilter = accountService.
     Mask("id;hostname").
-    Filter(filter.Build(filter.Path("virtualGuests.domain").Eq("example.com")))
+    Filter(filter.Path("virtualGuests.domain").Eq("example.com").Build())
 ```
 
-`Build()` takes multiple filter paths as well. You can also create a filter incrementally:
+You can also create a filter incrementally:
 
 ```go
 // Create initial filters
@@ -154,6 +154,20 @@ filters = append(filters, filter.Path("virtualGuests.domain").Eq("example.com"))
 accountServiceWithMaskAndFilter = accountService.
     Mask("id;hostname").
     Filter(filters.Build())
+```
+
+Or you can build all those filters in one step:
+
+```go
+// Create initial filters
+filters := filter.Build(
+    filter.Path("virtualGuests.hostname").StartsWith("KM078"),
+    filter.Path("virtualGuests.id").NotEq(12345),
+    filter.Path("virtualGuests.domain").Eq("example.com"),
+)
+
+accountServiceWithMaskAndFilter = accountService.
+    Mask("id;hostname").Filter(filters)
 ```
 
 See _filter/filters.go_ for the full range of operations supported.

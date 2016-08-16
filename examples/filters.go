@@ -22,6 +22,8 @@ import (
 )
 
 func main() {
+	fmt.Println(filter.Path("virtualGuests.hostname").Eq("example.com").Build())
+
 	fmt.Println(
 		filter.New(
 			filter.Path("id").Eq("134"),
