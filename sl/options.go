@@ -16,6 +16,8 @@
 
 package sl
 
+// Options contains the individual query parameters that can be applied to
+// a request.
 type Options struct {
 	Id     *int
 	Mask   string

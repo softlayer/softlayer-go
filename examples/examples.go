@@ -190,7 +190,7 @@ func doError(sess *session.Session) {
 	}
 
 	// Example of a non-HTTP, non-API error
-	sess.Endpoint = session.DEFAULT_ENDPOINT
+	sess.Endpoint = session.DefaultEndpoint
 	var result struct {
 		Id string `json:"id"` // type mismatch (unmarshal an integer value into a string)
 	}
