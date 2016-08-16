@@ -31,7 +31,7 @@ import (
 // is provided.
 const DefaultEndpoint = "https://api.softlayer.com/rest/v3"
 
-type transportHandlerFunc func(
+type TransportHandlerFunc func(
 	sess *Session,
 	service string,
 	method string,
@@ -58,7 +58,7 @@ type Session struct {
 	// request and any response parsing specific to the desired protocol
 	// (e.g., REST).  Set automatically for a new Session, based on the
 	// provided Endpoint.
-	transportHandler transportHandlerFunc
+	TransportHandler TransportHandlerFunc
 }
 
 // New creates and returns a pointer to a new session object.  It takes up to
@@ -115,7 +115,7 @@ func New(args ...interface{}) *Session {
 		UserName:         values[keys["username"]],
 		APIKey:           values[keys["api_key"]],
 		Endpoint:         endpointURL,
-		transportHandler: doRestRequest,
+		TransportHandler: doRestRequest,
 	}
 }
 
@@ -144,7 +144,11 @@ func New(args ...interface{}) *Session {
 // the error (http code, API error message, etc.), or simply handled as a generic error,
 // (in which case no type assertion would be necessary)
 func (r *Session) DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
-	return r.transportHandler(r, service, method, args, options, pResult)
+	if r.TransportHandler == nil {
+		r.TransportHandler = doRestRequest
+	}
+
+	return r.TransportHandler(r, service, method, args, options, pResult)
 }
 
 func envFallback(keyName string, value *string) {
