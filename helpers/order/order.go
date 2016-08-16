@@ -25,7 +25,7 @@ import (
 // CheckBillingOrderStatus returns true if the status of the billing order for
 // the provided product order receipt is in the list of provided statuses.
 // Returns false otherwise
-func CheckBillingOrderStatus(sess *session.Session, receipt datatypes.Container_Product_Order_Receipt, statuses []string) (bool, error) {
+func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt, statuses []string) (bool, error) {
 	service := services.GetBillingOrderItemService(sess)
 
 	item, err := service.
@@ -49,6 +49,6 @@ func CheckBillingOrderStatus(sess *session.Session, receipt datatypes.Container_
 
 // CheckBillingOrderComplete returns true if the status of the billing order for
 // the provided product order receipt is "COMPLETE".  Returns false otherwise
-func CheckBillingOrderComplete(sess *session.Session, receipt datatypes.Container_Product_Order_Receipt) (bool, error) {
+func CheckBillingOrderComplete(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt) (bool, error) {
 	return CheckBillingOrderStatus(sess, receipt, []string{"COMPLETE"})
 }
