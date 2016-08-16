@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Catalyst_Company_Type) Id(id int) Catalyst_Company_Type {
 }
 
 func (r Catalyst_Company_Type) Mask(mask string) Catalyst_Company_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -89,6 +96,10 @@ func (r Catalyst_Enrollment) Id(id int) Catalyst_Enrollment {
 }
 
 func (r Catalyst_Enrollment) Mask(mask string) Catalyst_Enrollment {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Dns_Domain) Id(id int) Dns_Domain {
 }
 
 func (r Dns_Domain) Mask(mask string) Dns_Domain {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -251,6 +258,10 @@ func (r Dns_Domain_Registration) Id(id int) Dns_Domain_Registration {
 }
 
 func (r Dns_Domain_Registration) Mask(mask string) Dns_Domain_Registration {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -481,6 +492,10 @@ func (r Dns_Domain_Registration_Registrant_Verification_Status) Id(id int) Dns_D
 }
 
 func (r Dns_Domain_Registration_Registrant_Verification_Status) Mask(mask string) Dns_Domain_Registration_Registrant_Verification_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -537,6 +552,10 @@ func (r Dns_Domain_Registration_Status) Id(id int) Dns_Domain_Registration_Statu
 }
 
 func (r Dns_Domain_Registration_Status) Mask(mask string) Dns_Domain_Registration_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -597,6 +616,10 @@ func (r Dns_Domain_ResourceRecord) Id(id int) Dns_Domain_ResourceRecord {
 }
 
 func (r Dns_Domain_ResourceRecord) Mask(mask string) Dns_Domain_ResourceRecord {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -711,6 +734,10 @@ func (r Dns_Domain_ResourceRecord_MxType) Id(id int) Dns_Domain_ResourceRecord_M
 }
 
 func (r Dns_Domain_ResourceRecord_MxType) Mask(mask string) Dns_Domain_ResourceRecord_MxType {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -819,6 +846,10 @@ func (r Dns_Domain_ResourceRecord_SrvType) Id(id int) Dns_Domain_ResourceRecord_
 }
 
 func (r Dns_Domain_ResourceRecord_SrvType) Mask(mask string) Dns_Domain_ResourceRecord_SrvType {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -927,6 +958,10 @@ func (r Dns_Secondary) Id(id int) Dns_Secondary {
 }
 
 func (r Dns_Secondary) Mask(mask string) Dns_Secondary {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

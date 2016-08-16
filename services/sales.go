@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Sales_Presale_Event) Id(id int) Sales_Presale_Event {
 }
 
 func (r Sales_Presale_Event) Mask(mask string) Sales_Presale_Event {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

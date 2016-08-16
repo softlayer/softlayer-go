@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Configuration_Storage_Group_Array_Type) Id(id int) Configuration_Storage
 }
 
 func (r Configuration_Storage_Group_Array_Type) Mask(mask string) Configuration_Storage_Group_Array_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -95,6 +102,10 @@ func (r Configuration_Template) Id(id int) Configuration_Template {
 }
 
 func (r Configuration_Template) Mask(mask string) Configuration_Template {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -231,6 +242,10 @@ func (r Configuration_Template_Section) Id(id int) Configuration_Template_Sectio
 }
 
 func (r Configuration_Template_Section) Mask(mask string) Configuration_Template_Section {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -336,6 +351,10 @@ func (r Configuration_Template_Section_Definition) Id(id int) Configuration_Temp
 }
 
 func (r Configuration_Template_Section_Definition) Mask(mask string) Configuration_Template_Section_Definition {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -415,6 +434,10 @@ func (r Configuration_Template_Section_Definition_Group) Id(id int) Configuratio
 }
 
 func (r Configuration_Template_Section_Definition_Group) Mask(mask string) Configuration_Template_Section_Definition_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -470,6 +493,10 @@ func (r Configuration_Template_Section_Definition_Type) Id(id int) Configuration
 }
 
 func (r Configuration_Template_Section_Definition_Type) Mask(mask string) Configuration_Template_Section_Definition_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -511,6 +538,10 @@ func (r Configuration_Template_Section_Definition_Value) Id(id int) Configuratio
 }
 
 func (r Configuration_Template_Section_Definition_Value) Mask(mask string) Configuration_Template_Section_Definition_Value {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -566,6 +597,10 @@ func (r Configuration_Template_Section_Profile) Id(id int) Configuration_Templat
 }
 
 func (r Configuration_Template_Section_Profile) Mask(mask string) Configuration_Template_Section_Profile {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -619,6 +654,10 @@ func (r Configuration_Template_Section_Reference) Id(id int) Configuration_Templ
 }
 
 func (r Configuration_Template_Section_Reference) Mask(mask string) Configuration_Template_Section_Reference {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -674,6 +713,10 @@ func (r Configuration_Template_Section_Type) Id(id int) Configuration_Template_S
 }
 
 func (r Configuration_Template_Section_Type) Mask(mask string) Configuration_Template_Section_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -715,6 +758,10 @@ func (r Configuration_Template_Type) Id(id int) Configuration_Template_Type {
 }
 
 func (r Configuration_Template_Type) Mask(mask string) Configuration_Template_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

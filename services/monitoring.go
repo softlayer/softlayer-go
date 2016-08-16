@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Monitoring_Agent) Id(id int) Monitoring_Agent {
 }
 
 func (r Monitoring_Agent) Mask(mask string) Monitoring_Agent {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -266,6 +273,10 @@ func (r Monitoring_Agent_Configuration_Template_Group) Id(id int) Monitoring_Age
 }
 
 func (r Monitoring_Agent_Configuration_Template_Group) Mask(mask string) Monitoring_Agent_Configuration_Template_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -370,6 +381,10 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) Id(id int) Moni
 }
 
 func (r Monitoring_Agent_Configuration_Template_Group_Reference) Mask(mask string) Monitoring_Agent_Configuration_Template_Group_Reference {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -465,6 +480,10 @@ func (r Monitoring_Agent_Configuration_Value) Id(id int) Monitoring_Agent_Config
 }
 
 func (r Monitoring_Agent_Configuration_Value) Mask(mask string) Monitoring_Agent_Configuration_Value {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -530,6 +549,10 @@ func (r Monitoring_Agent_Status) Id(id int) Monitoring_Agent_Status {
 }
 
 func (r Monitoring_Agent_Status) Mask(mask string) Monitoring_Agent_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -571,6 +594,10 @@ func (r Monitoring_Robot) Id(id int) Monitoring_Robot {
 }
 
 func (r Monitoring_Robot) Mask(mask string) Monitoring_Robot {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

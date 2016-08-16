@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Software_AccountLicense) Id(id int) Software_AccountLicense {
 }
 
 func (r Software_AccountLicense) Mask(mask string) Software_AccountLicense {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -111,6 +118,10 @@ func (r Software_Component) Id(id int) Software_Component {
 }
 
 func (r Software_Component) Mask(mask string) Software_Component {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -214,6 +225,10 @@ func (r Software_Component_AntivirusSpyware) Id(id int) Software_Component_Antiv
 }
 
 func (r Software_Component_AntivirusSpyware) Mask(mask string) Software_Component_AntivirusSpyware {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -330,6 +345,10 @@ func (r Software_Component_HostIps) Id(id int) Software_Component_HostIps {
 }
 
 func (r Software_Component_HostIps) Mask(mask string) Software_Component_HostIps {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -452,6 +471,10 @@ func (r Software_Component_Password) Id(id int) Software_Component_Password {
 }
 
 func (r Software_Component_Password) Mask(mask string) Software_Component_Password {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -560,6 +583,10 @@ func (r Software_Description) Id(id int) Software_Description {
 }
 
 func (r Software_Description) Mask(mask string) Software_Description {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -685,6 +712,10 @@ func (r Software_VirtualLicense) Id(id int) Software_VirtualLicense {
 }
 
 func (r Software_VirtualLicense) Mask(mask string) Software_VirtualLicense {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

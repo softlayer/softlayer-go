@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Network) Id(id int) Network {
 }
 
 func (r Network) Mask(mask string) Network {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -203,6 +210,10 @@ func (r Network_Application_Delivery_Controller) Id(id int) Network_Application_
 }
 
 func (r Network_Application_Delivery_Controller) Mask(mask string) Network_Application_Delivery_Controller {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -487,6 +498,10 @@ func (r Network_Application_Delivery_Controller_Configuration_History) Id(id int
 }
 
 func (r Network_Application_Delivery_Controller_Configuration_History) Mask(mask string) Network_Application_Delivery_Controller_Configuration_History {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -540,6 +555,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) I
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -593,6 +612,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Ty
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -640,6 +663,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Id(id
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -705,6 +732,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) 
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -752,6 +783,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Id(
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -799,6 +834,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Id(id
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -846,6 +885,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Id(id int)
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -947,6 +990,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Id(i
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1042,6 +1089,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) I
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1206,6 +1257,10 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Id(i
 }
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1289,6 +1344,10 @@ func (r Network_Backbone) Id(id int) Network_Backbone {
 }
 
 func (r Network_Backbone) Mask(mask string) Network_Backbone {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1369,6 +1428,10 @@ func (r Network_Backbone_Location_Dependent) Id(id int) Network_Backbone_Locatio
 }
 
 func (r Network_Backbone_Location_Dependent) Mask(mask string) Network_Backbone_Location_Dependent {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1437,6 +1500,10 @@ func (r Network_Bandwidth_Version1_Allotment) Id(id int) Network_Bandwidth_Versi
 }
 
 func (r Network_Bandwidth_Version1_Allotment) Mask(mask string) Network_Bandwidth_Version1_Allotment {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1803,6 +1870,10 @@ func (r Network_Component) Id(id int) Network_Component {
 }
 
 func (r Network_Component) Mask(mask string) Network_Component {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2064,6 +2135,10 @@ func (r Network_Component_Firewall) Id(id int) Network_Component_Firewall {
 }
 
 func (r Network_Component_Firewall) Mask(mask string) Network_Component_Firewall {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2147,6 +2222,10 @@ func (r Network_ContentDelivery_Account) Id(id int) Network_ContentDelivery_Acco
 }
 
 func (r Network_ContentDelivery_Account) Mask(mask string) Network_ContentDelivery_Account {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2646,6 +2725,10 @@ func (r Network_ContentDelivery_Authentication_Address) Id(id int) Network_Conte
 }
 
 func (r Network_ContentDelivery_Authentication_Address) Mask(mask string) Network_ContentDelivery_Authentication_Address {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2728,6 +2811,10 @@ func (r Network_ContentDelivery_Authentication_Token) Id(id int) Network_Content
 }
 
 func (r Network_ContentDelivery_Authentication_Token) Mask(mask string) Network_ContentDelivery_Authentication_Token {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2861,6 +2948,10 @@ func (r Network_Customer_Subnet) Id(id int) Network_Customer_Subnet {
 }
 
 func (r Network_Customer_Subnet) Mask(mask string) Network_Customer_Subnet {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2917,6 +3008,10 @@ func (r Network_Firewall_AccessControlList) Id(id int) Network_Firewall_AccessCo
 }
 
 func (r Network_Firewall_AccessControlList) Mask(mask string) Network_Firewall_AccessControlList {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2976,6 +3071,10 @@ func (r Network_Firewall_Interface) Id(id int) Network_Firewall_Interface {
 }
 
 func (r Network_Firewall_Interface) Mask(mask string) Network_Firewall_Interface {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3029,6 +3128,10 @@ func (r Network_Firewall_Module_Context_Interface) Id(id int) Network_Firewall_M
 }
 
 func (r Network_Firewall_Module_Context_Interface) Mask(mask string) Network_Firewall_Module_Context_Interface {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3084,6 +3187,10 @@ func (r Network_Firewall_Template) Id(id int) Network_Firewall_Template {
 }
 
 func (r Network_Firewall_Template) Mask(mask string) Network_Firewall_Template {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3141,6 +3248,10 @@ func (r Network_Firewall_Update_Request) Id(id int) Network_Firewall_Update_Requ
 }
 
 func (r Network_Firewall_Update_Request) Mask(mask string) Network_Firewall_Update_Request {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3241,6 +3352,10 @@ func (r Network_Firewall_Update_Request_Rule) Id(id int) Network_Firewall_Update
 }
 
 func (r Network_Firewall_Update_Request_Rule) Mask(mask string) Network_Firewall_Update_Request_Rule {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3313,6 +3428,10 @@ func (r Network_Gateway) Id(id int) Network_Gateway {
 }
 
 func (r Network_Gateway) Mask(mask string) Network_Gateway {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3466,6 +3585,10 @@ func (r Network_Gateway_Member) Id(id int) Network_Gateway_Member {
 }
 
 func (r Network_Gateway_Member) Mask(mask string) Network_Gateway_Member {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3537,6 +3660,10 @@ func (r Network_Gateway_Status) Id(id int) Network_Gateway_Status {
 }
 
 func (r Network_Gateway_Status) Mask(mask string) Network_Gateway_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3578,6 +3705,10 @@ func (r Network_Gateway_Vlan) Id(id int) Network_Gateway_Vlan {
 }
 
 func (r Network_Gateway_Vlan) Mask(mask string) Network_Gateway_Vlan {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3679,6 +3810,10 @@ func (r Network_LoadBalancer_Global_Account) Id(id int) Network_LoadBalancer_Glo
 }
 
 func (r Network_LoadBalancer_Global_Account) Mask(mask string) Network_LoadBalancer_Global_Account {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3800,6 +3935,10 @@ func (r Network_LoadBalancer_Global_Host) Id(id int) Network_LoadBalancer_Global
 }
 
 func (r Network_LoadBalancer_Global_Host) Mask(mask string) Network_LoadBalancer_Global_Host {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3855,6 +3994,10 @@ func (r Network_LoadBalancer_Service) Id(id int) Network_LoadBalancer_Service {
 }
 
 func (r Network_LoadBalancer_Service) Mask(mask string) Network_LoadBalancer_Service {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3949,6 +4092,10 @@ func (r Network_LoadBalancer_VirtualIpAddress) Id(id int) Network_LoadBalancer_V
 }
 
 func (r Network_LoadBalancer_VirtualIpAddress) Mask(mask string) Network_LoadBalancer_VirtualIpAddress {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4053,6 +4200,10 @@ func (r Network_Media_Transcode_Account) Id(id int) Network_Media_Transcode_Acco
 }
 
 func (r Network_Media_Transcode_Account) Mask(mask string) Network_Media_Transcode_Account {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4189,6 +4340,10 @@ func (r Network_Media_Transcode_Job) Id(id int) Network_Media_Transcode_Job {
 }
 
 func (r Network_Media_Transcode_Job) Mask(mask string) Network_Media_Transcode_Job {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4293,6 +4448,10 @@ func (r Network_Media_Transcode_Job_Status) Id(id int) Network_Media_Transcode_J
 }
 
 func (r Network_Media_Transcode_Job_Status) Mask(mask string) Network_Media_Transcode_Job_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4340,6 +4499,10 @@ func (r Network_Message_Delivery) Id(id int) Network_Message_Delivery {
 }
 
 func (r Network_Message_Delivery) Mask(mask string) Network_Message_Delivery {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4414,6 +4577,10 @@ func (r Network_Message_Delivery_Email_Sendgrid) Id(id int) Network_Message_Deli
 }
 
 func (r Network_Message_Delivery_Email_Sendgrid) Mask(mask string) Network_Message_Delivery_Email_Sendgrid {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4594,6 +4761,10 @@ func (r Network_Message_Queue) Id(id int) Network_Message_Queue {
 }
 
 func (r Network_Message_Queue) Mask(mask string) Network_Message_Queue {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4659,6 +4830,10 @@ func (r Network_Message_Queue_Node) Id(id int) Network_Message_Queue_Node {
 }
 
 func (r Network_Message_Queue_Node) Mask(mask string) Network_Message_Queue_Node {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4761,6 +4936,10 @@ func (r Network_Message_Queue_Status) Id(id int) Network_Message_Queue_Status {
 }
 
 func (r Network_Message_Queue_Status) Mask(mask string) Network_Message_Queue_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4802,6 +4981,10 @@ func (r Network_Monitor) Id(id int) Network_Monitor {
 }
 
 func (r Network_Monitor) Mask(mask string) Network_Monitor {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4857,6 +5040,10 @@ func (r Network_Monitor_Version1_Query_Host) Id(id int) Network_Monitor_Version1
 }
 
 func (r Network_Monitor_Version1_Query_Host) Mask(mask string) Network_Monitor_Version1_Query_Host {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4991,6 +5178,10 @@ func (r Network_Monitor_Version1_Query_Host_Stratum) Id(id int) Network_Monitor_
 }
 
 func (r Network_Monitor_Version1_Query_Host_Stratum) Mask(mask string) Network_Monitor_Version1_Query_Host_Stratum {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -5055,6 +5246,10 @@ func (r Network_Pod) Id(id int) Network_Pod {
 }
 
 func (r Network_Pod) Mask(mask string) Network_Pod {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -5119,6 +5314,10 @@ func (r Network_Security_Scanner_Request) Id(id int) Network_Security_Scanner_Re
 }
 
 func (r Network_Security_Scanner_Request) Mask(mask string) Network_Security_Scanner_Request {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -5205,6 +5404,10 @@ func (r Network_Service_Vpn_Overrides) Id(id int) Network_Service_Vpn_Overrides 
 }
 
 func (r Network_Service_Vpn_Overrides) Mask(mask string) Network_Service_Vpn_Overrides {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -5282,6 +5485,10 @@ func (r Network_Storage) Id(id int) Network_Storage {
 }
 
 func (r Network_Storage) Mask(mask string) Network_Storage {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -6490,6 +6697,10 @@ func (r Network_Storage_Allowed_Host) Id(id int) Network_Storage_Allowed_Host {
 }
 
 func (r Network_Storage_Allowed_Host) Mask(mask string) Network_Storage_Allowed_Host {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -6588,6 +6799,10 @@ func (r Network_Storage_Allowed_Host_Hardware) Id(id int) Network_Storage_Allowe
 }
 
 func (r Network_Storage_Allowed_Host_Hardware) Mask(mask string) Network_Storage_Allowed_Host_Hardware {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -6692,6 +6907,10 @@ func (r Network_Storage_Allowed_Host_IpAddress) Id(id int) Network_Storage_Allow
 }
 
 func (r Network_Storage_Allowed_Host_IpAddress) Mask(mask string) Network_Storage_Allowed_Host_IpAddress {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -6796,6 +7015,10 @@ func (r Network_Storage_Allowed_Host_Subnet) Id(id int) Network_Storage_Allowed_
 }
 
 func (r Network_Storage_Allowed_Host_Subnet) Mask(mask string) Network_Storage_Allowed_Host_Subnet {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -6900,6 +7123,10 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) Id(id int) Network_Storage_Al
 }
 
 func (r Network_Storage_Allowed_Host_VirtualGuest) Mask(mask string) Network_Storage_Allowed_Host_VirtualGuest {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -7004,6 +7231,10 @@ func (r Network_Storage_Backup_Evault) Id(id int) Network_Storage_Backup_Evault 
 }
 
 func (r Network_Storage_Backup_Evault) Mask(mask string) Network_Storage_Backup_Evault {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8264,6 +8495,10 @@ func (r Network_Storage_Group) Id(id int) Network_Storage_Group {
 }
 
 func (r Network_Storage_Group) Mask(mask string) Network_Storage_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8413,6 +8648,10 @@ func (r Network_Storage_Group_Iscsi) Id(id int) Network_Storage_Group_Iscsi {
 }
 
 func (r Network_Storage_Group_Iscsi) Mask(mask string) Network_Storage_Group_Iscsi {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8562,6 +8801,10 @@ func (r Network_Storage_Group_Nfs) Id(id int) Network_Storage_Group_Nfs {
 }
 
 func (r Network_Storage_Group_Nfs) Mask(mask string) Network_Storage_Group_Nfs {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8711,6 +8954,10 @@ func (r Network_Storage_Group_Type) Id(id int) Network_Storage_Group_Type {
 }
 
 func (r Network_Storage_Group_Type) Mask(mask string) Network_Storage_Group_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8758,6 +9005,10 @@ func (r Network_Storage_Hub_Cleversafe_Account) Id(id int) Network_Storage_Hub_C
 }
 
 func (r Network_Storage_Hub_Cleversafe_Account) Mask(mask string) Network_Storage_Hub_Cleversafe_Account {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8868,6 +9119,10 @@ func (r Network_Storage_Hub_Swift_Share) Id(id int) Network_Storage_Hub_Swift_Sh
 }
 
 func (r Network_Storage_Hub_Swift_Share) Mask(mask string) Network_Storage_Hub_Swift_Share {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -8929,6 +9184,10 @@ func (r Network_Storage_Iscsi) Id(id int) Network_Storage_Iscsi {
 }
 
 func (r Network_Storage_Iscsi) Mask(mask string) Network_Storage_Iscsi {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -10135,6 +10394,10 @@ func (r Network_Storage_Iscsi_OS_Type) Id(id int) Network_Storage_Iscsi_OS_Type 
 }
 
 func (r Network_Storage_Iscsi_OS_Type) Mask(mask string) Network_Storage_Iscsi_OS_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -10182,6 +10445,10 @@ func (r Network_Storage_Schedule) Id(id int) Network_Storage_Schedule {
 }
 
 func (r Network_Storage_Schedule) Mask(mask string) Network_Storage_Schedule {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -10325,6 +10592,10 @@ func (r Network_Storage_Schedule_Property_Type) Id(id int) Network_Storage_Sched
 }
 
 func (r Network_Storage_Schedule_Property_Type) Mask(mask string) Network_Storage_Schedule_Property_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -10372,6 +10643,10 @@ func (r Network_Subnet) Id(id int) Network_Subnet {
 }
 
 func (r Network_Subnet) Mask(mask string) Network_Subnet {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -10747,6 +11022,10 @@ func (r Network_Subnet_IpAddress) Id(id int) Network_Subnet_IpAddress {
 }
 
 func (r Network_Subnet_IpAddress) Mask(mask string) Network_Subnet_IpAddress {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11031,6 +11310,10 @@ func (r Network_Subnet_IpAddress_Global) Id(id int) Network_Subnet_IpAddress_Glo
 }
 
 func (r Network_Subnet_IpAddress_Global) Mask(mask string) Network_Subnet_IpAddress_Global {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11117,6 +11400,10 @@ func (r Network_Subnet_Registration) Id(id int) Network_Subnet_Registration {
 }
 
 func (r Network_Subnet_Registration) Mask(mask string) Network_Subnet_Registration {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11248,6 +11535,10 @@ func (r Network_Subnet_Registration_Details) Id(id int) Network_Subnet_Registrat
 }
 
 func (r Network_Subnet_Registration_Details) Mask(mask string) Network_Subnet_Registration_Details {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11320,6 +11611,10 @@ func (r Network_Subnet_Registration_Status) Id(id int) Network_Subnet_Registrati
 }
 
 func (r Network_Subnet_Registration_Status) Mask(mask string) Network_Subnet_Registration_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11369,6 +11664,10 @@ func (r Network_Subnet_Rwhois_Data) Id(id int) Network_Subnet_Rwhois_Data {
 }
 
 func (r Network_Subnet_Rwhois_Data) Mask(mask string) Network_Subnet_Rwhois_Data {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11438,6 +11737,10 @@ func (r Network_Subnet_Swip_Transaction) Id(id int) Network_Subnet_Swip_Transact
 }
 
 func (r Network_Subnet_Swip_Transaction) Mask(mask string) Network_Subnet_Swip_Transaction {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11527,6 +11830,10 @@ func (r Network_TippingPointReporting) Id(id int) Network_TippingPointReporting 
 }
 
 func (r Network_TippingPointReporting) Mask(mask string) Network_TippingPointReporting {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -11629,6 +11936,10 @@ func (r Network_Tunnel_Module_Context) Id(id int) Network_Tunnel_Module_Context 
 }
 
 func (r Network_Tunnel_Module_Context) Mask(mask string) Network_Tunnel_Module_Context {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -12029,6 +12340,10 @@ func (r Network_Vlan) Id(id int) Network_Vlan {
 }
 
 func (r Network_Vlan) Mask(mask string) Network_Vlan {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -12389,6 +12704,10 @@ func (r Network_Vlan_Firewall) Id(id int) Network_Vlan_Firewall {
 }
 
 func (r Network_Vlan_Firewall) Mask(mask string) Network_Vlan_Firewall {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -12514,6 +12833,10 @@ func (r Network_Vlan_Type) Id(id int) Network_Vlan_Type {
 }
 
 func (r Network_Vlan_Type) Mask(mask string) Network_Vlan_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

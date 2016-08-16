@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Scale_Asset) Id(id int) Scale_Asset {
 }
 
 func (r Scale_Asset) Mask(mask string) Scale_Asset {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -95,6 +102,10 @@ func (r Scale_Asset_Hardware) Id(id int) Scale_Asset_Hardware {
 }
 
 func (r Scale_Asset_Hardware) Mask(mask string) Scale_Asset_Hardware {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -169,6 +180,10 @@ func (r Scale_Asset_Virtual_Guest) Id(id int) Scale_Asset_Virtual_Guest {
 }
 
 func (r Scale_Asset_Virtual_Guest) Mask(mask string) Scale_Asset_Virtual_Guest {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -243,6 +258,10 @@ func (r Scale_Group) Id(id int) Scale_Group {
 }
 
 func (r Scale_Group) Mask(mask string) Scale_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -418,6 +437,10 @@ func (r Scale_Group_Status) Id(id int) Scale_Group_Status {
 }
 
 func (r Scale_Group_Status) Mask(mask string) Scale_Group_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -465,6 +488,10 @@ func (r Scale_LoadBalancer) Id(id int) Scale_LoadBalancer {
 }
 
 func (r Scale_LoadBalancer) Mask(mask string) Scale_LoadBalancer {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -578,6 +605,10 @@ func (r Scale_Member) Id(id int) Scale_Member {
 }
 
 func (r Scale_Member) Mask(mask string) Scale_Member {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -631,6 +662,10 @@ func (r Scale_Member_Virtual_Guest) Id(id int) Scale_Member_Virtual_Guest {
 }
 
 func (r Scale_Member_Virtual_Guest) Mask(mask string) Scale_Member_Virtual_Guest {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -696,6 +731,10 @@ func (r Scale_Network_Vlan) Id(id int) Scale_Network_Vlan {
 }
 
 func (r Scale_Network_Vlan) Mask(mask string) Scale_Network_Vlan {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -764,6 +803,10 @@ func (r Scale_Policy) Id(id int) Scale_Policy {
 }
 
 func (r Scale_Policy) Mask(mask string) Scale_Policy {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -877,6 +920,10 @@ func (r Scale_Policy_Action) Id(id int) Scale_Policy_Action {
 }
 
 func (r Scale_Policy_Action) Mask(mask string) Scale_Policy_Action {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -945,6 +992,10 @@ func (r Scale_Policy_Action_Scale) Id(id int) Scale_Policy_Action_Scale {
 }
 
 func (r Scale_Policy_Action_Scale) Mask(mask string) Scale_Policy_Action_Scale {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1022,6 +1073,10 @@ func (r Scale_Policy_Action_Type) Id(id int) Scale_Policy_Action_Type {
 }
 
 func (r Scale_Policy_Action_Type) Mask(mask string) Scale_Policy_Action_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1069,6 +1124,10 @@ func (r Scale_Policy_Trigger) Id(id int) Scale_Policy_Trigger {
 }
 
 func (r Scale_Policy_Trigger) Mask(mask string) Scale_Policy_Trigger {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1146,6 +1205,10 @@ func (r Scale_Policy_Trigger_OneTime) Id(id int) Scale_Policy_Trigger_OneTime {
 }
 
 func (r Scale_Policy_Trigger_OneTime) Mask(mask string) Scale_Policy_Trigger_OneTime {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1223,6 +1286,10 @@ func (r Scale_Policy_Trigger_Repeating) Id(id int) Scale_Policy_Trigger_Repeatin
 }
 
 func (r Scale_Policy_Trigger_Repeating) Mask(mask string) Scale_Policy_Trigger_Repeating {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1310,6 +1377,10 @@ func (r Scale_Policy_Trigger_ResourceUse) Id(id int) Scale_Policy_Trigger_Resour
 }
 
 func (r Scale_Policy_Trigger_ResourceUse) Mask(mask string) Scale_Policy_Trigger_ResourceUse {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1393,6 +1464,10 @@ func (r Scale_Policy_Trigger_ResourceUse_Watch) Id(id int) Scale_Policy_Trigger_
 }
 
 func (r Scale_Policy_Trigger_ResourceUse_Watch) Mask(mask string) Scale_Policy_Trigger_ResourceUse_Watch {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1482,6 +1557,10 @@ func (r Scale_Policy_Trigger_Type) Id(id int) Scale_Policy_Trigger_Type {
 }
 
 func (r Scale_Policy_Trigger_Type) Mask(mask string) Scale_Policy_Trigger_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1529,6 +1608,10 @@ func (r Scale_Termination_Policy) Id(id int) Scale_Termination_Policy {
 }
 
 func (r Scale_Termination_Policy) Mask(mask string) Scale_Termination_Policy {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

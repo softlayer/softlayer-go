@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Metric_Tracking_Object) Id(id int) Metric_Tracking_Object {
 }
 
 func (r Metric_Tracking_Object) Mask(mask string) Metric_Tracking_Object {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -195,6 +202,10 @@ func (r Metric_Tracking_Object_Bandwidth_Summary) Id(id int) Metric_Tracking_Obj
 }
 
 func (r Metric_Tracking_Object_Bandwidth_Summary) Mask(mask string) Metric_Tracking_Object_Bandwidth_Summary {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

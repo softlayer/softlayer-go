@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Auxiliary_Marketing_Event) Id(id int) Auxiliary_Marketing_Event {
 }
 
 func (r Auxiliary_Marketing_Event) Mask(mask string) Auxiliary_Marketing_Event {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -89,6 +96,10 @@ func (r Auxiliary_Network_Status) Id(id int) Auxiliary_Network_Status {
 }
 
 func (r Auxiliary_Network_Status) Mask(mask string) Auxiliary_Network_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -144,6 +155,10 @@ func (r Auxiliary_Notification_Emergency) Id(id int) Auxiliary_Notification_Emer
 }
 
 func (r Auxiliary_Notification_Emergency) Mask(mask string) Auxiliary_Notification_Emergency {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -209,6 +224,10 @@ func (r Auxiliary_Press_Release) Id(id int) Auxiliary_Press_Release {
 }
 
 func (r Auxiliary_Press_Release) Mask(mask string) Auxiliary_Press_Release {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -302,6 +321,10 @@ func (r Auxiliary_Press_Release_About) Id(id int) Auxiliary_Press_Release_About 
 }
 
 func (r Auxiliary_Press_Release_About) Mask(mask string) Auxiliary_Press_Release_About {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -343,6 +366,10 @@ func (r Auxiliary_Press_Release_About_Press_Release) Id(id int) Auxiliary_Press_
 }
 
 func (r Auxiliary_Press_Release_About_Press_Release) Mask(mask string) Auxiliary_Press_Release_About_Press_Release {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -396,6 +423,10 @@ func (r Auxiliary_Press_Release_Contact) Id(id int) Auxiliary_Press_Release_Cont
 }
 
 func (r Auxiliary_Press_Release_Contact) Mask(mask string) Auxiliary_Press_Release_Contact {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -437,6 +468,10 @@ func (r Auxiliary_Press_Release_Contact_Press_Release) Id(id int) Auxiliary_Pres
 }
 
 func (r Auxiliary_Press_Release_Contact_Press_Release) Mask(mask string) Auxiliary_Press_Release_Contact_Press_Release {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -490,6 +525,10 @@ func (r Auxiliary_Press_Release_Content) Id(id int) Auxiliary_Press_Release_Cont
 }
 
 func (r Auxiliary_Press_Release_Content) Mask(mask string) Auxiliary_Press_Release_Content {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -531,6 +570,10 @@ func (r Auxiliary_Press_Release_Media_Partner) Id(id int) Auxiliary_Press_Releas
 }
 
 func (r Auxiliary_Press_Release_Media_Partner) Mask(mask string) Auxiliary_Press_Release_Media_Partner {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -572,6 +615,10 @@ func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Id(id int) Auxiliar
 }
 
 func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Mask(mask string) Auxiliary_Press_Release_Media_Partner_Press_Release {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -625,6 +672,10 @@ func (r Auxiliary_Shipping_Courier_Type) Id(id int) Auxiliary_Shipping_Courier_T
 }
 
 func (r Auxiliary_Shipping_Courier_Type) Mask(mask string) Auxiliary_Shipping_Courier_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

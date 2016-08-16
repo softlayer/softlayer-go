@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -44,6 +47,10 @@ func (r Ticket) Id(id int) Ticket {
 }
 
 func (r Ticket) Mask(mask string) Ticket {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -600,6 +607,10 @@ func (r Ticket_Attachment_File) Id(id int) Ticket_Attachment_File {
 }
 
 func (r Ticket_Attachment_File) Mask(mask string) Ticket_Attachment_File {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -659,6 +670,10 @@ func (r Ticket_Priority) Id(id int) Ticket_Priority {
 }
 
 func (r Ticket_Priority) Mask(mask string) Ticket_Priority {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -700,6 +715,10 @@ func (r Ticket_Subject) Id(id int) Ticket_Subject {
 }
 
 func (r Ticket_Subject) Mask(mask string) Ticket_Subject {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -759,6 +778,10 @@ func (r Ticket_Survey) Id(id int) Ticket_Survey {
 }
 
 func (r Ticket_Survey) Mask(mask string) Ticket_Survey {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -816,6 +839,10 @@ func (r Ticket_Update_Employee) Id(id int) Ticket_Update_Employee {
 }
 
 func (r Ticket_Update_Employee) Mask(mask string) Ticket_Update_Employee {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

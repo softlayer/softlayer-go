@@ -129,6 +129,11 @@ var services = fmt.Sprintf(`%s
 
 package services
 
+import (
+	"fmt"
+	"strings"
+)
+
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
 	type {{$base}} struct {
 		Session *session.Session
@@ -145,6 +150,10 @@ package services
 	}
 
 	func (r {{$base}}) Mask(mask string) {{$base}} {
+		if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+			mask = fmt.Sprintf("mask[%%s]", mask)
+		}
+
 		r.Options.Mask = mask
 		return r
 	}

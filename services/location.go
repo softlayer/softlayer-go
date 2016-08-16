@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Location) Id(id int) Location {
 }
 
 func (r Location) Mask(mask string) Location {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -209,6 +216,10 @@ func (r Location_Datacenter) Id(id int) Location_Datacenter {
 }
 
 func (r Location_Datacenter) Mask(mask string) Location_Datacenter {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -448,6 +459,10 @@ func (r Location_Group) Id(id int) Location_Group {
 }
 
 func (r Location_Group) Mask(mask string) Location_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -507,6 +522,10 @@ func (r Location_Group_Pricing) Id(id int) Location_Group_Pricing {
 }
 
 func (r Location_Group_Pricing) Mask(mask string) Location_Group_Pricing {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -572,6 +591,10 @@ func (r Location_Group_Regional) Id(id int) Location_Group_Regional {
 }
 
 func (r Location_Group_Regional) Mask(mask string) Location_Group_Regional {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -643,6 +666,10 @@ func (r Location_Reservation) Id(id int) Location_Reservation {
 }
 
 func (r Location_Reservation) Mask(mask string) Location_Reservation {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -720,6 +747,10 @@ func (r Location_Reservation_Rack) Id(id int) Location_Reservation_Rack {
 }
 
 func (r Location_Reservation_Rack) Mask(mask string) Location_Reservation_Rack {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -785,6 +816,10 @@ func (r Location_Reservation_Rack_Member) Id(id int) Location_Reservation_Rack_M
 }
 
 func (r Location_Reservation_Rack_Member) Mask(mask string) Location_Reservation_Rack_Member {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

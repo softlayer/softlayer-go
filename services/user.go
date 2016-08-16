@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r User_Customer) Id(id int) User_Customer {
 }
 
 func (r User_Customer) Mask(mask string) User_Customer {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1067,6 +1074,10 @@ func (r User_Customer_ApiAuthentication) Id(id int) User_Customer_ApiAuthenticat
 }
 
 func (r User_Customer_ApiAuthentication) Mask(mask string) User_Customer_ApiAuthentication {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1123,6 +1134,10 @@ func (r User_Customer_CustomerPermission_Permission) Id(id int) User_Customer_Cu
 }
 
 func (r User_Customer_CustomerPermission_Permission) Mask(mask string) User_Customer_CustomerPermission_Permission {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1170,6 +1185,10 @@ func (r User_Customer_External_Binding) Id(id int) User_Customer_External_Bindin
 }
 
 func (r User_Customer_External_Binding) Mask(mask string) User_Customer_External_Binding {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1287,6 +1306,10 @@ func (r User_Customer_External_Binding_Phone) Id(id int) User_Customer_External_
 }
 
 func (r User_Customer_External_Binding_Phone) Mask(mask string) User_Customer_External_Binding_Phone {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1500,6 +1523,10 @@ func (r User_Customer_External_Binding_Totp) Id(id int) User_Customer_External_B
 }
 
 func (r User_Customer_External_Binding_Totp) Mask(mask string) User_Customer_External_Binding_Totp {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1633,6 +1660,10 @@ func (r User_Customer_External_Binding_Vendor) Id(id int) User_Customer_External
 }
 
 func (r User_Customer_External_Binding_Vendor) Mask(mask string) User_Customer_External_Binding_Vendor {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1692,6 +1723,10 @@ func (r User_Customer_External_Binding_Verisign) Id(id int) User_Customer_Extern
 }
 
 func (r User_Customer_External_Binding_Verisign) Mask(mask string) User_Customer_External_Binding_Verisign {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1858,6 +1893,10 @@ func (r User_Customer_Invitation) Id(id int) User_Customer_Invitation {
 }
 
 func (r User_Customer_Invitation) Mask(mask string) User_Customer_Invitation {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1905,6 +1944,10 @@ func (r User_Customer_MobileDevice) Id(id int) User_Customer_MobileDevice {
 }
 
 func (r User_Customer_MobileDevice) Mask(mask string) User_Customer_MobileDevice {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2000,6 +2043,10 @@ func (r User_Customer_MobileDevice_OperatingSystem) Id(id int) User_Customer_Mob
 }
 
 func (r User_Customer_MobileDevice_OperatingSystem) Mask(mask string) User_Customer_MobileDevice_OperatingSystem {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2047,6 +2094,10 @@ func (r User_Customer_MobileDevice_Type) Id(id int) User_Customer_MobileDevice_T
 }
 
 func (r User_Customer_MobileDevice_Type) Mask(mask string) User_Customer_MobileDevice_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2094,6 +2145,10 @@ func (r User_Customer_Notification_Hardware) Id(id int) User_Customer_Notificati
 }
 
 func (r User_Customer_Notification_Hardware) Mask(mask string) User_Customer_Notification_Hardware {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2185,6 +2240,10 @@ func (r User_Customer_Notification_Virtual_Guest) Id(id int) User_Customer_Notif
 }
 
 func (r User_Customer_Notification_Virtual_Guest) Mask(mask string) User_Customer_Notification_Virtual_Guest {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2276,6 +2335,10 @@ func (r User_Customer_OpenIdConnect) Id(id int) User_Customer_OpenIdConnect {
 }
 
 func (r User_Customer_OpenIdConnect) Mask(mask string) User_Customer_OpenIdConnect {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3385,6 +3448,10 @@ func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Id(id int) User_Cu
 }
 
 func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Mask(mask string) User_Customer_Prospect_ServiceProvider_EnrollRequest {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3441,6 +3508,10 @@ func (r User_Customer_Security_Answer) Id(id int) User_Customer_Security_Answer 
 }
 
 func (r User_Customer_Security_Answer) Mask(mask string) User_Customer_Security_Answer {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3494,6 +3565,10 @@ func (r User_Customer_Status) Id(id int) User_Customer_Status {
 }
 
 func (r User_Customer_Status) Mask(mask string) User_Customer_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3541,6 +3616,10 @@ func (r User_External_Binding) Id(id int) User_External_Binding {
 }
 
 func (r User_External_Binding) Mask(mask string) User_External_Binding {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3627,6 +3706,10 @@ func (r User_External_Binding_Vendor) Id(id int) User_External_Binding_Vendor {
 }
 
 func (r User_External_Binding_Vendor) Mask(mask string) User_External_Binding_Vendor {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3674,6 +3757,10 @@ func (r User_Permission_Action) Id(id int) User_Permission_Action {
 }
 
 func (r User_Permission_Action) Mask(mask string) User_Permission_Action {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3721,6 +3808,10 @@ func (r User_Permission_Group) Id(id int) User_Permission_Group {
 }
 
 func (r User_Permission_Group) Mask(mask string) User_Permission_Group {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3910,6 +4001,10 @@ func (r User_Permission_Group_Type) Id(id int) User_Permission_Group_Type {
 }
 
 func (r User_Permission_Group_Type) Mask(mask string) User_Permission_Group_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -3957,6 +4052,10 @@ func (r User_Permission_Role) Id(id int) User_Permission_Role {
 }
 
 func (r User_Permission_Role) Mask(mask string) User_Permission_Role {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -4086,6 +4185,10 @@ func (r User_Security_Question) Id(id int) User_Security_Question {
 }
 
 func (r User_Security_Question) Mask(mask string) User_Security_Question {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }

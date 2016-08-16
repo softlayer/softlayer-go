@@ -21,6 +21,9 @@
 package services
 
 import (
+	"fmt"
+	"strings"
+
 	"github.ibm.com/riethm/gopherlayer/datatypes"
 	"github.ibm.com/riethm/gopherlayer/session"
 	"github.ibm.com/riethm/gopherlayer/sl"
@@ -42,6 +45,10 @@ func (r Billing_Currency) Id(id int) Billing_Currency {
 }
 
 func (r Billing_Currency) Mask(mask string) Billing_Currency {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -99,6 +106,10 @@ func (r Billing_Currency_ExchangeRate) Id(id int) Billing_Currency_ExchangeRate 
 }
 
 func (r Billing_Currency_ExchangeRate) Mask(mask string) Billing_Currency_ExchangeRate {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -188,6 +199,10 @@ func (r Billing_Info) Id(id int) Billing_Info {
 }
 
 func (r Billing_Info) Mask(mask string) Billing_Info {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -265,6 +280,10 @@ func (r Billing_Invoice) Id(id int) Billing_Invoice {
 }
 
 func (r Billing_Invoice) Mask(mask string) Billing_Invoice {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -496,6 +515,10 @@ func (r Billing_Invoice_Item) Id(id int) Billing_Invoice_Item {
 }
 
 func (r Billing_Invoice_Item) Mask(mask string) Billing_Invoice_Item {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -627,6 +650,10 @@ func (r Billing_Invoice_Next) Id(id int) Billing_Invoice_Next {
 }
 
 func (r Billing_Invoice_Next) Mask(mask string) Billing_Invoice_Next {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -689,6 +716,10 @@ func (r Billing_Invoice_Tax_Status) Id(id int) Billing_Invoice_Tax_Status {
 }
 
 func (r Billing_Invoice_Tax_Status) Mask(mask string) Billing_Invoice_Tax_Status {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -736,6 +767,10 @@ func (r Billing_Invoice_Tax_Type) Id(id int) Billing_Invoice_Tax_Type {
 }
 
 func (r Billing_Invoice_Tax_Type) Mask(mask string) Billing_Invoice_Tax_Type {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -785,6 +820,10 @@ func (r Billing_Item) Id(id int) Billing_Item {
 }
 
 func (r Billing_Item) Mask(mask string) Billing_Item {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1196,6 +1235,10 @@ func (r Billing_Item_Cancellation_Reason) Id(id int) Billing_Item_Cancellation_R
 }
 
 func (r Billing_Item_Cancellation_Reason) Mask(mask string) Billing_Item_Cancellation_Reason {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1261,6 +1304,10 @@ func (r Billing_Item_Cancellation_Reason_Category) Id(id int) Billing_Item_Cance
 }
 
 func (r Billing_Item_Cancellation_Reason_Category) Mask(mask string) Billing_Item_Cancellation_Reason_Category {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1314,6 +1361,10 @@ func (r Billing_Item_Cancellation_Request) Id(id int) Billing_Item_Cancellation_
 }
 
 func (r Billing_Item_Cancellation_Request) Mask(mask string) Billing_Item_Cancellation_Request {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1443,6 +1494,10 @@ func (r Billing_Order) Id(id int) Billing_Order {
 }
 
 func (r Billing_Order) Mask(mask string) Billing_Order {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1698,6 +1753,10 @@ func (r Billing_Order_Cart) Id(id int) Billing_Order_Cart {
 }
 
 func (r Billing_Order_Cart) Mask(mask string) Billing_Order_Cart {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -1872,6 +1931,10 @@ func (r Billing_Order_Item) Id(id int) Billing_Order_Item {
 }
 
 func (r Billing_Order_Item) Mask(mask string) Billing_Order_Item {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
@@ -2039,6 +2102,10 @@ func (r Billing_Order_Quote) Id(id int) Billing_Order_Quote {
 }
 
 func (r Billing_Order_Quote) Mask(mask string) Billing_Order_Quote {
+	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
 	r.Options.Mask = mask
 	return r
 }
