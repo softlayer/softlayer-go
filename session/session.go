@@ -129,7 +129,7 @@ func New(args ...interface{}) *Session {
 // 'SoftLayer_' prefix and properly cased.
 //
 // args is a slice of arguments required for the service method being invoked.  The
-// types of each argument varies. See the method definitionx in the services package
+// types of each argument varies. See the method definition in the services package
 // for the expected type of each argument.
 //
 // options is an sl.Options struct, containing any mask, filter, or result limit values
