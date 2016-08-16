@@ -21,7 +21,6 @@ package filter
 import (
 	"encoding/json"
 	"fmt"
-	"reflect"
 	"strings"
 )
 
@@ -95,9 +94,12 @@ func (fs Filters) Build() string {
 		if filter.Val != nil {
 			operation := filter.Val
 			if filter.Op != "" {
-				format := "%s"
-				if reflect.TypeOf(filter.Val).String() != "string" {
+				var format string
+				switch filter.Val.(type) {
+				case int:
 					format = "%d"
+				default:
+					format = "%s"
 				}
 				operation = filter.Op + " " + fmt.Sprintf(format, filter.Val)
 			}
