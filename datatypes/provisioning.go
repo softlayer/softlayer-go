@@ -24,22 +24,22 @@ package datatypes
 type Provisioning_Hook struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The ID of the account the script belongs to.
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	HookType *Provisioning_Hook_Type `json:"hookType,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The name of the hook.
@@ -52,20 +52,20 @@ type Provisioning_Hook struct {
 	Uri *string `json:"uri,omitempty"`
 }
 
-//
+// no documentation yet
 type Provisioning_Hook_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -76,7 +76,7 @@ type Provisioning_Maintenance_Classification struct {
 	// The id of the maintenance classification.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ItemCategories []Provisioning_Maintenance_Classification_Item_Category `json:"itemCategories,omitempty"`
 
 	// A count of
@@ -89,17 +89,17 @@ type Provisioning_Maintenance_Classification struct {
 	Type *string `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Provisioning_Maintenance_Classification_Item_Category struct {
 	Entity
 
-	//
+	// no documentation yet
 	ItemCategoryId *int `json:"itemCategoryId,omitempty"`
 
-	//
+	// no documentation yet
 	MaintenanceClassification *Provisioning_Maintenance_Classification `json:"maintenanceClassification,omitempty"`
 
-	//
+	// no documentation yet
 	MaintenanceClassificationId *int `json:"maintenanceClassificationId,omitempty"`
 }
 
@@ -111,29 +111,29 @@ type Provisioning_Maintenance_Slots struct {
 	AvailableSlots *int `json:"availableSlots,omitempty"`
 }
 
-//
+// no documentation yet
 type Provisioning_Maintenance_Ticket struct {
 	Entity
 
-	//
+	// no documentation yet
 	AvailableSlots *Provisioning_Maintenance_Slots `json:"availableSlots,omitempty"`
 
-	//
+	// no documentation yet
 	MaintClassId *int `json:"maintClassId,omitempty"`
 
-	//
+	// no documentation yet
 	MaintWindowId *int `json:"maintWindowId,omitempty"`
 
-	//
+	// no documentation yet
 	MaintenanceClass *Provisioning_Maintenance_Classification `json:"maintenanceClass,omitempty"`
 
-	//
+	// no documentation yet
 	MaintenanceDate *Time `json:"maintenanceDate,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
-	//
+	// no documentation yet
 	TicketId *int `json:"ticketId,omitempty"`
 }
 
@@ -190,7 +190,7 @@ type Provisioning_Version1_Transaction struct {
 	// A transaction's identifying number.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Loopback []Provisioning_Version1_Transaction `json:"loopback,omitempty"`
 
 	// A count of
@@ -202,13 +202,13 @@ type Provisioning_Version1_Transaction struct {
 	// A count of
 	PendingTransactionCount *uint `json:"pendingTransactionCount,omitempty"`
 
-	//
+	// no documentation yet
 	PendingTransactions []Provisioning_Version1_Transaction `json:"pendingTransactions,omitempty"`
 
 	// The date the transaction status was last modified.
 	StatusChangeDate *Time `json:"statusChangeDate,omitempty"`
 
-	//
+	// no documentation yet
 	TicketScheduledActionReference []Ticket_Attachment `json:"ticketScheduledActionReference,omitempty"`
 
 	// A count of
@@ -234,7 +234,7 @@ type Provisioning_Version1_Transaction_Group struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Provisioning_Version1_Transaction_History struct {
 	Entity
 
@@ -293,11 +293,11 @@ type Provisioning_Version1_Transaction_Status struct {
 	// A count of
 	NonCompletedTransactionCount *uint `json:"nonCompletedTransactionCount,omitempty"`
 
-	//
+	// no documentation yet
 	NonCompletedTransactions []Provisioning_Version1_Transaction `json:"nonCompletedTransactions,omitempty"`
 }
 
-//
+// no documentation yet
 type Provisioning_Version1_Transaction_SubnetMigration struct {
 	Provisioning_Version1_Transaction
 }

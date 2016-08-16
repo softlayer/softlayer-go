@@ -20,14 +20,14 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Configuration_Storage_Filesystem_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -35,34 +35,34 @@ type Configuration_Storage_Filesystem_Type struct {
 type Configuration_Storage_Group_Array_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	DriveMultiplier *int `json:"driveMultiplier,omitempty"`
 
 	// A count of
 	HardwareComponentModelCount *uint `json:"hardwareComponentModelCount,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareComponentModels []Hardware_Component_Model `json:"hardwareComponentModels,omitempty"`
 
-	//
+	// no documentation yet
 	HotspareAllow *bool `json:"hotspareAllow,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	MaximumDrives *int `json:"maximumDrives,omitempty"`
 
-	//
+	// no documentation yet
 	MinimumDrives *int `json:"minimumDrives,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -72,31 +72,31 @@ type Configuration_Storage_Group_Array_Type struct {
 type Configuration_Storage_Group_Order struct {
 	Entity
 
-	//
+	// no documentation yet
 	ArrayNumber *int `json:"arrayNumber,omitempty"`
 
-	//
+	// no documentation yet
 	ArraySize *float64 `json:"arraySize,omitempty"`
 
 	// Raid mode for the storage group.
 	ArrayType *Configuration_Storage_Group_Array_Type `json:"arrayType,omitempty"`
 
-	//
+	// no documentation yet
 	ArrayTypeId *int `json:"arrayTypeId,omitempty"`
 
 	// The order item that relates to this storage group.
 	BillingOrderItem *Billing_Order_Item `json:"billingOrderItem,omitempty"`
 
-	//
+	// no documentation yet
 	BillingOrderItemId *int `json:"billingOrderItemId,omitempty"`
 
-	//
+	// no documentation yet
 	HardDrives []int `json:"hardDrives,omitempty"`
 
-	//
+	// no documentation yet
 	HotSpareDrives []int `json:"hotSpareDrives,omitempty"`
 
-	//
+	// no documentation yet
 	PartitionData *string `json:"partitionData,omitempty"`
 }
 
@@ -118,7 +118,7 @@ type Configuration_Storage_Group_Template_Group struct {
 	// Size of array. Must be within limitations of the smallest drive and raid mode
 	Size *float64 `json:"size,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Configuration_Storage_Group_Array_Type `json:"type,omitempty"`
 }
 
@@ -126,7 +126,7 @@ type Configuration_Storage_Group_Template_Group struct {
 type Configuration_Template struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// Internal identifier of a SoftLayer account that this configuration template belongs to
@@ -135,10 +135,10 @@ type Configuration_Template struct {
 	// A count of
 	ConfigurationSectionCount *uint `json:"configurationSectionCount,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationSections []Configuration_Template_Section `json:"configurationSections,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationTemplateReference []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReference,omitempty"`
 
 	// A count of
@@ -150,13 +150,13 @@ type Configuration_Template struct {
 	// A count of
 	DefaultValueCount *uint `json:"defaultValueCount,omitempty"`
 
-	//
+	// no documentation yet
 	DefaultValues []Configuration_Template_Section_Definition_Value `json:"defaultValues,omitempty"`
 
 	// A count of
 	DefinitionCount *uint `json:"definitionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Definitions []Configuration_Template_Section_Definition `json:"definitions,omitempty"`
 
 	// Configuration template description
@@ -165,13 +165,13 @@ type Configuration_Template struct {
 	// Internal identifier of a configuration template.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
 	// Internal identifier of a product item that this configuration template is associated with
 	ItemId *int `json:"itemId,omitempty"`
 
-	//
+	// no documentation yet
 	LinkedSectionReferences *Configuration_Template_Section_Reference `json:"linkedSectionReferences,omitempty"`
 
 	// Last modified date
@@ -180,13 +180,13 @@ type Configuration_Template struct {
 	// Configuration template name
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Parent *Configuration_Template `json:"parent,omitempty"`
 
 	// Internal identifier of the parent configuration template
 	ParentId *int `json:"parentId,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 
 	// Internal identifier of a user that last modified this configuration template
@@ -197,7 +197,7 @@ type Configuration_Template struct {
 type Configuration_Template_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	ConfigurationTemplate *Configuration_Template `json:"configurationTemplate,omitempty"`
 
 	// Value of a configuration template attribute
@@ -216,25 +216,25 @@ type Configuration_Template_Section struct {
 	// A count of
 	DefinitionCount *uint `json:"definitionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Definitions []Configuration_Template_Section_Definition `json:"definitions,omitempty"`
 
 	// Configuration section description
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	DisallowedDeletionFlag *bool `json:"disallowedDeletionFlag,omitempty"`
 
 	// Internal identifier of a configuration section.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LinkedTemplate *Configuration_Template `json:"linkedTemplate,omitempty"`
 
 	// Internal identifier of a sub configuration template that this section points to. Use this property if you wish to create a reference to a sub configuration template when creating a linked section.
 	LinkedTemplateId *string `json:"linkedTemplateId,omitempty"`
 
-	//
+	// no documentation yet
 	LinkedTemplateReference *Configuration_Template_Section_Reference `json:"linkedTemplateReference,omitempty"`
 
 	// Last modified date
@@ -249,13 +249,13 @@ type Configuration_Template_Section struct {
 	// A count of
 	ProfileCount *uint `json:"profileCount,omitempty"`
 
-	//
+	// no documentation yet
 	Profiles []Configuration_Template_Section_Profile `json:"profiles,omitempty"`
 
-	//
+	// no documentation yet
 	SectionType *Configuration_Template_Section_Type `json:"sectionType,omitempty"`
 
-	//
+	// no documentation yet
 	SectionTypeName *string `json:"sectionTypeName,omitempty"`
 
 	// Sort order
@@ -264,10 +264,10 @@ type Configuration_Template_Section struct {
 	// A count of
 	SubSectionCount *uint `json:"subSectionCount,omitempty"`
 
-	//
+	// no documentation yet
 	SubSections []Configuration_Template_Section `json:"subSections,omitempty"`
 
-	//
+	// no documentation yet
 	Template *Configuration_Template `json:"template,omitempty"`
 
 	// Internal identifier of a configuration template that this section belongs to
@@ -281,7 +281,7 @@ type Configuration_Template_Section struct {
 type Configuration_Template_Section_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	ConfigurationSection *Configuration_Template_Section `json:"configurationSection,omitempty"`
 
 	// Value of a configuration section attribute
@@ -299,13 +299,13 @@ type Configuration_Template_Section_Definition struct {
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Configuration_Template_Section_Definition_Attribute `json:"attributes,omitempty"`
 
 	// Created date
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	DefaultValue *Configuration_Template_Section_Definition_Value `json:"defaultValue,omitempty"`
 
 	// Description of a configuration definition.
@@ -314,7 +314,7 @@ type Configuration_Template_Section_Definition struct {
 	// Enumeration values separated by comma.
 	EnumerationValues *string `json:"enumerationValues,omitempty"`
 
-	//
+	// no documentation yet
 	Group *Configuration_Template_Section_Definition_Group `json:"group,omitempty"`
 
 	// Definition group id.
@@ -332,7 +332,7 @@ type Configuration_Template_Section_Definition struct {
 	// Last modify date
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringDataFlag *bool `json:"monitoringDataFlag,omitempty"`
 
 	// Configuration definition name.
@@ -344,7 +344,7 @@ type Configuration_Template_Section_Definition struct {
 	// Indicates if a configuration value is required for this definition.
 	RequireValueFlag *int `json:"requireValueFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Section *Configuration_Template_Section `json:"section,omitempty"`
 
 	// Internal identifier of a configuration section.
@@ -359,7 +359,7 @@ type Configuration_Template_Section_Definition struct {
 	// Internal identifier of a configuration definition type.
 	TypeId *int `json:"typeId,omitempty"`
 
-	//
+	// no documentation yet
 	ValueType *Configuration_Template_Section_Definition_Type `json:"valueType,omitempty"`
 }
 
@@ -367,10 +367,10 @@ type Configuration_Template_Section_Definition struct {
 type Configuration_Template_Section_Definition_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	AttributeType *Configuration_Template_Section_Definition_Attribute_Type `json:"attributeType,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationDefinition *Configuration_Template_Section_Definition `json:"configurationDefinition,omitempty"`
 
 	// Value of a configuration definition attribute
@@ -406,7 +406,7 @@ type Configuration_Template_Section_Definition_Group struct {
 	// Internal Definition group name.
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Parent *Configuration_Template_Section_Definition_Group `json:"parent,omitempty"`
 
 	// Sort order
@@ -434,7 +434,7 @@ type Configuration_Template_Section_Definition_Value struct {
 	// Created date
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Definition *Configuration_Template_Section_Definition `json:"definition,omitempty"`
 
 	// Internal identifier of a configuration definition that this configuration value if defined by
@@ -443,7 +443,7 @@ type Configuration_Template_Section_Definition_Value struct {
 	// Internal Last modified date
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Template *Configuration_Template `json:"template,omitempty"`
 
 	// Internal identifier of a configuration template that this configuration value belongs to
@@ -462,7 +462,7 @@ type Configuration_Template_Section_Profile struct {
 	// Internal identifier of a monitoring agent this profile belongs to.
 	AgentId *int `json:"agentId,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationSection *Configuration_Template_Section `json:"configurationSection,omitempty"`
 
 	// Created date
@@ -471,7 +471,7 @@ type Configuration_Template_Section_Profile struct {
 	// Internal identifier of a configuration profile.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringAgent *Monitoring_Agent `json:"monitoringAgent,omitempty"`
 
 	// Name of a configuration profile
@@ -494,13 +494,13 @@ type Configuration_Template_Section_Reference struct {
 	// Modified date
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Section *Configuration_Template_Section `json:"section,omitempty"`
 
 	// Internal identifier of a configuration section.
 	SectionId *int `json:"sectionId,omitempty"`
 
-	//
+	// no documentation yet
 	Template *Configuration_Template `json:"template,omitempty"`
 
 	// Internal identifier of a configuration template.

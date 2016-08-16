@@ -20,34 +20,34 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Locale struct {
 	Entity
 
-	//
+	// no documentation yet
 	FriendlyName *string `json:"friendlyName,omitempty"`
 
 	// Internal identification number of a locale
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LanguageTag *string `json:"languageTag,omitempty"`
 
 	// Locale name
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Locale_Country struct {
 	Entity
 
 	// Binary flag denoting if this country is part of the European Union
 	IsEuropeanUnionFlag *int `json:"isEuropeanUnionFlag,omitempty"`
 
-	//
+	// no documentation yet
 	LongName *string `json:"longName,omitempty"`
 
-	//
+	// no documentation yet
 	ShortName *string `json:"shortName,omitempty"`
 
 	// A count of states that belong to this country.
@@ -61,10 +61,10 @@ type Locale_Country struct {
 type Locale_StateProvince struct {
 	Entity
 
-	//
+	// no documentation yet
 	LongName *string `json:"longName,omitempty"`
 
-	//
+	// no documentation yet
 	ShortName *string `json:"shortName,omitempty"`
 }
 

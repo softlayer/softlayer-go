@@ -67,7 +67,7 @@ func (r Product_Item_Category) GetAdditionalProductsForCategory() (resp []dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Category) GetBandwidthCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -88,7 +88,7 @@ func (r Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Category) GetCustomUsageRatesCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -142,7 +142,7 @@ func (r Product_Item_Category) GetQuestions() (resp []datatypes.Product_Item_Cat
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Category) GetSoftwareCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -169,7 +169,7 @@ func (r Product_Item_Category) GetValidCancelableServiceItemCategories() (resp [
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -260,7 +260,7 @@ func (r Product_Item_Policy_Assignment) AcceptFromTicket(ticketId *int) (resp bo
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Policy_Assignment) GetObject() (resp datatypes.Product_Item_Policy_Assignment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -385,7 +385,7 @@ func (r Product_Item_Price) GetItem() (resp datatypes.Product_Item, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Price) GetObject() (resp datatypes.Product_Item_Price, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -437,7 +437,7 @@ func (r Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, ite
 	return
 }
 
-//
+// no documentation yet
 type Product_Item_Price_Premium struct {
 	Session *session.Session
 	Options sl.Options
@@ -484,7 +484,7 @@ func (r Product_Item_Price_Premium) GetLocation() (resp datatypes.Location, err 
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Item_Price_Premium) GetObject() (resp datatypes.Product_Item_Price_Premium, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -496,7 +496,7 @@ func (r Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Package
 	return
 }
 
-//
+// no documentation yet
 type Product_Order struct {
 	Session *session.Session
 	Options sl.Options
@@ -531,7 +531,7 @@ func (r Product_Order) Offset(offset int) Product_Order {
 	return r
 }
 
-//
+// no documentation yet
 func (r Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Item_Price, accountId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		itemPrices,
@@ -542,7 +542,7 @@ func (r Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Item
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Order) CheckItemAvailabilityForImageTemplate(imageTemplateId *int, accountId *int, packageId *int, availabilityTypeKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		imageTemplateId,
@@ -1219,7 +1219,7 @@ func (r Product_Package) GetAvailableLocations() (resp []datatypes.Product_Packa
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		imageTemplate,
@@ -1240,13 +1240,13 @@ func (r Product_Package) GetCategories() (resp []datatypes.Product_Item_Category
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package) GetCdnItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.Product_Item, err error) {
 	params := []interface{}{
 		provider,
@@ -1395,7 +1395,7 @@ func (r Product_Package) GetMaximumPortSpeed() (resp uint, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package) GetMessageQueueItems() (resp []datatypes.Product_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1413,7 +1413,7 @@ func (r Product_Package) GetMongoDbEngineeredFlag() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package) GetObject() (resp datatypes.Product_Package, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1590,7 +1590,7 @@ func (r Product_Package_Preset) GetLowestPresetServerPrice() (resp datatypes.Pro
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package_Preset) GetObject() (resp datatypes.Product_Package_Preset, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1691,7 +1691,7 @@ func (r Product_Package_Server) GetItemPrice() (resp datatypes.Product_Item_Pric
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package_Server) GetObject() (resp datatypes.Product_Package_Server, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1750,7 +1750,7 @@ func (r Product_Package_Server_Option) GetAllOptions() (resp []datatypes.Product
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package_Server_Option) GetObject() (resp datatypes.Product_Package_Server_Option, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1806,7 +1806,7 @@ func (r Product_Package_Type) GetAllObjects() (resp []datatypes.Product_Package_
 	return
 }
 
-//
+// no documentation yet
 func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

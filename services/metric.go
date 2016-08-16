@@ -214,7 +214,7 @@ func (r Metric_Tracking_Object_Bandwidth_Summary) Offset(offset int) Metric_Trac
 	return r
 }
 
-//
+// no documentation yet
 func (r Metric_Tracking_Object_Bandwidth_Summary) GetObject() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

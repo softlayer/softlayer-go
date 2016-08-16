@@ -20,16 +20,16 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Compliance_Report_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

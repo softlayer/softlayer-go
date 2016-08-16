@@ -55,7 +55,7 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 	// This is the amount of bandwidth (measured in gigabytes) allocated for this tracking object.
 	AllocationAmount *float64 `json:"allocationAmount,omitempty"`
 
-	//
+	// no documentation yet
 	AllocationId *int `json:"allocationId,omitempty"`
 
 	// The amount of outbound bandwidth (measured in gigabytes) currently used this billing period. Same as $outboundBandwidthAmount. Aliased for backward compatability.
@@ -198,7 +198,7 @@ type Metric_Tracking_Object_VirtualDedicatedRack struct {
 	Resource *Network_Bandwidth_Version1_Allotment `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Metric_Tracking_Object_Virtual_Storage_Repository struct {
 	Metric_Tracking_Object_Abstract
 

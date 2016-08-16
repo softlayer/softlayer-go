@@ -67,7 +67,7 @@ func (r Notification) GetAllObjects() (resp []datatypes.Notification, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Notification) GetObject() (resp datatypes.Notification, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -137,7 +137,7 @@ func (r Notification_Mobile) GetAllObjects() (resp []datatypes.Notification, err
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Mobile) GetObject() (resp datatypes.Notification_Mobile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -155,7 +155,7 @@ func (r Notification_Mobile) GetRequiredPreferences() (resp []datatypes.Notifica
 	return
 }
 
-//
+// no documentation yet
 type Notification_Occurrence_Event struct {
 	Session *session.Session
 	Options sl.Options
@@ -202,7 +202,7 @@ func (r Notification_Occurrence_Event) GetAcknowledgedFlag() (resp bool, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_Event) GetAllObjects() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -277,7 +277,7 @@ func (r Notification_Occurrence_Event) GetNotificationOccurrenceEventType() (res
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_Event) GetObject() (resp datatypes.Notification_Occurrence_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -330,19 +330,19 @@ func (r Notification_Occurrence_User) Offset(offset int) Notification_Occurrence
 	return r
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_User) Acknowledge() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_User) GetAllObjects() (resp []datatypes.Notification_Occurrence_User, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_User) GetImpactedDeviceCount() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -360,7 +360,7 @@ func (r Notification_Occurrence_User) GetNotificationOccurrenceEvent() (resp dat
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_Occurrence_User) GetObject() (resp datatypes.Notification_Occurrence_User, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -471,7 +471,7 @@ func (r Notification_User_Subscriber) GetNotification() (resp datatypes.Notifica
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber) GetObject() (resp datatypes.Notification_User_Subscriber, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -600,7 +600,7 @@ func (r Notification_User_Subscriber_Billing) GetNotification() (resp datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Billing) GetObject() (resp datatypes.Notification_User_Subscriber_Billing, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -667,7 +667,7 @@ func (r Notification_User_Subscriber_Mobile) Offset(offset int) Notification_Use
 	return r
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Mobile) ClearSnoozeTimer() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -735,7 +735,7 @@ func (r Notification_User_Subscriber_Mobile) GetNotification() (resp datatypes.N
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Mobile) GetObject() (resp datatypes.Notification_User_Subscriber_Mobile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -765,7 +765,7 @@ func (r Notification_User_Subscriber_Mobile) GetUserRecord() (resp datatypes.Use
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Mobile) SetSnoozeTimer(start *int, end *int) (resp bool, err error) {
 	params := []interface{}{
 		start,
@@ -821,7 +821,7 @@ func (r Notification_User_Subscriber_Preference) CreateObject(templateObject *da
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Preference) EditObjects(templateObjects []datatypes.Notification_User_Subscriber_Preference) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
@@ -842,7 +842,7 @@ func (r Notification_User_Subscriber_Preference) GetNotificationUserSubscriber()
 	return
 }
 
-//
+// no documentation yet
 func (r Notification_User_Subscriber_Preference) GetObject() (resp datatypes.Notification_User_Subscriber_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

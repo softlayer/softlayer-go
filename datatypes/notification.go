@@ -71,24 +71,24 @@ type Notification_Mobile struct {
 	Notification
 }
 
-//
+// no documentation yet
 type Notification_Occurrence_Account struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	Active *int `json:"active,omitempty"`
 
-	//
+	// no documentation yet
 	LastNotificationUpdate *Notification_Occurrence_Update `json:"lastNotificationUpdate,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
 }
 
-//
+// no documentation yet
 type Notification_Occurrence_Event struct {
 	Entity
 
@@ -140,13 +140,13 @@ type Notification_Occurrence_Event struct {
 	// The type of event such as planned or unplanned maintenance.
 	NotificationOccurrenceEventType *Notification_Occurrence_Event_Type `json:"notificationOccurrenceEventType,omitempty"`
 
-	//
+	// no documentation yet
 	RecoveryTime *int `json:"recoveryTime,omitempty"`
 
 	// When this event started.
 	StartDate *Time `json:"startDate,omitempty"`
 
-	//
+	// no documentation yet
 	StatusCode *Notification_Occurrence_Status_Code `json:"statusCode,omitempty"`
 
 	// Brief description of this event.
@@ -181,7 +181,7 @@ type Notification_Occurrence_Event_Attachment struct {
 	// A event attachments' unique identifier.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
 
 	// The unique event identifier that the file is attached to.
@@ -200,7 +200,7 @@ type Notification_Occurrence_Event_Type struct {
 type Notification_Occurrence_Resource struct {
 	Entity
 
-	//
+	// no documentation yet
 	Active *int `json:"active,omitempty"`
 
 	// <<< EOT A label which gives some background as to what piece of
@@ -218,7 +218,7 @@ type Notification_Occurrence_Resource struct {
 	// <<< EOT The unique identifier for the [[SoftLayer_Account]] associated with
 	ResourceAccountId *int `json:"resourceAccountId,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceName *string `json:"resourceName,omitempty"`
 
 	// <<< EOT The unique identifier for the physical resource that is associated
@@ -229,16 +229,16 @@ type Notification_Occurrence_Resource struct {
 type Notification_Occurrence_Resource_Hardware struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	PublicIp *string `json:"publicIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -246,16 +246,16 @@ type Notification_Occurrence_Resource_Hardware struct {
 type Notification_Occurrence_Resource_Network_Application_Delivery_Controller struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	PublicIp *string `json:"publicIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -263,13 +263,13 @@ type Notification_Occurrence_Resource_Network_Application_Delivery_Controller st
 type Notification_Occurrence_Resource_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PublicIp *string `json:"publicIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -277,13 +277,13 @@ type Notification_Occurrence_Resource_Network_Application_Delivery_Controller_Lo
 type Notification_Occurrence_Resource_Network_Storage_Iscsi_EqualLogic struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -291,13 +291,13 @@ type Notification_Occurrence_Resource_Network_Storage_Iscsi_EqualLogic struct {
 type Notification_Occurrence_Resource_Network_Storage_Iscsi_NetApp struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -305,13 +305,13 @@ type Notification_Occurrence_Resource_Network_Storage_Iscsi_NetApp struct {
 type Notification_Occurrence_Resource_Network_Storage_Lockbox struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -319,13 +319,13 @@ type Notification_Occurrence_Resource_Network_Storage_Lockbox struct {
 type Notification_Occurrence_Resource_Network_Storage_Nas struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -333,13 +333,13 @@ type Notification_Occurrence_Resource_Network_Storage_Nas struct {
 type Notification_Occurrence_Resource_Network_Storage_NetApp_Volume struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
@@ -347,53 +347,53 @@ type Notification_Occurrence_Resource_Network_Storage_NetApp_Volume struct {
 type Notification_Occurrence_Resource_Virtual struct {
 	Notification_Occurrence_Resource
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIp *string `json:"privateIp,omitempty"`
 
-	//
+	// no documentation yet
 	PublicIp *string `json:"publicIp,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceType *string `json:"resourceType,omitempty"`
 }
 
-//
+// no documentation yet
 type Notification_Occurrence_Status_Code struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Notification_Occurrence_Update struct {
 	Entity
 
-	//
+	// no documentation yet
 	Contents *string `json:"contents,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Employee *User_Employee `json:"employee,omitempty"`
 
-	//
+	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationOccurrenceEvent *Notification_Occurrence_Event `json:"notificationOccurrenceEvent,omitempty"`
 
-	//
+	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 }
 
@@ -401,13 +401,13 @@ type Notification_Occurrence_Update struct {
 type Notification_Occurrence_User struct {
 	Entity
 
-	//
+	// no documentation yet
 	AcknowledgedFlag *int `json:"acknowledgedFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Active *int `json:"active,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// A count of a collection of resources impacted by the associated event.
@@ -422,7 +422,7 @@ type Notification_Occurrence_User struct {
 	// The impacted user.
 	User *User_Customer `json:"user,omitempty"`
 
-	//
+	// no documentation yet
 	UsrRecordId *int `json:"usrRecordId,omitempty"`
 }
 
@@ -455,46 +455,46 @@ type Notification_Preference struct {
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Notification_Subscriber struct {
 	Entity
 
-	//
+	// no documentation yet
 	Active *int `json:"active,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// A count of
 	DeliveryMethodCount *uint `json:"deliveryMethodCount,omitempty"`
 
-	//
+	// no documentation yet
 	DeliveryMethods []Notification_Subscriber_Delivery_Method `json:"deliveryMethods,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Notification *Notification `json:"notification,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationId *int `json:"notificationId,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationSubscriberTypeId *int `json:"notificationSubscriberTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationSubscriberTypeResourceId *int `json:"notificationSubscriberTypeResourceId,omitempty"`
 }
 
-//
+// no documentation yet
 type Notification_Subscriber_Customer struct {
 	Notification_Subscriber
 
-	//
+	// no documentation yet
 	SubscriberRecord *User_Customer `json:"subscriberRecord,omitempty"`
 }
 
@@ -511,13 +511,13 @@ type Notification_Subscriber_Delivery_Method struct {
 	// Date the subscriber's delivery method was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationDeliveryMethod *Notification_Delivery_Method `json:"notificationDeliveryMethod,omitempty"`
 
 	// Identifier for the notification delivery method.
 	NotificationDeliveryMethodId *int `json:"notificationDeliveryMethodId,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationSubscriber *Notification_Subscriber `json:"notificationSubscriber,omitempty"`
 
 	// Identifier for the subscriber.

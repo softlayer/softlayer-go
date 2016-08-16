@@ -45,7 +45,7 @@ type Hardware struct {
 	// A count of
 	AllPowerComponentCount *uint `json:"allPowerComponentCount,omitempty"`
 
-	//
+	// no documentation yet
 	AllPowerComponents []Hardware_Power_Component `json:"allPowerComponents,omitempty"`
 
 	// The SoftLayer_Network_Storage_Allowed_Host information to connect this server to Network Storage volumes that require access control lists.
@@ -276,7 +276,7 @@ type Hardware struct {
 	// Where a piece of hardware is located within SoftLayer's location hierarchy.
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationPathString *string `json:"locationPathString,omitempty"`
 
 	// Information regarding a lockbox account associated with a server.
@@ -390,7 +390,7 @@ type Hardware struct {
 	// A small note about a piece of hardware to use at your discretion.
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	NotesHistory []Hardware_Note `json:"notesHistory,omitempty"`
 
 	// A count of
@@ -453,10 +453,10 @@ type Hardware struct {
 	// Information regarding a piece of hardware's processors.
 	Processors []Hardware_Component `json:"processors,omitempty"`
 
-	//
+	// no documentation yet
 	ProvisionDate *Time `json:"provisionDate,omitempty"`
 
-	//
+	// no documentation yet
 	Rack *Location `json:"rack,omitempty"`
 
 	// A count of the RAID controllers contained within a piece of hardware.
@@ -486,13 +486,13 @@ type Hardware struct {
 	// A count of
 	ResourceGroupMemberReferenceCount *uint `json:"resourceGroupMemberReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceGroupMemberReferences []Resource_Group_Member `json:"resourceGroupMemberReferences,omitempty"`
 
 	// A count of
 	ResourceGroupRoleCount *uint `json:"resourceGroupRoleCount,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceGroupRoles []Resource_Group_Role `json:"resourceGroupRoles,omitempty"`
 
 	// The resource groups in which this hardware is a member.
@@ -525,7 +525,7 @@ type Hardware struct {
 	// Information regarding the piece of hardware's service provider.
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 
 	// A hardware's internal identification number at its service provider
@@ -549,16 +549,16 @@ type Hardware struct {
 	// A count of
 	StorageNetworkComponentCount *uint `json:"storageNetworkComponentCount,omitempty"`
 
-	//
+	// no documentation yet
 	StorageNetworkComponents []Network_Component `json:"storageNetworkComponents,omitempty"`
 
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
 
-	//
+	// no documentation yet
 	TopLevelLocation *Location `json:"topLevelLocation,omitempty"`
 
 	// An account's associated upgrade request object, if any.
@@ -662,22 +662,22 @@ type Hardware_Benchmark_Certification struct {
 type Hardware_Chassis struct {
 	Entity
 
-	//
+	// no documentation yet
 	BackplaneCapacity *string `json:"backplaneCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	BayCapacity *string `json:"bayCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	DriveCapacity *string `json:"driveCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	DriveControllerCapacity *string `json:"driveControllerCapacity,omitempty"`
 
 	// A hardware form factor internal identifier.
 	FormFactorId *int `json:"formFactorId,omitempty"`
 
-	//
+	// no documentation yet
 	GpuCapacity *string `json:"gpuCapacity,omitempty"`
 
 	// A hardware's function.
@@ -692,7 +692,7 @@ type Hardware_Chassis struct {
 	// A hardware chassis' name.
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	PowerCapacity *string `json:"powerCapacity,omitempty"`
 
 	// The physical size of a hardware chassis.  Currently this relates to the 'U' size of a chassis buy default.
@@ -718,7 +718,7 @@ type Hardware_Component struct {
 	// A count of
 	DownlinkHardwareComponentCount *uint `json:"downlinkHardwareComponentCount,omitempty"`
 
-	//
+	// no documentation yet
 	DownlinkHardwareComponents []Hardware_Component `json:"downlinkHardwareComponents,omitempty"`
 
 	// The hardware object that this component belongs to.
@@ -763,7 +763,7 @@ type Hardware_Component struct {
 	// The component serial number.
 	SerialNumber *string `json:"serialNumber,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
 	// A hardware's internal identification number at its service provider
@@ -772,7 +772,7 @@ type Hardware_Component struct {
 	// A count of
 	UplinkHardwareComponentCount *uint `json:"uplinkHardwareComponentCount,omitempty"`
 
-	//
+	// no documentation yet
 	UplinkHardwareComponents []Hardware_Component `json:"uplinkHardwareComponents,omitempty"`
 }
 
@@ -833,16 +833,16 @@ type Hardware_Component_HardDrive struct {
 type Hardware_Component_Model struct {
 	Entity
 
-	//
+	// no documentation yet
 	ArchitectureType *Hardware_Component_Model_Architecture_Type `json:"architectureType,omitempty"`
 
-	//
+	// no documentation yet
 	ArchitectureTypeId *string `json:"architectureTypeId,omitempty"`
 
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Hardware_Component_Model_Attribute `json:"attributes,omitempty"`
 
 	// A component model's capacity. The capacity of a component model depends on the model itself.  For Example: Hard drives have a capacity that reflects the amount of data that hard drive can store.
@@ -851,7 +851,7 @@ type Hardware_Component_Model struct {
 	// A count of
 	CompatibleArrayTypeCount *uint `json:"compatibleArrayTypeCount,omitempty"`
 
-	//
+	// no documentation yet
 	CompatibleArrayTypes []Configuration_Storage_Group_Array_Type `json:"compatibleArrayTypes,omitempty"`
 
 	// A count of all the component models that are compatible with a hardware component model.
@@ -881,13 +881,13 @@ type Hardware_Component_Model struct {
 	// A hardware component model's internal identifier number.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	InfinibandCompatibleAttribute *Hardware_Component_Model_Attribute `json:"infinibandCompatibleAttribute,omitempty"`
 
-	//
+	// no documentation yet
 	IsInfinibandCompatible *bool `json:"isInfinibandCompatible,omitempty"`
 
-	//
+	// no documentation yet
 	LongDescription *string `json:"longDescription,omitempty"`
 
 	// A hardware component model's manufacturer.
@@ -912,29 +912,29 @@ type Hardware_Component_Model struct {
 	Version *string `json:"version,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_Component_Model_Architecture_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Children []Hardware_Component_Model_Architecture_Type `json:"children,omitempty"`
 
 	// A count of
 	ChildrenCount *uint `json:"childrenCount,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Parent *Hardware_Component_Model_Architecture_Type `json:"parent,omitempty"`
 
-	//
+	// no documentation yet
 	ParentId *string `json:"parentId,omitempty"`
 }
 
@@ -945,10 +945,10 @@ type Hardware_Component_Model_Attribute struct {
 	// A hardware component model attribute's associated [[SoftLayer_Hardware_Component_Model_Attribute_Type|type]] Id.
 	AttributeTypeId *int `json:"attributeTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareComponent *Hardware_Component_Model `json:"hardwareComponent,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareComponentAttributeType *Hardware_Component_Model_Attribute_Type `json:"hardwareComponentAttributeType,omitempty"`
 
 	// A hardware component model attribute's associated [[SoftLayer_Hardware_Component_Model|hardware component model]] Id.
@@ -977,7 +977,7 @@ type Hardware_Component_Model_Attribute_Type struct {
 	// A count of
 	ValidComponentTypeCount *uint `json:"validComponentTypeCount,omitempty"`
 
-	//
+	// no documentation yet
 	ValidComponentTypes []Hardware_Component_Type `json:"validComponentTypes,omitempty"`
 }
 
@@ -1127,7 +1127,7 @@ type Hardware_Component_Partition_Template struct {
 	// A partition template's description.
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	ExpireDate *string `json:"expireDate,omitempty"`
 
 	// A partition template's id.
@@ -1243,10 +1243,10 @@ type Hardware_Component_RemoteManagement_Command_Request struct {
 type Hardware_Component_RemoteManagement_User struct {
 	Entity
 
-	//
+	// no documentation yet
 	Hardware *Hardware `json:"hardware,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkComponent *Network_Component `json:"networkComponent,omitempty"`
 
 	// The password used for this remote management command.
@@ -1317,11 +1317,11 @@ type Hardware_Function struct {
 	Id *int `json:"id,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Domain *string `json:"domain,omitempty"`
 
 	// A count of all servers attached to a network hardware.
@@ -1351,10 +1351,10 @@ type Hardware_Group struct {
 	// The chassis that a piece of hardware is housed in.
 	HardwareChassis *Hardware_Chassis `json:"hardwareChassis,omitempty"`
 
-	//
+	// no documentation yet
 	Hostname *string `json:"hostname,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// All servers attached downstream to a hardware that have failed monitoring
@@ -1373,11 +1373,11 @@ type Hardware_Group struct {
 	NetworkStatus *string `json:"networkStatus,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_LoadBalancer struct {
 	Hardware
 
-	//
+	// no documentation yet
 	ModelFamily *string `json:"modelFamily,omitempty"`
 
 	// A count of a list of users that have access to this hardware load balancer.
@@ -1387,63 +1387,63 @@ type Hardware_LoadBalancer struct {
 	Users []User_Customer `json:"users,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_Note struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Employee *User_Employee `json:"employee,omitempty"`
 
-	//
+	// no documentation yet
 	Hardware *Hardware `json:"hardware,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareId *int `json:"hardwareId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Note *string `json:"note,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Hardware_Note_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	TypeId *int `json:"typeId,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 
-	//
+	// no documentation yet
 	UserRecordId *int `json:"userRecordId,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_Note_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 }
 
-//
+// no documentation yet
 type Hardware_Power_Component struct {
 	Entity
 
-	//
+	// no documentation yet
 	Hardware *Hardware `json:"hardware,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareId *int `json:"hardwareId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 }
 
@@ -1474,7 +1474,7 @@ type Hardware_Router_Frontend struct {
 	Hardware_Router
 }
 
-//
+// no documentation yet
 type Hardware_SecurityModule struct {
 	Hardware_Server
 }
@@ -1489,7 +1489,7 @@ type Hardware_Server struct {
 	// A count of
 	ActiveTicketCount *uint `json:"activeTicketCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveTickets []Ticket `json:"activeTickets,omitempty"`
 
 	// Transaction currently running for server.
@@ -1525,7 +1525,7 @@ type Hardware_Server struct {
 	// The raw public bandwidth usage data for the current billing cycle.
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
 
-	//
+	// no documentation yet
 	ContainsSolidStateDrivesFlag *bool `json:"containsSolidStateDrivesFlag,omitempty"`
 
 	// A server's control panel.
@@ -1582,7 +1582,7 @@ type Hardware_Server struct {
 	// The last five commands issued to the server's remote management card.
 	RecentRemoteManagementCommands []Hardware_Component_RemoteManagement_Command_Request `json:"recentRemoteManagementCommands,omitempty"`
 
-	//
+	// no documentation yet
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty"`
 
 	// A server's remote management card.

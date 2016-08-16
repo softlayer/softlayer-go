@@ -20,19 +20,19 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Service_Provider struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

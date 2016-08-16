@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Network struct {
 	Session *session.Session
 	Options sl.Options
@@ -145,7 +145,7 @@ func (r Network) EditObject(templateObject *datatypes.Network) (resp bool, err e
 	return
 }
 
-//
+// no documentation yet
 func (r Network) GetAllObjects() (resp []datatypes.Network, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -175,7 +175,7 @@ func (r Network) GetNotes() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network) GetObject() (resp datatypes.Network, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -270,7 +270,7 @@ func (r Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthU
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -518,13 +518,13 @@ func (r Network_Application_Delivery_Controller_Configuration_History) GetContro
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_Configuration_History) GetObject() (resp datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struct {
 	Session *session.Session
 	Options sl.Options
@@ -565,7 +565,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) G
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -577,7 +577,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) G
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -612,19 +612,19 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Ty
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	Session *session.Session
 	Options sl.Options
@@ -665,7 +665,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAt
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -689,7 +689,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetTy
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -724,19 +724,19 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) 
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Method struct {
 	Session *session.Session
 	Options sl.Options
@@ -771,19 +771,19 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Off
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -818,19 +818,19 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Offse
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	Session *session.Session
 	Options sl.Options
@@ -865,7 +865,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Offset(off
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -913,7 +913,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetIpAddre
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -925,13 +925,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetService
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) ToggleStatus() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -978,7 +978,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetG
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1020,13 +1020,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetV
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) KickAllConnections() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Session *session.Session
 	Options sl.Options
@@ -1136,7 +1136,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) G
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1190,7 +1190,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) U
 	return
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	Session *session.Session
 	Options sl.Options
@@ -1225,13 +1225,13 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Offs
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1353,7 +1353,7 @@ func (r Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err erro
 	return
 }
 
-//
+// no documentation yet
 type Network_Backbone_Location_Dependent struct {
 	Session *session.Session
 	Options sl.Options
@@ -1388,7 +1388,7 @@ func (r Network_Backbone_Location_Dependent) Offset(offset int) Network_Backbone
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Backbone_Location_Dependent) GetAllObjects() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1400,13 +1400,13 @@ func (r Network_Backbone_Location_Dependent) GetDependentLocation() (resp dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Backbone_Location_Dependent) GetObject() (resp datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Backbone_Location_Dependent) GetSourceDependentsByName(locationName *string) (resp datatypes.Location, err error) {
 	params := []interface{}{
 		locationName,
@@ -1940,7 +1940,7 @@ func (r Network_Component) GetNetworkVlanTrunks() (resp []datatypes.Network_Comp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Component) GetObject() (resp datatypes.Network_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3013,7 +3013,7 @@ func (r Network_Firewall_Interface) GetObject() (resp datatypes.Network_Firewall
 	return
 }
 
-//
+// no documentation yet
 type Network_Firewall_Module_Context_Interface struct {
 	Session *session.Session
 	Options sl.Options
@@ -3060,7 +3060,7 @@ func (r Network_Firewall_Module_Context_Interface) GetNetworkVlan() (resp dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Firewall_Module_Context_Interface) GetObject() (resp datatypes.Network_Firewall_Module_Context_Interface, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3215,7 +3215,7 @@ func (r Network_Firewall_Update_Request) GetRules() (resp []datatypes.Network_Fi
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Firewall_Update_Request) UpdateRuleNote(fwRule *datatypes.Network_Component_Firewall_Rule, note *string) (resp bool, err error) {
 	params := []interface{}{
 		fwRule,
@@ -3297,7 +3297,7 @@ func (r Network_Firewall_Update_Request_Rule) ValidateRule(rule *datatypes.Netwo
 	return
 }
 
-//
+// no documentation yet
 type Network_Gateway struct {
 	Session *session.Session
 	Options sl.Options
@@ -3385,7 +3385,7 @@ func (r Network_Gateway) GetMembers() (resp []datatypes.Network_Gateway_Member, 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Gateway) GetObject() (resp datatypes.Network_Gateway, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3450,7 +3450,7 @@ func (r Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (
 	return
 }
 
-//
+// no documentation yet
 type Network_Gateway_Member struct {
 	Session *session.Session
 	Options sl.Options
@@ -3515,13 +3515,13 @@ func (r Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gate
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Gateway_Status struct {
 	Session *session.Session
 	Options sl.Options
@@ -3556,13 +3556,13 @@ func (r Network_Gateway_Status) Offset(offset int) Network_Gateway_Status {
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Gateway_Status) GetObject() (resp datatypes.Network_Gateway_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Gateway_Vlan struct {
 	Session *session.Session
 	Options sl.Options
@@ -3650,7 +3650,7 @@ func (r Network_Gateway_Vlan) GetNetworkVlan() (resp datatypes.Network_Vlan, err
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Gateway_Vlan) GetObject() (resp datatypes.Network_Gateway_Vlan, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4247,7 +4247,7 @@ func (r Network_Media_Transcode_Job) GetHistory() (resp []datatypes.Network_Medi
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Media_Transcode_Job) GetObject() (resp datatypes.Network_Media_Transcode_Job, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4318,13 +4318,13 @@ func (r Network_Media_Transcode_Job_Status) GetAllStatuses() (resp []datatypes.N
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Media_Transcode_Job_Status) GetObject() (resp datatypes.Network_Media_Transcode_Job_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery struct {
 	Session *session.Session
 	Options sl.Options
@@ -4359,7 +4359,7 @@ func (r Network_Message_Delivery) Offset(offset int) Network_Message_Delivery {
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery) EditObject(templateObject *datatypes.Network_Message_Delivery) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4380,7 +4380,7 @@ func (r Network_Message_Delivery) GetBillingItem() (resp datatypes.Billing_Item,
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery) GetObject() (resp datatypes.Network_Message_Delivery, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4398,7 +4398,7 @@ func (r Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_De
 	return
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery_Email_Sendgrid struct {
 	Session *session.Session
 	Options sl.Options
@@ -4433,7 +4433,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) Offset(offset int) Network_Mess
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) AddUnsubscribeEmailAddress(emailAddress *string) (resp bool, err error) {
 	params := []interface{}{
 		emailAddress,
@@ -4442,7 +4442,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) AddUnsubscribeEmailAddress(emai
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) DeleteEmailListEntries(list *string, entries []string) (resp bool, err error) {
 	params := []interface{}{
 		list,
@@ -4452,13 +4452,13 @@ func (r Network_Message_Delivery_Email_Sendgrid) DeleteEmailListEntries(list *st
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) DisableSmtpAccess() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) EditObject(templateObject *datatypes.Network_Message_Delivery) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4467,7 +4467,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) EditObject(templateObject *data
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) EnableSmtpAccess() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4479,7 +4479,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetAccount() (resp datatypes.Ac
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Account_Overview, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4491,7 +4491,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetBillingItem() (resp datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetCategoryList() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4503,7 +4503,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetEmailAddress() (resp string,
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetEmailList(list *string) (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_List_Entry, err error) {
 	params := []interface{}{
 		list,
@@ -4512,7 +4512,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetEmailList(list *string) (res
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Network_Message_Delivery_Email_Sendgrid, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4524,7 +4524,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, e
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetStatistics(options *datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Options) (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics, err error) {
 	params := []interface{}{
 		options,
@@ -4533,7 +4533,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetStatistics(options *datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetStatisticsGraph(options *datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Options) (resp datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Graph, err error) {
 	params := []interface{}{
 		options,
@@ -4554,13 +4554,13 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetVendor() (resp datatypes.Net
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetVendorPortalUrl() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) SendEmail(emailContainer *datatypes.Container_Network_Message_Delivery_Email) (resp bool, err error) {
 	params := []interface{}{
 		emailContainer,
@@ -4569,7 +4569,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) SendEmail(emailContainer *datat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) UpdateEmailAddress(emailAddress *string) (resp bool, err error) {
 	params := []interface{}{
 		emailAddress,
@@ -4631,7 +4631,7 @@ func (r Network_Message_Queue) GetNodes() (resp []datatypes.Network_Message_Queu
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue) GetObject() (resp datatypes.Network_Message_Queue, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4678,7 +4678,7 @@ func (r Network_Message_Queue_Node) Offset(offset int) Network_Message_Queue_Nod
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue_Node) AddUser(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -4687,7 +4687,7 @@ func (r Network_Message_Queue_Node) AddUser(username *string) (resp bool, err er
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue_Node) DeleteUser(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -4696,7 +4696,7 @@ func (r Network_Message_Queue_Node) DeleteUser(username *string) (resp bool, err
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue_Node) GetAllUsers() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4714,7 +4714,7 @@ func (r Network_Message_Queue_Node) GetMetricTrackingObject() (resp datatypes.Me
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue_Node) GetObject() (resp datatypes.Network_Message_Queue_Node, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4780,13 +4780,13 @@ func (r Network_Message_Queue_Status) Offset(offset int) Network_Message_Queue_S
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Message_Queue_Status) GetObject() (resp datatypes.Network_Message_Queue_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Monitor struct {
 	Session *session.Session
 	Options sl.Options
@@ -5074,7 +5074,7 @@ func (r Network_Pod) Offset(offset int) Network_Pod {
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Pod) GetAllObjects() (resp []datatypes.Network_Pod, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5248,7 +5248,7 @@ func (r Network_Service_Vpn_Overrides) DeleteObjects(templateObjects []datatypes
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Service_Vpn_Overrides) GetObject() (resp datatypes.Network_Service_Vpn_Overrides, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5310,7 +5310,7 @@ func (r Network_Storage) AllowAccessFromHardware(hardwareObjectTemplate *datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) AllowAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
 		hardwareObjectTemplates,
@@ -5347,7 +5347,7 @@ func (r Network_Storage) AllowAccessFromIpAddress(ipAddressObjectTemplate *datat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) AllowAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -5365,7 +5365,7 @@ func (r Network_Storage) AllowAccessFromSubnet(subnetObjectTemplate *datatypes.N
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) AllowAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -5410,7 +5410,7 @@ func (r Network_Storage) AllowAccessToReplicantFromHardwareList(hardwareObjectTe
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
@@ -5514,7 +5514,7 @@ func (r Network_Storage) CollectBytesUsed() (resp uint, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -5523,7 +5523,7 @@ func (r Network_Storage) CreateFolder(folder *string) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) CreateSnapshot(notes *string) (resp datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		notes,
@@ -5568,7 +5568,7 @@ func (r Network_Storage) DeleteFiles(fileIds []string) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) DeleteFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -5806,13 +5806,13 @@ func (r Network_Storage) GetBytesUsed() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5857,7 +5857,7 @@ func (r Network_Storage) GetFileCount() (resp int, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetFileList(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		folder,
@@ -5879,7 +5879,7 @@ func (r Network_Storage) GetFilesPendingDelete() (resp []datatypes.Container_Uti
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5952,7 +5952,7 @@ func (r Network_Storage) GetMountableFlag() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5972,7 +5972,7 @@ func (r Network_Storage) GetObject() (resp datatypes.Network_Storage, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6158,7 +6158,7 @@ func (r Network_Storage) GetStorageGroups() (resp []datatypes.Network_Storage_Gr
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6194,7 +6194,7 @@ func (r Network_Storage) GetUsageNotification() (resp datatypes.Notification, er
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6245,7 +6245,7 @@ func (r Network_Storage) ImmediateFailoverToReplicant(replicantId *int) (resp bo
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) IsBlockingOperationInProgress(exemptStatusKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		exemptStatusKeyNames,
@@ -6300,7 +6300,7 @@ func (r Network_Storage) RemoveAccessFromIpAddress(ipAddressObjectTemplate *data
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) RemoveAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -6309,7 +6309,7 @@ func (r Network_Storage) RemoveAccessFromIpAddressList(ipAddressObjectTemplates 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -6318,7 +6318,7 @@ func (r Network_Storage) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) RemoveAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -6363,7 +6363,7 @@ func (r Network_Storage) RemoveAccessToReplicantFromIpAddressList(ipAddressObjec
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -6441,7 +6441,7 @@ func (r Network_Storage) SetMountable(mountable *bool) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage) SetSnapshotAllocation(capacityGb *int) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -6474,7 +6474,7 @@ func (r Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Entit
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host struct {
 	Session *session.Session
 	Options sl.Options
@@ -6509,7 +6509,7 @@ func (r Network_Storage_Allowed_Host) Offset(offset int) Network_Storage_Allowed
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6518,13 +6518,13 @@ func (r Network_Storage_Allowed_Host) CreateObject(templateObject *datatypes.Net
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6557,7 +6557,7 @@ func (r Network_Storage_Allowed_Host) GetCredential() (resp datatypes.Network_St
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host) GetObject() (resp datatypes.Network_Storage_Allowed_Host, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6572,7 +6572,7 @@ func (r Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (r
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_Hardware struct {
 	Session *session.Session
 	Options sl.Options
@@ -6607,7 +6607,7 @@ func (r Network_Storage_Allowed_Host_Hardware) Offset(offset int) Network_Storag
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6616,13 +6616,13 @@ func (r Network_Storage_Allowed_Host_Hardware) CreateObject(templateObject *data
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6655,7 +6655,7 @@ func (r Network_Storage_Allowed_Host_Hardware) GetCredential() (resp datatypes.N
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Hardware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6676,7 +6676,7 @@ func (r Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *s
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_IpAddress struct {
 	Session *session.Session
 	Options sl.Options
@@ -6711,7 +6711,7 @@ func (r Network_Storage_Allowed_Host_IpAddress) Offset(offset int) Network_Stora
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6720,13 +6720,13 @@ func (r Network_Storage_Allowed_Host_IpAddress) CreateObject(templateObject *dat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6759,7 +6759,7 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetCredential() (resp datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) GetObject() (resp datatypes.Network_Storage_Allowed_Host_IpAddress, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6780,7 +6780,7 @@ func (r Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password *
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_Subnet struct {
 	Session *session.Session
 	Options sl.Options
@@ -6815,7 +6815,7 @@ func (r Network_Storage_Allowed_Host_Subnet) Offset(offset int) Network_Storage_
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6824,13 +6824,13 @@ func (r Network_Storage_Allowed_Host_Subnet) CreateObject(templateObject *dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6863,7 +6863,7 @@ func (r Network_Storage_Allowed_Host_Subnet) GetCredential() (resp datatypes.Net
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) GetObject() (resp datatypes.Network_Storage_Allowed_Host_Subnet, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6884,7 +6884,7 @@ func (r Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *str
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_VirtualGuest struct {
 	Session *session.Session
 	Options sl.Options
@@ -6919,7 +6919,7 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) Offset(offset int) Network_St
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) CreateObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6928,13 +6928,13 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) CreateObject(templateObject *
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6967,7 +6967,7 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetCredential() (resp datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetObject() (resp datatypes.Network_Storage_Allowed_Host_VirtualGuest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7032,7 +7032,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHardware(hardwareObjectTem
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) AllowAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
 		hardwareObjectTemplates,
@@ -7069,7 +7069,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromIpAddress(ipAddressObjectT
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) AllowAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -7087,7 +7087,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromSubnet(subnetObjectTemplat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) AllowAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -7132,7 +7132,7 @@ func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromHardwareList(ha
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
@@ -7236,7 +7236,7 @@ func (r Network_Storage_Backup_Evault) CollectBytesUsed() (resp uint, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -7245,7 +7245,7 @@ func (r Network_Storage_Backup_Evault) CreateFolder(folder *string) (resp bool, 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) CreateSnapshot(notes *string) (resp datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		notes,
@@ -7290,7 +7290,7 @@ func (r Network_Storage_Backup_Evault) DeleteFiles(fileIds []string) (resp bool,
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) DeleteFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -7541,13 +7541,13 @@ func (r Network_Storage_Backup_Evault) GetBytesUsed() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7592,7 +7592,7 @@ func (r Network_Storage_Backup_Evault) GetFileCount() (resp int, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetFileList(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		folder,
@@ -7614,7 +7614,7 @@ func (r Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7707,7 +7707,7 @@ func (r Network_Storage_Backup_Evault) GetMountableFlag() (resp string, err erro
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7725,7 +7725,7 @@ func (r Network_Storage_Backup_Evault) GetObject() (resp datatypes.Network_Stora
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7911,7 +7911,7 @@ func (r Network_Storage_Backup_Evault) GetStorageGroups() (resp []datatypes.Netw
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7947,7 +7947,7 @@ func (r Network_Storage_Backup_Evault) GetUsageNotification() (resp datatypes.No
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7977,7 +7977,7 @@ func (r Network_Storage_Backup_Evault) GetVolumeStatus() (resp string, err error
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) GetWebCCAuthenticationDetails() (resp datatypes.Container_Network_Storage_Backup_Evault_WebCc_Authentication_Details, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8019,7 +8019,7 @@ func (r Network_Storage_Backup_Evault) InitiateBareMetalRestoreForServer(hardwar
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) IsBlockingOperationInProgress(exemptStatusKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		exemptStatusKeyNames,
@@ -8074,7 +8074,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromIpAddress(ipAddressObject
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) RemoveAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -8083,7 +8083,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromIpAddressList(ipAddressOb
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -8092,7 +8092,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromSubnet(subnetObjectTempla
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) RemoveAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -8137,7 +8137,7 @@ func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromIpAddressList(
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -8215,7 +8215,7 @@ func (r Network_Storage_Backup_Evault) SetMountable(mountable *bool) (resp bool,
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -8248,7 +8248,7 @@ func (r Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Util
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -8301,7 +8301,7 @@ func (r Network_Storage_Group) AttachToVolume(volume *datatypes.Network_Storage)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group) CreateObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8310,13 +8310,13 @@ func (r Network_Storage_Group) CreateObject(templateObject *datatypes.Network_St
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group) EditObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8361,7 +8361,7 @@ func (r Network_Storage_Group) GetNetworkConnectionDetails() (resp datatypes.Con
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group) GetObject() (resp datatypes.Network_Storage_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8397,7 +8397,7 @@ func (r Network_Storage_Group) RemoveFromVolume(volume *datatypes.Network_Storag
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Iscsi struct {
 	Session *session.Session
 	Options sl.Options
@@ -8450,7 +8450,7 @@ func (r Network_Storage_Group_Iscsi) AttachToVolume(volume *datatypes.Network_St
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Iscsi) CreateObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8459,13 +8459,13 @@ func (r Network_Storage_Group_Iscsi) CreateObject(templateObject *datatypes.Netw
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Iscsi) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Iscsi) EditObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8510,7 +8510,7 @@ func (r Network_Storage_Group_Iscsi) GetNetworkConnectionDetails() (resp datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Iscsi) GetObject() (resp datatypes.Network_Storage_Group_Iscsi, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8546,7 +8546,7 @@ func (r Network_Storage_Group_Iscsi) RemoveFromVolume(volume *datatypes.Network_
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Nfs struct {
 	Session *session.Session
 	Options sl.Options
@@ -8599,7 +8599,7 @@ func (r Network_Storage_Group_Nfs) AttachToVolume(volume *datatypes.Network_Stor
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Nfs) CreateObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8608,13 +8608,13 @@ func (r Network_Storage_Group_Nfs) CreateObject(templateObject *datatypes.Networ
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Nfs) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Nfs) EditObject(templateObject *datatypes.Network_Storage_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -8659,7 +8659,7 @@ func (r Network_Storage_Group_Nfs) GetNetworkConnectionDetails() (resp datatypes
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Nfs) GetObject() (resp datatypes.Network_Storage_Group_Nfs, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8695,7 +8695,7 @@ func (r Network_Storage_Group_Nfs) RemoveFromVolume(volume *datatypes.Network_St
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -8736,13 +8736,13 @@ func (r Network_Storage_Group_Type) GetAllObjects() (resp []datatypes.Network_St
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage_Group_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Cleversafe_Account struct {
 	Session *session.Session
 	Options sl.Options
@@ -8777,13 +8777,13 @@ func (r Network_Storage_Hub_Cleversafe_Account) Offset(offset int) Network_Stora
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) CredentialCreate() (resp []datatypes.Network_Storage_Credential, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) CredentialDelete(credential *datatypes.Network_Storage_Credential) (resp bool, err error) {
 	params := []interface{}{
 		credential,
@@ -8810,13 +8810,13 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCancelledBillingItem() (resp 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8828,7 +8828,7 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCredentials() (resp []datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetEndpoints() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8840,7 +8840,7 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetMetricTrackingObject() (resp 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetObject() (resp datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -8852,7 +8852,7 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err erro
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Swift_Share struct {
 	Session *session.Session
 	Options sl.Options
@@ -8957,7 +8957,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHardware(hardwareObjectTemplate *d
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) AllowAccessFromHardwareList(hardwareObjectTemplates []datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
 		hardwareObjectTemplates,
@@ -8985,7 +8985,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromHostList(hostObjectTemplates []dat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) AllowAccessFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
@@ -8994,7 +8994,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromIpAddress(ipAddressObjectTemplate 
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) AllowAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -9012,7 +9012,7 @@ func (r Network_Storage_Iscsi) AllowAccessFromSubnet(subnetObjectTemplate *datat
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) AllowAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -9057,7 +9057,7 @@ func (r Network_Storage_Iscsi) AllowAccessToReplicantFromHardwareList(hardwareOb
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) AllowAccessToReplicantFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
@@ -9161,7 +9161,7 @@ func (r Network_Storage_Iscsi) CollectBytesUsed() (resp uint, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -9170,7 +9170,7 @@ func (r Network_Storage_Iscsi) CreateFolder(folder *string) (resp bool, err erro
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) CreateSnapshot(notes *string) (resp datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		notes,
@@ -9215,7 +9215,7 @@ func (r Network_Storage_Iscsi) DeleteFiles(fileIds []string) (resp bool, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) DeleteFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -9453,13 +9453,13 @@ func (r Network_Storage_Iscsi) GetBytesUsed() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetClusterResource() (resp datatypes.Network_Service_Resource, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9504,7 +9504,7 @@ func (r Network_Storage_Iscsi) GetFileCount() (resp int, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetFileList(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		folder,
@@ -9526,7 +9526,7 @@ func (r Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Contain
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9599,7 +9599,7 @@ func (r Network_Storage_Iscsi) GetMountableFlag() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9611,13 +9611,13 @@ func (r Network_Storage_Iscsi) GetNotificationSubscribers() (resp []datatypes.No
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetObject() (resp datatypes.Network_Storage_Iscsi, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetObjectStorageConnectionInformation() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9803,7 +9803,7 @@ func (r Network_Storage_Iscsi) GetStorageGroups() (resp []datatypes.Network_Stor
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9839,7 +9839,7 @@ func (r Network_Storage_Iscsi) GetUsageNotification() (resp datatypes.Notificati
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) GetValidReplicationTargetDatacenterLocations() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -9890,7 +9890,7 @@ func (r Network_Storage_Iscsi) ImmediateFailoverToReplicant(replicantId *int) (r
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) IsBlockingOperationInProgress(exemptStatusKeyNames []string) (resp bool, err error) {
 	params := []interface{}{
 		exemptStatusKeyNames,
@@ -9936,7 +9936,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHostList(hostObjectTemplates []da
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) RemoveAccessFromIpAddress(ipAddressObjectTemplate *datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplate,
@@ -9945,7 +9945,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromIpAddress(ipAddressObjectTemplate
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) RemoveAccessFromIpAddressList(ipAddressObjectTemplates []datatypes.Network_Subnet_IpAddress) (resp bool, err error) {
 	params := []interface{}{
 		ipAddressObjectTemplates,
@@ -9954,7 +9954,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromIpAddressList(ipAddressObjectTemp
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) RemoveAccessFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -9963,7 +9963,7 @@ func (r Network_Storage_Iscsi) RemoveAccessFromSubnet(subnetObjectTemplate *data
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) RemoveAccessFromSubnetList(subnetObjectTemplates []datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplates,
@@ -10008,7 +10008,7 @@ func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromIpAddressList(ipAddres
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) RemoveAccessToReplicantFromSubnet(subnetObjectTemplate *datatypes.Network_Subnet) (resp bool, err error) {
 	params := []interface{}{
 		subnetObjectTemplate,
@@ -10086,7 +10086,7 @@ func (r Network_Storage_Iscsi) SetMountable(mountable *bool) (resp bool, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -10119,7 +10119,7 @@ func (r Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_File
 	return
 }
 
-//
+// no documentation yet
 type Network_Storage_Iscsi_OS_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -10160,7 +10160,7 @@ func (r Network_Storage_Iscsi_OS_Type) GetAllObjects() (resp []datatypes.Network
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -10261,7 +10261,7 @@ func (r Network_Storage_Schedule) GetMonthOfYear() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Schedule) GetObject() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -10350,7 +10350,7 @@ func (r Network_Storage_Schedule_Property_Type) GetAllObjects() (resp []datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Network_Storage_Schedule_Property_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -11015,7 +11015,7 @@ func (r Network_Subnet_IpAddress) RemoveAccessToNetworkStorageList(networkStorag
 	return
 }
 
-//
+// no documentation yet
 type Network_Subnet_IpAddress_Global struct {
 	Session *session.Session
 	Options sl.Options
@@ -11080,7 +11080,7 @@ func (r Network_Subnet_IpAddress_Global) GetIpAddress() (resp datatypes.Network_
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Subnet_IpAddress_Global, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -11196,7 +11196,7 @@ func (r Network_Subnet_Registration) GetNetworkDetail() (resp datatypes.Account_
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Subnet_Registration) GetObject() (resp datatypes.Network_Subnet_Registration, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -11290,7 +11290,7 @@ func (r Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Account
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Subnet_Registration_Details) GetObject() (resp datatypes.Network_Subnet_Registration_Details, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -11339,13 +11339,13 @@ func (r Network_Subnet_Registration_Status) Offset(offset int) Network_Subnet_Re
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Subnet_Registration_Status) GetAllObjects() (resp []datatypes.Network_Subnet_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network_Subnet_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -11511,7 +11511,7 @@ func (r Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err e
 	return
 }
 
-//
+// no documentation yet
 type Network_TippingPointReporting struct {
 	Session *session.Session
 	Options sl.Options
@@ -12498,7 +12498,7 @@ func (r Network_Vlan_Firewall) UpdateRouteBypass(bypass *bool) (resp datatypes.P
 	return
 }
 
-//
+// no documentation yet
 type Network_Vlan_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -12533,7 +12533,7 @@ func (r Network_Vlan_Type) Offset(offset int) Network_Vlan_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Network_Vlan_Type) GetObject() (resp datatypes.Network_Vlan_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

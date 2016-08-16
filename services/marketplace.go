@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Marketplace_Partner struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,13 +61,13 @@ func (r Marketplace_Partner) Offset(offset int) Marketplace_Partner {
 	return r
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		searchTerm,
@@ -82,7 +82,7 @@ func (r Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Part
 	return
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		non,
@@ -91,7 +91,7 @@ func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Ma
 	return
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_Partner_File, err error) {
 	params := []interface{}{
 		name,
@@ -124,13 +124,13 @@ func (r Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Part
 	return
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (resp datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		urlIdentifier,

@@ -35,7 +35,7 @@ type Virtual_Disk_Image struct {
 	// The block devices that a disk image is attached to. Block devices connect computing instances to disk images.
 	BlockDevices []Virtual_Guest_Block_Device `json:"blockDevices,omitempty"`
 
-	//
+	// no documentation yet
 	BootableVolumeFlag *bool `json:"bootableVolumeFlag,omitempty"`
 
 	// A disk image's size measured in gigabytes.
@@ -47,10 +47,10 @@ type Virtual_Disk_Image struct {
 	// A count of
 	CoalescedDiskImageCount *uint `json:"coalescedDiskImageCount,omitempty"`
 
-	//
+	// no documentation yet
 	CoalescedDiskImages []Virtual_Disk_Image `json:"coalescedDiskImages,omitempty"`
 
-	//
+	// no documentation yet
 	CopyOnWriteFlag *bool `json:"copyOnWriteFlag,omitempty"`
 
 	// The date a disk image was created.
@@ -62,7 +62,7 @@ type Virtual_Disk_Image struct {
 	// A disk image's unique ID.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LocalDiskFlag *bool `json:"localDiskFlag,omitempty"`
 
 	// Whether this disk image is meant for storage of custom user data supplied with a Cloud Computing Instance order.
@@ -174,7 +174,7 @@ type Virtual_Guest struct {
 	// A computing instance's associated [[SoftLayer_Account|account]] id
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	AccountOwnedPoolFlag *bool `json:"accountOwnedPoolFlag,omitempty"`
 
 	// A virtual guest's currently active network monitoring incidents.
@@ -186,7 +186,7 @@ type Virtual_Guest struct {
 	// A count of
 	ActiveTicketCount *uint `json:"activeTicketCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveTickets []Ticket `json:"activeTickets,omitempty"`
 
 	// A transaction that is still be performed on a cloud server.
@@ -216,13 +216,13 @@ type Virtual_Guest struct {
 	// A antivirus / spyware software component object.
 	AntivirusSpywareSoftwareComponent *Software_Component `json:"antivirusSpywareSoftwareComponent,omitempty"`
 
-	//
+	// no documentation yet
 	ApplicationDeliveryController *Network_Application_Delivery_Controller `json:"applicationDeliveryController,omitempty"`
 
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Virtual_Guest_Attribute `json:"attributes,omitempty"`
 
 	// An object that stores the maximum level for the monitoring query types and response types.
@@ -333,7 +333,7 @@ type Virtual_Guest struct {
 	// A guest's universally unique identifier.
 	GlobalIdentifier *string `json:"globalIdentifier,omitempty"`
 
-	//
+	// no documentation yet
 	GuestBootParameter *Virtual_Guest_Boot_Parameter `json:"guestBootParameter,omitempty"`
 
 	// The virtual host on which a virtual guest resides (available only on private clouds).
@@ -360,7 +360,7 @@ type Virtual_Guest struct {
 	// A count of
 	InternalTagReferenceCount *uint `json:"internalTagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	InternalTagReferences []Tag_Reference `json:"internalTagReferences,omitempty"`
 
 	// The last known power state of a virtual guest in the event the guest is turned off outside of IMS or has gone offline.
@@ -369,7 +369,7 @@ type Virtual_Guest struct {
 	// The last transaction that a cloud server's operating system was loaded.
 	LastOperatingSystemReload *Provisioning_Version1_Transaction `json:"lastOperatingSystemReload,omitempty"`
 
-	//
+	// no documentation yet
 	LastPowerStateId *int `json:"lastPowerStateId,omitempty"`
 
 	// The last transaction a cloud server had performed.
@@ -414,19 +414,19 @@ type Virtual_Guest struct {
 	// A count of
 	MonitoringAgentCount *uint `json:"monitoringAgentCount,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringAgents []Monitoring_Agent `json:"monitoringAgents,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty"`
 
 	// A virtual guest's network monitoring services.
 	MonitoringServiceComponent *Network_Monitor_Version1_Query_Host_Stratum `json:"monitoringServiceComponent,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringServiceFlag *bool `json:"monitoringServiceFlag,omitempty"`
 
 	// The monitoring notification objects for this guest. Each object links this guest instance to a user account that will be notified if monitoring on this guest object fails
@@ -516,7 +516,7 @@ type Virtual_Guest struct {
 	// The projected public outbound bandwidth for this computing instance for the current billing cycle.
 	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
-	//
+	// no documentation yet
 	ProvisionDate *Time `json:"provisionDate,omitempty"`
 
 	// A count of recent events that impact this computing instance.
@@ -528,7 +528,7 @@ type Virtual_Guest struct {
 	// The regional group this guest is in.
 	RegionalGroup *Location_Group_Regional `json:"regionalGroup,omitempty"`
 
-	//
+	// no documentation yet
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty"`
 
 	// A count of collection of scale assets this guest corresponds to.
@@ -579,7 +579,7 @@ type Virtual_Guest struct {
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
 
 	// A computing instance's associated upgrade request object if any.
@@ -610,32 +610,32 @@ type Virtual_Guest struct {
 	VirtualRackName *string `json:"virtualRackName,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	Guest *Virtual_Guest `json:"guest,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Virtual_Guest_Attribute_Type `json:"type,omitempty"`
 
 	// A guest attribute's value.
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Attribute_UserData struct {
 	Virtual_Guest_Attribute
 }
@@ -682,7 +682,7 @@ type Virtual_Guest_Block_Device struct {
 	// The type of device that a virtual block device is mounted as, either "Disk" for a directly connected storage disk or "CD" for devices that are mounted as optical drives..
 	MountType *string `json:"mountType,omitempty"`
 
-	//
+	// no documentation yet
 	Status *Virtual_Guest_Block_Device_Status `json:"status,omitempty"`
 
 	// The status of the device, either disconnected or connected
@@ -692,14 +692,14 @@ type Virtual_Guest_Block_Device struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Block_Device_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -746,7 +746,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// A count of
 	AccountContactCount *uint `json:"accountContactCount,omitempty"`
 
-	//
+	// no documentation yet
 	AccountContacts []Account_Contact `json:"accountContacts,omitempty"`
 
 	// A block device template group's [[SoftLayer_Account|account]] ID
@@ -812,7 +812,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// A block device template group's [[SoftLayer_Virtual_Guest_Block_Device_Template_Group|parent]] ID.  This will only be set when a template group is created from a previously existing template group
 	ParentId *int `json:"parentId,omitempty"`
 
-	//
+	// no documentation yet
 	PublicFlag *int `json:"publicFlag,omitempty"`
 
 	// A count of the ssh keys to be implemented on the server when provisioned or reloaded from an image template group.
@@ -881,39 +881,39 @@ type Virtual_Guest_Block_Device_Template_Group_Accounts struct {
 type Virtual_Guest_Block_Device_Template_Group_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Boot_Parameter struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Guest *Virtual_Guest `json:"guest,omitempty"`
 
-	//
+	// no documentation yet
 	GuestBootParameterType *Virtual_Guest_Boot_Parameter_Type `json:"guestBootParameterType,omitempty"`
 
-	//
+	// no documentation yet
 	GuestBootParameterTypeId *int `json:"guestBootParameterTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	GuestId *int `json:"guestId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 }
 
@@ -924,7 +924,7 @@ type Virtual_Guest_Boot_Parameter_Type struct {
 	// Available boot options.
 	BootOption *string `json:"bootOption,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// A description of the boot parameter
@@ -936,7 +936,7 @@ type Virtual_Guest_Boot_Parameter_Type struct {
 	// The key name of the boot parameter.
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The common name of the boot parameter.
@@ -961,7 +961,7 @@ type Virtual_Guest_Network_Component struct {
 	// The unique ID of the [[SoftLayer_Virtual_Guest|computing instance]] that this network component belongs to.
 	GuestId *int `json:"guestId,omitempty"`
 
-	//
+	// no documentation yet
 	HighAvailabilityFirewallFlag *bool `json:"highAvailabilityFirewallFlag,omitempty"`
 
 	// A computing instance's network component's unique ID.
@@ -1000,7 +1000,7 @@ type Virtual_Guest_Network_Component struct {
 	// A computing instance network component's primary IP address.
 	PrimaryIpAddress *string `json:"primaryIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	PrimaryIpAddressRecord *Network_Subnet_IpAddress `json:"primaryIpAddressRecord,omitempty"`
 
 	// A network component's subnet for its primary IP address
@@ -1062,18 +1062,18 @@ type Virtual_Guest_Power_State struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Virtual_Guest_SupplementalCreateObjectOptions struct {
 	Entity
 
@@ -1174,13 +1174,13 @@ type Virtual_Storage_Repository struct {
 	// Unique ID for a storage repository.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	MetricTrackingObject *Metric_Tracking_Object_Virtual_Storage_Repository `json:"metricTrackingObject,omitempty"`
 
 	// A storage repositories name that describes its purpose or contents
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	PublicFlag *int `json:"publicFlag,omitempty"`
 
 	// The current billing item for a public storage repository.

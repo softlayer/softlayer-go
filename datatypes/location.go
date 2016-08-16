@@ -27,7 +27,7 @@ type Location struct {
 	// A count of
 	BackboneDependentCount *uint `json:"backboneDependentCount,omitempty"`
 
-	//
+	// no documentation yet
 	BackboneDependents []Network_Backbone_Location_Dependent `json:"backboneDependents,omitempty"`
 
 	// A count of a location can be a member of 1 or more groups. This will show which groups to which a location belongs.
@@ -39,7 +39,7 @@ type Location struct {
 	// A count of
 	HardwareFirewallCount *uint `json:"hardwareFirewallCount,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareFirewalls []Hardware `json:"hardwareFirewalls,omitempty"`
 
 	// The unique identifier of a specific location.
@@ -60,7 +60,7 @@ type Location struct {
 	// A short location description.
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkConfigurationAttribute *Hardware_Attribute `json:"networkConfigurationAttribute,omitempty"`
 
 	// The total number of users online using SoftLayer's PPTP VPN service for a location.
@@ -69,7 +69,7 @@ type Location struct {
 	// The total number of users online using SoftLayer's SSL VPN service for a location.
 	OnlineSslVpnUserCount *int `json:"onlineSslVpnUserCount,omitempty"`
 
-	//
+	// no documentation yet
 	PathString *string `json:"pathString,omitempty"`
 
 	// A count of a location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
@@ -84,10 +84,10 @@ type Location struct {
 	// A location can be a member of 1 or more regions. This will show which regions to which a location belongs.
 	Regions []Location_Region `json:"regions,omitempty"`
 
-	//
+	// no documentation yet
 	StatusId *int `json:"statusId,omitempty"`
 
-	//
+	// no documentation yet
 	Timezone *Locale_Timezone `json:"timezone,omitempty"`
 
 	// A location can be a member of 1 Bandwidth Pooling Group. This will show which group to which a location belongs.
@@ -101,19 +101,19 @@ type Location_Datacenter struct {
 	// A count of
 	ActiveItemPresaleEventCount *uint `json:"activeItemPresaleEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveItemPresaleEvents []Sales_Presale_Event `json:"activeItemPresaleEvents,omitempty"`
 
 	// A count of
 	ActivePresaleEventCount *uint `json:"activePresaleEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActivePresaleEvents []Sales_Presale_Event `json:"activePresaleEvents,omitempty"`
 
 	// A count of
 	BackendHardwareRouterCount *uint `json:"backendHardwareRouterCount,omitempty"`
 
-	//
+	// no documentation yet
 	BackendHardwareRouters []Hardware `json:"backendHardwareRouters,omitempty"`
 
 	// A count of subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
@@ -131,25 +131,25 @@ type Location_Datacenter struct {
 	// A count of
 	FrontendHardwareRouterCount *uint `json:"frontendHardwareRouterCount,omitempty"`
 
-	//
+	// no documentation yet
 	FrontendHardwareRouters []Hardware `json:"frontendHardwareRouters,omitempty"`
 
 	// A count of
 	HardwareRouterCount *uint `json:"hardwareRouterCount,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareRouters []Hardware `json:"hardwareRouters,omitempty"`
 
 	// A count of
 	PresaleEventCount *uint `json:"presaleEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	PresaleEvents []Sales_Presale_Event `json:"presaleEvents,omitempty"`
 
 	// The regional group this datacenter belongs to.
 	RegionalGroup *Location_Group_Regional `json:"regionalGroup,omitempty"`
 
-	//
+	// no documentation yet
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty"`
 
 	// A count of retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
@@ -159,14 +159,14 @@ type Location_Datacenter struct {
 	RoutableBoundSubnets []Network_Subnet `json:"routableBoundSubnets,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// A count of the locations in a group.
@@ -175,40 +175,40 @@ type Location_Group struct {
 	// The type for this location group.
 	LocationGroupType *Location_Group_Type `json:"locationGroupType,omitempty"`
 
-	//
+	// no documentation yet
 	LocationGroupTypeId *int `json:"locationGroupTypeId,omitempty"`
 
 	// The locations in a group.
 	Locations []Location `json:"locations,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	SecurityLevelId *int `json:"securityLevelId,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Group_Location_CrossReference struct {
 	Entity
 
-	//
+	// no documentation yet
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationGroup *Location_Group `json:"locationGroup,omitempty"`
 
-	//
+	// no documentation yet
 	LocationGroupId *int `json:"locationGroupId,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
 	// If set, this is the priority of this cross reference record in the group.
 	Priority *int `json:"priority,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Group_Pricing struct {
 	Location_Group
 
@@ -219,7 +219,7 @@ type Location_Group_Pricing struct {
 	Prices []Product_Item_Price `json:"prices,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Group_Regional struct {
 	Location_Group
 
@@ -233,11 +233,11 @@ type Location_Group_Regional struct {
 	PreferredDatacenter *Location_Datacenter `json:"preferredDatacenter,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Group_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -295,7 +295,7 @@ type Location_Region_Location struct {
 	Region *Location_Region `json:"region,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Reservation struct {
 	Entity
 
@@ -305,32 +305,32 @@ type Location_Reservation struct {
 	// The bandwidth allotment that the reservation belongs to.
 	Allotment *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty"`
 
-	//
+	// no documentation yet
 	AllotmentId *int `json:"allotmentId,omitempty"`
 
 	// The bandwidth allotment that the reservation belongs to.
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// The datacenter location that the reservation belongs to.
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
 	// Rack information for the reservation
 	LocationReservationRack *Location_Reservation_Rack `json:"locationReservationRack,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Reservation_Rack struct {
 	Entity
 
@@ -343,51 +343,51 @@ type Location_Reservation_Rack struct {
 	// A count of members of the rack.
 	ChildrenCount *uint `json:"childrenCount,omitempty"`
 
-	//
+	// no documentation yet
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
-	//
+	// no documentation yet
 	LocationReservation *Location_Reservation `json:"locationReservation,omitempty"`
 
-	//
+	// no documentation yet
 	LocationReservationId *int `json:"locationReservationId,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkConnectionCapacity *int `json:"networkConnectionCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkConnectionReservation *int `json:"networkConnectionReservation,omitempty"`
 
-	//
+	// no documentation yet
 	PowerConnectionCapacity *int `json:"powerConnectionCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	PowerConnectionReservation *int `json:"powerConnectionReservation,omitempty"`
 
-	//
+	// no documentation yet
 	SlotCapacity *int `json:"slotCapacity,omitempty"`
 
-	//
+	// no documentation yet
 	SlotReservation *int `json:"slotReservation,omitempty"`
 }
 
-//
+// no documentation yet
 type Location_Reservation_Rack_Member struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// Location relation for the rack member
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
-	//
+	// no documentation yet
 	LocationReservationRack *Location_Reservation `json:"locationReservationRack,omitempty"`
 }
 

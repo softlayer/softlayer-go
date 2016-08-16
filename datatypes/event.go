@@ -54,7 +54,7 @@ type Event_Log struct {
 	// A unique trace id. Multiple event can be grouped by a trace id.
 	TraceId *string `json:"traceId,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 
 	// Id of customer who initiated the event

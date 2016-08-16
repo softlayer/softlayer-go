@@ -64,13 +64,13 @@ type Dns_Domain_Registration struct {
 	// The SoftLayer customer account that the domain is registered to.
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// The domain registration status.
 	DomainRegistrationStatus *Dns_Domain_Registration_Status `json:"domainRegistrationStatus,omitempty"`
 
-	//
+	// no documentation yet
 	DomainRegistrationStatusId *int `json:"domainRegistrationStatusId,omitempty"`
 
 	// The date that the domain registration will expire.
@@ -82,7 +82,7 @@ type Dns_Domain_Registration struct {
 	// Indicates whether a domain is locked or unlocked.
 	LockedFlag *int `json:"lockedFlag,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// A domain's name, for example "example.com".
@@ -91,13 +91,13 @@ type Dns_Domain_Registration struct {
 	// The registrant verification status.
 	RegistrantVerificationStatus *Dns_Domain_Registration_Registrant_Verification_Status `json:"registrantVerificationStatus,omitempty"`
 
-	//
+	// no documentation yet
 	RegistrantVerificationStatusId *int `json:"registrantVerificationStatusId,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 }
 

@@ -82,7 +82,7 @@ func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Tag) GetObject() (resp datatypes.Tag, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

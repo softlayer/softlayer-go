@@ -61,7 +61,7 @@ func (r User_Customer) Offset(offset int) User_Customer {
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer) AcknowledgeSupportPolicy() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
@@ -98,7 +98,7 @@ func (r User_Customer) AddBulkPortalPermission(permissions []datatypes.User_Cust
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) AddBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -119,7 +119,7 @@ func (r User_Customer) AddBulkVirtualGuestAccess(virtualGuestIds []int) (resp bo
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) AddExternalBinding(externalBinding *datatypes.User_External_Binding) (resp datatypes.User_Customer_External_Binding, err error) {
 	params := []interface{}{
 		externalBinding,
@@ -161,7 +161,7 @@ func (r User_Customer) AddPortalPermission(permission *datatypes.User_Customer_C
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) AddRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -274,7 +274,7 @@ func (r User_Customer) EditObjects(templateObjects []datatypes.User_Customer) (r
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) FindUserPreference(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
 		profileName,
@@ -309,13 +309,13 @@ func (r User_Customer) GetAdditionalEmails() (resp []datatypes.User_Customer_Add
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetAllowedHardwareIds() (resp []int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetAllowedVirtualGuestIds() (resp []int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -327,7 +327,7 @@ func (r User_Customer) GetApiAuthenticationKeys() (resp []datatypes.User_Custome
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetAuthenticationToken(token *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Authentication_Token, err error) {
 	params := []interface{}{
 		token,
@@ -405,7 +405,7 @@ func (r User_Customer) GetHasFullVirtualGuestAccessFlag() (resp bool, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetImpersonationToken() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -549,19 +549,19 @@ func (r User_Customer) GetSupportPolicyAcknowledgementRequiredFlag() (resp int, 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetSupportPolicyDocument() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetSupportPolicyName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetSupportedLocales() (resp []datatypes.Locale, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -621,7 +621,7 @@ func (r User_Customer) GetUserLinks() (resp []datatypes.User_Customer_Link, err 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
 		profileName,
@@ -649,7 +649,7 @@ func (r User_Customer) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err e
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) InTerminalStatus() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -807,7 +807,7 @@ func (r User_Customer) RemoveBulkPortalPermission(permissions []datatypes.User_C
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) RemoveBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -828,7 +828,7 @@ func (r User_Customer) RemoveBulkVirtualGuestAccess(virtualGuestIds []int) (resp
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) RemoveExternalBinding(externalBinding *datatypes.User_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		externalBinding,
@@ -861,7 +861,7 @@ func (r User_Customer) RemovePortalPermission(permission *datatypes.User_Custome
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) RemoveRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -895,7 +895,7 @@ func (r User_Customer) ResetExpiredPassword(username *string, password *string, 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) SamlAuthenticate(accountId *string, samlResponse *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		accountId,
@@ -905,7 +905,7 @@ func (r User_Customer) SamlAuthenticate(accountId *string, samlResponse *string)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) SamlBeginAuthentication(accountId *int) (resp string, err error) {
 	params := []interface{}{
 		accountId,
@@ -914,13 +914,13 @@ func (r User_Customer) SamlBeginAuthentication(accountId *int) (resp string, err
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) SamlBeginLogout() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) SamlLogout(samlResponse *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -1042,7 +1042,7 @@ func (r User_Customer) UpdateVpnUser() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer) ValidateAuthenticationToken(authenticationToken *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		authenticationToken,
@@ -1086,7 +1086,7 @@ func (r User_Customer_ApiAuthentication) Offset(offset int) User_Customer_ApiAut
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_ApiAuthentication) EditObject(templateObject *datatypes.User_Customer_ApiAuthentication) (resp datatypes.User_Customer_ApiAuthentication, err error) {
 	params := []interface{}{
 		templateObject,
@@ -1236,7 +1236,7 @@ func (r User_Customer_External_Binding) GetNote() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding) GetObject() (resp datatypes.User_Customer_External_Binding, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1365,7 +1365,7 @@ func (r User_Customer_External_Binding_Phone) GetAttributes() (resp []datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Phone) GetAuthenticationMode() (resp datatypes.Container_User_Customer_External_Binding_Phone_Mode, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1389,7 +1389,7 @@ func (r User_Customer_External_Binding_Phone) GetNote() (resp string, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Phone) GetObject() (resp datatypes.User_Customer_External_Binding_Phone, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1401,7 +1401,7 @@ func (r User_Customer_External_Binding_Phone) GetPhoneAppActivationCode() (resp 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Phone) GetPhoneData() (resp []datatypes.Container_User_Data_Phone, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1519,13 +1519,13 @@ func (r User_Customer_External_Binding_Totp) Offset(offset int) User_Customer_Ex
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Totp) Activate() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Totp) Deactivate() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1560,7 +1560,7 @@ func (r User_Customer_External_Binding_Totp) Enable() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Totp) GenerateSecretKey() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1584,7 +1584,7 @@ func (r User_Customer_External_Binding_Totp) GetNote() (resp string, err error) 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Totp) GetObject() (resp datatypes.User_Customer_External_Binding_Totp, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1658,7 +1658,7 @@ func (r User_Customer_External_Binding_Vendor) GetAllObjects() (resp []datatypes
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User_Customer_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1790,7 +1790,7 @@ func (r User_Customer_External_Binding_Verisign) GetNote() (resp string, err err
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_External_Binding_Verisign) GetObject() (resp datatypes.User_Customer_External_Binding_Verisign, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1842,7 +1842,7 @@ func (r User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *in
 	return
 }
 
-//
+// no documentation yet
 type User_Customer_Invitation struct {
 	Session *session.Session
 	Options sl.Options
@@ -1877,7 +1877,7 @@ func (r User_Customer_Invitation) Offset(offset int) User_Customer_Invitation {
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_Invitation) GetObject() (resp datatypes.User_Customer_Invitation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1960,7 +1960,7 @@ func (r User_Customer_MobileDevice) GetCustomer() (resp datatypes.User_Customer,
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_MobileDevice) GetObject() (resp datatypes.User_Customer_MobileDevice, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2019,13 +2019,13 @@ func (r User_Customer_MobileDevice_OperatingSystem) Offset(offset int) User_Cust
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_MobileDevice_OperatingSystem) GetAllObjects() (resp []datatypes.User_Customer_MobileDevice_OperatingSystem, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_MobileDevice_OperatingSystem) GetObject() (resp datatypes.User_Customer_MobileDevice_OperatingSystem, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2066,13 +2066,13 @@ func (r User_Customer_MobileDevice_Type) Offset(offset int) User_Customer_Mobile
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_MobileDevice_Type) GetAllObjects() (resp []datatypes.User_Customer_MobileDevice_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_MobileDevice_Type) GetObject() (resp datatypes.User_Customer_MobileDevice_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2260,7 +2260,7 @@ func (r User_Customer_Notification_Virtual_Guest) GetUser() (resp datatypes.User
 	return
 }
 
-//
+// no documentation yet
 type User_Customer_OpenIdConnect struct {
 	Session *session.Session
 	Options sl.Options
@@ -2295,7 +2295,7 @@ func (r User_Customer_OpenIdConnect) Offset(offset int) User_Customer_OpenIdConn
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) AcknowledgeSupportPolicy() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
@@ -2332,7 +2332,7 @@ func (r User_Customer_OpenIdConnect) AddBulkPortalPermission(permissions []datat
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) AddBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -2353,7 +2353,7 @@ func (r User_Customer_OpenIdConnect) AddBulkVirtualGuestAccess(virtualGuestIds [
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) AddExternalBinding(externalBinding *datatypes.User_External_Binding) (resp datatypes.User_Customer_External_Binding, err error) {
 	params := []interface{}{
 		externalBinding,
@@ -2395,7 +2395,7 @@ func (r User_Customer_OpenIdConnect) AddPortalPermission(permission *datatypes.U
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) AddRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -2447,7 +2447,7 @@ func (r User_Customer_OpenIdConnect) CheckPhoneFactorAuthenticationForPasswordSe
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) CompleteInvitationAfterLogin(providerType *string, accessToken *string, emailRegistrationCode *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -2482,7 +2482,7 @@ func (r User_Customer_OpenIdConnect) CreateObject(templateObject *datatypes.User
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) CreateOpenIdConnectUserAndCompleteInvitation(providerType *string, user *datatypes.User_Customer, password *string, registrationCode *string) (resp string, err error) {
 	params := []interface{}{
 		providerType,
@@ -2543,7 +2543,7 @@ func (r User_Customer_OpenIdConnect) EditObjects(templateObjects []datatypes.Use
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) FindUserPreference(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
 		profileName,
@@ -2578,13 +2578,13 @@ func (r User_Customer_OpenIdConnect) GetAdditionalEmails() (resp []datatypes.Use
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetAllowedHardwareIds() (resp []int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetAllowedVirtualGuestIds() (resp []int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2596,7 +2596,7 @@ func (r User_Customer_OpenIdConnect) GetApiAuthenticationKeys() (resp []datatype
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetAuthenticationToken(token *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Authentication_Token, err error) {
 	params := []interface{}{
 		token,
@@ -2683,7 +2683,7 @@ func (r User_Customer_OpenIdConnect) GetHasFullVirtualGuestAccessFlag() (resp bo
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetImpersonationToken() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2728,13 +2728,13 @@ func (r User_Customer_OpenIdConnect) GetNotificationSubscribers() (resp []dataty
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetObject() (resp datatypes.User_Customer_OpenIdConnect, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetOpenIdRegistrationInfoFromCode(providerType *string, registrationCode *string) (resp datatypes.Account_Authentication_OpenIdConnect_RegistrationInformation, err error) {
 	params := []interface{}{
 		providerType,
@@ -2857,19 +2857,19 @@ func (r User_Customer_OpenIdConnect) GetSupportPolicyAcknowledgementRequiredFlag
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetSupportPolicyDocument() (resp []byte, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetSupportPolicyName() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetSupportedLocales() (resp []datatypes.Locale, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2929,7 +2929,7 @@ func (r User_Customer_OpenIdConnect) GetUserLinks() (resp []datatypes.User_Custo
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
 		profileName,
@@ -2957,7 +2957,7 @@ func (r User_Customer_OpenIdConnect) GetVirtualGuests() (resp []datatypes.Virtua
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) InTerminalStatus() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3115,7 +3115,7 @@ func (r User_Customer_OpenIdConnect) RemoveBulkPortalPermission(permissions []da
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) RemoveBulkRoles(roles []datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3136,7 +3136,7 @@ func (r User_Customer_OpenIdConnect) RemoveBulkVirtualGuestAccess(virtualGuestId
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) RemoveExternalBinding(externalBinding *datatypes.User_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		externalBinding,
@@ -3169,7 +3169,7 @@ func (r User_Customer_OpenIdConnect) RemovePortalPermission(permission *datatype
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) RemoveRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3203,7 +3203,7 @@ func (r User_Customer_OpenIdConnect) ResetExpiredPassword(username *string, pass
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) SamlAuthenticate(accountId *string, samlResponse *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		accountId,
@@ -3213,7 +3213,7 @@ func (r User_Customer_OpenIdConnect) SamlAuthenticate(accountId *string, samlRes
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) SamlBeginAuthentication(accountId *int) (resp string, err error) {
 	params := []interface{}{
 		accountId,
@@ -3222,13 +3222,13 @@ func (r User_Customer_OpenIdConnect) SamlBeginAuthentication(accountId *int) (re
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) SamlBeginLogout() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) SamlLogout(samlResponse *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3360,7 +3360,7 @@ func (r User_Customer_OpenIdConnect) UpdateVpnUser() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_OpenIdConnect) ValidateAuthenticationToken(authenticationToken *datatypes.Container_User_Authentication_Token) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		authenticationToken,
@@ -3419,7 +3419,7 @@ func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) GetCompanyType() (
 	return
 }
 
-//
+// no documentation yet
 func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp datatypes.User_Customer_Prospect_ServiceProvider_EnrollRequest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3584,7 +3584,7 @@ func (r User_External_Binding) GetNote() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r User_External_Binding) GetObject() (resp datatypes.User_External_Binding, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3652,13 +3652,13 @@ func (r User_External_Binding_Vendor) GetAllObjects() (resp []datatypes.User_Ext
 	return
 }
 
-//
+// no documentation yet
 func (r User_External_Binding_Vendor) GetObject() (resp datatypes.User_External_Binding_Vendor, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type User_Permission_Action struct {
 	Session *session.Session
 	Options sl.Options
@@ -3693,19 +3693,19 @@ func (r User_Permission_Action) Offset(offset int) User_Permission_Action {
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Permission_Action) GetAllObjects() (resp []datatypes.User_Permission_Action, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Action) GetObject() (resp datatypes.User_Permission_Action, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type User_Permission_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -3740,7 +3740,7 @@ func (r User_Permission_Group) Offset(offset int) User_Permission_Group {
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) AddAction(action *datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3750,7 +3750,7 @@ func (r User_Permission_Group) AddAction(action *datatypes.User_Permission_Actio
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) AddBulkActions(actions []datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3760,7 +3760,7 @@ func (r User_Permission_Group) AddBulkActions(actions []datatypes.User_Permissio
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) AddBulkResourceObjects(resourceObjects []datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObjects,
@@ -3770,7 +3770,7 @@ func (r User_Permission_Group) AddBulkResourceObjects(resourceObjects []datatype
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) AddResourceObject(resourceObject *datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObject,
@@ -3780,7 +3780,7 @@ func (r User_Permission_Group) AddResourceObject(resourceObject *datatypes.Entit
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) CreateObject(templateObject *datatypes.User_Permission_Group) (resp datatypes.User_Permission_Group, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3789,13 +3789,13 @@ func (r User_Permission_Group) CreateObject(templateObject *datatypes.User_Permi
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) EditObject(templateObject *datatypes.User_Permission_Group) (resp datatypes.User_Permission_Group, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3816,7 +3816,7 @@ func (r User_Permission_Group) GetActions() (resp []datatypes.User_Permission_Ac
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) GetObject() (resp datatypes.User_Permission_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3834,7 +3834,7 @@ func (r User_Permission_Group) GetType() (resp datatypes.User_Permission_Group_T
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) LinkRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3844,7 +3844,7 @@ func (r User_Permission_Group) LinkRole(role *datatypes.User_Permission_Role) (e
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) RemoveAction(action *datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3854,7 +3854,7 @@ func (r User_Permission_Group) RemoveAction(action *datatypes.User_Permission_Ac
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) RemoveBulkActions(actions []datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3864,7 +3864,7 @@ func (r User_Permission_Group) RemoveBulkActions(actions []datatypes.User_Permis
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) RemoveBulkResourceObjects(resourceObjects []datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObjects,
@@ -3874,7 +3874,7 @@ func (r User_Permission_Group) RemoveBulkResourceObjects(resourceObjects []datat
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) RemoveResourceObject(resourceObject *datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObject,
@@ -3884,7 +3884,7 @@ func (r User_Permission_Group) RemoveResourceObject(resourceObject *datatypes.En
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3894,7 +3894,7 @@ func (r User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role) 
 	return
 }
 
-//
+// no documentation yet
 type User_Permission_Group_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -3935,13 +3935,13 @@ func (r User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permissio
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_Group_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type User_Permission_Role struct {
 	Session *session.Session
 	Options sl.Options
@@ -3976,7 +3976,7 @@ func (r User_Permission_Role) Offset(offset int) User_Permission_Role {
 	return r
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) AddUser(user *datatypes.User_Customer) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -3986,7 +3986,7 @@ func (r User_Permission_Role) AddUser(user *datatypes.User_Customer) (err error)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) CreateObject(templateObject *datatypes.User_Permission_Role) (resp datatypes.User_Permission_Role, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3995,13 +3995,13 @@ func (r User_Permission_Role) CreateObject(templateObject *datatypes.User_Permis
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) EditObject(templateObject *datatypes.User_Permission_Role) (resp datatypes.User_Permission_Role, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4028,7 +4028,7 @@ func (r User_Permission_Role) GetGroups() (resp []datatypes.User_Permission_Grou
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) GetObject() (resp datatypes.User_Permission_Role, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4040,7 +4040,7 @@ func (r User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err er
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) LinkGroup(group *datatypes.User_Permission_Group) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4050,7 +4050,7 @@ func (r User_Permission_Role) LinkGroup(group *datatypes.User_Permission_Group) 
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) RemoveUser(user *datatypes.User_Customer) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4060,7 +4060,7 @@ func (r User_Permission_Role) RemoveUser(user *datatypes.User_Customer) (err err
 	return
 }
 
-//
+// no documentation yet
 func (r User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Group) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{

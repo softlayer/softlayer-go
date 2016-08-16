@@ -20,39 +20,39 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Legal_RegulatedWorkload struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	EnabledFlag *bool `json:"enabledFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Legal_RegulatedWorkload_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	WorkloadTypeId *int `json:"workloadTypeId,omitempty"`
 }
 
-//
+// no documentation yet
 type Legal_RegulatedWorkload_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

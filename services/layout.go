@@ -79,7 +79,7 @@ func (r Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err er
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Container) GetObject() (resp datatypes.Layout_Container, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -132,7 +132,7 @@ func (r Layout_Item) GetLayoutItemType() (resp datatypes.Layout_Item_Type, err e
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -209,7 +209,7 @@ func (r Layout_Profile) GetLayoutPreferences() (resp []datatypes.Layout_Profile_
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Profile) GetObject() (resp datatypes.Layout_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -237,7 +237,7 @@ func (r Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.La
 	return
 }
 
-//
+// no documentation yet
 type Layout_Profile_Containers struct {
 	Session *session.Session
 	Options sl.Options
@@ -272,7 +272,7 @@ func (r Layout_Profile_Containers) Offset(offset int) Layout_Profile_Containers 
 	return r
 }
 
-//
+// no documentation yet
 func (r Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -281,7 +281,7 @@ func (r Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layout
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Profile_Containers) EditObject(templateObject *datatypes.Layout_Profile_Containers) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -302,13 +302,13 @@ func (r Layout_Profile_Containers) GetLayoutProfile() (resp datatypes.Layout_Pro
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_Containers, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Layout_Profile_Customer struct {
 	Session *session.Session
 	Options sl.Options
@@ -379,7 +379,7 @@ func (r Layout_Profile_Customer) GetLayoutPreferences() (resp []datatypes.Layout
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Profile_Customer) GetObject() (resp datatypes.Layout_Profile_Customer, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -472,7 +472,7 @@ func (r Layout_Profile_Preference) GetLayoutProfile() (resp datatypes.Layout_Pro
 	return
 }
 
-//
+// no documentation yet
 func (r Layout_Profile_Preference) GetObject() (resp datatypes.Layout_Profile_Preference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

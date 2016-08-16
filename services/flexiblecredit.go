@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type FlexibleCredit_Program struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,7 +61,7 @@ func (r FlexibleCredit_Program) Offset(offset int) FlexibleCredit_Program {
 	return r
 }
 
-//
+// no documentation yet
 func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerificationType(verificationTypeKeyName *string) (resp []datatypes.FlexibleCredit_Affiliate, err error) {
 	params := []interface{}{
 		verificationTypeKeyName,
@@ -70,19 +70,19 @@ func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerific
 	return
 }
 
-//
+// no documentation yet
 func (r FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r FlexibleCredit_Program) GetObject() (resp datatypes.FlexibleCredit_Program, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r FlexibleCredit_Program) SelfEnrollNewAccount(accountTemplate *datatypes.Account) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		accountTemplate,

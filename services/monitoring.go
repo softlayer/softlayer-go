@@ -315,7 +315,7 @@ func (r Monitoring_Agent_Configuration_Template_Group) GetAccount() (resp dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Monitoring_Agent_Configuration_Template_Group) GetAllObjects() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -502,7 +502,7 @@ func (r Monitoring_Agent_Configuration_Value) GetMonitoringAgent() (resp datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Monitoring_Agent_Configuration_Value) GetObject() (resp datatypes.Monitoring_Agent_Configuration_Value, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -549,7 +549,7 @@ func (r Monitoring_Agent_Status) Offset(offset int) Monitoring_Agent_Status {
 	return r
 }
 
-//
+// no documentation yet
 func (r Monitoring_Agent_Status) GetObject() (resp datatypes.Monitoring_Agent_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -598,7 +598,7 @@ func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Monitoring_Robot) DeployMonitoringAgents(configurationTemplateGroup *datatypes.Monitoring_Agent_Configuration_Template_Group) (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	params := []interface{}{
 		configurationTemplateGroup,
@@ -625,7 +625,7 @@ func (r Monitoring_Robot) GetMonitoringAgents() (resp []datatypes.Monitoring_Age
 	return
 }
 
-//
+// no documentation yet
 func (r Monitoring_Robot) GetObject() (resp datatypes.Monitoring_Robot, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

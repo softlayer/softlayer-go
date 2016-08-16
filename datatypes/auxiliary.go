@@ -20,36 +20,36 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Auxiliary_Marketing_Event struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	EnabledFlag *int `json:"enabledFlag,omitempty"`
 
-	//
+	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
-	//
+	// no documentation yet
 	Location *string `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 
-	//
+	// no documentation yet
 	Title *string `json:"title,omitempty"`
 
-	//
+	// no documentation yet
 	Url *string `json:"url,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Network_Status struct {
 	Entity
 }
@@ -111,11 +111,11 @@ type Auxiliary_Notification_Emergency_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release struct {
 	Entity
 
-	//
+	// no documentation yet
 	About []Auxiliary_Press_Release_About_Press_Release `json:"about,omitempty"`
 
 	// A count of
@@ -124,7 +124,7 @@ type Auxiliary_Press_Release struct {
 	// A count of
 	ContactCount *uint `json:"contactCount,omitempty"`
 
-	//
+	// no documentation yet
 	Contacts []Auxiliary_Press_Release_Contact_Press_Release `json:"contacts,omitempty"`
 
 	// A press release's internal identifier.
@@ -133,10 +133,10 @@ type Auxiliary_Press_Release struct {
 	// A count of
 	MediaPartnerCount *uint `json:"mediaPartnerCount,omitempty"`
 
-	//
+	// no documentation yet
 	MediaPartners []Auxiliary_Press_Release_Media_Partner_Press_Release `json:"mediaPartners,omitempty"`
 
-	//
+	// no documentation yet
 	PressReleaseContent *Auxiliary_Press_Release_Content `json:"pressReleaseContent,omitempty"`
 
 	// The data a press release was published.
@@ -155,7 +155,7 @@ type Auxiliary_Press_Release struct {
 	WebsiteHighlightFlag *bool `json:"websiteHighlightFlag,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_About struct {
 	Entity
 
@@ -169,14 +169,14 @@ type Auxiliary_Press_Release_About struct {
 	Title *string `json:"title,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_About_Press_Release struct {
 	Entity
 
 	// A count of
 	AboutParagraphCount *uint `json:"aboutParagraphCount,omitempty"`
 
-	//
+	// no documentation yet
 	AboutParagraphs []Auxiliary_Press_Release_About `json:"aboutParagraphs,omitempty"`
 
 	// A press release about cross
@@ -191,14 +191,14 @@ type Auxiliary_Press_Release_About_Press_Release struct {
 	// A press release internal identifier.
 	PressReleaseId *int `json:"pressReleaseId,omitempty"`
 
-	//
+	// no documentation yet
 	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
 
 	// The number that associated an about
 	SortOrder *int `json:"sortOrder,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Contact struct {
 	Entity
 
@@ -221,14 +221,14 @@ type Auxiliary_Press_Release_Contact struct {
 	ProfessionalTitle *string `json:"professionalTitle,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Contact_Press_Release struct {
 	Entity
 
 	// A count of
 	ContactCount *uint `json:"contactCount,omitempty"`
 
-	//
+	// no documentation yet
 	Contacts []Auxiliary_Press_Release_Contact `json:"contacts,omitempty"`
 
 	// A press release contact cross
@@ -243,14 +243,14 @@ type Auxiliary_Press_Release_Contact_Press_Release struct {
 	// A press release internal identifier.
 	PressReleaseId *int `json:"pressReleaseId,omitempty"`
 
-	//
+	// no documentation yet
 	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
 
 	// The number that associated a contact
 	SortOrder *int `json:"sortOrder,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Content struct {
 	Entity
 
@@ -264,7 +264,7 @@ type Auxiliary_Press_Release_Content struct {
 	Text *string `json:"text,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Media_Partner struct {
 	Entity
 
@@ -275,7 +275,7 @@ type Auxiliary_Press_Release_Media_Partner struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	Entity
 
@@ -288,7 +288,7 @@ type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	// A press release media partner's
 	MediaPartnerId *int `json:"mediaPartnerId,omitempty"`
 
-	//
+	// no documentation yet
 	MediaPartners []Auxiliary_Press_Release_Media_Partner `json:"mediaPartners,omitempty"`
 
 	// A count of
@@ -297,7 +297,7 @@ type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	// A press release internal identifier.
 	PressReleaseId *int `json:"pressReleaseId,omitempty"`
 
-	//
+	// no documentation yet
 	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
 }
 
@@ -318,25 +318,25 @@ type Auxiliary_Shipping_Courier struct {
 	Url *string `json:"url,omitempty"`
 }
 
-//
+// no documentation yet
 type Auxiliary_Shipping_Courier_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Courier []Auxiliary_Shipping_Courier `json:"courier,omitempty"`
 
 	// A count of
 	CourierCount *uint `json:"courierCount,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

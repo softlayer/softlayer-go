@@ -76,13 +76,13 @@ func (r Event_Log) GetAllEventObjectNames() (resp []string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Event_Log) GetAllObjects() (resp []datatypes.Event_Log, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Event_Log) GetAllUserTypes() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

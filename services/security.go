@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Security_Certificate struct {
 	Session *session.Session
 	Options sl.Options
@@ -108,7 +108,7 @@ func (r Security_Certificate) GetLoadBalancerVirtualIpAddresses() (resp []dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Security_Certificate) GetObject() (resp datatypes.Security_Certificate, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -188,7 +188,7 @@ func (r Security_Certificate_Request) GetCertificateAuthorityName() (resp string
 	return
 }
 
-//
+// no documentation yet
 func (r Security_Certificate_Request) GetObject() (resp datatypes.Security_Certificate_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -291,7 +291,7 @@ func (r Security_Certificate_Request_ServerType) GetAllObjects() (resp []datatyp
 	return
 }
 
-//
+// no documentation yet
 func (r Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Security_Certificate_Request_ServerType, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -332,7 +332,7 @@ func (r Security_Certificate_Request_Status) Offset(offset int) Security_Certifi
 	return r
 }
 
-//
+// no documentation yet
 func (r Security_Certificate_Request_Status) GetObject() (resp datatypes.Security_Certificate_Request_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -344,7 +344,7 @@ func (r Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []dat
 	return
 }
 
-//
+// no documentation yet
 type Security_Ssh_Key struct {
 	Session *session.Session
 	Options sl.Options
@@ -415,7 +415,7 @@ func (r Security_Ssh_Key) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtu
 	return
 }
 
-//
+// no documentation yet
 func (r Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

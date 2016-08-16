@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Auxiliary_Marketing_Event struct {
 	Session *session.Session
 	Options sl.Options
@@ -67,13 +67,13 @@ func (r Auxiliary_Marketing_Event) GetMarketingEvents() (resp []datatypes.Auxili
 	return
 }
 
-//
+// no documentation yet
 func (r Auxiliary_Marketing_Event) GetObject() (resp datatypes.Auxiliary_Marketing_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Network_Status struct {
 	Session *session.Session
 	Options sl.Options
@@ -193,7 +193,7 @@ func (r Auxiliary_Notification_Emergency) GetStatus() (resp datatypes.Auxiliary_
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release struct {
 	Session *session.Session
 	Options sl.Options
@@ -286,7 +286,7 @@ func (r Auxiliary_Press_Release) GetWebsiteHighlightPressReleases() (resp []data
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_About struct {
 	Session *session.Session
 	Options sl.Options
@@ -327,7 +327,7 @@ func (r Auxiliary_Press_Release_About) GetObject() (resp datatypes.Auxiliary_Pre
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_About_Press_Release struct {
 	Session *session.Session
 	Options sl.Options
@@ -380,7 +380,7 @@ func (r Auxiliary_Press_Release_About_Press_Release) GetPressReleases() (resp []
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Contact struct {
 	Session *session.Session
 	Options sl.Options
@@ -421,7 +421,7 @@ func (r Auxiliary_Press_Release_Contact) GetObject() (resp datatypes.Auxiliary_P
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Contact_Press_Release struct {
 	Session *session.Session
 	Options sl.Options
@@ -474,7 +474,7 @@ func (r Auxiliary_Press_Release_Contact_Press_Release) GetPressReleases() (resp 
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Content struct {
 	Session *session.Session
 	Options sl.Options
@@ -515,7 +515,7 @@ func (r Auxiliary_Press_Release_Content) GetObject() (resp datatypes.Auxiliary_P
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Media_Partner struct {
 	Session *session.Session
 	Options sl.Options
@@ -556,7 +556,7 @@ func (r Auxiliary_Press_Release_Media_Partner) GetObject() (resp datatypes.Auxil
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	Session *session.Session
 	Options sl.Options
@@ -609,7 +609,7 @@ func (r Auxiliary_Press_Release_Media_Partner_Press_Release) GetPressReleases() 
 	return
 }
 
-//
+// no documentation yet
 type Auxiliary_Shipping_Courier_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -650,13 +650,13 @@ func (r Auxiliary_Shipping_Courier_Type) GetCourier() (resp []datatypes.Auxiliar
 	return
 }
 
-//
+// no documentation yet
 func (r Auxiliary_Shipping_Courier_Type) GetObject() (resp datatypes.Auxiliary_Shipping_Courier_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Auxiliary_Shipping_Courier_Type) GetTypeByKeyName(keyName *string) (resp datatypes.Auxiliary_Shipping_Courier_Type, err error) {
 	params := []interface{}{
 		keyName,

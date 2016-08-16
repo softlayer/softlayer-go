@@ -25,7 +25,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Utility_Network struct {
 	Session *session.Session
 	Options sl.Options

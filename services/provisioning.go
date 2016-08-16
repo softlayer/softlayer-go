@@ -61,7 +61,7 @@ func (r Provisioning_Hook) Offset(offset int) Provisioning_Hook {
 	return r
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook) CreateObject(templateObject *datatypes.Provisioning_Hook) (resp datatypes.Provisioning_Hook, err error) {
 	params := []interface{}{
 		templateObject,
@@ -70,13 +70,13 @@ func (r Provisioning_Hook) CreateObject(templateObject *datatypes.Provisioning_H
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook) EditObject(templateObject *datatypes.Provisioning_Hook) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -97,13 +97,13 @@ func (r Provisioning_Hook) GetHookType() (resp datatypes.Provisioning_Hook_Type,
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Provisioning_Hook_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -138,13 +138,13 @@ func (r Provisioning_Hook_Type) Offset(offset int) Provisioning_Hook_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook_Type) GetAllHookTypes() (resp []datatypes.Provisioning_Hook_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Hook_Type) GetObject() (resp datatypes.Provisioning_Hook_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -206,13 +206,13 @@ func (r Provisioning_Maintenance_Classification) GetMaintenanceClassificationsBy
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Maintenance_Classification) GetObject() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Provisioning_Maintenance_Classification_Item_Category struct {
 	Session *session.Session
 	Options sl.Options
@@ -253,7 +253,7 @@ func (r Provisioning_Maintenance_Classification_Item_Category) GetMaintenanceCla
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Maintenance_Classification_Item_Category) GetObject() (resp datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -294,13 +294,13 @@ func (r Provisioning_Maintenance_Slots) Offset(offset int) Provisioning_Maintena
 	return r
 }
 
-//
+// no documentation yet
 func (r Provisioning_Maintenance_Slots) GetObject() (resp datatypes.Provisioning_Maintenance_Slots, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Provisioning_Maintenance_Ticket struct {
 	Session *session.Session
 	Options sl.Options
@@ -347,7 +347,7 @@ func (r Provisioning_Maintenance_Ticket) GetMaintenanceClass() (resp datatypes.P
 	return
 }
 
-//
+// no documentation yet
 func (r Provisioning_Maintenance_Ticket) GetObject() (resp datatypes.Provisioning_Maintenance_Ticket, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -508,7 +508,7 @@ func (r Provisioning_Version1_Transaction_Group) Offset(offset int) Provisioning
 	return r
 }
 
-//
+// no documentation yet
 func (r Provisioning_Version1_Transaction_Group) GetAllObjects() (resp []datatypes.Provisioning_Version1_Transaction_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

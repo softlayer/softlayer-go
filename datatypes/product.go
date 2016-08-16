@@ -79,7 +79,7 @@ type Product_Item struct {
 	// A count of
 	ActivePresaleEventCount *uint `json:"activePresaleEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActivePresaleEvents []Sales_Presale_Event `json:"activePresaleEvents,omitempty"`
 
 	// A count of active usage based prices.
@@ -157,7 +157,7 @@ type Product_Item struct {
 	// The generic hardware component that this item represents.
 	HardwareGenericComponentModel *Hardware_Component_Model_Generic `json:"hardwareGenericComponentModel,omitempty"`
 
-	//
+	// no documentation yet
 	HideFromPortalFlag *bool `json:"hideFromPortalFlag,omitempty"`
 
 	// A product's internal identification number
@@ -190,7 +190,7 @@ type Product_Item struct {
 	// Detailed product description
 	LongDescription *string `json:"longDescription,omitempty"`
 
-	//
+	// no documentation yet
 	ObjectStorageItemFlag *bool `json:"objectStorageItemFlag,omitempty"`
 
 	// A count of a collection of all the SoftLayer_Product_Package(s) in which this item exists.
@@ -205,7 +205,7 @@ type Product_Item struct {
 	// A count of
 	PresaleEventCount *uint `json:"presaleEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	PresaleEvents []Sales_Presale_Event `json:"presaleEvents,omitempty"`
 
 	// A count of a product item's prices.
@@ -263,40 +263,40 @@ type Product_Item struct {
 	UpgradeItems []Product_Item `json:"upgradeItems,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	AttributeType *Product_Item_Attribute_Type `json:"attributeType,omitempty"`
 
-	//
+	// no documentation yet
 	AttributeTypeKeyName *string `json:"attributeTypeKeyName,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
-	//
+	// no documentation yet
 	ItemAttributeTypeId *int `json:"itemAttributeTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	ItemId *int `json:"itemId,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -499,14 +499,14 @@ type Product_Item_Category_Question_Xref struct {
 	Required *bool `json:"required,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Link_ThePlanet struct {
 	Entity
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 }
 
@@ -514,7 +514,7 @@ type Product_Item_Link_ThePlanet struct {
 type Product_Item_Policy_Assignment struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// The name of the assigned policy.
@@ -523,7 +523,7 @@ type Product_Item_Policy_Assignment struct {
 	// The [[SoftLayer_Product_Item]] for this policy assignment.
 	Product *Product_Item `json:"product,omitempty"`
 
-	//
+	// no documentation yet
 	ProductId *int `json:"productId,omitempty"`
 }
 
@@ -540,7 +540,7 @@ type Product_Item_Price struct {
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Product_Item_Price_Attribute `json:"attributes,omitempty"`
 
 	// Whether the price is for Big Data OS/Journal disks only. (Deprecated)
@@ -614,7 +614,7 @@ type Product_Item_Price struct {
 	// A count of
 	OrderPremiumCount *uint `json:"orderPremiumCount,omitempty"`
 
-	//
+	// no documentation yet
 	OrderPremiums []Product_Item_Price_Premium `json:"orderPremiums,omitempty"`
 
 	// A count of a price's packages under which this item is sold.
@@ -644,7 +644,7 @@ type Product_Item_Price struct {
 	// A price's tax amount of the recurring fee. This is only populated after the order is verified via SoftLayer_Product_Order::verifyOrder()
 	ProratedRecurringFeeTax *float64 `json:"proratedRecurringFeeTax,omitempty"`
 
-	//
+	// no documentation yet
 	Quantity *int `json:"quantity,omitempty"`
 
 	// A recurring fee is a fee that happens every billing period. This fee is represented as a floating point decimal in US dollars ($USD).
@@ -686,66 +686,66 @@ type Product_Item_Price_Account_Restriction struct {
 	ItemPriceId *int `json:"itemPriceId,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Price_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPriceAttributeType *Product_Item_Price_Attribute_Type `json:"itemPriceAttributeType,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPriceAttributeTypeId *int `json:"itemPriceAttributeTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPriceId *int `json:"itemPriceId,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Price_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Price_Premium struct {
 	Entity
 
-	//
+	// no documentation yet
 	HourlyModifier *float64 `json:"hourlyModifier,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPriceId *int `json:"itemPriceId,omitempty"`
 
-	//
+	// no documentation yet
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
-	//
+	// no documentation yet
 	MonthlyModifier *float64 `json:"monthlyModifier,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 
-	//
+	// no documentation yet
 	PackageId *int `json:"packageId,omitempty"`
 }
 
@@ -772,11 +772,11 @@ type Product_Item_Requirement struct {
 	RequiredItemId *int `json:"requiredItemId,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Resource_Conflict struct {
 	Entity
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
 	// The unique identifier of the item that contains the conflict.
@@ -785,7 +785,7 @@ type Product_Item_Resource_Conflict struct {
 	// An optional conflict message.
 	Message *string `json:"message,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 
 	// The unique identifier of the service offering that is associated with the conflict.
@@ -795,7 +795,7 @@ type Product_Item_Resource_Conflict struct {
 	ResourceTableId *int `json:"resourceTableId,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Resource_Conflict_Item struct {
 	Product_Item_Resource_Conflict
 
@@ -803,7 +803,7 @@ type Product_Item_Resource_Conflict_Item struct {
 	Resource *Product_Item `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Resource_Conflict_Item_Category struct {
 	Product_Item_Resource_Conflict
 
@@ -811,7 +811,7 @@ type Product_Item_Resource_Conflict_Item_Category struct {
 	Resource *Product_Item_Category `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Item_Resource_Conflict_Location struct {
 	Product_Item_Resource_Conflict
 
@@ -829,7 +829,7 @@ type Product_Item_Tax_Category struct {
 	// A count of
 	ItemCount *uint `json:"itemCount,omitempty"`
 
-	//
+	// no documentation yet
 	Items []Product_Item `json:"items,omitempty"`
 
 	// The name of the tax category.
@@ -839,7 +839,7 @@ type Product_Item_Tax_Category struct {
 	StatusFlag *int `json:"statusFlag,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Order struct {
 	Entity
 }
@@ -893,7 +893,7 @@ type Product_Package struct {
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Product_Package_Attribute `json:"attributes,omitempty"`
 
 	// A count of a collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
@@ -962,7 +962,7 @@ type Product_Package struct {
 	// A package's internal identifier. Everything regarding a SoftLayer_Product_Package is tied back to this id.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IsActive *int `json:"isActive,omitempty"`
 
 	// A count of the item-item conflicts associated with a package.
@@ -1074,31 +1074,31 @@ type Product_Package struct {
 	UnitSize *int `json:"unitSize,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Package_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	AttributeType *Product_Package_Attribute_Type `json:"attributeType,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Package_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1140,13 +1140,13 @@ type Product_Package_Inventory struct {
 type Product_Package_Item_Category_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Category *Product_Item_Category `json:"category,omitempty"`
 
 	// The item category id associated with this group.
 	ItemCategoryId *int `json:"itemCategoryId,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 
 	// The service offering id associated with this group.
@@ -1155,7 +1155,7 @@ type Product_Package_Item_Category_Group struct {
 	// A count of
 	PriceCount *uint `json:"priceCount,omitempty"`
 
-	//
+	// no documentation yet
 	Prices []Product_Item_Price `json:"prices,omitempty"`
 
 	// The sort value for this group.
@@ -1321,7 +1321,7 @@ type Product_Package_Order_Step_Next struct {
 type Product_Package_Preset struct {
 	Entity
 
-	//
+	// no documentation yet
 	AvailableStorageUnits *uint `json:"availableStorageUnits,omitempty"`
 
 	// The item categories that are included in this package preset configuration.
@@ -1392,7 +1392,7 @@ type Product_Package_Preset struct {
 type Product_Package_Preset_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	AttributeType *Product_Package_Preset_Attribute_Type `json:"attributeType,omitempty"`
 
 	// The internal identifier of the type of attribute that a pacakge preset attribute belongs to.
@@ -1401,7 +1401,7 @@ type Product_Package_Preset_Attribute struct {
 	// A package preset attribute's internal identifier.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Preset *Product_Package_Preset `json:"preset,omitempty"`
 
 	// The internal identifier of the package preset an attribute belongs to.
@@ -1428,17 +1428,17 @@ type Product_Package_Preset_Attribute_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Product_Package_Preset_Configuration struct {
 	Entity
 
-	//
+	// no documentation yet
 	Category *Product_Item_Category `json:"category,omitempty"`
 
-	//
+	// no documentation yet
 	PackagePreset *Product_Package_Preset `json:"packagePreset,omitempty"`
 
-	//
+	// no documentation yet
 	Price *Product_Item_Price `json:"price,omitempty"`
 }
 
@@ -1446,7 +1446,7 @@ type Product_Package_Preset_Configuration struct {
 type Product_Package_Server struct {
 	Entity
 
-	//
+	// no documentation yet
 	Catalog *Product_Catalog `json:"catalog,omitempty"`
 
 	// The unique identifier of a [[SoftLayer_Product_Catalog]].
@@ -1470,13 +1470,13 @@ type Product_Package_Server struct {
 	// The unique identifier of a [[SoftLayer_Product_Package_Server]].
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
 	// The unique identifier of a [[SoftLayer_Product_Item]].
 	ItemId *int `json:"itemId,omitempty"`
 
-	//
+	// no documentation yet
 	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
 
 	// The unique identifier of a [[SoftLayer_Product_Item_Price]].
@@ -1497,7 +1497,7 @@ type Product_Package_Server struct {
 	// Indicates whether or not the server is being sold as part of an outlet package.
 	OutletFlag *bool `json:"outletFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 
 	// The unique identifier of a [[SoftLayer_Product_Package]].
@@ -1509,7 +1509,7 @@ type Product_Package_Server struct {
 	// Flag to indicate if the server is an IBM Power server.
 	PowerServerFlag *bool `json:"powerServerFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Preset *Product_Package_Preset `json:"preset,omitempty"`
 
 	// The unique identifier of a [[SoftLayer_Product_Package_Preset]].

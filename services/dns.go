@@ -500,13 +500,13 @@ func (r Dns_Domain_Registration_Registrant_Verification_Status) Offset(offset in
 	return r
 }
 
-//
+// no documentation yet
 func (r Dns_Domain_Registration_Registrant_Verification_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -556,13 +556,13 @@ func (r Dns_Domain_Registration_Status) Offset(offset int) Dns_Domain_Registrati
 	return r
 }
 
-//
+// no documentation yet
 func (r Dns_Domain_Registration_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

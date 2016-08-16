@@ -150,13 +150,13 @@ type Layout_Profile struct {
 	// A count of
 	LayoutContainerCount *uint `json:"layoutContainerCount,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutContainers []Layout_Container `json:"layoutContainers,omitempty"`
 
 	// A count of
 	LayoutPreferenceCount *uint `json:"layoutPreferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutPreferences []Layout_Profile_Preference `json:"layoutPreferences,omitempty"`
 
 	// Timestamp of when the layout profile was last updated
@@ -169,7 +169,7 @@ type Layout_Profile struct {
 	UserRecordId *int `json:"userRecordId,omitempty"`
 }
 
-//
+// no documentation yet
 type Layout_Profile_Containers struct {
 	Entity
 
@@ -195,11 +195,11 @@ type Layout_Profile_Containers struct {
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Layout_Profile_Customer struct {
 	Layout_Profile
 
-	//
+	// no documentation yet
 	UserRecord *User_Customer `json:"userRecord,omitempty"`
 }
 
@@ -213,25 +213,25 @@ type Layout_Profile_Preference struct {
 	// Indicates whether this is a default value or not
 	DefaultValueFlag *int `json:"defaultValueFlag,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutContainer *Layout_Container `json:"layoutContainer,omitempty"`
 
 	// The id of the related [[SoftLayer_Layout_Container]]
 	LayoutContainerId *int `json:"layoutContainerId,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutItem *Layout_Item `json:"layoutItem,omitempty"`
 
 	// The id of the related [[SoftLayer_Layout_Item]]
 	LayoutItemId *int `json:"layoutItemId,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutPreference *Layout_Preference `json:"layoutPreference,omitempty"`
 
 	// The internal identifier of the overridden [[SoftLayer_Layout_Preference]]
 	LayoutPreferenceId *int `json:"layoutPreferenceId,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutProfile *Layout_Profile `json:"layoutProfile,omitempty"`
 
 	// The internal identifier of the related [[SoftLayer_Layout_Profile]]

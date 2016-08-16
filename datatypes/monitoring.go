@@ -86,7 +86,7 @@ type Monitoring_Agent struct {
 type Monitoring_Agent_Configuration_Template_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// Internal identifier of a SoftLayer account that this configuration template belongs to
@@ -98,10 +98,10 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 	// A count of
 	ConfigurationTemplateReferenceCount *uint `json:"configurationTemplateReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationTemplateReferences []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReferences,omitempty"`
 
-	//
+	// no documentation yet
 	ConfigurationTemplates []Configuration_Template `json:"configurationTemplates,omitempty"`
 
 	// Created date
@@ -113,7 +113,7 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 	// Internal identifier of a monitoring agent configuration group
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Item *Product_Item `json:"item,omitempty"`
 
 	// Internal identifier of a configuration template type
@@ -130,7 +130,7 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 type Monitoring_Agent_Configuration_Template_Group_Reference struct {
 	Entity
 
-	//
+	// no documentation yet
 	ConfigurationTemplate *Configuration_Template `json:"configurationTemplate,omitempty"`
 
 	// Internal identifier of a configuration template
@@ -139,7 +139,7 @@ type Monitoring_Agent_Configuration_Template_Group_Reference struct {
 	// Internal identifier of a configuration group reference record
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	TemplateGroup *Monitoring_Agent_Configuration_Template_Group `json:"templateGroup,omitempty"`
 
 	// Internal identifier of a monitoring agent configuration group
@@ -156,7 +156,7 @@ type Monitoring_Agent_Configuration_Value struct {
 	// Internal identifier of a monitoring configuration definition by which
 	ConfigurationDefinitionId *int `json:"configurationDefinitionId,omitempty"`
 
-	//
+	// no documentation yet
 	Definition *Configuration_Template_Section_Definition `json:"definition,omitempty"`
 
 	// User-friendly description of a configuration value.
@@ -168,10 +168,10 @@ type Monitoring_Agent_Configuration_Value struct {
 	// The metric data type used to retrieve metric data currently being tracked.
 	MetricDataType *Container_Metric_Data_Type `json:"metricDataType,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringAgent *Monitoring_Agent `json:"monitoringAgent,omitempty"`
 
-	//
+	// no documentation yet
 	Profile *Configuration_Template_Section_Profile `json:"profile,omitempty"`
 
 	// Internal identifier of a configuration profile. Configuration profile is associated with a configuration section type of "Template section".

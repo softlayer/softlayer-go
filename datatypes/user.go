@@ -39,13 +39,13 @@ type User_Access_Facility_Log struct {
 	// This is the colocation hardware that was visited.
 	Hardware *Hardware `json:"hardware,omitempty"`
 
-	//
+	// no documentation yet
 	HardwareId *int `json:"hardwareId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LocationId *int `json:"locationId,omitempty"`
 
 	// This is the type of person entering the facility.
@@ -54,24 +54,24 @@ type User_Access_Facility_Log struct {
 	// This is the date and time the person arrived.
 	TimeIn *Time `json:"timeIn,omitempty"`
 
-	//
+	// no documentation yet
 	TimeOut *Time `json:"timeOut,omitempty"`
 
-	//
+	// no documentation yet
 	Visitor *Entity `json:"visitor,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Access_Facility_Log_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -79,33 +79,33 @@ type User_Access_Facility_Log_Type struct {
 type User_Access_Facility_Visitor struct {
 	Entity
 
-	//
+	// no documentation yet
 	CompanyName *string `json:"companyName,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	TypeId *int `json:"typeId,omitempty"`
 
-	//
+	// no documentation yet
 	VisitorType *User_Access_Facility_Visitor_Type `json:"visitorType,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Access_Facility_Visitor_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -122,7 +122,7 @@ type User_Customer struct {
 	// A count of
 	ActionCount *uint `json:"actionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Actions []User_Permission_Action `json:"actions,omitempty"`
 
 	// A count of a portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
@@ -188,7 +188,7 @@ type User_Customer struct {
 	// Flag used to deny access to all hardware and cloud computing instances upon user creation.
 	DenyAllResourceAccessOnCreateFlag *bool `json:"denyAllResourceAccessOnCreateFlag,omitempty"`
 
-	//
+	// no documentation yet
 	DisplayName *string `json:"displayName,omitempty"`
 
 	// A portal user's email address.
@@ -242,7 +242,7 @@ type User_Customer struct {
 	// A count of
 	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty"`
 
 	// A user's locale. Locale holds user's language and region information.
@@ -275,7 +275,7 @@ type User_Customer struct {
 	// A portal user's MSN address.
 	Msn *string `json:"msn,omitempty"`
 
-	//
+	// no documentation yet
 	NameId *string `json:"nameId,omitempty"`
 
 	// A count of notification subscription records for the user.
@@ -314,7 +314,7 @@ type User_Customer struct {
 	// A count of a portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 	PermissionCount *uint `json:"permissionCount,omitempty"`
 
-	//
+	// no documentation yet
 	PermissionSystemVersion *int `json:"permissionSystemVersion,omitempty"`
 
 	// A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
@@ -329,19 +329,19 @@ type User_Customer struct {
 	// A count of
 	PreferenceCount *uint `json:"preferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	Preferences []User_Preference `json:"preferences,omitempty"`
 
 	// A count of
 	RoleCount *uint `json:"roleCount,omitempty"`
 
-	//
+	// no documentation yet
 	Roles []User_Permission_Role `json:"roles,omitempty"`
 
-	//
+	// no documentation yet
 	SalesforceUserLink *User_Customer_Link `json:"salesforceUserLink,omitempty"`
 
-	//
+	// no documentation yet
 	SavedId *string `json:"savedId,omitempty"`
 
 	// Whether a user may change their security options (IP restriction, password expiration, or enforce security questions on login) which were pre-selected by their account's master user.
@@ -419,7 +419,7 @@ type User_Customer struct {
 	// A count of
 	UserLinkCount *uint `json:"userLinkCount,omitempty"`
 
-	//
+	// no documentation yet
 	UserLinks []User_Customer_Link `json:"userLinks,omitempty"`
 
 	// A portal user's status, which controls overall access to the SoftLayer customer portal and VPN access to the private network.
@@ -553,7 +553,7 @@ type User_Customer_External_Binding_Phone struct {
 	// The current external binding status. It can be "ACTIVE" or "BLOCKED".
 	BindingStatus *string `json:"bindingStatus,omitempty"`
 
-	//
+	// no documentation yet
 	PinLength *string `json:"pinLength,omitempty"`
 }
 
@@ -610,86 +610,86 @@ type User_Customer_External_Binding_Verisign struct {
 	CredentialType *string `json:"credentialType,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Customer_Invitation struct {
 	Entity
 
-	//
+	// no documentation yet
 	Code *string `json:"code,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	CreatorId *int `json:"creatorId,omitempty"`
 
-	//
+	// no documentation yet
 	CreatorType *string `json:"creatorType,omitempty"`
 
-	//
+	// no documentation yet
 	Email *string `json:"email,omitempty"`
 
-	//
+	// no documentation yet
 	ExistingBlueIdFlag *int `json:"existingBlueIdFlag,omitempty"`
 
-	//
+	// no documentation yet
 	ExpirationDate *Time `json:"expirationDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IsFederatedEmailDomainFlag *int `json:"isFederatedEmailDomainFlag,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	ResponseDate *Time `json:"responseDate,omitempty"`
 
-	//
+	// no documentation yet
 	StatusId *int `json:"statusId,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 
-	//
+	// no documentation yet
 	UserId *int `json:"userId,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Customer_Link struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	DefaultFlag *int `json:"defaultFlag,omitempty"`
 
-	//
+	// no documentation yet
 	DestinationUserAlphanumericId *string `json:"destinationUserAlphanumericId,omitempty"`
 
-	//
+	// no documentation yet
 	DestinationUserId *int `json:"destinationUserId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 
-	//
+	// no documentation yet
 	UserId *int `json:"userId,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Customer_Link_ThePlanet struct {
 	User_Customer_Link
 }
@@ -845,31 +845,31 @@ type User_Customer_Notification_Virtual_Guest struct {
 	UserId *int `json:"userId,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Customer_OpenIdConnect struct {
 	User_Customer
 }
 
-//
+// no documentation yet
 type User_Customer_Prospect struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A count of
 	AssignedEmployeeCount *uint `json:"assignedEmployeeCount,omitempty"`
 
-	//
+	// no documentation yet
 	AssignedEmployees []User_Employee `json:"assignedEmployees,omitempty"`
 
 	// A count of
 	QuoteCount *uint `json:"quoteCount,omitempty"`
 
-	//
+	// no documentation yet
 	Quotes []Billing_Order_Quote `json:"quotes,omitempty"`
 
-	//
+	// no documentation yet
 	Type *User_Customer_Prospect_Type `json:"type,omitempty"`
 }
 
@@ -977,26 +977,26 @@ type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	VatId *string `json:"vatId,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Customer_Prospect_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1044,16 +1044,16 @@ type User_Employee struct {
 	// A count of
 	ActionCount *uint `json:"actionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Actions []User_Permission_Action `json:"actions,omitempty"`
 
-	//
+	// no documentation yet
 	ChatTranscript []Ticket_Chat `json:"chatTranscript,omitempty"`
 
 	// A count of
 	ChatTranscriptCount *uint `json:"chatTranscriptCount,omitempty"`
 
-	//
+	// no documentation yet
 	DisplayName *string `json:"displayName,omitempty"`
 
 	// A SoftLayer employee's email address. Email addresses are only visible to [[SoftLayer_Account|SoftLayer Accounts]] that are assigned to an employee
@@ -1074,22 +1074,22 @@ type User_Employee struct {
 	// A count of
 	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty"`
 
-	//
+	// no documentation yet
 	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty"`
 
-	//
+	// no documentation yet
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty"`
 
-	//
+	// no documentation yet
 	OfficePhone *string `json:"officePhone,omitempty"`
 
 	// A count of
 	RoleCount *uint `json:"roleCount,omitempty"`
 
-	//
+	// no documentation yet
 	Roles []User_Permission_Role `json:"roles,omitempty"`
 
-	//
+	// no documentation yet
 	TicketActivities []Ticket_Activity `json:"ticketActivities,omitempty"`
 
 	// A count of
@@ -1098,7 +1098,7 @@ type User_Employee struct {
 	// A count of
 	TicketAttachmentReferenceCount *uint `json:"ticketAttachmentReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty"`
 
 	// A representation of a SoftLayer employee's username. In all cases this should simply state "Employee".
@@ -1205,34 +1205,34 @@ type User_Interface struct {
 	Entity
 }
 
-//
+// no documentation yet
 type User_Permission_Action struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Permission_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A permission groups associated [[SoftLayer_Account|customer account]] id.
@@ -1241,7 +1241,7 @@ type User_Permission_Group struct {
 	// A count of
 	ActionCount *uint `json:"actionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Actions []User_Permission_Action `json:"actions,omitempty"`
 
 	// The date the permission group record was created.
@@ -1265,7 +1265,7 @@ type User_Permission_Group struct {
 	// A count of
 	RoleCount *uint `json:"roleCount,omitempty"`
 
-	//
+	// no documentation yet
 	Roles []User_Permission_Role `json:"roles,omitempty"`
 
 	// The type of the permission group.
@@ -1275,37 +1275,37 @@ type User_Permission_Group struct {
 	TypeId *int `json:"typeId,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Permission_Group_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// A count of
 	GroupCount *uint `json:"groupCount,omitempty"`
 
-	//
+	// no documentation yet
 	Groups []User_Permission_Group `json:"groups,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type User_Permission_Role struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A permission roles associated [[SoftLayer_Account|customer account]] id.
@@ -1314,7 +1314,7 @@ type User_Permission_Role struct {
 	// A count of
 	ActionCount *uint `json:"actionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Actions []User_Permission_Action `json:"actions,omitempty"`
 
 	// The date the permission role record was created.
@@ -1326,7 +1326,7 @@ type User_Permission_Role struct {
 	// A count of
 	GroupCount *uint `json:"groupCount,omitempty"`
 
-	//
+	// no documentation yet
 	Groups []User_Permission_Group `json:"groups,omitempty"`
 
 	// A permission roles internal identifying number.
@@ -1347,7 +1347,7 @@ type User_Permission_Role struct {
 	// A count of
 	UserCount *uint `json:"userCount,omitempty"`
 
-	//
+	// no documentation yet
 	Users []User_Customer `json:"users,omitempty"`
 }
 
@@ -1372,7 +1372,7 @@ type User_Preference_Type struct {
 	// A description of the preference type
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
 	// The name of the preference type

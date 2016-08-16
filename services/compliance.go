@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Compliance_Report_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,13 +61,13 @@ func (r Compliance_Report_Type) Offset(offset int) Compliance_Report_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Compliance_Report_Type) GetAllObjects() (resp []datatypes.Compliance_Report_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Compliance_Report_Type) GetObject() (resp datatypes.Compliance_Report_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

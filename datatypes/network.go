@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Network struct {
 	Entity
 
@@ -137,19 +137,19 @@ type Network_Application_Delivery_Controller struct {
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Network_Application_Delivery_Controller_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	TypeId *int `json:"typeId,omitempty"`
 
 	// A count of
 	VirtualIpAddressCount *uint `json:"virtualIpAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualIpAddresses []Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddresses,omitempty"`
 }
 
@@ -170,69 +170,69 @@ type Network_Application_Delivery_Controller_Configuration_History struct {
 	Notes *string `json:"notes,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	HealthAttributeTypeId *int `json:"healthAttributeTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	HealthCheck *Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthCheck,omitempty"`
 
-	//
+	// no documentation yet
 	HealthCheckId *int `json:"healthCheckId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	ValueExpression *string `json:"valueExpression,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	Entity
 
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute `json:"attributes,omitempty"`
 
-	//
+	// no documentation yet
 	HealthCheckTypeId *int `json:"healthCheckTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 
 	// A count of collection of scale load balancers that use this health check.
@@ -244,60 +244,60 @@ type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	// A count of
 	ServiceCount *uint `json:"serviceCount,omitempty"`
 
-	//
+	// no documentation yet
 	Services []Network_Application_Delivery_Controller_LoadBalancer_Service `json:"services,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Method struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Routing_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	Entity
 
-	//
+	// no documentation yet
 	Enabled *int `json:"enabled,omitempty"`
 
 	// A count of
@@ -306,69 +306,69 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	// A count of
 	GroupReferenceCount *uint `json:"groupReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	GroupReferences []Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference `json:"groupReferences,omitempty"`
 
-	//
+	// no documentation yet
 	Groups []Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"groups,omitempty"`
 
-	//
+	// no documentation yet
 	HealthCheck *Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthCheck,omitempty"`
 
 	// A count of
 	HealthCheckCount *uint `json:"healthCheckCount,omitempty"`
 
-	//
+	// no documentation yet
 	HealthChecks []Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthChecks,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddressId *int `json:"ipAddressId,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	Port *int `json:"port,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceGroup *Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroup,omitempty"`
 
-	//
+	// no documentation yet
 	Status *string `json:"status,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingMethod *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method `json:"routingMethod,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingMethodId *int `json:"routingMethodId,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingType *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type `json:"routingType,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingTypeId *int `json:"routingTypeId,omitempty"`
 
 	// A count of
@@ -377,50 +377,50 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	// A count of
 	ServiceReferenceCount *uint `json:"serviceReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceReferences []Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference `json:"serviceReferences,omitempty"`
 
-	//
+	// no documentation yet
 	Services []Network_Application_Delivery_Controller_LoadBalancer_Service `json:"services,omitempty"`
 
 	// The timeout value for connections from remote clients to the load balancer. Timeout values are only valid for HTTP service groups.
 	Timeout *int `json:"timeout,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualServer *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServer,omitempty"`
 
 	// A count of
 	VirtualServerCount *uint `json:"virtualServerCount,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualServers []Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServers,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference struct {
 	Entity
 
-	//
+	// no documentation yet
 	Service *Network_Application_Delivery_Controller_LoadBalancer_Service `json:"service,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceGroup *Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroup,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceGroupId *int `json:"serviceGroupId,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceId *int `json:"serviceId,omitempty"`
 
-	//
+	// no documentation yet
 	Weight *int `json:"weight,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The unique identifier of the SoftLayer customer account that owns the virtual IP address
@@ -456,13 +456,13 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	// The unique identifier of the virtual IP address record
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty"`
 
 	// ID of the IP address this virtual IP utilizes
 	IpAddressId *int `json:"ipAddressId,omitempty"`
 
-	//
+	// no documentation yet
 	LoadBalancerHardware []Hardware `json:"loadBalancerHardware,omitempty"`
 
 	// A count of
@@ -504,7 +504,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	// A count of
 	VirtualServerCount *uint `json:"virtualServerCount,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualServers []Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServers,omitempty"`
 }
 
@@ -518,7 +518,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_Secur
 	// Identifier for the associated encryption algorithm
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty"`
 
 	// Identifier for the associated [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress (type)|virtual IP address]] instance
@@ -535,36 +535,36 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_Secur
 	// Identifier for the associated communication protocol
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty"`
 
 	// Identifier for the associated [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress (type)|virtual IP address]] instance
 	VirtualIpAddressId *int `json:"virtualIpAddressId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	Entity
 
-	//
+	// no documentation yet
 	Allocation *int `json:"allocation,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	Port *int `json:"port,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingMethod *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method `json:"routingMethod,omitempty"`
 
-	//
+	// no documentation yet
 	RoutingMethodId *int `json:"routingMethodId,omitempty"`
 
 	// A count of collection of scale load balancers this virtual server applies to.
@@ -576,24 +576,24 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	// A count of
 	ServiceGroupCount *uint `json:"serviceGroupCount,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceGroups []Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroups,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	VirtualIpAddressId *int `json:"virtualIpAddressId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Application_Delivery_Controller_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -629,23 +629,23 @@ type Network_Backbone struct {
 	Type *string `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Backbone_Location_Dependent struct {
 	Entity
 
-	//
+	// no documentation yet
 	DependentLocation *Location `json:"dependentLocation,omitempty"`
 
-	//
+	// no documentation yet
 	DependentLocationId *int `json:"dependentLocationId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	SourceLocation *Location `json:"sourceLocation,omitempty"`
 
-	//
+	// no documentation yet
 	SourceLocationId *int `json:"sourceLocationId,omitempty"`
 }
 
@@ -839,7 +839,7 @@ type Network_Bandwidth_Version1_Allotment struct {
 	// The projected public outbound bandwidth for this virtual server for the current billing cycle.
 	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
 	// Service Provider Id for an allotment
@@ -1002,7 +1002,7 @@ type Network_Component struct {
 	// The internal identifier of the hardware that a network component belongs to.
 	HardwareId *int `json:"hardwareId,omitempty"`
 
-	//
+	// no documentation yet
 	HighAvailabilityFirewallFlag *bool `json:"highAvailabilityFirewallFlag,omitempty"`
 
 	// A network component's internal identifier.
@@ -1020,7 +1020,7 @@ type Network_Component struct {
 	// A count of
 	IpAddressCount *uint `json:"ipAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddresses []Network_Subnet_IpAddress `json:"ipAddresses,omitempty"`
 
 	// The IP address of an IPMI-based management network component.
@@ -1133,13 +1133,13 @@ type Network_Component struct {
 type Network_Component_Duplex_Mode struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1263,11 +1263,11 @@ type Network_Component_Firewall_Subnets struct {
 	SubnetId *int `json:"subnetId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Component_Group struct {
 	Entity
 
-	//
+	// no documentation yet
 	GroupTypeId *int `json:"groupTypeId,omitempty"`
 
 	// A count of a network component group's associated network components.
@@ -1512,13 +1512,13 @@ type Network_Customer_Subnet_IpAddress struct {
 type Network_Firewall_AccessControlList struct {
 	Entity
 
-	//
+	// no documentation yet
 	Direction *string `json:"direction,omitempty"`
 
-	//
+	// no documentation yet
 	FirewallContextInterfaceId *int `json:"firewallContextInterfaceId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// A count of the update requests made for this firewall.
@@ -1527,7 +1527,7 @@ type Network_Firewall_AccessControlList struct {
 	// The update requests made for this firewall.
 	NetworkFirewallUpdateRequests []Network_Firewall_Update_Request `json:"networkFirewallUpdateRequests,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkVlan *Network_Vlan `json:"networkVlan,omitempty"`
 
 	// A count of the currently running rule set of this context access control list firewall.
@@ -1542,23 +1542,23 @@ type Network_Firewall_Interface struct {
 	Network_Firewall_Module_Context_Interface
 }
 
-//
+// no documentation yet
 type Network_Firewall_Module_Context_Interface struct {
 	Entity
 
 	// A count of
 	FirewallContextAccessControlListCount *uint `json:"firewallContextAccessControlListCount,omitempty"`
 
-	//
+	// no documentation yet
 	FirewallContextAccessControlLists []Network_Firewall_AccessControlList `json:"firewallContextAccessControlLists,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkVlan *Network_Vlan `json:"networkVlan,omitempty"`
 }
 
@@ -1743,7 +1743,7 @@ type Network_Firewall_Update_Request_Rule_Version6 struct {
 	Network_Firewall_Update_Request_Rule
 }
 
-//
+// no documentation yet
 type Network_Gateway struct {
 	Entity
 
@@ -1814,7 +1814,7 @@ type Network_Gateway struct {
 	StatusId *int `json:"statusId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Gateway_Member struct {
 	Entity
 
@@ -1837,7 +1837,7 @@ type Network_Gateway_Member struct {
 	Priority *int `json:"priority,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Gateway_Status struct {
 	Entity
 
@@ -1854,7 +1854,7 @@ type Network_Gateway_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Gateway_Vlan struct {
 	Entity
 
@@ -2190,7 +2190,7 @@ type Network_Media_Transcode_Job struct {
 	// The created date
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	History []Network_Media_Transcode_Job_History `json:"history,omitempty"`
 
 	// A count of
@@ -2245,7 +2245,7 @@ type Network_Media_Transcode_Job struct {
 	Watermark *Container_Network_Media_Transcode_Job_Watermark `json:"watermark,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Media_Transcode_Job_History struct {
 	Entity
 
@@ -2276,59 +2276,59 @@ type Network_Media_Transcode_Job_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery struct {
 	Entity
 
 	// The SoftLayer customer account that a network message delivery account belongs to.
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
 	// The billing item for a network message delivery account.
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Password *string `json:"password,omitempty"`
 
 	// The message delivery type of a network message delivery account.
 	Type *Network_Message_Delivery_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	TypeId *int `json:"typeId,omitempty"`
 
-	//
+	// no documentation yet
 	Username *string `json:"username,omitempty"`
 
 	// The vendor for a network message delivery account.
 	Vendor *Network_Message_Delivery_Vendor `json:"vendor,omitempty"`
 
-	//
+	// no documentation yet
 	VendorId *int `json:"vendorId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	NetworkMessageDelivery *Network_Message_Delivery `json:"networkMessageDelivery,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery_Email_Sendgrid struct {
 	Network_Message_Delivery
 
@@ -2339,34 +2339,34 @@ type Network_Message_Delivery_Email_Sendgrid struct {
 	SmtpAccess *string `json:"smtpAccess,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Message_Delivery_Vendor struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -2433,7 +2433,7 @@ type Network_Message_Queue_Node struct {
 	// Brief notes on this message queue node
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceResource *Network_Service_Resource `json:"serviceResource,omitempty"`
 }
 
@@ -2451,7 +2451,7 @@ type Network_Message_Queue_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Monitor struct {
 	Entity
 }
@@ -2623,56 +2623,56 @@ type Network_Pod struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Protection_Address struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	DepartmentId *int `json:"departmentId,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddress *string `json:"ipAddress,omitempty"`
 
-	//
+	// no documentation yet
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	ManagementMethodType *string `json:"managementMethodType,omitempty"`
 
-	//
+	// no documentation yet
 	ModifiedUser *User_Employee `json:"modifiedUser,omitempty"`
 
-	//
+	// no documentation yet
 	PrimaryRouter *Hardware_Router `json:"primaryRouter,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	Subnet *Network_Subnet `json:"subnet,omitempty"`
 
-	//
+	// no documentation yet
 	SubnetIpAddress *Network_Subnet_IpAddress `json:"subnetIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	TerminatedUser *User_Employee `json:"terminatedUser,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
 	// A count of
 	TransactionCount *uint `json:"transactionCount,omitempty"`
 
-	//
+	// no documentation yet
 	Transactions []Provisioning_Version1_Transaction `json:"transactions,omitempty"`
 
-	//
+	// no documentation yet
 	UserDepartment *User_Employee_Department `json:"userDepartment,omitempty"`
 
-	//
+	// no documentation yet
 	UserRecord *User_Employee `json:"userRecord,omitempty"`
 }
 
@@ -2796,43 +2796,43 @@ type Network_Service_Health_Status struct {
 type Network_Service_Resource struct {
 	Entity
 
-	//
+	// no documentation yet
 	ApiHost *string `json:"apiHost,omitempty"`
 
-	//
+	// no documentation yet
 	ApiPassword *string `json:"apiPassword,omitempty"`
 
-	//
+	// no documentation yet
 	ApiPath *string `json:"apiPath,omitempty"`
 
-	//
+	// no documentation yet
 	ApiPort *string `json:"apiPort,omitempty"`
 
-	//
+	// no documentation yet
 	ApiProtocol *string `json:"apiProtocol,omitempty"`
 
-	//
+	// no documentation yet
 	ApiUsername *string `json:"apiUsername,omitempty"`
 
-	//
+	// no documentation yet
 	ApiVersion *string `json:"apiVersion,omitempty"`
 
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Network_Service_Resource_Attribute `json:"attributes,omitempty"`
 
 	// The backend IP address for this resource
 	BackendIpAddress *string `json:"backendIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	Datacenter *Location `json:"datacenter,omitempty"`
 
 	// The frontend IP address for this resource
 	FrontendIpAddress *string `json:"frontendIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// The name associated with this resource
@@ -2841,81 +2841,81 @@ type Network_Service_Resource struct {
 	// The hardware information associated with this resource.
 	NetworkDevice *Hardware `json:"networkDevice,omitempty"`
 
-	//
+	// no documentation yet
 	SshUsername *string `json:"sshUsername,omitempty"`
 
 	// The network information associated with this resource.
 	Type *Network_Service_Resource_Type `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	AttributeType *Network_Service_Resource_Attribute_Type `json:"attributeType,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceResource *Network_Service_Resource `json:"serviceResource,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_Hub struct {
 	Network_Service_Resource
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_Hub_Swift struct {
 	Network_Service_Resource_Hub
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_MonitoringHub struct {
 	Network_Service_Resource
 
-	//
+	// no documentation yet
 	AdnServicesIp *string `json:"adnServicesIp,omitempty"`
 
-	//
+	// no documentation yet
 	HubAddress *string `json:"hubAddress,omitempty"`
 
-	//
+	// no documentation yet
 	HubConnectionTimeout *string `json:"hubConnectionTimeout,omitempty"`
 
-	//
+	// no documentation yet
 	RobotsCount *string `json:"robotsCount,omitempty"`
 
-	//
+	// no documentation yet
 	RobotsMax *string `json:"robotsMax,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_NimsoftLandingHub struct {
 	Network_Service_Resource_MonitoringHub
 }
 
-//
+// no documentation yet
 type Network_Service_Resource_Type struct {
 	Entity
 
 	// A count of
 	ServiceResourceCount *uint `json:"serviceResourceCount,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceResources []Network_Service_Resource `json:"serviceResources,omitempty"`
 
-	//
+	// no documentation yet
 	Type *string `json:"type,omitempty"`
 }
 
@@ -3009,7 +3009,7 @@ type Network_Storage struct {
 	// The current billing item for a Storage volume.
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
-	//
+	// no documentation yet
 	BillingItemCategory *Product_Item_Category `json:"billingItemCategory,omitempty"`
 
 	// The amount of space used by the volume, in bytes.
@@ -3027,7 +3027,7 @@ type Network_Storage struct {
 	// A count of
 	CredentialCount *uint `json:"credentialCount,omitempty"`
 
-	//
+	// no documentation yet
 	Credentials []Network_Storage_Credential `json:"credentials,omitempty"`
 
 	// The Daily Schedule which is associated with this network storage volume.
@@ -3048,7 +3048,7 @@ type Network_Storage struct {
 	// The server that is associated with a Storage service.
 	HardwareId *int `json:"hardwareId,omitempty"`
 
-	//
+	// no documentation yet
 	HasEncryptionAtRest *bool `json:"hasEncryptionAtRest,omitempty"`
 
 	// The unique identification number of the host associated with a Storage volume.
@@ -3198,7 +3198,7 @@ type Network_Storage struct {
 	// The snapshots associated with this SoftLayer_Network_Storage volume.
 	Snapshots []Network_Storage `json:"snapshots,omitempty"`
 
-	//
+	// no documentation yet
 	StaasVersion *string `json:"staasVersion,omitempty"`
 
 	// A count of the network storage groups this volume is attached to.
@@ -3207,7 +3207,7 @@ type Network_Storage struct {
 	// The network storage groups this volume is attached to.
 	StorageGroups []Network_Storage_Group `json:"storageGroups,omitempty"`
 
-	//
+	// no documentation yet
 	StorageTierLevel *string `json:"storageTierLevel,omitempty"`
 
 	// A description of the Storage object.
@@ -3253,7 +3253,7 @@ type Network_Storage struct {
 	WeeklySchedule *Network_Storage_Schedule `json:"weeklySchedule,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host struct {
 	Entity
 
@@ -3287,14 +3287,14 @@ type Network_Storage_Allowed_Host struct {
 	// The name of allowed host, usually an IQN or other identifier
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceTableId *int `json:"resourceTableId,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceTableName *string `json:"resourceTableName,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_Hardware struct {
 	Network_Storage_Allowed_Host
 
@@ -3302,7 +3302,7 @@ type Network_Storage_Allowed_Host_Hardware struct {
 	Resource *Hardware `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_IpAddress struct {
 	Network_Storage_Allowed_Host
 
@@ -3310,7 +3310,7 @@ type Network_Storage_Allowed_Host_IpAddress struct {
 	Resource *Network_Subnet_IpAddress `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_Subnet struct {
 	Network_Storage_Allowed_Host
 
@@ -3318,7 +3318,7 @@ type Network_Storage_Allowed_Host_Subnet struct {
 	Resource *Network_Subnet `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Allowed_Host_VirtualGuest struct {
 	Network_Storage_Allowed_Host
 
@@ -3393,7 +3393,7 @@ type Network_Storage_Credential struct {
 	// This is the data that the record was created in the table.
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// This is the date that the record was last updated in the table.
@@ -3441,26 +3441,26 @@ type Network_Storage_Credential_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Daily_Usage struct {
 	Entity
 
-	//
+	// no documentation yet
 	BytesUsed *uint `json:"bytesUsed,omitempty"`
 
-	//
+	// no documentation yet
 	CdnHttpBandwidth *uint `json:"cdnHttpBandwidth,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	NasVolume *Network_Storage `json:"nasVolume,omitempty"`
 
-	//
+	// no documentation yet
 	NasVolumeId *int `json:"nasVolumeId,omitempty"`
 
-	//
+	// no documentation yet
 	PublicBandwidthOut *uint `json:"publicBandwidthOut,omitempty"`
 }
 
@@ -3490,7 +3490,7 @@ type Network_Storage_Event struct {
 	VolumeId *int `json:"volumeId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Group struct {
 	Entity
 
@@ -3527,7 +3527,7 @@ type Network_Storage_Group struct {
 	// The internal identifier of the group
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The OS Type this group is configured for.
@@ -3543,27 +3543,27 @@ type Network_Storage_Group struct {
 	ServiceResourceId *int `json:"serviceResourceId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Iscsi struct {
 	Network_Storage_Group
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Nfs struct {
 	Network_Storage_Group
 }
 
-//
+// no documentation yet
 type Network_Storage_Group_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -3601,32 +3601,32 @@ type Network_Storage_Hub struct {
 	BandwidthBillingItems []Billing_Item `json:"bandwidthBillingItems,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Cleversafe_Account struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The ID of the SoftLayer_Account which this Cleversafe Account is associated with.
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
-	//
+	// no documentation yet
 	CancelledBillingItem *Billing_Item `json:"cancelledBillingItem,omitempty"`
 
 	// A count of
 	CredentialCount *uint `json:"credentialCount,omitempty"`
 
-	//
+	// no documentation yet
 	Credentials []Network_Storage_Credential `json:"credentials,omitempty"`
 
 	// The IMS ID of the SoftLayer_Network_Storage_Hub_Cleversafe_Account.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty"`
 
 	// An indicator which differentiates Cleversafe Accounts from other products which occupy the NAS_VOLUME table.
@@ -3641,32 +3641,32 @@ type Network_Storage_Hub_Cleversafe_Account struct {
 	// Human readable identifier of Cleversafe accounts.
 	Username *string `json:"username,omitempty"`
 
-	//
+	// no documentation yet
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Swift struct {
 	Network_Storage_Hub
 
 	// A count of
 	StorageNodeCount *uint `json:"storageNodeCount,omitempty"`
 
-	//
+	// no documentation yet
 	StorageNodes []Network_Service_Resource `json:"storageNodes,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Swift_Container struct {
 	Network_Storage_Hub_Swift
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Swift_Share struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Network_Storage_Hub_Swift_Version1 struct {
 	Network_Storage_Hub_Swift
 }
@@ -3705,7 +3705,7 @@ type Network_Storage_Iscsi_EqualLogic_Version3_Snapshot struct {
 	VolumeName *string `json:"volumeName,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Iscsi_OS_Type struct {
 	Entity
 
@@ -3729,7 +3729,7 @@ type Network_Storage_Iscsi_OS_Type struct {
 type Network_Storage_Nas struct {
 	Network_Storage
 
-	//
+	// no documentation yet
 	RecentBytesUsed *Network_Storage_Daily_Usage `json:"recentBytesUsed,omitempty"`
 }
 
@@ -3821,7 +3821,7 @@ type Network_Storage_Property_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Replicant struct {
 	Network_Storage
 
@@ -3972,7 +3972,7 @@ type Network_Storage_Schedule_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Storage_Snapshot struct {
 	Network_Storage
 
@@ -4007,7 +4007,7 @@ type Network_Storage_Type struct {
 type Network_Subnet struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// If present, the active registration for this subnet.
@@ -4043,7 +4043,7 @@ type Network_Subnet struct {
 	// A count of
 	BoundDescendantCount *uint `json:"boundDescendantCount,omitempty"`
 
-	//
+	// no documentation yet
 	BoundDescendants []Network_Subnet `json:"boundDescendants,omitempty"`
 
 	// A count of
@@ -4052,13 +4052,13 @@ type Network_Subnet struct {
 	// Whether or not this subnet is associated with a router. Subnets that are not associated with a router cannot be routed.
 	BoundRouterFlag *bool `json:"boundRouterFlag,omitempty"`
 
-	//
+	// no documentation yet
 	BoundRouters []Hardware `json:"boundRouters,omitempty"`
 
 	// The last IP address in a subnet is the subnet's broadcast address. This is an IP address that will broadcast network requests to the entire subnet and may not be assigned to a network interface.
 	BroadcastAddress *string `json:"broadcastAddress,omitempty"`
 
-	//
+	// no documentation yet
 	Children []Network_Subnet `json:"children,omitempty"`
 
 	// A count of
@@ -4073,10 +4073,10 @@ type Network_Subnet struct {
 	// A count of
 	DescendantCount *uint `json:"descendantCount,omitempty"`
 
-	//
+	// no documentation yet
 	Descendants []Network_Subnet `json:"descendants,omitempty"`
 
-	//
+	// no documentation yet
 	DisplayLabel *string `json:"displayLabel,omitempty"`
 
 	// A static routed ip address
@@ -4085,7 +4085,7 @@ type Network_Subnet struct {
 	// A subnet's gateway address. This is an IP address that belongs to the router on the subnet and may not be assigned to a network interface.
 	Gateway *string `json:"gateway,omitempty"`
 
-	//
+	// no documentation yet
 	GlobalIpRecord *Network_Subnet_IpAddress_Global `json:"globalIpRecord,omitempty"`
 
 	// The hardware using IP addresses on this subnet.
@@ -4103,10 +4103,10 @@ type Network_Subnet struct {
 	// All the ip addresses associated with a subnet.
 	IpAddresses []Network_Subnet_IpAddress `json:"ipAddresses,omitempty"`
 
-	//
+	// no documentation yet
 	IsCustomerOwned *bool `json:"isCustomerOwned,omitempty"`
 
-	//
+	// no documentation yet
 	IsCustomerRoutable *bool `json:"isCustomerRoutable,omitempty"`
 
 	// The last time this subnet was last modified
@@ -4127,7 +4127,7 @@ type Network_Subnet struct {
 	// A count of
 	NetworkProtectionAddressCount *uint `json:"networkProtectionAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkProtectionAddresses []Network_Protection_Address `json:"networkProtectionAddresses,omitempty"`
 
 	// A count of iPSec network tunnels that have access to a private subnet.
@@ -4151,10 +4151,10 @@ type Network_Subnet struct {
 	// A count of
 	ProtectedIpAddressCount *uint `json:"protectedIpAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	ProtectedIpAddresses []Network_Subnet_IpAddress `json:"protectedIpAddresses,omitempty"`
 
-	//
+	// no documentation yet
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty"`
 
 	// A count of all registrations that have been created for this subnet.
@@ -4202,7 +4202,7 @@ type Network_Subnet struct {
 	// A count of
 	UnboundDescendantCount *uint `json:"unboundDescendantCount,omitempty"`
 
-	//
+	// no documentation yet
 	UnboundDescendants []Network_Subnet `json:"unboundDescendants,omitempty"`
 
 	// The number of IP addresses that can be addressed within this subnet. For IPv4 subnets with a CIDR value of at most 30, a discount of 3 is taken from the total number of IP addresses for the subnet's unusable network, gateway and broadcast IP addresses. For IPv6 subnets with a CIDR value of at most 126, a discount of 2 is taken for the subnet's network and gateway IP addresses.
@@ -4288,7 +4288,7 @@ type Network_Subnet_IpAddress struct {
 	// The network gateway appliance using this address as the private IP address.
 	PrivateNetworkGateway *Network_Gateway `json:"privateNetworkGateway,omitempty"`
 
-	//
+	// no documentation yet
 	ProtectionAddress []Network_Protection_Address `json:"protectionAddress,omitempty"`
 
 	// A count of
@@ -4376,11 +4376,11 @@ type Network_Subnet_IpAddress struct {
 	VirtualLicenses []Software_VirtualLicense `json:"virtualLicenses,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Subnet_IpAddress_Global struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The active transaction associated with this Global IP.
@@ -4392,7 +4392,7 @@ type Network_Subnet_IpAddress_Global struct {
 	// A Global IP Address' associated description
 	Description *int `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	DestinationIpAddress *Network_Subnet_IpAddress `json:"destinationIpAddress,omitempty"`
 
 	// A Global IP Address' associated [[SoftLayer_Network_Subnet_IpAddress|ipAddress]] ID
@@ -4401,7 +4401,7 @@ type Network_Subnet_IpAddress_Global struct {
 	// A Global IP Address' unique identifier
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty"`
 
 	// A Global IP Address' associated [[SoftLayer_Account|account]] ID
@@ -4432,7 +4432,7 @@ type Network_Subnet_Registration struct {
 	// The CIDR prefix for the registered subnet
 	Cidr *int `json:"cidr,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// A count of the cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
@@ -4450,7 +4450,7 @@ type Network_Subnet_Registration struct {
 	// Unique ID of the registration object
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The "network" detail object.
@@ -4501,7 +4501,7 @@ type Network_Subnet_Registration_Arin struct {
 type Network_Subnet_Registration_Details struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
@@ -4513,7 +4513,7 @@ type Network_Subnet_Registration_Details struct {
 	// Unique numeric ID of the object
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The related [[SoftLayer_Network_Subnet_Registration|registration object]].
@@ -4527,7 +4527,7 @@ type Network_Subnet_Registration_Details struct {
 type Network_Subnet_Registration_Event struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// Unique numeric ID of the event object
@@ -4536,7 +4536,7 @@ type Network_Subnet_Registration_Event struct {
 	// A string message indicating what took place during this event
 	Message *string `json:"message,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The registration this event pertains to.
@@ -4558,7 +4558,7 @@ type Network_Subnet_Registration_Event struct {
 type Network_Subnet_Registration_Event_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// Unique numeric ID of the event type object
@@ -4567,7 +4567,7 @@ type Network_Subnet_Registration_Event_Type struct {
 	// Code-friendly string name of the event type
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// Human-readable name of the event type
@@ -4585,7 +4585,7 @@ type Network_Subnet_Registration_Ripe struct {
 type Network_Subnet_Registration_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// Unique numeric ID of the status object
@@ -4594,7 +4594,7 @@ type Network_Subnet_Registration_Status struct {
 	// Code-friendly string name of the status
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// Human-readable name of the status
@@ -4687,7 +4687,7 @@ type Network_Subnet_Swip_Transaction struct {
 	SubnetId *int `json:"subnetId,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_TippingPointReporting struct {
 	Entity
 }
@@ -4915,7 +4915,7 @@ type Network_Vlan struct {
 	// A count of all of the hardware that exists on a VLAN. Hardware is associated with a VLAN by its networking components.
 	HardwareCount *uint `json:"hardwareCount,omitempty"`
 
-	//
+	// no documentation yet
 	HighAvailabilityFirewallFlag *bool `json:"highAvailabilityFirewallFlag,omitempty"`
 
 	// A VLAN's internal identifier. This should not be confused with the ''vlanNumber'' property, which is used in network configuration.
@@ -4969,7 +4969,7 @@ type Network_Vlan struct {
 	// A VLAN's primary IPv6 subnet. Some VLAN's may not have a primary IPv6 subnet.
 	PrimarySubnetVersion6 *Network_Subnet `json:"primarySubnetVersion6,omitempty"`
 
-	//
+	// no documentation yet
 	PrimarySubnets []Network_Subnet `json:"primarySubnets,omitempty"`
 
 	// A count of the gateways this VLAN is the private VLAN of.
@@ -4981,7 +4981,7 @@ type Network_Vlan struct {
 	// A count of
 	ProtectedIpAddressCount *uint `json:"protectedIpAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	ProtectedIpAddresses []Network_Subnet_IpAddress `json:"protectedIpAddresses,omitempty"`
 
 	// A count of the gateways this VLAN is the public VLAN of.
@@ -5103,7 +5103,7 @@ type Network_Vlan_Firewall struct {
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
 }
 
@@ -5160,19 +5160,19 @@ type Network_Vlan_Firewall_Rule struct {
 	Version *int `json:"version,omitempty"`
 }
 
-//
+// no documentation yet
 type Network_Vlan_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

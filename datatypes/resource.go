@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Resource_Group struct {
 	Entity
 
@@ -66,7 +66,7 @@ type Resource_Group struct {
 	// A resource group's associated root resource group.
 	RootResourceGroup *Resource_Group `json:"rootResourceGroup,omitempty"`
 
-	//
+	// no documentation yet
 	RootResourceGroupId *int `json:"rootResourceGroupId,omitempty"`
 
 	// A count of a resource group's associated subnet members.
@@ -88,7 +88,7 @@ type Resource_Group struct {
 	VlanMembers []Resource_Group_Member `json:"vlanMembers,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Attribute struct {
 	Entity
 
@@ -108,20 +108,20 @@ type Resource_Group_Attribute struct {
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -131,14 +131,14 @@ type Resource_Group_Attribute_Type struct {
 type Resource_Group_Descendant_Reference struct {
 	Entity
 
-	//
+	// no documentation yet
 	Group *Resource_Group `json:"group,omitempty"`
 
-	//
+	// no documentation yet
 	GroupMember *Resource_Group_Member `json:"groupMember,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member struct {
 	Entity
 
@@ -176,7 +176,7 @@ type Resource_Group_Member struct {
 	Type *Resource_Group_Member_Type `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Attribute struct {
 	Entity
 
@@ -196,24 +196,24 @@ type Resource_Group_Member_Attribute struct {
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Attribute_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_CloudStack_Version3_Cluster struct {
 	Resource_Group_Member
 
@@ -221,7 +221,7 @@ type Resource_Group_Member_CloudStack_Version3_Cluster struct {
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_CloudStack_Version3_Pod struct {
 	Resource_Group_Member
 
@@ -229,7 +229,7 @@ type Resource_Group_Member_CloudStack_Version3_Pod struct {
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_CloudStack_Version3_Zone struct {
 	Resource_Group_Member
 
@@ -237,7 +237,7 @@ type Resource_Group_Member_CloudStack_Version3_Zone struct {
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Hardware struct {
 	Resource_Group_Member
 
@@ -263,7 +263,7 @@ type Resource_Group_Member_Hardware struct {
 	ServerVotes *Resource_Group_Member_Attribute `json:"serverVotes,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Network_Storage struct {
 	Resource_Group_Member
 
@@ -271,7 +271,7 @@ type Resource_Group_Member_Network_Storage struct {
 	Resource *Network_Storage `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Network_Subnet struct {
 	Resource_Group_Member
 
@@ -279,7 +279,7 @@ type Resource_Group_Member_Network_Subnet struct {
 	Resource *Network_Subnet `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Network_Vlan struct {
 	Resource_Group_Member
 
@@ -287,7 +287,7 @@ type Resource_Group_Member_Network_Vlan struct {
 	Resource *Network_Vlan `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Resource_Group struct {
 	Resource_Group_Member
 
@@ -295,7 +295,7 @@ type Resource_Group_Member_Resource_Group struct {
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Role_Link struct {
 	Entity
 
@@ -306,7 +306,7 @@ type Resource_Group_Member_Role_Link struct {
 	GroupTemplateRoleId *int `json:"groupTemplateRoleId,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Software_Component_Password struct {
 	Resource_Group_Member
 
@@ -314,7 +314,7 @@ type Resource_Group_Member_Software_Component_Password struct {
 	Resource *Software_Component_Password `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Type struct {
 	Entity
 
@@ -325,12 +325,12 @@ type Resource_Group_Member_Type struct {
 	KeyName *string `json:"keyName,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Member_Virtual_Host_Pool struct {
 	Resource_Group_Member
 }
 
-//
+// no documentation yet
 type Resource_Group_Role struct {
 	Entity
 
@@ -350,11 +350,11 @@ type Resource_Group_Role struct {
 	MemberLinks []Resource_Group_Member_Role_Link `json:"memberLinks,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Template struct {
 	Entity
 
-	//
+	// no documentation yet
 	Children []Resource_Group_Template `json:"children,omitempty"`
 
 	// A count of
@@ -363,7 +363,7 @@ type Resource_Group_Template struct {
 	// A resource group template's description.
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// A resource group template's keyname.
@@ -372,37 +372,37 @@ type Resource_Group_Template struct {
 	// A count of
 	MemberCount *uint `json:"memberCount,omitempty"`
 
-	//
+	// no documentation yet
 	Members []Resource_Group_Template_Member `json:"members,omitempty"`
 
-	//
+	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Group_Template_Member struct {
 	Entity
 
-	//
+	// no documentation yet
 	MaxQuantity *int `json:"maxQuantity,omitempty"`
 
-	//
+	// no documentation yet
 	MinQuantity *int `json:"minQuantity,omitempty"`
 
-	//
+	// no documentation yet
 	Role *Resource_Group_Role `json:"role,omitempty"`
 
-	//
+	// no documentation yet
 	RoleId *int `json:"roleId,omitempty"`
 
-	//
+	// no documentation yet
 	Template *Resource_Group_Template `json:"template,omitempty"`
 
-	//
+	// no documentation yet
 	TemplateId *int `json:"templateId,omitempty"`
 }
 
-//
+// no documentation yet
 type Resource_Metadata struct {
 	Entity
 }

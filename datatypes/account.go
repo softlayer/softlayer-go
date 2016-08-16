@@ -50,7 +50,7 @@ type Account struct {
 	// A count of
 	AccountLinkCount *uint `json:"accountLinkCount,omitempty"`
 
-	//
+	// no documentation yet
 	AccountLinks []Account_Link `json:"accountLinks,omitempty"`
 
 	// A flag indicating that the account has a managed resource.
@@ -83,7 +83,7 @@ type Account struct {
 	// All billing agreements for an account
 	ActiveBillingAgreements []Account_Agreement `json:"activeBillingAgreements,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveCatalystEnrollment *Catalyst_Enrollment `json:"activeCatalystEnrollment,omitempty"`
 
 	// A count of the account's active top level colocation containers.
@@ -98,7 +98,7 @@ type Account struct {
 	// A count of
 	ActiveNotificationSubscriberCount *uint `json:"activeNotificationSubscriberCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveNotificationSubscribers []Notification_Subscriber `json:"activeNotificationSubscribers,omitempty"`
 
 	// A count of an account's non-expired quotes.
@@ -248,10 +248,10 @@ type Account struct {
 	// Returns true if this account is linked to IBM Bluemix, false if not.
 	BluemixLinkedFlag *bool `json:"bluemixLinkedFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Brand *Brand `json:"brand,omitempty"`
 
-	//
+	// no documentation yet
 	BrandAccountFlag *bool `json:"brandAccountFlag,omitempty"`
 
 	// The Brand tied to an account.
@@ -272,7 +272,7 @@ type Account struct {
 	// A count of
 	CatalystEnrollmentCount *uint `json:"catalystEnrollmentCount,omitempty"`
 
-	//
+	// no documentation yet
 	CatalystEnrollments []Catalyst_Enrollment `json:"catalystEnrollments,omitempty"`
 
 	// A count of an account's associated CDN accounts.
@@ -326,7 +326,7 @@ type Account struct {
 	// A count of
 	DomainRegistrationCount *uint `json:"domainRegistrationCount,omitempty"`
 
-	//
+	// no documentation yet
 	DomainRegistrations []Dns_Domain_Registration `json:"domainRegistrations,omitempty"`
 
 	// The DNS domains associated with an account.
@@ -383,19 +383,19 @@ type Account struct {
 	// A count of
 	GlobalIpRecordCount *uint `json:"globalIpRecordCount,omitempty"`
 
-	//
+	// no documentation yet
 	GlobalIpRecords []Network_Subnet_IpAddress_Global `json:"globalIpRecords,omitempty"`
 
 	// A count of
 	GlobalIpv4RecordCount *uint `json:"globalIpv4RecordCount,omitempty"`
 
-	//
+	// no documentation yet
 	GlobalIpv4Records []Network_Subnet_IpAddress_Global `json:"globalIpv4Records,omitempty"`
 
 	// A count of
 	GlobalIpv6RecordCount *uint `json:"globalIpv6RecordCount,omitempty"`
 
-	//
+	// no documentation yet
 	GlobalIpv6Records []Network_Subnet_IpAddress_Global `json:"globalIpv6Records,omitempty"`
 
 	// A count of the global load balancer accounts for a softlayer customer account.
@@ -524,7 +524,7 @@ type Account struct {
 	// A count of
 	InternalNoteCount *uint `json:"internalNoteCount,omitempty"`
 
-	//
+	// no documentation yet
 	InternalNotes []Account_Note `json:"internalNotes,omitempty"`
 
 	// A count of an account's associated billing invoices.
@@ -536,7 +536,7 @@ type Account struct {
 	// A count of
 	IpAddressCount *uint `json:"ipAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddresses []Network_Subnet_IpAddress `json:"ipAddresses,omitempty"`
 
 	// A flag indicating if an account belongs to a reseller or not.
@@ -629,7 +629,7 @@ type Account struct {
 	// A count of an account's associated Lockbox storage volumes.
 	LockboxNetworkStorageCount *uint `json:"lockboxNetworkStorageCount,omitempty"`
 
-	//
+	// no documentation yet
 	ManualPaymentsUnderReview []Billing_Payment_Card_ManualPayment `json:"manualPaymentsUnderReview,omitempty"`
 
 	// A count of
@@ -689,7 +689,7 @@ type Account struct {
 	// A count of
 	NetworkMessageDeliveryAccountCount *uint `json:"networkMessageDeliveryAccountCount,omitempty"`
 
-	//
+	// no documentation yet
 	NetworkMessageDeliveryAccounts []Network_Message_Delivery `json:"networkMessageDeliveryAccounts,omitempty"`
 
 	// Hardware which is currently experiencing a service failure.
@@ -794,7 +794,7 @@ type Account struct {
 	// A count of
 	NotificationSubscriberCount *uint `json:"notificationSubscriberCount,omitempty"`
 
-	//
+	// no documentation yet
 	NotificationSubscribers []Notification_Subscriber `json:"notificationSubscribers,omitempty"`
 
 	// An office phone number assigned to an account.
@@ -845,7 +845,7 @@ type Account struct {
 	// A count of
 	OpenStackAccountLinkCount *uint `json:"openStackAccountLinkCount,omitempty"`
 
-	//
+	// no documentation yet
 	OpenStackAccountLinks []Account_Link `json:"openStackAccountLinks,omitempty"`
 
 	// An account's associated Openstack related Object Storage accounts.
@@ -887,25 +887,25 @@ type Account struct {
 	// A count of
 	OwnedBrandCount *uint `json:"ownedBrandCount,omitempty"`
 
-	//
+	// no documentation yet
 	OwnedBrands []Brand `json:"ownedBrands,omitempty"`
 
 	// A count of
 	OwnedHardwareGenericComponentModelCount *uint `json:"ownedHardwareGenericComponentModelCount,omitempty"`
 
-	//
+	// no documentation yet
 	OwnedHardwareGenericComponentModels []Hardware_Component_Model_Generic `json:"ownedHardwareGenericComponentModels,omitempty"`
 
 	// A count of
 	PaymentProcessorCount *uint `json:"paymentProcessorCount,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentProcessors []Billing_Payment_Processor `json:"paymentProcessors,omitempty"`
 
 	// A count of
 	PendingEventCount *uint `json:"pendingEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	PendingEvents []Notification_Occurrence_Event `json:"pendingEvents,omitempty"`
 
 	// An account's latest open (pending) invoice.
@@ -947,7 +947,7 @@ type Account struct {
 	// A count of
 	PortableStorageVolumeCount *uint `json:"portableStorageVolumeCount,omitempty"`
 
-	//
+	// no documentation yet
 	PortableStorageVolumes []Virtual_Disk_Image `json:"portableStorageVolumes,omitempty"`
 
 	// A count of customer specified URIs that are downloaded onto a newly provisioned or reloaded server. If the URI is sent over https it will be executed directly on the server.
@@ -995,7 +995,7 @@ type Account struct {
 	// A count of
 	PrivateIpAddressCount *uint `json:"privateIpAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateIpAddresses []Network_Subnet_IpAddress `json:"privateIpAddresses,omitempty"`
 
 	// A count of the private network VLANs assigned to an account.
@@ -1019,7 +1019,7 @@ type Account struct {
 	// A count of
 	PublicIpAddressCount *uint `json:"publicIpAddressCount,omitempty"`
 
-	//
+	// no documentation yet
 	PublicIpAddresses []Network_Subnet_IpAddress `json:"publicIpAddresses,omitempty"`
 
 	// A count of the public network VLANs assigned to an account.
@@ -1043,7 +1043,7 @@ type Account struct {
 	// A count of
 	RecentEventCount *uint `json:"recentEventCount,omitempty"`
 
-	//
+	// no documentation yet
 	RecentEvents []Notification_Occurrence_Event `json:"recentEvents,omitempty"`
 
 	// The Referral Partner for this account, if any.
@@ -1058,7 +1058,7 @@ type Account struct {
 	// A count of
 	RegulatedWorkloadCount *uint `json:"regulatedWorkloadCount,omitempty"`
 
-	//
+	// no documentation yet
 	RegulatedWorkloads []Legal_RegulatedWorkload `json:"regulatedWorkloads,omitempty"`
 
 	// A count of remote management command requests for an account
@@ -1088,7 +1088,7 @@ type Account struct {
 	// An account's reverse WHOIS data. This data is used when making SWIP requests.
 	RwhoisData *Network_Subnet_Rwhois_Data `json:"rwhoisData,omitempty"`
 
-	//
+	// no documentation yet
 	SalesforceAccountLink *Account_Link `json:"salesforceAccountLink,omitempty"`
 
 	// The SAML configuration for this account.
@@ -1163,10 +1163,10 @@ type Account struct {
 	// A count of
 	SubnetRegistrationDetailCount *uint `json:"subnetRegistrationDetailCount,omitempty"`
 
-	//
+	// no documentation yet
 	SubnetRegistrationDetails []Account_Regional_Registry_Detail `json:"subnetRegistrationDetails,omitempty"`
 
-	//
+	// no documentation yet
 	SubnetRegistrations []Network_Subnet_Registration `json:"subnetRegistrations,omitempty"`
 
 	// All network subnets associated with an account.
@@ -1184,7 +1184,7 @@ type Account struct {
 	// The active support subscriptions for this account.
 	SupportSubscriptions []Billing_Item `json:"supportSubscriptions,omitempty"`
 
-	//
+	// no documentation yet
 	SupportTier *string `json:"supportTier,omitempty"`
 
 	// A flag indicating to suppress invoices.
@@ -1193,7 +1193,7 @@ type Account struct {
 	// A count of
 	TagCount *uint `json:"tagCount,omitempty"`
 
-	//
+	// no documentation yet
 	Tags []Tag `json:"tags,omitempty"`
 
 	// A count of an account's associated tickets.
@@ -1353,7 +1353,7 @@ type Account_Address struct {
 	// The account to which this address belongs.
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
 	// Line 1 of the address (normally the street address).
@@ -1405,20 +1405,20 @@ type Account_Address struct {
 	Type *Account_Address_Type `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Address_Type struct {
 	Entity
 
 	// DEPRECATED
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1445,11 +1445,11 @@ type Account_Affiliation struct {
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Agreement struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The type of agreement.
@@ -1464,7 +1464,7 @@ type Account_Agreement struct {
 	// The files attached to an agreement.
 	AttachedBillingAgreementFiles []Account_MasterServiceAgreement `json:"attachedBillingAgreementFiles,omitempty"`
 
-	//
+	// no documentation yet
 	AutoRenew *int `json:"autoRenew,omitempty"`
 
 	// A count of the billing items associated with an agreement.
@@ -1473,7 +1473,7 @@ type Account_Agreement struct {
 	// The billing items associated with an agreement.
 	BillingItems []Billing_Item `json:"billingItems,omitempty"`
 
-	//
+	// no documentation yet
 	CancellationFee *int `json:"cancellationFee,omitempty"`
 
 	// The date an agreement was created.
@@ -1507,7 +1507,7 @@ type Account_Agreement struct {
 	TopLevelBillingItems []Billing_Item `json:"topLevelBillingItems,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Agreement_Status struct {
 	Entity
 
@@ -1515,7 +1515,7 @@ type Account_Agreement_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Agreement_Type struct {
 	Entity
 
@@ -1540,14 +1540,14 @@ type Account_Attachment_Employee struct {
 	RoleId *int `json:"roleId,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Attachment_Employee_Role struct {
 	Entity
 
-	//
+	// no documentation yet
 	Keyname *string `json:"keyname,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1637,32 +1637,32 @@ type Account_Authentication_Attribute_Type struct {
 	ValueExample *string `json:"valueExample,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Authentication_OpenIdConnect_Option struct {
 	Entity
 
-	//
+	// no documentation yet
 	Key *string `json:"key,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Authentication_OpenIdConnect_RegistrationInformation struct {
 	Entity
 
-	//
+	// no documentation yet
 	ExistingBlueIdFlag *bool `json:"existingBlueIdFlag,omitempty"`
 
-	//
+	// no documentation yet
 	FederatedEmailDomainFlag *bool `json:"federatedEmailDomainFlag,omitempty"`
 
-	//
+	// no documentation yet
 	User *User_Customer `json:"user,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Authentication_Saml struct {
 	Entity
 
@@ -1724,151 +1724,151 @@ type Account_Authentication_Saml struct {
 	SingleSignOnUrl *string `json:"singleSignOnUrl,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Classification_Group_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Contact struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	Address1 *string `json:"address1,omitempty"`
 
-	//
+	// no documentation yet
 	Address2 *string `json:"address2,omitempty"`
 
-	//
+	// no documentation yet
 	AlternatePhone *string `json:"alternatePhone,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	CompanyName *string `json:"companyName,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Email *string `json:"email,omitempty"`
 
-	//
+	// no documentation yet
 	FaxPhone *string `json:"faxPhone,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	JobTitle *string `json:"jobTitle,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	OfficePhone *string `json:"officePhone,omitempty"`
 
-	//
+	// no documentation yet
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	ProfileName *string `json:"profileName,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Account_Contact_Type `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	TypeId *int `json:"typeId,omitempty"`
 
-	//
+	// no documentation yet
 	Url *string `json:"url,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Contact_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Historical_Report struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Account_Link struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	DestinationAccountAlphanumericId *string `json:"destinationAccountAlphanumericId,omitempty"`
 
-	//
+	// no documentation yet
 	DestinationAccountId *int `json:"destinationAccountId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Link_Bluemix struct {
 	Account_Link
 }
 
-//
+// no documentation yet
 type Account_Link_OpenStack struct {
 	Account_Link
 
@@ -1935,19 +1935,19 @@ type Account_Link_OpenStack_ProjectDetails struct {
 	ProjectName *string `json:"projectName,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Link_ThePlanet struct {
 	Account_Link
 }
 
-//
+// no documentation yet
 type Account_Link_Vendor struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -1974,23 +1974,23 @@ type Account_Lockdown_Request struct {
 	Status *string `json:"status,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_MasterServiceAgreement struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	Guid *string `json:"guid,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -2160,122 +2160,122 @@ type Account_Network_Vlan_Span struct {
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Note struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Customer *User_Customer `json:"customer,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Note *string `json:"note,omitempty"`
 
-	//
+	// no documentation yet
 	NoteHistory []Account_Note_History `json:"noteHistory,omitempty"`
 
 	// A count of
 	NoteHistoryCount *uint `json:"noteHistoryCount,omitempty"`
 
-	//
+	// no documentation yet
 	NoteType *Account_Note_Type `json:"noteType,omitempty"`
 
-	//
+	// no documentation yet
 	NoteTypeId *int `json:"noteTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	UserId *int `json:"userId,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Note_History struct {
 	Entity
 
-	//
+	// no documentation yet
 	AccountNote *Account_Note `json:"accountNote,omitempty"`
 
-	//
+	// no documentation yet
 	AccountNoteId *int `json:"accountNoteId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Customer *User_Customer `json:"customer,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Note *string `json:"note,omitempty"`
 
-	//
+	// no documentation yet
 	UserId *int `json:"userId,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Note_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	BrandId *int `json:"brandId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	ValueExpression *string `json:"valueExpression,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Partner_Referral_Prospect struct {
 	User_Customer_Prospect
 
-	//
+	// no documentation yet
 	CompanyName *string `json:"companyName,omitempty"`
 
-	//
+	// no documentation yet
 	EmailAddress *string `json:"emailAddress,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 }
 
@@ -2283,7 +2283,7 @@ type Account_Partner_Referral_Prospect struct {
 type Account_Password struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The SoftLayer customer account id that a username/password combination is associated with.
@@ -2368,7 +2368,7 @@ type Account_Regional_Registry_Detail struct {
 type Account_Regional_Registry_Detail_Property struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
@@ -2377,7 +2377,7 @@ type Account_Regional_Registry_Detail_Property struct {
 	// Unique ID of the property object
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
@@ -2400,7 +2400,7 @@ type Account_Regional_Registry_Detail_Property struct {
 type Account_Regional_Registry_Detail_Property_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// Unique numeric ID of the property type object
@@ -2409,7 +2409,7 @@ type Account_Regional_Registry_Detail_Property_Type struct {
 	// Code-friendly string name of the property type
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// Human-readable name of the property type
@@ -2425,7 +2425,7 @@ type Account_Regional_Registry_Detail_Property_Type struct {
 type Account_Regional_Registry_Detail_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// Unique numeric ID of the detail type object
@@ -2434,7 +2434,7 @@ type Account_Regional_Registry_Detail_Type struct {
 	// Code-friendly string name of the detail type
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// Human-readable name of the detail type
@@ -2446,65 +2446,65 @@ type Account_Regional_Registry_Detail_Version4_Person_Default struct {
 	Account_Regional_Registry_Detail
 }
 
-//
+// no documentation yet
 type Account_Reports_Request struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A request's corresponding external contact, if one exists.
 	AccountContact *Account_Contact `json:"accountContact,omitempty"`
 
-	//
+	// no documentation yet
 	AccountContactId *int `json:"accountContactId,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	ComplianceReportTypeId *string `json:"complianceReportTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	EmployeeRecordId *int `json:"employeeRecordId,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Nda *string `json:"nda,omitempty"`
 
-	//
+	// no documentation yet
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	Report *string `json:"report,omitempty"`
 
 	// Type of the report customer is requesting for.
 	ReportType *Compliance_Report_Type `json:"reportType,omitempty"`
 
-	//
+	// no documentation yet
 	RequestKey *string `json:"requestKey,omitempty"`
 
-	//
+	// no documentation yet
 	Status *string `json:"status,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
-	//
+	// no documentation yet
 	TicketId *int `json:"ticketId,omitempty"`
 
 	// The customer user that initiated a report request.
 	User *User_Customer `json:"user,omitempty"`
 
-	//
+	// no documentation yet
 	UsrRecordId *int `json:"usrRecordId,omitempty"`
 }
 
@@ -2518,7 +2518,7 @@ type Account_Rwhois_Handle struct {
 	// The handle object's associated [[SoftLayer_Account|account]] id
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// The handle object's unique identifier as assigned by the RIR.
@@ -2527,7 +2527,7 @@ type Account_Rwhois_Handle struct {
 	// Unique ID of the handle object
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 }
 
@@ -2621,7 +2621,7 @@ type Account_Shipment struct {
 type Account_Shipment_Item struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
 	// The description of the shipping item.
@@ -2649,42 +2649,42 @@ type Account_Shipment_Item struct {
 	ShipmentItemTypeId *int `json:"shipmentItemTypeId,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Shipment_Item_Type struct {
 	Entity
 
 	// DEPRECATED
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Shipment_Resource_Type struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Account_Shipment_Status struct {
 	Entity
 
 	// DEPRECATED
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -2729,33 +2729,33 @@ type Account_Shipment_Tracking_Data struct {
 	TrackingData *string `json:"trackingData,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Shipment_Type struct {
 	Entity
 
 	// DEPRECATED
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Account_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

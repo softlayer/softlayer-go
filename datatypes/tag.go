@@ -46,104 +46,104 @@ type Tag struct {
 	References []Tag_Reference `json:"references,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference struct {
 	Entity
 
-	//
+	// no documentation yet
 	Customer *User_Customer `json:"customer,omitempty"`
 
-	//
+	// no documentation yet
 	EmpRecordId *int `json:"empRecordId,omitempty"`
 
-	//
+	// no documentation yet
 	Employee *User_Employee `json:"employee,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceTableId *int `json:"resourceTableId,omitempty"`
 
-	//
+	// no documentation yet
 	Tag *Tag `json:"tag,omitempty"`
 
-	//
+	// no documentation yet
 	TagId *int `json:"tagId,omitempty"`
 
-	//
+	// no documentation yet
 	TagType *Tag_Type `json:"tagType,omitempty"`
 
-	//
+	// no documentation yet
 	TagTypeId *int `json:"tagTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	UsrRecordId *int `json:"usrRecordId,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Hardware struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Hardware `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Network_Application_Delivery_Controller struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Network_Application_Delivery_Controller `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Network_Vlan struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Network_Vlan `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Network_Vlan_Firewall struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Network_Vlan_Firewall `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Resource_Group struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Resource_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Virtual_Guest struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Virtual_Guest `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Reference_Virtual_Guest_Block_Device_Template_Group struct {
 	Tag_Reference
 
-	//
+	// no documentation yet
 	Resource *Virtual_Guest_Block_Device_Template_Group `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Tag_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 }

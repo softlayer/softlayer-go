@@ -25,22 +25,22 @@ type Utility_Bandwidth_Graph struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Utility_Network struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Utility_ObjectFilter struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Utility_ObjectFilter_Operation struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Utility_ObjectFilter_Operation_Option struct {
 	Entity
 }

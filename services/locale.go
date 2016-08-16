@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Locale struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,7 +61,7 @@ func (r Locale) Offset(offset int) Locale {
 	return r
 }
 
-//
+// no documentation yet
 func (r Locale) GetClosestToLanguageTag(languageTag *string) (resp datatypes.Locale, err error) {
 	params := []interface{}{
 		languageTag,
@@ -70,13 +70,13 @@ func (r Locale) GetClosestToLanguageTag(languageTag *string) (resp datatypes.Loc
 	return
 }
 
-//
+// no documentation yet
 func (r Locale) GetObject() (resp datatypes.Locale, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Locale_Country struct {
 	Session *session.Session
 	Options sl.Options
@@ -123,7 +123,7 @@ func (r Locale_Country) GetCountries() (resp []datatypes.Locale_Country, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Locale_Country) GetObject() (resp datatypes.Locale_Country, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

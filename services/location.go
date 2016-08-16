@@ -79,7 +79,7 @@ func (r Location) GetDatacenters() (resp []datatypes.Location, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Location) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -121,7 +121,7 @@ func (r Location) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_At
 	return
 }
 
-//
+// no documentation yet
 func (r Location) GetObject() (resp datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -276,7 +276,7 @@ func (r Location_Datacenter) GetDatacenters() (resp []datatypes.Location, err er
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Datacenter) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -330,7 +330,7 @@ func (r Location_Datacenter) GetNetworkConfigurationAttribute() (resp datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Datacenter) GetObject() (resp datatypes.Location_Datacenter, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -432,7 +432,7 @@ func (r Location_Datacenter) GetpointOfPresence() (resp []datatypes.Location, er
 	return
 }
 
-//
+// no documentation yet
 type Location_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -467,7 +467,7 @@ func (r Location_Group) Offset(offset int) Location_Group {
 	return r
 }
 
-//
+// no documentation yet
 func (r Location_Group) GetAllObjects() (resp []datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -485,13 +485,13 @@ func (r Location_Group) GetLocations() (resp []datatypes.Location, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Group) GetObject() (resp datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Location_Group_Pricing struct {
 	Session *session.Session
 	Options sl.Options
@@ -526,7 +526,7 @@ func (r Location_Group_Pricing) Offset(offset int) Location_Group_Pricing {
 	return r
 }
 
-//
+// no documentation yet
 func (r Location_Group_Pricing) GetAllObjects() (resp []datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -544,7 +544,7 @@ func (r Location_Group_Pricing) GetLocations() (resp []datatypes.Location, err e
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Group_Pricing) GetObject() (resp datatypes.Location_Group_Pricing, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -556,7 +556,7 @@ func (r Location_Group_Pricing) GetPrices() (resp []datatypes.Product_Item_Price
 	return
 }
 
-//
+// no documentation yet
 type Location_Group_Regional struct {
 	Session *session.Session
 	Options sl.Options
@@ -591,7 +591,7 @@ func (r Location_Group_Regional) Offset(offset int) Location_Group_Regional {
 	return r
 }
 
-//
+// no documentation yet
 func (r Location_Group_Regional) GetAllObjects() (resp []datatypes.Location_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -615,7 +615,7 @@ func (r Location_Group_Regional) GetLocations() (resp []datatypes.Location, err 
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Group_Regional) GetObject() (resp datatypes.Location_Group_Regional, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -627,7 +627,7 @@ func (r Location_Group_Regional) GetPreferredDatacenter() (resp datatypes.Locati
 	return
 }
 
-//
+// no documentation yet
 type Location_Reservation struct {
 	Session *session.Session
 	Options sl.Options
@@ -668,7 +668,7 @@ func (r Location_Reservation) GetAccount() (resp datatypes.Account, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Reservation) GetAccountReservations() (resp []datatypes.Location_Reservation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -698,13 +698,13 @@ func (r Location_Reservation) GetLocationReservationRack() (resp datatypes.Locat
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Reservation) GetObject() (resp datatypes.Location_Reservation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Location_Reservation_Rack struct {
 	Session *session.Session
 	Options sl.Options
@@ -763,13 +763,13 @@ func (r Location_Reservation_Rack) GetLocationReservation() (resp datatypes.Loca
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Reservation_Rack) GetObject() (resp datatypes.Location_Reservation_Rack, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Location_Reservation_Rack_Member struct {
 	Session *session.Session
 	Options sl.Options
@@ -816,7 +816,7 @@ func (r Location_Reservation_Rack_Member) GetLocationReservationRack() (resp dat
 	return
 }
 
-//
+// no documentation yet
 func (r Location_Reservation_Rack_Member) GetObject() (resp datatypes.Location_Reservation_Rack_Member, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

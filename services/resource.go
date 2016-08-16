@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Resource_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,7 +61,7 @@ func (r Resource_Group) Offset(offset int) Resource_Group {
 	return r
 }
 
-//
+// no documentation yet
 func (r Resource_Group) EditObject(templateObject *datatypes.Resource_Group) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -94,7 +94,7 @@ func (r Resource_Group) GetMembers() (resp []datatypes.Resource_Group_Member, er
 	return
 }
 
-//
+// no documentation yet
 func (r Resource_Group) GetObject() (resp datatypes.Resource_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -124,7 +124,7 @@ func (r Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Member
 	return
 }
 
-//
+// no documentation yet
 type Resource_Group_Template struct {
 	Session *session.Session
 	Options sl.Options
@@ -159,7 +159,7 @@ func (r Resource_Group_Template) Offset(offset int) Resource_Group_Template {
 	return r
 }
 
-//
+// no documentation yet
 func (r Resource_Group_Template) GetAllObjects() (resp []datatypes.Resource_Group_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -177,7 +177,7 @@ func (r Resource_Group_Template) GetMembers() (resp []datatypes.Resource_Group_T
 	return
 }
 
-//
+// no documentation yet
 func (r Resource_Group_Template) GetObject() (resp datatypes.Resource_Group_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -189,7 +189,7 @@ func (r Resource_Group_Template) GetPackage() (resp datatypes.Product_Package, e
 	return
 }
 
-//
+// no documentation yet
 type Resource_Metadata struct {
 	Session *session.Session
 	Options sl.Options

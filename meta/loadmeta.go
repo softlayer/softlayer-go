@@ -305,6 +305,9 @@ func Desnake(args ...interface{}) string {
 // Formats a string into a comment.  For now, just each comment line with "//"
 func GoDoc(args ...interface{}) string {
 	s := args[0].(string)
+	if s == "" {
+		s = "no documentation yet"
+	}
 
 	return "// " + strings.Replace(s, "\n", "\n// ", -1)
 }

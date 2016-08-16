@@ -67,7 +67,7 @@ func (r Software_AccountLicense) GetAccount() (resp datatypes.Account, err error
 	return
 }
 
-//
+// no documentation yet
 func (r Software_AccountLicense) GetAllObjects() (resp []datatypes.Software_AccountLicense, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -79,7 +79,7 @@ func (r Software_AccountLicense) GetBillingItem() (resp datatypes.Billing_Item, 
 	return
 }
 
-//
+// no documentation yet
 func (r Software_AccountLicense) GetObject() (resp datatypes.Software_AccountLicense, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -186,7 +186,7 @@ func (r Software_Component) GetSoftwareLicense() (resp datatypes.Software_Licens
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component) GetVendorSetUpConfiguration() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -257,7 +257,7 @@ func (r Software_Component_AntivirusSpyware) GetLicenseFile() (resp string, err 
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component_AntivirusSpyware) GetObject() (resp datatypes.Software_Component_AntivirusSpyware, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -287,7 +287,7 @@ func (r Software_Component_AntivirusSpyware) GetSoftwareLicense() (resp datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component_AntivirusSpyware) GetVendorSetUpConfiguration() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -379,7 +379,7 @@ func (r Software_Component_HostIps) GetLicenseFile() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component_HostIps) GetObject() (resp datatypes.Software_Component_HostIps, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -409,7 +409,7 @@ func (r Software_Component_HostIps) GetSoftwareLicense() (resp datatypes.Softwar
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component_HostIps) GetVendorSetUpConfiguration() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -522,7 +522,7 @@ func (r Software_Component_Password) EditObjects(templateObjects []datatypes.Sof
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Component_Password) GetObject() (resp datatypes.Software_Component_Password, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -579,7 +579,7 @@ func (r Software_Description) Offset(offset int) Software_Description {
 	return r
 }
 
-//
+// no documentation yet
 func (r Software_Description) GetAllObjects() (resp []datatypes.Software_Description, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -615,7 +615,7 @@ func (r Software_Description) GetLatestVersion() (resp []datatypes.Software_Desc
 	return
 }
 
-//
+// no documentation yet
 func (r Software_Description) GetObject() (resp datatypes.Software_Description, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

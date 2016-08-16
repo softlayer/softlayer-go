@@ -94,7 +94,7 @@ func (r Brand) GetAllOwnedAccounts() (resp []datatypes.Account, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
 	params := []interface{}{
 		account,
@@ -169,7 +169,7 @@ func (r Brand) GetMerchantName() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Brand) GetObject() (resp datatypes.Brand, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -199,7 +199,7 @@ func (r Brand) GetTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Brand) GetToken(userId *int) (resp string, err error) {
 	params := []interface{}{
 		userId,
@@ -255,7 +255,7 @@ func (r Brand_Restriction_Location_CustomerCountry) Offset(offset int) Brand_Res
 	return r
 }
 
-//
+// no documentation yet
 func (r Brand_Restriction_Location_CustomerCountry) GetAllObjects() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -273,7 +273,7 @@ func (r Brand_Restriction_Location_CustomerCountry) GetLocation() (resp datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Brand_Restriction_Location_CustomerCountry) GetObject() (resp datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

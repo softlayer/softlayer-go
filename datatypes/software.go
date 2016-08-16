@@ -550,7 +550,7 @@ type Software_Description struct {
 	// A count of
 	AttributeCount *uint `json:"attributeCount,omitempty"`
 
-	//
+	// no documentation yet
 	Attributes []Software_Description_Attribute `json:"attributes,omitempty"`
 
 	// The average amount of time that a software description takes to install.
@@ -637,7 +637,7 @@ type Software_Description struct {
 	// A count of
 	ValidFilesystemTypeCount *uint `json:"validFilesystemTypeCount,omitempty"`
 
-	//
+	// no documentation yet
 	ValidFilesystemTypes []Configuration_Storage_Filesystem_Type `json:"validFilesystemTypes,omitempty"`
 
 	// The version of this specific piece of software.
@@ -654,10 +654,10 @@ type Software_Description struct {
 type Software_Description_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Software_Description_Attribute_Type `json:"type,omitempty"`
 
 	// The value that was assigned to this attribute.

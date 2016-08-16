@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Search struct {
 	Entity
 }

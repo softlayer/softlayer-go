@@ -20,6 +20,6 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Entity struct {
 }

@@ -35,7 +35,7 @@ type Ticket struct {
 	// A count of
 	AssignedAgentCount *uint `json:"assignedAgentCount,omitempty"`
 
-	//
+	// no documentation yet
 	AssignedAgents []User_Customer `json:"assignedAgents,omitempty"`
 
 	// The portal user that a ticket is assigned to.
@@ -59,13 +59,13 @@ type Ticket struct {
 	// The hardware associated with a ticket. This is used in cases where a ticket is directly associated with one or more pieces of hardware.
 	AttachedHardware []Hardware `json:"attachedHardware,omitempty"`
 
-	//
+	// no documentation yet
 	AttachedHardwareCount *uint `json:"attachedHardwareCount,omitempty"`
 
 	// A count of
 	AttachedResourceCount *uint `json:"attachedResourceCount,omitempty"`
 
-	//
+	// no documentation yet
 	AttachedResources []Ticket_Attachment `json:"attachedResources,omitempty"`
 
 	// A count of the virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
@@ -83,7 +83,7 @@ type Ticket struct {
 	// A service cancellation request.
 	CancellationRequest *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty"`
 
-	//
+	// no documentation yet
 	ChangeOwnerFlag *bool `json:"changeOwnerFlag,omitempty"`
 
 	// The date that a ticket was created.
@@ -92,7 +92,7 @@ type Ticket struct {
 	// A count of
 	EmployeeAttachmentCount *uint `json:"employeeAttachmentCount,omitempty"`
 
-	//
+	// no documentation yet
 	EmployeeAttachments []User_Employee `json:"employeeAttachments,omitempty"`
 
 	// Feedback left by a portal or API user on their experiences in a ticket. Final comments may be created after a ticket is closed.
@@ -119,7 +119,7 @@ type Ticket struct {
 	// The invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
 	InvoiceItems []Billing_Invoice_Item `json:"invoiceItems,omitempty"`
 
-	//
+	// no documentation yet
 	LastActivity *Ticket_Activity `json:"lastActivity,omitempty"`
 
 	// The date that a ticket was last modified. A modification does not necessarily mean that an update was added.
@@ -128,7 +128,7 @@ type Ticket struct {
 	// The type of user who last edited or updated a ticket. This is either "EMPLOYEE" or "USER".
 	LastEditType *string `json:"lastEditType,omitempty"`
 
-	//
+	// no documentation yet
 	LastEditor *User_Interface `json:"lastEditor,omitempty"`
 
 	// The date that the last ticket update was made
@@ -158,16 +158,16 @@ type Ticket struct {
 	// The IP address of the user who opened a ticket.
 	OriginatingIpAddress *string `json:"originatingIpAddress,omitempty"`
 
-	//
+	// no documentation yet
 	Priority *int `json:"priority,omitempty"`
 
-	//
+	// no documentation yet
 	ResponsibleBrandId *int `json:"responsibleBrandId,omitempty"`
 
 	// A count of
 	ScheduledActionCount *uint `json:"scheduledActionCount,omitempty"`
 
-	//
+	// no documentation yet
 	ScheduledActions []Provisioning_Version1_Transaction `json:"scheduledActions,omitempty"`
 
 	// The amount of money in US Dollars ($USD) that a ticket has charged to an account. A ticket's administrative billing amount is a one time charge and only applies to administrative support tickets.
@@ -188,16 +188,16 @@ type Ticket struct {
 	// The internal identifier of the refund invoice associated with a ticket. Only tickets with an account refund associated with them have an associated refund invoice.
 	ServerAdministrationRefundInvoiceId *int `json:"serverAdministrationRefundInvoiceId,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 
 	// A ticket's internal identifier at its service provider. Each ticket is defined by a unique identifier.
 	ServiceProviderResourceId *int `json:"serviceProviderResourceId,omitempty"`
 
-	//
+	// no documentation yet
 	State []Ticket_State `json:"state,omitempty"`
 
 	// A count of
@@ -218,13 +218,13 @@ type Ticket struct {
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
 
-	//
+	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
 
 	// A ticket's title. This is typically a brief summary of the issue described in the ticket.
 	Title *string `json:"title,omitempty"`
 
-	//
+	// no documentation yet
 	TotalUpdateCount *int `json:"totalUpdateCount,omitempty"`
 
 	// A count of a ticket's updates.
@@ -237,29 +237,29 @@ type Ticket struct {
 	UserEditableFlag *bool `json:"userEditableFlag,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Activity struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	CreateTimestamp *Time `json:"createTimestamp,omitempty"`
 
-	//
+	// no documentation yet
 	Editor *User_Interface `json:"editor,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
-	//
+	// no documentation yet
 	TicketUpdate *Ticket_Update `json:"ticketUpdate,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
@@ -267,7 +267,7 @@ type Ticket_Activity struct {
 type Ticket_Attachment struct {
 	Entity
 
-	//
+	// no documentation yet
 	AssignedAgent *User_Customer `json:"assignedAgent,omitempty"`
 
 	// The internal identifier of an item that is attached to a ticket.
@@ -279,7 +279,7 @@ type Ticket_Attachment struct {
 	// A ticket attachment's internal identifier.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	ScheduledAction *Provisioning_Version1_Transaction `json:"scheduledAction,omitempty"`
 
 	// The ticket that an item is attached to.
@@ -289,14 +289,14 @@ type Ticket_Attachment struct {
 	TicketId *int `json:"ticketId,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Attachment_Assigned_Agent struct {
 	Ticket_Attachment
 
 	// The internal identifier of an assigned Agent that is attached to a ticket.
 	AssignedAgentId *int `json:"assignedAgentId,omitempty"`
 
-	//
+	// no documentation yet
 	Resource *User_Customer `json:"resource,omitempty"`
 }
 
@@ -327,7 +327,7 @@ type Ticket_Attachment_File struct {
 	// The date that a file attachment record was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
 	// The internal identifier of the ticket that a file is attached to.
@@ -368,17 +368,17 @@ type Ticket_Attachment_ManualPayment struct {
 	Resource *Billing_Payment_Card_ManualPayment `json:"resource,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Attachment_Scheduled_Action struct {
 	Ticket_Attachment
 
-	//
+	// no documentation yet
 	Resource *Provisioning_Version1_Transaction `json:"resource,omitempty"`
 
 	// The internal identifier of a scheduled action transaction that is attached to a ticket.
 	RunDate *Time `json:"runDate,omitempty"`
 
-	//
+	// no documentation yet
 	Transaction *Provisioning_Version1_Transaction `json:"transaction,omitempty"`
 
 	// The internal identifier of a scheduled action transaction that is attached to a ticket.
@@ -399,51 +399,51 @@ type Ticket_Attachment_Virtual_Guest struct {
 	VirtualGuestId *int `json:"virtualGuestId,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Chat struct {
 	Entity
 
-	//
+	// no documentation yet
 	Agent *User_Employee `json:"agent,omitempty"`
 
-	//
+	// no documentation yet
 	Customer *User_Customer `json:"customer,omitempty"`
 
-	//
+	// no documentation yet
 	CustomerId *int `json:"customerId,omitempty"`
 
-	//
+	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
-	//
+	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 
-	//
+	// no documentation yet
 	TicketUpdate *Ticket_Update_Chat `json:"ticketUpdate,omitempty"`
 
-	//
+	// no documentation yet
 	Transcript *string `json:"transcript,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Chat_Liveperson struct {
 	Ticket_Chat
 }
 
-//
+// no documentation yet
 type Ticket_Chat_TranscriptLine struct {
 	Entity
 
-	//
+	// no documentation yet
 	Speaker *User_Interface `json:"speaker,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Chat_TranscriptLine_Customer struct {
 	Ticket_Chat_TranscriptLine
 }
 
-//
+// no documentation yet
 type Ticket_Chat_TranscriptLine_Employee struct {
 	Ticket_Chat_TranscriptLine
 }
@@ -455,7 +455,7 @@ type Ticket_Group struct {
 	// A count of
 	AssignedBrandCount *uint `json:"assignedBrandCount,omitempty"`
 
-	//
+	// no documentation yet
 	AssignedBrands []Brand `json:"assignedBrands,omitempty"`
 
 	// The category that a ticket group belongs to.
@@ -482,45 +482,45 @@ type Ticket_Group_Category struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Priority struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Ticket_State struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	StateType *Ticket_State_Type `json:"stateType,omitempty"`
 
-	//
+	// no documentation yet
 	StateTypeId *int `json:"stateTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty"`
 
-	//
+	// no documentation yet
 	TicketId *int `json:"ticketId,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_State_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -545,7 +545,7 @@ type Ticket_Status struct {
 type Ticket_Subject struct {
 	Entity
 
-	//
+	// no documentation yet
 	Group *Ticket_Group `json:"group,omitempty"`
 
 	// A ticket subject's internal identifier.
@@ -555,19 +555,19 @@ type Ticket_Subject struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Survey struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Ticket_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 }
 
@@ -575,7 +575,7 @@ type Ticket_Type struct {
 type Ticket_Update struct {
 	Entity
 
-	//
+	// no documentation yet
 	ChangeOwnerActivity *string `json:"changeOwnerActivity,omitempty"`
 
 	// The data a ticket update was created.
@@ -638,16 +638,16 @@ type Ticket_Update_Employee struct {
 	ResponseRating *int `json:"responseRating,omitempty"`
 }
 
-//
+// no documentation yet
 type Ticket_Update_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Ticket *Ticket_Update `json:"ticket,omitempty"`
 }

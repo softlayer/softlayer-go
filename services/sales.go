@@ -67,7 +67,7 @@ func (r Sales_Presale_Event) GetActiveFlag() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Sales_Presale_Event) GetAllObjects() (resp []datatypes.Sales_Presale_Event, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

@@ -63,7 +63,7 @@ func (r Virtual_Disk_Image) Offset(offset int) Virtual_Disk_Image {
 	return r
 }
 
-//
+// no documentation yet
 func (r Virtual_Disk_Image) EditObject(templateObject *datatypes.Virtual_Disk_Image) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -114,13 +114,13 @@ func (r Virtual_Disk_Image) GetMetadataFlag() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Disk_Image) GetObject() (resp datatypes.Virtual_Disk_Image, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -670,7 +670,7 @@ func (r Virtual_Guest) CreateObjects(templateObjects []datatypes.Virtual_Guest) 
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) CreatePostSoftwareInstallTransaction(data *string, returnBoolean *bool) (resp bool, err error) {
 	params := []interface{}{
 		data,
@@ -861,7 +861,7 @@ func (r Virtual_Guest) GetAttributes() (resp []datatypes.Virtual_Guest_Attribute
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetAvailableBlockDevicePositions() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1016,7 +1016,7 @@ func (r Virtual_Guest) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_D
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetBootOrder() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1166,7 +1166,7 @@ func (r Virtual_Guest) GetFirewallServiceComponent() (resp datatypes.Network_Com
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetFirstAvailableBlockDevicePosition() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1232,7 +1232,7 @@ func (r Virtual_Guest) GetInternalTagReferences() (resp []datatypes.Tag_Referenc
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetIsoBootImage() (resp datatypes.Virtual_Disk_Image, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1425,7 +1425,7 @@ func (r Virtual_Guest) GetNetworkVlans() (resp []datatypes.Network_Vlan, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetObject() (resp datatypes.Virtual_Guest, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1531,7 +1531,7 @@ func (r Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp float64, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) GetProvisionDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1723,7 +1723,7 @@ func (r Virtual_Guest) IsolateInstanceForDestructiveAction() (err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) MountIsoImage(diskImageId *int) (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	params := []interface{}{
 		diskImageId,
@@ -1848,7 +1848,7 @@ func (r Virtual_Guest) SetPublicNetworkInterfaceSpeed(newSpeed *int) (resp bool,
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
@@ -1878,7 +1878,7 @@ func (r Virtual_Guest) ShutdownPublicPort() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest) UnmountIsoImage() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2074,7 +2074,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetImageTypeKeyName() (resp s
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Block_Device_Template_Group) GetObject() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2176,7 +2176,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) SetTags(tags *string) (resp b
 	return
 }
 
-//
+// no documentation yet
 type Virtual_Guest_Boot_Parameter struct {
 	Session *session.Session
 	Options sl.Options
@@ -2211,7 +2211,7 @@ func (r Virtual_Guest_Boot_Parameter) Offset(offset int) Virtual_Guest_Boot_Para
 	return r
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter) CreateObject(templateObject *datatypes.Virtual_Guest_Boot_Parameter) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -2220,13 +2220,13 @@ func (r Virtual_Guest_Boot_Parameter) CreateObject(templateObject *datatypes.Vir
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter) EditObject(templateObject *datatypes.Virtual_Guest_Boot_Parameter) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -2247,7 +2247,7 @@ func (r Virtual_Guest_Boot_Parameter) GetGuestBootParameterType() (resp datatype
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2288,13 +2288,13 @@ func (r Virtual_Guest_Boot_Parameter_Type) Offset(offset int) Virtual_Guest_Boot
 	return r
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter_Type) GetAllObjects() (resp []datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Boot_Parameter_Type) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2379,7 +2379,7 @@ func (r Virtual_Guest_Network_Component) GetNetworkVlan() (resp datatypes.Networ
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Guest_Network_Component) GetObject() (resp datatypes.Virtual_Guest_Network_Component, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2525,7 +2525,7 @@ func (r Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Host) GetObject() (resp datatypes.Virtual_Host, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2672,7 +2672,7 @@ func (r Virtual_Storage_Repository) GetMetricTrackingObject() (resp datatypes.Me
 	return
 }
 
-//
+// no documentation yet
 func (r Virtual_Storage_Repository) GetObject() (resp datatypes.Virtual_Storage_Repository, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

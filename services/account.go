@@ -63,7 +63,7 @@ func (r Account) Offset(offset int) Account {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account) ActivatePartner(accountId *string, hashCode *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		accountId,
@@ -73,7 +73,7 @@ func (r Account) ActivatePartner(accountId *string, hashCode *string) (resp data
 	return
 }
 
-//
+// no documentation yet
 func (r Account) AddAchInformation(achInformation *datatypes.Container_Billing_Info_Ach) (resp bool, err error) {
 	params := []interface{}{
 		achInformation,
@@ -82,7 +82,7 @@ func (r Account) AddAchInformation(achInformation *datatypes.Container_Billing_I
 	return
 }
 
-//
+// no documentation yet
 func (r Account) AddReferralPartnerPaymentOption(paymentOption *datatypes.Container_Referral_Partner_Payment_Option) (resp bool, err error) {
 	params := []interface{}{
 		paymentOption,
@@ -352,7 +352,7 @@ func (r Account) GetAllowsBluemixAccountLinkingFlag() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetAlternateCreditCardData() (resp datatypes.Container_Account_Payment_Method_CreditCard, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -379,7 +379,7 @@ func (r Account) GetAttributes() (resp []datatypes.Account_Attribute, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetAuxiliaryNotifications() (resp []datatypes.Container_Utility_Message, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -528,7 +528,7 @@ func (r Account) GetCurrentBackupStatisticsGraph(detailedGraph *bool) (resp data
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetCurrentTicketStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		detailedGraph,
@@ -802,7 +802,7 @@ func (r Account) GetHasR1softBareMetalRestorePluginFlag() (resp bool, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
@@ -890,7 +890,7 @@ func (r Account) GetIscsiNetworkStorage() (resp []datatypes.Network_Storage, err
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetLargestAllowedSubnetCidr(numberOfHosts *int, locationId *int) (resp int, err error) {
 	params := []interface{}{
 		numberOfHosts,
@@ -1215,7 +1215,7 @@ func (r Account) GetNextInvoiceTotalTaxableRecurringAmount() (resp float64, err 
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetNextInvoiceZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1509,19 +1509,19 @@ func (r Account) GetReferralPartner() (resp datatypes.Account, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetReferralPartnerCommissionForecast() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetReferralPartnerCommissionHistory() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account) GetReferralPartnerCommissionPending() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1899,7 +1899,7 @@ func (r Account) LinkExternalAccount(externalAccountId *string, authorizationTok
 	return
 }
 
-//
+// no documentation yet
 func (r Account) RemoveAlternateCreditCard() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1957,7 +1957,7 @@ func (r Account) SetVlanSpan(enabled *bool) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Account) SwapCreditCards() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2092,7 +2092,7 @@ func (r Account_Address) GetNetworkAddress(name *string) (resp []datatypes.Accou
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Address) GetObject() (resp datatypes.Account_Address, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2104,7 +2104,7 @@ func (r Account_Address) GetType() (resp datatypes.Account_Address_Type, err err
 	return
 }
 
-//
+// no documentation yet
 type Account_Address_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -2139,7 +2139,7 @@ func (r Account_Address_Type) Offset(offset int) Account_Address_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Address_Type) GetObject() (resp datatypes.Account_Address_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2219,13 +2219,13 @@ func (r Account_Affiliation) GetAccountAffiliationsByAffiliateId(affiliateId *st
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Affiliation) GetObject() (resp datatypes.Account_Affiliation, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Agreement struct {
 	Session *session.Session
 	Options sl.Options
@@ -2284,7 +2284,7 @@ func (r Account_Agreement) GetBillingItems() (resp []datatypes.Billing_Item, err
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Agreement) GetObject() (resp datatypes.Account_Agreement, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2349,7 +2349,7 @@ func (r Account_Authentication_Attribute) GetAuthenticationRecord() (resp dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Attribute) GetObject() (resp datatypes.Account_Authentication_Attribute, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2396,19 +2396,19 @@ func (r Account_Authentication_Attribute_Type) Offset(offset int) Account_Authen
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Attribute_Type) GetAllObjects() (resp []datatypes.Account_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Attribute_Type) GetObject() (resp datatypes.Account_Authentication_Attribute_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Authentication_Saml struct {
 	Session *session.Session
 	Options sl.Options
@@ -2443,7 +2443,7 @@ func (r Account_Authentication_Saml) Offset(offset int) Account_Authentication_S
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Saml) CreateObject(templateObject *datatypes.Account_Authentication_Saml) (resp datatypes.Account_Authentication_Saml, err error) {
 	params := []interface{}{
 		templateObject,
@@ -2452,7 +2452,7 @@ func (r Account_Authentication_Saml) CreateObject(templateObject *datatypes.Acco
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Saml) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2485,13 +2485,13 @@ func (r Account_Authentication_Saml) GetMetadata() (resp string, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Authentication_Saml) GetObject() (resp datatypes.Account_Authentication_Saml, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Contact struct {
 	Session *session.Session
 	Options sl.Options
@@ -2562,7 +2562,7 @@ func (r Account_Contact) GetAllContactTypes() (resp []datatypes.Account_Contact_
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Contact) GetObject() (resp datatypes.Account_Contact, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2574,7 +2574,7 @@ func (r Account_Contact) GetType() (resp datatypes.Account_Contact_Type, err err
 	return
 }
 
-//
+// no documentation yet
 type Account_Historical_Report struct {
 	Session *session.Session
 	Options sl.Options
@@ -2609,7 +2609,7 @@ func (r Account_Historical_Report) Offset(offset int) Account_Historical_Report 
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetAccountHostUptimeGraphData(startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		startDate,
@@ -2619,7 +2619,7 @@ func (r Account_Historical_Report) GetAccountHostUptimeGraphData(startDate *stri
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -2629,7 +2629,7 @@ func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *st
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetAccountUrlUptimeGraphData(startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		startDate,
@@ -2639,7 +2639,7 @@ func (r Account_Historical_Report) GetAccountUrlUptimeGraphData(startDate *strin
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -2649,7 +2649,7 @@ func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *str
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetHostUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
 	params := []interface{}{
 		configurationValueId,
@@ -2660,7 +2660,7 @@ func (r Account_Historical_Report) GetHostUptimeDetail(configurationValueId *int
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetHostUptimeGraphData(configurationValueId *int, startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		configurationValueId,
@@ -2671,7 +2671,7 @@ func (r Account_Historical_Report) GetHostUptimeGraphData(configurationValueId *
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetUrlUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
 	params := []interface{}{
 		configurationValueId,
@@ -2682,7 +2682,7 @@ func (r Account_Historical_Report) GetUrlUptimeDetail(configurationValueId *int,
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *int, startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		configurationValueId,
@@ -2693,7 +2693,7 @@ func (r Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *i
 	return
 }
 
-//
+// no documentation yet
 type Account_Link_Bluemix struct {
 	Session *session.Session
 	Options sl.Options
@@ -2728,19 +2728,19 @@ func (r Account_Link_Bluemix) Offset(offset int) Account_Link_Bluemix {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Link_Bluemix) GetObject() (resp datatypes.Account_Link_Bluemix, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_Bluemix) GetSupportTierType() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Link_OpenStack struct {
 	Session *session.Session
 	Options sl.Options
@@ -2775,7 +2775,7 @@ func (r Account_Link_OpenStack) Offset(offset int) Account_Link_OpenStack {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) CreateOSDomain(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_DomainCreationDetails, err error) {
 	params := []interface{}{
 		request,
@@ -2784,7 +2784,7 @@ func (r Account_Link_OpenStack) CreateOSDomain(request *datatypes.Account_Link_O
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) CreateOSProject(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_ProjectCreationDetails, err error) {
 	params := []interface{}{
 		request,
@@ -2793,7 +2793,7 @@ func (r Account_Link_OpenStack) CreateOSProject(request *datatypes.Account_Link_
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) DeleteOSDomain(domainId *string) (resp bool, err error) {
 	params := []interface{}{
 		domainId,
@@ -2802,7 +2802,7 @@ func (r Account_Link_OpenStack) DeleteOSDomain(domainId *string) (resp bool, err
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) DeleteOSProject(projectId *string) (resp bool, err error) {
 	params := []interface{}{
 		projectId,
@@ -2817,7 +2817,7 @@ func (r Account_Link_OpenStack) DeleteObject() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) GetOSProject(projectId *string) (resp datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
 	params := []interface{}{
 		projectId,
@@ -2826,13 +2826,13 @@ func (r Account_Link_OpenStack) GetOSProject(projectId *string) (resp datatypes.
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) GetObject() (resp datatypes.Account_Link_OpenStack, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2908,7 +2908,7 @@ func (r Account_Lockdown_Request) GetAccountHistory(accountId *int) (resp []data
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Lockdown_Request) GetObject() (resp datatypes.Account_Lockdown_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2923,7 +2923,7 @@ func (r Account_Lockdown_Request) ReconnectCompute(reconnectDate *string) (resp 
 	return
 }
 
-//
+// no documentation yet
 type Account_MasterServiceAgreement struct {
 	Session *session.Session
 	Options sl.Options
@@ -2970,7 +2970,7 @@ func (r Account_MasterServiceAgreement) GetFile() (resp datatypes.Container_Util
 	return
 }
 
-//
+// no documentation yet
 func (r Account_MasterServiceAgreement) GetObject() (resp datatypes.Account_MasterServiceAgreement, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3056,7 +3056,7 @@ func (r Account_Media) GetModifyUser() (resp datatypes.User_Customer, err error)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Media) GetObject() (resp datatypes.Account_Media, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3181,7 +3181,7 @@ func (r Account_Media_Data_Transfer_Request) GetModifyUser() (resp datatypes.Use
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Media_Data_Transfer_Request) GetObject() (resp datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3205,7 +3205,7 @@ func (r Account_Media_Data_Transfer_Request) GetTickets() (resp []datatypes.Tick
 	return
 }
 
-//
+// no documentation yet
 type Account_Note struct {
 	Session *session.Session
 	Options sl.Options
@@ -3240,7 +3240,7 @@ func (r Account_Note) Offset(offset int) Account_Note {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Note) CreateObject(templateObject *datatypes.Account_Note) (resp datatypes.Account_Note, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3249,13 +3249,13 @@ func (r Account_Note) CreateObject(templateObject *datatypes.Account_Note) (resp
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note) EditObject(templateObject *datatypes.Account_Note) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3288,13 +3288,13 @@ func (r Account_Note) GetNoteType() (resp datatypes.Account_Note_Type, err error
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Note_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -3329,7 +3329,7 @@ func (r Account_Note_Type) Offset(offset int) Account_Note_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Note_Type) CreateObject(templateObject *datatypes.Account_Note_Type) (resp datatypes.Account_Note_Type, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3338,13 +3338,13 @@ func (r Account_Note_Type) CreateObject(templateObject *datatypes.Account_Note_T
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note_Type) DeleteObject() (resp bool, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note_Type) EditObject(templateObject *datatypes.Account_Note_Type) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3353,19 +3353,19 @@ func (r Account_Note_Type) EditObject(templateObject *datatypes.Account_Note_Typ
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note_Type) GetAllObjects() (resp []datatypes.Account_Note_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Note_Type) GetObject() (resp datatypes.Account_Note_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Partner_Referral_Prospect struct {
 	Session *session.Session
 	Options sl.Options
@@ -3410,7 +3410,7 @@ func (r Account_Partner_Referral_Prospect) CreateProspect(templateObject *dataty
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Partner_Referral_Prospect) GetObject() (resp datatypes.Account_Partner_Referral_Prospect, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3567,7 +3567,7 @@ func (r Account_Regional_Registry_Detail) GetDetails() (resp []datatypes.Network
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3676,7 +3676,7 @@ func (r Account_Regional_Registry_Detail_Property) GetDetail() (resp datatypes.A
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail_Property) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3723,13 +3723,13 @@ func (r Account_Regional_Registry_Detail_Property_Type) Offset(offset int) Accou
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail_Property_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail_Property_Type) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3772,19 +3772,19 @@ func (r Account_Regional_Registry_Detail_Type) Offset(offset int) Account_Region
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Regional_Registry_Detail_Type) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Reports_Request struct {
 	Session *session.Session
 	Options sl.Options
@@ -3819,7 +3819,7 @@ func (r Account_Reports_Request) Offset(offset int) Account_Reports_Request {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) CreateRequest(contact *datatypes.Account_Contact, reason *string, reportType *string) (resp datatypes.Account_Reports_Request, err error) {
 	params := []interface{}{
 		contact,
@@ -3842,13 +3842,13 @@ func (r Account_Reports_Request) GetAccountContact() (resp datatypes.Account_Con
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) GetAllObjects() (resp datatypes.Account_Reports_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) GetObject() (resp datatypes.Account_Reports_Request, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3860,7 +3860,7 @@ func (r Account_Reports_Request) GetReportType() (resp datatypes.Compliance_Repo
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) GetRequestByRequestKey(requestKey *string) (resp datatypes.Account_Reports_Request, err error) {
 	params := []interface{}{
 		requestKey,
@@ -3881,7 +3881,7 @@ func (r Account_Reports_Request) GetUser() (resp datatypes.User_Customer, err er
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) SendReportEmail(request *datatypes.Account_Reports_Request) (resp bool, err error) {
 	params := []interface{}{
 		request,
@@ -3890,7 +3890,7 @@ func (r Account_Reports_Request) SendReportEmail(request *datatypes.Account_Repo
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Reports_Request) UpdateTicketOnDecline(request *datatypes.Account_Reports_Request) (resp bool, err error) {
 	params := []interface{}{
 		request,
@@ -4012,7 +4012,7 @@ func (r Account_Shipment) GetModifyUser() (resp datatypes.User_Customer, err err
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Shipment) GetObject() (resp datatypes.Account_Shipment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4092,7 +4092,7 @@ func (r Account_Shipment_Item) EditObject(templateObject *datatypes.Account_Ship
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Item) GetObject() (resp datatypes.Account_Shipment_Item, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4110,7 +4110,7 @@ func (r Account_Shipment_Item) GetShipmentItemType() (resp datatypes.Account_Shi
 	return
 }
 
-//
+// no documentation yet
 type Account_Shipment_Item_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -4145,13 +4145,13 @@ func (r Account_Shipment_Item_Type) Offset(offset int) Account_Shipment_Item_Typ
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Item_Type) GetObject() (resp datatypes.Account_Shipment_Item_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Shipment_Resource_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -4186,13 +4186,13 @@ func (r Account_Shipment_Resource_Type) Offset(offset int) Account_Shipment_Reso
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Resource_Type) GetObject() (resp datatypes.Account_Shipment_Resource_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Account_Shipment_Status struct {
 	Session *session.Session
 	Options sl.Options
@@ -4227,7 +4227,7 @@ func (r Account_Shipment_Status) Offset(offset int) Account_Shipment_Status {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Status) GetObject() (resp datatypes.Account_Shipment_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4325,7 +4325,7 @@ func (r Account_Shipment_Tracking_Data) GetModifyUser() (resp datatypes.User_Cus
 	return
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Tracking_Data) GetObject() (resp datatypes.Account_Shipment_Tracking_Data, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4337,7 +4337,7 @@ func (r Account_Shipment_Tracking_Data) GetShipment() (resp datatypes.Account_Sh
 	return
 }
 
-//
+// no documentation yet
 type Account_Shipment_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -4372,7 +4372,7 @@ func (r Account_Shipment_Type) Offset(offset int) Account_Shipment_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Account_Shipment_Type) GetObject() (resp datatypes.Account_Shipment_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

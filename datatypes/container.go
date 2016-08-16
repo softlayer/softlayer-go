@@ -158,59 +158,59 @@ type Container_Account_Historical_Summary_Uptime struct {
 	Container_Account_Historical_Summary
 }
 
-//
+// no documentation yet
 type Container_Account_Payment_Method_CreditCard struct {
 	Entity
 
-	//
+	// no documentation yet
 	Address1 *string `json:"address1,omitempty"`
 
-	//
+	// no documentation yet
 	Address2 *string `json:"address2,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	CurrencyShortName *string `json:"currencyShortName,omitempty"`
 
-	//
+	// no documentation yet
 	CybersourceAssignedCardType *string `json:"cybersourceAssignedCardType,omitempty"`
 
-	//
+	// no documentation yet
 	ExpireMonth *string `json:"expireMonth,omitempty"`
 
-	//
+	// no documentation yet
 	ExpireYear *string `json:"expireYear,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastFourDigits *string `json:"lastFourDigits,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	Nickname *string `json:"nickname,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentMethodRoleName *string `json:"paymentMethodRoleName,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentTypeId *string `json:"paymentTypeId,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentTypeName *string `json:"paymentTypeName,omitempty"`
 
-	//
+	// no documentation yet
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 }
 
@@ -350,88 +350,88 @@ type Container_Bandwidth_Projection struct {
 	StartDate *Time `json:"startDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Billing_Currency_Format struct {
 	Entity
 
-	//
+	// no documentation yet
 	Currency *string `json:"currency,omitempty"`
 
-	//
+	// no documentation yet
 	Display *int `json:"display,omitempty"`
 
-	//
+	// no documentation yet
 	Format *string `json:"format,omitempty"`
 
-	//
+	// no documentation yet
 	Locale *string `json:"locale,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Position *int `json:"position,omitempty"`
 
-	//
+	// no documentation yet
 	Precision *int `json:"precision,omitempty"`
 
-	//
+	// no documentation yet
 	Script *string `json:"script,omitempty"`
 
-	//
+	// no documentation yet
 	Service *string `json:"service,omitempty"`
 
-	//
+	// no documentation yet
 	Symbol *string `json:"symbol,omitempty"`
 
-	//
+	// no documentation yet
 	Tag *string `json:"tag,omitempty"`
 
-	//
+	// no documentation yet
 	Value *float64 `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Billing_Info_Ach struct {
 	Entity
 
-	//
+	// no documentation yet
 	AccountNumber *string `json:"accountNumber,omitempty"`
 
-	//
+	// no documentation yet
 	AccountType *string `json:"accountType,omitempty"`
 
-	//
+	// no documentation yet
 	BankTransitNumber *string `json:"bankTransitNumber,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	FederalTaxId *string `json:"federalTaxId,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 
-	//
+	// no documentation yet
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 
-	//
+	// no documentation yet
 	Street1 *string `json:"street1,omitempty"`
 
-	//
+	// no documentation yet
 	Street2 *string `json:"street2,omitempty"`
 }
 
@@ -487,13 +487,13 @@ type Container_Catalyst_ManualEnrollmentRequest struct {
 type Container_Collection_Locale_CountryCode struct {
 	Entity
 
-	//
+	// no documentation yet
 	LongName *string `json:"longName,omitempty"`
 
-	//
+	// no documentation yet
 	ShortName *string `json:"shortName,omitempty"`
 
-	//
+	// no documentation yet
 	StateCodes []Container_Collection_Locale_StateCode `json:"stateCodes,omitempty"`
 }
 
@@ -501,46 +501,46 @@ type Container_Collection_Locale_CountryCode struct {
 type Container_Collection_Locale_StateCode struct {
 	Entity
 
-	//
+	// no documentation yet
 	LongName *string `json:"longName,omitempty"`
 
-	//
+	// no documentation yet
 	ShortName *string `json:"shortName,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Disk_Image_Capture_Template struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Summary *string `json:"summary,omitempty"`
 
-	//
+	// no documentation yet
 	Volumes []Container_Disk_Image_Capture_Template_Volume `json:"volumes,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Disk_Image_Capture_Template_Volume struct {
 	Entity
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Partitions []Container_Disk_Image_Capture_Template_Volume_Partition `json:"partitions,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Disk_Image_Capture_Template_Volume_Partition struct {
 	Entity
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -667,17 +667,17 @@ type Container_Dns_Domain_Registration_Information struct {
 	// The list of nameservers for the domain.
 	Nameservers []Container_Dns_Domain_Registration_Nameserver `json:"nameservers,omitempty"`
 
-	//
+	// no documentation yet
 	RegistryCreateDate *Time `json:"registryCreateDate,omitempty"`
 
-	//
+	// no documentation yet
 	RegistryExpireDate *Time `json:"registryExpireDate,omitempty"`
 
-	//
+	// no documentation yet
 	RegistryUpdateDate *Time `json:"registryUpdateDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Dns_Domain_Registration_List struct {
 	Entity
 
@@ -740,7 +740,7 @@ type Container_Dns_Domain_Registration_Nameserver_List struct {
 	SortOrder *int `json:"sortOrder,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail struct {
 	Entity
 
@@ -782,7 +782,7 @@ type Container_Exception struct {
 	ExceptionMessage *string `json:"exceptionMessage,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Graph struct {
 	Entity
 
@@ -829,42 +829,42 @@ type Container_Graph struct {
 	Width *int `json:"width,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Graph_Option struct {
 	Entity
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Graph_Plot struct {
 	Entity
 
-	//
+	// no documentation yet
 	Data []Container_Graph_Plot_Coordinate `json:"data,omitempty"`
 
-	//
+	// no documentation yet
 	Metric *Container_Metric_Data_Type `json:"metric,omitempty"`
 
-	//
+	// no documentation yet
 	Unit *string `json:"unit,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Graph_Plot_Coordinate struct {
 	Entity
 
-	//
+	// no documentation yet
 	XValue *float64 `json:"xValue,omitempty"`
 
-	//
+	// no documentation yet
 	YValue *float64 `json:"yValue,omitempty"`
 
-	//
+	// no documentation yet
 	ZValue *float64 `json:"zValue,omitempty"`
 }
 
@@ -973,7 +973,7 @@ type Container_Hardware_Configuration_Option struct {
 	Template *Hardware `json:"template,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Hardware_MassUpdate struct {
 	Entity
 
@@ -1053,31 +1053,31 @@ type Container_KnowledgeLayer_QuestionAnswer struct {
 	Question *string `json:"question,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Message struct {
 	Entity
 
-	//
+	// no documentation yet
 	Message *string `json:"message,omitempty"`
 
-	//
+	// no documentation yet
 	Type *string `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Metric_Data_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	SummaryType *string `json:"summaryType,omitempty"`
 
-	//
+	// no documentation yet
 	Unit *string `json:"unit,omitempty"`
 }
 
@@ -1408,50 +1408,50 @@ type Container_Network_ContentDelivery_PurgeService_Response struct {
 	Url *string `json:"url,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_ContentDelivery_Report_Usage struct {
 	Entity
 
-	//
+	// no documentation yet
 	ApplicationDeliveryNetwork *float64 `json:"applicationDeliveryNetwork,omitempty"`
 
-	//
+	// no documentation yet
 	ApplicationDeliveryNetworkSsl *float64 `json:"applicationDeliveryNetworkSsl,omitempty"`
 
-	//
+	// no documentation yet
 	DiskSpace *float64 `json:"diskSpace,omitempty"`
 
-	//
+	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
-	//
+	// no documentation yet
 	Flash *float64 `json:"flash,omitempty"`
 
-	//
+	// no documentation yet
 	Http *float64 `json:"http,omitempty"`
 
-	//
+	// no documentation yet
 	HttpSmall *float64 `json:"httpSmall,omitempty"`
 
-	//
+	// no documentation yet
 	Https *float64 `json:"https,omitempty"`
 
-	//
+	// no documentation yet
 	HttpsSmall *float64 `json:"httpsSmall,omitempty"`
 
-	//
+	// no documentation yet
 	Region *string `json:"region,omitempty"`
 
-	//
+	// no documentation yet
 	SslTotal *float64 `json:"sslTotal,omitempty"`
 
-	//
+	// no documentation yet
 	StandardTotal *float64 `json:"standardTotal,omitempty"`
 
-	//
+	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 
-	//
+	// no documentation yet
 	WindowsMedia *float64 `json:"windowsMedia,omitempty"`
 }
 
@@ -1669,7 +1669,7 @@ type Container_Network_Media_Information struct {
 	VideoCodec *string `json:"videoCodec,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Media_Transcode_Job_Watermark struct {
 	Entity
 
@@ -1692,7 +1692,7 @@ type Container_Network_Media_Transcode_Job_Watermark struct {
 	TransparencyPercentage *int `json:"transparencyPercentage,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Media_Transcode_Job_Watermark_Position struct {
 	Entity
 
@@ -1769,263 +1769,263 @@ type Container_Network_Media_Transcode_Preset_Element_Option struct {
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email struct {
 	Entity
 
-	//
+	// no documentation yet
 	Body *string `json:"body,omitempty"`
 
-	//
+	// no documentation yet
 	ContainsHtml *bool `json:"containsHtml,omitempty"`
 
-	//
+	// no documentation yet
 	From *string `json:"from,omitempty"`
 
-	//
+	// no documentation yet
 	Subject *string `json:"subject,omitempty"`
 
-	//
+	// no documentation yet
 	To *string `json:"to,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_Account_Overview struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreditsAllowed *int `json:"creditsAllowed,omitempty"`
 
-	//
+	// no documentation yet
 	CreditsOverage *int `json:"creditsOverage,omitempty"`
 
-	//
+	// no documentation yet
 	CreditsRemain *int `json:"creditsRemain,omitempty"`
 
-	//
+	// no documentation yet
 	CreditsUsed *int `json:"creditsUsed,omitempty"`
 
-	//
+	// no documentation yet
 	Package *string `json:"package,omitempty"`
 
-	//
+	// no documentation yet
 	Reputation *int `json:"reputation,omitempty"`
 
-	//
+	// no documentation yet
 	Requests *int `json:"requests,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_Customer_Profile struct {
 	Entity
 
-	//
+	// no documentation yet
 	Address *string `json:"address,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	Email *string `json:"email,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	Phone *string `json:"phone,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 
-	//
+	// no documentation yet
 	Website *string `json:"website,omitempty"`
 
-	//
+	// no documentation yet
 	Zip *string `json:"zip,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_List_Entry struct {
 	Entity
 
-	//
+	// no documentation yet
 	Created *string `json:"created,omitempty"`
 
-	//
+	// no documentation yet
 	Email *string `json:"email,omitempty"`
 
-	//
+	// no documentation yet
 	Reason *string `json:"reason,omitempty"`
 
-	//
+	// no documentation yet
 	Status *string `json:"status,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_Statistics struct {
 	Entity
 
-	//
+	// no documentation yet
 	Blocks *int `json:"blocks,omitempty"`
 
-	//
+	// no documentation yet
 	Bounces *int `json:"bounces,omitempty"`
 
-	//
+	// no documentation yet
 	Clicks *int `json:"clicks,omitempty"`
 
-	//
+	// no documentation yet
 	Date *string `json:"date,omitempty"`
 
-	//
+	// no documentation yet
 	Delivered *int `json:"delivered,omitempty"`
 
-	//
+	// no documentation yet
 	InvalidEmail *int `json:"invalidEmail,omitempty"`
 
-	//
+	// no documentation yet
 	Opens *int `json:"opens,omitempty"`
 
-	//
+	// no documentation yet
 	RepeatBounces *int `json:"repeatBounces,omitempty"`
 
-	//
+	// no documentation yet
 	RepeatSpamReports *int `json:"repeatSpamReports,omitempty"`
 
-	//
+	// no documentation yet
 	RepeatUnsubscribes *int `json:"repeatUnsubscribes,omitempty"`
 
-	//
+	// no documentation yet
 	Requests *int `json:"requests,omitempty"`
 
-	//
+	// no documentation yet
 	SpamReports *int `json:"spamReports,omitempty"`
 
-	//
+	// no documentation yet
 	UniqueClicks *int `json:"uniqueClicks,omitempty"`
 
-	//
+	// no documentation yet
 	UniqueOpens *int `json:"uniqueOpens,omitempty"`
 
-	//
+	// no documentation yet
 	Unsubscribes *int `json:"unsubscribes,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Graph struct {
 	Entity
 
-	//
+	// no documentation yet
 	GraphError *string `json:"graphError,omitempty"`
 
-	//
+	// no documentation yet
 	GraphImage *[]byte `json:"graphImage,omitempty"`
 
-	//
+	// no documentation yet
 	GraphTitle *string `json:"graphTitle,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Options struct {
 	Entity
 
-	//
+	// no documentation yet
 	AggregatesOnly *bool `json:"aggregatesOnly,omitempty"`
 
-	//
+	// no documentation yet
 	Category *string `json:"category,omitempty"`
 
-	//
+	// no documentation yet
 	Days *int `json:"days,omitempty"`
 
-	//
+	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
-	//
+	// no documentation yet
 	SelectedStatistics []string `json:"selectedStatistics,omitempty"`
 
-	//
+	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Port_Statistic struct {
 	Entity
 
-	//
+	// no documentation yet
 	AdministrativeStatus *int `json:"administrativeStatus,omitempty"`
 
-	//
+	// no documentation yet
 	InDiscardPackets *uint `json:"inDiscardPackets,omitempty"`
 
-	//
+	// no documentation yet
 	InErrorPackets *uint `json:"inErrorPackets,omitempty"`
 
-	//
+	// no documentation yet
 	InOctets *uint `json:"inOctets,omitempty"`
 
-	//
+	// no documentation yet
 	InUnicastPackets *uint `json:"inUnicastPackets,omitempty"`
 
-	//
+	// no documentation yet
 	MaximumTransmissionUnit *uint `json:"maximumTransmissionUnit,omitempty"`
 
-	//
+	// no documentation yet
 	OperationalStatus *int `json:"operationalStatus,omitempty"`
 
-	//
+	// no documentation yet
 	OutDiscardPackets *uint `json:"outDiscardPackets,omitempty"`
 
-	//
+	// no documentation yet
 	OutErrorPackets *uint `json:"outErrorPackets,omitempty"`
 
-	//
+	// no documentation yet
 	OutOctets *uint `json:"outOctets,omitempty"`
 
-	//
+	// no documentation yet
 	OutUnicastPackets *uint `json:"outUnicastPackets,omitempty"`
 
-	//
+	// no documentation yet
 	PortDuplex *uint `json:"portDuplex,omitempty"`
 
-	//
+	// no documentation yet
 	Speed *uint `json:"speed,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Service_Resource_ObjectStorage_ConnectionInformation struct {
 	Entity
 
-	//
+	// no documentation yet
 	Datacenter *string `json:"datacenter,omitempty"`
 
-	//
+	// no documentation yet
 	DatacenterShortName *string `json:"datacenterShortName,omitempty"`
 
-	//
+	// no documentation yet
 	PrivateEndpoint *string `json:"privateEndpoint,omitempty"`
 
-	//
+	// no documentation yet
 	PublicEndpoint *string `json:"publicEndpoint,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Storage_Backup_Evault_WebCc_Authentication_Details struct {
 	Entity
 
-	//
+	// no documentation yet
 	EventValidation *string `json:"eventValidation,omitempty"`
 
-	//
+	// no documentation yet
 	ViewState *string `json:"viewState,omitempty"`
 
-	//
+	// no documentation yet
 	WebCcUrl *string `json:"webCcUrl,omitempty"`
 }
 
@@ -2125,13 +2125,13 @@ type Container_Network_Storage_Host struct {
 type Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl struct {
 	Entity
 
-	//
+	// no documentation yet
 	Datacenter *string `json:"datacenter,omitempty"`
 
-	//
+	// no documentation yet
 	FlashUrl *string `json:"flashUrl,omitempty"`
 
-	//
+	// no documentation yet
 	HttpUrl *string `json:"httpUrl,omitempty"`
 }
 
@@ -2139,16 +2139,16 @@ type Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl struct {
 type Container_Network_Storage_Hub_ObjectStorage_Endpoint struct {
 	Entity
 
-	//
+	// no documentation yet
 	Location *string `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	Region *string `json:"region,omitempty"`
 
-	//
+	// no documentation yet
 	Type *string `json:"type,omitempty"`
 
-	//
+	// no documentation yet
 	Url *string `json:"url,omitempty"`
 }
 
@@ -2156,10 +2156,10 @@ type Container_Network_Storage_Hub_ObjectStorage_Endpoint struct {
 type Container_Network_Storage_Hub_ObjectStorage_File struct {
 	Container_Utility_File_Entity
 
-	//
+	// no documentation yet
 	Folder *string `json:"folder,omitempty"`
 
-	//
+	// no documentation yet
 	Hash *string `json:"hash,omitempty"`
 }
 
@@ -2167,13 +2167,13 @@ type Container_Network_Storage_Hub_ObjectStorage_File struct {
 type Container_Network_Storage_Hub_ObjectStorage_Folder struct {
 	Entity
 
-	//
+	// no documentation yet
 	Bytes *uint `json:"bytes,omitempty"`
 
-	//
+	// no documentation yet
 	Count *uint `json:"count,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -2181,27 +2181,27 @@ type Container_Network_Storage_Hub_ObjectStorage_Folder struct {
 type Container_Network_Storage_Hub_ObjectStorage_Node struct {
 	Entity
 
-	//
+	// no documentation yet
 	DeviceName *string `json:"deviceName,omitempty"`
 
-	//
+	// no documentation yet
 	ResourceName *string `json:"resourceName,omitempty"`
 
-	//
+	// no documentation yet
 	UserAuthUrl *string `json:"userAuthUrl,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Network_Storage_NetworkConnectionInformation struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *string `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	IpAddress *string `json:"ipAddress,omitempty"`
 
-	//
+	// no documentation yet
 	StorageType *string `json:"storageType,omitempty"`
 }
 
@@ -2247,12 +2247,12 @@ type Container_Network_Subnet_Registration_TransactionDetails struct {
 	TransactionId *int `json:"transactionId,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Notification_Mass_Filter_TemplateKey struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Container_Notification_Mass_Filter_TemplateValue struct {
 	Entity
 }
@@ -2382,7 +2382,7 @@ type Container_Product_Order struct {
 	// This is the configuration identifier for tracking orders on the HTML order forms.
 	DisplayLayerSessionId *string `json:"displayLayerSessionId,omitempty"`
 
-	//
+	// no documentation yet
 	ExtendedHardwareTesting *bool `json:"extendedHardwareTesting,omitempty"`
 
 	// The [[SoftLayer_Product_Item_Price]] for the Flexible Credit Program discount.  The <code>oneTimeFee</code> field contains the calculated discount being applied to the order.
@@ -2791,10 +2791,10 @@ type Container_Product_Order_Hardware_Server_Upgrade struct {
 type Container_Product_Order_Monitoring_Package struct {
 	Container_Product_Order
 
-	//
+	// no documentation yet
 	ConfigurationTemplateGroups []Monitoring_Agent_Configuration_Template_Group `json:"configurationTemplateGroups,omitempty"`
 
-	//
+	// no documentation yet
 	ServerType *string `json:"serverType,omitempty"`
 }
 
@@ -2803,7 +2803,7 @@ type Container_Product_Order_MultiConfiguration struct {
 	Container_Product_Order
 }
 
-//
+// no documentation yet
 type Container_Product_Order_MultiConfiguration_Tornado struct {
 	Container_Product_Order_MultiConfiguration
 }
@@ -3301,129 +3301,129 @@ type Container_Provisioning_Maintenance_Window struct {
 	WindowMaintenanceDate *Time `json:"windowMaintenanceDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Referral_Partner_Commission struct {
 	Entity
 
-	//
+	// no documentation yet
 	CommissionAmount *float64 `json:"commissionAmount,omitempty"`
 
-	//
+	// no documentation yet
 	CommissionRate *float64 `json:"commissionRate,omitempty"`
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	ReferralAccountId *int `json:"referralAccountId,omitempty"`
 
-	//
+	// no documentation yet
 	ReferralCompanyName *string `json:"referralCompanyName,omitempty"`
 
-	//
+	// no documentation yet
 	ReferralPartnerAccountId *int `json:"referralPartnerAccountId,omitempty"`
 
-	//
+	// no documentation yet
 	ReferralRevenue *float64 `json:"referralRevenue,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Referral_Partner_Payment_Option struct {
 	Entity
 
-	//
+	// no documentation yet
 	AccountNumber *string `json:"accountNumber,omitempty"`
 
-	//
+	// no documentation yet
 	AccountType *string `json:"accountType,omitempty"`
 
-	//
+	// no documentation yet
 	Address1 *string `json:"address1,omitempty"`
 
-	//
+	// no documentation yet
 	Address2 *string `json:"address2,omitempty"`
 
-	//
+	// no documentation yet
 	BankTransitNumber *string `json:"bankTransitNumber,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	CompanyName *string `json:"companyName,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	FederalTaxId *string `json:"federalTaxId,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentType *string `json:"paymentType,omitempty"`
 
-	//
+	// no documentation yet
 	PaypalEmail *string `json:"paypalEmail,omitempty"`
 
-	//
+	// no documentation yet
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 
-	//
+	// no documentation yet
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Referral_Partner_Prospect struct {
 	Entity
 
-	//
+	// no documentation yet
 	Address1 *string `json:"address1,omitempty"`
 
-	//
+	// no documentation yet
 	Address2 *string `json:"address2,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	CompanyName *string `json:"companyName,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	Email *string `json:"email,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	OfficePhone *string `json:"officePhone,omitempty"`
 
-	//
+	// no documentation yet
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	Questions []string `json:"questions,omitempty"`
 
-	//
+	// no documentation yet
 	Responses []Survey_Response `json:"responses,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 
-	//
+	// no documentation yet
 	SurveyId *string `json:"surveyId,omitempty"`
 }
 
@@ -3664,28 +3664,28 @@ type Container_Ticket_GraphOutputs struct {
 	MinStartDate *Time `json:"minStartDate,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Ticket_Priority struct {
 	Entity
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	Value *int `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Ticket_Survey_Preference struct {
 	Entity
 
-	//
+	// no documentation yet
 	Applicable *bool `json:"applicable,omitempty"`
 
-	//
+	// no documentation yet
 	OptedOut *bool `json:"optedOut,omitempty"`
 
-	//
+	// no documentation yet
 	OptedOutDate *Time `json:"optedOutDate,omitempty"`
 }
 
@@ -3948,23 +3948,23 @@ type Container_Utility_File_Entity struct {
 	Version *int `json:"version,omitempty"`
 }
 
-//
+// no documentation yet
 type Container_Utility_Message struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	Message *string `json:"message,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Summary *string `json:"summary,omitempty"`
 }
 

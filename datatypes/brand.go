@@ -26,7 +26,7 @@ package datatypes
 type Brand struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A count of all accounts owned by the brand.
@@ -56,13 +56,13 @@ type Brand struct {
 	// This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
 	CustomerCountryLocationRestrictions []Brand_Restriction_Location_CustomerCountry `json:"customerCountryLocationRestrictions,omitempty"`
 
-	//
+	// no documentation yet
 	Distributor *Brand `json:"distributor,omitempty"`
 
-	//
+	// no documentation yet
 	DistributorChildFlag *bool `json:"distributorChildFlag,omitempty"`
 
-	//
+	// no documentation yet
 	DistributorFlag *string `json:"distributorFlag,omitempty"`
 
 	// An account's associated hardware objects.
@@ -71,10 +71,10 @@ type Brand struct {
 	// A count of an account's associated hardware objects.
 	HardwareCount *uint `json:"hardwareCount,omitempty"`
 
-	//
+	// no documentation yet
 	HasAgentSupportFlag *bool `json:"hasAgentSupportFlag,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// The brand key name.
@@ -89,7 +89,7 @@ type Brand struct {
 	// A count of
 	OpenTicketCount *uint `json:"openTicketCount,omitempty"`
 
-	//
+	// no documentation yet
 	OpenTickets []Ticket `json:"openTickets,omitempty"`
 
 	// A count of active accounts owned by the brand.
@@ -104,16 +104,16 @@ type Brand struct {
 	// A count of
 	TicketGroupCount *uint `json:"ticketGroupCount,omitempty"`
 
-	//
+	// no documentation yet
 	TicketGroups []Ticket_Group `json:"ticketGroups,omitempty"`
 
-	//
+	// no documentation yet
 	Tickets []Ticket `json:"tickets,omitempty"`
 
 	// A count of
 	UserCount *uint `json:"userCount,omitempty"`
 
-	//
+	// no documentation yet
 	Users []User_Customer `json:"users,omitempty"`
 
 	// A count of an account's associated virtual guest objects.
@@ -123,11 +123,11 @@ type Brand struct {
 	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty"`
 }
 
-//
+// no documentation yet
 type Brand_Attribute struct {
 	Entity
 
-	//
+	// no documentation yet
 	Brand *Brand `json:"brand,omitempty"`
 }
 
@@ -144,10 +144,10 @@ type Brand_Contact struct {
 	// The contact's alternate phone number.
 	AlternatePhone *string `json:"alternatePhone,omitempty"`
 
-	//
+	// no documentation yet
 	Brand *Brand `json:"brand,omitempty"`
 
-	//
+	// no documentation yet
 	BrandContactType *Brand_Contact_Type `json:"brandContactType,omitempty"`
 
 	// The contact's type identifier.
@@ -195,14 +195,14 @@ type Brand_Contact_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Brand_Payment_Processor struct {
 	Entity
 
-	//
+	// no documentation yet
 	Brand *Brand `json:"brand,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentProcessor *Billing_Payment_Processor `json:"paymentProcessor,omitempty"`
 }
 

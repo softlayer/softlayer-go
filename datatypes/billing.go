@@ -20,40 +20,40 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Billing_Currency struct {
 	Entity
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Currency_ExchangeRate struct {
 	Entity
 
-	//
+	// no documentation yet
 	EffectiveDate *Time `json:"effectiveDate,omitempty"`
 
-	//
+	// no documentation yet
 	ExpirationDate *Time `json:"expirationDate,omitempty"`
 
-	//
+	// no documentation yet
 	FundingCurrency *Billing_Currency `json:"fundingCurrency,omitempty"`
 
 	// The id of the exchange rate record.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LocalCurrency *Billing_Currency `json:"localCurrency,omitempty"`
 
-	//
+	// no documentation yet
 	Rate *float64 `json:"rate,omitempty"`
 }
 
@@ -67,7 +67,7 @@ type Billing_Info struct {
 	// A SoftLayer account's identifier.
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	AchInformation []Billing_Info_Ach `json:"achInformation,omitempty"`
 
 	// A count of
@@ -85,7 +85,7 @@ type Billing_Info struct {
 	// the expiration year of the credit card on file
 	CardExpirationYear *int `json:"cardExpirationYear,omitempty"`
 
-	//
+	// no documentation yet
 	CardNickname *string `json:"cardNickname,omitempty"`
 
 	// the type of the credit card on file
@@ -133,63 +133,63 @@ type Billing_Info struct {
 	// The total recurring fee amount for servers that are in the spare pool status.
 	SparePoolAmount *int `json:"sparePoolAmount,omitempty"`
 
-	//
+	// no documentation yet
 	VatId *string `json:"vatId,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Info_Ach struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	AccountNumber *string `json:"accountNumber,omitempty"`
 
-	//
+	// no documentation yet
 	AccountType *string `json:"accountType,omitempty"`
 
-	//
+	// no documentation yet
 	BankTransitNumber *string `json:"bankTransitNumber,omitempty"`
 
-	//
+	// no documentation yet
 	City *string `json:"city,omitempty"`
 
-	//
+	// no documentation yet
 	Country *string `json:"country,omitempty"`
 
-	//
+	// no documentation yet
 	FirstName *string `json:"firstName,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	LastName *string `json:"lastName,omitempty"`
 
-	//
+	// no documentation yet
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 
-	//
+	// no documentation yet
 	Postalcode *string `json:"postalcode,omitempty"`
 
-	//
+	// no documentation yet
 	State *string `json:"state,omitempty"`
 
-	//
+	// no documentation yet
 	Status *string `json:"status,omitempty"`
 
-	//
+	// no documentation yet
 	Street1 *string `json:"street1,omitempty"`
 
-	//
+	// no documentation yet
 	Street2 *string `json:"street2,omitempty"`
 
-	//
+	// no documentation yet
 	VerifiedDate *Time `json:"verifiedDate,omitempty"`
 }
 
@@ -235,7 +235,7 @@ type Billing_Invoice struct {
 	// This is the amount of this invoice.
 	Amount *float64 `json:"amount,omitempty"`
 
-	//
+	// no documentation yet
 	BrandAtInvoiceCreation *Brand `json:"brandAtInvoiceCreation,omitempty"`
 
 	// The city portion of an address belonging to an account at the time an invoice is created.
@@ -259,7 +259,7 @@ type Billing_Invoice struct {
 	// A flag that will reflect whether the detailed version of the pdf has been generated.
 	DetailedPdfGeneratedFlag *bool `json:"detailedPdfGeneratedFlag,omitempty"`
 
-	//
+	// no documentation yet
 	DocumentsGeneratedFlag *bool `json:"documentsGeneratedFlag,omitempty"`
 
 	// The email address belonging to an account at the time an invoice is created.
@@ -328,7 +328,7 @@ type Billing_Invoice struct {
 	// The postal code portion of an address belonging to an account at the time an invoice is created.
 	PostalCode *string `json:"postalCode,omitempty"`
 
-	//
+	// no documentation yet
 	PurchaseOrderNumber *string `json:"purchaseOrderNumber,omitempty"`
 
 	// This is the seller's tax registration.
@@ -355,13 +355,13 @@ type Billing_Invoice struct {
 	// This is a message explaining the tax treatment for this invoice.
 	TaxMessage *string `json:"taxMessage,omitempty"`
 
-	//
+	// no documentation yet
 	TaxStatusId *int `json:"taxStatusId,omitempty"`
 
 	// This is the strategy used to calculate tax on this invoice.
 	TaxType *Billing_Invoice_Tax_Type `json:"taxType,omitempty"`
 
-	//
+	// no documentation yet
 	TaxTypeId *int `json:"taxTypeId,omitempty"`
 
 	// An invoice's type. SoftLayer invoices and service credits are differentiated by their type. The "NEW" type code signifies an invoice for new service. A SoftLayer customer's first invoice has the NEW type code. "RECURRING" invoices are generated on a SoftLayer customer's anniversary billing date for monthly services. "ONE-TIME-CHARGE" invoices are generated when one-time charges are applied to an account. "CREDIT" invoices are generated whenever SoftLayer applies a credit against an account's balance. There are two special types of service credits. "REFUND" type credits are applied against a customer's account balance along with the receivables on their account. "MANUAL_PAYMENT_CREDIT" invoice credits are generated whenever a customer makes an unscheduled payment.
@@ -550,13 +550,13 @@ type Billing_Invoice_Item_Tax_Info struct {
 	// An invoice item's tax information internal identifier.
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty"`
 
 	// A reference to the related invoice item.
 	InvoiceItemId *int `json:"invoiceItemId,omitempty"`
 
-	//
+	// no documentation yet
 	InvoiceTaxInfo *Billing_Invoice_Tax_Info `json:"invoiceTaxInfo,omitempty"`
 
 	// A reference to the tax information for the parent invoice.
@@ -593,7 +593,7 @@ type Billing_Invoice_Item_Tax_Info struct {
 	ToCurrencyId *int `json:"toCurrencyId,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Invoice_Next struct {
 	Entity
 }
@@ -602,7 +602,7 @@ type Billing_Invoice_Next struct {
 type Billing_Invoice_Receivable_Payment struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The amount of the payment.
@@ -611,25 +611,25 @@ type Billing_Invoice_Receivable_Payment struct {
 	// The date of the payment.
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	CreditCardLastFourDigits *int `json:"creditCardLastFourDigits,omitempty"`
 
-	//
+	// no documentation yet
 	CreditCardRequestId *string `json:"creditCardRequestId,omitempty"`
 
-	//
+	// no documentation yet
 	CreditCardTransaction *Billing_Payment_Card_Transaction `json:"creditCardTransaction,omitempty"`
 
-	//
+	// no documentation yet
 	ExchangeRate *Billing_Currency_ExchangeRate `json:"exchangeRate,omitempty"`
 
-	//
+	// no documentation yet
 	Invoice *Billing_Invoice `json:"invoice,omitempty"`
 
 	// The invoice that the payment is for.
 	InvoiceId *int `json:"invoiceId,omitempty"`
 
-	//
+	// no documentation yet
 	PaypalTransaction *Billing_Payment_PayPal_Transaction `json:"paypalTransaction,omitempty"`
 
 	// The type of payment.
@@ -684,19 +684,19 @@ type Billing_Invoice_Tax_Info struct {
 type Billing_Invoice_Tax_Status struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }
 
@@ -723,7 +723,7 @@ type Billing_Item struct {
 	// The account that a billing item belongs to.
 	Account *Account `json:"account,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveAgreement *Account_Agreement `json:"activeAgreement,omitempty"`
 
 	// A flag indicating that the billing item is under an active agreement.
@@ -738,7 +738,7 @@ type Billing_Item struct {
 	// A count of
 	ActiveAssociatedGuestDiskBillingItemCount *uint `json:"activeAssociatedGuestDiskBillingItemCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveAssociatedGuestDiskBillingItems []Billing_Item `json:"activeAssociatedGuestDiskBillingItems,omitempty"`
 
 	// A count of a Billing Item's active bundled billing items.
@@ -756,13 +756,13 @@ type Billing_Item struct {
 	// A count of a Billing Item's active child billing items.
 	ActiveChildrenCount *uint `json:"activeChildrenCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveFlag *bool `json:"activeFlag,omitempty"`
 
 	// A count of
 	ActiveSparePoolAssociatedGuestDiskBillingItemCount *uint `json:"activeSparePoolAssociatedGuestDiskBillingItemCount,omitempty"`
 
-	//
+	// no documentation yet
 	ActiveSparePoolAssociatedGuestDiskBillingItems []Billing_Item `json:"activeSparePoolAssociatedGuestDiskBillingItems,omitempty"`
 
 	// A count of a Billing Item's spare pool bundled billing items.
@@ -801,7 +801,7 @@ type Billing_Item struct {
 	// A count of
 	AvailableMatchingVlanCount *uint `json:"availableMatchingVlanCount,omitempty"`
 
-	//
+	// no documentation yet
 	AvailableMatchingVlans []Network_Vlan `json:"availableMatchingVlans,omitempty"`
 
 	// The bandwidth allocation for a billing item.
@@ -1083,7 +1083,7 @@ type Billing_Item_Cancellation_Reason struct {
 	// The descriptoin of the reason
 	Reason *string `json:"reason,omitempty"`
 
-	//
+	// no documentation yet
 	TranslatedReason *string `json:"translatedReason,omitempty"`
 }
 
@@ -1258,7 +1258,7 @@ type Billing_Item_Hardware struct {
 	// A count of
 	MonitoringBillingItemCount *uint `json:"monitoringBillingItemCount,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringBillingItems []Billing_Item `json:"monitoringBillingItems,omitempty"`
 
 	// The resource for a server billing item.
@@ -1297,14 +1297,14 @@ type Billing_Item_Hardware_Server struct {
 	Billing_Item_Hardware
 }
 
-//
+// no documentation yet
 type Billing_Item_Link_ThePlanet struct {
 	Entity
 
-	//
+	// no documentation yet
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
-	//
+	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
 }
 
@@ -1658,7 +1658,7 @@ type Billing_Item_Virtual_Guest struct {
 	// A count of
 	MonitoringBillingItemCount *uint `json:"monitoringBillingItemCount,omitempty"`
 
-	//
+	// no documentation yet
 	MonitoringBillingItems []Billing_Item `json:"monitoringBillingItems,omitempty"`
 
 	// The resource for a cloud server billing item.
@@ -1694,7 +1694,7 @@ type Billing_Order struct {
 	// The account ID to which an order belongs.
 	AccountId *int `json:"accountId,omitempty"`
 
-	//
+	// no documentation yet
 	Brand *Brand `json:"brand,omitempty"`
 
 	// A cart is similar to a quote, except that it can be continually modified by the customer and does not have locked-in prices. Not all orders will have a cart associated with them. See [[SoftLayer_Billing_Order_Cart]] for more information.
@@ -1715,7 +1715,7 @@ type Billing_Order struct {
 	// All credit card transactions associated with this order. If this order was not placed with a credit card, this will be empty.
 	CreditCardTransactions []Billing_Payment_Card_Transaction `json:"creditCardTransactions,omitempty"`
 
-	//
+	// no documentation yet
 	ExchangeRate *Billing_Currency_ExchangeRate `json:"exchangeRate,omitempty"`
 
 	// *
@@ -1724,7 +1724,7 @@ type Billing_Order struct {
 	// The SoftLayer_User_Customer id of the portal or API user who impersonated the user which submitted an order.
 	ImpersonatingUserRecordId *int `json:"impersonatingUserRecordId,omitempty"`
 
-	//
+	// no documentation yet
 	InitialInvoice *Billing_Invoice `json:"initialInvoice,omitempty"`
 
 	// A count of the SoftLayer_Billing_Order_items included in an order.
@@ -1736,7 +1736,7 @@ type Billing_Order struct {
 	// The last time an order was updated.
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	OrderApprovalDate *Time `json:"orderApprovalDate,omitempty"`
 
 	// An order's non-server items total monthly fee.
@@ -1790,10 +1790,10 @@ type Billing_Order struct {
 	// All PayPal transactions associated with this order. If this order was not placed with PayPal, this will be empty.
 	PaypalTransactions []Billing_Payment_PayPal_Transaction `json:"paypalTransactions,omitempty"`
 
-	//
+	// no documentation yet
 	PresaleEvent *Sales_Presale_Event `json:"presaleEvent,omitempty"`
 
-	//
+	// no documentation yet
 	PresaleEventId *int `json:"presaleEventId,omitempty"`
 
 	// Flag indicating a private cloud solution order (Deprecated)
@@ -1818,7 +1818,7 @@ type Billing_Order struct {
 	UserRecordId *int `json:"userRecordId,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Order_Cart struct {
 	Billing_Order_Quote
 }
@@ -1868,7 +1868,7 @@ type Billing_Order_Item struct {
 	// The amount of money charged per hourly for an order item, if applicable, and only if it was ordered this day. hourlyRecurringFee is measured in US Dollars ($USD).
 	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
 
-	//
+	// no documentation yet
 	Id *int `json:"id,omitempty"`
 
 	// The SoftLayer_Product_Item tied to an order item. The item is the actual definition of the product being sold.
@@ -1904,7 +1904,7 @@ type Billing_Order_Item struct {
 	// The location of an ordered item. This is usually the same as the server it is being ordered with. Otherwise it describes the location of the additional service being ordered.
 	Location *Location `json:"location,omitempty"`
 
-	//
+	// no documentation yet
 	NextOrderChildren []Billing_Order_Item `json:"nextOrderChildren,omitempty"`
 
 	// A count of
@@ -1928,7 +1928,7 @@ type Billing_Order_Item struct {
 	// The order to which this item belongs. The order contains all the information related to the items included in an order
 	Order *Billing_Order `json:"order,omitempty"`
 
-	//
+	// no documentation yet
 	OrderApprovalDate *Time `json:"orderApprovalDate,omitempty"`
 
 	// The SoftLayer_Product_Package an order item is a part of.
@@ -1937,10 +1937,10 @@ type Billing_Order_Item struct {
 	// The parent order item ID for an item. Items that are associated with a server will have a parent. The parent will be the server item itself.
 	Parent *Billing_Order_Item `json:"parent,omitempty"`
 
-	//
+	// no documentation yet
 	ParentId *int `json:"parentId,omitempty"`
 
-	//
+	// no documentation yet
 	PromoCodeId *int `json:"promoCodeId,omitempty"`
 
 	// the quantity of the ordered item in a quote.
@@ -2009,17 +2009,17 @@ type Billing_Order_Item_Category_Answer struct {
 	QuestionId *int `json:"questionId,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Order_Note struct {
 	Entity
 
-	//
+	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
 
-	//
+	// no documentation yet
 	Employee *User_Employee `json:"employee,omitempty"`
 
-	//
+	// no documentation yet
 	Order *Billing_Order `json:"order,omitempty"`
 }
 
@@ -2088,7 +2088,7 @@ type Billing_Order_Type struct {
 type Billing_Payment_Card_ChangeRequest struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The account ID to which the credit card and billing information is associated with.
@@ -2151,7 +2151,7 @@ type Billing_Payment_Card_ChangeRequest struct {
 	// The year (YYYY) in which a customer's payment card will expire.
 	CardExpirationYear *string `json:"cardExpirationYear,omitempty"`
 
-	//
+	// no documentation yet
 	CardNickname *string `json:"cardNickname,omitempty"`
 
 	// The type of payment card a customer has. (i.e. Visa, MasterCard, American Express).
@@ -2172,7 +2172,7 @@ type Billing_Payment_Card_ChangeRequest struct {
 	// the notes stored about a customer's payment card.
 	Notes *string `json:"notes,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentRoleId *int `json:"paymentRoleId,omitempty"`
 
 	// The description of the type of payment sent in a change transaction.
@@ -2192,7 +2192,7 @@ type Billing_Payment_Card_ChangeRequest struct {
 type Billing_Payment_Card_ManualPayment struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// The account ID to which the credit card and billing information is associated with.
@@ -2383,7 +2383,7 @@ type Billing_Payment_Card_Transaction struct {
 	// The date that the transaction was modified.
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Order *Billing_Order `json:"order,omitempty"`
 
 	// The IP address from which the transaction originates.
@@ -2466,7 +2466,7 @@ type Billing_Payment_PayPal_Transaction struct {
 	// The date that the transaction was modified.
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
-	//
+	// no documentation yet
 	Order *Billing_Order `json:"order,omitempty"`
 
 	// The IP address from where the PayPal payment request originated.
@@ -2530,69 +2530,69 @@ type Billing_Payment_PayPal_Transaction struct {
 	TransactionType *string `json:"transactionType,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Payment_Processor struct {
 	Entity
 
 	// A count of
 	BrandAssignmentCount *uint `json:"brandAssignmentCount,omitempty"`
 
-	//
+	// no documentation yet
 	BrandAssignments []Brand_Payment_Processor `json:"brandAssignments,omitempty"`
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
-	//
+	// no documentation yet
 	OwnerAccount *Account `json:"ownerAccount,omitempty"`
 
 	// A count of
 	PaymentMethodCount *uint `json:"paymentMethodCount,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentMethods []Billing_Payment_Processor_Method `json:"paymentMethods,omitempty"`
 
-	//
+	// no documentation yet
 	Type *Billing_Payment_Processor_Type `json:"type,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Payment_Processor_Method struct {
 	Entity
 
-	//
+	// no documentation yet
 	MethodKey *string `json:"methodKey,omitempty"`
 
-	//
+	// no documentation yet
 	MultipleCurrencyFlag *bool `json:"multipleCurrencyFlag,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentProcessor *Billing_Payment_Processor `json:"paymentProcessor,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentType *Billing_Payment_Type `json:"paymentType,omitempty"`
 }
 
-//
+// no documentation yet
 type Billing_Payment_Processor_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 
 	// A count of
 	PaymentProcessorCount *uint `json:"paymentProcessorCount,omitempty"`
 
-	//
+	// no documentation yet
 	PaymentProcessors []Billing_Payment_Processor `json:"paymentProcessors,omitempty"`
 }
 
@@ -2601,16 +2601,16 @@ type Billing_Payment_Transaction struct {
 	Entity
 }
 
-//
+// no documentation yet
 type Billing_Payment_Type struct {
 	Entity
 
-	//
+	// no documentation yet
 	Description *string `json:"description,omitempty"`
 
-	//
+	// no documentation yet
 	KeyName *string `json:"keyName,omitempty"`
 
-	//
+	// no documentation yet
 	Name *string `json:"name,omitempty"`
 }

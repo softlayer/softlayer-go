@@ -1487,7 +1487,7 @@ func (r Hardware) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
@@ -1703,7 +1703,7 @@ func (r Hardware_Component_Partition_OperatingSystem) Offset(offset int) Hardwar
 	return r
 }
 
-//
+// no documentation yet
 func (r Hardware_Component_Partition_OperatingSystem) GetAllObjects() (resp []datatypes.Hardware_Component_Partition_OperatingSystem, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -2835,7 +2835,7 @@ func (r Hardware_Router) GetNotesHistory() (resp []datatypes.Hardware_Note, err 
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Router) GetObject() (resp datatypes.Hardware_Router, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -3280,7 +3280,7 @@ func (r Hardware_Router) RemoveAccessToNetworkStorageList(networkStorageTemplate
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Router) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
@@ -3289,7 +3289,7 @@ func (r Hardware_Router) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 type Hardware_SecurityModule struct {
 	Session *session.Session
 	Options sl.Options
@@ -3669,7 +3669,7 @@ func (r Hardware_SecurityModule) CreateObject(templateObject *datatypes.Hardware
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_SecurityModule) CreatePostSoftwareInstallTransaction(installCodes []string, returnBoolean *bool) (resp bool, err error) {
 	params := []interface{}{
 		installCodes,
@@ -4605,7 +4605,7 @@ func (r Hardware_SecurityModule) GetNotesHistory() (resp []datatypes.Hardware_No
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_SecurityModule) GetObject() (resp datatypes.Hardware_SecurityModule, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4689,7 +4689,7 @@ func (r Hardware_SecurityModule) GetPrimaryBackendNetworkComponent() (resp datat
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_SecurityModule) GetPrimaryDriveSize() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -4796,7 +4796,7 @@ func (r Hardware_SecurityModule) GetProjectedPublicBandwidthUsage() (resp float6
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_SecurityModule) GetProvisionDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -5339,7 +5339,7 @@ func (r Hardware_SecurityModule) SetPublicNetworkInterfaceSpeed(newSpeed *int) (
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_SecurityModule) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
@@ -5769,7 +5769,7 @@ func (r Hardware_Server) CreateObject(templateObject *datatypes.Hardware_Server)
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Server) CreatePostSoftwareInstallTransaction(installCodes []string, returnBoolean *bool) (resp bool, err error) {
 	params := []interface{}{
 		installCodes,
@@ -6789,7 +6789,7 @@ func (r Hardware_Server) GetPrimaryBackendNetworkComponent() (resp datatypes.Net
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Server) GetPrimaryDriveSize() (resp int, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -6896,7 +6896,7 @@ func (r Hardware_Server) GetProjectedPublicBandwidthUsage() (resp float64, err e
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Server) GetProvisionDate() (resp datatypes.Time, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -7439,7 +7439,7 @@ func (r Hardware_Server) SetPublicNetworkInterfaceSpeed(newSpeed *int) (resp boo
 	return
 }
 
-//
+// no documentation yet
 func (r Hardware_Server) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,

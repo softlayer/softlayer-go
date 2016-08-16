@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Security_Certificate struct {
 	Entity
 
@@ -98,7 +98,7 @@ type Security_Certificate struct {
 	ValidityEnd *Time `json:"validityEnd,omitempty"`
 }
 
-//
+// no documentation yet
 type Security_Certificate_Entry struct {
 	Entity
 
@@ -235,11 +235,11 @@ type Security_SecureTransportProtocol struct {
 	SupportedSecureTransportCiphers []Security_SecureTransportCipher `json:"supportedSecureTransportCiphers,omitempty"`
 }
 
-//
+// no documentation yet
 type Security_Ssh_Key struct {
 	Entity
 
-	//
+	// no documentation yet
 	Account *Account `json:"account,omitempty"`
 
 	// A count of the image template groups that are linked to an SSH key.

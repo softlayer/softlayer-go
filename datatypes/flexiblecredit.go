@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type FlexibleCredit_Affiliate struct {
 	Entity
 
@@ -34,7 +34,7 @@ type FlexibleCredit_Affiliate struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type FlexibleCredit_Company_Type struct {
 	Entity
 
@@ -45,7 +45,7 @@ type FlexibleCredit_Company_Type struct {
 	Id *int `json:"id,omitempty"`
 }
 
-//
+// no documentation yet
 type FlexibleCredit_Enrollment struct {
 	Entity
 
@@ -95,7 +95,7 @@ type FlexibleCredit_Enrollment struct {
 	RepresentativeEmployeeId *int `json:"representativeEmployeeId,omitempty"`
 }
 
-//
+// no documentation yet
 type FlexibleCredit_Program struct {
 	Entity
 

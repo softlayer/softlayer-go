@@ -120,7 +120,7 @@ func (r Ticket) AddFinalComments(finalComments *string) (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket) AddScheduledAlert(activationTime *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -130,7 +130,7 @@ func (r Ticket) AddScheduledAlert(activationTime *string) (err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket) AddScheduledAutoClose(activationTime *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -546,21 +546,21 @@ func (r Ticket) RemoveAttachedVirtualGuest(guestId *int) (resp bool, err error) 
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket) RemoveScheduledAlert() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket) RemoveScheduledAutoClose() (err error) {
 	var resp datatypes.Void
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket) SetTags(tags *string) (resp bool, err error) {
 	params := []interface{}{
 		tags,
@@ -619,13 +619,13 @@ func (r Ticket_Attachment_File) Offset(offset int) Ticket_Attachment_File {
 	return r
 }
 
-//
+// no documentation yet
 func (r Ticket_Attachment_File) GetExtensionWhitelist() (resp []string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_File, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -643,7 +643,7 @@ func (r Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err e
 	return
 }
 
-//
+// no documentation yet
 type Ticket_Priority struct {
 	Session *session.Session
 	Options sl.Options
@@ -678,7 +678,7 @@ func (r Ticket_Priority) Offset(offset int) Ticket_Priority {
 	return r
 }
 
-//
+// no documentation yet
 func (r Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Priority, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -743,7 +743,7 @@ func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Co
 	return
 }
 
-//
+// no documentation yet
 type Ticket_Survey struct {
 	Session *session.Session
 	Options sl.Options

@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Catalyst_Company_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -67,13 +67,13 @@ func (r Catalyst_Company_Type) GetAllObjects() (resp []datatypes.Catalyst_Compan
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Company_Type) GetObject() (resp datatypes.Catalyst_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 type Catalyst_Enrollment struct {
 	Session *session.Session
 	Options sl.Options
@@ -120,7 +120,7 @@ func (r Catalyst_Enrollment) GetAffiliate() (resp datatypes.Catalyst_Affiliate, 
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetAffiliates() (resp []datatypes.Catalyst_Affiliate, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -132,25 +132,25 @@ func (r Catalyst_Enrollment) GetCompanyType() (resp datatypes.Catalyst_Company_T
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetCompanyTypes() (resp []datatypes.Catalyst_Company_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestAnnualRevenueOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestUserCountOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestYearsInOperationOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -162,7 +162,7 @@ func (r Catalyst_Enrollment) GetIsActiveFlag() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) GetObject() (resp datatypes.Catalyst_Enrollment, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -174,7 +174,7 @@ func (r Catalyst_Enrollment) GetRepresentative() (resp datatypes.User_Employee, 
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) RequestManualEnrollment(request *datatypes.Container_Catalyst_ManualEnrollmentRequest) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -184,7 +184,7 @@ func (r Catalyst_Enrollment) RequestManualEnrollment(request *datatypes.Containe
 	return
 }
 
-//
+// no documentation yet
 func (r Catalyst_Enrollment) RequestSelfEnrollment(enrollmentRequest *datatypes.Catalyst_Enrollment_Request) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		enrollmentRequest,

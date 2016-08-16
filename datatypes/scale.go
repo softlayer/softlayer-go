@@ -20,7 +20,7 @@
 
 package datatypes
 
-//
+// no documentation yet
 type Scale_Asset struct {
 	Entity
 
@@ -40,7 +40,7 @@ type Scale_Asset struct {
 	ScaleGroupId *int `json:"scaleGroupId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Asset_Hardware struct {
 	Scale_Asset
 
@@ -51,7 +51,7 @@ type Scale_Asset_Hardware struct {
 	HardwareId *int `json:"hardwareId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Asset_Virtual_Guest struct {
 	Scale_Asset
 
@@ -62,7 +62,7 @@ type Scale_Asset_Virtual_Guest struct {
 	VirtualGuestId *int `json:"virtualGuestId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Group struct {
 	Entity
 
@@ -162,7 +162,7 @@ type Scale_Group struct {
 	VirtualGuestMembers []Scale_Member_Virtual_Guest `json:"virtualGuestMembers,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Group_Log struct {
 	Entity
 
@@ -182,7 +182,7 @@ type Scale_Group_Log struct {
 	ScaleGroupId *int `json:"scaleGroupId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Group_Status struct {
 	Entity
 
@@ -196,7 +196,7 @@ type Scale_Group_Status struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_LoadBalancer struct {
 	Entity
 
@@ -249,7 +249,7 @@ type Scale_LoadBalancer struct {
 	VirtualServerPort *int `json:"virtualServerPort,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Member struct {
 	Entity
 
@@ -266,7 +266,7 @@ type Scale_Member struct {
 	ScaleGroupId *int `json:"scaleGroupId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Member_Virtual_Guest struct {
 	Scale_Member
 
@@ -277,7 +277,7 @@ type Scale_Member_Virtual_Guest struct {
 	VirtualGuestId *int `json:"virtualGuestId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Network_Vlan struct {
 	Entity
 
@@ -303,7 +303,7 @@ type Scale_Network_Vlan struct {
 	ScaleGroupId *int `json:"scaleGroupId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy struct {
 	Entity
 
@@ -368,7 +368,7 @@ type Scale_Policy struct {
 	Triggers []Scale_Policy_Trigger `json:"triggers,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Action struct {
 	Entity
 
@@ -397,7 +397,7 @@ type Scale_Policy_Action struct {
 	TypeId *int `json:"typeId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Action_Scale struct {
 	Scale_Policy_Action
 
@@ -415,7 +415,7 @@ type Scale_Policy_Action_Scale struct {
 	ScaleType *string `json:"scaleType,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Action_Type struct {
 	Entity
 
@@ -429,7 +429,7 @@ type Scale_Policy_Action_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger struct {
 	Entity
 
@@ -458,7 +458,7 @@ type Scale_Policy_Trigger struct {
 	TypeId *int `json:"typeId,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger_OneTime struct {
 	Scale_Policy_Trigger
 
@@ -466,7 +466,7 @@ type Scale_Policy_Trigger_OneTime struct {
 	Date *Time `json:"date,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger_Repeating struct {
 	Scale_Policy_Trigger
 
@@ -474,7 +474,7 @@ type Scale_Policy_Trigger_Repeating struct {
 	Schedule *string `json:"schedule,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger_ResourceUse struct {
 	Scale_Policy_Trigger
 
@@ -485,7 +485,7 @@ type Scale_Policy_Trigger_ResourceUse struct {
 	Watches []Scale_Policy_Trigger_ResourceUse_Watch `json:"watches,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger_ResourceUse_Watch struct {
 	Entity
 
@@ -530,7 +530,7 @@ type Scale_Policy_Trigger_ResourceUse_Watch struct {
 	Value *string `json:"value,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Policy_Trigger_Type struct {
 	Entity
 
@@ -544,7 +544,7 @@ type Scale_Policy_Trigger_Type struct {
 	Name *string `json:"name,omitempty"`
 }
 
-//
+// no documentation yet
 type Scale_Termination_Policy struct {
 	Entity
 

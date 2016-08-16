@@ -61,7 +61,7 @@ func (r Configuration_Storage_Group_Array_Type) Offset(offset int) Configuration
 	return r
 }
 
-//
+// no documentation yet
 func (r Configuration_Storage_Group_Array_Type) GetAllObjects() (resp []datatypes.Configuration_Storage_Group_Array_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -73,7 +73,7 @@ func (r Configuration_Storage_Group_Array_Type) GetHardwareComponentModels() (re
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Storage_Group_Array_Type) GetObject() (resp datatypes.Configuration_Storage_Group_Array_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -186,7 +186,7 @@ func (r Configuration_Template) GetLinkedSectionReferences() (resp datatypes.Con
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template) GetObject() (resp datatypes.Configuration_Template, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -274,7 +274,7 @@ func (r Configuration_Template_Section) GetLinkedTemplateReference() (resp datat
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section) GetObject() (resp datatypes.Configuration_Template_Section, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -379,7 +379,7 @@ func (r Configuration_Template_Section_Definition) GetMonitoringDataFlag() (resp
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Definition) GetObject() (resp datatypes.Configuration_Template_Section_Definition, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -442,7 +442,7 @@ func (r Configuration_Template_Section_Definition_Group) GetAllGroups() (resp []
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Definition_Group) GetObject() (resp datatypes.Configuration_Template_Section_Definition_Group, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -489,7 +489,7 @@ func (r Configuration_Template_Section_Definition_Type) Offset(offset int) Confi
 	return r
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Definition_Type) GetObject() (resp datatypes.Configuration_Template_Section_Definition_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -536,7 +536,7 @@ func (r Configuration_Template_Section_Definition_Value) GetDefinition() (resp d
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Definition_Value) GetObject() (resp datatypes.Configuration_Template_Section_Definition_Value, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -597,7 +597,7 @@ func (r Configuration_Template_Section_Profile) GetMonitoringAgent() (resp datat
 	return
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Profile) GetObject() (resp datatypes.Configuration_Template_Section_Profile, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -638,7 +638,7 @@ func (r Configuration_Template_Section_Reference) Offset(offset int) Configurati
 	return r
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Reference) GetObject() (resp datatypes.Configuration_Template_Section_Reference, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -693,7 +693,7 @@ func (r Configuration_Template_Section_Type) Offset(offset int) Configuration_Te
 	return r
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Section_Type) GetObject() (resp datatypes.Configuration_Template_Section_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -734,7 +734,7 @@ func (r Configuration_Template_Type) Offset(offset int) Configuration_Template_T
 	return r
 }
 
-//
+// no documentation yet
 func (r Configuration_Template_Type) GetObject() (resp datatypes.Configuration_Template_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return

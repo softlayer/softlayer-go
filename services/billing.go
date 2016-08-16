@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer/sl"
 )
 
-//
+// no documentation yet
 type Billing_Currency struct {
 	Session *session.Session
 	Options sl.Options
@@ -61,19 +61,19 @@ func (r Billing_Currency) Offset(offset int) Billing_Currency {
 	return r
 }
 
-//
+// no documentation yet
 func (r Billing_Currency) GetAllObjects() (resp []datatypes.Billing_Currency, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency) GetObject() (resp datatypes.Billing_Currency, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency) GetPrice(price *float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
 	params := []interface{}{
 		price,
@@ -83,7 +83,7 @@ func (r Billing_Currency) GetPrice(price *float64, formatOptions *datatypes.Cont
 	return
 }
 
-//
+// no documentation yet
 type Billing_Currency_ExchangeRate struct {
 	Session *session.Session
 	Options sl.Options
@@ -118,7 +118,7 @@ func (r Billing_Currency_ExchangeRate) Offset(offset int) Billing_Currency_Excha
 	return r
 }
 
-//
+// no documentation yet
 func (r Billing_Currency_ExchangeRate) GetAllCurrencyExchangeRates(stringDate *string) (resp []datatypes.Billing_Currency_ExchangeRate, err error) {
 	params := []interface{}{
 		stringDate,
@@ -127,13 +127,13 @@ func (r Billing_Currency_ExchangeRate) GetAllCurrencyExchangeRates(stringDate *s
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency_ExchangeRate) GetCurrencies() (resp []datatypes.Billing_Currency, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency_ExchangeRate) GetExchangeRate(to *string, from *string, effectiveDate *datatypes.Time) (resp datatypes.Billing_Currency_ExchangeRate, err error) {
 	params := []interface{}{
 		to,
@@ -156,13 +156,13 @@ func (r Billing_Currency_ExchangeRate) GetLocalCurrency() (resp datatypes.Billin
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency_ExchangeRate) GetObject() (resp datatypes.Billing_Currency_ExchangeRate, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Currency_ExchangeRate) GetPrice(price *float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
 	params := []interface{}{
 		price,
@@ -402,7 +402,7 @@ func (r Billing_Invoice) GetPdfDetailed() (resp []byte, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice) GetPdfDetailedFilename() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -414,7 +414,7 @@ func (r Billing_Invoice) GetPdfFileSize() (resp int, err error) {
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice) GetPdfFilename() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -468,13 +468,13 @@ func (r Billing_Invoice) GetTaxType() (resp datatypes.Billing_Invoice_Tax_Type, 
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice) GetXlsFilename() (resp string, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -611,7 +611,7 @@ func (r Billing_Invoice_Item) GetTotalRecurringTaxAmount() (resp float64, err er
 	return
 }
 
-//
+// no documentation yet
 type Billing_Invoice_Next struct {
 	Session *session.Session
 	Options sl.Options
@@ -708,13 +708,13 @@ func (r Billing_Invoice_Tax_Status) Offset(offset int) Billing_Invoice_Tax_Statu
 	return r
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice_Tax_Status) GetAllObjects() (resp []datatypes.Billing_Invoice_Tax_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice_Tax_Status) GetObject() (resp datatypes.Billing_Invoice_Tax_Status, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -755,13 +755,13 @@ func (r Billing_Invoice_Tax_Type) Offset(offset int) Billing_Invoice_Tax_Type {
 	return r
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice_Tax_Type) GetAllObjects() (resp []datatypes.Billing_Invoice_Tax_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Invoice_Tax_Type) GetObject() (resp datatypes.Billing_Invoice_Tax_Type, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1233,7 +1233,7 @@ func (r Billing_Item_Cancellation_Reason) GetBillingItems() (resp []datatypes.Bi
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Item_Cancellation_Reason) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1292,7 +1292,7 @@ func (r Billing_Item_Cancellation_Reason_Category) GetBillingCancellationReasons
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Item_Cancellation_Reason_Category) GetObject() (resp datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
@@ -1682,7 +1682,7 @@ func (r Billing_Order) IsPendingEditApproval() (resp bool, err error) {
 	return
 }
 
-//
+// no documentation yet
 type Billing_Order_Cart struct {
 	Session *session.Session
 	Options sl.Options
@@ -1767,7 +1767,7 @@ func (r Billing_Order_Cart) GetCartByCartKey(cartKey *string) (resp datatypes.Bi
 	return
 }
 
-//
+// no documentation yet
 func (r Billing_Order_Cart) GetObject() (resp datatypes.Billing_Order_Cart, err error) {
 	err = invokeMethod(nil, r.Session, &r.Options, &resp)
 	return
