@@ -73,7 +73,7 @@ func (r Utility_Network) NsLookup(address *string, typ *string) (resp string, er
 		address,
 		typ,
 	}
-	err = invokeMethod("SoftLayer_Utility_Network", "nsLookup", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Utility_Network", "nsLookup", params, &r.Options, &resp)
 	return
 }
 
@@ -82,6 +82,6 @@ func (r Utility_Network) Whois(address *string) (resp string, err error) {
 	params := []interface{}{
 		address,
 	}
-	err = invokeMethod("SoftLayer_Utility_Network", "whois", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Utility_Network", "whois", params, &r.Options, &resp)
 	return
 }

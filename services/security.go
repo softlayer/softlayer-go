@@ -75,13 +75,13 @@ func (r Security_Certificate) CreateObject(templateObject *datatypes.Security_Ce
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "createObject", params, &r.Options, &resp)
 	return
 }
 
 // Remove a certificate from your account. You may not remove a certificate with associated services.
 func (r Security_Certificate) DeleteObject() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate", "deleteObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -90,7 +90,7 @@ func (r Security_Certificate) EditObject(templateObject *datatypes.Security_Cert
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "editObject", params, &r.Options, &resp)
 	return
 }
 
@@ -99,31 +99,31 @@ func (r Security_Certificate) FindByCommonName(commonName *string) (resp []datat
 	params := []interface{}{
 		commonName,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate", "findByCommonName", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "findByCommonName", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The number of services currently associated with the certificate.
 func (r Security_Certificate) GetAssociatedServiceCount() (resp int, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate", "getAssociatedServiceCount", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getAssociatedServiceCount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The load balancers virtual IP addresses currently associated with the certificate.
 func (r Security_Certificate) GetLoadBalancerVirtualIpAddresses() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate", "getLoadBalancerVirtualIpAddresses", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLoadBalancerVirtualIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Security_Certificate) GetObject() (resp datatypes.Security_Certificate, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve the certificate in PEM (Privacy Enhanced Mail) format, which is a string containing all base64 encoded (DER) certificates delimited by -----BEGIN/END *----- clauses.
 func (r Security_Certificate) GetPemFormat() (resp string, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate", "getPemFormat", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getPemFormat", nil, &r.Options, &resp)
 	return
 }
 
@@ -168,13 +168,13 @@ func (r Security_Certificate_Request) Offset(offset int) Security_Certificate_Re
 
 // Cancels a pending SSL certificate order at Certificate Authority
 func (r Security_Certificate_Request) CancelSslOrder() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "cancelSslOrder", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "cancelSslOrder", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account to which a SSL certificate request belongs.
 func (r Security_Certificate_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getAccount", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
@@ -183,43 +183,43 @@ func (r Security_Certificate_Request) GetAdministratorEmailDomains(commonName *s
 	params := []interface{}{
 		commonName,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getAdministratorEmailDomains", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailDomains", params, &r.Options, &resp)
 	return
 }
 
 // Gets the email accounts that can be used to validate a certificate to a domain.
 func (r Security_Certificate_Request) GetAdministratorEmailPrefixes() (resp []string, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getAdministratorEmailPrefixes", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailPrefixes", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Certificate Authority name
 func (r Security_Certificate_Request) GetCertificateAuthorityName() (resp string, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getCertificateAuthorityName", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getCertificateAuthorityName", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Security_Certificate_Request) GetObject() (resp datatypes.Security_Certificate_Request, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The order contains the information related to a SSL certificate request.
 func (r Security_Certificate_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getOrder", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getOrder", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The associated order item for this SSL certificate request.
 func (r Security_Certificate_Request) GetOrderItem() (resp datatypes.Billing_Order_Item, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getOrderItem", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getOrderItem", nil, &r.Options, &resp)
 	return
 }
 
 // Returns previous SSL certificate order data. You can use this data for to place a renewal order for a completed SSL certificate.
 func (r Security_Certificate_Request) GetPreviousOrderData() (resp datatypes.Container_Product_Order_Security_Certificate, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getPreviousOrderData", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getPreviousOrderData", nil, &r.Options, &resp)
 	return
 }
 
@@ -228,13 +228,13 @@ func (r Security_Certificate_Request) GetSslCertificateRequests(accountId *int) 
 	params := []interface{}{
 		accountId,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getSslCertificateRequests", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getSslCertificateRequests", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status of a SSL certificate request.
 func (r Security_Certificate_Request) GetStatus() (resp datatypes.Security_Certificate_Request_Status, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "getStatus", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -243,7 +243,7 @@ func (r Security_Certificate_Request) ResendEmail(emailType *string) (resp bool,
 	params := []interface{}{
 		emailType,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "resendEmail", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "resendEmail", params, &r.Options, &resp)
 	return
 }
 
@@ -257,7 +257,7 @@ func (r Security_Certificate_Request) ValidateCsr(csr *string, validityMonths *i
 		itemId,
 		serverType,
 	}
-	err = invokeMethod("SoftLayer_Security_Certificate_Request", "validateCsr", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "validateCsr", params, &r.Options, &resp)
 	return
 }
 
@@ -302,13 +302,13 @@ func (r Security_Certificate_Request_ServerType) Offset(offset int) Security_Cer
 
 // Returns all SSL certificate server types, which  passed in on a certificate order.
 func (r Security_Certificate_Request_ServerType) GetAllObjects() (resp []datatypes.Security_Certificate_Request, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request_ServerType", "getAllObjects", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Security_Certificate_Request_ServerType, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request_ServerType", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -353,13 +353,13 @@ func (r Security_Certificate_Request_Status) Offset(offset int) Security_Certifi
 
 // no documentation yet
 func (r Security_Certificate_Request_Status) GetObject() (resp datatypes.Security_Certificate_Request_Status, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request_Status", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_Status", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Returns all SSL certificate request status objects
 func (r Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []datatypes.Security_Certificate_Request_Status, err error) {
-	err = invokeMethod("SoftLayer_Security_Certificate_Request_Status", "getSslRequestStatuses", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_Status", "getSslRequestStatuses", nil, &r.Options, &resp)
 	return
 }
 
@@ -407,13 +407,13 @@ func (r Security_Ssh_Key) CreateObject(templateObject *datatypes.Security_Ssh_Ke
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "createObject", params, &r.Options, &resp)
 	return
 }
 
 // Remove a ssh key from your account.
 func (r Security_Ssh_Key) DeleteObject() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "deleteObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -422,30 +422,30 @@ func (r Security_Ssh_Key) EditObject(templateObject *datatypes.Security_Ssh_Key)
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Security_Ssh_Key) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "getAccount", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The image template groups that are linked to an SSH key.
 func (r Security_Ssh_Key) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "getBlockDeviceTemplateGroups", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getBlockDeviceTemplateGroups", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The OS root users that are linked to an SSH key.
 func (r Security_Ssh_Key) GetSoftwarePasswords() (resp []datatypes.Software_Component_Password, err error) {
-	err = invokeMethod("SoftLayer_Security_Ssh_Key", "getSoftwarePasswords", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getSoftwarePasswords", nil, &r.Options, &resp)
 	return
 }

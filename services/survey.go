@@ -73,31 +73,31 @@ func (r Survey) GetActiveSurveyByType(typ *string) (resp datatypes.Survey, err e
 	params := []interface{}{
 		typ,
 	}
-	err = invokeMethod("SoftLayer_Survey", "getActiveSurveyByType", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "getActiveSurveyByType", params, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Survey object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Survey service. You can only retrieve the survey that your portal user has taken.
 func (r Survey) GetObject() (resp datatypes.Survey, err error) {
-	err = invokeMethod("SoftLayer_Survey", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The questions for a survey.
 func (r Survey) GetQuestions() (resp []datatypes.Survey_Question, err error) {
-	err = invokeMethod("SoftLayer_Survey", "getQuestions", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "getQuestions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The status of the survey
 func (r Survey) GetStatus() (resp datatypes.Survey_Status, err error) {
-	err = invokeMethod("SoftLayer_Survey", "getStatus", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "getStatus", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of survey
 func (r Survey) GetType() (resp datatypes.Survey_Type, err error) {
-	err = invokeMethod("SoftLayer_Survey", "getType", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "getType", nil, &r.Options, &resp)
 	return
 }
 
@@ -106,6 +106,6 @@ func (r Survey) TakeSurvey(responses []datatypes.Survey_Response) (resp bool, er
 	params := []interface{}{
 		responses,
 	}
-	err = invokeMethod("SoftLayer_Survey", "takeSurvey", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Survey", "takeSurvey", params, &r.Options, &resp)
 	return
 }

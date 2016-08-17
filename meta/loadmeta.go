@@ -180,7 +180,7 @@ import (
 			{{range .Parameters}}{{.Name|removeReserved}},
 			{{end}}
 		}
-		{{end}}err = invokeMethod("{{$rawbase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, r.Session, &r.Options, &resp)
+		{{end}}err = r.Session.DoRequest("{{$rawbase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
 	return
 	}
 	{{end}}

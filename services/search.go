@@ -85,7 +85,7 @@ func (r Search) AdvancedSearch(searchString *string) (resp []datatypes.Container
 	params := []interface{}{
 		searchString,
 	}
-	err = invokeMethod("SoftLayer_Search", "advancedSearch", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Search", "advancedSearch", params, &r.Options, &resp)
 	return
 }
 
@@ -93,7 +93,7 @@ func (r Search) AdvancedSearch(searchString *string) (resp []datatypes.Container
 //
 // <p> Refer to the <b>[[SoftLayer_Search/search|search()]]</b> and <b>[[SoftLayer_Search/advancedSearch|advancedSearch()]]</b> methods for information on using object types and properties in search strings.
 func (r Search) GetObjectTypes() (resp []datatypes.Container_Search_ObjectType, err error) {
-	err = invokeMethod("SoftLayer_Search", "getObjectTypes", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Search", "getObjectTypes", nil, &r.Options, &resp)
 	return
 }
 
@@ -116,6 +116,6 @@ func (r Search) Search(searchString *string) (resp []datatypes.Container_Search_
 	params := []interface{}{
 		searchString,
 	}
-	err = invokeMethod("SoftLayer_Search", "search", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Search", "search", params, &r.Options, &resp)
 	return
 }

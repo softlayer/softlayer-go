@@ -70,25 +70,25 @@ func (r Layout_Container) Offset(offset int) Layout_Container {
 
 // Use this method to retrieve all active layout containers that can be customized.
 func (r Layout_Container) GetAllObjects() (resp []datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Container", "getAllObjects", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of the layout container object
 func (r Layout_Container) GetLayoutContainerType() (resp datatypes.Layout_Container_Type, err error) {
-	err = invokeMethod("SoftLayer_Layout_Container", "getLayoutContainerType", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutContainerType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The layout items assigned to this layout container
 func (r Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err error) {
-	err = invokeMethod("SoftLayer_Layout_Container", "getLayoutItems", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutItems", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Container) GetObject() (resp datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Container", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -133,19 +133,19 @@ func (r Layout_Item) Offset(offset int) Layout_Item {
 
 // Retrieve The layout preferences assigned to this layout item
 func (r Layout_Item) GetLayoutItemPreferences() (resp []datatypes.Layout_Preference, err error) {
-	err = invokeMethod("SoftLayer_Layout_Item", "getLayoutItemPreferences", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Item", "getLayoutItemPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of the layout item object
 func (r Layout_Item) GetLayoutItemType() (resp datatypes.Layout_Item_Type, err error) {
-	err = invokeMethod("SoftLayer_Layout_Item", "getLayoutItemType", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Item", "getLayoutItemType", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Item) GetObject() (resp datatypes.Layout_Item, err error) {
-	err = invokeMethod("SoftLayer_Layout_Item", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Item", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -193,13 +193,13 @@ func (r Layout_Profile) CreateObject(templateObject *datatypes.Layout_Profile) (
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "createObject", params, &r.Options, &resp)
 	return
 }
 
 // This method deletes an existing layout profile and associated custom preferences
 func (r Layout_Profile) DeleteObject() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile", "deleteObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -208,25 +208,25 @@ func (r Layout_Profile) EditObject(templateObject *datatypes.Layout_Profile) (re
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile", "getLayoutContainers", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutContainers", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile", "getLayoutPreferences", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Profile) GetObject() (resp datatypes.Layout_Profile, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -237,7 +237,7 @@ func (r Layout_Profile) ModifyPreference(templateObject *datatypes.Layout_Profil
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile", "modifyPreference", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "modifyPreference", params, &r.Options, &resp)
 	return
 }
 
@@ -248,7 +248,7 @@ func (r Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.La
 	params := []interface{}{
 		layoutPreferenceObjects,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile", "modifyPreferences", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "modifyPreferences", params, &r.Options, &resp)
 	return
 }
 
@@ -296,7 +296,7 @@ func (r Layout_Profile_Containers) CreateObject(templateObject *datatypes.Layout
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Containers", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Containers", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -305,25 +305,25 @@ func (r Layout_Profile_Containers) EditObject(templateObject *datatypes.Layout_P
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Containers", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Containers", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The container to be contained
 func (r Layout_Profile_Containers) GetLayoutContainerType() (resp datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Containers", "getLayoutContainerType", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Containers", "getLayoutContainerType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The profile containing this container
 func (r Layout_Profile_Containers) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Containers", "getLayoutProfile", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Containers", "getLayoutProfile", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Profile_Containers) GetObject() (resp datatypes.Layout_Profile_Containers, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Containers", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Containers", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -371,13 +371,13 @@ func (r Layout_Profile_Customer) CreateObject(templateObject *datatypes.Layout_P
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "createObject", params, &r.Options, &resp)
 	return
 }
 
 // This method deletes an existing layout profile and associated custom preferences
 func (r Layout_Profile_Customer) DeleteObject() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "deleteObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -386,31 +386,31 @@ func (r Layout_Profile_Customer) EditObject(templateObject *datatypes.Layout_Pro
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Customer) GetLayoutContainers() (resp []datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "getLayoutContainers", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutContainers", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Customer) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "getLayoutPreferences", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Profile_Customer) GetObject() (resp datatypes.Layout_Profile_Customer, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Customer) GetUserRecord() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "getUserRecord", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getUserRecord", nil, &r.Options, &resp)
 	return
 }
 
@@ -421,7 +421,7 @@ func (r Layout_Profile_Customer) ModifyPreference(templateObject *datatypes.Layo
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "modifyPreference", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "modifyPreference", params, &r.Options, &resp)
 	return
 }
 
@@ -432,7 +432,7 @@ func (r Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []dat
 	params := []interface{}{
 		layoutPreferenceObjects,
 	}
-	err = invokeMethod("SoftLayer_Layout_Profile_Customer", "modifyPreferences", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "modifyPreferences", params, &r.Options, &resp)
 	return
 }
 
@@ -477,30 +477,30 @@ func (r Layout_Profile_Preference) Offset(offset int) Layout_Profile_Preference 
 
 // Retrieve
 func (r Layout_Profile_Preference) GetLayoutContainer() (resp datatypes.Layout_Container, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Preference", "getLayoutContainer", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Preference", "getLayoutContainer", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Preference) GetLayoutItem() (resp datatypes.Layout_Item, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Preference", "getLayoutItem", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Preference", "getLayoutItem", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Preference) GetLayoutPreference() (resp datatypes.Layout_Preference, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Preference", "getLayoutPreference", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Preference", "getLayoutPreference", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Layout_Profile_Preference) GetLayoutProfile() (resp datatypes.Layout_Profile, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Preference", "getLayoutProfile", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Preference", "getLayoutProfile", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Layout_Profile_Preference) GetObject() (resp datatypes.Layout_Profile_Preference, err error) {
-	err = invokeMethod("SoftLayer_Layout_Profile_Preference", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Preference", "getObject", nil, &r.Options, &resp)
 	return
 }

@@ -73,31 +73,31 @@ func (r Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
 	params := []interface{}{
 		tag,
 	}
-	err = invokeMethod("SoftLayer_Tag", "autoComplete", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "autoComplete", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account to which the tag is tied.
 func (r Tag) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod("SoftLayer_Tag", "getAccount", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Returns all tags of a given object type.
 func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
-	err = invokeMethod("SoftLayer_Tag", "getAllTagTypes", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "getAllTagTypes", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Tag) GetObject() (resp datatypes.Tag, err error) {
-	err = invokeMethod("SoftLayer_Tag", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve References that tie object to the tag.
 func (r Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
-	err = invokeMethod("SoftLayer_Tag", "getReferences", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "getReferences", nil, &r.Options, &resp)
 	return
 }
 
@@ -106,7 +106,7 @@ func (r Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) 
 	params := []interface{}{
 		tagList,
 	}
-	err = invokeMethod("SoftLayer_Tag", "getTagByTagName", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "getTagByTagName", params, &r.Options, &resp)
 	return
 }
 
@@ -117,6 +117,6 @@ func (r Tag) SetTags(tags *string, keyName *string, resourceTableId *int) (resp 
 		keyName,
 		resourceTableId,
 	}
-	err = invokeMethod("SoftLayer_Tag", "setTags", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Tag", "setTags", params, &r.Options, &resp)
 	return
 }

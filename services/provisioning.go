@@ -73,13 +73,13 @@ func (r Provisioning_Hook) CreateObject(templateObject *datatypes.Provisioning_H
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "createObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "createObject", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Hook) DeleteObject() (resp bool, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "deleteObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -88,25 +88,25 @@ func (r Provisioning_Hook) EditObject(templateObject *datatypes.Provisioning_Hoo
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "editObject", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Provisioning_Hook) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "getAccount", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Provisioning_Hook) GetHookType() (resp datatypes.Provisioning_Hook_Type, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "getHookType", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "getHookType", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -151,13 +151,13 @@ func (r Provisioning_Hook_Type) Offset(offset int) Provisioning_Hook_Type {
 
 // no documentation yet
 func (r Provisioning_Hook_Type) GetAllHookTypes() (resp []datatypes.Provisioning_Hook_Type, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook_Type", "getAllHookTypes", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook_Type", "getAllHookTypes", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Hook_Type) GetObject() (resp datatypes.Provisioning_Hook_Type, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Hook_Type", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -202,7 +202,7 @@ func (r Provisioning_Maintenance_Classification) Offset(offset int) Provisioning
 
 // Retrieve
 func (r Provisioning_Maintenance_Classification) GetItemCategories() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification", "getItemCategories", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getItemCategories", nil, &r.Options, &resp)
 	return
 }
 
@@ -211,19 +211,19 @@ func (r Provisioning_Maintenance_Classification) GetMaintenanceClassification(ma
 	params := []interface{}{
 		maintenanceClassificationId,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassification", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassification", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve an array of SoftLayer_Provisioning_Maintenance_Classification data types, which contain all maintenance classifications.
 func (r Provisioning_Maintenance_Classification) GetMaintenanceClassificationsByItemCategory() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassificationsByItemCategory", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassificationsByItemCategory", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Maintenance_Classification) GetObject() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -268,13 +268,13 @@ func (r Provisioning_Maintenance_Classification_Item_Category) Offset(offset int
 
 // Retrieve
 func (r Provisioning_Maintenance_Classification_Item_Category) GetMaintenanceClassification() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification_Item_Category", "getMaintenanceClassification", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification_Item_Category", "getMaintenanceClassification", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Maintenance_Classification_Item_Category) GetObject() (resp datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Classification_Item_Category", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification_Item_Category", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -319,7 +319,7 @@ func (r Provisioning_Maintenance_Slots) Offset(offset int) Provisioning_Maintena
 
 // no documentation yet
 func (r Provisioning_Maintenance_Slots) GetObject() (resp datatypes.Provisioning_Maintenance_Slots, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Slots", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Slots", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -364,25 +364,25 @@ func (r Provisioning_Maintenance_Ticket) Offset(offset int) Provisioning_Mainten
 
 // Retrieve
 func (r Provisioning_Maintenance_Ticket) GetAvailableSlots() (resp datatypes.Provisioning_Maintenance_Slots, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Ticket", "getAvailableSlots", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Ticket", "getAvailableSlots", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Provisioning_Maintenance_Ticket) GetMaintenanceClass() (resp datatypes.Provisioning_Maintenance_Classification, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Ticket", "getMaintenanceClass", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Ticket", "getMaintenanceClass", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Provisioning_Maintenance_Ticket) GetObject() (resp datatypes.Provisioning_Maintenance_Ticket, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Ticket", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Ticket", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Provisioning_Maintenance_Ticket) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Ticket", "getTicket", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Ticket", "getTicket", nil, &r.Options, &resp)
 	return
 }
 
@@ -430,13 +430,13 @@ func (r Provisioning_Maintenance_Window) AddCustomerUpgradeWindow(customerUpgrad
 	params := []interface{}{
 		customerUpgradeWindow,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "addCustomerUpgradeWindow", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "addCustomerUpgradeWindow", params, &r.Options, &resp)
 	return
 }
 
 // getMaintenanceClassifications() returns an object of maintenance classifications
 func (r Provisioning_Maintenance_Window) GetMaintenanceClassifications() (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceClassifications", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceClassifications", nil, &r.Options, &resp)
 	return
 }
 
@@ -445,7 +445,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceStartEndTime(ticketId *in
 	params := []interface{}{
 		ticketId,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceStartEndTime", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceStartEndTime", params, &r.Options, &resp)
 	return
 }
 
@@ -454,7 +454,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindowForTicket(maintenan
 	params := []interface{}{
 		maintenanceWindowId,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowForTicket", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowForTicket", params, &r.Options, &resp)
 	return
 }
 
@@ -463,7 +463,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindowTicketsByTicketId(t
 	params := []interface{}{
 		ticketId,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowTicketsByTicketId", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowTicketsByTicketId", params, &r.Options, &resp)
 	return
 }
 
@@ -475,7 +475,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *dataty
 		locationId,
 		slotsNeeded,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindows", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindows", params, &r.Options, &resp)
 	return
 }
 
@@ -487,7 +487,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatype
 		locationId,
 		slotsNeeded,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, &r.Options, &resp)
 	return
 }
 
@@ -498,7 +498,7 @@ func (r Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenance
 		newMaintenanceWindowId,
 		ticketId,
 	}
-	err = invokeMethod("SoftLayer_Provisioning_Maintenance_Window", "updateCustomerUpgradeWindow", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "updateCustomerUpgradeWindow", params, &r.Options, &resp)
 	return
 }
 
@@ -545,12 +545,12 @@ func (r Provisioning_Version1_Transaction_Group) Offset(offset int) Provisioning
 
 // no documentation yet
 func (r Provisioning_Version1_Transaction_Group) GetAllObjects() (resp []datatypes.Provisioning_Version1_Transaction_Group, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Version1_Transaction_Group", "getAllObjects", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Provisioning_Version1_Transaction_Group object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Provisioning_Version1_Transaction_Group service.
 func (r Provisioning_Version1_Transaction_Group) GetObject() (resp datatypes.Provisioning_Version1_Transaction_Group, err error) {
-	err = invokeMethod("SoftLayer_Provisioning_Version1_Transaction_Group", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getObject", nil, &r.Options, &resp)
 	return
 }

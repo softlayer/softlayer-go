@@ -73,19 +73,19 @@ func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerific
 	params := []interface{}{
 		verificationTypeKeyName,
 	}
-	err = invokeMethod("SoftLayer_FlexibleCredit_Program", "getAffiliatesAvailableForSelfEnrollmentByVerificationType", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getAffiliatesAvailableForSelfEnrollmentByVerificationType", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
-	err = invokeMethod("SoftLayer_FlexibleCredit_Program", "getCompanyTypes", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getCompanyTypes", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r FlexibleCredit_Program) GetObject() (resp datatypes.FlexibleCredit_Program, err error) {
-	err = invokeMethod("SoftLayer_FlexibleCredit_Program", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -94,6 +94,6 @@ func (r FlexibleCredit_Program) SelfEnrollNewAccount(accountTemplate *datatypes.
 	params := []interface{}{
 		accountTemplate,
 	}
-	err = invokeMethod("SoftLayer_FlexibleCredit_Program", "selfEnrollNewAccount", params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "selfEnrollNewAccount", params, &r.Options, &resp)
 	return
 }

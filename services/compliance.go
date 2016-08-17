@@ -70,12 +70,12 @@ func (r Compliance_Report_Type) Offset(offset int) Compliance_Report_Type {
 
 // no documentation yet
 func (r Compliance_Report_Type) GetAllObjects() (resp []datatypes.Compliance_Report_Type, err error) {
-	err = invokeMethod("SoftLayer_Compliance_Report_Type", "getAllObjects", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Compliance_Report_Type", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Compliance_Report_Type) GetObject() (resp datatypes.Compliance_Report_Type, err error) {
-	err = invokeMethod("SoftLayer_Compliance_Report_Type", "getObject", nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Compliance_Report_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
