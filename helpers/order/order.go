@@ -45,7 +45,7 @@ func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container
 		}
 	}
 
-	return false, item.BillingItem, nil
+	return false, item, nil
 }
 
 // CheckBillingOrderComplete returns true if the status of the billing order for
