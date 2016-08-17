@@ -24,9 +24,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-	"github.ibm.com/riethm/gopherlayer/session"
-	"github.ibm.com/riethm/gopherlayer/sl"
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
+	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 // The SoftLayer_Brand data type contains brand information relating to the single SoftLayer customer account.

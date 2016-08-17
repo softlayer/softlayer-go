@@ -23,8 +23,8 @@ import (
 	"os/user"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/config"
-	"github.ibm.com/riethm/gopherlayer/sl"
+	"github.ibm.com/riethm/gopherlayer.git/config"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 // DefaultEndpoint is the default endpoint for API calls, when no override

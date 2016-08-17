@@ -19,11 +19,11 @@ package main
 import (
 	"fmt"
 
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-	"github.ibm.com/riethm/gopherlayer/helpers/location"
-	"github.ibm.com/riethm/gopherlayer/helpers/order"
-	"github.ibm.com/riethm/gopherlayer/services"
-	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
+	"github.ibm.com/riethm/gopherlayer.git/helpers/location"
+	"github.ibm.com/riethm/gopherlayer.git/helpers/order"
+	"github.ibm.com/riethm/gopherlayer.git/services"
+	"github.ibm.com/riethm/gopherlayer.git/session"
 )
 
 func main() {

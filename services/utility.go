@@ -24,8 +24,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/session"
-	"github.ibm.com/riethm/gopherlayer/sl"
+	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 // no documentation yet

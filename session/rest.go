@@ -28,7 +28,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/sl"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 func doRestRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {

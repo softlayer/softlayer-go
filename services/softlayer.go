@@ -20,8 +20,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer/session"
-	"github.ibm.com/riethm/gopherlayer/sl"
+	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 func invokeMethod(args []interface{}, session *session.Session, options *sl.Options, pResult interface{}) error {

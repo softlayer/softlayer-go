@@ -17,7 +17,7 @@
 package sl
 
 import (
-	"github.ibm.com/riethm/gopherlayer/datatypes"
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
 	"time"
 )
 
