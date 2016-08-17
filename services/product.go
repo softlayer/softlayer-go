@@ -70,19 +70,19 @@ func (r Product_Item_Category) Offset(offset int) Product_Item_Category {
 
 // Returns a list of of active Items in the "Additional Services" package with their active prices for a given product item category and sorts them by price.
 func (r Product_Item_Category) GetAdditionalProductsForCategory() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getAdditionalProductsForCategory", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Category) GetBandwidthCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBandwidthCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing items associated with an account that share a category code with an item category's category code.
 func (r Product_Item_Category) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBillingItems", nil, &r.Options, &resp)
 	return
 }
 
@@ -91,73 +91,73 @@ func (r Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []
 	params := []interface{}{
 		resetCache,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getComputingCategories", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Category) GetCustomUsageRatesCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getCustomUsageRatesCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This invoice item's "item category group".
 func (r Product_Item_Category) GetGroup() (resp datatypes.Product_Item_Category_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getGroup", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of service offering category groups. Each group contains a collection of items associated with this category.
 func (r Product_Item_Category) GetGroups() (resp []datatypes.Product_Package_Item_Category_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getGroups", nil, &r.Options, &resp)
 	return
 }
 
 // Each product item price must be tied to a category for it to be sold. These categories describe how a particular product item is sold. For example, the 250GB hard drive can be sold as disk0, disk1, ... disk11. There are different prices for this product item depending on which category it is. This keeps down the number of products in total.
 func (r Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Any unique options associated with an itme category.
 func (r Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of configuration available in this category.'
 func (r Product_Item_Category) GetPackageConfigurations() (resp []datatypes.Product_Package_Order_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPackageConfigurations", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of preset configurations this category is used in.'
 func (r Product_Item_Category) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPresetConfigurations", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The question references that are associated with an item category.
 func (r Product_Item_Category) GetQuestionReferences() (resp []datatypes.Product_Item_Category_Question_Xref, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestionReferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The questions that are associated with an item category.
 func (r Product_Item_Category) GetQuestions() (resp []datatypes.Product_Item_Category_Question, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestions", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Category) GetSoftwareCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSoftwareCategories", nil, &r.Options, &resp)
 	return
 }
 
 // This method returns a list of subnet categories.
 func (r Product_Item_Category) GetSubnetCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSubnetCategories", nil, &r.Options, &resp)
 	return
 }
 
@@ -166,19 +166,19 @@ func (r Product_Item_Category) GetTopLevelCategories(resetCache *bool) (resp []d
 	params := []interface{}{
 		resetCache,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getTopLevelCategories", params, &r.Options, &resp)
 	return
 }
 
 // This method returns service product categories that can be canceled via API.  You can use these categories to find the billing items you wish to cancel.
 func (r Product_Item_Category) GetValidCancelableServiceItemCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getValidCancelableServiceItemCategories", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getVlanCategories", nil, &r.Options, &resp)
 	return
 }
 
@@ -223,7 +223,7 @@ func (r Product_Item_Category_Group) Offset(offset int) Product_Item_Category_Gr
 
 // Each product item category must be tied to a category group. These category groups describe how a particular product item category is categorized. For example, the disk0, disk1, ... disk11 can be categorized as Server and Attached Services. There are different groups for each of this product item category depending on the function of the item product in the subject category.
 func (r Product_Item_Category_Group) GetObject() (resp datatypes.Product_Item_Category_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category_Group", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -271,31 +271,31 @@ func (r Product_Item_Policy_Assignment) AcceptFromTicket(ticketId *int) (resp bo
 	params := []interface{}{
 		ticketId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Policy_Assignment", "acceptFromTicket", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Policy_Assignment) GetObject() (resp datatypes.Product_Item_Policy_Assignment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Policy_Assignment", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve the binary contents of the associated PDF policy document.
 func (r Product_Item_Policy_Assignment) GetPolicyDocumentContents() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Policy_Assignment", "getPolicyDocumentContents", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The name of the assigned policy.
 func (r Product_Item_Policy_Assignment) GetPolicyName() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Policy_Assignment", "getPolicyName", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The [[SoftLayer_Product_Item]] for this policy assignment.
 func (r Product_Item_Policy_Assignment) GetProduct() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Policy_Assignment", "getProduct", nil, &r.Options, &resp)
 	return
 }
 
@@ -340,109 +340,109 @@ func (r Product_Item_Price) Offset(offset int) Product_Item_Price {
 
 // Retrieve The account that the item price is restricted to.
 func (r Product_Item_Price) GetAccountRestrictions() (resp []datatypes.Product_Item_Price_Account_Restriction, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAccountRestrictions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Item_Price) GetAttributes() (resp []datatypes.Product_Item_Price_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAttributes", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the price is for Big Data OS/Journal disks only. (Deprecated)
 func (r Product_Item_Price) GetBigDataOsJournalDiskFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBigDataOsJournalDiskFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for bundles
 func (r Product_Item_Price) GetBundleReferences() (resp []datatypes.Product_Item_Bundles, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBundleReferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum capacity value for which this price is suitable.
 func (r Product_Item_Price) GetCapacityRestrictionMaximum() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCapacityRestrictionMaximum", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The minimum capacity value for which this price is suitable.
 func (r Product_Item_Price) GetCapacityRestrictionMinimum() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCapacityRestrictionMinimum", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of capacity restriction by which this price must abide.
 func (r Product_Item_Price) GetCapacityRestrictionType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCapacityRestrictionType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve All categories which this item is a member.
 func (r Product_Item_Price) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether this price defines a software license for its product item.
 func (r Product_Item_Price) GetDefinedSoftwareLicenseFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getDefinedSoftwareLicenseFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An item price's inventory status per datacenter.
 func (r Product_Item_Price) GetInventory() (resp []datatypes.Product_Package_Inventory, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getInventory", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The product item a price is tied to.
 func (r Product_Item_Price) GetItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getItem", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Price) GetObject() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Item_Price) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getOrderPremiums", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for packages
 func (r Product_Item_Price) GetPackageReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackageReferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A price's packages under which this item is sold.
 func (r Product_Item_Price) GetPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackages", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of preset configurations this price is used in.'
 func (r Product_Item_Price) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPresetConfigurations", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The pricing location group that this price is applicable for. Prices that have a pricing location group will only be available for ordering with the locations specified on the location group.
 func (r Product_Item_Price) GetPricingLocationGroup() (resp datatypes.Location_Group_Pricing, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPricingLocationGroup", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The number of server cores required to order this item. This is deprecated. Use [[SoftLayer_Product_Item_Price/getCapacityRestrictionMinimum|getCapacityRestrictionMinimum]] and [[SoftLayer_Product_Item_Price/getCapacityRestrictionMaximum|getCapacityRestrictionMaximum]]
 func (r Product_Item_Price) GetRequiredCoreCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getRequiredCoreCount", nil, &r.Options, &resp)
 	return
 }
 
@@ -452,7 +452,7 @@ func (r Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, ite
 		location,
 		items,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getUsageRatePrices", params, &r.Options, &resp)
 	return
 }
 
@@ -497,25 +497,25 @@ func (r Product_Item_Price_Premium) Offset(offset int) Product_Item_Price_Premiu
 
 // Retrieve
 func (r Product_Item_Price_Premium) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price_Premium", "getItemPrice", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Item_Price_Premium) GetLocation() (resp datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price_Premium", "getLocation", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Item_Price_Premium) GetObject() (resp datatypes.Product_Item_Price_Premium, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price_Premium", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Item_Price_Premium) GetPackage() (resp datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price_Premium", "getPackage", nil, &r.Options, &resp)
 	return
 }
 
@@ -565,7 +565,7 @@ func (r Product_Order) CheckItemAvailability(itemPrices []datatypes.Product_Item
 		accountId,
 		availabilityTypeKeyNames,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "checkItemAvailability", params, &r.Options, &resp)
 	return
 }
 
@@ -577,7 +577,7 @@ func (r Product_Order) CheckItemAvailabilityForImageTemplate(imageTemplateId *in
 		packageId,
 		availabilityTypeKeyNames,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "checkItemAvailabilityForImageTemplate", params, &r.Options, &resp)
 	return
 }
 
@@ -586,7 +586,7 @@ func (r Product_Order) CheckItemConflicts(itemPrices []datatypes.Product_Item_Pr
 	params := []interface{}{
 		itemPrices,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "checkItemConflicts", params, &r.Options, &resp)
 	return
 }
 
@@ -596,7 +596,7 @@ func (r Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, pay
 		token,
 		payerId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getExternalPaymentAuthorizationReceipt", params, &r.Options, &resp)
 	return
 }
 
@@ -613,7 +613,7 @@ func (r Product_Order) GetNetworks(locationId *int, packageId *int, accountId *i
 		packageId,
 		accountId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getNetworks", params, &r.Options, &resp)
 	return
 }
 
@@ -622,7 +622,7 @@ func (r Product_Order) GetResellerOrder(orderContainer *datatypes.Container_Prod
 	params := []interface{}{
 		orderContainer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getResellerOrder", params, &r.Options, &resp)
 	return
 }
 
@@ -631,7 +631,7 @@ func (r Product_Order) GetTaxCalculationResult(orderHash *string) (resp datatype
 	params := []interface{}{
 		orderHash,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getTaxCalculationResult", params, &r.Options, &resp)
 	return
 }
 
@@ -656,7 +656,7 @@ func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *
 		accountId,
 		orderContainer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getVlans", params, &r.Options, &resp)
 	return
 }
 
@@ -1065,7 +1065,7 @@ func (r Product_Order) PlaceOrder(orderData *datatypes.Container_Product_Order, 
 		orderData,
 		saveAsQuote,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "placeOrder", params, &r.Options, &resp)
 	return
 }
 
@@ -1074,7 +1074,7 @@ func (r Product_Order) PlaceQuote(orderData *datatypes.Container_Product_Order) 
 	params := []interface{}{
 		orderData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "placeQuote", params, &r.Options, &resp)
 	return
 }
 
@@ -1084,7 +1084,7 @@ func (r Product_Order) ProcessExternalPaymentAuthorization(token *string, payerI
 		token,
 		payerId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "processExternalPaymentAuthorization", params, &r.Options, &resp)
 	return
 }
 
@@ -1093,7 +1093,7 @@ func (r Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price) 
 	params := []interface{}{
 		itemPrices,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "requiredItems", params, &r.Options, &resp)
 	return
 }
 
@@ -1108,7 +1108,7 @@ func (r Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order)
 	params := []interface{}{
 		orderData,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "verifyOrder", params, &r.Options, &resp)
 	return
 }
 
@@ -1153,19 +1153,19 @@ func (r Product_Package) Offset(offset int) Product_Package {
 
 // Retrieve The results from this call are similar to [[SoftLayer_Product_Package/getCategories|getCategories]], but these ONLY include account-restricted prices. Not all accounts have restricted pricing.
 func (r Product_Package) GetAccountRestrictedCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The flag to indicate if there are any restricted prices in a package for the currently-active account.
 func (r Product_Package) GetAccountRestrictedPricesFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedPricesFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Return a list of Items in the package with their active prices.
 func (r Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveItems", nil, &r.Options, &resp)
 	return
 }
 
@@ -1176,43 +1176,43 @@ func (r Product_Package) GetActivePackagesByAttribute(attributeKeyName *string) 
 	params := []interface{}{
 		attributeKeyName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePackagesByAttribute", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The available preset configurations for this package.
 func (r Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Preset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePresets", nil, &r.Options, &resp)
 	return
 }
 
 // This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
 func (r Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid RAM items available for purchase in this package.
 func (r Product_Package) GetActiveRamItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveRamItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid server items available for purchase in this package.
 func (r Product_Package) GetActiveServerItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveServerItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid software items available for purchase in this package.
 func (r Product_Package) GetActiveSoftwareItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveSoftwareItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of [[SoftLayer_Product_Item_Price]] objects for pay-as-you-go usage.
 func (r Product_Package) GetActiveUsagePrices() (resp []datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsagePrices", nil, &r.Options, &resp)
 	return
 }
 
@@ -1222,31 +1222,31 @@ func (r Product_Package) GetActiveUsageRatePrices(locationId *int, categoryCode 
 		locationId,
 		categoryCode,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsageRatePrices", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates that the package is an additional service.
 func (r Product_Package) GetAdditionalServiceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAdditionalServiceFlag", nil, &r.Options, &resp)
 	return
 }
 
 // This method pulls all the active packages. This will give you a basic description of the packages that are currently active
 func (r Product_Package) GetAllObjects() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package) GetAttributes() (resp []datatypes.Product_Package_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAttributes", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
 func (r Product_Package) GetAvailableLocations() (resp []datatypes.Product_Package_Locations, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailableLocations", nil, &r.Options, &resp)
 	return
 }
 
@@ -1255,25 +1255,25 @@ func (r Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *dat
 	params := []interface{}{
 		imageTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailablePackagesForImageTemplate", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum number of available disk storage units associated with the servers in a package.
 func (r Product_Package) GetAvailableStorageUnits() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailableStorageUnits", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This is a collection of categories ([[SoftLayer_Product_Item_Category]]) associated with a package which can be used for ordering. These categories have several objects prepopulated which are useful when determining the available products for purchase. The categories contain groups ([[SoftLayer_Product_Package_Item_Category_Group]]) that organize the products and prices by similar features. For example, operating systems will be grouped by their manufacturer and virtual server disks will be grouped by their disk type (SAN vs. local). Each group will contain prices ([[SoftLayer_Product_Item_Price]]) which you can use determine the cost of each product. Each price has a product ([[SoftLayer_Product_Item]]) which provides the name and other useful information about the server, service or software you may purchase.
 func (r Product_Package) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCategories", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package) GetCdnItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCdnItems", nil, &r.Options, &resp)
 	return
 }
 
@@ -1282,103 +1282,103 @@ func (r Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.P
 	params := []interface{}{
 		provider,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCloudStorageItems", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item categories associated with a package, including information detailing which item categories are required as part of a SoftLayer product order.
 func (r Product_Package) GetConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid RAM items available for purchase in this package.
 func (r Product_Package) GetDefaultRamItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDefaultRamItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The node type for a package in a solution deployment.
 func (r Product_Package) GetDeploymentNodeType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentNodeType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The packages that are allowed in a multi-server solution. (Deprecated)
 func (r Product_Package) GetDeploymentPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentPackages", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The solution deployment type.
 func (r Product_Package) GetDeploymentType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The package that represents a multi-server solution. (Deprecated)
 func (r Product_Package) GetDeployments() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeployments", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package does not allow custom disk partitions.
 func (r Product_Package) GetDisallowCustomDiskPartitions() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDisallowCustomDiskPartitions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Softlayer order step is optionally step-based. This returns the first SoftLayer_Product_Package_Order_Step in the step-based order process.
 func (r Product_Package) GetFirstOrderStep() (resp datatypes.Product_Package_Order_Step, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getFirstOrderStep", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package is a specialized network gateway appliance package.
 func (r Product_Package) GetGatewayApplianceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getGatewayApplianceFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates that the package supports GPUs.
 func (r Product_Package) GetGpuFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getGpuFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Determines whether the package contains prices that can be ordered hourly.
 func (r Product_Package) GetHourlyBillingAvailableFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getHourlyBillingAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Returns a collection of SoftLayer_Product_Item_Attribute_Type objects.  These item attribute types specifically deal with when an item, SoftLayer_Product_Item, from the product catalog may no longer be available.  The keynames for these attribute types start with 'UNAVAILABLE_AFTER_DATE_*', where the '*' may represent any string.  For example, 'UNAVAILABLE_AFTER_DATE_NEW_ORDERS', signifies that the item is not available for new orders.  There is a catch all attribute type, 'UNAVAILABLE_AFTER_DATE_ALL'.  If an item has one of these availability attributes set, the value should be a valid date in MM/DD/YYYY, indicating the date after which the item will no longer be available.
 func (r Product_Package) GetItemAvailabilityTypes() (resp []datatypes.Product_Item_Attribute_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemAvailabilityTypes", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item-item conflicts associated with a package.
 func (r Product_Package) GetItemConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemConflicts", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item-location conflicts associated with a package.
 func (r Product_Package) GetItemLocationConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemLocationConflicts", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve cross reference for item prices
 func (r Product_Package) GetItemPriceReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPriceReferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of SoftLayer_Product_Item_Prices that are valid for this package.
 func (r Product_Package) GetItemPrices() (resp []datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPrices", nil, &r.Options, &resp)
 	return
 }
 
@@ -1389,13 +1389,13 @@ func (r Product_Package) GetItemPricesFromSoftwareDescriptions(softwareDescripti
 		includeTranslationsFlag,
 		returnAllPricesFlag,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid items available for purchase in this package.
 func (r Product_Package) GetItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItems", nil, &r.Options, &resp)
 	return
 }
 
@@ -1404,145 +1404,145 @@ func (r Product_Package) GetItemsFromImageTemplate(imageTemplate *datatypes.Virt
 	params := []interface{}{
 		imageTemplate,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemsFromImageTemplate", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
 func (r Product_Package) GetLocations() (resp []datatypes.Location, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getLocations", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The lowest server [[SoftLayer_Product_Item_Price]] related to this package.
 func (r Product_Package) GetLowestServerPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getLowestServerPrice", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The maximum available network speed associated with the package.
 func (r Product_Package) GetMaximumPortSpeed() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMaximumPortSpeed", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package) GetMessageQueueItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMessageQueueItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The minimum available network speed associated with the package.
 func (r Product_Package) GetMinimumPortSpeed() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMinimumPortSpeed", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates that this is a MongoDB engineered package. (Deprecated)
 func (r Product_Package) GetMongoDbEngineeredFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMongoDbEngineeredFlag", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package) GetObject() (resp datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // This method will return a collection of [[SoftLayer_Container_Product_Order_Network_Storage_Hub_Datacenter]] objects which contain a datacenter location and all the associated active usage rate prices where object storage is available. This method is really only applicable to the object storage additional service package which has a [[SoftLayer_Product_Package_Type]] of '''ADDITIONAL_SERVICES_OBJECT_STORAGE'''. This information is useful so that you can see the "pay as you go" rates per datacenter.
 func (r Product_Package) GetObjectStorageDatacenters() (resp []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageDatacenters", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The premium price modifiers associated with the [[SoftLayer_Product_Item_Price]] and [[SoftLayer_Location]] objects in a package.
 func (r Product_Package) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getOrderPremiums", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package is pre-configured. (Deprecated)
 func (r Product_Package) GetPreconfiguredFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPreconfiguredFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package requires the user to define a preset configuration.
 func (r Product_Package) GetPresetConfigurationRequiredFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPresetConfigurationRequiredFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package prevents the user from specifying a Vlan.
 func (r Product_Package) GetPreventVlanSelectionFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPreventVlanSelectionFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package is for a private hosted cloud deployment. (Deprecated)
 func (r Product_Package) GetPrivateHostedCloudPackageFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPrivateHostedCloudPackageFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The server role of the private hosted cloud deployment. (Deprecated)
 func (r Product_Package) GetPrivateHostedCloudPackageType() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPrivateHostedCloudPackageType", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package only has access to the private network.
 func (r Product_Package) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getPrivateNetworkOnlyFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Whether the package is a specialized mass storage QuantaStor package.
 func (r Product_Package) GetQuantaStorPackageFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getQuantaStorPackageFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag indicates the package does not allow different disks with RAID.
 func (r Product_Package) GetRaidDiskRestrictionFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getRaidDiskRestrictionFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This flag determines if the package contains a redundant power supply product.
 func (r Product_Package) GetRedundantPowerFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getRedundantPowerFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The regional locations that a package is available in.
 func (r Product_Package) GetRegions() (resp []datatypes.Location_Region, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getRegions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The resource group template that describes a multi-server solution. (Deprecated)
 func (r Product_Package) GetResourceGroupTemplate() (resp datatypes.Resource_Group_Template, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getResourceGroupTemplate", nil, &r.Options, &resp)
 	return
 }
 
 // This call is similar to [[SoftLayer_Product_Package/getCategories|getCategories]], except that it does not include account-restricted pricing. Not all accounts have restricted pricing.
 func (r Product_Package) GetStandardCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getStandardCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The top level category code for this service offering.
 func (r Product_Package) GetTopLevelItemCategoryCode() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getTopLevelItemCategoryCode", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of service offering. This property can be used to help filter packages.
 func (r Product_Package) GetType() (resp datatypes.Product_Package_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getType", nil, &r.Options, &resp)
 	return
 }
 
@@ -1591,79 +1591,79 @@ func (r Product_Package_Preset) Offset(offset int) Product_Package_Preset {
 
 // This method returns all the active package presets.
 func (r Product_Package_Preset) GetAllObjects() (resp []datatypes.Product_Package_Preset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Preset) GetAvailableStorageUnits() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getAvailableStorageUnits", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item categories that are included in this package preset configuration.
 func (r Product_Package_Preset) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getCategories", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The preset configuration (category and price).
 func (r Product_Package_Preset) GetConfiguration() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A package preset with this flag set will not allow the price's defined in the preset configuration to be overriden during order placement.
 func (r Product_Package_Preset) GetFixedConfigurationFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getFixedConfigurationFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The lowest server prices related to this package preset.
 func (r Product_Package_Preset) GetLowestPresetServerPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getLowestPresetServerPrice", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package_Preset) GetObject() (resp datatypes.Product_Package_Preset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The package this preset belongs to.
 func (r Product_Package_Preset) GetPackage() (resp datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPackage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item categories associated with a package preset, including information detailing which item categories are required as part of a SoftLayer product order.
 func (r Product_Package_Preset) GetPackageConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPackageConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The item prices that are included in this package preset configuration.
 func (r Product_Package_Preset) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPrices", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Describes how all disks in this preset will be configured.
 func (r Product_Package_Preset) GetStorageGroupTemplateArrays() (resp []datatypes.Configuration_Storage_Group_Template_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getStorageGroupTemplateArrays", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting hourly price for this configuration. Additional options not defined in the preset may increase the cost.
 func (r Product_Package_Preset) GetTotalMinimumHourlyFee() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getTotalMinimumHourlyFee", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting monthly price for this configuration. Additional options not defined in the preset may increase the cost.
 func (r Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getTotalMinimumRecurringFee", nil, &r.Options, &resp)
 	return
 }
 
@@ -1708,43 +1708,43 @@ func (r Product_Package_Server) Offset(offset int) Product_Package_Server {
 
 // This method will grab all the package servers.
 func (r Product_Package_Server) GetAllObjects() (resp []datatypes.Product_Package_Server, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Server) GetCatalog() (resp datatypes.Product_Catalog, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getCatalog", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Server) GetItem() (resp datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getItem", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Server) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getItemPrice", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package_Server) GetObject() (resp datatypes.Product_Package_Server, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Server) GetPackage() (resp datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getPackage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Product_Package_Server) GetPreset() (resp datatypes.Product_Package_Preset, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getPreset", nil, &r.Options, &resp)
 	return
 }
 
@@ -1789,13 +1789,13 @@ func (r Product_Package_Server_Option) Offset(offset int) Product_Package_Server
 
 // This method will grab all the package server options.
 func (r Product_Package_Server_Option) GetAllOptions() (resp []datatypes.Product_Package_Server_Option, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getAllOptions", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package_Server_Option) GetObject() (resp datatypes.Product_Package_Server_Option, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -1804,7 +1804,7 @@ func (r Product_Package_Server_Option) GetOptions(typ *string) (resp []datatypes
 	params := []interface{}{
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getOptions", params, &r.Options, &resp)
 	return
 }
 
@@ -1849,19 +1849,19 @@ func (r Product_Package_Type) Offset(offset int) Product_Package_Type {
 
 // This method will return all of the available package types.
 func (r Product_Package_Type) GetAllObjects() (resp []datatypes.Product_Package_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve All the packages associated with the given package type.
 func (r Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getPackages", nil, &r.Options, &resp)
 	return
 }
 
@@ -1906,67 +1906,67 @@ func (r Product_Upgrade_Request) Offset(offset int) Product_Upgrade_Request {
 
 // When a change is made to an upgrade by Sales, this method will approve the changes that were made. A customer must acknowledge the change and approve it so that the upgrade request can proceed.
 func (r Product_Upgrade_Request) ApproveChanges() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "approveChanges", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The account that an order belongs to
 func (r Product_Upgrade_Request) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates that the upgrade request has completed or has been cancelled.
 func (r Product_Upgrade_Request) GetCompletedFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getCompletedFlag", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This is the invoice associated with the upgrade request. For hourly servers or services, an invoice will not be available.
 func (r Product_Upgrade_Request) GetInvoice() (resp datatypes.Billing_Invoice, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getInvoice", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves a SoftLayer_Product_Upgrade_Request object on your account whose ID corresponds to the ID of the init parameter passed to the SoftLayer_Product_Upgrade_Request service.
 func (r Product_Upgrade_Request) GetObject() (resp datatypes.Product_Upgrade_Request, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order record associated to the upgrade request
 func (r Product_Upgrade_Request) GetOrder() (resp datatypes.Billing_Order, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getOrder", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A server object associated with the upgrade request if any.
 func (r Product_Upgrade_Request) GetServer() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getServer", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the upgrade request.
 func (r Product_Upgrade_Request) GetStatus() (resp datatypes.Product_Upgrade_Request_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getStatus", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The ticket that is used to coordinate the upgrade process.
 func (r Product_Upgrade_Request) GetTicket() (resp datatypes.Ticket, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getTicket", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The user that placed the order.
 func (r Product_Upgrade_Request) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getUser", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A virtual server object associated with the upgrade request if any.
 func (r Product_Upgrade_Request) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "getVirtualGuest", nil, &r.Options, &resp)
 	return
 }
 
@@ -1976,6 +1976,6 @@ func (r Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *d
 		maintenanceStartTime,
 		maintenanceWindowId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Product_Upgrade_Request", "updateMaintenanceWindow", params, &r.Options, &resp)
 	return
 }

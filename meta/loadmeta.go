@@ -173,14 +173,14 @@ import (
 		return r
 	}
 
-	{{range .Methods}}{{.Doc|goDoc}}
+	{{$rawbase := .Name}}{{range .Methods}}{{.Doc|goDoc}}
 	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
 		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
 			{{range .Parameters}}{{.Name|removeReserved}},
 			{{end}}
 		}
-		{{end}}err = invokeMethod({{if len .Parameters | lt 0}}params{{else}}nil{{end}}, r.Session, &r.Options, &resp)
+		{{end}}err = r.Session.DoRequest("{{$rawbase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
 	return
 	}
 	{{end}}
@@ -337,7 +337,6 @@ func createGetters(service *Type) {
 			service.Methods[m.Name] = m
 		}
 	}
-
 }
 
 func combineMethods(baseMethods map[string]Method, subclassMethods map[string]Method) map[string]Method {

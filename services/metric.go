@@ -73,7 +73,7 @@ func (r Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (r
 	params := []interface{}{
 		graphTitle,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBackboneBandwidthGraph", params, &r.Options, &resp)
 	return
 }
 
@@ -85,7 +85,7 @@ func (r Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, 
 		typ,
 		rollupSeconds,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthData", params, &r.Options, &resp)
 	return
 }
 
@@ -100,7 +100,7 @@ func (r Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time,
 		graphHeight,
 		doNotShowTimeZone,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthGraph", params, &r.Options, &resp)
 	return
 }
 
@@ -112,7 +112,7 @@ func (r Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time,
 		direction,
 		typ,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthTotal", params, &r.Options, &resp)
 	return
 }
 
@@ -121,7 +121,7 @@ func (r Metric_Tracking_Object) GetCustomGraphData(graphContainer *datatypes.Con
 	params := []interface{}{
 		graphContainer,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getCustomGraphData", params, &r.Options, &resp)
 	return
 }
 
@@ -132,7 +132,7 @@ func (r Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time
 		endDate,
 		graphType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getDetailsForDateRange", params, &r.Options, &resp)
 	return
 }
 
@@ -143,19 +143,19 @@ func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateT
 		endDateTime,
 		graphType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getGraph", params, &r.Options, &resp)
 	return
 }
 
 // Returns a collection of metric data types that can be retrieved for a metric tracking object.
 func (r Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container_Metric_Data_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getMetricDataTypes", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Metric_Tracking_Object object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Metric_Tracking_Object service. You can only tracking objects that are associated with your SoftLayer account or services.
 func (r Metric_Tracking_Object) GetObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -164,7 +164,7 @@ func (r Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.Co
 	params := []interface{}{
 		graphType,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummary", params, &r.Options, &resp)
 	return
 }
 
@@ -176,13 +176,13 @@ func (r Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, en
 		validTypes,
 		summaryPeriod,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummaryData", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of data that a tracking object polls.
 func (r Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Object_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getType", nil, &r.Options, &resp)
 	return
 }
 
@@ -227,6 +227,6 @@ func (r Metric_Tracking_Object_Bandwidth_Summary) Offset(offset int) Metric_Trac
 
 // no documentation yet
 func (r Metric_Tracking_Object_Bandwidth_Summary) GetObject() (resp datatypes.Metric_Tracking_Object_Bandwidth_Summary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object_Bandwidth_Summary", "getObject", nil, &r.Options, &resp)
 	return
 }

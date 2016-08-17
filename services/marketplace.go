@@ -70,7 +70,7 @@ func (r Marketplace_Partner) Offset(offset int) Marketplace_Partner {
 
 // no documentation yet
 func (r Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partner, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
@@ -79,13 +79,13 @@ func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp [
 	params := []interface{}{
 		searchTerm,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllPublishedPartners", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAttachments", nil, &r.Options, &resp)
 	return
 }
 
@@ -94,7 +94,7 @@ func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Ma
 	params := []interface{}{
 		non,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getFeaturedPartners", params, &r.Options, &resp)
 	return
 }
 
@@ -103,37 +103,37 @@ func (r Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_P
 	params := []interface{}{
 		name,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getFile", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Marketplace_Partner) GetLogoMedium() (resp datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getLogoMedium", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Marketplace_Partner) GetLogoMediumTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getLogoMediumTemp", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Marketplace_Partner) GetLogoSmall() (resp datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getLogoSmall", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Marketplace_Partner) GetLogoSmallTemp() (resp datatypes.Marketplace_Partner_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getLogoSmallTemp", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Marketplace_Partner) GetObject() (resp datatypes.Marketplace_Partner, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -142,6 +142,6 @@ func (r Marketplace_Partner) GetPartnerByUrlIdentifier(urlIdentifier *string) (r
 	params := []interface{}{
 		urlIdentifier,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getPartnerByUrlIdentifier", params, &r.Options, &resp)
 	return
 }

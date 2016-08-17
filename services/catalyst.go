@@ -70,13 +70,13 @@ func (r Catalyst_Company_Type) Offset(offset int) Catalyst_Company_Type {
 
 // <<<EOT
 func (r Catalyst_Company_Type) GetAllObjects() (resp []datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Company_Type", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Company_Type) GetObject() (resp datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Company_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -121,67 +121,67 @@ func (r Catalyst_Enrollment) Offset(offset int) Catalyst_Enrollment {
 
 // Retrieve
 func (r Catalyst_Enrollment) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Catalyst_Enrollment) GetAffiliate() (resp datatypes.Catalyst_Affiliate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getAffiliate", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetAffiliates() (resp []datatypes.Catalyst_Affiliate, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getAffiliates", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Catalyst_Enrollment) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getCompanyType", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetCompanyTypes() (resp []datatypes.Catalyst_Company_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getCompanyTypes", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestAnnualRevenueOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestAnnualRevenueOptions", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestUserCountOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestUserCountOptions", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestYearsInOperationOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestYearsInOperationOptions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Catalyst_Enrollment) GetIsActiveFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getIsActiveFlag", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Catalyst_Enrollment) GetObject() (resp datatypes.Catalyst_Enrollment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Catalyst_Enrollment) GetRepresentative() (resp datatypes.User_Employee, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getRepresentative", nil, &r.Options, &resp)
 	return
 }
 
@@ -191,7 +191,7 @@ func (r Catalyst_Enrollment) RequestManualEnrollment(request *datatypes.Containe
 	params := []interface{}{
 		request,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "requestManualEnrollment", params, &r.Options, &resp)
 	return
 }
 
@@ -200,6 +200,6 @@ func (r Catalyst_Enrollment) RequestSelfEnrollment(enrollmentRequest *datatypes.
 	params := []interface{}{
 		enrollmentRequest,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "requestSelfEnrollment", params, &r.Options, &resp)
 	return
 }

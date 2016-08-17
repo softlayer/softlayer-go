@@ -70,31 +70,31 @@ func (r Software_AccountLicense) Offset(offset int) Software_AccountLicense {
 
 // Retrieve The customer account this Account License belongs to.
 func (r Software_AccountLicense) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_AccountLicense) GetAllObjects() (resp []datatypes.Software_AccountLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a software account license.
 func (r Software_AccountLicense) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_AccountLicense) GetObject() (resp datatypes.Software_AccountLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Software_Description that this account license is for.
 func (r Software_AccountLicense) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
@@ -143,25 +143,25 @@ func (r Software_Component) Offset(offset int) Software_Component {
 
 // Retrieve The average amount of time that a software component takes to install.
 func (r Software_Component) GetAverageInstallationDuration() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getAverageInstallationDuration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a software component.
 func (r Software_Component) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware this Software Component is installed upon.
 func (r Software_Component) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getHardware", nil, &r.Options, &resp)
 	return
 }
 
 // Attempt to retrieve the file associated with a software component.  If the software component does not support downloading license files an exception will be thrown.
 func (r Software_Component) GetLicenseFile() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getLicenseFile", nil, &r.Options, &resp)
 	return
 }
 
@@ -169,43 +169,43 @@ func (r Software_Component) GetLicenseFile() (resp string, err error) {
 //
 // The best way to get software components is through getSoftwareComponents from the Hardware service.
 func (r Software_Component) GetObject() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve History Records for Software Passwords.
 func (r Software_Component) GetPasswordHistory() (resp []datatypes.Software_Component_Password_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswordHistory", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswords", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Software Description of this Software Component.
 func (r Software_Component) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The License this Software Component uses.
 func (r Software_Component) GetSoftwareLicense() (resp datatypes.Software_License, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getSoftwareLicense", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component) GetVendorSetUpConfiguration() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getVendorSetUpConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guest this software component is installed upon.
 func (r Software_Component) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getVirtualGuest", nil, &r.Options, &resp)
 	return
 }
 
@@ -250,67 +250,67 @@ func (r Software_Component_AntivirusSpyware) Offset(offset int) Software_Compone
 
 // Retrieve The average amount of time that a software component takes to install.
 func (r Software_Component_AntivirusSpyware) GetAverageInstallationDuration() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getAverageInstallationDuration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a software component.
 func (r Software_Component_AntivirusSpyware) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware this Software Component is installed upon.
 func (r Software_Component_AntivirusSpyware) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getHardware", nil, &r.Options, &resp)
 	return
 }
 
 // Attempt to retrieve the file associated with a software component.  If the software component does not support downloading license files an exception will be thrown.
 func (r Software_Component_AntivirusSpyware) GetLicenseFile() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getLicenseFile", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component_AntivirusSpyware) GetObject() (resp datatypes.Software_Component_AntivirusSpyware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve History Records for Software Passwords.
 func (r Software_Component_AntivirusSpyware) GetPasswordHistory() (resp []datatypes.Software_Component_Password_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswordHistory", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component_AntivirusSpyware) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswords", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Software Description of this Software Component.
 func (r Software_Component_AntivirusSpyware) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The License this Software Component uses.
 func (r Software_Component_AntivirusSpyware) GetSoftwareLicense() (resp datatypes.Software_License, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getSoftwareLicense", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component_AntivirusSpyware) GetVendorSetUpConfiguration() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getVendorSetUpConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guest this software component is installed upon.
 func (r Software_Component_AntivirusSpyware) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getVirtualGuest", nil, &r.Options, &resp)
 	return
 }
 
@@ -325,7 +325,7 @@ func (r Software_Component_AntivirusSpyware) UpdateAntivirusSpywarePolicy(newPol
 		newPolicy,
 		enforce,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "updateAntivirusSpywarePolicy", params, &r.Options, &resp)
 	return
 }
 
@@ -370,73 +370,73 @@ func (r Software_Component_HostIps) Offset(offset int) Software_Component_HostIp
 
 // Retrieve The average amount of time that a software component takes to install.
 func (r Software_Component_HostIps) GetAverageInstallationDuration() (resp uint, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getAverageInstallationDuration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a software component.
 func (r Software_Component_HostIps) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
 // Get the current Host IPS policies.
 func (r Software_Component_HostIps) GetCurrentHostIpsPolicies() (resp []datatypes.Container_Software_Component_HostIps_Policy, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getCurrentHostIpsPolicies", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware this Software Component is installed upon.
 func (r Software_Component_HostIps) GetHardware() (resp datatypes.Hardware, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getHardware", nil, &r.Options, &resp)
 	return
 }
 
 // Attempt to retrieve the file associated with a software component.  If the software component does not support downloading license files an exception will be thrown.
 func (r Software_Component_HostIps) GetLicenseFile() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getLicenseFile", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component_HostIps) GetObject() (resp datatypes.Software_Component_HostIps, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve History Records for Software Passwords.
 func (r Software_Component_HostIps) GetPasswordHistory() (resp []datatypes.Software_Component_Password_History, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswordHistory", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component_HostIps) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswords", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The Software Description of this Software Component.
 func (r Software_Component_HostIps) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The License this Software Component uses.
 func (r Software_Component_HostIps) GetSoftwareLicense() (resp datatypes.Software_License, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getSoftwareLicense", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component_HostIps) GetVendorSetUpConfiguration() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getVendorSetUpConfiguration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The virtual guest this software component is installed upon.
 func (r Software_Component_HostIps) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getVirtualGuest", nil, &r.Options, &resp)
 	return
 }
 
@@ -451,7 +451,7 @@ func (r Software_Component_HostIps) UpdateHipsPolicies(newIpsMode *string, newIp
 		newApplicationRuleset,
 		newEnforcementPolicy,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "updateHipsPolicies", params, &r.Options, &resp)
 	return
 }
 
@@ -499,7 +499,7 @@ func (r Software_Component_Password) CreateObject(templateObject *datatypes.Soft
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -508,13 +508,13 @@ func (r Software_Component_Password) CreateObjects(templateObjects []datatypes.S
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "createObjects", params, &r.Options, &resp)
 	return
 }
 
 // Delete a password from a software component.
 func (r Software_Component_Password) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -523,7 +523,7 @@ func (r Software_Component_Password) DeleteObjects(templateObjects []datatypes.S
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "deleteObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -532,7 +532,7 @@ func (r Software_Component_Password) EditObject(templateObject *datatypes.Softwa
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "editObject", params, &r.Options, &resp)
 	return
 }
 
@@ -541,25 +541,25 @@ func (r Software_Component_Password) EditObjects(templateObjects []datatypes.Sof
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "editObjects", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Component_Password) GetObject() (resp datatypes.Software_Component_Password, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Software_Component instance that this username/password pair is valid for.
 func (r Software_Component_Password) GetSoftware() (resp datatypes.Software_Component, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "getSoftware", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve SSH keys to be installed on the server during provisioning or an OS reload.
 func (r Software_Component_Password) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "getSshKeys", nil, &r.Options, &resp)
 	return
 }
 
@@ -608,91 +608,91 @@ func (r Software_Description) Offset(offset int) Software_Description {
 
 // no documentation yet
 func (r Software_Description) GetAllObjects() (resp []datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Software_Description) GetAttributes() (resp []datatypes.Software_Description_Attribute, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAttributes", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average amount of time that a software description takes to install.
 func (r Software_Description) GetAverageInstallationDuration() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAverageInstallationDuration", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A list of the software descriptions that are compatible with this software description.
 func (r Software_Description) GetCompatibleSoftwareDescriptions() (resp []datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getCompatibleSoftwareDescriptions", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The feature attributes of a software description.
 func (r Software_Description) GetFeatures() (resp []datatypes.Software_Description_Feature, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getFeatures", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The latest version of a software description.
 func (r Software_Description) GetLatestVersion() (resp []datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getLatestVersion", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Software_Description) GetObject() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The various product items to which this software description is linked.
 func (r Software_Description) GetProductItems() (resp []datatypes.Product_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getProductItems", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This details the provisioning transaction group for this software. This is only valid for Operating System software.
 func (r Software_Description) GetProvisionTransactionGroup() (resp datatypes.Provisioning_Version1_Transaction_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getProvisionTransactionGroup", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The transaction group that a software description belongs to. A transaction group is a sequence of transactions that must be performed in a specific order for the installation of software.
 func (r Software_Description) GetReloadTransactionGroup() (resp datatypes.Provisioning_Version1_Transaction_Group, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getReloadTransactionGroup", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The default user created for a given a software description.
 func (r Software_Description) GetRequiredUser() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getRequiredUser", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Software Licenses that govern this Software Description.
 func (r Software_Description) GetSoftwareLicenses() (resp []datatypes.Software_License, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getSoftwareLicenses", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A suggestion for an upgrade path from this Software Description
 func (r Software_Description) GetUpgradeSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getUpgradeSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A suggestion for an upgrade path from this Software Description (Deprecated - Use upgradeSoftwareDescription)
 func (r Software_Description) GetUpgradeSwDesc() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getUpgradeSwDesc", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Software_Description) GetValidFilesystemTypes() (resp []datatypes.Configuration_Storage_Filesystem_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getValidFilesystemTypes", nil, &r.Options, &resp)
 	return
 }
 
@@ -737,48 +737,48 @@ func (r Software_VirtualLicense) Offset(offset int) Software_VirtualLicense {
 
 // Retrieve The customer account this Virtual License belongs to.
 func (r Software_VirtualLicense) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The billing item for a software virtual license.
 func (r Software_VirtualLicense) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The hardware record to which the software virtual license is assigned.
 func (r Software_VirtualLicense) GetHostHardware() (resp datatypes.Hardware_Server, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getHostHardware", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The IP Address record associated with a virtual license.
 func (r Software_VirtualLicense) GetIpAddressRecord() (resp datatypes.Network_Subnet_IpAddress, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getIpAddressRecord", nil, &r.Options, &resp)
 	return
 }
 
 // Attempt to retrieve the file associated with a virtual license, if such a file exists.  If there is no file for this virtual license, calling this method will either throw an exception or return false.
 func (r Software_VirtualLicense) GetLicenseFile() (resp []byte, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getLicenseFile", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Software_VirtualLicense object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Software_VirtualLicense service. You can only retrieve Virtual Licenses assigned to your account number.
 func (r Software_VirtualLicense) GetObject() (resp datatypes.Software_VirtualLicense, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer_Software_Description that this virtual license is for.
 func (r Software_VirtualLicense) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getSoftwareDescription", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subnet this Virtual License's IP address belongs to.
 func (r Software_VirtualLicense) GetSubnet() (resp datatypes.Network_Subnet, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Software_VirtualLicense", "getSubnet", nil, &r.Options, &resp)
 	return
 }

@@ -75,7 +75,7 @@ func (r Dns_Domain) CreateARecord(host *string, data *string, ttl *int) (resp da
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createARecord", params, &r.Options, &resp)
 	return
 }
 
@@ -86,7 +86,7 @@ func (r Dns_Domain) CreateAaaaRecord(host *string, data *string, ttl *int) (resp
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createAaaaRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -97,7 +97,7 @@ func (r Dns_Domain) CreateCnameRecord(host *string, data *string, ttl *int) (res
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createCnameRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -109,7 +109,7 @@ func (r Dns_Domain) CreateMxRecord(host *string, data *string, ttl *int, mxPrior
 		ttl,
 		mxPriority,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createMxRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -120,7 +120,7 @@ func (r Dns_Domain) CreateNsRecord(host *string, data *string, ttl *int) (resp d
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createNsRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -145,7 +145,7 @@ func (r Dns_Domain) CreateObject(templateObject *datatypes.Dns_Domain) (resp dat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -154,7 +154,7 @@ func (r Dns_Domain) CreateObjects(templateObjects []datatypes.Dns_Domain) (resp 
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -165,7 +165,7 @@ func (r Dns_Domain) CreatePtrRecord(ipAddress *string, ptrRecord *string, ttl *i
 		ptrRecord,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createPtrRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -176,7 +176,7 @@ func (r Dns_Domain) CreateSpfRecord(host *string, data *string, ttl *int) (resp 
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createSpfRecord", params, &r.Options, &resp)
 	return
 }
 
@@ -187,19 +187,19 @@ func (r Dns_Domain) CreateTxtRecord(host *string, data *string, ttl *int) (resp 
 		data,
 		ttl,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createTxtRecord", params, &r.Options, &resp)
 	return
 }
 
 // deleteObject permanently removes a domain and all of it's associated resource records from the softlayer name servers. '''This cannot be undone.''' Be wary of running this method. If you remove a domain in error you will need to re-create it by creating a new SoftLayer_Dns_Domain object.
 func (r Dns_Domain) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that owns a domain.
 func (r Dns_Domain) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
@@ -208,37 +208,37 @@ func (r Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain, 
 	params := []interface{}{
 		name,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getByDomainName", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve A flag indicating that the dns domain record is a managed resource.
 func (r Dns_Domain) GetManagedResourceFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getManagedResourceFlag", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain service. You can only retrieve domains that are assigned to your SoftLayer account.
 func (r Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
 func (r Dns_Domain) GetResourceRecords() (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getResourceRecords", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The secondary DNS record that defines this domain as being managed through zone transfers.
 func (r Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getSecondary", nil, &r.Options, &resp)
 	return
 }
 
 // Return a SoftLayer hosted domain and resource records' data formatted as zone file.
 func (r Dns_Domain) GetZoneFileContents() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getZoneFileContents", nil, &r.Options, &resp)
 	return
 }
 
@@ -286,7 +286,7 @@ func (r Dns_Domain_Registration) AddNameserversToDomain(nameservers []string) (r
 	params := []interface{}{
 		nameservers,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "addNameserversToDomain", params, &r.Options, &resp)
 	return
 }
 
@@ -295,37 +295,37 @@ func (r Dns_Domain_Registration) DeleteRegisteredNameserver(nameserver *string) 
 	params := []interface{}{
 		nameserver,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "deleteRegisteredNameserver", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer customer account that the domain is registered to.
 func (r Dns_Domain_Registration) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
 // The getAuthenticationCode method retrieves the authentication code for the domain.
 func (r Dns_Domain_Registration) GetAuthenticationCode() (resp string, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getAuthenticationCode", nil, &r.Options, &resp)
 	return
 }
 
 // The getDomainInformation method retrieves all the information for a domain.
 func (r Dns_Domain_Registration) GetDomainInformation() (resp datatypes.Container_Dns_Domain_Registration_Information, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getDomainInformation", nil, &r.Options, &resp)
 	return
 }
 
 // The getDomainNameservers method retrieve nameservers information for domain.
 func (r Dns_Domain_Registration) GetDomainNameservers() (resp []datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getDomainNameservers", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain registration status.
 func (r Dns_Domain_Registration) GetDomainRegistrationStatus() (resp datatypes.Dns_Domain_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getDomainRegistrationStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -334,37 +334,37 @@ func (r Dns_Domain_Registration) GetExtendedAttributes(domainName *string) (resp
 	params := []interface{}{
 		domainName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getExtendedAttributes", params, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_Registration object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_Registration service.
 func (r Dns_Domain_Registration) GetObject() (resp datatypes.Dns_Domain_Registration, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // The getRegisteredNameserver method retrieves registered nameservers.
 func (r Dns_Domain_Registration) GetRegisteredNameserver() (resp datatypes.Container_Dns_Domain_Registration_Nameserver, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getRegisteredNameserver", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The registrant verification status.
 func (r Dns_Domain_Registration) GetRegistrantVerificationStatus() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getRegistrantVerificationStatus", nil, &r.Options, &resp)
 	return
 }
 
 // When a domain is registered or transferred, or when the registrant contact information is changed, the registrant must reply to an email requesting them to confirm that the submitted contact information is correct. This method returns the current state of the verification request.
 func (r Dns_Domain_Registration) GetRegistrantVerificationStatusDetail() (resp datatypes.Container_Dns_Domain_Registration_Registrant_Verification_StatusDetail, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getRegistrantVerificationStatusDetail", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Dns_Domain_Registration) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getServiceProvider", nil, &r.Options, &resp)
 	return
 }
 
@@ -373,7 +373,7 @@ func (r Dns_Domain_Registration) GetTransferInformation(domainName *string) (res
 	params := []interface{}{
 		domainName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "getTransferInformation", params, &r.Options, &resp)
 	return
 }
 
@@ -381,7 +381,7 @@ func (r Dns_Domain_Registration) GetTransferInformation(domainName *string) (res
 // * Transferring of the domain name
 // * Deletion of the domain name
 func (r Dns_Domain_Registration) LockDomain() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "lockDomain", nil, &r.Options, &resp)
 	return
 }
 
@@ -390,7 +390,7 @@ func (r Dns_Domain_Registration) LookupDomain(domainName *string) (resp []dataty
 	params := []interface{}{
 		domainName,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "lookupDomain", params, &r.Options, &resp)
 	return
 }
 
@@ -399,7 +399,7 @@ func (r Dns_Domain_Registration) ModifyContact(contact *datatypes.Container_Dns_
 	params := []interface{}{
 		contact,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "modifyContact", params, &r.Options, &resp)
 	return
 }
 
@@ -410,7 +410,7 @@ func (r Dns_Domain_Registration) ModifyRegisteredNameserver(oldNameserver *strin
 		newNameserver,
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "modifyRegisteredNameserver", params, &r.Options, &resp)
 	return
 }
 
@@ -420,7 +420,7 @@ func (r Dns_Domain_Registration) RegisterNameserver(nameserver *string, ipAddres
 		nameserver,
 		ipAddress,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "registerNameserver", params, &r.Options, &resp)
 	return
 }
 
@@ -429,25 +429,25 @@ func (r Dns_Domain_Registration) RemoveNameserversFromDomain(nameservers []strin
 	params := []interface{}{
 		nameservers,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "removeNameserversFromDomain", params, &r.Options, &resp)
 	return
 }
 
 // The sendAuthenticationCode method sends the authentication code to the administrative contact for the domain.
 func (r Dns_Domain_Registration) SendAuthenticationCode() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "sendAuthenticationCode", nil, &r.Options, &resp)
 	return
 }
 
 // When a domain is registered or transferred, or when the registrant contact information is changed, the registrant must reply to an email requesting them to confirm that the submitted contact information is correct. This method sends the verification email to the registrant.
 func (r Dns_Domain_Registration) SendRegistrantVerificationEmail() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "sendRegistrantVerificationEmail", nil, &r.Options, &resp)
 	return
 }
 
 // The sendTransferApprovalEmail method resends a transfer approval email message for a transfer that is in 'pending owner approval' state, to the admin contact listed for the domain at the time that the transfer request was submitted
 func (r Dns_Domain_Registration) SendTransferApprovalEmail() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "sendTransferApprovalEmail", nil, &r.Options, &resp)
 	return
 }
 
@@ -456,13 +456,13 @@ func (r Dns_Domain_Registration) SetAuthenticationCode(authenticationCode *strin
 	params := []interface{}{
 		authenticationCode,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "setAuthenticationCode", params, &r.Options, &resp)
 	return
 }
 
 // The unlockDomain method unlocks a domain
 func (r Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration", "unlockDomain", nil, &r.Options, &resp)
 	return
 }
 
@@ -517,13 +517,13 @@ func (r Dns_Domain_Registration_Registrant_Verification_Status) Offset(offset in
 
 // no documentation yet
 func (r Dns_Domain_Registration_Registrant_Verification_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Registrant_Verification_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -577,13 +577,13 @@ func (r Dns_Domain_Registration_Status) Offset(offset int) Dns_Domain_Registrati
 
 // no documentation yet
 func (r Dns_Domain_Registration_Status) GetAllObjects() (resp []datatypes.Dns_Domain_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration_Status", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_Registration_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_Registration_Status", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -646,7 +646,7 @@ func (r Dns_Domain_ResourceRecord) CreateObject(templateObject *datatypes.Dns_Do
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -657,7 +657,7 @@ func (r Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dns
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "createObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -665,7 +665,7 @@ func (r Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dns
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
 func (r Dns_Domain_ResourceRecord) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -676,7 +676,7 @@ func (r Dns_Domain_ResourceRecord) DeleteObjects(templateObjects []datatypes.Dns
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "deleteObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -687,7 +687,7 @@ func (r Dns_Domain_ResourceRecord) EditObject(templateObject *datatypes.Dns_Doma
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "editObject", params, &r.Options, &resp)
 	return
 }
 
@@ -698,19 +698,19 @@ func (r Dns_Domain_ResourceRecord) EditObjects(templateObjects []datatypes.Dns_D
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "editObjects", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain that a resource record belongs to.
 func (r Dns_Domain_ResourceRecord) GetDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "getDomain", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
 func (r Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_ResourceRecord, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -762,7 +762,7 @@ func (r Dns_Domain_ResourceRecord_MxType) CreateObject(templateObject *datatypes
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -773,7 +773,7 @@ func (r Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []dataty
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "createObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -781,7 +781,7 @@ func (r Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []dataty
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
 func (r Dns_Domain_ResourceRecord_MxType) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -792,7 +792,7 @@ func (r Dns_Domain_ResourceRecord_MxType) DeleteObjects(templateObjects []dataty
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "deleteObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -803,7 +803,7 @@ func (r Dns_Domain_ResourceRecord_MxType) EditObject(templateObject *datatypes.D
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "editObject", params, &r.Options, &resp)
 	return
 }
 
@@ -814,19 +814,19 @@ func (r Dns_Domain_ResourceRecord_MxType) EditObjects(templateObjects []datatype
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "editObjects", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain that a resource record belongs to.
 func (r Dns_Domain_ResourceRecord_MxType) GetDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "getDomain", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord_MxType object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord_MxType service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
 func (r Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_MxType, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -874,7 +874,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) CreateObject(templateObject *datatype
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -885,7 +885,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []datat
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "createObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -893,7 +893,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []datat
 //
 // ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a resource record.
 func (r Dns_Domain_ResourceRecord_SrvType) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -904,7 +904,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) DeleteObjects(templateObjects []datat
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "deleteObjects", params, &r.Options, &resp)
 	return
 }
 
@@ -915,7 +915,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) EditObject(templateObject *datatypes.
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "editObject", params, &r.Options, &resp)
 	return
 }
 
@@ -926,19 +926,19 @@ func (r Dns_Domain_ResourceRecord_SrvType) EditObjects(templateObjects []datatyp
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "editObjects", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain that a resource record belongs to.
 func (r Dns_Domain_ResourceRecord_SrvType) GetDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "getDomain", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Domain_ResourceRecord_SrvType object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Dns_Domain_ResourceRecord_SrvType service. You can only retrieve resource records belonging to domains that are assigned to your SoftLayer account.
 func (r Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domain_ResourceRecord_SrvType, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -997,7 +997,7 @@ func (r Dns_Secondary) Offset(offset int) Dns_Secondary {
 //
 // This change can not be undone, and the record can not be converted back into a secondary DNS record once the conversion is complete.
 func (r Dns_Secondary) ConvertToPrimary() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "convertToPrimary", nil, &r.Options, &resp)
 	return
 }
 
@@ -1006,7 +1006,7 @@ func (r Dns_Secondary) CreateObject(templateObject *datatypes.Dns_Secondary) (re
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -1015,13 +1015,13 @@ func (r Dns_Secondary) CreateObjects(templateObjects []datatypes.Dns_Secondary) 
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "createObjects", params, &r.Options, &resp)
 	return
 }
 
 // Delete a secondary DNS Record. This will also remove any associated domain records and resource records on the SoftLayer nameservers that were created as a result of the zone transfers. This action cannot be undone.
 func (r Dns_Secondary) DeleteObject() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -1030,13 +1030,13 @@ func (r Dns_Secondary) EditObject(templateObject *datatypes.Dns_Secondary) (resp
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The SoftLayer account that owns a secondary DNS record.
 func (r Dns_Secondary) GetAccount() (resp datatypes.Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
@@ -1045,36 +1045,36 @@ func (r Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Secon
 	params := []interface{}{
 		name,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getByDomainName", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The domain record created by zone transfer from a secondary DNS record.
 func (r Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getDomain", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The error messages created during secondary DNS record transfer.
 func (r Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getErrorMessages", nil, &r.Options, &resp)
 	return
 }
 
 // getObject retrieves the SoftLayer_Dns_Secondary object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Dns_Secondary service. You can only retrieve a secondary DNS record that is assigned to your SoftLayer customer account.
 func (r Dns_Secondary) GetObject() (resp datatypes.Dns_Secondary, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The current status of the secondary DNS zone.
 func (r Dns_Secondary) GetStatus() (resp datatypes.Dns_Status, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getStatus", nil, &r.Options, &resp)
 	return
 }
 
 // Force a secondary DNS zone transfer by setting it's status "Transfer Now".  A zone transfer will be initiated within a minute of receiving this API call.
 func (r Dns_Secondary) TransferNow() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "transferNow", nil, &r.Options, &resp)
 	return
 }

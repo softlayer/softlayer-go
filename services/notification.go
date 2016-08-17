@@ -70,25 +70,25 @@ func (r Notification) Offset(offset int) Notification {
 
 // Use this method to retrieve all active notifications that can be subscribed to.
 func (r Notification) GetAllObjects() (resp []datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification) GetObject() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The preferences related to the notification. These are preferences are configurable and optional for subscribers to use.
 func (r Notification) GetPreferences() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification", "getPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
 func (r Notification) GetRequiredPreferences() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification", "getRequiredPreferences", nil, &r.Options, &resp)
 	return
 }
 
@@ -138,31 +138,31 @@ func (r Notification_Mobile) CreateSubscriberForMobileDevice(keyName *string, re
 		resourceTableId,
 		userRecordId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "createSubscriberForMobileDevice", params, &r.Options, &resp)
 	return
 }
 
 // Use this method to retrieve all active notifications that can be subscribed to.
 func (r Notification_Mobile) GetAllObjects() (resp []datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Mobile) GetObject() (resp datatypes.Notification_Mobile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The preferences related to the notification. These are preferences are configurable and optional for subscribers to use.
 func (r Notification_Mobile) GetPreferences() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
 func (r Notification_Mobile) GetRequiredPreferences() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getRequiredPreferences", nil, &r.Options, &resp)
 	return
 }
 
@@ -207,19 +207,19 @@ func (r Notification_Occurrence_Event) Offset(offset int) Notification_Occurrenc
 
 // <<<< EOT
 func (r Notification_Occurrence_Event) AcknowledgeNotification() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "acknowledgeNotification", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Indicates whether or not this event has been acknowledged by the user.
 func (r Notification_Occurrence_Event) GetAcknowledgedFlag() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAcknowledgedFlag", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Occurrence_Event) GetAllObjects() (resp []datatypes.Notification_Occurrence_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
@@ -228,85 +228,85 @@ func (r Notification_Occurrence_Event) GetAttachedFile(attachmentId *int) (resp 
 	params := []interface{}{
 		attachmentId,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAttachedFile", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of attachments for this event which provide supplementary information to impacted users some examples are RFO (Reason For Outage) and root cause analysis documents.
 func (r Notification_Occurrence_Event) GetAttachments() (resp []datatypes.Notification_Occurrence_Event_Attachment, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAttachments", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The first update for this event.
 func (r Notification_Occurrence_Event) GetFirstUpdate() (resp datatypes.Notification_Occurrence_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getFirstUpdate", nil, &r.Options, &resp)
 	return
 }
 
 // This method will return the number of impacted owned accounts associated with this event for the current user.
 func (r Notification_Occurrence_Event) GetImpactedAccountCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedAccountCount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of accounts impacted by this event. Each impacted account record relates directly to a [[SoftLayer_Account]].
 func (r Notification_Occurrence_Event) GetImpactedAccounts() (resp []datatypes.Notification_Occurrence_Account, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedAccounts", nil, &r.Options, &resp)
 	return
 }
 
 // This method will return the number of impacted devices associated with this event for the current user.
 func (r Notification_Occurrence_Event) GetImpactedDeviceCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedDeviceCount", nil, &r.Options, &resp)
 	return
 }
 
 // This method will return a collection of SoftLayer_Notification_Occurrence_Resource objects which is a listing of the current users' impacted devices that are associated with this event.
 func (r Notification_Occurrence_Event) GetImpactedDevices() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedDevices", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of resources impacted by this event. Each record will relate to some physical resource that the user has access to such as [[SoftLayer_Hardware]] or [[SoftLayer_Virtual_Guest]].
 func (r Notification_Occurrence_Event) GetImpactedResources() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedResources", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of users impacted by this event. Each impacted user record relates directly to a [[SoftLayer_User_Customer]].
 func (r Notification_Occurrence_Event) GetImpactedUsers() (resp []datatypes.Notification_Occurrence_User, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedUsers", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The last update for this event.
 func (r Notification_Occurrence_Event) GetLastUpdate() (resp datatypes.Notification_Occurrence_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getLastUpdate", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The type of event such as planned or unplanned maintenance.
 func (r Notification_Occurrence_Event) GetNotificationOccurrenceEventType() (resp datatypes.Notification_Occurrence_Event_Type, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getNotificationOccurrenceEventType", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Occurrence_Event) GetObject() (resp datatypes.Notification_Occurrence_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve
 func (r Notification_Occurrence_Event) GetStatusCode() (resp datatypes.Notification_Occurrence_Status_Code, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getStatusCode", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve All updates for this event.
 func (r Notification_Occurrence_Event) GetUpdates() (resp []datatypes.Notification_Occurrence_Update, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getUpdates", nil, &r.Options, &resp)
 	return
 }
 
@@ -351,43 +351,43 @@ func (r Notification_Occurrence_User) Offset(offset int) Notification_Occurrence
 
 // no documentation yet
 func (r Notification_Occurrence_User) Acknowledge() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "acknowledge", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Occurrence_User) GetAllObjects() (resp []datatypes.Notification_Occurrence_User, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Occurrence_User) GetImpactedDeviceCount() (resp int, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedDeviceCount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A collection of resources impacted by the associated event.
 func (r Notification_Occurrence_User) GetImpactedResources() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedResources", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The associated event.
 func (r Notification_Occurrence_User) GetNotificationOccurrenceEvent() (resp datatypes.Notification_Occurrence_Event, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getNotificationOccurrenceEvent", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_Occurrence_User) GetObject() (resp datatypes.Notification_Occurrence_User, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The impacted user.
 func (r Notification_Occurrence_User) GetUser() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getUser", nil, &r.Options, &resp)
 	return
 }
 
@@ -457,7 +457,7 @@ func (r Notification_User_Subscriber) CreateObject(templateObject *datatypes.Not
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -478,49 +478,49 @@ func (r Notification_User_Subscriber) EditObject(templateObject *datatypes.Notif
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The delivery methods used to send the subscribed notification.
 func (r Notification_User_Subscriber) GetDeliveryMethods() (resp []datatypes.Notification_Delivery_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getDeliveryMethods", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber) GetNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getNotification", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_User_Subscriber) GetObject() (resp datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Associated subscriber preferences used for the notification subscription. For example, preferences include number of deliveries (limit) and threshold.
 func (r Notification_User_Subscriber) GetPreferences() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferencesDetails", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscriber id to resource id mapping.
 func (r Notification_User_Subscriber) GetResourceRecord() (resp datatypes.Notification_User_Subscriber_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getResourceRecord", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve User record for the subscription.
 func (r Notification_User_Subscriber) GetUserRecord() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getUserRecord", nil, &r.Options, &resp)
 	return
 }
 
@@ -590,7 +590,7 @@ func (r Notification_User_Subscriber_Billing) CreateObject(templateObject *datat
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -611,49 +611,49 @@ func (r Notification_User_Subscriber_Billing) EditObject(templateObject *datatyp
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The delivery methods used to send the subscribed notification.
 func (r Notification_User_Subscriber_Billing) GetDeliveryMethods() (resp []datatypes.Notification_Delivery_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getDeliveryMethods", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber_Billing) GetNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getNotification", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_User_Subscriber_Billing) GetObject() (resp datatypes.Notification_User_Subscriber_Billing, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Associated subscriber preferences used for the notification subscription. For example, preferences include number of deliveries (limit) and threshold.
 func (r Notification_User_Subscriber_Billing) GetPreferences() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber_Billing) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferencesDetails", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscriber id to resource id mapping.
 func (r Notification_User_Subscriber_Billing) GetResourceRecord() (resp datatypes.Notification_User_Subscriber_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getResourceRecord", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve User record for the subscription.
 func (r Notification_User_Subscriber_Billing) GetUserRecord() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getUserRecord", nil, &r.Options, &resp)
 	return
 }
 
@@ -700,7 +700,7 @@ func (r Notification_User_Subscriber_Mobile) Offset(offset int) Notification_Use
 
 // no documentation yet
 func (r Notification_User_Subscriber_Mobile) ClearSnoozeTimer() (resp bool, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "clearSnoozeTimer", nil, &r.Options, &resp)
 	return
 }
 
@@ -729,7 +729,7 @@ func (r Notification_User_Subscriber_Mobile) CreateObject(templateObject *dataty
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -750,49 +750,49 @@ func (r Notification_User_Subscriber_Mobile) EditObject(templateObject *datatype
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "editObject", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve The delivery methods used to send the subscribed notification.
 func (r Notification_User_Subscriber_Mobile) GetDeliveryMethods() (resp []datatypes.Notification_Delivery_Method, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getDeliveryMethods", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber_Mobile) GetNotification() (resp datatypes.Notification, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getNotification", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_User_Subscriber_Mobile) GetObject() (resp datatypes.Notification_User_Subscriber_Mobile, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getObject", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Associated subscriber preferences used for the notification subscription. For example, preferences include number of deliveries (limit) and threshold.
 func (r Notification_User_Subscriber_Mobile) GetPreferences() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferences", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber_Mobile) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferencesDetails", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The subscriber id to resource id mapping.
 func (r Notification_User_Subscriber_Mobile) GetResourceRecord() (resp datatypes.Notification_User_Subscriber_Resource, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getResourceRecord", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve User record for the subscription.
 func (r Notification_User_Subscriber_Mobile) GetUserRecord() (resp datatypes.User_Customer, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getUserRecord", nil, &r.Options, &resp)
 	return
 }
 
@@ -802,7 +802,7 @@ func (r Notification_User_Subscriber_Mobile) SetSnoozeTimer(start *int, end *int
 		start,
 		end,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "setSnoozeTimer", params, &r.Options, &resp)
 	return
 }
 
@@ -852,7 +852,7 @@ func (r Notification_User_Subscriber_Preference) CreateObject(templateObject *da
 	params := []interface{}{
 		templateObject,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Preference", "createObject", params, &r.Options, &resp)
 	return
 }
 
@@ -861,24 +861,24 @@ func (r Notification_User_Subscriber_Preference) EditObjects(templateObjects []d
 	params := []interface{}{
 		templateObjects,
 	}
-	err = invokeMethod(params, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Preference", "editObjects", params, &r.Options, &resp)
 	return
 }
 
 // Retrieve Details such name, keyname, minimum and maximum values for the preference.
 func (r Notification_User_Subscriber_Preference) GetDefaultPreference() (resp datatypes.Notification_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Preference", "getDefaultPreference", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve Details of the subscriber tied to the preference.
 func (r Notification_User_Subscriber_Preference) GetNotificationUserSubscriber() (resp datatypes.Notification_User_Subscriber, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Preference", "getNotificationUserSubscriber", nil, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
 func (r Notification_User_Subscriber_Preference) GetObject() (resp datatypes.Notification_User_Subscriber_Preference, err error) {
-	err = invokeMethod(nil, r.Session, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Preference", "getObject", nil, &r.Options, &resp)
 	return
 }
