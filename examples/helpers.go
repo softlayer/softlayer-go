@@ -49,21 +49,21 @@ func main() {
 		},
 	}
 
-	complete, err := order.CheckBillingOrderStatus(sess, &receipt, []string{"COMPLETE", "PENDING"})
+	complete, _, err := order.CheckBillingOrderStatus(sess, &receipt, []string{"COMPLETE", "PENDING"})
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Printf("Order in COMPLETE or PENDING status: %t\n", complete)
 	}
 
-	complete, err = order.CheckBillingOrderStatus(sess, &receipt, []string{"PENDING", "CANCELLED"})
+	complete, _, err = order.CheckBillingOrderStatus(sess, &receipt, []string{"PENDING", "CANCELLED"})
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Printf("Order in CANCELLED or PENDING status: %t\n", complete)
 	}
 
-	complete, err = order.CheckBillingOrderComplete(sess, &receipt)
+	complete, _, err = order.CheckBillingOrderComplete(sess, &receipt)
 	if err != nil {
 		fmt.Println(err)
 	} else {
