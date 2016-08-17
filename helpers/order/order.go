@@ -35,13 +35,13 @@ func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container
 		GetObject()
 
 	if err != nil {
-		return false, err
+		return false, nil, err
 	}
 
 	currentStatus := *item.BillingItem.ProvisionTransaction.TransactionStatus.Name
 	for _, status := range statuses {
 		if currentStatus == status {
-			return true, nil
+			return true, &item, nil
 		}
 	}
 
