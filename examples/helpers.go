@@ -26,7 +26,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/session"
 )
 
-func main() {
+func testHelpers() {
 	sess := session.New() // default endpoint
 
 	sess.Debug = true
