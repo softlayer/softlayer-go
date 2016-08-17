@@ -21,7 +21,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/filter"
 )
 
-func main() {
+func testFilters() {
 	fmt.Println(filter.Path("virtualGuests.hostname").Eq("example.com").Build())
 
 	fmt.Println(
