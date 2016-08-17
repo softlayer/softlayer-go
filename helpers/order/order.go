@@ -17,15 +17,16 @@
 package order
 
 import (
-	"github.ibm.com/riethm/gopherlayer/datatypes"
-	"github.ibm.com/riethm/gopherlayer/services"
-	"github.ibm.com/riethm/gopherlayer/session"
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
+	"github.ibm.com/riethm/gopherlayer.git/services"
+	"github.ibm.com/riethm/gopherlayer.git/session"
 )
 
 // CheckBillingOrderStatus returns true if the status of the billing order for
 // the provided product order receipt is in the list of provided statuses.
-// Returns false otherwise
-func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt, statuses []string) (bool, error) {
+// Returns false otherwise, along with the billing order item used to check the statuses,
+// and any error encountered.
+func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt, statuses []string) (bool, *datatypes.Billing_Order_Item, error) {
 	service := services.GetBillingOrderItemService(sess)
 
 	item, err := service.
@@ -44,11 +45,12 @@ func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container
 		}
 	}
 
-	return false, nil
+	return false, item.BillingItem, nil
 }
 
 // CheckBillingOrderComplete returns true if the status of the billing order for
-// the provided product order receipt is "COMPLETE".  Returns false otherwise
-func CheckBillingOrderComplete(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt) (bool, error) {
+// the provided product order receipt is "COMPLETE". Returns false otherwise,
+// along with the billing order item used to check the statuses, and any error encountered.
+func CheckBillingOrderComplete(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt) (bool, *datatypes.Billing_Order_Item, error) {
 	return CheckBillingOrderStatus(sess, receipt, []string{"COMPLETE"})
 }
