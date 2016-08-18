@@ -74,7 +74,6 @@ type Parameter struct {
 // Define custom template functions
 var fMap = template.FuncMap{
 	"convertType":       ConvertType,           // Converts SoftLayer types to Go types
-	"prefixWithPackage": PrefixWithPackageName, // Prepend a type with the given package name
 	"removePrefix":      RemovePrefix,          // Remove 'SoftLayer_' prefix. if it exists
 	"removeReserved":    RemoveReservedWords,   // Substitute language-reserved identifiers
 	"titleCase":         strings.Title,         // TitleCase the argument
@@ -114,7 +113,7 @@ type {{.Name|removePrefix}} struct {
 	{{.Base|removePrefix}}
 
 	{{range .Properties}}{{.Doc|goDoc}}
-	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{.Type|convertType|removePrefix}}`+
+	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{convertType .Type "datatypes"}}`+
 	"`json:\"{{.Name}},omitempty\"`"+`
 
 	{{end}}
@@ -174,7 +173,7 @@ import (
 	}
 
 	{{$rawbase := .Name}}{{range .Methods}}{{.Doc|goDoc}}
-	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{.Type|convertType|prefixWithPackage "datatypes"}}, {{end}}err error) {
+	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{convertType .Type "services"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
 		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
 			{{range .Parameters}}{{.Name|removeReserved}},
@@ -260,19 +259,10 @@ func RemovePrefix(args ...interface{}) string {
 	return s
 }
 
-func PrefixWithPackageName(args ...interface{}) string {
-	p := args[0].(string)
-	s := args[1].(string)
-
-	if !strings.HasPrefix(s, "SoftLayer_") && s != "Time" {
-		return s
-	}
-
-	return p + "." + RemovePrefix(s)
-}
-
+// ConvertType takes the name of the type to convert, and the package context.
 func ConvertType(args ...interface{}) string {
 	t := args[0].(string)
+	p := args[1].(string)
 
 	// Convert softlayer types to golang types
 	switch t {
@@ -281,13 +271,32 @@ func ConvertType(args ...interface{}) string {
 	case "boolean":
 		return "bool"
 	case "dateTime":
-		return "Time"
+		if p != "datatypes" {
+			return "datatypes.Time"
+		} else {
+			return "Time"
+		}
 	case "decimal", "float":
 		return "float64"
 	case "base64Binary":
 		return "[]byte"
 	case "json", "enum":
 		return "string"
+	}
+
+	if strings.HasPrefix(t, "SoftLayer_") {
+		t = RemovePrefix(t)
+		if p != "datatypes" {
+			return "datatypes." + t
+		}
+		return t
+	}
+
+	if strings.HasPrefix(t, "McAfee_") {
+		if p != "datatypes" {
+			return "datatypes." + t
+		}
+		return t
 	}
 
 	return t
