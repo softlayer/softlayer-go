@@ -110,7 +110,7 @@ type Product_Item struct {
 	BundleCount *uint `json:"bundleCount,omitempty"`
 
 	// Some Product Items have capacity information such as RAM and bandwidth, and others. This provides the numerical representation of the capacity given in the description of this product item.
-	Capacity *float64 `json:"capacity,omitempty"`
+	Capacity *string `json:"capacity,omitempty"`
 
 	// This flag indicates that this product is restricted by a capacity on a related product.
 	CapacityRestrictedProductFlag *bool `json:"capacityRestrictedProductFlag,omitempty"`
