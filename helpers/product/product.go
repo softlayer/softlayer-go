@@ -23,17 +23,19 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/filter"
 	"github.ibm.com/riethm/gopherlayer.git/services"
 	"github.ibm.com/riethm/gopherlayer.git/session"
-	"time"
 )
 
 // Get a list of product item prices for a specific product package type and
-// a specific set of price category id / product item capacity combinations.
-// These combinations are passed as a map of integers (category id) mapped
+// a specific set of price category code / product item capacity combinations.
+// These combinations are passed as a map of integers (category code) mapped
 // to strings (capacity)
+// For example, these are the options to specify an upgrade to 8 cpus and 32
+// GB or memory:
+// {"guest_core": "8", "ram": "32"}
 func GetProductPrices(
-	sess session.Session,
+	sess *session.Session,
 	packageType string,
-	options map[int]string,
+	options map[string]string,
 ) ([]datatypes.Product_Item_Price, error) {
 
 	service := services.GetProductPackageService(sess)
@@ -61,7 +63,7 @@ func GetProductPrices(
 	// 2. Get product items for package id
 	productItems, err := service.
 		Id(*packages[0].Id).
-		Mask("id,capacity,description,units,keyName,prices[id,categories[id,name]]").
+		Mask("id,capacity,description,units,keyName,prices[id,categories[id,name,categoryCode]]").
 		GetItems()
 	if err != nil {
 		return nil, err
@@ -72,7 +74,7 @@ func GetProductPrices(
 	for _, productItem := range productItems {
 		for _, category := range productItem.Prices[0].Categories {
 			for k, v := range options {
-				if productItem.Capacity != nil && *productItem.Capacity == v && *category.Id == k {
+				if productItem.Capacity != nil && *productItem.Capacity == v && *category.CategoryCode == k {
 					prices = append(prices, productItem.Prices[0])
 				}
 			}

@@ -23,6 +23,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/helpers/product"
 	"github.ibm.com/riethm/gopherlayer.git/services"
 	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
 // Upgrade a virtual guest specified with an id, and a set of features to
@@ -31,34 +32,35 @@ import (
 // The features to upgrade are specified as the options used in
 // GetProductPrices().
 func UpgradeVirtualGuest(
-	sess session.Session,
+	sess *session.Session,
 	id int,
-	options map[int]string,
-	when time.Time,
+	options map[string]string,
+	when ...time.Time,
 ) (datatypes.Container_Product_Order_Receipt, error) {
 
 	prices, err := product.GetProductPrices(sess, "VIRTUAL_SERVER_INSTANCE", options)
 	if err != nil {
-		return nil, err
+		return datatypes.Container_Product_Order_Receipt{}, err
 	}
 
-	if when == nil {
-		when = time.Now().UTC().Format(time.RFC3339)
+	upgradeTime := time.Now().UTC().Format(time.RFC3339)
+	if len(when) > 0  {
+		upgradeTime = when[0].UTC().Format(time.RFC3339)
 	}
 
 	order := datatypes.Container_Product_Order{
 		VirtualGuests: []datatypes.Virtual_Guest{
-			{Id: id},
+			{Id: &id},
 		},
 		Prices: prices,
 		Properties: []datatypes.Container_Product_Order_Property{
 			{
-				Name:  "MAINTENANCE_WINDOW",
-				Value: when,
+				Name:  sl.String("MAINTENANCE_WINDOW"),
+				Value: &upgradeTime,
 			},
 		},
 	}
 
 	orderService := services.GetProductOrderService(sess)
-	return orderService.PlaceOrder(order, false)
+	return orderService.PlaceOrder(&order, sl.Bool(false))
 }
