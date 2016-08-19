@@ -25,8 +25,18 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/session"
 )
 
-// Get a list of product item prices for a specific product package type and
-// a specific set of price category code / product item capacity combinations.
+// CPUCategoryCode Category code for cpus
+const CPUCategoryCode = "guest_core"
+
+// MemoryCategoryCode Category code for Memory
+const MemoryCategoryCode = "ram"
+
+// NICSpeedCategoryCode Category code for NIC speed
+const NICSpeedCategoryCode = "port_speed"
+
+// GetProductPrices Get a list of product item prices for a specific product
+// package type and a specific set of price category code / product item
+// capacity combinations.
 // These combinations are passed as a map of integers (category code) mapped
 // to strings (capacity)
 // For example, these are the options to specify an upgrade to 8 cpus and 32
