@@ -23,6 +23,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/filter"
 	"github.ibm.com/riethm/gopherlayer.git/services"
 	"github.ibm.com/riethm/gopherlayer.git/session"
+	"strings"
 )
 
 // CPUCategoryCode Category code for cpus
@@ -34,52 +35,98 @@ const MemoryCategoryCode = "ram"
 // NICSpeedCategoryCode Category code for NIC speed
 const NICSpeedCategoryCode = "port_speed"
 
-// GetProductPrices Get a list of product item prices for a specific product
-// package type and a specific set of price category code / product item
-// capacity combinations.
-// These combinations are passed as a map of integers (category code) mapped
-// to strings (capacity)
-// For example, these are the options to specify an upgrade to 8 cpus and 32
-// GB or memory:
-// {"guest_core": "8", "ram": "32"}
-func GetProductPrices(
+// DedicatedLoadBalancerCategoryCode Category code for Dedicated Load Balancer
+const DedicatedLoadBalancerCategoryCode = "dedicated_load_balancer"
+
+// GetPackageByType Get the Product_Package which matches the specified
+// package type
+func GetPackageByType(
 	sess *session.Session,
 	packageType string,
-	options map[string]string,
-) ([]datatypes.Product_Item_Price, error) {
+	mask ...string,
+) (datatypes.Product_Package, error) {
+
+	objectMask := "id,name,description,isActive,type[keyName]"
+	if len(mask) > 0 {
+		objectMask = mask[0]
+	}
 
 	service := services.GetProductPackageService(sess)
 
-	// 1. Get package id
+	// Get package id
 	packages, err := service.
-		Mask("id,name,description,isActive,type[keyName]").
+		Mask(objectMask).
 		Filter(
 			filter.Build(
 				filter.Path("type.keyName").Eq(packageType),
-				filter.Path("description").NotContains("OUTLET"),
-				filter.Path("name").NotContains("OUTLET"),
 			),
 		).
 		Limit(1).
 		GetAllObjects()
 	if err != nil {
-		return nil, err
+		return datatypes.Product_Package{}, err
 	}
+
+	packages = rejectOutletPackages(packages)
 
 	if len(packages) == 0 {
-		return nil, fmt.Errorf("No product packages found for %s", packageType)
+		return datatypes.Product_Package{}, fmt.Errorf("No product packages found for %s", packageType)
 	}
 
-	// 2. Get product items for package id
-	productItems, err := service.
-		Id(*packages[0].Id).
-		Mask("id,capacity,description,units,keyName,prices[id,categories[id,name,categoryCode]]").
+	return packages[0], nil
+}
+
+// rejectOutletPackages removes packages whose description or name contains the
+// string "OUTLET".
+func rejectOutletPackages(packages []datatypes.Product_Package) []datatypes.Product_Package {
+	selected := []datatypes.Product_Package{}
+
+	for _, pkg := range packages {
+		if (pkg.Name == nil || !strings.Contains(*pkg.Name, "OUTLET")) &&
+			(pkg.Description == nil || !strings.Contains(*pkg.Description, "OUTLET")) {
+
+			selected = append(selected, pkg)
+		}
+	}
+
+	return selected
+}
+
+// GetPackageProducts Get a list of product items for a specific product
+// package ID
+func GetPackageProducts(
+	sess *session.Session,
+	packageId int,
+	mask ...string,
+) ([]datatypes.Product_Item, error) {
+
+	objectMask := "id,capacity,description,units,keyName,prices[id,categories[id,name,categoryCode]]"
+	if len(mask) > 0 {
+		objectMask = mask[0]
+	}
+
+	service := services.GetProductPackageService(sess)
+
+	// Get product items for package id
+	return service.
+		Id(packageId).
+		Mask(objectMask).
 		GetItems()
-	if err != nil {
-		return nil, err
-	}
+}
 
-	// 3. Filter product items based on sets of category ids and capacity numbers
+// SelectProductPricesByCategory Get a list of Product_Item_Prices that
+// match a specific set of price category code / product item
+// capacity combinations.
+// These combinations are passed as a map of strings (category code) mapped
+// to strings (capacity)
+// For example, these are the options to specify an upgrade to 8 cpus and 32
+// GB or memory:
+// {"guest_core": "8", "ram": "32"}
+func SelectProductPricesByCategory(
+	productItems []datatypes.Product_Item,
+	options map[string]string,
+) []datatypes.Product_Item_Price {
+	// Filter product items based on sets of category codes and capacity numbers
 	prices := []datatypes.Product_Item_Price{}
 	for _, productItem := range productItems {
 		for _, category := range productItem.Prices[0].Categories {
@@ -91,5 +138,5 @@ func GetProductPrices(
 		}
 	}
 
-	return prices, nil
+	return prices
 }
