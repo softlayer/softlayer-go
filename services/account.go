@@ -399,7 +399,7 @@ func (r Account) GetAvailablePublicNetworkVlans() (resp []datatypes.Network_Vlan
 }
 
 // Returns the average disk space usage for all archive repositories.
-func (r Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
+func (r Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -409,7 +409,7 @@ func (r Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes
 }
 
 // Returns the average disk space usage for all public repositories.
-func (r Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
+func (r Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -419,7 +419,7 @@ func (r Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.
 }
 
 // Retrieve The account balance of a SoftLayer customer account. An account's balance is the amount of money owed to SoftLayer by the account holder, returned as a floating point number with two decimal places, measured in US Dollars ($USD). A negative account balance means the account holder has overpaid and is owed money by SoftLayer.
-func (r Account) GetBalance() (resp float64, err error) {
+func (r Account) GetBalance() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBalance", nil, &r.Options, &resp)
 	return
 }
@@ -1151,7 +1151,7 @@ func (r Account) GetNextInvoiceExcel(documentCreateDate *datatypes.Time) (resp [
 }
 
 // Retrieve The pre-tax total amount exempt from incubator credit for the account's next invoice. This field is now deprecated and will soon be removed. Please update all references to instead use nextInvoiceTotalAmount
-func (r Account) GetNextInvoiceIncubatorExemptTotal() (resp float64, err error) {
+func (r Account) GetNextInvoiceIncubatorExemptTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceIncubatorExemptTotal", nil, &r.Options, &resp)
 	return
 }
@@ -1181,43 +1181,43 @@ func (r Account) GetNextInvoiceTopLevelBillingItems() (resp []datatypes.Billing_
 }
 
 // Retrieve The pre-tax total amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total one-time charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalOneTimeAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total one-time tax amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalRecurringAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalRecurringAmountBeforeAccountDiscount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalRecurringAmountBeforeAccountDiscount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalRecurringAmountBeforeAccountDiscount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total recurring tax amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-func (r Account) GetNextInvoiceTotalTaxableRecurringAmount() (resp float64, err error) {
+func (r Account) GetNextInvoiceTotalTaxableRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTotalTaxableRecurringAmount", nil, &r.Options, &resp)
 	return
 }
@@ -1367,31 +1367,31 @@ func (r Account) GetPendingInvoiceTopLevelItems() (resp []datatypes.Billing_Invo
 }
 
 // Retrieve The total amount of an account's pending invoice, if one exists.
-func (r Account) GetPendingInvoiceTotalAmount() (resp float64, err error) {
+func (r Account) GetPendingInvoiceTotalAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTotalAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total one-time charges for an account's pending invoice, if one exists. In other words, it is the sum of one-time charges, setup fees, and labor fees. It does not include taxes.
-func (r Account) GetPendingInvoiceTotalOneTimeAmount() (resp float64, err error) {
+func (r Account) GetPendingInvoiceTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The sum of all the taxes related to one time charges for an account's pending invoice, if one exists.
-func (r Account) GetPendingInvoiceTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Account) GetPendingInvoiceTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total recurring amount of an account's pending invoice, if one exists.
-func (r Account) GetPendingInvoiceTotalRecurringAmount() (resp float64, err error) {
+func (r Account) GetPendingInvoiceTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total amount of the recurring taxes on an account's pending invoice, if one exists.
-func (r Account) GetPendingInvoiceTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Account) GetPendingInvoiceTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
@@ -1427,7 +1427,7 @@ func (r Account) GetPptpVpnUsers() (resp []datatypes.User_Customer, err error) {
 }
 
 // Retrieve The total recurring amount for an accounts previous revenue.
-func (r Account) GetPreviousRecurringRevenue() (resp float64, err error) {
+func (r Account) GetPreviousRecurringRevenue() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPreviousRecurringRevenue", nil, &r.Options, &resp)
 	return
 }

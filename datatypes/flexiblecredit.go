@@ -86,7 +86,7 @@ type FlexibleCredit_Enrollment struct {
 	IsActiveFlag *bool `json:"isActiveFlag,omitempty"`
 
 	// Amount of monthly credit (USD) given to the account
-	MonthlyCreditAmount *float64 `json:"monthlyCreditAmount,omitempty"`
+	MonthlyCreditAmount *Float64 `json:"monthlyCreditAmount,omitempty"`
 
 	// Employee overseeing the enrollment
 	Representative *User_Employee `json:"representative,omitempty"`

@@ -522,13 +522,13 @@ func (r Hardware) GetAvailableNetworkStorages(nasType *string) (resp []datatypes
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Hardware) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // The '''getBackendIncomingBandwidth''' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -544,7 +544,7 @@ func (r Hardware) GetBackendNetworkComponents() (resp []datatypes.Network_Compon
 }
 
 // The '''getBackendOutgoingBandwidth''' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -560,7 +560,7 @@ func (r Hardware) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 }
 
 // Retrieve A hardware's allotted bandwidth (measured in GB).
-func (r Hardware) GetBandwidthAllocation() (resp float64, err error) {
+func (r Hardware) GetBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -624,7 +624,7 @@ func (r Hardware) GetCreateObjectOptions() (resp datatypes.Container_Hardware_Co
 }
 
 // Retrieve The current billable public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware) GetCurrentBillableBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillableBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -636,13 +636,13 @@ func (r Hardware) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err 
 }
 
 // The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
-func (r Hardware) GetCurrentBillingTotal() (resp float64, err error) {
+func (r Hardware) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
 }
 
 // The '''getDailyAverage''' method calculates the average daily network traffic used by the selected server. Using the required parameter ''dateTime'' to enter a start and end date, the user retrieves this average, measure in gigabytes (GB) for the specified date range. When entering parameters, only the month, day and year are required - time entries are omitted as this method defaults the time to midnight in order to account for the entire day.
-func (r Hardware) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -742,7 +742,7 @@ func (r Hardware) GetFixedConfigurationPreset() (resp datatypes.Product_Package_
 }
 
 // The '''getFrontendIncomingBandwidth''' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ''dateTime'' parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -758,7 +758,7 @@ func (r Hardware) GetFrontendNetworkComponents() (resp []datatypes.Network_Compo
 }
 
 // The '''getFrontendOutgoingBandwidth''' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ''dateTime'' parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -844,13 +844,13 @@ func (r Hardware) GetHourlyBillingFlag() (resp bool, err error) {
 }
 
 // Retrieve The sum of all the inbound network traffic data for the last 30 days.
-func (r Hardware) GetInboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetInboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getInboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1044,7 +1044,7 @@ func (r Hardware) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 }
 
 // Retrieve A hardware's allotted bandwidth for the next billing cycle (measured in GB).
-func (r Hardware) GetNextBillingCycleBandwidthAllocation() (resp float64, err error) {
+func (r Hardware) GetNextBillingCycleBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNextBillingCycleBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -1074,13 +1074,13 @@ func (r Hardware) GetOperatingSystemReferenceCode() (resp string, err error) {
 }
 
 // Retrieve The sum of all the outbound network traffic data for the last 30 days.
-func (r Hardware) GetOutboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetOutboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getOutboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -2317,13 +2317,13 @@ func (r Hardware_Router) GetAvailableNetworkStorages(nasType *string) (resp []da
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Hardware_Router) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // The '''getBackendIncomingBandwidth''' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_Router) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Router) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -2339,7 +2339,7 @@ func (r Hardware_Router) GetBackendNetworkComponents() (resp []datatypes.Network
 }
 
 // The '''getBackendOutgoingBandwidth''' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_Router) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Router) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -2355,7 +2355,7 @@ func (r Hardware_Router) GetBackendRouters() (resp []datatypes.Hardware, err err
 }
 
 // Retrieve A hardware's allotted bandwidth (measured in GB).
-func (r Hardware_Router) GetBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_Router) GetBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -2425,7 +2425,7 @@ func (r Hardware_Router) GetCreateObjectOptions() (resp datatypes.Container_Hard
 }
 
 // Retrieve The current billable public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Router) GetCurrentBillableBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillableBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -2437,13 +2437,13 @@ func (r Hardware_Router) GetCurrentBillingDetail() (resp []datatypes.Billing_Ite
 }
 
 // The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
-func (r Hardware_Router) GetCurrentBillingTotal() (resp float64, err error) {
+func (r Hardware_Router) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
 }
 
 // The '''getDailyAverage''' method calculates the average daily network traffic used by the selected server. Using the required parameter ''dateTime'' to enter a start and end date, the user retrieves this average, measure in gigabytes (GB) for the specified date range. When entering parameters, only the month, day and year are required - time entries are omitted as this method defaults the time to midnight in order to account for the entire day.
-func (r Hardware_Router) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Router) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -2543,7 +2543,7 @@ func (r Hardware_Router) GetFixedConfigurationPreset() (resp datatypes.Product_P
 }
 
 // The '''getFrontendIncomingBandwidth''' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ''dateTime'' parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_Router) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Router) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -2559,7 +2559,7 @@ func (r Hardware_Router) GetFrontendNetworkComponents() (resp []datatypes.Networ
 }
 
 // The '''getFrontendOutgoingBandwidth''' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ''dateTime'' parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_Router) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Router) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -2645,13 +2645,13 @@ func (r Hardware_Router) GetHourlyBillingFlag() (resp bool, err error) {
 }
 
 // Retrieve The sum of all the inbound network traffic data for the last 30 days.
-func (r Hardware_Router) GetInboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetInboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getInboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Router) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -2851,7 +2851,7 @@ func (r Hardware_Router) GetNetworkVlans() (resp []datatypes.Network_Vlan, err e
 }
 
 // Retrieve A hardware's allotted bandwidth for the next billing cycle (measured in GB).
-func (r Hardware_Router) GetNextBillingCycleBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_Router) GetNextBillingCycleBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNextBillingCycleBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -2881,13 +2881,13 @@ func (r Hardware_Router) GetOperatingSystemReferenceCode() (resp string, err err
 }
 
 // Retrieve The sum of all the outbound network traffic data for the last 30 days.
-func (r Hardware_Router) GetOutboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetOutboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getOutboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Router) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Router) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -3893,19 +3893,19 @@ func (r Hardware_SecurityModule) GetAvailableNetworkStorages(nasType *string) (r
 }
 
 // Retrieve The average daily total bandwidth usage for the current billing cycle.
-func (r Hardware_SecurityModule) GetAverageDailyBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetAverageDailyBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAverageDailyBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily private bandwidth usage for the current billing cycle.
-func (r Hardware_SecurityModule) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetAverageDailyPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAverageDailyPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Hardware_SecurityModule) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -3933,7 +3933,7 @@ func (r Hardware_SecurityModule) GetBackendBandwidthUse(startDate *datatypes.Tim
 }
 
 // The '''getBackendIncomingBandwidth''' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_SecurityModule) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_SecurityModule) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -3949,7 +3949,7 @@ func (r Hardware_SecurityModule) GetBackendNetworkComponents() (resp []datatypes
 }
 
 // The '''getBackendOutgoingBandwidth''' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_SecurityModule) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_SecurityModule) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -3965,7 +3965,7 @@ func (r Hardware_SecurityModule) GetBackendRouters() (resp []datatypes.Hardware,
 }
 
 // Retrieve A hardware's allotted bandwidth (measured in GB).
-func (r Hardware_SecurityModule) GetBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -4072,7 +4072,7 @@ func (r Hardware_SecurityModule) GetControlPanel() (resp datatypes.Software_Comp
 }
 
 // Retrieve The total cost of a server, measured in US Dollars ($USD).
-func (r Hardware_SecurityModule) GetCost() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetCost() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCost", nil, &r.Options, &resp)
 	return
 }
@@ -4100,7 +4100,7 @@ func (r Hardware_SecurityModule) GetCurrentBenchmarkCertificationResultFile() (r
 }
 
 // Retrieve The current billable public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetCurrentBillableBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillableBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -4112,7 +4112,7 @@ func (r Hardware_SecurityModule) GetCurrentBillingDetail() (resp []datatypes.Bil
 }
 
 // The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
-func (r Hardware_SecurityModule) GetCurrentBillingTotal() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
 }
@@ -4139,7 +4139,7 @@ func (r Hardware_SecurityModule) GetCustomerOwnedFlag() (resp bool, err error) {
 }
 
 // The '''getDailyAverage''' method calculates the average daily network traffic used by the selected server. Using the required parameter ''dateTime'' to enter a start and end date, the user retrieves this average, measure in gigabytes (GB) for the specified date range. When entering parameters, only the month, day and year are required - time entries are omitted as this method defaults the time to midnight in order to account for the entire day.
-func (r Hardware_SecurityModule) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_SecurityModule) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -4267,7 +4267,7 @@ func (r Hardware_SecurityModule) GetFrontendBandwidthUse(startDate *datatypes.Ti
 }
 
 // The '''getFrontendIncomingBandwidth''' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ''dateTime'' parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_SecurityModule) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_SecurityModule) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -4283,7 +4283,7 @@ func (r Hardware_SecurityModule) GetFrontendNetworkComponents() (resp []datatype
 }
 
 // The '''getFrontendOutgoingBandwidth''' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ''dateTime'' parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_SecurityModule) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_SecurityModule) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -4378,19 +4378,19 @@ func (r Hardware_SecurityModule) GetHourlyBillingFlag() (resp bool, err error) {
 }
 
 // Retrieve The sum of all the inbound network traffic data for the last 30 days.
-func (r Hardware_SecurityModule) GetInboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetInboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getInboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetInboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getInboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -4625,7 +4625,7 @@ func (r Hardware_SecurityModule) GetNetworkVlans() (resp []datatypes.Network_Vla
 }
 
 // Retrieve A hardware's allotted bandwidth for the next billing cycle (measured in GB).
-func (r Hardware_SecurityModule) GetNextBillingCycleBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetNextBillingCycleBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNextBillingCycleBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -4661,19 +4661,19 @@ func (r Hardware_SecurityModule) GetOperatingSystemReferenceCode() (resp string,
 }
 
 // Retrieve The sum of all the outbound network traffic data for the last 30 days.
-func (r Hardware_SecurityModule) GetOutboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetOutboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getOutboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetOutboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getOutboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -4822,7 +4822,7 @@ func (r Hardware_SecurityModule) GetProjectedOverBandwidthAllocationFlag() (resp
 }
 
 // Retrieve The projected public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_SecurityModule) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_SecurityModule) GetProjectedPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getProjectedPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -5997,19 +5997,19 @@ func (r Hardware_Server) GetAvailableNetworkStorages(nasType *string) (resp []da
 }
 
 // Retrieve The average daily total bandwidth usage for the current billing cycle.
-func (r Hardware_Server) GetAverageDailyBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetAverageDailyBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAverageDailyBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily private bandwidth usage for the current billing cycle.
-func (r Hardware_Server) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetAverageDailyPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAverageDailyPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Hardware_Server) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -6037,7 +6037,7 @@ func (r Hardware_Server) GetBackendBandwidthUse(startDate *datatypes.Time, endDa
 }
 
 // The '''getBackendIncomingBandwidth''' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_Server) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Server) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -6053,7 +6053,7 @@ func (r Hardware_Server) GetBackendNetworkComponents() (resp []datatypes.Network
 }
 
 // The '''getBackendOutgoingBandwidth''' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
-func (r Hardware_Server) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Server) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -6069,7 +6069,7 @@ func (r Hardware_Server) GetBackendRouters() (resp []datatypes.Hardware, err err
 }
 
 // Retrieve A hardware's allotted bandwidth (measured in GB).
-func (r Hardware_Server) GetBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_Server) GetBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -6176,7 +6176,7 @@ func (r Hardware_Server) GetControlPanel() (resp datatypes.Software_Component_Co
 }
 
 // Retrieve The total cost of a server, measured in US Dollars ($USD).
-func (r Hardware_Server) GetCost() (resp float64, err error) {
+func (r Hardware_Server) GetCost() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCost", nil, &r.Options, &resp)
 	return
 }
@@ -6204,7 +6204,7 @@ func (r Hardware_Server) GetCurrentBenchmarkCertificationResultFile() (resp []by
 }
 
 // Retrieve The current billable public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetCurrentBillableBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillableBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -6216,7 +6216,7 @@ func (r Hardware_Server) GetCurrentBillingDetail() (resp []datatypes.Billing_Ite
 }
 
 // The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
-func (r Hardware_Server) GetCurrentBillingTotal() (resp float64, err error) {
+func (r Hardware_Server) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
 }
@@ -6243,7 +6243,7 @@ func (r Hardware_Server) GetCustomerOwnedFlag() (resp bool, err error) {
 }
 
 // The '''getDailyAverage''' method calculates the average daily network traffic used by the selected server. Using the required parameter ''dateTime'' to enter a start and end date, the user retrieves this average, measure in gigabytes (GB) for the specified date range. When entering parameters, only the month, day and year are required - time entries are omitted as this method defaults the time to midnight in order to account for the entire day.
-func (r Hardware_Server) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Server) GetDailyAverage(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -6371,7 +6371,7 @@ func (r Hardware_Server) GetFrontendBandwidthUse(startDate *datatypes.Time, endD
 }
 
 // The '''getFrontendIncomingBandwidth''' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ''dateTime'' parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_Server) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Server) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -6387,7 +6387,7 @@ func (r Hardware_Server) GetFrontendNetworkComponents() (resp []datatypes.Networ
 }
 
 // The '''getFrontendOutgoingBandwidth''' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ''dateTime'' parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
-func (r Hardware_Server) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp float64, err error) {
+func (r Hardware_Server) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
@@ -6482,19 +6482,19 @@ func (r Hardware_Server) GetHourlyBillingFlag() (resp bool, err error) {
 }
 
 // Retrieve The sum of all the inbound network traffic data for the last 30 days.
-func (r Hardware_Server) GetInboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetInboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getInboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetInboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getInboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -6729,7 +6729,7 @@ func (r Hardware_Server) GetNetworkVlans() (resp []datatypes.Network_Vlan, err e
 }
 
 // Retrieve A hardware's allotted bandwidth for the next billing cycle (measured in GB).
-func (r Hardware_Server) GetNextBillingCycleBandwidthAllocation() (resp float64, err error) {
+func (r Hardware_Server) GetNextBillingCycleBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNextBillingCycleBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -6765,19 +6765,19 @@ func (r Hardware_Server) GetOperatingSystemReferenceCode() (resp string, err err
 }
 
 // Retrieve The sum of all the outbound network traffic data for the last 30 days.
-func (r Hardware_Server) GetOutboundBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetOutboundBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getOutboundBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total private outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetOutboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getOutboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -6926,7 +6926,7 @@ func (r Hardware_Server) GetProjectedOverBandwidthAllocationFlag() (resp int, er
 }
 
 // Retrieve The projected public outbound bandwidth for this hardware for the current billing cycle.
-func (r Hardware_Server) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+func (r Hardware_Server) GetProjectedPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getProjectedPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }

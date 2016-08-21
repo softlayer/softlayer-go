@@ -83,7 +83,7 @@ type Catalyst_Enrollment struct {
 	IsActiveFlag *bool `json:"isActiveFlag,omitempty"`
 
 	// no documentation yet
-	MonthlyCreditAmount *float64 `json:"monthlyCreditAmount,omitempty"`
+	MonthlyCreditAmount *Float64 `json:"monthlyCreditAmount,omitempty"`
 
 	// no documentation yet
 	Representative *User_Employee `json:"representative,omitempty"`

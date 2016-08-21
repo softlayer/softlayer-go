@@ -201,7 +201,7 @@ type Account struct {
 	AvailablePublicNetworkVlans []Network_Vlan `json:"availablePublicNetworkVlans,omitempty"`
 
 	// The account balance of a SoftLayer customer account. An account's balance is the amount of money owed to SoftLayer by the account holder, returned as a floating point number with two decimal places, measured in US Dollars ($USD). A negative account balance means the account holder has overpaid and is owed money by SoftLayer.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance *Float64 `json:"balance,omitempty"`
 
 	// A count of the bandwidth allotments for an account.
 	BandwidthAllotmentCount *uint `json:"bandwidthAllotmentCount,omitempty"`
@@ -762,7 +762,7 @@ type Account struct {
 	NextBillingPublicAllotmentHardwareBandwidthDetails []Network_Bandwidth_Version1_Allotment `json:"nextBillingPublicAllotmentHardwareBandwidthDetails,omitempty"`
 
 	// The pre-tax total amount exempt from incubator credit for the account's next invoice. This field is now deprecated and will soon be removed. Please update all references to instead use nextInvoiceTotalAmount
-	NextInvoiceIncubatorExemptTotal *float64 `json:"nextInvoiceIncubatorExemptTotal,omitempty"`
+	NextInvoiceIncubatorExemptTotal *Float64 `json:"nextInvoiceIncubatorExemptTotal,omitempty"`
 
 	// A count of the billing items that will be on an account's next invoice.
 	NextInvoiceTopLevelBillingItemCount *uint `json:"nextInvoiceTopLevelBillingItemCount,omitempty"`
@@ -771,25 +771,25 @@ type Account struct {
 	NextInvoiceTopLevelBillingItems []Billing_Item `json:"nextInvoiceTopLevelBillingItems,omitempty"`
 
 	// The pre-tax total amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalAmount *float64 `json:"nextInvoiceTotalAmount,omitempty"`
+	NextInvoiceTotalAmount *Float64 `json:"nextInvoiceTotalAmount,omitempty"`
 
 	// The total one-time charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalOneTimeAmount *float64 `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
+	NextInvoiceTotalOneTimeAmount *Float64 `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
 
 	// The total one-time tax amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalOneTimeTaxAmount *float64 `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
+	NextInvoiceTotalOneTimeTaxAmount *Float64 `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
 
 	// The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalRecurringAmount *float64 `json:"nextInvoiceTotalRecurringAmount,omitempty"`
+	NextInvoiceTotalRecurringAmount *Float64 `json:"nextInvoiceTotalRecurringAmount,omitempty"`
 
 	// The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalRecurringAmountBeforeAccountDiscount *float64 `json:"nextInvoiceTotalRecurringAmountBeforeAccountDiscount,omitempty"`
+	NextInvoiceTotalRecurringAmountBeforeAccountDiscount *Float64 `json:"nextInvoiceTotalRecurringAmountBeforeAccountDiscount,omitempty"`
 
 	// The total recurring tax amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalRecurringTaxAmount *float64 `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
+	NextInvoiceTotalRecurringTaxAmount *Float64 `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
 
 	// The total recurring charge amount of an account's next invoice measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
-	NextInvoiceTotalTaxableRecurringAmount *float64 `json:"nextInvoiceTotalTaxableRecurringAmount,omitempty"`
+	NextInvoiceTotalTaxableRecurringAmount *Float64 `json:"nextInvoiceTotalTaxableRecurringAmount,omitempty"`
 
 	// A count of
 	NotificationSubscriberCount *uint `json:"notificationSubscriberCount,omitempty"`
@@ -918,19 +918,19 @@ type Account struct {
 	PendingInvoiceTopLevelItems []Billing_Invoice_Item `json:"pendingInvoiceTopLevelItems,omitempty"`
 
 	// The total amount of an account's pending invoice, if one exists.
-	PendingInvoiceTotalAmount *float64 `json:"pendingInvoiceTotalAmount,omitempty"`
+	PendingInvoiceTotalAmount *Float64 `json:"pendingInvoiceTotalAmount,omitempty"`
 
 	// The total one-time charges for an account's pending invoice, if one exists. In other words, it is the sum of one-time charges, setup fees, and labor fees. It does not include taxes.
-	PendingInvoiceTotalOneTimeAmount *float64 `json:"pendingInvoiceTotalOneTimeAmount,omitempty"`
+	PendingInvoiceTotalOneTimeAmount *Float64 `json:"pendingInvoiceTotalOneTimeAmount,omitempty"`
 
 	// The sum of all the taxes related to one time charges for an account's pending invoice, if one exists.
-	PendingInvoiceTotalOneTimeTaxAmount *float64 `json:"pendingInvoiceTotalOneTimeTaxAmount,omitempty"`
+	PendingInvoiceTotalOneTimeTaxAmount *Float64 `json:"pendingInvoiceTotalOneTimeTaxAmount,omitempty"`
 
 	// The total recurring amount of an account's pending invoice, if one exists.
-	PendingInvoiceTotalRecurringAmount *float64 `json:"pendingInvoiceTotalRecurringAmount,omitempty"`
+	PendingInvoiceTotalRecurringAmount *Float64 `json:"pendingInvoiceTotalRecurringAmount,omitempty"`
 
 	// The total amount of the recurring taxes on an account's pending invoice, if one exists.
-	PendingInvoiceTotalRecurringTaxAmount *float64 `json:"pendingInvoiceTotalRecurringTaxAmount,omitempty"`
+	PendingInvoiceTotalRecurringTaxAmount *Float64 `json:"pendingInvoiceTotalRecurringTaxAmount,omitempty"`
 
 	// A count of an account's permission groups.
 	PermissionGroupCount *uint `json:"permissionGroupCount,omitempty"`
@@ -966,7 +966,7 @@ type Account struct {
 	PptpVpnUsers []User_Customer `json:"pptpVpnUsers,omitempty"`
 
 	// The total recurring amount for an accounts previous revenue.
-	PreviousRecurringRevenue *float64 `json:"previousRecurringRevenue,omitempty"`
+	PreviousRecurringRevenue *Float64 `json:"previousRecurringRevenue,omitempty"`
 
 	// A count of the item price that an account is restricted to.
 	PriceRestrictionCount *uint `json:"priceRestrictionCount,omitempty"`

@@ -54,7 +54,7 @@ type Billing_Currency_ExchangeRate struct {
 	LocalCurrency *Billing_Currency `json:"localCurrency,omitempty"`
 
 	// no documentation yet
-	Rate *float64 `json:"rate,omitempty"`
+	Rate *Float64 `json:"rate,omitempty"`
 }
 
 // Every SoftLayer customer account has billing specific information which is kept in the SoftLayer_Billing_Info data type. This information is used by the SoftLayer accounting group when sending invoices and making billing inquiries.
@@ -233,7 +233,7 @@ type Billing_Invoice struct {
 	Address2 *string `json:"address2,omitempty"`
 
 	// This is the amount of this invoice.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// no documentation yet
 	BrandAtInvoiceCreation *Brand `json:"brandAtInvoiceCreation,omitempty"`
@@ -266,7 +266,7 @@ type Billing_Invoice struct {
 	Email *string `json:"email,omitempty"`
 
 	// An SoftLayer account's balance at the time an invoice is closed. This value is measured in US Dollar ($USD) currency.
-	EndingBalance *float64 `json:"endingBalance,omitempty"`
+	EndingBalance *Float64 `json:"endingBalance,omitempty"`
 
 	// The fax telephone number belonging to an account at the time an invoice is created.
 	FaxPhone *string `json:"faxPhone,omitempty"`
@@ -284,22 +284,22 @@ type Billing_Invoice struct {
 	InvoiceTopLevelItems []Billing_Invoice_Item `json:"invoiceTopLevelItems,omitempty"`
 
 	// The total amount of this invoice.
-	InvoiceTotalAmount *float64 `json:"invoiceTotalAmount,omitempty"`
+	InvoiceTotalAmount *Float64 `json:"invoiceTotalAmount,omitempty"`
 
 	// The total one-time charges for this invoice. This is the sum of one-time charges + setup fees + labor fees. This does not include taxes.
-	InvoiceTotalOneTimeAmount *float64 `json:"invoiceTotalOneTimeAmount,omitempty"`
+	InvoiceTotalOneTimeAmount *Float64 `json:"invoiceTotalOneTimeAmount,omitempty"`
 
 	// A sum of all the taxes related to one time charges for this invoice.
-	InvoiceTotalOneTimeTaxAmount *float64 `json:"invoiceTotalOneTimeTaxAmount,omitempty"`
+	InvoiceTotalOneTimeTaxAmount *Float64 `json:"invoiceTotalOneTimeTaxAmount,omitempty"`
 
 	// The total amount of this invoice. This does not include taxes.
-	InvoiceTotalPreTaxAmount *float64 `json:"invoiceTotalPreTaxAmount,omitempty"`
+	InvoiceTotalPreTaxAmount *Float64 `json:"invoiceTotalPreTaxAmount,omitempty"`
 
 	// The total Recurring amount of this invoice. This amount does not include taxes or one time charges.
-	InvoiceTotalRecurringAmount *float64 `json:"invoiceTotalRecurringAmount,omitempty"`
+	InvoiceTotalRecurringAmount *Float64 `json:"invoiceTotalRecurringAmount,omitempty"`
 
 	// The total amount of the recurring taxes on this invoice.
-	InvoiceTotalRecurringTaxAmount *float64 `json:"invoiceTotalRecurringTaxAmount,omitempty"`
+	InvoiceTotalRecurringTaxAmount *Float64 `json:"invoiceTotalRecurringTaxAmount,omitempty"`
 
 	// A count of the items that belong to this invoice.
 	ItemCount *uint `json:"itemCount,omitempty"`
@@ -317,7 +317,7 @@ type Billing_Invoice struct {
 	OfficePhone *string `json:"officePhone,omitempty"`
 
 	// This is the total payment made on this invoice.
-	Payment *float64 `json:"payment,omitempty"`
+	Payment *Float64 `json:"payment,omitempty"`
 
 	// A count of the payments for the invoice.
 	PaymentCount *uint `json:"paymentCount,omitempty"`
@@ -335,7 +335,7 @@ type Billing_Invoice struct {
 	SellerRegistration *string `json:"sellerRegistration,omitempty"`
 
 	// An SoftLayer account's balance at the time an invoice is created. This value is measured in US Dollar ($USD) currency.
-	StartingBalance *float64 `json:"startingBalance,omitempty"`
+	StartingBalance *Float64 `json:"startingBalance,omitempty"`
 
 	// A two-letter abbreviation of the state portion of an address belonging to an account at the time an invoice is created. If the account that the invoice was generated for resides outside a province then this is set to "other".
 	State *string `json:"state,omitempty"`
@@ -421,7 +421,7 @@ type Billing_Invoice_Item struct {
 	HostName *string `json:"hostName,omitempty"`
 
 	// The hourly recurring fee of the invoice item represented by a floating point decimal in US Dollars ($USD)
-	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty"`
 
 	// The ID of the invoice item.
 	Id *int `json:"id,omitempty"`
@@ -433,16 +433,16 @@ type Billing_Invoice_Item struct {
 	InvoiceId *int `json:"invoiceId,omitempty"`
 
 	// An invoice item's labor fee total after taxes. This does not include any child invoice items.
-	LaborAfterTaxAmount *float64 `json:"laborAfterTaxAmount,omitempty"`
+	LaborAfterTaxAmount *Float64 `json:"laborAfterTaxAmount,omitempty"`
 
 	// This also a one-time fee of a special type.
-	LaborFee *float64 `json:"laborFee,omitempty"`
+	LaborFee *Float64 `json:"laborFee,omitempty"`
 
 	// The tax rate at which the labor fee is taxed.
-	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+	LaborFeeTaxRate *Float64 `json:"laborFeeTaxRate,omitempty"`
 
 	// An invoice item's labor tax amount. This does not include any child invoice items.
-	LaborTaxAmount *float64 `json:"laborTaxAmount,omitempty"`
+	LaborTaxAmount *Float64 `json:"laborTaxAmount,omitempty"`
 
 	// An invoice item's location, if one exists.'
 	Location *Location `json:"location,omitempty"`
@@ -457,16 +457,16 @@ type Billing_Invoice_Item struct {
 	Notes *string `json:"notes,omitempty"`
 
 	// An invoice item's one-time fee total after taxes. This does not include any child invoice items.
-	OneTimeAfterTaxAmount *float64 `json:"oneTimeAfterTaxAmount,omitempty"`
+	OneTimeAfterTaxAmount *Float64 `json:"oneTimeAfterTaxAmount,omitempty"`
 
 	// If there are any one-time charges assessed, it will show up here represented by a floating point decimal in US Dollars ($USD)
-	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+	OneTimeFee *Float64 `json:"oneTimeFee,omitempty"`
 
 	// The rate at which the one-time fee is taxed.
-	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+	OneTimeFeeTaxRate *Float64 `json:"oneTimeFeeTaxRate,omitempty"`
 
 	// An invoice item's one-time tax amount. This does not include any child invoice items.
-	OneTimeTaxAmount *float64 `json:"oneTimeTaxAmount,omitempty"`
+	OneTimeTaxAmount *Float64 `json:"oneTimeTaxAmount,omitempty"`
 
 	// Every item tied to a server should have a parent invoice item which is the server line item. This is how we associate items to a server.
 	Parent *Billing_Invoice_Item `json:"parent,omitempty"`
@@ -481,43 +481,43 @@ type Billing_Invoice_Item struct {
 	ProductItemId *int `json:"productItemId,omitempty"`
 
 	// An invoice item's recurring fee total after taxes. This does not include any child invoice items.
-	RecurringAfterTaxAmount *float64 `json:"recurringAfterTaxAmount,omitempty"`
+	RecurringAfterTaxAmount *Float64 `json:"recurringAfterTaxAmount,omitempty"`
 
 	// The recurring fee of the invoice item represented by a floating point decimal in US Dollars ($USD)
-	RecurringFee *float64 `json:"recurringFee,omitempty"`
+	RecurringFee *Float64 `json:"recurringFee,omitempty"`
 
 	// the rate at which the recurring fee is taxed.
-	RecurringFeeTaxRate *float64 `json:"recurringFeeTaxRate,omitempty"`
+	RecurringFeeTaxRate *Float64 `json:"recurringFeeTaxRate,omitempty"`
 
 	// An invoice item's recurring tax amount. This does not include any child invoice items.
-	RecurringTaxAmount *float64 `json:"recurringTaxAmount,omitempty"`
+	RecurringTaxAmount *Float64 `json:"recurringTaxAmount,omitempty"`
 
 	// A unique identifier for a SoftLayer Service that is associated to an invoice item.
 	ResourceTableId *int `json:"resourceTableId,omitempty"`
 
 	// An invoice item's setup fee total after taxes. This does not include any child invoice items.
-	SetupAfterTaxAmount *float64 `json:"setupAfterTaxAmount,omitempty"`
+	SetupAfterTaxAmount *Float64 `json:"setupAfterTaxAmount,omitempty"`
 
 	// If there were any setup fees they will show up here. These are normally a one-time fee.
-	SetupFee *float64 `json:"setupFee,omitempty"`
+	SetupFee *Float64 `json:"setupFee,omitempty"`
 
 	// The tax rate at which the setup fee is taxed.
-	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+	SetupFeeTaxRate *Float64 `json:"setupFeeTaxRate,omitempty"`
 
 	// An invoice item's setup tax amount. This does not include any child invoice items.
-	SetupTaxAmount *float64 `json:"setupTaxAmount,omitempty"`
+	SetupTaxAmount *Float64 `json:"setupTaxAmount,omitempty"`
 
 	// An invoice Item's total, including any child invoice items if they exist.
-	TotalOneTimeAmount *float64 `json:"totalOneTimeAmount,omitempty"`
+	TotalOneTimeAmount *Float64 `json:"totalOneTimeAmount,omitempty"`
 
 	// An invoice Item's total, including any child invoice items if they exist.
-	TotalOneTimeTaxAmount *float64 `json:"totalOneTimeTaxAmount,omitempty"`
+	TotalOneTimeTaxAmount *Float64 `json:"totalOneTimeTaxAmount,omitempty"`
 
 	// An invoice Item's total, including any child invoice items if they exist.
-	TotalRecurringAmount *float64 `json:"totalRecurringAmount,omitempty"`
+	TotalRecurringAmount *Float64 `json:"totalRecurringAmount,omitempty"`
 
 	// A Billing Item's total, including any child billing items if they exist.'
-	TotalRecurringTaxAmount *float64 `json:"totalRecurringTaxAmount,omitempty"`
+	TotalRecurringTaxAmount *Float64 `json:"totalRecurringTaxAmount,omitempty"`
 }
 
 // The SoftLayer_Billing_Invoice_Item_Hardware data type contains a "resource". This resource is a link to the hardware tied to a SoftLayer_Billing_item whose category code is "server".
@@ -539,10 +539,10 @@ type Billing_Invoice_Item_Tax_Info struct {
 	Description *string `json:"description,omitempty"`
 
 	// The tax rate that can be multiplied by the subtotal to get the
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *Float64 `json:"effectiveTaxRate,omitempty"`
 
 	// The amount that is exempt from tax.
-	ExemptAmount *float64 `json:"exemptAmount,omitempty"`
+	ExemptAmount *Float64 `json:"exemptAmount,omitempty"`
 
 	// The type of fee being tracked for this particular set of tax information.
 	FeeProperty *string `json:"feeProperty,omitempty"`
@@ -566,7 +566,7 @@ type Billing_Invoice_Item_Tax_Info struct {
 	ModifyDate *Time `json:"modifyDate,omitempty"`
 
 	// The amount that is exempt from tax.
-	NonTaxableBasis *float64 `json:"nonTaxableBasis,omitempty"`
+	NonTaxableBasis *Float64 `json:"nonTaxableBasis,omitempty"`
 
 	// A flag to indicate whether this is the official record for this invoice item.
 	ReportedFlag *bool `json:"reportedFlag,omitempty"`
@@ -575,16 +575,16 @@ type Billing_Invoice_Item_Tax_Info struct {
 	SellerRegistration *string `json:"sellerRegistration,omitempty"`
 
 	// The tax amount associated with this line item.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *Float64 `json:"taxAmount,omitempty"`
 
 	// The tax amount (converted to the 'to' currency) associated with this line item.
-	TaxAmountToCurrency *float64 `json:"taxAmountToCurrency,omitempty"`
+	TaxAmountToCurrency *Float64 `json:"taxAmountToCurrency,omitempty"`
 
 	// The tax rate used. Note that this might apply to only part of the
-	TaxRate *float64 `json:"taxRate,omitempty"`
+	TaxRate *Float64 `json:"taxRate,omitempty"`
 
 	// The amount that is subject to tax.
-	TaxableBasis *float64 `json:"taxableBasis,omitempty"`
+	TaxableBasis *Float64 `json:"taxableBasis,omitempty"`
 
 	// This is the currency the invoice will be converted to.
 	ToCurrency *Billing_Currency `json:"toCurrency,omitempty"`
@@ -606,7 +606,7 @@ type Billing_Invoice_Receivable_Payment struct {
 	Account *Account `json:"account,omitempty"`
 
 	// The amount of the payment.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// The date of the payment.
 	CreateDate *Time `json:"createDate,omitempty"`
@@ -677,7 +677,7 @@ type Billing_Invoice_Tax_Info struct {
 	ReportedFlag *bool `json:"reportedFlag,omitempty"`
 
 	// This the total tax amount (converted to the 'to' currency) for the invoice.
-	TotalTaxAmountToCurrency *float64 `json:"totalTaxAmountToCurrency,omitempty"`
+	TotalTaxAmountToCurrency *Float64 `json:"totalTaxAmountToCurrency,omitempty"`
 }
 
 // The invoice tax status data type models a single status or state that an invoice can reflect in regard to an integration with a third-party tax calculation service.
@@ -895,7 +895,7 @@ type Billing_Item struct {
 	HourlyFlag *bool `json:"hourlyFlag,omitempty"`
 
 	// The amount of money charged per hour for a billing item, if applicable. hourlyRecurringFee is measured in US Dollars ($USD).
-	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty"`
 
 	// This is the number of hours the hourly billing item has been in use this billing period. For virtual servers, this means running, paused or stopped.
 	HoursUsed *string `json:"hoursUsed,omitempty"`
@@ -916,10 +916,10 @@ type Billing_Item struct {
 	Item *Product_Item `json:"item,omitempty"`
 
 	// The labor fee, if any. This is a one time charge.
-	LaborFee *float64 `json:"laborFee,omitempty"`
+	LaborFee *Float64 `json:"laborFee,omitempty"`
 
 	// The rate at which labor fees are taxed if you are a taxable customer.
-	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+	LaborFeeTaxRate *Float64 `json:"laborFeeTaxRate,omitempty"`
 
 	// The last time this billing item was charged.
 	LastBillDate *Time `json:"lastBillDate,omitempty"`
@@ -940,16 +940,16 @@ type Billing_Item struct {
 	NextInvoiceChildrenCount *uint `json:"nextInvoiceChildrenCount,omitempty"`
 
 	// A Billing Item's total, including any child billing items if they exist.'
-	NextInvoiceTotalOneTimeAmount *float64 `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
+	NextInvoiceTotalOneTimeAmount *Float64 `json:"nextInvoiceTotalOneTimeAmount,omitempty"`
 
 	// A Billing Item's total, including any child billing items if they exist.'
-	NextInvoiceTotalOneTimeTaxAmount *float64 `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
+	NextInvoiceTotalOneTimeTaxAmount *Float64 `json:"nextInvoiceTotalOneTimeTaxAmount,omitempty"`
 
 	// A Billing Item's total, including any child billing items and associated billing items if they exist.'
-	NextInvoiceTotalRecurringAmount *float64 `json:"nextInvoiceTotalRecurringAmount,omitempty"`
+	NextInvoiceTotalRecurringAmount *Float64 `json:"nextInvoiceTotalRecurringAmount,omitempty"`
 
 	// This is deprecated and will always be zero. Because tax is calculated in real-time, previewing the next recurring invoice is pre-tax only.
-	NextInvoiceTotalRecurringTaxAmount *float64 `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
+	NextInvoiceTotalRecurringTaxAmount *Float64 `json:"nextInvoiceTotalRecurringTaxAmount,omitempty"`
 
 	// A Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
 	NonZeroNextInvoiceChildren []Billing_Item `json:"nonZeroNextInvoiceChildren,omitempty"`
@@ -961,10 +961,10 @@ type Billing_Item struct {
 	Notes *string `json:"notes,omitempty"`
 
 	// The amount of money charged as a one-time charge for a billing item, if applicable. oneTimeFee is measured in US Dollars ($USD).
-	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+	OneTimeFee *Float64 `json:"oneTimeFee,omitempty"`
 
 	// The rate at which one time fees are taxed if you are a taxable customer.
-	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+	OneTimeFeeTaxRate *Float64 `json:"oneTimeFeeTaxRate,omitempty"`
 
 	// A billing item's original order item. Simply a reference to the original order from which this billing item was created.
 	OrderItem *Billing_Order_Item `json:"orderItem,omitempty"`
@@ -997,10 +997,10 @@ type Billing_Item struct {
 	ProvisionTransaction *Provisioning_Version1_Transaction `json:"provisionTransaction,omitempty"`
 
 	// The amount of money charged per month for a billing item, if applicable. recurringFee is measured in US Dollars ($USD).
-	RecurringFee *float64 `json:"recurringFee,omitempty"`
+	RecurringFee *Float64 `json:"recurringFee,omitempty"`
 
 	// The rate at which recurring fees are taxed if you are a taxable customer.
-	RecurringFeeTaxRate *float64 `json:"recurringFeeTaxRate,omitempty"`
+	RecurringFeeTaxRate *Float64 `json:"recurringFeeTaxRate,omitempty"`
 
 	// The number of months in which the recurring fees will be incurred.
 	RecurringMonths *int `json:"recurringMonths,omitempty"`
@@ -1009,10 +1009,10 @@ type Billing_Item struct {
 	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
 
 	// The setup fee, if any. This is a one time charge.
-	SetupFee *float64 `json:"setupFee,omitempty"`
+	SetupFee *Float64 `json:"setupFee,omitempty"`
 
 	// The rate at which setup fees are taxed if you are a taxable customer.
-	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+	SetupFeeTaxRate *Float64 `json:"setupFeeTaxRate,omitempty"`
 
 	// A friendly description of software component
 	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
@@ -1229,10 +1229,10 @@ type Billing_Item_Hardware struct {
 	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
 
 	// The total private inbound bandwidth for this hardware for the current billing cycle.
-	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+	BillingCyclePrivateUsageIn *Float64 `json:"billingCyclePrivateUsageIn,omitempty"`
 
 	// The total private outbound bandwidth for this hardware for the current billing cycle.
-	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+	BillingCyclePrivateUsageOut *Float64 `json:"billingCyclePrivateUsageOut,omitempty"`
 
 	// The total private bandwidth for this hardware for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
@@ -1244,10 +1244,10 @@ type Billing_Item_Hardware struct {
 	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
 
 	// The total public inbound bandwidth for this hardware for the current billing cycle.
-	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+	BillingCyclePublicUsageIn *Float64 `json:"billingCyclePublicUsageIn,omitempty"`
 
 	// The total public outbound bandwidth for this hardware for the current billing cycle.
-	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+	BillingCyclePublicUsageOut *Float64 `json:"billingCyclePublicUsageOut,omitempty"`
 
 	// The total public bandwidth for this hardware for the current billing cycle.
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
@@ -1577,10 +1577,10 @@ type Billing_Item_Virtual_Dedicated_Rack struct {
 	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
 
 	// The total private network inbound bandwidth for this virtual rack for the current billing cycle.
-	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+	BillingCyclePrivateUsageIn *Float64 `json:"billingCyclePrivateUsageIn,omitempty"`
 
 	// The total private network outbound bandwidth for this virtual rack for the current billing cycle.
-	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+	BillingCyclePrivateUsageOut *Float64 `json:"billingCyclePrivateUsageOut,omitempty"`
 
 	// The total private network bandwidth for this virtual rack for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
@@ -1592,10 +1592,10 @@ type Billing_Item_Virtual_Dedicated_Rack struct {
 	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
 
 	// The total public inbound bandwidth for this virtual rack for the current billing cycle.
-	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+	BillingCyclePublicUsageIn *Float64 `json:"billingCyclePublicUsageIn,omitempty"`
 
 	// The total public outbound bandwidth for this virtual rack for the current billing cycle.
-	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+	BillingCyclePublicUsageOut *Float64 `json:"billingCyclePublicUsageOut,omitempty"`
 
 	// The total public bandwidth for this virtual rack for the current billing cycle.
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
@@ -1632,10 +1632,10 @@ type Billing_Item_Virtual_Guest struct {
 	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
 
 	// The total private inbound bandwidth for this virtual server for the current billing cycle.
-	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+	BillingCyclePrivateUsageIn *Float64 `json:"billingCyclePrivateUsageIn,omitempty"`
 
 	// The total private outbound bandwidth for this virtual server for the current billing cycle.
-	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+	BillingCyclePrivateUsageOut *Float64 `json:"billingCyclePrivateUsageOut,omitempty"`
 
 	// The total private bandwidth for this virtual server for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
@@ -1647,10 +1647,10 @@ type Billing_Item_Virtual_Guest struct {
 	BillingCyclePublicBandwidthUsageCount *uint `json:"billingCyclePublicBandwidthUsageCount,omitempty"`
 
 	// The total public inbound bandwidth for this virtual server for the current billing cycle.
-	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+	BillingCyclePublicUsageIn *Float64 `json:"billingCyclePublicUsageIn,omitempty"`
 
 	// The total public outbound bandwidth for this virtual server for the current billing cycle.
-	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+	BillingCyclePublicUsageOut *Float64 `json:"billingCyclePublicUsageOut,omitempty"`
 
 	// The total public bandwidth for this virtual server for the current billing cycle.
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
@@ -1740,13 +1740,13 @@ type Billing_Order struct {
 	OrderApprovalDate *Time `json:"orderApprovalDate,omitempty"`
 
 	// An order's non-server items total monthly fee.
-	OrderNonServerMonthlyAmount *float64 `json:"orderNonServerMonthlyAmount,omitempty"`
+	OrderNonServerMonthlyAmount *Float64 `json:"orderNonServerMonthlyAmount,omitempty"`
 
 	// The SoftLayer_Billing_Order_Quote id of the quote's user who finalized an order.
 	OrderQuoteId *int `json:"orderQuoteId,omitempty"`
 
 	// An order's server items total monthly fee.
-	OrderServerMonthlyAmount *float64 `json:"orderServerMonthlyAmount,omitempty"`
+	OrderServerMonthlyAmount *Float64 `json:"orderServerMonthlyAmount,omitempty"`
 
 	// A count of an order's top level items. This normally includes the server line item and any non-server additional services such as NAS or ISCSI.
 	OrderTopLevelItemCount *uint `json:"orderTopLevelItemCount,omitempty"`
@@ -1755,28 +1755,28 @@ type Billing_Order struct {
 	OrderTopLevelItems []Billing_Order_Item `json:"orderTopLevelItems,omitempty"`
 
 	// This amount represents the order's initial charge including set up fee and taxes.
-	OrderTotalAmount *float64 `json:"orderTotalAmount,omitempty"`
+	OrderTotalAmount *Float64 `json:"orderTotalAmount,omitempty"`
 
 	// An order's total one time amount summing all the set up fees, the labor fees and the one time fees. Taxes will be applied for non-tax-exempt. This amount represents the initial fees that will be charged.
-	OrderTotalOneTime *float64 `json:"orderTotalOneTime,omitempty"`
+	OrderTotalOneTime *Float64 `json:"orderTotalOneTime,omitempty"`
 
 	// An order's total one time amount. This amount represents the initial fees before tax.
-	OrderTotalOneTimeAmount *float64 `json:"orderTotalOneTimeAmount,omitempty"`
+	OrderTotalOneTimeAmount *Float64 `json:"orderTotalOneTimeAmount,omitempty"`
 
 	// An order's total one time tax amount. This amount represents the tax that will be applied to the total charge, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
-	OrderTotalOneTimeTaxAmount *float64 `json:"orderTotalOneTimeTaxAmount,omitempty"`
+	OrderTotalOneTimeTaxAmount *Float64 `json:"orderTotalOneTimeTaxAmount,omitempty"`
 
 	// An order's total recurring amount. Taxes will be applied for non-tax-exempt. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-	OrderTotalRecurring *float64 `json:"orderTotalRecurring,omitempty"`
+	OrderTotalRecurring *Float64 `json:"orderTotalRecurring,omitempty"`
 
 	// An order's total recurring amount. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-	OrderTotalRecurringAmount *float64 `json:"orderTotalRecurringAmount,omitempty"`
+	OrderTotalRecurringAmount *Float64 `json:"orderTotalRecurringAmount,omitempty"`
 
 	// The total tax amount of the recurring fees, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
-	OrderTotalRecurringTaxAmount *float64 `json:"orderTotalRecurringTaxAmount,omitempty"`
+	OrderTotalRecurringTaxAmount *Float64 `json:"orderTotalRecurringTaxAmount,omitempty"`
 
 	// An order's total setup fee.
-	OrderTotalSetupAmount *float64 `json:"orderTotalSetupAmount,omitempty"`
+	OrderTotalSetupAmount *Float64 `json:"orderTotalSetupAmount,omitempty"`
 
 	// The type of an order. This lets you know where this order was generated from.
 	OrderType *Billing_Order_Type `json:"orderType,omitempty"`
@@ -1866,7 +1866,7 @@ type Billing_Order_Item struct {
 	HostName *string `json:"hostName,omitempty"`
 
 	// The amount of money charged per hourly for an order item, if applicable, and only if it was ordered this day. hourlyRecurringFee is measured in US Dollars ($USD).
-	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty"`
 
 	// no documentation yet
 	Id *int `json:"id,omitempty"`
@@ -1887,19 +1887,19 @@ type Billing_Order_Item struct {
 	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
 
 	// the item price id (SoftLayer_Product_Item_Price->id) of the ordered item.
-	ItemPriceId *float64 `json:"itemPriceId,omitempty"`
+	ItemPriceId *Float64 `json:"itemPriceId,omitempty"`
 
 	// An order item's labor fee total after taxes. This does not include any child invoice items.
-	LaborAfterTaxAmount *float64 `json:"laborAfterTaxAmount,omitempty"`
+	LaborAfterTaxAmount *Float64 `json:"laborAfterTaxAmount,omitempty"`
 
 	// The labor fee, if any. This is a one time charge.
-	LaborFee *float64 `json:"laborFee,omitempty"`
+	LaborFee *Float64 `json:"laborFee,omitempty"`
 
 	// The rate at which labor fees are taxed if you are a taxable customer.
-	LaborFeeTaxRate *float64 `json:"laborFeeTaxRate,omitempty"`
+	LaborFeeTaxRate *Float64 `json:"laborFeeTaxRate,omitempty"`
 
 	// An order item's labor tax amount. This does not include any child invoice items.
-	LaborTaxAmount *float64 `json:"laborTaxAmount,omitempty"`
+	LaborTaxAmount *Float64 `json:"laborTaxAmount,omitempty"`
 
 	// The location of an ordered item. This is usually the same as the server it is being ordered with. Otherwise it describes the location of the additional service being ordered.
 	Location *Location `json:"location,omitempty"`
@@ -1914,16 +1914,16 @@ type Billing_Order_Item struct {
 	OldBillingItem *Billing_Item `json:"oldBillingItem,omitempty"`
 
 	// An order item's one-time fee total after taxes. This does not include any child invoice items.
-	OneTimeAfterTaxAmount *float64 `json:"oneTimeAfterTaxAmount,omitempty"`
+	OneTimeAfterTaxAmount *Float64 `json:"oneTimeAfterTaxAmount,omitempty"`
 
 	// The amount of money charged as a one-time charge for an order item, if applicable. oneTimeFee is measured in US Dollars ($USD).
-	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+	OneTimeFee *Float64 `json:"oneTimeFee,omitempty"`
 
 	// The rate at which one time fees are taxed if you are a taxable customer.
-	OneTimeFeeTaxRate *float64 `json:"oneTimeFeeTaxRate,omitempty"`
+	OneTimeFeeTaxRate *Float64 `json:"oneTimeFeeTaxRate,omitempty"`
 
 	// An order item's one-time tax amount. This does not include any child invoice items.
-	OneTimeTaxAmount *float64 `json:"oneTimeTaxAmount,omitempty"`
+	OneTimeTaxAmount *Float64 `json:"oneTimeTaxAmount,omitempty"`
 
 	// The order to which this item belongs. The order contains all the information related to the items included in an order
 	Order *Billing_Order `json:"order,omitempty"`
@@ -1947,31 +1947,31 @@ type Billing_Order_Item struct {
 	Quantity *int `json:"quantity,omitempty"`
 
 	// An order item's recurring fee total after taxes. This does not include any child invoice items.
-	RecurringAfterTaxAmount *float64 `json:"recurringAfterTaxAmount,omitempty"`
+	RecurringAfterTaxAmount *Float64 `json:"recurringAfterTaxAmount,omitempty"`
 
 	// The amount of money charged per month for an order item, if applicable. recurringFee is measured in US Dollars ($USD).
-	RecurringFee *float64 `json:"recurringFee,omitempty"`
+	RecurringFee *Float64 `json:"recurringFee,omitempty"`
 
 	// An order item's recurring tax amount. This does not include any child invoice items.
-	RecurringTaxAmount *float64 `json:"recurringTaxAmount,omitempty"`
+	RecurringTaxAmount *Float64 `json:"recurringTaxAmount,omitempty"`
 
 	// A count of power supplies contained within this SoftLayer_Billing_Order
 	RedundantPowerSupplyCount *uint `json:"redundantPowerSupplyCount,omitempty"`
 
 	// An order item's setup fee total after taxes. This does not include any child invoice items.
-	SetupAfterTaxAmount *float64 `json:"setupAfterTaxAmount,omitempty"`
+	SetupAfterTaxAmount *Float64 `json:"setupAfterTaxAmount,omitempty"`
 
 	// The setup fee, if any. This is a one time charge.
-	SetupFee *float64 `json:"setupFee,omitempty"`
+	SetupFee *Float64 `json:"setupFee,omitempty"`
 
 	// The month set up fee deferral.
 	SetupFeeDeferralMonths *int `json:"setupFeeDeferralMonths,omitempty"`
 
 	// The rate at which setup fees are taxed if you are a taxable customer.
-	SetupFeeTaxRate *float64 `json:"setupFeeTaxRate,omitempty"`
+	SetupFeeTaxRate *Float64 `json:"setupFeeTaxRate,omitempty"`
 
 	// An order item's setup tax amount. This does not include any child invoice items.
-	SetupTaxAmount *float64 `json:"setupTaxAmount,omitempty"`
+	SetupTaxAmount *Float64 `json:"setupTaxAmount,omitempty"`
 
 	// For ordered items that are software items, a full description of that software can be found with this property.
 	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
@@ -1983,7 +1983,7 @@ type Billing_Order_Item struct {
 	StorageGroups []Configuration_Storage_Group_Order `json:"storageGroups,omitempty"`
 
 	// The recurring fee of an ordered item. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-	TotalRecurringAmount *float64 `json:"totalRecurringAmount,omitempty"`
+	TotalRecurringAmount *Float64 `json:"totalRecurringAmount,omitempty"`
 
 	// The next SoftLayer_Product_Item in the upgrade path for this order item.
 	UpgradeItem *Product_Item `json:"upgradeItem,omitempty"`
@@ -2095,7 +2095,7 @@ type Billing_Payment_Card_ChangeRequest struct {
 	AccountId *int `json:"accountId,omitempty"`
 
 	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// The SoftLayer_Billing_Payment_Card_Transaction tied to the authorization performed as part of this change request.
 	AuthorizedCreditCardTransaction *Billing_Payment_Card_Transaction `json:"authorizedCreditCardTransaction,omitempty"`
@@ -2199,7 +2199,7 @@ type Billing_Payment_Card_ManualPayment struct {
 	AccountId *int `json:"accountId,omitempty"`
 
 	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// This is the credit card transaction data tied to a credit card manual payment.
 	AuthorizedCreditCardTransaction *Billing_Payment_Card_Transaction `json:"authorizedCreditCardTransaction,omitempty"`
@@ -2321,7 +2321,7 @@ type Billing_Payment_Card_Transaction struct {
 	AccountId *int `json:"accountId,omitempty"`
 
 	// The total amount of the attempted transaction, represented in decimal format as US Dollars ($USD).
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// The physical street address. Reserve information such as "apartment #123" or "Suite 2" for line 1.
 	BillingAddressLine1 *string `json:"billingAddressLine1,omitempty"`
@@ -2449,10 +2449,10 @@ type Billing_Payment_PayPal_Transaction struct {
 	ExchangeRate *string `json:"exchangeRate,omitempty"`
 
 	// PayPal fee applied to the payment.
-	FeeAmount *float64 `json:"feeAmount,omitempty"`
+	FeeAmount *Float64 `json:"feeAmount,omitempty"`
 
 	// The total amount of the payment executed by PayPal, represented in decimal format as US Dollars ($USD).
-	GrossAmount *float64 `json:"grossAmount,omitempty"`
+	GrossAmount *Float64 `json:"grossAmount,omitempty"`
 
 	// The unique identifier for a single PayPal transaction request.
 	Id *int `json:"id,omitempty"`
@@ -2473,7 +2473,7 @@ type Billing_Payment_PayPal_Transaction struct {
 	OrderFromIpAddress *string `json:"orderFromIpAddress,omitempty"`
 
 	// The amount of the payment submitted through the SoftLayer interface, represented in decimal format as US Dollars ($USD).
-	OrderTotal *float64 `json:"orderTotal,omitempty"`
+	OrderTotal *Float64 `json:"orderTotal,omitempty"`
 
 	// The PayPal user account name (email address) associated with the customer account.
 	Payer *string `json:"payer,omitempty"`
@@ -2515,10 +2515,10 @@ type Billing_Payment_PayPal_Transaction struct {
 	SerializedRequest *string `json:"serializedRequest,omitempty"`
 
 	// PayPal defined fee.
-	SettleAmount *float64 `json:"settleAmount,omitempty"`
+	SettleAmount *Float64 `json:"settleAmount,omitempty"`
 
 	// Tax applied by PayPal to the payment amount.
-	TaxAmount *float64 `json:"taxAmount,omitempty"`
+	TaxAmount *Float64 `json:"taxAmount,omitempty"`
 
 	// Value issued by PayPal for referencing the attempted transaction.
 	Token *string `json:"token,omitempty"`

@@ -44,3 +44,10 @@ func Time(v time.Time) *datatypes.Time {
 	r := datatypes.Time{Time: v}
 	return &r
 }
+
+// Float converts the float value provided to a datatypes.Float64 value,
+// and returns a pointer to it
+func Float(v float64) *datatypes.Float64 {
+	r := datatypes.Float64(v)
+	return &r
+}

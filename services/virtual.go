@@ -894,13 +894,13 @@ func (r Virtual_Guest) GetAvailableNetworkStorages(nasType *string) (resp []data
 }
 
 // Retrieve The average daily private bandwidth usage for the current billing cycle.
-func (r Virtual_Guest) GetAverageDailyPrivateBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetAverageDailyPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAverageDailyPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Virtual_Guest) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -918,7 +918,7 @@ func (r Virtual_Guest) GetBackendRouters() (resp []datatypes.Hardware, err error
 }
 
 // Retrieve A computing instance's allotted bandwidth (measured in GB).
-func (r Virtual_Guest) GetBandwidthAllocation() (resp float64, err error) {
+func (r Virtual_Guest) GetBandwidthAllocation() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthAllocation", nil, &r.Options, &resp)
 	return
 }
@@ -1124,7 +1124,7 @@ func (r Virtual_Guest) GetCurrentBillingDetail() (resp []datatypes.Billing_Item,
 }
 
 // Get the total billing price in US Dollars ($) for this instance. This includes all bandwidth used up to this point for this instance.
-func (r Virtual_Guest) GetCurrentBillingTotal() (resp float64, err error) {
+func (r Virtual_Guest) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
 }
@@ -1226,13 +1226,13 @@ func (r Virtual_Guest) GetHourlyBillingFlag() (resp bool, err error) {
 }
 
 // Retrieve The total private inbound bandwidth for this computing instance for the current billing cycle.
-func (r Virtual_Guest) GetInboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetInboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getInboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public inbound bandwidth for this computing instance for the current billing cycle.
-func (r Virtual_Guest) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1477,13 +1477,13 @@ func (r Virtual_Guest) GetOrderedPackageId() (resp string, err error) {
 }
 
 // Retrieve The total private outbound bandwidth for this computing instance for the current billing cycle.
-func (r Virtual_Guest) GetOutboundPrivateBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetOutboundPrivateBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getOutboundPrivateBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total public outbound bandwidth for this computing instance for the current billing cycle.
-func (r Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1537,7 +1537,7 @@ func (r Virtual_Guest) GetProjectedOverBandwidthAllocationFlag() (resp int, err 
 }
 
 // Retrieve The projected public outbound bandwidth for this computing instance for the current billing cycle.
-func (r Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+func (r Virtual_Guest) GetProjectedPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getProjectedPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -2042,7 +2042,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevices() (resp []dat
 }
 
 // Retrieve The total disk space of all images in a image template group.
-func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevicesDiskSpaceTotal() (resp float64, err error) {
+func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevicesDiskSpaceTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevicesDiskSpaceTotal", nil, &r.Options, &resp)
 	return
 }
@@ -2662,13 +2662,13 @@ func (r Virtual_Storage_Repository) GetAccount() (resp datatypes.Account, err er
 }
 
 // Returns the archive storage disk usage fee rate per gigabyte.
-func (r Virtual_Storage_Repository) GetArchiveDiskUsageRatePerGb() (resp float64, err error) {
+func (r Virtual_Storage_Repository) GetArchiveDiskUsageRatePerGb() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getArchiveDiskUsageRatePerGb", nil, &r.Options, &resp)
 	return
 }
 
 // Returns the average disk space usage for a storage repository.
-func (r Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp float64, err error) {
+func (r Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
@@ -2720,7 +2720,7 @@ func (r Virtual_Storage_Repository) GetPublicImageBillingItem() (resp datatypes.
 }
 
 // Returns the public image storage disk usage fee rate per gigabyte.
-func (r Virtual_Storage_Repository) GetPublicImageDiskUsageRatePerGb() (resp float64, err error) {
+func (r Virtual_Storage_Repository) GetPublicImageDiskUsageRatePerGb() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getPublicImageDiskUsageRatePerGb", nil, &r.Options, &resp)
 	return
 }

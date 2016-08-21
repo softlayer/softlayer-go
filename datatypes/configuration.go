@@ -76,7 +76,7 @@ type Configuration_Storage_Group_Order struct {
 	ArrayNumber *int `json:"arrayNumber,omitempty"`
 
 	// no documentation yet
-	ArraySize *float64 `json:"arraySize,omitempty"`
+	ArraySize *Float64 `json:"arraySize,omitempty"`
 
 	// Raid mode for the storage group.
 	ArrayType *Configuration_Storage_Group_Array_Type `json:"arrayType,omitempty"`
@@ -116,7 +116,7 @@ type Configuration_Storage_Group_Template_Group struct {
 	OrderIndex *int `json:"orderIndex,omitempty"`
 
 	// Size of array. Must be within limitations of the smallest drive and raid mode
-	Size *float64 `json:"size,omitempty"`
+	Size *Float64 `json:"size,omitempty"`
 
 	// no documentation yet
 	Type *Configuration_Storage_Group_Array_Type `json:"type,omitempty"`

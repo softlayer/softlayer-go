@@ -53,16 +53,16 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Entity
 
 	// This is the amount of bandwidth (measured in gigabytes) allocated for this tracking object.
-	AllocationAmount *float64 `json:"allocationAmount,omitempty"`
+	AllocationAmount *Float64 `json:"allocationAmount,omitempty"`
 
 	// no documentation yet
 	AllocationId *int `json:"allocationId,omitempty"`
 
 	// The amount of outbound bandwidth (measured in gigabytes) currently used this billing period. Same as $outboundBandwidthAmount. Aliased for backward compatability.
-	AmountOut *float64 `json:"amountOut,omitempty"`
+	AmountOut *Float64 `json:"amountOut,omitempty"`
 
 	// The daily average amount of outbound bandwidth usage.
-	AverageDailyUsage *float64 `json:"averageDailyUsage,omitempty"`
+	AverageDailyUsage *Float64 `json:"averageDailyUsage,omitempty"`
 
 	// A flag that tells whether or not this tracking object's bandwidth usage is already over the allocation. 1 means yes, 0 means no.
 	CurrentlyOverAllocationFlag *int `json:"currentlyOverAllocationFlag,omitempty"`
@@ -71,10 +71,10 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Id *int `json:"id,omitempty"`
 
 	// The amount of outbound bandwidth (measured in gigabytes) currently used this billing period
-	OutboundBandwidthAmount *float64 `json:"outboundBandwidthAmount,omitempty"`
+	OutboundBandwidthAmount *Float64 `json:"outboundBandwidthAmount,omitempty"`
 
 	// The amount of bandwidth (measured in gigabytes) of projected usage, using a basic average calculation of daily usage.
-	ProjectedBandwidthUsage *float64 `json:"projectedBandwidthUsage,omitempty"`
+	ProjectedBandwidthUsage *Float64 `json:"projectedBandwidthUsage,omitempty"`
 
 	// A flag that tells whether or not this tracking object's bandwidth usage is projected to go over the allocation, based on daily average usage. 1 means yes, 0 means no.
 	ProjectedOverAllocationFlag *int `json:"projectedOverAllocationFlag,omitempty"`
@@ -85,7 +85,7 @@ type Metric_Tracking_Object_Data struct {
 	Entity
 
 	// The value stored for a data record.
-	Counter *float64 `json:"counter,omitempty"`
+	Counter *Float64 `json:"counter,omitempty"`
 
 	// The time a data record was stored.
 	DateTime *Time `json:"dateTime,omitempty"`
@@ -122,10 +122,10 @@ type Metric_Tracking_Object_HardwareServer struct {
 	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
 
 	// The total private inbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+	BillingCyclePrivateUsageIn *Float64 `json:"billingCyclePrivateUsageIn,omitempty"`
 
 	// The total private outbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+	BillingCyclePrivateUsageOut *Float64 `json:"billingCyclePrivateUsageOut,omitempty"`
 
 	// The total private bandwidth for this item's resource for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
@@ -134,10 +134,10 @@ type Metric_Tracking_Object_HardwareServer struct {
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
 
 	// The total public inbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+	BillingCyclePublicUsageIn *Float64 `json:"billingCyclePublicUsageIn,omitempty"`
 
 	// The total public outbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+	BillingCyclePublicUsageOut *Float64 `json:"billingCyclePublicUsageOut,omitempty"`
 
 	// The total public bandwidth for this item's resource for the current billing cycle.
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`
@@ -174,10 +174,10 @@ type Metric_Tracking_Object_VirtualDedicatedRack struct {
 	BillingCyclePrivateBandwidthUsageCount *uint `json:"billingCyclePrivateBandwidthUsageCount,omitempty"`
 
 	// The total private inbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePrivateUsageIn *float64 `json:"billingCyclePrivateUsageIn,omitempty"`
+	BillingCyclePrivateUsageIn *Float64 `json:"billingCyclePrivateUsageIn,omitempty"`
 
 	// The total private outbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePrivateUsageOut *float64 `json:"billingCyclePrivateUsageOut,omitempty"`
+	BillingCyclePrivateUsageOut *Float64 `json:"billingCyclePrivateUsageOut,omitempty"`
 
 	// The total private bandwidth for this item's resource for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty"`
@@ -186,10 +186,10 @@ type Metric_Tracking_Object_VirtualDedicatedRack struct {
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty"`
 
 	// The total public inbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePublicUsageIn *float64 `json:"billingCyclePublicUsageIn,omitempty"`
+	BillingCyclePublicUsageIn *Float64 `json:"billingCyclePublicUsageIn,omitempty"`
 
 	// The total public outbound bandwidth for this item's resource for the current billing cycle.
-	BillingCyclePublicUsageOut *float64 `json:"billingCyclePublicUsageOut,omitempty"`
+	BillingCyclePublicUsageOut *Float64 `json:"billingCyclePublicUsageOut,omitempty"`
 
 	// The total public bandwidth for this item's resource for the current billing cycle.
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty"`

@@ -118,20 +118,20 @@ func GetPackageProducts(
 // match a specific set of price category code / product item
 // capacity combinations.
 // These combinations are passed as a map of strings (category code) mapped
-// to strings (capacity)
+// to float64 (capacity)
 // For example, these are the options to specify an upgrade to 8 cpus and 32
 // GB or memory:
-// {"guest_core": "8", "ram": "32"}
+// {"guest_core": 8.0, "ram": 32.0}
 func SelectProductPricesByCategory(
 	productItems []datatypes.Product_Item,
-	options map[string]string,
+	options map[string]float64,
 ) []datatypes.Product_Item_Price {
 	// Filter product items based on sets of category codes and capacity numbers
 	prices := []datatypes.Product_Item_Price{}
 	for _, productItem := range productItems {
 		for _, category := range productItem.Prices[0].Categories {
 			for k, v := range options {
-				if productItem.Capacity != nil && *productItem.Capacity == v && *category.CategoryCode == k {
+				if productItem.Capacity != nil && *productItem.Capacity == datatypes.Float64(v) && *category.CategoryCode == k {
 					prices = append(prices, productItem.Prices[0])
 				}
 			}
