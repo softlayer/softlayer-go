@@ -25,28 +25,28 @@ type Container_Account_Discount_Program struct {
 	Entity
 
 	// The credit allowance that has already been applied during the current billing cycle. If the lifetime limit has been or soon will be reached, this amount may included credit applied in previous billing cycles.
-	AppliedCredit *float64 `json:"appliedCredit,omitempty"`
+	AppliedCredit *Float64 `json:"appliedCredit,omitempty"`
 
 	// Flag to signify whether the account is a participant in the discount program.
 	IsParticipant *bool `json:"isParticipant,omitempty"`
 
 	// Credit allowance applied over the course of the entire program enrollment. For enrollments without a lifetime restriction, this property will not be populated as credit will be tracked on a purely monthly basis.
-	LifetimeAppliedCredit *float64 `json:"lifetimeAppliedCredit,omitempty"`
+	LifetimeAppliedCredit *Float64 `json:"lifetimeAppliedCredit,omitempty"`
 
 	// Credit allowance available over the course of the entire program enrollment. If null, enrollment credit is applied on a strictly monthly basis and there is no lifetime maximum. Enrollments with non-null lifetime credit will receive the lesser of the remaining monthly credit or the remaining lifetime credit.
-	LifetimeCredit *float64 `json:"lifetimeCredit,omitempty"`
+	LifetimeCredit *Float64 `json:"lifetimeCredit,omitempty"`
 
 	// Remaining credit allowance available over the remaining duration of the program enrollment. If null, enrollment credit is applied on a strictly monthly basis and there is no lifetime maximum. Enrollments with non-null remaining lifetime credit will receive the lesser of the remaining monthly credit or the remaining lifetime credit.
-	LifetimeRemainingCredit *float64 `json:"lifetimeRemainingCredit,omitempty"`
+	LifetimeRemainingCredit *Float64 `json:"lifetimeRemainingCredit,omitempty"`
 
 	// Maximum number of orders the enrolled account is allowed to have open at one time. If null, then the Flexible Credit Program does not impose an order limit.
-	MaximumActiveOrders *float64 `json:"maximumActiveOrders,omitempty"`
+	MaximumActiveOrders *Float64 `json:"maximumActiveOrders,omitempty"`
 
 	// The monthly credit allowance that is available at the beginning of the billing cycle.
-	MonthlyCredit *float64 `json:"monthlyCredit,omitempty"`
+	MonthlyCredit *Float64 `json:"monthlyCredit,omitempty"`
 
 	// DEPRECATED: Taxes are calculated in real time and discount amounts are shown pre-tax in all cases. Tax values in the SoftLayer_Container_Account_Discount_Program container are now populated with the related pre-tax values.
-	PostTaxRemainingCredit *float64 `json:"postTaxRemainingCredit,omitempty"`
+	PostTaxRemainingCredit *Float64 `json:"postTaxRemainingCredit,omitempty"`
 
 	// The date at which the program expires in MM/DD/YYYY format.
 	ProgramEndDate *Time `json:"programEndDate,omitempty"`
@@ -55,10 +55,10 @@ type Container_Account_Discount_Program struct {
 	ProgramName *string `json:"programName,omitempty"`
 
 	// The credit allowance that is available during the current billing cycle. If the lifetime limit has been or soon will be reached, this amount may be reduced by credit applied in previous billing cycles.
-	RemainingCredit *float64 `json:"remainingCredit,omitempty"`
+	RemainingCredit *Float64 `json:"remainingCredit,omitempty"`
 
 	// DEPRECATED: Taxes are calculated in real time and discount amounts are shown pre-tax in all cases. Tax values in the SoftLayer_Container_Account_Discount_Program container are now populated with the related pre-tax values.
-	RemainingCreditTax *float64 `json:"remainingCreditTax,omitempty"`
+	RemainingCreditTax *Float64 `json:"remainingCreditTax,omitempty"`
 }
 
 // SoftLayer_Container_Account_Graph_Outputs <<< EOT
@@ -219,7 +219,7 @@ type Container_Auxiliary_Network_Status_Reading struct {
 	Entity
 
 	// Average packet round-trip time.
-	AveragePing *float64 `json:"averagePing,omitempty"`
+	AveragePing *Float64 `json:"averagePing,omitempty"`
 
 	// Number of failures since the target was last detected to be working properly.
 	Fails *int `json:"fails,omitempty"`
@@ -237,19 +237,19 @@ type Container_Auxiliary_Network_Status_Reading struct {
 	LastDownDate *Time `json:"lastDownDate,omitempty"`
 
 	// The total response time in seconds calculated during the last check.
-	Latency *float64 `json:"latency,omitempty"`
+	Latency *Float64 `json:"latency,omitempty"`
 
 	// The monitoring location name.
 	Location *string `json:"location,omitempty"`
 
 	// Maximum packet round-trip time.
-	MaximumPing *float64 `json:"maximumPing,omitempty"`
+	MaximumPing *Float64 `json:"maximumPing,omitempty"`
 
 	// Minimum packet round-trip time.
-	MinimumPing *float64 `json:"minimumPing,omitempty"`
+	MinimumPing *Float64 `json:"minimumPing,omitempty"`
 
 	// Packet loss percentage.
-	PingLoss *float64 `json:"pingLoss,omitempty"`
+	PingLoss *Float64 `json:"pingLoss,omitempty"`
 
 	// The date monitoring first began
 	StartDate *Time `json:"startDate,omitempty"`
@@ -388,7 +388,7 @@ type Container_Billing_Currency_Format struct {
 	Tag *string `json:"tag,omitempty"`
 
 	// no documentation yet
-	Value *float64 `json:"value,omitempty"`
+	Value *Float64 `json:"value,omitempty"`
 }
 
 // no documentation yet
@@ -859,13 +859,13 @@ type Container_Graph_Plot_Coordinate struct {
 	Entity
 
 	// no documentation yet
-	XValue *float64 `json:"xValue,omitempty"`
+	XValue *Float64 `json:"xValue,omitempty"`
 
 	// no documentation yet
-	YValue *float64 `json:"yValue,omitempty"`
+	YValue *Float64 `json:"yValue,omitempty"`
 
 	// no documentation yet
-	ZValue *float64 `json:"zValue,omitempty"`
+	ZValue *Float64 `json:"zValue,omitempty"`
 }
 
 // The hardware configuration container is used to provide configuration options for servers.
@@ -1111,10 +1111,10 @@ type Container_Metric_Tracking_Object_Virtual_Host_Details struct {
 	MaxMemoryUsage *int `json:"maxMemoryUsage,omitempty"`
 
 	// The mean number of guests hosted by this platform for the given day.
-	MeanInstances *float64 `json:"meanInstances,omitempty"`
+	MeanInstances *Float64 `json:"meanInstances,omitempty"`
 
 	// The mean amount of memory utilized by this platform for the given day.
-	MeanMemoryUsage *float64 `json:"meanMemoryUsage,omitempty"`
+	MeanMemoryUsage *Float64 `json:"meanMemoryUsage,omitempty"`
 
 	// The minimum number of guests hosted by this platform for the given day.
 	MinInstances *int `json:"minInstances,omitempty"`
@@ -1229,13 +1229,13 @@ type Container_Network_Bandwidth_Data_Summary struct {
 	Entity
 
 	// The amount of bandwidth a server has allocated to it in it's current billing period.
-	AllowedUsage *float64 `json:"allowedUsage,omitempty"`
+	AllowedUsage *Float64 `json:"allowedUsage,omitempty"`
 
 	// The amount of bandwidth that a server has used within it's current billing period.
-	EstimatedUsage *float64 `json:"estimatedUsage,omitempty"`
+	EstimatedUsage *Float64 `json:"estimatedUsage,omitempty"`
 
 	// The amount of bandwidth a server is projected to use within its billing period, based on it's current usage.
-	ProjectedUsage *float64 `json:"projectedUsage,omitempty"`
+	ProjectedUsage *Float64 `json:"projectedUsage,omitempty"`
 
 	// The unit of measurement used in a bandwidth data summary.
 	UsageUnits *string `json:"usageUnits,omitempty"`
@@ -1246,10 +1246,10 @@ type Container_Network_Bandwidth_Version1_Usage struct {
 	Entity
 
 	// The amount of incoming bandwidth that a server has used within the hour of the recordedDate.
-	IncomingAmount *float64 `json:"incomingAmount,omitempty"`
+	IncomingAmount *Float64 `json:"incomingAmount,omitempty"`
 
 	// The amount of outgoing bandwidth that a server has used within the hour of the recordedDate.
-	OutgoingAmount *float64 `json:"outgoingAmount,omitempty"`
+	OutgoingAmount *Float64 `json:"outgoingAmount,omitempty"`
 
 	// The date and time that the bandwidth was used by a piece of hardware
 	RecordedDate *Time `json:"recordedDate,omitempty"`
@@ -1347,7 +1347,7 @@ type Container_Network_ContentDelivery_Bandwidth_Summary struct {
 	StartDateTime *Time `json:"startDateTime,omitempty"`
 
 	// The amount of bandwidth used by a CDN account in between a given starting and ending date.
-	Usage *float64 `json:"usage,omitempty"`
+	Usage *Float64 `json:"usage,omitempty"`
 
 	// The unit of measurement used in a CDN bandwidth summary.
 	UsageUnits *string `json:"usageUnits,omitempty"`
@@ -1358,7 +1358,7 @@ type Container_Network_ContentDelivery_Bandwidth_Summary_Detail struct {
 	Container_Network_ContentDelivery_Bandwidth_Summary
 
 	// The duration of a file that is viewed.
-	Duration *float64 `json:"duration,omitempty"`
+	Duration *Float64 `json:"duration,omitempty"`
 
 	// The number of times that a file is viewed.
 	ViewCount *int `json:"viewCount,omitempty"`
@@ -1413,46 +1413,46 @@ type Container_Network_ContentDelivery_Report_Usage struct {
 	Entity
 
 	// no documentation yet
-	ApplicationDeliveryNetwork *float64 `json:"applicationDeliveryNetwork,omitempty"`
+	ApplicationDeliveryNetwork *Float64 `json:"applicationDeliveryNetwork,omitempty"`
 
 	// no documentation yet
-	ApplicationDeliveryNetworkSsl *float64 `json:"applicationDeliveryNetworkSsl,omitempty"`
+	ApplicationDeliveryNetworkSsl *Float64 `json:"applicationDeliveryNetworkSsl,omitempty"`
 
 	// no documentation yet
-	DiskSpace *float64 `json:"diskSpace,omitempty"`
+	DiskSpace *Float64 `json:"diskSpace,omitempty"`
 
 	// no documentation yet
 	EndDate *Time `json:"endDate,omitempty"`
 
 	// no documentation yet
-	Flash *float64 `json:"flash,omitempty"`
+	Flash *Float64 `json:"flash,omitempty"`
 
 	// no documentation yet
-	Http *float64 `json:"http,omitempty"`
+	Http *Float64 `json:"http,omitempty"`
 
 	// no documentation yet
-	HttpSmall *float64 `json:"httpSmall,omitempty"`
+	HttpSmall *Float64 `json:"httpSmall,omitempty"`
 
 	// no documentation yet
-	Https *float64 `json:"https,omitempty"`
+	Https *Float64 `json:"https,omitempty"`
 
 	// no documentation yet
-	HttpsSmall *float64 `json:"httpsSmall,omitempty"`
+	HttpsSmall *Float64 `json:"httpsSmall,omitempty"`
 
 	// no documentation yet
 	Region *string `json:"region,omitempty"`
 
 	// no documentation yet
-	SslTotal *float64 `json:"sslTotal,omitempty"`
+	SslTotal *Float64 `json:"sslTotal,omitempty"`
 
 	// no documentation yet
-	StandardTotal *float64 `json:"standardTotal,omitempty"`
+	StandardTotal *Float64 `json:"standardTotal,omitempty"`
 
 	// no documentation yet
 	StartDate *Time `json:"startDate,omitempty"`
 
 	// no documentation yet
-	WindowsMedia *float64 `json:"windowsMedia,omitempty"`
+	WindowsMedia *Float64 `json:"windowsMedia,omitempty"`
 }
 
 // SoftLayer's CDN content delivery network allows for multiple types of media hosting in addition to traditional HTTP hosting. Each of these media types are accessible form a different URL. SoftLayer_Container_Network_ContentDelivery_SupportedProtocol holds details about CDN supported media types and their associated URLs.
@@ -1633,7 +1633,7 @@ type Container_Network_Media_Information struct {
 	AudioSampleRate *int `json:"audioSampleRate,omitempty"`
 
 	// The duration of a media
-	Duration *float64 `json:"duration,omitempty"`
+	Duration *Float64 `json:"duration,omitempty"`
 
 	// The error message if any.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
@@ -1648,7 +1648,7 @@ type Container_Network_Media_Information struct {
 	FileSize *uint `json:"fileSize,omitempty"`
 
 	// The frame rate
-	FrameRate *float64 `json:"frameRate,omitempty"`
+	FrameRate *Float64 `json:"frameRate,omitempty"`
 
 	// The width of a media in pixel
 	SizeX *int `json:"sizeX,omitempty"`
@@ -1660,7 +1660,7 @@ type Container_Network_Media_Information struct {
 	TotalFrames *uint `json:"totalFrames,omitempty"`
 
 	// The width in a video's width to height aspect ratio
-	VideoAspectX *float64 `json:"videoAspectX,omitempty"`
+	VideoAspectX *Float64 `json:"videoAspectX,omitempty"`
 
 	// The height in a video's width to height aspect ratio
 	VideoAspectY *int `json:"videoAspectY,omitempty"`
@@ -2324,31 +2324,31 @@ type Container_Product_Item_Discount_Program struct {
 	Item *Product_Item `json:"item,omitempty"`
 
 	// The sum of the one time fees (one time, setup and labor) of the prices of this container multiplied by the applicable quantity of this container.
-	OneTimeAmount *float64 `json:"oneTimeAmount,omitempty"`
+	OneTimeAmount *Float64 `json:"oneTimeAmount,omitempty"`
 
 	// The tax amount on the one time fees (one time, setup and labor) of the prices of this container mulitiplied by the applicable quantity of this container.
-	OneTimeTax *float64 `json:"oneTimeTax,omitempty"`
+	OneTimeTax *Float64 `json:"oneTimeTax,omitempty"`
 
 	// The item prices that contain the amount of the discount in the recurringFee field.  There may be one or more prices.
 	Prices []Product_Item_Price `json:"prices,omitempty"`
 
 	// The sum of the one time fees (one time, setup and labor) of the prices of this container multiplied by the applicable quantity of this container with the proration factor applied.
-	ProratedOneTimeAmount *float64 `json:"proratedOneTimeAmount,omitempty"`
+	ProratedOneTimeAmount *Float64 `json:"proratedOneTimeAmount,omitempty"`
 
 	// The tax amount on the one time fees (one time, setup and labor) of the prices of this container mulitiplied by the applicable quantity of this container with the proration factor applied.
-	ProratedOneTimeTax *float64 `json:"proratedOneTimeTax,omitempty"`
+	ProratedOneTimeTax *Float64 `json:"proratedOneTimeTax,omitempty"`
 
 	// The sum of the recurring fees of the prices of this container multiplied by the applicable quantity of this container with the proration factor applied.
-	ProratedRecurringAmount *float64 `json:"proratedRecurringAmount,omitempty"`
+	ProratedRecurringAmount *Float64 `json:"proratedRecurringAmount,omitempty"`
 
 	// The tax amount on the recurring fees of the prices of this container mulitiplied by the applicable quantity of this container with the proration factor applied.
-	ProratedRecurringTax *float64 `json:"proratedRecurringTax,omitempty"`
+	ProratedRecurringTax *Float64 `json:"proratedRecurringTax,omitempty"`
 
 	// The sum of the recurring fees of the prices of this container multiplied by the applicable quantity of this container.
-	RecurringAmount *float64 `json:"recurringAmount,omitempty"`
+	RecurringAmount *Float64 `json:"recurringAmount,omitempty"`
 
 	// The tax amount on the recurring fees of the prices of this container mulitiplied by the applicable quantity of this container.
-	RecurringTax *float64 `json:"recurringTax,omitempty"`
+	RecurringTax *Float64 `json:"recurringTax,omitempty"`
 }
 
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
@@ -2430,28 +2430,28 @@ type Container_Product_Order struct {
 	PaymentType *string `json:"paymentType,omitempty"`
 
 	// The post-tax recurring charge for the order. This is the sum of preTaxRecurring + totalRecurringTax.
-	PostTaxRecurring *float64 `json:"postTaxRecurring,omitempty"`
+	PostTaxRecurring *Float64 `json:"postTaxRecurring,omitempty"`
 
 	// The post-tax recurring hourly charge for the order. Since taxes are not calculated for hourly orders, this value will be the same as preTaxRecurringHourly.
-	PostTaxRecurringHourly *float64 `json:"postTaxRecurringHourly,omitempty"`
+	PostTaxRecurringHourly *Float64 `json:"postTaxRecurringHourly,omitempty"`
 
 	// The post-tax recurring monthly charge for the order. This is the sum of preTaxRecurringMonthly + totalRecurringTax.
-	PostTaxRecurringMonthly *float64 `json:"postTaxRecurringMonthly,omitempty"`
+	PostTaxRecurringMonthly *Float64 `json:"postTaxRecurringMonthly,omitempty"`
 
 	// The post-tax setup fees of the order. This is the sum of preTaxSetup + totalSetupTax;
-	PostTaxSetup *float64 `json:"postTaxSetup,omitempty"`
+	PostTaxSetup *Float64 `json:"postTaxSetup,omitempty"`
 
 	// The pre-tax recurring total of the order. If there are mixed monthly and hourly prices on the order, this will be the sum of preTaxRecurringHourly and preTaxRecurringMonthly.
-	PreTaxRecurring *float64 `json:"preTaxRecurring,omitempty"`
+	PreTaxRecurring *Float64 `json:"preTaxRecurring,omitempty"`
 
 	// The pre-tax hourly recurring total of the order. If there are only monthly prices on the order, this value will be 0.
-	PreTaxRecurringHourly *float64 `json:"preTaxRecurringHourly,omitempty"`
+	PreTaxRecurringHourly *Float64 `json:"preTaxRecurringHourly,omitempty"`
 
 	// The pre-tax monthly recurring total of the order. If there are only hourly prices on the order, this value will be 0.
-	PreTaxRecurringMonthly *float64 `json:"preTaxRecurringMonthly,omitempty"`
+	PreTaxRecurringMonthly *Float64 `json:"preTaxRecurringMonthly,omitempty"`
 
 	// The pre-tax setup fee total of the order.
-	PreTaxSetup *float64 `json:"preTaxSetup,omitempty"`
+	PreTaxSetup *Float64 `json:"preTaxSetup,omitempty"`
 
 	// If there are any presale events available for an order, this value will be populated. It is set internally and is not required for end users when placing an order. See [[SoftLayer_Sales_Presale_Event]] for more info.
 	PresaleEvent *Sales_Presale_Event `json:"presaleEvent,omitempty"`
@@ -2481,10 +2481,10 @@ type Container_Product_Order struct {
 	Properties []Container_Product_Order_Property `json:"properties,omitempty"`
 
 	// The Prorated Initial Charge plus the balance on the account. Only the recurring fees are prorated. Here's how the calculation works: We take the postTaxRecurring value and we prorate it based on the time between now and the next bill date for this account. After this, we add in the setup fee since this is not prorated. Then, if there is a balance on the account, we add that to the account. In the event that there is a credit balance on the account, we will subtract this amount from the order total. If the credit balance on the account is greater than the prorated initial charge, the order will go through without a charge to the credit card on the account or requiring a paypal payment. The credit on the account will be reduced by the order total, and the order will await approval from sales, as normal. If there is a pending order already in the system, We will ignore the balance on the account completely, in the calculation of the initial charge. This is to protect against two orders coming into the system and getting the benefit of a credit balance, or worse, both orders being charged the order amount + the balance on the account.
-	ProratedInitialCharge *float64 `json:"proratedInitialCharge,omitempty"`
+	ProratedInitialCharge *Float64 `json:"proratedInitialCharge,omitempty"`
 
 	// This is the same as the proratedInitialCharge, except the balance on the account is ignored. This is the prorated total amount of the order.
-	ProratedOrderTotal *float64 `json:"proratedOrderTotal,omitempty"`
+	ProratedOrderTotal *Float64 `json:"proratedOrderTotal,omitempty"`
 
 	// The URLs for scripts to execute on their respective servers after they have been provisioned. Provision scripts are not available for Microsoft Windows servers.
 	ProvisionScripts []string `json:"provisionScripts,omitempty"`
@@ -2548,10 +2548,10 @@ type Container_Product_Order struct {
 	TechIncubatorItemPrice *Product_Item_Price `json:"techIncubatorItemPrice,omitempty"`
 
 	// The total tax portion of the recurring fees.
-	TotalRecurringTax *float64 `json:"totalRecurringTax,omitempty"`
+	TotalRecurringTax *Float64 `json:"totalRecurringTax,omitempty"`
 
 	// The tax amount of the setup fees.
-	TotalSetupTax *float64 `json:"totalSetupTax,omitempty"`
+	TotalSetupTax *Float64 `json:"totalSetupTax,omitempty"`
 
 	// An optional flag to use hourly pricing instead of standard monthly pricing.
 	UseHourlyPricing *bool `json:"useHourlyPricing,omitempty"`
@@ -2727,7 +2727,7 @@ type Container_Product_Order_Dns_Domain_Reseller struct {
 	Container_Product_Order
 
 	// Amount to be credited to the domain reseller account.
-	CreditAmount *float64 `json:"creditAmount,omitempty"`
+	CreditAmount *Float64 `json:"creditAmount,omitempty"`
 }
 
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a Gateway Appliance Cluster order with SoftLayer.
@@ -3206,7 +3206,7 @@ type Container_Product_Order_Storage_Group struct {
 	Entity
 
 	// Size of the array in gigabytes. Must be within limitations of the smallest drive assigned to the storage group and the storage group type.
-	ArraySize *float64 `json:"arraySize,omitempty"`
+	ArraySize *Float64 `json:"arraySize,omitempty"`
 
 	// The array type id from a [[SoftLayer_Configuration_Storage_Group_Array_Type]] object.
 	ArrayTypeId *int `json:"arrayTypeId,omitempty"`
@@ -3243,7 +3243,7 @@ type Container_Product_Order_Storage_Group_Partition struct {
 	Name *string `json:"name,omitempty"`
 
 	// The size of this partition
-	Size *float64 `json:"size,omitempty"`
+	Size *Float64 `json:"size,omitempty"`
 }
 
 // This container type is used for placing orders for external authentication, such as phone-based authentication.
@@ -3306,10 +3306,10 @@ type Container_Referral_Partner_Commission struct {
 	Entity
 
 	// no documentation yet
-	CommissionAmount *float64 `json:"commissionAmount,omitempty"`
+	CommissionAmount *Float64 `json:"commissionAmount,omitempty"`
 
 	// no documentation yet
-	CommissionRate *float64 `json:"commissionRate,omitempty"`
+	CommissionRate *Float64 `json:"commissionRate,omitempty"`
 
 	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty"`
@@ -3324,7 +3324,7 @@ type Container_Referral_Partner_Commission struct {
 	ReferralPartnerAccountId *int `json:"referralPartnerAccountId,omitempty"`
 
 	// no documentation yet
-	ReferralRevenue *float64 `json:"referralRevenue,omitempty"`
+	ReferralRevenue *Float64 `json:"referralRevenue,omitempty"`
 }
 
 // no documentation yet
@@ -3553,7 +3553,7 @@ type Container_Search_Result struct {
 	MatchedTerms []string `json:"matchedTerms,omitempty"`
 
 	// The score ratio of the result for relevance to the search criteria.
-	RelevanceScore *float64 `json:"relevanceScore,omitempty"`
+	RelevanceScore *Float64 `json:"relevanceScore,omitempty"`
 
 	// A search results resource object that matched search criteria.
 	Resource *Entity `json:"resource,omitempty"`
@@ -3578,7 +3578,7 @@ type Container_Tax_Cache struct {
 	Entity
 
 	// The percentage of the final total that should be tax.
-	EffectiveTaxRate *float64 `json:"effectiveTaxRate,omitempty"`
+	EffectiveTaxRate *Float64 `json:"effectiveTaxRate,omitempty"`
 
 	// The container that holds the four actual tax rates, one for each fee type.
 	Items []Container_Tax_Cache_Item `json:"items,omitempty"`
@@ -3587,7 +3587,7 @@ type Container_Tax_Cache struct {
 	Status *string `json:"status,omitempty"`
 
 	// The final amount of tax for the order.
-	TotalTaxAmount *float64 `json:"totalTaxAmount,omitempty"`
+	TotalTaxAmount *Float64 `json:"totalTaxAmount,omitempty"`
 }
 
 // This represents one order item in a tax calculation.
@@ -3612,19 +3612,19 @@ type Container_Tax_Rates struct {
 	Entity
 
 	// The tax rate associated with the labor fee.
-	LaborTaxRate *float64 `json:"laborTaxRate,omitempty"`
+	LaborTaxRate *Float64 `json:"laborTaxRate,omitempty"`
 
 	// A reference to a location.
-	LocationId *float64 `json:"locationId,omitempty"`
+	LocationId *Float64 `json:"locationId,omitempty"`
 
 	// The tax rate associated with the one-time fee.
-	OneTimeTaxRate *float64 `json:"oneTimeTaxRate,omitempty"`
+	OneTimeTaxRate *Float64 `json:"oneTimeTaxRate,omitempty"`
 
 	// The tax rate associated with the recurring fee.
-	RecurringTaxRate *float64 `json:"recurringTaxRate,omitempty"`
+	RecurringTaxRate *Float64 `json:"recurringTaxRate,omitempty"`
 
 	// The tax rate associated with the setup fee.
-	SetupTaxRate *float64 `json:"setupTaxRate,omitempty"`
+	SetupTaxRate *Float64 `json:"setupTaxRate,omitempty"`
 }
 
 // SoftLayer_Container_Ticket_GraphInputs models a single inbound object for a given ticket graph.

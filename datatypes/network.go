@@ -60,7 +60,7 @@ type Network_Application_Delivery_Controller struct {
 	AccountId *int `json:"accountId,omitempty"`
 
 	// The average daily public bandwidth usage for the current billing cycle.
-	AverageDailyPublicBandwidthUsage *float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
+	AverageDailyPublicBandwidthUsage *Float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
 
 	// The billing item for a Application Delivery Controller.
 	BillingItem *Billing_Item_Network_Application_Delivery_Controller `json:"billingItem,omitempty"`
@@ -117,7 +117,7 @@ type Network_Application_Delivery_Controller struct {
 	Notes *string `json:"notes,omitempty"`
 
 	// The total public outbound bandwidth for the current billing cycle.
-	OutboundPublicBandwidthUsage *float64 `json:"outboundPublicBandwidthUsage,omitempty"`
+	OutboundPublicBandwidthUsage *Float64 `json:"outboundPublicBandwidthUsage,omitempty"`
 
 	// The password used to connect to an application delivery controller's management interface when it is operating in advanced view mode.
 	Password *Software_Component_Password `json:"password,omitempty"`
@@ -126,7 +126,7 @@ type Network_Application_Delivery_Controller struct {
 	PrimaryIpAddress *string `json:"primaryIpAddress,omitempty"`
 
 	// The projected public outbound bandwidth for the current billing cycle.
-	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
+	ProjectedPublicBandwidthUsage *Float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
 	// A count of a network application controller's subnets. A subnet is a group of IP addresses
 	SubnetCount *uint `json:"subnetCount,omitempty"`
@@ -654,13 +654,13 @@ type Network_Bandwidth_Usage struct {
 	Entity
 
 	// Incoming bandwidth utilization.
-	AmountIn *float64 `json:"amountIn,omitempty"`
+	AmountIn *Float64 `json:"amountIn,omitempty"`
 
 	// Outgoing bandwidth utilization.
-	AmountOut *float64 `json:"amountOut,omitempty"`
+	AmountOut *Float64 `json:"amountOut,omitempty"`
 
 	// ID of the bandwidth usage detail type for this record.
-	BandwidthUsageDetailTypeId *float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
+	BandwidthUsageDetailTypeId *Float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
 
 	// The tracking object this bandwidth usage record describes.
 	TrackingObject *Metric_Tracking_Object `json:"trackingObject,omitempty"`
@@ -677,13 +677,13 @@ type Network_Bandwidth_Usage_Detail struct {
 	Account *Account `json:"account,omitempty"`
 
 	// Incoming bandwidth utilization.
-	AmountIn *float64 `json:"amountIn,omitempty"`
+	AmountIn *Float64 `json:"amountIn,omitempty"`
 
 	// Outgoing bandwidth utilization.
-	AmountOut *float64 `json:"amountOut,omitempty"`
+	AmountOut *Float64 `json:"amountOut,omitempty"`
 
 	// ID of the bandwidth usage detail type for this record.
-	BandwidthUsageDetailTypeId *float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
+	BandwidthUsageDetailTypeId *Float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
 
 	// The tracking object this bandwidth usage record describes.
 	TrackingObject *Metric_Tracking_Object `json:"trackingObject,omitempty"`
@@ -700,7 +700,7 @@ type Network_Bandwidth_Version1_Allocation struct {
 	AllotmentDetail *Network_Bandwidth_Version1_Allotment_Detail `json:"allotmentDetail,omitempty"`
 
 	// The amount of bandwidth allocated.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Float64 `json:"amount,omitempty"`
 
 	// Billing item associated with this hardware allocation.
 	BillingItem *Billing_Item_Hardware `json:"billingItem,omitempty"`
@@ -732,7 +732,7 @@ type Network_Bandwidth_Version1_Allotment struct {
 	ApplicationDeliveryControllers []Network_Application_Delivery_Controller `json:"applicationDeliveryControllers,omitempty"`
 
 	// The average daily public bandwidth usage for the current billing cycle.
-	AverageDailyPublicBandwidthUsage *float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
+	AverageDailyPublicBandwidthUsage *Float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
 
 	// An identifier marking this allotment as a virtual private rack (1) or a bandwidth pooling(2).
 	BandwidthAllotmentTypeId *int `json:"bandwidthAllotmentTypeId,omitempty"`
@@ -786,7 +786,7 @@ type Network_Bandwidth_Version1_Allotment struct {
 	Id *int `json:"id,omitempty"`
 
 	// The total public inbound bandwidth used in this virtual rack for an account's current billing cycle.
-	InboundPublicBandwidthUsage *float64 `json:"inboundPublicBandwidthUsage,omitempty"`
+	InboundPublicBandwidthUsage *Float64 `json:"inboundPublicBandwidthUsage,omitempty"`
 
 	// The location group associated with this virtual rack.
 	LocationGroup *Location_Group `json:"locationGroup,omitempty"`
@@ -822,7 +822,7 @@ type Network_Bandwidth_Version1_Allotment struct {
 	Name *string `json:"name,omitempty"`
 
 	// The total public outbound bandwidth used in this virtual rack for an account's current billing cycle.
-	OutboundPublicBandwidthUsage *float64 `json:"outboundPublicBandwidthUsage,omitempty"`
+	OutboundPublicBandwidthUsage *Float64 `json:"outboundPublicBandwidthUsage,omitempty"`
 
 	// Whether the bandwidth usage for this bandwidth pool for the current billing cycle exceeds the allocation.
 	OverBandwidthAllocationFlag *int `json:"overBandwidthAllocationFlag,omitempty"`
@@ -837,7 +837,7 @@ type Network_Bandwidth_Version1_Allotment struct {
 	ProjectedOverBandwidthAllocationFlag *int `json:"projectedOverBandwidthAllocationFlag,omitempty"`
 
 	// The projected public outbound bandwidth for this virtual server for the current billing cycle.
-	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
+	ProjectedPublicBandwidthUsage *Float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
 	// no documentation yet
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
@@ -934,10 +934,10 @@ type Network_Bandwidth_Version1_Usage_Detail struct {
 	Entity
 
 	// Incoming bandwidth utilization .
-	AmountIn *float64 `json:"amountIn,omitempty"`
+	AmountIn *Float64 `json:"amountIn,omitempty"`
 
 	// Outgoing bandwidth utilization .
-	AmountOut *float64 `json:"amountOut,omitempty"`
+	AmountOut *Float64 `json:"amountOut,omitempty"`
 
 	// In and out bandwidth utilization for a specified time stamp.
 	BandwidthUsage *Network_Bandwidth_Version1_Usage `json:"bandwidthUsage,omitempty"`
@@ -957,13 +957,13 @@ type Network_Bandwidth_Version1_Usage_Detail_Total struct {
 	Account *Account `json:"account,omitempty"`
 
 	// Incoming bandwidth utilization.
-	AmountIn *float64 `json:"amountIn,omitempty"`
+	AmountIn *Float64 `json:"amountIn,omitempty"`
 
 	// Outgoing bandwidth utilization.
-	AmountOut *float64 `json:"amountOut,omitempty"`
+	AmountOut *Float64 `json:"amountOut,omitempty"`
 
 	// ID of the bandwidth usage detail type for this record.
-	BandwidthUsageDetailTypeId *float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
+	BandwidthUsageDetailTypeId *Float64 `json:"bandwidthUsageDetailTypeId,omitempty"`
 
 	// The tracking object this bandwidth usage record describes.
 	TrackingObject *Metric_Tracking_Object `json:"trackingObject,omitempty"`
@@ -1888,7 +1888,7 @@ type Network_LoadBalancer_Global_Account struct {
 	AllowedNumberOfHosts *int `json:"allowedNumberOfHosts,omitempty"`
 
 	// The average amount of connections per second used within the current billing cycle.  This number is updated daily.
-	AverageConnectionsPerSecond *float64 `json:"averageConnectionsPerSecond,omitempty"`
+	AverageConnectionsPerSecond *Float64 `json:"averageConnectionsPerSecond,omitempty"`
 
 	// The current billing item for a Global Load Balancer account.
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
@@ -1945,7 +1945,7 @@ type Network_LoadBalancer_Global_Host struct {
 	HealthCheck *string `json:"healthCheck,omitempty"`
 
 	// The number of times the host was selected by the load balance method.
-	Hits *float64 `json:"hits,omitempty"`
+	Hits *Float64 `json:"hits,omitempty"`
 
 	// The unique identifier of a global load balancer host.
 	Id *int `json:"id,omitempty"`
@@ -2564,7 +2564,7 @@ type Network_Monitor_Version1_Query_Result struct {
 	ResponseStatus *int `json:"responseStatus,omitempty"`
 
 	// The length of time it took the server to respond
-	ResponseTime *float64 `json:"responseTime,omitempty"`
+	ResponseTime *Float64 `json:"responseTime,omitempty"`
 }
 
 // The MonitorType type stores a name, long description, and default arguments for the monitor types.  The only use for this object is in reference.  The user chooses a monitoring type that would be appropriate for their server, and sets the id of the Query_Type to SoftLayer_Network_Monitor_Version1_Query_Host->queryTypeId
@@ -4197,7 +4197,7 @@ type Network_Subnet struct {
 	SwipTransactionCount *uint `json:"swipTransactionCount,omitempty"`
 
 	// The number of IP addresses contained within this subnet.
-	TotalIpAddresses *float64 `json:"totalIpAddresses,omitempty"`
+	TotalIpAddresses *Float64 `json:"totalIpAddresses,omitempty"`
 
 	// A count of
 	UnboundDescendantCount *uint `json:"unboundDescendantCount,omitempty"`
@@ -4206,7 +4206,7 @@ type Network_Subnet struct {
 	UnboundDescendants []Network_Subnet `json:"unboundDescendants,omitempty"`
 
 	// The number of IP addresses that can be addressed within this subnet. For IPv4 subnets with a CIDR value of at most 30, a discount of 3 is taken from the total number of IP addresses for the subnet's unusable network, gateway and broadcast IP addresses. For IPv6 subnets with a CIDR value of at most 126, a discount of 2 is taken for the subnet's network and gateway IP addresses.
-	UsableIpAddressCount *float64 `json:"usableIpAddressCount,omitempty"`
+	UsableIpAddressCount *Float64 `json:"usableIpAddressCount,omitempty"`
 
 	// This is the Internet Protocol version. Current values may be either 4 or 6.
 	Version *int `json:"version,omitempty"`

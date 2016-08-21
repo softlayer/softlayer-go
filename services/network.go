@@ -276,7 +276,7 @@ func (r Network_Application_Delivery_Controller) GetAccount() (resp datatypes.Ac
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Application_Delivery_Controller) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -392,7 +392,7 @@ func (r Network_Application_Delivery_Controller) GetObject() (resp datatypes.Net
 }
 
 // Retrieve The total public outbound bandwidth for the current billing cycle.
-func (r Network_Application_Delivery_Controller) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Application_Delivery_Controller) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -410,7 +410,7 @@ func (r Network_Application_Delivery_Controller) GetPrimaryIpAddress() (resp str
 }
 
 // Retrieve The projected public outbound bandwidth for the current billing cycle.
-func (r Network_Application_Delivery_Controller) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Application_Delivery_Controller) GetProjectedPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getProjectedPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1560,7 +1560,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllers(
 }
 
 // Retrieve The average daily public bandwidth usage for the current billing cycle.
-func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getAverageDailyPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1690,7 +1690,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Ha
 }
 
 // Retrieve The total public inbound bandwidth used in this virtual rack for an account's current billing cycle.
-func (r Network_Bandwidth_Version1_Allotment) GetInboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Bandwidth_Version1_Allotment) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1738,7 +1738,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetObject() (resp datatypes.Networ
 }
 
 // Retrieve The total public outbound bandwidth used in this virtual rack for an account's current billing cycle.
-func (r Network_Bandwidth_Version1_Allotment) GetOutboundPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Bandwidth_Version1_Allotment) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }
@@ -1762,7 +1762,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetProjectedOverBandwidthAllocatio
 }
 
 // Retrieve The projected public outbound bandwidth for this virtual server for the current billing cycle.
-func (r Network_Bandwidth_Version1_Allotment) GetProjectedPublicBandwidthUsage() (resp float64, err error) {
+func (r Network_Bandwidth_Version1_Allotment) GetProjectedPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getProjectedPublicBandwidthUsage", nil, &r.Options, &resp)
 	return
 }

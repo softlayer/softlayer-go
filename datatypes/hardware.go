@@ -73,7 +73,7 @@ type Hardware struct {
 	Attributes []Hardware_Attribute `json:"attributes,omitempty"`
 
 	// The average daily public bandwidth usage for the current billing cycle.
-	AverageDailyPublicBandwidthUsage *float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
+	AverageDailyPublicBandwidthUsage *Float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
 
 	// A count of a piece of hardware's back-end or private network components.
 	BackendNetworkComponentCount *uint `json:"backendNetworkComponentCount,omitempty"`
@@ -88,7 +88,7 @@ type Hardware struct {
 	BackendRouters []Hardware `json:"backendRouters,omitempty"`
 
 	// A hardware's allotted bandwidth (measured in GB).
-	BandwidthAllocation *float64 `json:"bandwidthAllocation,omitempty"`
+	BandwidthAllocation *Float64 `json:"bandwidthAllocation,omitempty"`
 
 	// A hardware's allotted detail record. Allotment details link bandwidth allocation with allotments.
 	BandwidthAllotmentDetail *Network_Bandwidth_Version1_Allotment_Detail `json:"bandwidthAllotmentDetail,omitempty"`
@@ -124,7 +124,7 @@ type Hardware struct {
 	ContinuousDataProtectionSoftwareComponent *Software_Component `json:"continuousDataProtectionSoftwareComponent,omitempty"`
 
 	// The current billable public outbound bandwidth for this hardware for the current billing cycle.
-	CurrentBillableBandwidthUsage *float64 `json:"currentBillableBandwidthUsage,omitempty"`
+	CurrentBillableBandwidthUsage *Float64 `json:"currentBillableBandwidthUsage,omitempty"`
 
 	// Information regarding the datacenter in which a piece of hardware resides.
 	Datacenter *Location `json:"datacenter,omitempty"`
@@ -262,10 +262,10 @@ type Hardware struct {
 	Id *int `json:"id,omitempty"`
 
 	// The sum of all the inbound network traffic data for the last 30 days.
-	InboundBandwidthUsage *float64 `json:"inboundBandwidthUsage,omitempty"`
+	InboundBandwidthUsage *Float64 `json:"inboundBandwidthUsage,omitempty"`
 
 	// The total public inbound bandwidth for this hardware for the current billing cycle.
-	InboundPublicBandwidthUsage *float64 `json:"inboundPublicBandwidthUsage,omitempty"`
+	InboundPublicBandwidthUsage *Float64 `json:"inboundPublicBandwidthUsage,omitempty"`
 
 	// Information regarding the last transaction a server performed.
 	LastTransaction *Provisioning_Version1_Transaction `json:"lastTransaction,omitempty"`
@@ -385,7 +385,7 @@ type Hardware struct {
 	NetworkVlans []Network_Vlan `json:"networkVlans,omitempty"`
 
 	// A hardware's allotted bandwidth for the next billing cycle (measured in GB).
-	NextBillingCycleBandwidthAllocation *float64 `json:"nextBillingCycleBandwidthAllocation,omitempty"`
+	NextBillingCycleBandwidthAllocation *Float64 `json:"nextBillingCycleBandwidthAllocation,omitempty"`
 
 	// A small note about a piece of hardware to use at your discretion.
 	Notes *string `json:"notes,omitempty"`
@@ -403,10 +403,10 @@ type Hardware struct {
 	OperatingSystemReferenceCode *string `json:"operatingSystemReferenceCode,omitempty"`
 
 	// The sum of all the outbound network traffic data for the last 30 days.
-	OutboundBandwidthUsage *float64 `json:"outboundBandwidthUsage,omitempty"`
+	OutboundBandwidthUsage *Float64 `json:"outboundBandwidthUsage,omitempty"`
 
 	// The total public outbound bandwidth for this hardware for the current billing cycle.
-	OutboundPublicBandwidthUsage *float64 `json:"outboundPublicBandwidthUsage,omitempty"`
+	OutboundPublicBandwidthUsage *Float64 `json:"outboundPublicBandwidthUsage,omitempty"`
 
 	// Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 	PointOfPresenceLocation *Location `json:"pointOfPresenceLocation,omitempty"`
@@ -707,7 +707,7 @@ type Hardware_Component struct {
 	Entity
 
 	// A component's capacity.
-	Capacity *float64 `json:"capacity,omitempty"`
+	Capacity *Float64 `json:"capacity,omitempty"`
 
 	// A components sub components. Devices that are usually integrated or in some way attached to a component.
 	Children []Hardware_Component `json:"children,omitempty"`
@@ -846,7 +846,7 @@ type Hardware_Component_Model struct {
 	Attributes []Hardware_Component_Model_Attribute `json:"attributes,omitempty"`
 
 	// A component model's capacity. The capacity of a component model depends on the model itself.  For Example: Hard drives have a capacity that reflects the amount of data that hard drive can store.
-	Capacity *float64 `json:"capacity,omitempty"`
+	Capacity *Float64 `json:"capacity,omitempty"`
 
 	// A count of
 	CompatibleArrayTypeCount *uint `json:"compatibleArrayTypeCount,omitempty"`
@@ -986,7 +986,7 @@ type Hardware_Component_Model_Generic struct {
 	Entity
 
 	// A generic component model's capacity. The capacity of a generic component model depends on the model itself.  For Example: Hard drives have a capacity that reflects the amount of data that hard drive can store.
-	Capacity *float64 `json:"capacity,omitempty"`
+	Capacity *Float64 `json:"capacity,omitempty"`
 
 	// A brief description for a generic component model that typically defines it's function.
 	Description *string `json:"description,omitempty"`
@@ -1082,7 +1082,7 @@ type Hardware_Component_Partition struct {
 	HardwareComponentId *int `json:"hardwareComponentId,omitempty"`
 
 	// A hardware component partition's minimum size(GB).
-	MinimumSize *float64 `json:"minimumSize,omitempty"`
+	MinimumSize *Float64 `json:"minimumSize,omitempty"`
 
 	// A hardware component partition's name. On a server with windows this may be 'C' and on Linux this may be '/var'
 	Name *string `json:"name,omitempty"`
@@ -1169,7 +1169,7 @@ type Hardware_Component_Partition_Template_Partition struct {
 	PartitionName *string `json:"partitionName,omitempty"`
 
 	// A partition's default size.
-	PartitionSize *float64 `json:"partitionSize,omitempty"`
+	PartitionSize *Float64 `json:"partitionSize,omitempty"`
 
 	// A partition's [[SoftLayer_Hardware_Component_Partition_Template|Partition Template]].
 	PartitionTemplate *Hardware_Component_Partition_Template `json:"partitionTemplate,omitempty"`
@@ -1508,10 +1508,10 @@ type Hardware_Server struct {
 	AvailableMonitoringCount *uint `json:"availableMonitoringCount,omitempty"`
 
 	// The average daily total bandwidth usage for the current billing cycle.
-	AverageDailyBandwidthUsage *float64 `json:"averageDailyBandwidthUsage,omitempty"`
+	AverageDailyBandwidthUsage *Float64 `json:"averageDailyBandwidthUsage,omitempty"`
 
 	// The average daily private bandwidth usage for the current billing cycle.
-	AverageDailyPrivateBandwidthUsage *float64 `json:"averageDailyPrivateBandwidthUsage,omitempty"`
+	AverageDailyPrivateBandwidthUsage *Float64 `json:"averageDailyPrivateBandwidthUsage,omitempty"`
 
 	// The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
 	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty"`
@@ -1532,7 +1532,7 @@ type Hardware_Server struct {
 	ControlPanel *Software_Component_ControlPanel `json:"controlPanel,omitempty"`
 
 	// The total cost of a server, measured in US Dollars ($USD).
-	Cost *float64 `json:"cost,omitempty"`
+	Cost *Float64 `json:"cost,omitempty"`
 
 	// An object that provides commonly used bandwidth summary components for the current billing cycle.
 	CurrentBandwidthSummary *Metric_Tracking_Object_Bandwidth_Summary `json:"currentBandwidthSummary,omitempty"`
@@ -1544,7 +1544,7 @@ type Hardware_Server struct {
 	CustomerOwnedFlag *bool `json:"customerOwnedFlag,omitempty"`
 
 	// The total private inbound bandwidth for this hardware for the current billing cycle.
-	InboundPrivateBandwidthUsage *float64 `json:"inboundPrivateBandwidthUsage,omitempty"`
+	InboundPrivateBandwidthUsage *Float64 `json:"inboundPrivateBandwidthUsage,omitempty"`
 
 	// The last transaction that a server's operating system was loaded.
 	LastOperatingSystemReload *Provisioning_Version1_Transaction `json:"lastOperatingSystemReload,omitempty"`
@@ -1562,7 +1562,7 @@ type Hardware_Server struct {
 	OpenCancellationTicket *Ticket `json:"openCancellationTicket,omitempty"`
 
 	// The total private outbound bandwidth for this hardware for the current billing cycle.
-	OutboundPrivateBandwidthUsage *float64 `json:"outboundPrivateBandwidthUsage,omitempty"`
+	OutboundPrivateBandwidthUsage *Float64 `json:"outboundPrivateBandwidthUsage,omitempty"`
 
 	// Whether the bandwidth usage for this hardware for the current billing cycle exceeds the allocation.
 	OverBandwidthAllocationFlag *int `json:"overBandwidthAllocationFlag,omitempty"`
@@ -1574,7 +1574,7 @@ type Hardware_Server struct {
 	ProjectedOverBandwidthAllocationFlag *int `json:"projectedOverBandwidthAllocationFlag,omitempty"`
 
 	// The projected public outbound bandwidth for this hardware for the current billing cycle.
-	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
+	ProjectedPublicBandwidthUsage *Float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
 	// A count of the last five commands issued to the server's remote management card.
 	RecentRemoteManagementCommandCount *uint `json:"recentRemoteManagementCommandCount,omitempty"`

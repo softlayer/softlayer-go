@@ -232,10 +232,10 @@ type Virtual_Guest struct {
 	AvailableMonitoringCount *uint `json:"availableMonitoringCount,omitempty"`
 
 	// The average daily private bandwidth usage for the current billing cycle.
-	AverageDailyPrivateBandwidthUsage *float64 `json:"averageDailyPrivateBandwidthUsage,omitempty"`
+	AverageDailyPrivateBandwidthUsage *Float64 `json:"averageDailyPrivateBandwidthUsage,omitempty"`
 
 	// The average daily public bandwidth usage for the current billing cycle.
-	AverageDailyPublicBandwidthUsage *float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
+	AverageDailyPublicBandwidthUsage *Float64 `json:"averageDailyPublicBandwidthUsage,omitempty"`
 
 	// A count of a guests's backend network components.
 	BackendNetworkComponentCount *uint `json:"backendNetworkComponentCount,omitempty"`
@@ -250,7 +250,7 @@ type Virtual_Guest struct {
 	BackendRouters []Hardware `json:"backendRouters,omitempty"`
 
 	// A computing instance's allotted bandwidth (measured in GB).
-	BandwidthAllocation *float64 `json:"bandwidthAllocation,omitempty"`
+	BandwidthAllocation *Float64 `json:"bandwidthAllocation,omitempty"`
 
 	// A computing instance's allotted detail record. Allotment details link bandwidth allocation with allotments.
 	BandwidthAllotmentDetail *Network_Bandwidth_Version1_Allotment_Detail `json:"bandwidthAllotmentDetail,omitempty"`
@@ -352,10 +352,10 @@ type Virtual_Guest struct {
 	Id *int `json:"id,omitempty"`
 
 	// The total private inbound bandwidth for this computing instance for the current billing cycle.
-	InboundPrivateBandwidthUsage *float64 `json:"inboundPrivateBandwidthUsage,omitempty"`
+	InboundPrivateBandwidthUsage *Float64 `json:"inboundPrivateBandwidthUsage,omitempty"`
 
 	// The total public inbound bandwidth for this computing instance for the current billing cycle.
-	InboundPublicBandwidthUsage *float64 `json:"inboundPublicBandwidthUsage,omitempty"`
+	InboundPublicBandwidthUsage *Float64 `json:"inboundPublicBandwidthUsage,omitempty"`
 
 	// A count of
 	InternalTagReferenceCount *uint `json:"internalTagReferenceCount,omitempty"`
@@ -481,10 +481,10 @@ type Virtual_Guest struct {
 	OrderedPackageId *string `json:"orderedPackageId,omitempty"`
 
 	// The total private outbound bandwidth for this computing instance for the current billing cycle.
-	OutboundPrivateBandwidthUsage *float64 `json:"outboundPrivateBandwidthUsage,omitempty"`
+	OutboundPrivateBandwidthUsage *Float64 `json:"outboundPrivateBandwidthUsage,omitempty"`
 
 	// The total public outbound bandwidth for this computing instance for the current billing cycle.
-	OutboundPublicBandwidthUsage *float64 `json:"outboundPublicBandwidthUsage,omitempty"`
+	OutboundPublicBandwidthUsage *Float64 `json:"outboundPublicBandwidthUsage,omitempty"`
 
 	// Whether the bandwidth usage for this computing instance for the current billing cycle exceeds the allocation.
 	OverBandwidthAllocationFlag *int `json:"overBandwidthAllocationFlag,omitempty"`
@@ -514,7 +514,7 @@ type Virtual_Guest struct {
 	ProjectedOverBandwidthAllocationFlag *int `json:"projectedOverBandwidthAllocationFlag,omitempty"`
 
 	// The projected public outbound bandwidth for this computing instance for the current billing cycle.
-	ProjectedPublicBandwidthUsage *float64 `json:"projectedPublicBandwidthUsage,omitempty"`
+	ProjectedPublicBandwidthUsage *Float64 `json:"projectedPublicBandwidthUsage,omitempty"`
 
 	// no documentation yet
 	ProvisionDate *Time `json:"provisionDate,omitempty"`
@@ -719,7 +719,7 @@ type Virtual_Guest_Block_Device_Template struct {
 	DiskImageId *int `json:"diskImageId,omitempty"`
 
 	// The amount of disk space that a block device template is using.  Use this number along with the units property to obtain the correct space used.
-	DiskSpace *float64 `json:"diskSpace,omitempty"`
+	DiskSpace *Float64 `json:"diskSpace,omitempty"`
 
 	// A block device template's group. Several block device templates can be combined together into a group for archiving purposes.
 	Group *Virtual_Guest_Block_Device_Template_Group `json:"group,omitempty"`
@@ -765,7 +765,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	BlockDevices []Virtual_Guest_Block_Device_Template `json:"blockDevices,omitempty"`
 
 	// The total disk space of all images in a image template group.
-	BlockDevicesDiskSpaceTotal *float64 `json:"blockDevicesDiskSpaceTotal,omitempty"`
+	BlockDevicesDiskSpaceTotal *Float64 `json:"blockDevicesDiskSpaceTotal,omitempty"`
 
 	// The image template groups that are clones of an image template group.
 	Children []Virtual_Guest_Block_Device_Template_Group `json:"children,omitempty"`
@@ -1151,7 +1151,7 @@ type Virtual_Storage_Repository struct {
 	BillingItem *Billing_Item `json:"billingItem,omitempty"`
 
 	// A storage repositories capacity measured in Giga-Bytes (GB)
-	Capacity *float64 `json:"capacity,omitempty"`
+	Capacity *Float64 `json:"capacity,omitempty"`
 
 	// The datacenter that a virtual storage repository resides in.
 	Datacenter *Location `json:"datacenter,omitempty"`

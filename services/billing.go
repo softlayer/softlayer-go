@@ -81,7 +81,7 @@ func (r Billing_Currency) GetObject() (resp datatypes.Billing_Currency, err erro
 }
 
 // no documentation yet
-func (r Billing_Currency) GetPrice(price *float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
+func (r Billing_Currency) GetPrice(price *datatypes.Float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
 	params := []interface{}{
 		price,
 		formatOptions,
@@ -174,7 +174,7 @@ func (r Billing_Currency_ExchangeRate) GetObject() (resp datatypes.Billing_Curre
 }
 
 // no documentation yet
-func (r Billing_Currency_ExchangeRate) GetPrice(price *float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
+func (r Billing_Currency_ExchangeRate) GetPrice(price *datatypes.Float64, formatOptions *datatypes.Container_Billing_Currency_Format) (resp string, err error) {
 	params := []interface{}{
 		price,
 		formatOptions,
@@ -320,7 +320,7 @@ func (r Billing_Invoice) GetAccount() (resp datatypes.Account, err error) {
 }
 
 // Retrieve This is the amount of this invoice.
-func (r Billing_Invoice) GetAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getAmount", nil, &r.Options, &resp)
 	return
 }
@@ -350,37 +350,37 @@ func (r Billing_Invoice) GetInvoiceTopLevelItems() (resp []datatypes.Billing_Inv
 }
 
 // Retrieve The total amount of this invoice.
-func (r Billing_Invoice) GetInvoiceTotalAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total one-time charges for this invoice. This is the sum of one-time charges + setup fees + labor fees. This does not include taxes.
-func (r Billing_Invoice) GetInvoiceTotalOneTimeAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A sum of all the taxes related to one time charges for this invoice.
-func (r Billing_Invoice) GetInvoiceTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total amount of this invoice. This does not include taxes.
-func (r Billing_Invoice) GetInvoiceTotalPreTaxAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalPreTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalPreTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total Recurring amount of this invoice. This amount does not include taxes or one time charges.
-func (r Billing_Invoice) GetInvoiceTotalRecurringAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total amount of the recurring taxes on this invoice.
-func (r Billing_Invoice) GetInvoiceTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Billing_Invoice) GetInvoiceTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
@@ -398,7 +398,7 @@ func (r Billing_Invoice) GetObject() (resp datatypes.Billing_Invoice, err error)
 }
 
 // Retrieve This is the total payment made on this invoice.
-func (r Billing_Invoice) GetPayment() (resp float64, err error) {
+func (r Billing_Invoice) GetPayment() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getPayment", nil, &r.Options, &resp)
 	return
 }
@@ -611,25 +611,25 @@ func (r Billing_Invoice_Item) GetProduct() (resp datatypes.Product_Item, err err
 }
 
 // Retrieve An invoice Item's total, including any child invoice items if they exist.
-func (r Billing_Invoice_Item) GetTotalOneTimeAmount() (resp float64, err error) {
+func (r Billing_Invoice_Item) GetTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An invoice Item's total, including any child invoice items if they exist.
-func (r Billing_Invoice_Item) GetTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Billing_Invoice_Item) GetTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An invoice Item's total, including any child invoice items if they exist.
-func (r Billing_Invoice_Item) GetTotalRecurringAmount() (resp float64, err error) {
+func (r Billing_Invoice_Item) GetTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A Billing Item's total, including any child billing items if they exist.'
-func (r Billing_Invoice_Item) GetTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Billing_Invoice_Item) GetTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
@@ -1085,25 +1085,25 @@ func (r Billing_Item) GetNextInvoiceChildren() (resp []datatypes.Billing_Item, e
 }
 
 // Retrieve A Billing Item's total, including any child billing items if they exist.'
-func (r Billing_Item) GetNextInvoiceTotalOneTimeAmount() (resp float64, err error) {
+func (r Billing_Item) GetNextInvoiceTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A Billing Item's total, including any child billing items if they exist.'
-func (r Billing_Item) GetNextInvoiceTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Billing_Item) GetNextInvoiceTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve A Billing Item's total, including any child billing items and associated billing items if they exist.'
-func (r Billing_Item) GetNextInvoiceTotalRecurringAmount() (resp float64, err error) {
+func (r Billing_Item) GetNextInvoiceTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve This is deprecated and will always be zero. Because tax is calculated in real-time, previewing the next recurring invoice is pre-tax only.
-func (r Billing_Item) GetNextInvoiceTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Billing_Item) GetNextInvoiceTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
@@ -1590,13 +1590,13 @@ func (r Billing_Order) GetOrderApprovalDate() (resp datatypes.Time, err error) {
 }
 
 // Retrieve An order's non-server items total monthly fee.
-func (r Billing_Order) GetOrderNonServerMonthlyAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderNonServerMonthlyAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderNonServerMonthlyAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's server items total monthly fee.
-func (r Billing_Order) GetOrderServerMonthlyAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderServerMonthlyAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderServerMonthlyAmount", nil, &r.Options, &resp)
 	return
 }
@@ -1614,49 +1614,49 @@ func (r Billing_Order) GetOrderTopLevelItems() (resp []datatypes.Billing_Order_I
 }
 
 // Retrieve This amount represents the order's initial charge including set up fee and taxes.
-func (r Billing_Order) GetOrderTotalAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total one time amount summing all the set up fees, the labor fees and the one time fees. Taxes will be applied for non-tax-exempt. This amount represents the initial fees that will be charged.
-func (r Billing_Order) GetOrderTotalOneTime() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalOneTime() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalOneTime", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total one time amount. This amount represents the initial fees before tax.
-func (r Billing_Order) GetOrderTotalOneTimeAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalOneTimeAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalOneTimeAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total one time tax amount. This amount represents the tax that will be applied to the total charge, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
-func (r Billing_Order) GetOrderTotalOneTimeTaxAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalOneTimeTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total recurring amount. Taxes will be applied for non-tax-exempt. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-func (r Billing_Order) GetOrderTotalRecurring() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalRecurring() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalRecurring", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total recurring amount. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-func (r Billing_Order) GetOrderTotalRecurringAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The total tax amount of the recurring fees, if the SoftLayer_Account tied to a SoftLayer_Billing_Order is a taxable account.
-func (r Billing_Order) GetOrderTotalRecurringTaxAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalRecurringTaxAmount", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve An order's total setup fee.
-func (r Billing_Order) GetOrderTotalSetupAmount() (resp float64, err error) {
+func (r Billing_Order) GetOrderTotalSetupAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTotalSetupAmount", nil, &r.Options, &resp)
 	return
 }
@@ -2075,7 +2075,7 @@ func (r Billing_Order_Item) GetStorageGroups() (resp []datatypes.Configuration_S
 }
 
 // Retrieve The recurring fee of an ordered item. This amount represents the fees that will be charged on a recurring (usually monthly) basis.
-func (r Billing_Order_Item) GetTotalRecurringAmount() (resp float64, err error) {
+func (r Billing_Order_Item) GetTotalRecurringAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getTotalRecurringAmount", nil, &r.Options, &resp)
 	return
 }

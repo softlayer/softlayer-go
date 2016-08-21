@@ -110,7 +110,7 @@ type Product_Item struct {
 	BundleCount *uint `json:"bundleCount,omitempty"`
 
 	// Some Product Items have capacity information such as RAM and bandwidth, and others. This provides the numerical representation of the capacity given in the description of this product item.
-	Capacity *string `json:"capacity,omitempty"`
+	Capacity *Float64 `json:"capacity,omitempty"`
 
 	// This flag indicates that this product is restricted by a capacity on a related product.
 	CapacityRestrictedProductFlag *bool `json:"capacityRestrictedProductFlag,omitempty"`
@@ -574,7 +574,7 @@ type Product_Item_Price struct {
 	DefinedSoftwareLicenseFlag *bool `json:"definedSoftwareLicenseFlag,omitempty"`
 
 	// The hourly price for this item, should this item be part of an hourly pricing package.
-	HourlyRecurringFee *float64 `json:"hourlyRecurringFee,omitempty"`
+	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty"`
 
 	// The unique identifier of a Product Item Price.
 	Id *int `json:"id,omitempty"`
@@ -592,7 +592,7 @@ type Product_Item_Price struct {
 	ItemId *int `json:"itemId,omitempty"`
 
 	// The labor fee for a product item price.
-	LaborFee *float64 `json:"laborFee,omitempty"`
+	LaborFee *Float64 `json:"laborFee,omitempty"`
 
 	// The id of the [[SoftLayer_Location_Group_Pricing]] that this price is part of. If set to null, the price is considered a standard price, which can be used with any location when ordering.
 	//
@@ -603,10 +603,10 @@ type Product_Item_Price struct {
 	OnSaleFlag *bool `json:"onSaleFlag,omitempty"`
 
 	// The one time fee for a product item price.
-	OneTimeFee *float64 `json:"oneTimeFee,omitempty"`
+	OneTimeFee *Float64 `json:"oneTimeFee,omitempty"`
 
 	// A price's total tax amount of the one time fees (oneTimeFee, laborFee, and setupFee). This is only populated after the order is verified via SoftLayer_Product_Order::verifyOrder()
-	OneTimeFeeTax *float64 `json:"oneTimeFeeTax,omitempty"`
+	OneTimeFeeTax *Float64 `json:"oneTimeFeeTax,omitempty"`
 
 	// Order options for the category that this price is associated with.
 	OrderOptions []Product_Item_Category_Order_Option_Type `json:"orderOptions,omitempty"`
@@ -639,31 +639,31 @@ type Product_Item_Price struct {
 	PricingLocationGroup *Location_Group_Pricing `json:"pricingLocationGroup,omitempty"`
 
 	// A recurring fee is a fee that happens every billing period. This fee is represented as a floating point decimal in US dollars ($USD).
-	ProratedRecurringFee *float64 `json:"proratedRecurringFee,omitempty"`
+	ProratedRecurringFee *Float64 `json:"proratedRecurringFee,omitempty"`
 
 	// A price's tax amount of the recurring fee. This is only populated after the order is verified via SoftLayer_Product_Order::verifyOrder()
-	ProratedRecurringFeeTax *float64 `json:"proratedRecurringFeeTax,omitempty"`
+	ProratedRecurringFeeTax *Float64 `json:"proratedRecurringFeeTax,omitempty"`
 
 	// no documentation yet
 	Quantity *int `json:"quantity,omitempty"`
 
 	// A recurring fee is a fee that happens every billing period. This fee is represented as a floating point decimal in US dollars ($USD).
-	RecurringFee *float64 `json:"recurringFee,omitempty"`
+	RecurringFee *Float64 `json:"recurringFee,omitempty"`
 
 	// A price's tax amount of the recurring fee. This is only populated after the order is verified via SoftLayer_Product_Order::verifyOrder()
-	RecurringFeeTax *float64 `json:"recurringFeeTax,omitempty"`
+	RecurringFeeTax *Float64 `json:"recurringFeeTax,omitempty"`
 
 	// The number of server cores required to order this item. This is deprecated. Use [[SoftLayer_Product_Item_Price/getCapacityRestrictionMinimum|getCapacityRestrictionMinimum]] and [[SoftLayer_Product_Item_Price/getCapacityRestrictionMaximum|getCapacityRestrictionMaximum]]
 	RequiredCoreCount *int `json:"requiredCoreCount,omitempty"`
 
 	// The setup fee associated with a product item price.
-	SetupFee *float64 `json:"setupFee,omitempty"`
+	SetupFee *Float64 `json:"setupFee,omitempty"`
 
 	// Used for ordering items on sales orders.
 	Sort *int `json:"sort,omitempty"`
 
 	// The rate for a usage based item
-	UsageRate *float64 `json:"usageRate,omitempty"`
+	UsageRate *Float64 `json:"usageRate,omitempty"`
 }
 
 // The SoftLayer_Product_Item_Price data type gives more information about the item price restrictions.  An item price may be restricted to one or more accounts. If the item price is restricted to an account, only that account will see the restriction details.
@@ -725,7 +725,7 @@ type Product_Item_Price_Premium struct {
 	Entity
 
 	// no documentation yet
-	HourlyModifier *float64 `json:"hourlyModifier,omitempty"`
+	HourlyModifier *Float64 `json:"hourlyModifier,omitempty"`
 
 	// no documentation yet
 	ItemPrice *Product_Item_Price `json:"itemPrice,omitempty"`
@@ -740,7 +740,7 @@ type Product_Item_Price_Premium struct {
 	LocationId *int `json:"locationId,omitempty"`
 
 	// no documentation yet
-	MonthlyModifier *float64 `json:"monthlyModifier,omitempty"`
+	MonthlyModifier *Float64 `json:"monthlyModifier,omitempty"`
 
 	// no documentation yet
 	Package *Product_Package `json:"package,omitempty"`
@@ -1382,10 +1382,10 @@ type Product_Package_Preset struct {
 	StorageGroupTemplateArrays []Configuration_Storage_Group_Template_Group `json:"storageGroupTemplateArrays,omitempty"`
 
 	// The starting hourly price for this configuration. Additional options not defined in the preset may increase the cost.
-	TotalMinimumHourlyFee *float64 `json:"totalMinimumHourlyFee,omitempty"`
+	TotalMinimumHourlyFee *Float64 `json:"totalMinimumHourlyFee,omitempty"`
 
 	// The starting monthly price for this configuration. Additional options not defined in the preset may increase the cost.
-	TotalMinimumRecurringFee *float64 `json:"totalMinimumRecurringFee,omitempty"`
+	TotalMinimumRecurringFee *Float64 `json:"totalMinimumRecurringFee,omitempty"`
 }
 
 // Package preset attributes contain supplementary information for a package preset.
@@ -1456,7 +1456,7 @@ type Product_Package_Server struct {
 	Datacenters *string `json:"datacenters,omitempty"`
 
 	// The minimum amount of RAM the server is configured with.
-	DefaultRamCapacity *float64 `json:"defaultRamCapacity,omitempty"`
+	DefaultRamCapacity *Float64 `json:"defaultRamCapacity,omitempty"`
 
 	// Flag to indicate if the server configuration supports dual path network routing.
 	DualPathNetworkFlag *bool `json:"dualPathNetworkFlag,omitempty"`
@@ -1486,13 +1486,13 @@ type Product_Package_Server struct {
 	MaximumDriveCount *int `json:"maximumDriveCount,omitempty"`
 
 	// The maximum available network speed for the server.
-	MaximumPortSpeed *float64 `json:"maximumPortSpeed,omitempty"`
+	MaximumPortSpeed *Float64 `json:"maximumPortSpeed,omitempty"`
 
 	// The maximum amount of RAM the server can support.
-	MaximumRamCapacity *float64 `json:"maximumRamCapacity,omitempty"`
+	MaximumRamCapacity *Float64 `json:"maximumRamCapacity,omitempty"`
 
 	// The minimum available network speed for the server.
-	MinimumPortSpeed *float64 `json:"minimumPortSpeed,omitempty"`
+	MinimumPortSpeed *Float64 `json:"minimumPortSpeed,omitempty"`
 
 	// Indicates whether or not the server is being sold as part of an outlet package.
 	OutletFlag *bool `json:"outletFlag,omitempty"`
@@ -1552,10 +1552,10 @@ type Product_Package_Server struct {
 	SapCertifiedServerFlag *bool `json:"sapCertifiedServerFlag,omitempty"`
 
 	// The hourly starting price for the server. This includes a sum of all the minimum required items, including RAM and hard drives. Not all servers are available hourly.
-	StartingHourlyPrice *float64 `json:"startingHourlyPrice,omitempty"`
+	StartingHourlyPrice *Float64 `json:"startingHourlyPrice,omitempty"`
 
 	// The monthly starting price for the server. This includes a sum of all the minimum required items, including RAM and hard drives.
-	StartingMonthlyPrice *float64 `json:"startingMonthlyPrice,omitempty"`
+	StartingMonthlyPrice *Float64 `json:"startingMonthlyPrice,omitempty"`
 
 	// The total number of processor cores available for the server.
 	TotalCoreCount *int `json:"totalCoreCount,omitempty"`
@@ -1651,10 +1651,10 @@ type Product_Upgrade_Request struct {
 	OrderId *int `json:"orderId,omitempty"`
 
 	// The total amount of fees
-	OrderTotal *float64 `json:"orderTotal,omitempty"`
+	OrderTotal *Float64 `json:"orderTotal,omitempty"`
 
 	// The prorated total amount of recurring fees
-	ProratedTotal *float64 `json:"proratedTotal,omitempty"`
+	ProratedTotal *Float64 `json:"proratedTotal,omitempty"`
 
 	// A server object associated with the upgrade request if any.
 	Server *Hardware `json:"server,omitempty"`

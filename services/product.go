@@ -1656,13 +1656,13 @@ func (r Product_Package_Preset) GetStorageGroupTemplateArrays() (resp []datatype
 }
 
 // Retrieve The starting hourly price for this configuration. Additional options not defined in the preset may increase the cost.
-func (r Product_Package_Preset) GetTotalMinimumHourlyFee() (resp float64, err error) {
+func (r Product_Package_Preset) GetTotalMinimumHourlyFee() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getTotalMinimumHourlyFee", nil, &r.Options, &resp)
 	return
 }
 
 // Retrieve The starting monthly price for this configuration. Additional options not defined in the preset may increase the cost.
-func (r Product_Package_Preset) GetTotalMinimumRecurringFee() (resp float64, err error) {
+func (r Product_Package_Preset) GetTotalMinimumRecurringFee() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getTotalMinimumRecurringFee", nil, &r.Options, &resp)
 	return
 }

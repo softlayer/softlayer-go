@@ -228,7 +228,7 @@ type Provisioning_Version1_Transaction_Group struct {
 	Entity
 
 	// Average time, in minutes, for this type of transaction to complete. Please note that this is only an estimate.
-	AverageTimeToComplete *float64 `json:"averageTimeToComplete,omitempty"`
+	AverageTimeToComplete *Float64 `json:"averageTimeToComplete,omitempty"`
 
 	// A transaction group's name.
 	Name *string `json:"name,omitempty"`
@@ -282,7 +282,7 @@ type Provisioning_Version1_Transaction_Status struct {
 	Entity
 
 	// Hardware transaction status average duration.
-	AverageDuration *float64 `json:"averageDuration,omitempty"`
+	AverageDuration *Float64 `json:"averageDuration,omitempty"`
 
 	// Transaction status friendly name.
 	FriendlyName *string `json:"friendlyName,omitempty"`
