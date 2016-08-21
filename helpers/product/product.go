@@ -124,14 +124,14 @@ func GetPackageProducts(
 // {"guest_core": "8", "ram": "32"}
 func SelectProductPricesByCategory(
 	productItems []datatypes.Product_Item,
-	options map[string]string,
+	options map[string]float64,
 ) []datatypes.Product_Item_Price {
 	// Filter product items based on sets of category codes and capacity numbers
 	prices := []datatypes.Product_Item_Price{}
 	for _, productItem := range productItems {
 		for _, category := range productItem.Prices[0].Categories {
 			for k, v := range options {
-				if productItem.Capacity != nil && *productItem.Capacity == v && *category.CategoryCode == k {
+				if productItem.Capacity != nil && *productItem.Capacity == datatypes.Float64(v) && *category.CategoryCode == k {
 					prices = append(prices, productItem.Prices[0])
 				}
 			}

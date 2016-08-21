@@ -103,8 +103,6 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 		*pResult.(*int), err = strconv.Atoi(string(resp))
 	case "*bool":
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-	case "float64":
-		*pResult.(*float64), err = strconv.ParseFloat(string(resp), 64)
 	case "string":
 		*pResult.(*string) = string(resp)
 	default:

@@ -34,7 +34,7 @@ import (
 func UpgradeVirtualGuest(
 	sess *session.Session,
 	id int,
-	options map[string]string,
+	options map[string]float64,
 	when ...time.Time,
 ) (datatypes.Container_Product_Order_Receipt, error) {
 

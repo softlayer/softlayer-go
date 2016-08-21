@@ -277,17 +277,11 @@ func ConvertType(args ...interface{}) string {
 			return "Time"
 		}
 	case "decimal", "float":
-		// FIXME: The metadata api currently returns the wrong type for the
-		// capacity in the Product Item type. This hack is temporary until
-		// SoftLayer fixes this in the API.
-		if len(args) > 2 {
-			b := args[2].(string)
-			f := args[3].(string)
-			if b == "SoftLayer_Product_Item" && f == "capacity" {
-				return "string"
-			}
+		if p != "datatypes" {
+			return "datatypes.Float64"
+		} else {
+			return "Float64"
 		}
-		return "float64"
 	case "base64Binary":
 		return "[]byte"
 	case "json", "enum":
