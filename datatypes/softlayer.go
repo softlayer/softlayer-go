@@ -17,9 +17,9 @@
 package datatypes
 
 import (
-	"time"
-	"strconv"
 	"fmt"
+	"strconv"
+	"time"
 )
 
 // Void is a dummy type for identifying void return values from methods
@@ -30,7 +30,7 @@ type Time struct {
 	time.Time
 }
 
-func (r Time) String() (string) {
+func (r Time) String() string {
 	return r.Time.Format(time.RFC3339)
 }
 
@@ -48,6 +48,9 @@ func (r Time) MarshalText() ([]byte, error) {
 	return []byte(r.String()), nil
 }
 
+// FIXME: Need to have special unmarshaling of some values defined as float type
+// in the metadata that actually come down as strings in the api.
+// e.g. SoftLayer_Product_Item.capacity
 // Float64 is a float type that deals with some of the oddities when
 // unmarshalling from the SLAPI
 //
