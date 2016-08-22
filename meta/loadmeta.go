@@ -149,7 +149,7 @@ import (
 	}
 
 	func (r {{$base}}) Mask(mask string) {{$base}} {
-		if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+		if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 			mask = fmt.Sprintf("mask[%%s]", mask)
 		}
 
