@@ -28,6 +28,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
 	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
@@ -84,9 +85,8 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 		return e
 	}
 
-	returnType := reflect.TypeOf(pResult).String()
-
 	// Some APIs that normally return a collection, omit the []'s when the API returns a single value
+	returnType := reflect.TypeOf(pResult).String()
 	if strings.Index(returnType, "[]") == 1 && strings.Index(string(resp), "[") != 0 {
 		resp = []byte("[" + string(resp) + "]")
 	}
@@ -95,15 +95,15 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 	// any parse errors (or nil if successful)
 
 	err = nil
-	switch returnType {
-	case "[]byte":
-		pResult = &resp
-	case "*void":
-	case "*uint":
+	switch pResult.(type) {
+	case []uint8:
+		pResult = resp
+	case *datatypes.Void:
+	case *uint:
 		*pResult.(*int), err = strconv.Atoi(string(resp))
-	case "*bool":
+	case *bool:
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
-	case "string":
+	case *string:
 		*pResult.(*string) = string(resp)
 	default:
 		// Must be a json representation of one of the many softlayer datatypes
