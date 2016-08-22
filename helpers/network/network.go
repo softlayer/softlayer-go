@@ -25,7 +25,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/filter"
 )
 
-// GetNadcLbVip Get a virtual ip address by name attached to a load balancer
+// GetNadcLbVipByName Get a virtual ip address by name attached to a load balancer
 // appliance like the Netscaler VPX. In the case of some load balancer appliances
 // looking up the virtual ip address by name is necessary since they don't get
 // assigned an id.
@@ -50,4 +50,33 @@ func GetNadcLbVipByName(sess *session.Session, nadcId int, vipName string, mask 
 	}
 
 	return &vips[0], nil
+}
+
+// GetNadcLbVipServiceByName Get a load balancer service by name attached to a load balancer
+// appliance like the Netscaler VPX. In the case of some load balancer appliances
+// looking up the virtual ip address by name is necessary since they don't get
+// assigned an id.
+func GetNadcLbVipServiceByName(
+	sess *session.Session, nadcId int, vipName string, serviceName string, mask ...string,
+) (*datatypes.Network_LoadBalancer_Service, error) {
+	vipMask := "id,name,services[name,destinationIpAddress,destinationPort,weight,healthCheck,connectionLimit]"
+
+	if len(mask) != 0 {
+		vipMask =  mask[0]
+	}
+
+	vip, err := GetNadcLbVipByName(sess, nadcId, vipName, vipMask)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, service := range vip.Services {
+		if *service.Name == serviceName {
+			return &service, nil
+		}
+	}
+
+	return nil, fmt.Errorf(
+		"Could not find service %s in VIP %s for load balancer %s",
+		serviceName, vipName, nadcId)
 }
