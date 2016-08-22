@@ -47,7 +47,7 @@ func (r Account) Id(id int) Account {
 }
 
 func (r Account) Mask(mask string) Account {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2017,7 +2017,7 @@ func (r Account_Address) Id(id int) Account_Address {
 }
 
 func (r Account_Address) Mask(mask string) Account_Address {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2131,7 +2131,7 @@ func (r Account_Address_Type) Id(id int) Account_Address_Type {
 }
 
 func (r Account_Address_Type) Mask(mask string) Account_Address_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2176,7 +2176,7 @@ func (r Account_Affiliation) Id(id int) Account_Affiliation {
 }
 
 func (r Account_Affiliation) Mask(mask string) Account_Affiliation {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2260,7 +2260,7 @@ func (r Account_Agreement) Id(id int) Account_Agreement {
 }
 
 func (r Account_Agreement) Mask(mask string) Account_Agreement {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2341,7 +2341,7 @@ func (r Account_Authentication_Attribute) Id(id int) Account_Authentication_Attr
 }
 
 func (r Account_Authentication_Attribute) Mask(mask string) Account_Authentication_Attribute {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2404,7 +2404,7 @@ func (r Account_Authentication_Attribute_Type) Id(id int) Account_Authentication
 }
 
 func (r Account_Authentication_Attribute_Type) Mask(mask string) Account_Authentication_Attribute_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2455,7 +2455,7 @@ func (r Account_Authentication_Saml) Id(id int) Account_Authentication_Saml {
 }
 
 func (r Account_Authentication_Saml) Mask(mask string) Account_Authentication_Saml {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2542,7 +2542,7 @@ func (r Account_Contact) Id(id int) Account_Contact {
 }
 
 func (r Account_Contact) Mask(mask string) Account_Contact {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2629,7 +2629,7 @@ func (r Account_Historical_Report) Id(id int) Account_Historical_Report {
 }
 
 func (r Account_Historical_Report) Mask(mask string) Account_Historical_Report {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2752,7 +2752,7 @@ func (r Account_Link_Bluemix) Id(id int) Account_Link_Bluemix {
 }
 
 func (r Account_Link_Bluemix) Mask(mask string) Account_Link_Bluemix {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2803,7 +2803,7 @@ func (r Account_Link_OpenStack) Id(id int) Account_Link_OpenStack {
 }
 
 func (r Account_Link_OpenStack) Mask(mask string) Account_Link_OpenStack {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2905,7 +2905,7 @@ func (r Account_Lockdown_Request) Id(id int) Account_Lockdown_Request {
 }
 
 func (r Account_Lockdown_Request) Mask(mask string) Account_Lockdown_Request {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2994,7 +2994,7 @@ func (r Account_MasterServiceAgreement) Id(id int) Account_MasterServiceAgreemen
 }
 
 func (r Account_MasterServiceAgreement) Mask(mask string) Account_MasterServiceAgreement {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3051,7 +3051,7 @@ func (r Account_Media) Id(id int) Account_Media {
 }
 
 func (r Account_Media) Mask(mask string) Account_Media {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3168,7 +3168,7 @@ func (r Account_Media_Data_Transfer_Request) Id(id int) Account_Media_Data_Trans
 }
 
 func (r Account_Media_Data_Transfer_Request) Mask(mask string) Account_Media_Data_Transfer_Request {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3288,7 +3288,7 @@ func (r Account_Note) Id(id int) Account_Note {
 }
 
 func (r Account_Note) Mask(mask string) Account_Note {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3381,7 +3381,7 @@ func (r Account_Note_Type) Id(id int) Account_Note_Type {
 }
 
 func (r Account_Note_Type) Mask(mask string) Account_Note_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3456,7 +3456,7 @@ func (r Account_Partner_Referral_Prospect) Id(id int) Account_Partner_Referral_P
 }
 
 func (r Account_Partner_Referral_Prospect) Mask(mask string) Account_Partner_Referral_Prospect {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3517,7 +3517,7 @@ func (r Account_Password) Id(id int) Account_Password {
 }
 
 func (r Account_Password) Mask(mask string) Account_Password {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3587,7 +3587,7 @@ func (r Account_Regional_Registry_Detail) Id(id int) Account_Regional_Registry_D
 }
 
 func (r Account_Regional_Registry_Detail) Mask(mask string) Account_Regional_Registry_Detail {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3694,7 +3694,7 @@ func (r Account_Regional_Registry_Detail_Property) Id(id int) Account_Regional_R
 }
 
 func (r Account_Regional_Registry_Detail_Property) Mask(mask string) Account_Regional_Registry_Detail_Property {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3795,7 +3795,7 @@ func (r Account_Regional_Registry_Detail_Property_Type) Id(id int) Account_Regio
 }
 
 func (r Account_Regional_Registry_Detail_Property_Type) Mask(mask string) Account_Regional_Registry_Detail_Property_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3848,7 +3848,7 @@ func (r Account_Regional_Registry_Detail_Type) Id(id int) Account_Regional_Regis
 }
 
 func (r Account_Regional_Registry_Detail_Type) Mask(mask string) Account_Regional_Registry_Detail_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3899,7 +3899,7 @@ func (r Account_Reports_Request) Id(id int) Account_Reports_Request {
 }
 
 func (r Account_Reports_Request) Mask(mask string) Account_Reports_Request {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4018,7 +4018,7 @@ func (r Account_Shipment) Id(id int) Account_Shipment {
 }
 
 func (r Account_Shipment) Mask(mask string) Account_Shipment {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4171,7 +4171,7 @@ func (r Account_Shipment_Item) Id(id int) Account_Shipment_Item {
 }
 
 func (r Account_Shipment_Item) Mask(mask string) Account_Shipment_Item {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4237,7 +4237,7 @@ func (r Account_Shipment_Item_Type) Id(id int) Account_Shipment_Item_Type {
 }
 
 func (r Account_Shipment_Item_Type) Mask(mask string) Account_Shipment_Item_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4282,7 +4282,7 @@ func (r Account_Shipment_Resource_Type) Id(id int) Account_Shipment_Resource_Typ
 }
 
 func (r Account_Shipment_Resource_Type) Mask(mask string) Account_Shipment_Resource_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4327,7 +4327,7 @@ func (r Account_Shipment_Status) Id(id int) Account_Shipment_Status {
 }
 
 func (r Account_Shipment_Status) Mask(mask string) Account_Shipment_Status {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4372,7 +4372,7 @@ func (r Account_Shipment_Tracking_Data) Id(id int) Account_Shipment_Tracking_Dat
 }
 
 func (r Account_Shipment_Tracking_Data) Mask(mask string) Account_Shipment_Tracking_Data {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -4480,7 +4480,7 @@ func (r Account_Shipment_Type) Id(id int) Account_Shipment_Type {
 }
 
 func (r Account_Shipment_Type) Mask(mask string) Account_Shipment_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

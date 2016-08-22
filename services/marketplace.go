@@ -45,7 +45,7 @@ func (r Marketplace_Partner) Id(id int) Marketplace_Partner {
 }
 
 func (r Marketplace_Partner) Mask(mask string) Marketplace_Partner {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

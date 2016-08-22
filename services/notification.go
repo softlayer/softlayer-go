@@ -45,7 +45,7 @@ func (r Notification) Id(id int) Notification {
 }
 
 func (r Notification) Mask(mask string) Notification {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -108,7 +108,7 @@ func (r Notification_Mobile) Id(id int) Notification_Mobile {
 }
 
 func (r Notification_Mobile) Mask(mask string) Notification_Mobile {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -182,7 +182,7 @@ func (r Notification_Occurrence_Event) Id(id int) Notification_Occurrence_Event 
 }
 
 func (r Notification_Occurrence_Event) Mask(mask string) Notification_Occurrence_Event {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -326,7 +326,7 @@ func (r Notification_Occurrence_User) Id(id int) Notification_Occurrence_User {
 }
 
 func (r Notification_Occurrence_User) Mask(mask string) Notification_Occurrence_User {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -409,7 +409,7 @@ func (r Notification_User_Subscriber) Id(id int) Notification_User_Subscriber {
 }
 
 func (r Notification_User_Subscriber) Mask(mask string) Notification_User_Subscriber {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -542,7 +542,7 @@ func (r Notification_User_Subscriber_Billing) Id(id int) Notification_User_Subsc
 }
 
 func (r Notification_User_Subscriber_Billing) Mask(mask string) Notification_User_Subscriber_Billing {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -675,7 +675,7 @@ func (r Notification_User_Subscriber_Mobile) Id(id int) Notification_User_Subscr
 }
 
 func (r Notification_User_Subscriber_Mobile) Mask(mask string) Notification_User_Subscriber_Mobile {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -824,7 +824,7 @@ func (r Notification_User_Subscriber_Preference) Id(id int) Notification_User_Su
 }
 
 func (r Notification_User_Subscriber_Preference) Mask(mask string) Notification_User_Subscriber_Preference {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

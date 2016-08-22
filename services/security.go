@@ -45,7 +45,7 @@ func (r Security_Certificate) Id(id int) Security_Certificate {
 }
 
 func (r Security_Certificate) Mask(mask string) Security_Certificate {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -143,7 +143,7 @@ func (r Security_Certificate_Request) Id(id int) Security_Certificate_Request {
 }
 
 func (r Security_Certificate_Request) Mask(mask string) Security_Certificate_Request {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -277,7 +277,7 @@ func (r Security_Certificate_Request_ServerType) Id(id int) Security_Certificate
 }
 
 func (r Security_Certificate_Request_ServerType) Mask(mask string) Security_Certificate_Request_ServerType {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -328,7 +328,7 @@ func (r Security_Certificate_Request_Status) Id(id int) Security_Certificate_Req
 }
 
 func (r Security_Certificate_Request_Status) Mask(mask string) Security_Certificate_Request_Status {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -379,7 +379,7 @@ func (r Security_Ssh_Key) Id(id int) Security_Ssh_Key {
 }
 
 func (r Security_Ssh_Key) Mask(mask string) Security_Ssh_Key {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

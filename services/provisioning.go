@@ -45,7 +45,7 @@ func (r Provisioning_Hook) Id(id int) Provisioning_Hook {
 }
 
 func (r Provisioning_Hook) Mask(mask string) Provisioning_Hook {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -126,7 +126,7 @@ func (r Provisioning_Hook_Type) Id(id int) Provisioning_Hook_Type {
 }
 
 func (r Provisioning_Hook_Type) Mask(mask string) Provisioning_Hook_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -177,7 +177,7 @@ func (r Provisioning_Maintenance_Classification) Id(id int) Provisioning_Mainten
 }
 
 func (r Provisioning_Maintenance_Classification) Mask(mask string) Provisioning_Maintenance_Classification {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -243,7 +243,7 @@ func (r Provisioning_Maintenance_Classification_Item_Category) Id(id int) Provis
 }
 
 func (r Provisioning_Maintenance_Classification_Item_Category) Mask(mask string) Provisioning_Maintenance_Classification_Item_Category {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -294,7 +294,7 @@ func (r Provisioning_Maintenance_Slots) Id(id int) Provisioning_Maintenance_Slot
 }
 
 func (r Provisioning_Maintenance_Slots) Mask(mask string) Provisioning_Maintenance_Slots {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -339,7 +339,7 @@ func (r Provisioning_Maintenance_Ticket) Id(id int) Provisioning_Maintenance_Tic
 }
 
 func (r Provisioning_Maintenance_Ticket) Mask(mask string) Provisioning_Maintenance_Ticket {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -402,7 +402,7 @@ func (r Provisioning_Maintenance_Window) Id(id int) Provisioning_Maintenance_Win
 }
 
 func (r Provisioning_Maintenance_Window) Mask(mask string) Provisioning_Maintenance_Window {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -520,7 +520,7 @@ func (r Provisioning_Version1_Transaction_Group) Id(id int) Provisioning_Version
 }
 
 func (r Provisioning_Version1_Transaction_Group) Mask(mask string) Provisioning_Version1_Transaction_Group {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

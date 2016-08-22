@@ -45,7 +45,7 @@ func (r Hardware) Id(id int) Hardware {
 }
 
 func (r Hardware) Mask(mask string) Hardware {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1519,7 +1519,7 @@ func (r Hardware_Benchmark_Certification) Id(id int) Hardware_Benchmark_Certific
 }
 
 func (r Hardware_Benchmark_Certification) Mask(mask string) Hardware_Benchmark_Certification {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1582,7 +1582,7 @@ func (r Hardware_Component_Model) Id(id int) Hardware_Component_Model {
 }
 
 func (r Hardware_Component_Model) Mask(mask string) Hardware_Component_Model {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1699,7 +1699,7 @@ func (r Hardware_Component_Partition_OperatingSystem) Id(id int) Hardware_Compon
 }
 
 func (r Hardware_Component_Partition_OperatingSystem) Mask(mask string) Hardware_Component_Partition_OperatingSystem {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1765,7 +1765,7 @@ func (r Hardware_Component_Partition_Template) Id(id int) Hardware_Component_Par
 }
 
 func (r Hardware_Component_Partition_Template) Mask(mask string) Hardware_Component_Partition_Template {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1840,7 +1840,7 @@ func (r Hardware_Router) Id(id int) Hardware_Router {
 }
 
 func (r Hardware_Router) Mask(mask string) Hardware_Router {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -3332,7 +3332,7 @@ func (r Hardware_SecurityModule) Id(id int) Hardware_SecurityModule {
 }
 
 func (r Hardware_SecurityModule) Mask(mask string) Hardware_SecurityModule {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -5436,7 +5436,7 @@ func (r Hardware_Server) Id(id int) Hardware_Server {
 }
 
 func (r Hardware_Server) Mask(mask string) Hardware_Server {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

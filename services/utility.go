@@ -44,7 +44,7 @@ func (r Utility_Network) Id(id int) Utility_Network {
 }
 
 func (r Utility_Network) Mask(mask string) Utility_Network {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

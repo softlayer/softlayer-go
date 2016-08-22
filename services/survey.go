@@ -45,7 +45,7 @@ func (r Survey) Id(id int) Survey {
 }
 
 func (r Survey) Mask(mask string) Survey {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

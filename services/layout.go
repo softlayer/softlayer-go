@@ -45,7 +45,7 @@ func (r Layout_Container) Id(id int) Layout_Container {
 }
 
 func (r Layout_Container) Mask(mask string) Layout_Container {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -108,7 +108,7 @@ func (r Layout_Item) Id(id int) Layout_Item {
 }
 
 func (r Layout_Item) Mask(mask string) Layout_Item {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -165,7 +165,7 @@ func (r Layout_Profile) Id(id int) Layout_Profile {
 }
 
 func (r Layout_Profile) Mask(mask string) Layout_Profile {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -268,7 +268,7 @@ func (r Layout_Profile_Containers) Id(id int) Layout_Profile_Containers {
 }
 
 func (r Layout_Profile_Containers) Mask(mask string) Layout_Profile_Containers {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -343,7 +343,7 @@ func (r Layout_Profile_Customer) Id(id int) Layout_Profile_Customer {
 }
 
 func (r Layout_Profile_Customer) Mask(mask string) Layout_Profile_Customer {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -452,7 +452,7 @@ func (r Layout_Profile_Preference) Id(id int) Layout_Profile_Preference {
 }
 
 func (r Layout_Profile_Preference) Mask(mask string) Layout_Profile_Preference {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

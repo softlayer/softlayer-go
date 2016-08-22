@@ -47,7 +47,7 @@ func (r Brand) Id(id int) Brand {
 }
 
 func (r Brand) Mask(mask string) Brand {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -243,7 +243,7 @@ func (r Brand_Restriction_Location_CustomerCountry) Id(id int) Brand_Restriction
 }
 
 func (r Brand_Restriction_Location_CustomerCountry) Mask(mask string) Brand_Restriction_Location_CustomerCountry {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

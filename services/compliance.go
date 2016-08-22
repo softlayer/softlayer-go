@@ -45,7 +45,7 @@ func (r Compliance_Report_Type) Id(id int) Compliance_Report_Type {
 }
 
 func (r Compliance_Report_Type) Mask(mask string) Compliance_Report_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

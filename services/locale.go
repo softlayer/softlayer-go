@@ -45,7 +45,7 @@ func (r Locale) Id(id int) Locale {
 }
 
 func (r Locale) Mask(mask string) Locale {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -99,7 +99,7 @@ func (r Locale_Country) Id(id int) Locale_Country {
 }
 
 func (r Locale_Country) Mask(mask string) Locale_Country {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -162,7 +162,7 @@ func (r Locale_Timezone) Id(id int) Locale_Timezone {
 }
 
 func (r Locale_Timezone) Mask(mask string) Locale_Timezone {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

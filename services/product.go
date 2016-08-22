@@ -45,7 +45,7 @@ func (r Product_Item_Category) Id(id int) Product_Item_Category {
 }
 
 func (r Product_Item_Category) Mask(mask string) Product_Item_Category {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -198,7 +198,7 @@ func (r Product_Item_Category_Group) Id(id int) Product_Item_Category_Group {
 }
 
 func (r Product_Item_Category_Group) Mask(mask string) Product_Item_Category_Group {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -243,7 +243,7 @@ func (r Product_Item_Policy_Assignment) Id(id int) Product_Item_Policy_Assignmen
 }
 
 func (r Product_Item_Policy_Assignment) Mask(mask string) Product_Item_Policy_Assignment {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -315,7 +315,7 @@ func (r Product_Item_Price) Id(id int) Product_Item_Price {
 }
 
 func (r Product_Item_Price) Mask(mask string) Product_Item_Price {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -472,7 +472,7 @@ func (r Product_Item_Price_Premium) Id(id int) Product_Item_Price_Premium {
 }
 
 func (r Product_Item_Price_Premium) Mask(mask string) Product_Item_Price_Premium {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -535,7 +535,7 @@ func (r Product_Order) Id(id int) Product_Order {
 }
 
 func (r Product_Order) Mask(mask string) Product_Order {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1128,7 +1128,7 @@ func (r Product_Package) Id(id int) Product_Package {
 }
 
 func (r Product_Package) Mask(mask string) Product_Package {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1566,7 +1566,7 @@ func (r Product_Package_Preset) Id(id int) Product_Package_Preset {
 }
 
 func (r Product_Package_Preset) Mask(mask string) Product_Package_Preset {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1683,7 +1683,7 @@ func (r Product_Package_Server) Id(id int) Product_Package_Server {
 }
 
 func (r Product_Package_Server) Mask(mask string) Product_Package_Server {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1764,7 +1764,7 @@ func (r Product_Package_Server_Option) Id(id int) Product_Package_Server_Option 
 }
 
 func (r Product_Package_Server_Option) Mask(mask string) Product_Package_Server_Option {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1824,7 +1824,7 @@ func (r Product_Package_Type) Id(id int) Product_Package_Type {
 }
 
 func (r Product_Package_Type) Mask(mask string) Product_Package_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1881,7 +1881,7 @@ func (r Product_Upgrade_Request) Id(id int) Product_Upgrade_Request {
 }
 
 func (r Product_Upgrade_Request) Mask(mask string) Product_Upgrade_Request {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

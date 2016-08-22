@@ -45,7 +45,7 @@ func (r Sales_Presale_Event) Id(id int) Sales_Presale_Event {
 }
 
 func (r Sales_Presale_Event) Mask(mask string) Sales_Presale_Event {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

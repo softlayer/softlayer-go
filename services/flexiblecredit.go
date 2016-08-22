@@ -45,7 +45,7 @@ func (r FlexibleCredit_Program) Id(id int) FlexibleCredit_Program {
 }
 
 func (r FlexibleCredit_Program) Mask(mask string) FlexibleCredit_Program {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

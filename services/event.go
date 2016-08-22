@@ -45,7 +45,7 @@ func (r Event_Log) Id(id int) Event_Log {
 }
 
 func (r Event_Log) Mask(mask string) Event_Log {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

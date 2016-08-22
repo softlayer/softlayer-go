@@ -47,7 +47,7 @@ func (r Virtual_Disk_Image) Id(id int) Virtual_Disk_Image {
 }
 
 func (r Virtual_Disk_Image) Mask(mask string) Virtual_Disk_Image {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -187,7 +187,7 @@ func (r Virtual_Guest) Id(id int) Virtual_Guest {
 }
 
 func (r Virtual_Guest) Mask(mask string) Virtual_Guest {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -1931,7 +1931,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) Id(id int) Virtual_Guest_Bloc
 }
 
 func (r Virtual_Guest_Block_Device_Template_Group) Mask(mask string) Virtual_Guest_Block_Device_Template_Group {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2207,7 +2207,7 @@ func (r Virtual_Guest_Boot_Parameter) Id(id int) Virtual_Guest_Boot_Parameter {
 }
 
 func (r Virtual_Guest_Boot_Parameter) Mask(mask string) Virtual_Guest_Boot_Parameter {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2288,7 +2288,7 @@ func (r Virtual_Guest_Boot_Parameter_Type) Id(id int) Virtual_Guest_Boot_Paramet
 }
 
 func (r Virtual_Guest_Boot_Parameter_Type) Mask(mask string) Virtual_Guest_Boot_Parameter_Type {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2341,7 +2341,7 @@ func (r Virtual_Guest_Network_Component) Id(id int) Virtual_Guest_Network_Compon
 }
 
 func (r Virtual_Guest_Network_Component) Mask(mask string) Virtual_Guest_Network_Component {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2470,7 +2470,7 @@ func (r Virtual_Host) Id(id int) Virtual_Host {
 }
 
 func (r Virtual_Host) Mask(mask string) Virtual_Host {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -2632,7 +2632,7 @@ func (r Virtual_Storage_Repository) Id(id int) Virtual_Storage_Repository {
 }
 
 func (r Virtual_Storage_Repository) Mask(mask string) Virtual_Storage_Repository {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

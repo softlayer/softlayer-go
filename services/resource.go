@@ -45,7 +45,7 @@ func (r Resource_Group) Id(id int) Resource_Group {
 }
 
 func (r Resource_Group) Mask(mask string) Resource_Group {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -147,7 +147,7 @@ func (r Resource_Group_Template) Id(id int) Resource_Group_Template {
 }
 
 func (r Resource_Group_Template) Mask(mask string) Resource_Group_Template {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
@@ -216,7 +216,7 @@ func (r Resource_Metadata) Id(id int) Resource_Metadata {
 }
 
 func (r Resource_Metadata) Mask(mask string) Resource_Metadata {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

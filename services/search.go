@@ -45,7 +45,7 @@ func (r Search) Id(id int) Search {
 }
 
 func (r Search) Mask(mask string) Search {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 

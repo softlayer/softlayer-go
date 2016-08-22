@@ -45,7 +45,7 @@ func (r Tag) Id(id int) Tag {
 }
 
 func (r Tag) Mask(mask string) Tag {
-	if !strings.HasPrefix(mask, "mask[") && strings.Contains(mask, "[") {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
 		mask = fmt.Sprintf("mask[%s]", mask)
 	}
 
