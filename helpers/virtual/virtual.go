@@ -56,6 +56,7 @@ func UpgradeVirtualGuest(
 	}
 
 	order := datatypes.Container_Product_Order{
+		PackageId: pkg.Id,
 		VirtualGuests: []datatypes.Virtual_Guest{
 			{Id: &id},
 		},
