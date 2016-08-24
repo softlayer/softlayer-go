@@ -9068,6 +9068,12 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, er
 }
 
 // no documentation yet
+func (r Network_Storage_Hub_Cleversafe_Account) GetCloudObjectStoragePolicy() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Policy, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCloudObjectStoragePolicy", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentialLimit", nil, &r.Options, &resp)
 	return

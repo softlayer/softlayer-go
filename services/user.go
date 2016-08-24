@@ -613,7 +613,7 @@ func (r User_Customer) GetUserFromLostPasswordRequest(key *string) (resp []datat
 	return
 }
 
-// Retrieve a user object using a password recovery key received in an email generated when a new customer is created or when a customer requests a password change.
+// Retrieve a user object using a password token. When a new user is created or when a user has requested a password change using initiatePortalPasswordChange, they will have received an email that contains a url with a token.  That token is used as the parameter for getUserIdForPasswordSet.
 func (r User_Customer) GetUserIdForPasswordSet(key *string) (resp int, err error) {
 	params := []interface{}{
 		key,
@@ -673,7 +673,7 @@ func (r User_Customer) InitiateExternalAuthentication(authenticationContainer *d
 	return
 }
 
-// Sends password change email to the user containing url that allows the user the change their password
+// Sends password change email to the user containing url that allows the user the change their password. This is the first step when a user wishes to change their password.  The url that is generated contains a one-time use token that is valid for only 24-hours.
 func (r User_Customer) InitiatePortalPasswordChange(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -2977,7 +2977,7 @@ func (r User_Customer_OpenIdConnect) GetUserFromLostPasswordRequest(key *string)
 	return
 }
 
-// Retrieve a user object using a password recovery key received in an email generated when a new customer is created or when a customer requests a password change.
+// Retrieve a user object using a password token. When a new user is created or when a user has requested a password change using initiatePortalPasswordChange, they will have received an email that contains a url with a token.  That token is used as the parameter for getUserIdForPasswordSet.
 func (r User_Customer_OpenIdConnect) GetUserIdForPasswordSet(key *string) (resp int, err error) {
 	params := []interface{}{
 		key,
@@ -3037,7 +3037,7 @@ func (r User_Customer_OpenIdConnect) InitiateExternalAuthentication(authenticati
 	return
 }
 
-// Sends password change email to the user containing url that allows the user the change their password
+// Sends password change email to the user containing url that allows the user the change their password. This is the first step when a user wishes to change their password.  The url that is generated contains a one-time use token that is valid for only 24-hours.
 func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChange(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,

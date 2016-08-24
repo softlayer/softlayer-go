@@ -2191,6 +2191,14 @@ type Container_Network_Storage_Hub_ObjectStorage_Node struct {
 	UserAuthUrl *string `json:"userAuthUrl,omitempty"`
 }
 
+// SoftLayer_Container_Network_Storage_Hub_ObjectStorage_Policy provides specific details on available storage policies.
+type Container_Network_Storage_Hub_ObjectStorage_Policy struct {
+	Entity
+
+	// no documentation yet
+	PolicyCode *string `json:"policyCode,omitempty"`
+}
+
 // no documentation yet
 type Container_Network_Storage_NetworkConnectionInformation struct {
 	Entity
@@ -3813,6 +3821,8 @@ type Container_User_Customer_External_Binding_Verisign struct {
 }
 
 // Container for holding information necessary for the setting and resetting of customer passwords
+//
+//
 type Container_User_Customer_PasswordSet struct {
 	Entity
 
