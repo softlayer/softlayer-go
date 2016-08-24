@@ -73,12 +73,12 @@ type Parameter struct {
 
 // Define custom template functions
 var fMap = template.FuncMap{
-	"convertType":       ConvertType,           // Converts SoftLayer types to Go types
-	"removePrefix":      RemovePrefix,          // Remove 'SoftLayer_' prefix. if it exists
-	"removeReserved":    RemoveReservedWords,   // Substitute language-reserved identifiers
-	"titleCase":         strings.Title,         // TitleCase the argument
-	"desnake":           Desnake,               // Remove '_' from Snake_Case
-	"goDoc":             GoDoc,                 // Format a go doc string
+	"convertType":    ConvertType,         // Converts SoftLayer types to Go types
+	"removePrefix":   RemovePrefix,        // Remove 'SoftLayer_' prefix. if it exists
+	"removeReserved": RemoveReservedWords, // Substitute language-reserved identifiers
+	"titleCase":      strings.Title,       // TitleCase the argument
+	"desnake":        Desnake,             // Remove '_' from Snake_Case
+	"goDoc":          GoDoc,               // Format a go doc string
 }
 
 const license = `/**
@@ -221,6 +221,7 @@ func main() {
 	for _, name := range keys {
 		t := meta[name]
 		sortedTypes = append(sortedTypes, t)
+		addComplexType(&t)
 
 		// Not every datatype is also a service
 		if !t.NoService {
@@ -348,6 +349,19 @@ func createGetters(service *Type) {
 			}
 
 			service.Methods[m.Name] = m
+		}
+	}
+}
+
+// Special case for ensuring we can set a complexType on product orders.
+func addComplexType(dataType *Type) {
+	// Only adding this to the base product order type. All others embed this one.
+	if dataType.Name == "SoftLayer_Container_Product_Order" {
+		dataType.Properties["complexType"] = Property{
+			Name: "complexType",
+			Type: "string",
+			Form: "local",
+			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
 		}
 	}
 }

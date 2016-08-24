@@ -2375,6 +2375,9 @@ type Container_Product_Order struct {
 	// The URL to which PayPal redirects browser after checkout has been canceled before completion of a payment.
 	CancelUrl *string `json:"cancelUrl,omitempty"`
 
+	// Added by Gopherlayer. This hints to the API what kind of product order this is.
+	ComplexType *string `json:"complexType,omitempty"`
+
 	// User-specified description to identify a particular order container. This is useful if you have a multi-configuration order (multiple <code>orderContainers</code>) and you want to be able to easily determine one from another. Populating this value may be helpful if an exception is thrown when placing an order and it's tied to a specific order container.
 	ContainerIdentifier *string `json:"containerIdentifier,omitempty"`
 
