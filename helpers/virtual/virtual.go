@@ -55,16 +55,22 @@ func UpgradeVirtualGuest(
 		upgradeTime = when[0].UTC().Format(time.RFC3339)
 	}
 
-	order := datatypes.Container_Product_Order{
-		PackageId: pkg.Id,
-		VirtualGuests: []datatypes.Virtual_Guest{
-			{Id: &id},
-		},
-		Prices: prices,
-		Properties: []datatypes.Container_Product_Order_Property{
-			{
-				Name:  sl.String("MAINTENANCE_WINDOW"),
-				Value: &upgradeTime,
+	order := datatypes.Container_Product_Order_Virtual_Guest_Upgrade{
+		Container_Product_Order_Virtual_Guest: datatypes.Container_Product_Order_Virtual_Guest{
+			Container_Product_Order_Hardware_Server: datatypes.Container_Product_Order_Hardware_Server{
+				Container_Product_Order: datatypes.Container_Product_Order{
+					PackageId: pkg.Id,
+					VirtualGuests: []datatypes.Virtual_Guest{
+						{Id: &id},
+					},
+					Prices: prices,
+					Properties: []datatypes.Container_Product_Order_Property{
+						{
+							Name:  sl.String("MAINTENANCE_WINDOW"),
+							Value: &upgradeTime,
+						},
+					},
+				},
 			},
 		},
 	}
