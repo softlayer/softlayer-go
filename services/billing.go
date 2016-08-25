@@ -1870,7 +1870,11 @@ func (r Billing_Order_Cart) GetRecalculatedOrderContainer(orderData *datatypes.C
 }
 
 // Use this method for placing server orders and additional services orders. The same applies for this as with verifyOrder. Send in the SoftLayer_Container_Product_Order_Hardware_Server for server orders. In addition to verifying the order, placeOrder() also makes an initial authorization on the SoftLayer_Account tied to this order, if a credit card is on file. If the account tied to this order is a paypal customer, an URL will also be returned to the customer. After placing the order, you must go to this URL to finish the authorization process. This tells paypal that you indeed want to place the order. After going to this URL, it will direct you back to a SoftLayer webpage that tells us you have finished the process. After this, it will go to sales for final approval.
-func (r Billing_Order_Cart) PlaceOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Billing_Order_Cart) PlaceOrder(orderData interface{}) (resp datatypes.Container_Product_Order_Receipt, err error) {
+	err = datatypes.SetComplexType(orderData)
+	if err != nil {
+		return
+	}
 	params := []interface{}{
 		orderData,
 	}
@@ -2193,7 +2197,11 @@ func (r Billing_Order_Quote) GetRecalculatedOrderContainer(orderData *datatypes.
 }
 
 // Use this method for placing server orders and additional services orders. The same applies for this as with verifyOrder. Send in the SoftLayer_Container_Product_Order_Hardware_Server for server orders. In addition to verifying the order, placeOrder() also makes an initial authorization on the SoftLayer_Account tied to this order, if a credit card is on file. If the account tied to this order is a paypal customer, an URL will also be returned to the customer. After placing the order, you must go to this URL to finish the authorization process. This tells paypal that you indeed want to place the order. After going to this URL, it will direct you back to a SoftLayer webpage that tells us you have finished the process. After this, it will go to sales for final approval.
-func (r Billing_Order_Quote) PlaceOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Billing_Order_Quote) PlaceOrder(orderData interface{}) (resp datatypes.Container_Product_Order_Receipt, err error) {
+	err = datatypes.SetComplexType(orderData)
+	if err != nil {
+		return
+	}
 	params := []interface{}{
 		orderData,
 	}

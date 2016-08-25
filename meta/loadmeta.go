@@ -73,12 +73,13 @@ type Parameter struct {
 
 // Define custom template functions
 var fMap = template.FuncMap{
-	"convertType":    ConvertType,         // Converts SoftLayer types to Go types
-	"removePrefix":   RemovePrefix,        // Remove 'SoftLayer_' prefix. if it exists
-	"removeReserved": RemoveReservedWords, // Substitute language-reserved identifiers
-	"titleCase":      strings.Title,       // TitleCase the argument
-	"desnake":        Desnake,             // Remove '_' from Snake_Case
-	"goDoc":          GoDoc,               // Format a go doc string
+	"convertType":     ConvertType,         // Converts SoftLayer types to Go types
+	"removePrefix":    RemovePrefix,        // Remove 'SoftLayer_' prefix. if it exists
+	"removeReserved":  RemoveReservedWords, // Substitute language-reserved identifiers
+	"titleCase":       strings.Title,       // TitleCase the argument
+	"desnake":         Desnake,             // Remove '_' from Snake_Case
+	"goDoc":           GoDoc,               // Format a go doc string
+	"phraseMethodArg": phraseMethodArg,     // Get proper phrase for method argument
 }
 
 const license = `/**
@@ -172,14 +173,18 @@ import (
 		return r
 	}
 
-	{{$rawbase := .Name}}{{range .Methods}}{{.Doc|goDoc}}
-	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{.Name|removeReserved}} {{if not .TypeArray}}*{{else}}[]{{end}}{{convertType .Type "services"}}, {{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
+	{{$rawBase := .Name}}{{range .Methods}}{{$methodName := .Name}}{{.Doc|goDoc}}
+	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{phraseMethodArg $methodName .Name .TypeArray .Type}}{{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
+		{{end}}{{if .Name|eq "placeOrder"}}err = datatypes.SetComplexType(orderData)
+		if err != nil {
+			return
+		}
 		{{end}}{{if len .Parameters | lt 0}}params := []interface{}{
 			{{range .Parameters}}{{.Name|removeReserved}},
 			{{end}}
 		}
-		{{end}}err = r.Session.DoRequest("{{$rawbase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
+		{{end}}err = r.Session.DoRequest("{{$rawBase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
 	return
 	}
 	{{end}}
@@ -364,6 +369,25 @@ func addComplexType(dataType *Type) {
 			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
 		}
 	}
+}
+
+// Return formatted method argument phrase used by the method generation.
+func phraseMethodArg(methodName string, argName string, isArray bool, argType string) string {
+	argName = RemoveReservedWords(argName)
+
+	// Handle special case - placeOrder should take any kind of order type.
+	if methodName == "placeOrder" && strings.HasPrefix(argType, "SoftLayer_Container_Product_Order") {
+		return fmt.Sprintf("%s interface{}, ", argName)
+	}
+
+	refPrefix := "*"
+	if isArray {
+		refPrefix = "[]"
+	}
+
+	argType = ConvertType(argType, "services")
+
+	return fmt.Sprintf("%s %s%s, ", argName, refPrefix, argType)
 }
 
 func combineMethods(baseMethods map[string]Method, subclassMethods map[string]Method) map[string]Method {

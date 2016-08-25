@@ -1060,7 +1060,11 @@ func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *
 // </http>
 //
 //
-func (r Product_Order) PlaceOrder(orderData *datatypes.Container_Product_Order, saveAsQuote *bool) (resp datatypes.Container_Product_Order_Receipt, err error) {
+func (r Product_Order) PlaceOrder(orderData interface{}, saveAsQuote *bool) (resp datatypes.Container_Product_Order_Receipt, err error) {
+	err = datatypes.SetComplexType(orderData)
+	if err != nil {
+		return
+	}
 	params := []interface{}{
 		orderData,
 		saveAsQuote,

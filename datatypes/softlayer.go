@@ -17,8 +17,11 @@
 package datatypes
 
 import (
+	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -75,5 +78,27 @@ func (f *Float64) UnmarshalJSON(data []byte) error {
 		}
 	}
 	*f = Float64(v)
+	return nil
+}
+
+// Used to set the appropriate complexType field in the passed product order.
+// Employs reflection to determine the type of the passed value and use it
+// to derive the complexType to send to SoftLayer.
+func SetComplexType(v interface{}) error {
+	orderDataPtr := reflect.ValueOf(v)
+	if orderDataPtr.Type().Name() != "" {
+		return errors.New("Did not pass a pointer to a product order.")
+	}
+
+	orderDataValue := reflect.Indirect(reflect.ValueOf(v))
+	orderDataType := orderDataValue.Type().Name()
+	if !strings.HasPrefix(orderDataType, "Container_Product_Order") {
+		return fmt.Errorf("Did not pass a pointer to a product order: %s", orderDataType)
+	}
+
+	complexTypeField := orderDataValue.FieldByName("ComplexType")
+	complexType := "SoftLayer_" + orderDataType
+	complexTypeField.Set(reflect.ValueOf(&complexType))
+
 	return nil
 }
