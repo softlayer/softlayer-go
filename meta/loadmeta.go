@@ -240,6 +240,7 @@ func main() {
 	// child service)
 	for i, service := range sortedServices {
 		sortedServices[i].Methods = getBaseMethods(service, meta)
+		fixReturnType(&sortedServices[i])
 	}
 
 	err = writePackage(*outputPath, "datatypes", sortedTypes, datatype)
@@ -368,6 +369,15 @@ func addComplexType(dataType *Type) {
 			Form: "local",
 			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
 		}
+	}
+}
+
+// Special case for fixing some broken return types in the metadata
+func fixReturnType(service *Type) {
+	if service.Name == "SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service" {
+		method := service.Methods["deleteObject"]
+		method.Type = "void"
+		service.Methods["deleteObject"] = method
 	}
 }
 
