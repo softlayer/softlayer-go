@@ -263,40 +263,40 @@ type Product_Item struct {
 	UpgradeItems []Product_Item `json:"upgradeItems,omitempty"`
 }
 
-// no documentation yet
+// The [[SoftLayer_Product_Item_Attribute]] data type allows us to describe a [[SoftLayer_Product_Item]] by attaching specific attributes, which may dictate how it interacts with other products and services. Most, if not all, of these attributes are geared towards internal usage, so customers should rarely be concerned with them.
 type Product_Item_Attribute struct {
 	Entity
 
-	// no documentation yet
+	// This represents the attribute type of this product attribute.
 	AttributeType *Product_Item_Attribute_Type `json:"attributeType,omitempty"`
 
-	// no documentation yet
+	// This represents the attribute type's key name of this product attribute.
 	AttributeTypeKeyName *string `json:"attributeTypeKeyName,omitempty"`
 
-	// no documentation yet
+	// This is the primary key value for the product attribute.
 	Id *int `json:"id,omitempty"`
 
-	// no documentation yet
+	// This represents the product that an attribute is tied to.
 	Item *Product_Item `json:"item,omitempty"`
 
-	// no documentation yet
+	// This is a foreign key value for the [[SoftLayer_Product_Item_Attribute_Type]].
 	ItemAttributeTypeId *int `json:"itemAttributeTypeId,omitempty"`
 
-	// no documentation yet
+	// This is a foreign key value for the [[SoftLayer_Product_Item]].
 	ItemId *int `json:"itemId,omitempty"`
 
-	// no documentation yet
+	// This is the value for the attribute.
 	Value *string `json:"value,omitempty"`
 }
 
-// no documentation yet
+// The [[SoftLayer_Product_Item_Attribute_Type]] data type defines the available type of product attributes that are available. This allows for convenient reference to a [[SoftLayer_Product_Item_Attribute|product attribute]] by a unique key name value.
 type Product_Item_Attribute_Type struct {
 	Entity
 
-	// no documentation yet
+	// This is the unique identifier of the attribute type.
 	KeyName *string `json:"keyName,omitempty"`
 
-	// no documentation yet
+	// This is the user-friendly readable name of the attribute type.
 	Name *string `json:"name,omitempty"`
 }
 

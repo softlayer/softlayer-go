@@ -371,7 +371,7 @@ func (r Account) GetApplicationDeliveryControllers() (resp []datatypes.Network_A
 	return
 }
 
-// Retrieve a single [[SoftLayer_Account_Attribute]] record by it's type's name.
+// Retrieve a single [[SoftLayer_Account_Attribute]] record by its [[SoftLayer_Account_Attribute_Type|types's]] key name.
 func (r Account) GetAttributeByType(attributeType *string) (resp datatypes.Account_Attribute, err error) {
 	params := []interface{}{
 		attributeType,
