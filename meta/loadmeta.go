@@ -374,7 +374,12 @@ func addComplexType(dataType *Type) {
 
 // Special case for fixing some broken return types in the metadata
 func fixReturnType(service *Type) {
-	if service.Name == "SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service" {
+	brokenServices := map[string]struct{}{
+		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service": {},
+		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer": {},
+	}
+
+	if _, ok := brokenServices[service.Name]; ok {
 		method := service.Methods["deleteObject"]
 		method.Type = "void"
 		service.Methods["deleteObject"] = method

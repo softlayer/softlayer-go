@@ -1282,7 +1282,8 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Offs
 }
 
 // no documentation yet
-func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) DeleteObject() (resp bool, err error) {
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) DeleteObject() (err error) {
+	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "deleteObject", nil, &r.Options, &resp)
 	return
 }
