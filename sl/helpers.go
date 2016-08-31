@@ -17,9 +17,10 @@
 package sl
 
 import (
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
 	"reflect"
 	"time"
+
+	"github.ibm.com/riethm/gopherlayer.git/datatypes"
 )
 
 // Convenience functions for returning pointers to values
