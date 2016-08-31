@@ -18,8 +18,8 @@ package sl
 
 import (
 	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"time"
 	"reflect"
+	"time"
 )
 
 // Convenience functions for returning pointers to values
@@ -56,8 +56,8 @@ func Float(v float64) *datatypes.Float64 {
 // Convenience functions to simplify dereference of datatype properties
 
 // Get returns the value of p, either p itself, or, if p is a pointer, the
-// value that p points to.  d is an optional default value to be returned
-// in the event that p is nil.  If d is not specified, and p is nil, a
+// value that p points to. d is an optional default value to be returned
+// in the event that p is nil. If d is not specified, and p is nil, a
 // type-appropriate zero-value is returned instead.
 func Get(p interface{}, d ...interface{}) interface{} {
 	var (
@@ -77,8 +77,9 @@ func Get(p interface{}, d ...interface{}) interface{} {
 }
 
 // GetOk returns the value of p, either p itself, or, if p is a pointer, the
-// value that p points to.  If p is a value or non-nil pointer, the second
-// return value will be true.  Otherwise, it will be false.
+// value that p points to. If d is not specified, and p is nil, a type-
+// appropriate zero-value is returned instead. If p is a value or non-nil
+// pointer, the second return value will be true.  Otherwise, it will be false
 func GetOk(p interface{}) (interface{}, bool) {
 	// if p is a non-pointer, just return it
 	if reflect.TypeOf(p).Kind() != reflect.Ptr {
