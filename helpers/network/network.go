@@ -77,6 +77,6 @@ func GetNadcLbVipServiceByName(
 	}
 
 	return nil, fmt.Errorf(
-		"Could not find service %s in VIP %s for load balancer %s",
+		"Could not find service %s in VIP %s for load balancer %d",
 		serviceName, vipName, nadcId)
 }
