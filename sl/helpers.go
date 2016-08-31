@@ -81,8 +81,10 @@ func Get(p interface{}, d ...interface{}) interface{} {
 // appropriate zero-value is returned instead. If p is a value or non-nil
 // pointer, the second return value will be true.  Otherwise, it will be false
 func GetOk(p interface{}) (interface{}, bool) {
+	t := reflect.TypeOf(p)
+
 	// if p is a non-pointer, just return it
-	if reflect.TypeOf(p).Kind() != reflect.Ptr {
+	if t.Kind() != reflect.Ptr {
 		return p, true
 	}
 
@@ -93,5 +95,5 @@ func GetOk(p interface{}) (interface{}, bool) {
 	}
 
 	// p is a nil pointer.  Return the zero value for the pointed-to type
-	return reflect.Zero(reflect.TypeOf(p).Elem()).Interface(), false
+	return reflect.Zero(t.Elem()).Interface(), false
 }
