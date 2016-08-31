@@ -19,10 +19,10 @@ package network
 import (
 	"fmt"
 
-	"github.ibm.com/riethm/gopherlayer.git/session"
-	"github.ibm.com/riethm/gopherlayer.git/services"
 	"github.ibm.com/riethm/gopherlayer.git/datatypes"
 	"github.ibm.com/riethm/gopherlayer.git/filter"
+	"github.ibm.com/riethm/gopherlayer.git/services"
+	"github.ibm.com/riethm/gopherlayer.git/session"
 )
 
 // GetNadcLbVipByName Get a virtual ip address by name attached to a load balancer
@@ -36,7 +36,7 @@ func GetNadcLbVipByName(sess *session.Session, nadcId int, vipName string, mask 
 		Id(nadcId).
 		Filter(filter.Path("name").Eq(vipName).Build())
 
-	if (len(mask) > 0) {
+	if len(mask) > 0 {
 		service = service.Mask(mask[0])
 	}
 
@@ -62,7 +62,7 @@ func GetNadcLbVipServiceByName(
 	vipMask := "id,name,services[name,destinationIpAddress,destinationPort,weight,healthCheck,connectionLimit]"
 
 	if len(mask) != 0 {
-		vipMask =  mask[0]
+		vipMask = mask[0]
 	}
 
 	vip, err := GetNadcLbVipByName(sess, nadcId, vipName, vipMask)

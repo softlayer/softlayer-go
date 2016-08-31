@@ -43,16 +43,16 @@ type TransportHandlerFunc func(
 // API
 type Session struct {
 	// UserName is the name of the SoftLayer API user
-	UserName         string
+	UserName string
 
 	// ApiKey is the secret for making API calls
-	APIKey           string
+	APIKey string
 
 	// Endpoint is the SoftLayer API endpoint to communicate with
-	Endpoint         string
+	Endpoint string
 
 	// Debug controls logging of request details (URI, parameters, etc.)
-	Debug            bool
+	Debug bool
 
 	// The function that will be called for each API request.  Handles the
 	// request and any response parsing specific to the desired protocol
