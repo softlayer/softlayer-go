@@ -26,17 +26,27 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/sl"
 )
 
-// Upgrade a virtual guest specified with an id, and a set of features to
-// upgrade. When the upgrade takes place can also be specified (`when`), but
+// Upgrade a virtual guest to a specified set of features (e.g. cpu, ram).
+// When the upgrade takes place can also be specified (`when`), but
 // this is optional. The time set will be 'now' if left as nil.
 // The features to upgrade are specified as the options used in
 // GetProductPrices().
 func UpgradeVirtualGuest(
 	sess *session.Session,
-	id int,
+	guest *datatypes.Virtual_Guest,
 	options map[string]float64,
 	when ...time.Time,
 ) (datatypes.Container_Product_Order_Receipt, error) {
+
+	if guest.PrivateNetworkOnlyFlag == nil {
+		service := services.GetVirtualGuestService(sess)
+		guestForFlag, err := service.Id(*guest.Id).Mask("privateNetworkOnlyFlag").GetObject()
+		if err != nil {
+			return datatypes.Container_Product_Order_Receipt{}, err
+		}
+
+		guest.PrivateNetworkOnlyFlag = guestForFlag.PrivateNetworkOnlyFlag
+	}
 
 	pkg, err := product.GetPackageByType(sess, "VIRTUAL_SERVER_INSTANCE")
 	if err != nil {
@@ -48,7 +58,7 @@ func UpgradeVirtualGuest(
 		return datatypes.Container_Product_Order_Receipt{}, err
 	}
 
-	prices := product.SelectProductPricesByCategory(productItems, options)
+	prices := product.SelectProductPricesByCategory(productItems, options, !*guest.PrivateNetworkOnlyFlag)
 
 	upgradeTime := time.Now().UTC().Format(time.RFC3339)
 	if len(when) > 0 {
@@ -61,7 +71,7 @@ func UpgradeVirtualGuest(
 				Container_Product_Order: datatypes.Container_Product_Order{
 					PackageId: pkg.Id,
 					VirtualGuests: []datatypes.Virtual_Guest{
-						{Id: &id},
+						*guest,
 					},
 					Prices: prices,
 					Properties: []datatypes.Container_Product_Order_Property{

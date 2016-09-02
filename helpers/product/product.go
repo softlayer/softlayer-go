@@ -23,6 +23,7 @@ import (
 	"github.ibm.com/riethm/gopherlayer.git/filter"
 	"github.ibm.com/riethm/gopherlayer.git/services"
 	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.ibm.com/riethm/gopherlayer.git/sl"
 	"strings"
 )
 
@@ -125,15 +126,52 @@ func GetPackageProducts(
 func SelectProductPricesByCategory(
 	productItems []datatypes.Product_Item,
 	options map[string]float64,
+	public ...bool,
 ) []datatypes.Product_Item_Price {
+
+	forPublicNetwork := true
+	if len(public) > 0 {
+		forPublicNetwork = public[0]
+	}
+
 	// Filter product items based on sets of category codes and capacity numbers
 	prices := []datatypes.Product_Item_Price{}
+	priceCheck := map[string]bool{}
 	for _, productItem := range productItems {
+		isPrivate := strings.HasPrefix(sl.Get(productItem.Description, "").(string), "Private")
+		isPublic := strings.Contains(sl.Get(productItem.Description, "Public").(string), "Public")
 		for _, category := range productItem.Prices[0].Categories {
-			for k, v := range options {
-				if productItem.Capacity != nil && *productItem.Capacity == datatypes.Float64(v) && *category.CategoryCode == k {
-					prices = append(prices, productItem.Prices[0])
+			for categoryCode, capacity := range options {
+				if _, ok := priceCheck[categoryCode]; ok {
+					continue
 				}
+
+				if productItem.Capacity == nil {
+					continue
+				}
+
+				if *category.CategoryCode != categoryCode {
+					continue
+				}
+
+				if *productItem.Capacity != datatypes.Float64(capacity) {
+					continue
+				}
+
+				// Logic taken from softlayer-python @ http://bit.ly/2bN9Gbu
+				switch categoryCode {
+				case CPUCategoryCode:
+					if forPublicNetwork == isPrivate {
+						continue
+					}
+				case NICSpeedCategoryCode:
+					if forPublicNetwork != isPublic {
+						continue
+					}
+				}
+
+				prices = append(prices, productItem.Prices[0])
+				priceCheck[categoryCode] = true
 			}
 		}
 	}
