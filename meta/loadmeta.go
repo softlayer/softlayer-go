@@ -227,6 +227,7 @@ func main() {
 		t := meta[name]
 		sortedTypes = append(sortedTypes, t)
 		addComplexType(&t)
+		fixDatatype(&t)
 
 		// Not every datatype is also a service
 		if !t.NoService {
@@ -369,6 +370,15 @@ func addComplexType(dataType *Type) {
 			Form: "local",
 			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
 		}
+	}
+}
+
+// Special case for fixing some datatype properties in the metadata
+func fixDatatype(t *Type) {
+	if t.Name == "SoftLayer_Virtual_Guest_Block_Device_Template_Group" {
+		property := t.Properties["imageType"]
+		property.Type = "SoftLayer_Virtual_Disk_Image_Type"
+		t.Properties["imageType"] = property
 	}
 }
 

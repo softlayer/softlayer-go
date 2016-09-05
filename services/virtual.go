@@ -2078,7 +2078,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetGlobalIdentifier() (resp s
 }
 
 // Retrieve The virtual disk image type of this template. Value will be populated on parent and child, but only supports object filtering on the parent.
-func (r Virtual_Guest_Block_Device_Template_Group) GetImageType() (resp string, err error) {
+func (r Virtual_Guest_Block_Device_Template_Group) GetImageType() (resp datatypes.Virtual_Disk_Image_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getImageType", nil, &r.Options, &resp)
 	return
 }

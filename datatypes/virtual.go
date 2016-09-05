@@ -795,7 +795,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	Id *int `json:"id,omitempty"`
 
 	// The virtual disk image type of this template. Value will be populated on parent and child, but only supports object filtering on the parent.
-	ImageType *string `json:"imageType,omitempty"`
+	ImageType *Virtual_Disk_Image_Type `json:"imageType,omitempty"`
 
 	// The virtual disk image type keyname (e.g. SYSTEM, DISK_CAPTURE, ISO, etc) of this template. Value will be populated on parent and child, but only supports object filtering on the parent.
 	ImageTypeKeyName *string `json:"imageTypeKeyName,omitempty"`
