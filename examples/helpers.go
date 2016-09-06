@@ -19,11 +19,11 @@ package main
 import (
 	"fmt"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/helpers/location"
-	"github.ibm.com/riethm/gopherlayer.git/helpers/order"
-	"github.ibm.com/riethm/gopherlayer.git/services"
-	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/helpers/location"
+	"github.com/softlayer/softlayer-go/helpers/order"
+	"github.com/softlayer/softlayer-go/services"
+	"github.com/softlayer/softlayer-go/session"
 )
 
 func testHelpers() {

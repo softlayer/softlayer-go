@@ -1,4 +1,4 @@
-# gopherlayer
+# softlayer-go
 
 SoftLayer API Client for the Go language
 

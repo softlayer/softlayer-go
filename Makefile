@@ -1,6 +1,6 @@
 
 all: fmtcheck
-	go build github.ibm.com/riethm/gopherlayer.git/...
+	go build github.com/softlayer/softlayer-go/...
 
 fmt:
 	gofmt -w `find . -name '*.go' | grep -v vendor`

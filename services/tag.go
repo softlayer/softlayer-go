@@ -24,9 +24,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/session"
-	"github.ibm.com/riethm/gopherlayer.git/sl"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 // The SoftLayer_Tag data type is an optional type associated with hardware. The account ID that the tag is tied to, and the tag itself are stored in this data type. There is also a flag to denote whether the tag is internal or not.

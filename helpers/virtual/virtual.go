@@ -19,11 +19,11 @@ package virtual
 import (
 	"time"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/helpers/product"
-	"github.ibm.com/riethm/gopherlayer.git/services"
-	"github.ibm.com/riethm/gopherlayer.git/session"
-	"github.ibm.com/riethm/gopherlayer.git/sl"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/helpers/product"
+	"github.com/softlayer/softlayer-go/services"
+	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 // Upgrade a virtual guest to a specified set of features (e.g. cpu, ram).

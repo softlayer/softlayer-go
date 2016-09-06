@@ -28,8 +28,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/sl"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 func doRestRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {

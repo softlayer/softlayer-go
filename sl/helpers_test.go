@@ -19,7 +19,7 @@ package sl
 import (
 	"testing"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
+	"github.com/softlayer/softlayer-go/datatypes"
 	"reflect"
 )
 

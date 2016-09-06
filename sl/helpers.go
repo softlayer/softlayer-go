@@ -20,7 +20,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
+	"github.com/softlayer/softlayer-go/datatypes"
 )
 
 // Convenience functions for returning pointers to values

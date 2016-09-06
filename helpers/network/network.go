@@ -19,10 +19,10 @@ package network
 import (
 	"fmt"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/filter"
-	"github.ibm.com/riethm/gopherlayer.git/services"
-	"github.ibm.com/riethm/gopherlayer.git/session"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/filter"
+	"github.com/softlayer/softlayer-go/services"
+	"github.com/softlayer/softlayer-go/session"
 )
 
 // GetNadcLbVipByName Get a virtual ip address by name attached to a load balancer

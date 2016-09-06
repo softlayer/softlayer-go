@@ -24,9 +24,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/session"
-	"github.ibm.com/riethm/gopherlayer.git/sl"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 // SoftLayer_Software_AccountLicense is a class that represents software licenses that are tied only to a customer's account and not to any particular hardware, IP address, etc.

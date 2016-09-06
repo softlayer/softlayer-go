@@ -24,9 +24,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.ibm.com/riethm/gopherlayer.git/datatypes"
-	"github.ibm.com/riethm/gopherlayer.git/session"
-	"github.ibm.com/riethm/gopherlayer.git/sl"
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 // The SoftLayer_Product_Item_Category data type contains general category information for prices.

@@ -18,7 +18,7 @@ package main
 
 import (
 	"fmt"
-	"github.ibm.com/riethm/gopherlayer.git/filter"
+	"github.com/softlayer/softlayer-go/filter"
 )
 
 func testFilters() {
