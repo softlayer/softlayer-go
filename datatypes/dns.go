@@ -189,11 +189,23 @@ type Dns_Domain_ResourceRecord struct {
 	// A domain resource record's internal identifier.
 	Id *int `json:"id,omitempty"`
 
+	// Whether the address associated with a PTR record is the gateway address of a subnet.
+	IsGatewayAddress *bool `json:"isGatewayAddress,omitempty"`
+
 	// The amount of time in seconds that a domain's resource records are valid. This is also known as a minimum TTL, and can be overridden by an individual resource record's TTL.
 	Minimum *int `json:"minimum,omitempty"`
 
 	// Useful in cases where a domain has more than one mail exchanger, the priority property is the priority of the MTA that delivers mail for a domain. A lower number denotes a higher priority, and mail will attempt to deliver through that MTA before moving to lower priority mail servers. Priority is defaulted to 10 upon resource record creation.
 	MxPriority *int `json:"mxPriority,omitempty"`
+
+	// The TCP or UDP port on which the service is to be found.
+	Port *int `json:"port,omitempty"`
+
+	// The priority of the target host, lower value means more preferred.
+	Priority *int `json:"priority,omitempty"`
+
+	// The protocol of the desired service; this is usually either TCP or UDP.
+	Protocol *string `json:"protocol,omitempty"`
 
 	// The amount of time in seconds that a secondary name server should wait to check for a new copy of a DNS zone from the domain's primary name server. If a zone file has changed then the secondary DNS server will update it's copy of the zone to match the primary DNS server's zone.
 	Refresh *int `json:"refresh,omitempty"`
@@ -204,11 +216,17 @@ type Dns_Domain_ResourceRecord struct {
 	// The amount of time in seconds that a domain's primary name server (or servers) should wait if an attempt to refresh by a secondary name server failed before attempting to refresh a domain's zone with that secondary name server again.
 	Retry *int `json:"retry,omitempty"`
 
+	// The symbolic name of the desired service
+	Service *string `json:"service,omitempty"`
+
 	// The Time To Live value of a resource record, measured in seconds. TTL is used by a name server to determine how long to cache a resource record. An SOA record's TTL value defines the domain's overall TTL.
 	Ttl *int `json:"ttl,omitempty"`
 
 	// A domain resource record's type. A value of "a" denotes an A (address) record, "aaaa" denotes an AAAA (IPv6 address) record, "cname" denotes a CNAME (canonical name) record, "mx" denotes an MX (mail exchanger) record, "ns" denotes an NS (nameserver) record, "ptr" denotes a PTR (pointer/reverse) record, "soa" denotes the SOA (start of authority) record, "spf" denotes a SPF (sender policy framework) record, and "txt" denotes a TXT (text) record. A domain record's type also denotes which class in the SoftLayer API is a best match for extending a resource record.
 	Type *string `json:"type,omitempty"`
+
+	// A relative weight for records with the same priority.
+	Weight *int `json:"weight,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_ResourceRecord_AType is a SoftLayer_Dns_Domain_ResourceRecord object whose ''type'' property is set to "a" and defines a DNS A record on a SoftLayer hosted domain. An A record directs a host name to an IP address. For instance if the A record for "host.example.org" points to the IP address 10.0.0.1 then the ''host'' property for the A record equals "host" and the ''data'' property equals "10.0.0.1".
