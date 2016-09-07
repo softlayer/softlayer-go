@@ -252,7 +252,8 @@ func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancer(loadBala
 }
 
 // Remove an entire load balancer service, including all virtual IP addresses, from and application delivery controller based load balancer. The ''name'' property the and ''name'' property within the ''vip'' property of the service parameter must be provided. Changes are reflected immediately in the application delivery controller.
-func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancerService(service *datatypes.Network_LoadBalancer_Service) (resp bool, err error) {
+func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancerService(service *datatypes.Network_LoadBalancer_Service) (err error) {
+	var resp datatypes.Void
 	params := []interface{}{
 		service,
 	}

@@ -390,15 +390,16 @@ func fixDatatype(t *Type, meta map[string]Type) {
 
 // Special case for fixing some broken return types in the metadata
 func fixReturnType(service *Type) {
-	brokenServices := map[string]struct{}{
-		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service":       {},
-		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer": {},
+	brokenServices := map[string]string{
+		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service":       "deleteObject",
+		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer": "deleteObject",
+		"SoftLayer_Network_Application_Delivery_Controller":                            "deleteLiveLoadBalancerService",
 	}
 
-	if _, ok := brokenServices[service.Name]; ok {
-		method := service.Methods["deleteObject"]
+	if methodName, ok := brokenServices[service.Name]; ok {
+		method := service.Methods[methodName]
 		method.Type = "void"
-		service.Methods["deleteObject"] = method
+		service.Methods[methodName] = method
 	}
 }
 
