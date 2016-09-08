@@ -178,6 +178,9 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 		return nil, resp.StatusCode, err
 	}
 
+	if session.Debug {
+		log.Println("[DEBUG] Response: ", string(responseBody))
+	}
 	return responseBody, resp.StatusCode, nil
 }
 
