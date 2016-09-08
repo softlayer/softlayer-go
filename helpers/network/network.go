@@ -20,7 +20,6 @@ import (
 	"fmt"
 
 	"github.com/softlayer/softlayer-go/datatypes"
-	"github.com/softlayer/softlayer-go/filter"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 )
@@ -33,23 +32,25 @@ func GetNadcLbVipByName(sess *session.Session, nadcId int, vipName string, mask 
 	service := services.GetNetworkApplicationDeliveryControllerService(sess)
 
 	service = service.
-		Id(nadcId).
-		Filter(filter.Path("name").Eq(vipName).Build())
+		Id(nadcId)
 
 	if len(mask) > 0 {
 		service = service.Mask(mask[0])
 	}
 
 	vips, err := service.GetLoadBalancers()
+
 	if err != nil {
 		return nil, fmt.Errorf("Error getting NADC load balancers: %s", err)
 	}
 
-	if len(vips) == 0 {
-		return nil, fmt.Errorf("Could not find any VIPs for NADC %d matching name %s", nadcId, vipName)
+	for _, vip := range vips {
+		if *vip.Name == vipName {
+			return &vip, nil
+		}
 	}
 
-	return &vips[0], nil
+	return nil, fmt.Errorf("Could not find any VIPs for NADC %d matching name %s", nadcId, vipName)
 }
 
 // GetNadcLbVipServiceByName Get a load balancer service by name attached to a load balancer
