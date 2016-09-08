@@ -39,6 +39,9 @@ const NICSpeedCategoryCode = "port_speed"
 // DedicatedLoadBalancerCategoryCode Category code for Dedicated Load Balancer
 const DedicatedLoadBalancerCategoryCode = "dedicated_load_balancer"
 
+// ProxyLoadBalancerCategoryCode Category code for Shared local load balancer (proxy load balancer)
+const ProxyLoadBalancerCategoryCode = "proxy_load_balancer"
+
 // GetPackageByType Get the Product_Package which matches the specified
 // package type
 func GetPackageByType(
