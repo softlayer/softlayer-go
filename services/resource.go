@@ -275,6 +275,12 @@ func (r Resource_Metadata) GetFullyQualifiedDomainName() (resp string, err error
 	return
 }
 
+// The getId getGlobalIdentifier retrieves the globalIdentifier for the resource
+func (r Resource_Metadata) GetGlobalIdentifier() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getGlobalIdentifier", nil, &r.Options, &resp)
+	return
+}
+
 // The getHostname method retrieves the hostname for the resource.
 func (r Resource_Metadata) GetHostname() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getHostname", nil, &r.Options, &resp)

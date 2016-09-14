@@ -1749,7 +1749,7 @@ func (r Hardware_Component_Partition_OperatingSystem) GetPartitionTemplates() (r
 	return
 }
 
-// The SoftLayer_Hardware_Component_Partition_Template data type contains general information relating to a single SoftLayer partition template.  Partition templates group 1 or more partition configurations that can be used to predefined how a hard drives partitions will be configured.
+// The SoftLayer_Hardware_Component_Partition_Template data type contains general information relating to a single SoftLayer partition template.  Partition templates group 1 or more partition configurations that can be used to predefine how a hard drive's partitions will be configured.
 type Hardware_Component_Partition_Template struct {
 	Session *session.Session
 	Options sl.Options

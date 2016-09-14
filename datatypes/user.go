@@ -236,6 +236,9 @@ type User_Customer struct {
 	// The IP addresses or IP ranges from which a user may login to the SoftLayer customer portal. Specify subnets in CIDR format and separate multiple addresses and subnets by commas. You may combine IPv4 and IPv6 addresses and subnets, for example: 192.168.0.0/16,fe80:021b::0/64.
 	IpAddressRestriction *string `json:"ipAddressRestriction,omitempty"`
 
+	// no documentation yet
+	IsMasterUserFlag *bool `json:"isMasterUserFlag,omitempty"`
+
 	// A portal user's last name.
 	LastName *string `json:"lastName,omitempty"`
 
