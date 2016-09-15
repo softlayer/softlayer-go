@@ -49,20 +49,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 			})
 	}
 
-	// Start building the request path
-	path := service
-
-	if options.Id != nil {
-		path = path + "/" + strconv.Itoa(*options.Id)
-	}
-
-	// omit the API method name if the method represents one of the basic REST methods
-	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
-		method != "createObjects" && method != "editObject" && method != "editObjects" {
-		path = path + "/" + method
-	}
-
-	path = path + ".json"
+	path := buildPath(service, method, options)
 
 	resp, code, err := makeHTTPRequest(
 		sess,
@@ -119,6 +106,22 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 	}
 
 	return err
+}
+
+func buildPath(service string, method string, options *sl.Options) string {
+	path := service
+
+	if options.Id != nil {
+		path = path + "/" + strconv.Itoa(*options.Id)
+	}
+
+	// omit the API method name if the method represents one of the basic REST methods
+	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
+	method != "createObjects" && method != "editObject" && method != "editObjects" {
+		path = path + "/" + method
+	}
+
+	return path + ".json"
 }
 
 func encodeQuery(opts *sl.Options) string {
