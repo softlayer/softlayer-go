@@ -32,7 +32,11 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-func doRestRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
+type RestTransport struct {}
+
+// DoRequest - Implementation of the TransportHandler interface for handling
+// calls to the REST endpoint.
+func (r *RestTransport) DoRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
 	restMethod := httpMethod(method, args)
 
 	// Parse any method parameters and determine the HTTP method

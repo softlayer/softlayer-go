@@ -31,13 +31,39 @@ import (
 // is provided.
 const DefaultEndpoint = "https://api.softlayer.com/rest/v3"
 
-type TransportHandlerFunc func(
-	sess *Session,
-	service string,
-	method string,
-	args []interface{},
-	options *sl.Options,
-	pResult interface{}) error
+// TransportHandler
+type TransportHandler interface {
+	// DoRequest is the protocol-specific handler for making API requests.
+	//
+	// sess is a reference to the current session object, where authentication and
+	// endpoint information can be found.
+	//
+	// service and method are the SoftLayer service name and method name, exactly as they
+	// are documented at http://sldn.softlayer.com/reference/softlayerapi (i.e., with the
+	// 'SoftLayer_' prefix and properly cased.
+	//
+	// args is a slice of arguments required for the service method being invoked.  The
+	// types of each argument varies. See the method definition in the services package
+	// for the expected type of each argument.
+	//
+	// options is an sl.Options struct, containing any mask, filter, or result limit values
+	// to be applied.
+	//
+	// pResult is a pointer to a variable to be populated with the result of the API call.
+	// DoRequest should ensure that the native API response (i.e., XML or JSON) is correctly
+	// unmarshaled into the result structure.
+	//
+	// A sl.Error is returned, and can be (with a type assertion) inspected for details of
+	// the error (http code, API error message, etc.), or simply handled as a generic error,
+	// (in which case no type assertion would be necessary)
+	DoRequest(
+		sess *Session,
+		service string,
+		method string,
+		args []interface{},
+		options *sl.Options,
+		pResult interface{}) error
+}
 
 // Session stores the information required for communication with the SoftLayer
 // API
@@ -54,11 +80,11 @@ type Session struct {
 	// Debug controls logging of request details (URI, parameters, etc.)
 	Debug bool
 
-	// The function that will be called for each API request.  Handles the
-	// request and any response parsing specific to the desired protocol
+	// The handler whose DoRequest() function will be called for each API request.
+	// Handles the request and any response parsing specific to the desired protocol
 	// (e.g., REST).  Set automatically for a new Session, based on the
 	// provided Endpoint.
-	TransportHandler TransportHandlerFunc
+	TransportHandler TransportHandler
 }
 
 // New creates and returns a pointer to a new session object.  It takes up to
@@ -115,7 +141,7 @@ func New(args ...interface{}) *Session {
 		UserName:         values[keys["username"]],
 		APIKey:           values[keys["api_key"]],
 		Endpoint:         endpointURL,
-		TransportHandler: doRestRequest,
+		TransportHandler: &RestTransport{},
 	}
 }
 
@@ -124,31 +150,13 @@ func New(args ...interface{}) *Session {
 // be invoked directly by client code in exceptional cases where direct control is
 // needed over one of the parameters.
 //
-// service and method are the SoftLayer service name and method name, exactly as they
-// are documented at http://sldn.softlayer.com/reference/softlayerapi (i.e., with the
-// 'SoftLayer_' prefix and properly cased.
-//
-// args is a slice of arguments required for the service method being invoked.  The
-// types of each argument varies. See the method definition in the services package
-// for the expected type of each argument.
-//
-// options is an sl.Options struct, containing any mask, filter, or result limit values
-// to be applied.
-//
-// pResult is a pointer to a variable to be populated with the result of the API call.
-// The type of the variable pointed to determines how the response is handled.  E.g.,
-// for simple integer or string types, a type conversion is attempted (e.g.,
-// strconv.Atoi()). For a map or struct type, the response is unmarshaled into pResult
-//
-// A sl.Error is returned, and can be (with a type assertion) inspected for details of
-// the error (http code, API error message, etc.), or simply handled as a generic error,
-// (in which case no type assertion would be necessary)
+// For a description of parameters, see TransportHandler.DoRequest in this package
 func (r *Session) DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
 	if r.TransportHandler == nil {
-		r.TransportHandler = doRestRequest
+		r.TransportHandler = &RestTransport{}
 	}
 
-	return r.TransportHandler(r, service, method, args, options, pResult)
+	return r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
 }
 
 func envFallback(keyName string, value *string) {
