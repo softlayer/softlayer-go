@@ -87,11 +87,16 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 
 	err = nil
 	switch pResult.(type) {
-	case []uint8:
-		pResult = resp
+	case *[]uint8:
+		// exclude quotes
+		*pResult.(*[]uint8) = resp[1:len(resp)-1]
 	case *datatypes.Void:
 	case *uint:
-		*pResult.(*int), err = strconv.Atoi(string(resp))
+		var val uint64
+		val, err = strconv.ParseUint(string(resp), 0, 64)
+		if err == nil {
+			*pResult.(*uint) = uint(val)
+		}
 	case *bool:
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
 	case *string:
