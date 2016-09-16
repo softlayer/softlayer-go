@@ -32,7 +32,11 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-func doRestRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
+type RestTransport struct {}
+
+// DoRequest - Implementation of the TransportHandler interface for handling
+// calls to the REST endpoint.
+func (r *RestTransport) DoRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
 	restMethod := httpMethod(method, args)
 
 	// Parse any method parameters and determine the HTTP method
@@ -45,20 +49,7 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 			})
 	}
 
-	// Start building the request path
-	path := service
-
-	if options.Id != nil {
-		path = path + "/" + strconv.Itoa(*options.Id)
-	}
-
-	// omit the API method name if the method represents one of the basic REST methods
-	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
-		method != "createObjects" && method != "editObject" && method != "editObjects" {
-		path = path + "/" + method
-	}
-
-	path = path + ".json"
+	path := buildPath(service, method, options)
 
 	resp, code, err := makeHTTPRequest(
 		sess,
@@ -96,11 +87,16 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 
 	err = nil
 	switch pResult.(type) {
-	case []uint8:
-		pResult = resp
+	case *[]uint8:
+		// exclude quotes
+		*pResult.(*[]uint8) = resp[1:len(resp)-1]
 	case *datatypes.Void:
 	case *uint:
-		*pResult.(*int), err = strconv.Atoi(string(resp))
+		var val uint64
+		val, err = strconv.ParseUint(string(resp), 0, 64)
+		if err == nil {
+			*pResult.(*uint) = uint(val)
+		}
 	case *bool:
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
 	case *string:
@@ -115,6 +111,22 @@ func doRestRequest(sess *Session, service string, method string, args []interfac
 	}
 
 	return err
+}
+
+func buildPath(service string, method string, options *sl.Options) string {
+	path := service
+
+	if options.Id != nil {
+		path = path + "/" + strconv.Itoa(*options.Id)
+	}
+
+	// omit the API method name if the method represents one of the basic REST methods
+	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
+	method != "createObjects" && method != "editObject" && method != "editObjects" {
+		path = path + "/" + method
+	}
+
+	return path + ".json"
 }
 
 func encodeQuery(opts *sl.Options) string {
