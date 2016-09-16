@@ -25,44 +25,44 @@ type Event_Log struct {
 	Entity
 
 	// Account id with which the event is associated
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// Event creation date in millisecond precision
-	EventCreateDate *Time `json:"eventCreateDate,omitempty"`
+	EventCreateDate *Time `json:"eventCreateDate,omitempty" xmlrpc:"eventCreateDate"`
 
 	// Event name such as "reboot", "cancel", "update host" and so on.
-	EventName *string `json:"eventName,omitempty"`
+	EventName *string `json:"eventName,omitempty" xmlrpc:"eventName"`
 
 	// The remote IP Address that made the request
-	IpAddress *string `json:"ipAddress,omitempty"`
+	IpAddress *string `json:"ipAddress,omitempty" xmlrpc:"ipAddress"`
 
 	// Label or description of the event object
-	Label *string `json:"label,omitempty"`
+	Label *string `json:"label,omitempty" xmlrpc:"label"`
 
 	// Meta data for an event in JSON string
-	MetaData *string `json:"metaData,omitempty"`
+	MetaData *string `json:"metaData,omitempty" xmlrpc:"metaData"`
 
 	// Event object id
-	ObjectId *int `json:"objectId,omitempty"`
+	ObjectId *int `json:"objectId,omitempty" xmlrpc:"objectId"`
 
 	// Event object name such as "server", "dns" and so on.
-	ObjectName *string `json:"objectName,omitempty"`
+	ObjectName *string `json:"objectName,omitempty" xmlrpc:"objectName"`
 
 	// A resource object that is associated with the event
-	Resource *Entity `json:"resource,omitempty"`
+	Resource *Entity `json:"resource,omitempty" xmlrpc:"resource"`
 
 	// A unique trace id. Multiple event can be grouped by a trace id.
-	TraceId *string `json:"traceId,omitempty"`
+	TraceId *string `json:"traceId,omitempty" xmlrpc:"traceId"`
 
 	// no documentation yet
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// Id of customer who initiated the event
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 
 	// Type of user that triggered the event. User type can be CUSTOMER, EMPLOYEE or SYSTEM.
-	UserType *string `json:"userType,omitempty"`
+	UserType *string `json:"userType,omitempty" xmlrpc:"userType"`
 
 	// Customer username who initiated the event
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }

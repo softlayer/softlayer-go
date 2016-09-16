@@ -25,22 +25,22 @@ type Legal_RegulatedWorkload struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// no documentation yet
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// no documentation yet
-	EnabledFlag *bool `json:"enabledFlag,omitempty"`
+	EnabledFlag *bool `json:"enabledFlag,omitempty" xmlrpc:"enabledFlag"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	Type *Legal_RegulatedWorkload_Type `json:"type,omitempty"`
+	Type *Legal_RegulatedWorkload_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// no documentation yet
-	WorkloadTypeId *int `json:"workloadTypeId,omitempty"`
+	WorkloadTypeId *int `json:"workloadTypeId,omitempty" xmlrpc:"workloadTypeId"`
 }
 
 // no documentation yet
@@ -48,11 +48,11 @@ type Legal_RegulatedWorkload_Type struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }

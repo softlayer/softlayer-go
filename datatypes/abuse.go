@@ -25,8 +25,8 @@ type Abuse_Lockdown_Resource struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// no documentation yet
-	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty"`
+	InvoiceItem *Billing_Invoice_Item `json:"invoiceItem,omitempty" xmlrpc:"invoiceItem"`
 }

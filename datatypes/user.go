@@ -25,40 +25,40 @@ type User_Access_Facility_Log struct {
 	Entity
 
 	// This is the account associated with the log entry. For users under a customer's account, it is the customer's account. For contractors and others visiting a colocation area, it is the account associated with the area they visited.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// This is the account associated with a log record. For a customer logging into a datacenter, this is the customer's account. For a contractor or any other guest logging into a customer's cabinet or colocation cage, this is the customer's account.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// This is the location of the facility.
-	Datacenter *Location `json:"datacenter,omitempty"`
+	Datacenter *Location `json:"datacenter,omitempty" xmlrpc:"datacenter"`
 
 	// This is a short description of why the person is at the location.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// This is the colocation hardware that was visited.
-	Hardware *Hardware `json:"hardware,omitempty"`
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// no documentation yet
-	HardwareId *int `json:"hardwareId,omitempty"`
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	LocationId *int `json:"locationId,omitempty"`
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId"`
 
 	// This is the type of person entering the facility.
-	LogType *User_Access_Facility_Log_Type `json:"logType,omitempty"`
+	LogType *User_Access_Facility_Log_Type `json:"logType,omitempty" xmlrpc:"logType"`
 
 	// This is the date and time the person arrived.
-	TimeIn *Time `json:"timeIn,omitempty"`
+	TimeIn *Time `json:"timeIn,omitempty" xmlrpc:"timeIn"`
 
 	// no documentation yet
-	TimeOut *Time `json:"timeOut,omitempty"`
+	TimeOut *Time `json:"timeOut,omitempty" xmlrpc:"timeOut"`
 
 	// no documentation yet
-	Visitor *Entity `json:"visitor,omitempty"`
+	Visitor *Entity `json:"visitor,omitempty" xmlrpc:"visitor"`
 }
 
 // no documentation yet
@@ -66,13 +66,13 @@ type User_Access_Facility_Log_Type struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // This class represents a facility visitor that is not an active employee or customer.
@@ -80,19 +80,19 @@ type User_Access_Facility_Visitor struct {
 	Entity
 
 	// no documentation yet
-	CompanyName *string `json:"companyName,omitempty"`
+	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName"`
 
 	// no documentation yet
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// no documentation yet
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// no documentation yet
-	TypeId *int `json:"typeId,omitempty"`
+	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId"`
 
 	// no documentation yet
-	VisitorType *User_Access_Facility_Visitor_Type `json:"visitorType,omitempty"`
+	VisitorType *User_Access_Facility_Visitor_Type `json:"visitorType,omitempty" xmlrpc:"visitorType"`
 }
 
 // no documentation yet
@@ -100,13 +100,13 @@ type User_Access_Facility_Visitor_Type struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_User_Customer data type contains general information relating to a single SoftLayer customer portal user. Personal information in this type such as names, addresses, and phone numbers are not necessarily associated with the customer account the user is assigned to.
@@ -114,337 +114,337 @@ type User_Customer struct {
 	User_Interface
 
 	// The customer account that a user belongs to.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// A portal user's associated [[SoftLayer_Account|customer account]] id.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// A count of
-	ActionCount *uint `json:"actionCount,omitempty"`
+	ActionCount *uint `json:"actionCount,omitempty" xmlrpc:"actionCount"`
 
 	// no documentation yet
-	Actions []User_Permission_Action `json:"actions,omitempty"`
+	Actions []User_Permission_Action `json:"actions,omitempty" xmlrpc:"actions"`
 
 	// A count of a portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
-	AdditionalEmailCount *uint `json:"additionalEmailCount,omitempty"`
+	AdditionalEmailCount *uint `json:"additionalEmailCount,omitempty" xmlrpc:"additionalEmailCount"`
 
 	// A portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
-	AdditionalEmails []User_Customer_AdditionalEmail `json:"additionalEmails,omitempty"`
+	AdditionalEmails []User_Customer_AdditionalEmail `json:"additionalEmails,omitempty" xmlrpc:"additionalEmails"`
 
 	// The first line of the mailing address belonging to a portal user.
-	Address1 *string `json:"address1,omitempty"`
+	Address1 *string `json:"address1,omitempty" xmlrpc:"address1"`
 
 	// The second line of the mailing address belonging to a portal user.
-	Address2 *string `json:"address2,omitempty"`
+	Address2 *string `json:"address2,omitempty" xmlrpc:"address2"`
 
 	// A portal user's AOL Instant Messenger screen name.
-	Aim *string `json:"aim,omitempty"`
+	Aim *string `json:"aim,omitempty" xmlrpc:"aim"`
 
 	// A portal user's secondary phone number.
-	AlternatePhone *string `json:"alternatePhone,omitempty"`
+	AlternatePhone *string `json:"alternatePhone,omitempty" xmlrpc:"alternatePhone"`
 
 	// A count of a portal user's API Authentication keys. There is a max limit of two API keys per user.
-	ApiAuthenticationKeyCount *uint `json:"apiAuthenticationKeyCount,omitempty"`
+	ApiAuthenticationKeyCount *uint `json:"apiAuthenticationKeyCount,omitempty" xmlrpc:"apiAuthenticationKeyCount"`
 
 	// A portal user's API Authentication keys. There is a max limit of two API keys per user.
-	ApiAuthenticationKeys []User_Customer_ApiAuthentication `json:"apiAuthenticationKeys,omitempty"`
+	ApiAuthenticationKeys []User_Customer_ApiAuthentication `json:"apiAuthenticationKeys,omitempty" xmlrpc:"apiAuthenticationKeys"`
 
 	// The authentication token used for logging into the SoftLayer customer portal.
-	AuthenticationToken *Container_User_Authentication_Token `json:"authenticationToken,omitempty"`
+	AuthenticationToken *Container_User_Authentication_Token `json:"authenticationToken,omitempty" xmlrpc:"authenticationToken"`
 
 	// A count of the CDN accounts associated with a portal user.
-	CdnAccountCount *uint `json:"cdnAccountCount,omitempty"`
+	CdnAccountCount *uint `json:"cdnAccountCount,omitempty" xmlrpc:"cdnAccountCount"`
 
 	// The CDN accounts associated with a portal user.
-	CdnAccounts []Network_ContentDelivery_Account `json:"cdnAccounts,omitempty"`
+	CdnAccounts []Network_ContentDelivery_Account `json:"cdnAccounts,omitempty" xmlrpc:"cdnAccounts"`
 
 	// A count of a portal user's child users. Some portal users may not have child users.
-	ChildUserCount *uint `json:"childUserCount,omitempty"`
+	ChildUserCount *uint `json:"childUserCount,omitempty" xmlrpc:"childUserCount"`
 
 	// A portal user's child users. Some portal users may not have child users.
-	ChildUsers []User_Customer `json:"childUsers,omitempty"`
+	ChildUsers []User_Customer `json:"childUsers,omitempty" xmlrpc:"childUsers"`
 
 	// The city of the mailing address belonging to a portal user.
-	City *string `json:"city,omitempty"`
+	City *string `json:"city,omitempty" xmlrpc:"city"`
 
 	// A count of an user's associated closed tickets.
-	ClosedTicketCount *uint `json:"closedTicketCount,omitempty"`
+	ClosedTicketCount *uint `json:"closedTicketCount,omitempty" xmlrpc:"closedTicketCount"`
 
 	// An user's associated closed tickets.
-	ClosedTickets []Ticket `json:"closedTickets,omitempty"`
+	ClosedTickets []Ticket `json:"closedTickets,omitempty" xmlrpc:"closedTickets"`
 
 	// A portal user's associated company. This may not be the same company as the customer that owns this portal user.
-	CompanyName *string `json:"companyName,omitempty"`
+	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName"`
 
 	// A two-letter abbreviation of the country in the mailing address belonging to a portal user.
-	Country *string `json:"country,omitempty"`
+	Country *string `json:"country,omitempty" xmlrpc:"country"`
 
 	// The date a portal user's record was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// Whether a portal user's time zone is affected by Daylight Savings Time.
-	DaylightSavingsTimeFlag *bool `json:"daylightSavingsTimeFlag,omitempty"`
+	DaylightSavingsTimeFlag *bool `json:"daylightSavingsTimeFlag,omitempty" xmlrpc:"daylightSavingsTimeFlag"`
 
 	// Flag used to deny access to all hardware and cloud computing instances upon user creation.
-	DenyAllResourceAccessOnCreateFlag *bool `json:"denyAllResourceAccessOnCreateFlag,omitempty"`
+	DenyAllResourceAccessOnCreateFlag *bool `json:"denyAllResourceAccessOnCreateFlag,omitempty" xmlrpc:"denyAllResourceAccessOnCreateFlag"`
 
 	// no documentation yet
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName *string `json:"displayName,omitempty" xmlrpc:"displayName"`
 
 	// A portal user's email address.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// A count of the external authentication bindings that link an external identifier to a SoftLayer user.
-	ExternalBindingCount *uint `json:"externalBindingCount,omitempty"`
+	ExternalBindingCount *uint `json:"externalBindingCount,omitempty" xmlrpc:"externalBindingCount"`
 
 	// The external authentication bindings that link an external identifier to a SoftLayer user.
-	ExternalBindings []User_External_Binding `json:"externalBindings,omitempty"`
+	ExternalBindings []User_External_Binding `json:"externalBindings,omitempty" xmlrpc:"externalBindings"`
 
 	// A portal user's first name.
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// A user's password for the SoftLayer forums, hashed for auto-login capability from the SoftLayer customer portal
-	ForumPasswordHash *string `json:"forumPasswordHash,omitempty"`
+	ForumPasswordHash *string `json:"forumPasswordHash,omitempty" xmlrpc:"forumPasswordHash"`
 
 	// A portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
-	Hardware []Hardware `json:"hardware,omitempty"`
+	Hardware []Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// A count of a portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
-	HardwareCount *uint `json:"hardwareCount,omitempty"`
+	HardwareCount *uint `json:"hardwareCount,omitempty" xmlrpc:"hardwareCount"`
 
 	// A count of hardware notifications associated with this user. A hardware notification links a user to a piece of hardware, and that user will be notified if any monitors on that hardware fail, if the monitors have a status of 'Notify User'.
-	HardwareNotificationCount *uint `json:"hardwareNotificationCount,omitempty"`
+	HardwareNotificationCount *uint `json:"hardwareNotificationCount,omitempty" xmlrpc:"hardwareNotificationCount"`
 
 	// Hardware notifications associated with this user. A hardware notification links a user to a piece of hardware, and that user will be notified if any monitors on that hardware fail, if the monitors have a status of 'Notify User'.
-	HardwareNotifications []User_Customer_Notification_Hardware `json:"hardwareNotifications,omitempty"`
+	HardwareNotifications []User_Customer_Notification_Hardware `json:"hardwareNotifications,omitempty" xmlrpc:"hardwareNotifications"`
 
 	// Whether or not a user has acknowledged the support policy.
-	HasAcknowledgedSupportPolicyFlag *bool `json:"hasAcknowledgedSupportPolicyFlag,omitempty"`
+	HasAcknowledgedSupportPolicyFlag *bool `json:"hasAcknowledgedSupportPolicyFlag,omitempty" xmlrpc:"hasAcknowledgedSupportPolicyFlag"`
 
 	// Whether or not a portal user has access to all hardware on their account.
-	HasFullHardwareAccessFlag *bool `json:"hasFullHardwareAccessFlag,omitempty"`
+	HasFullHardwareAccessFlag *bool `json:"hasFullHardwareAccessFlag,omitempty" xmlrpc:"hasFullHardwareAccessFlag"`
 
 	// Whether or not a portal user has access to all hardware on their account.
-	HasFullVirtualGuestAccessFlag *bool `json:"hasFullVirtualGuestAccessFlag,omitempty"`
+	HasFullVirtualGuestAccessFlag *bool `json:"hasFullVirtualGuestAccessFlag,omitempty" xmlrpc:"hasFullVirtualGuestAccessFlag"`
 
 	// A portal user's ICQ UIN.
-	Icq *string `json:"icq,omitempty"`
+	Icq *string `json:"icq,omitempty" xmlrpc:"icq"`
 
 	// A portal user's internal identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The IP addresses or IP ranges from which a user may login to the SoftLayer customer portal. Specify subnets in CIDR format and separate multiple addresses and subnets by commas. You may combine IPv4 and IPv6 addresses and subnets, for example: 192.168.0.0/16,fe80:021b::0/64.
-	IpAddressRestriction *string `json:"ipAddressRestriction,omitempty"`
+	IpAddressRestriction *string `json:"ipAddressRestriction,omitempty" xmlrpc:"ipAddressRestriction"`
 
 	// no documentation yet
-	IsMasterUserFlag *bool `json:"isMasterUserFlag,omitempty"`
+	IsMasterUserFlag *bool `json:"isMasterUserFlag,omitempty" xmlrpc:"isMasterUserFlag"`
 
 	// A portal user's last name.
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// A count of
-	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty"`
+	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty" xmlrpc:"layoutProfileCount"`
 
 	// no documentation yet
-	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty"`
+	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty" xmlrpc:"layoutProfiles"`
 
 	// A user's locale. Locale holds user's language and region information.
-	Locale *Locale `json:"locale,omitempty"`
+	Locale *Locale `json:"locale,omitempty" xmlrpc:"locale"`
 
 	// A portal user's associated [[SoftLayer_Locale|locale]] id.
-	LocaleId *int `json:"localeId,omitempty"`
+	LocaleId *int `json:"localeId,omitempty" xmlrpc:"localeId"`
 
 	// A count of a user's attempts to log into the SoftLayer customer portal.
-	LoginAttemptCount *uint `json:"loginAttemptCount,omitempty"`
+	LoginAttemptCount *uint `json:"loginAttemptCount,omitempty" xmlrpc:"loginAttemptCount"`
 
 	// A user's attempts to log into the SoftLayer customer portal.
-	LoginAttempts []User_Customer_Access_Authentication `json:"loginAttempts,omitempty"`
+	LoginAttempts []User_Customer_Access_Authentication `json:"loginAttempts,omitempty" xmlrpc:"loginAttempts"`
 
 	// Determines if this portal user is managed by SAML federation.
-	ManagedByFederationFlag *bool `json:"managedByFederationFlag,omitempty"`
+	ManagedByFederationFlag *bool `json:"managedByFederationFlag,omitempty" xmlrpc:"managedByFederationFlag"`
 
 	// Determines if this portal user is managed by IBMid federation.
-	ManagedByOpenIdConnectFlag *bool `json:"managedByOpenIdConnectFlag,omitempty"`
+	ManagedByOpenIdConnectFlag *bool `json:"managedByOpenIdConnectFlag,omitempty" xmlrpc:"managedByOpenIdConnectFlag"`
 
 	// A count of a portal user's associated mobile device profiles.
-	MobileDeviceCount *uint `json:"mobileDeviceCount,omitempty"`
+	MobileDeviceCount *uint `json:"mobileDeviceCount,omitempty" xmlrpc:"mobileDeviceCount"`
 
 	// A portal user's associated mobile device profiles.
-	MobileDevices []User_Customer_MobileDevice `json:"mobileDevices,omitempty"`
+	MobileDevices []User_Customer_MobileDevice `json:"mobileDevices,omitempty" xmlrpc:"mobileDevices"`
 
 	// The date a portal user's record was last modified.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// A portal user's MSN address.
-	Msn *string `json:"msn,omitempty"`
+	Msn *string `json:"msn,omitempty" xmlrpc:"msn"`
 
 	// no documentation yet
-	NameId *string `json:"nameId,omitempty"`
+	NameId *string `json:"nameId,omitempty" xmlrpc:"nameId"`
 
 	// A count of notification subscription records for the user.
-	NotificationSubscriberCount *uint `json:"notificationSubscriberCount,omitempty"`
+	NotificationSubscriberCount *uint `json:"notificationSubscriberCount,omitempty" xmlrpc:"notificationSubscriberCount"`
 
 	// Notification subscription records for the user.
-	NotificationSubscribers []Notification_Subscriber `json:"notificationSubscribers,omitempty"`
+	NotificationSubscribers []Notification_Subscriber `json:"notificationSubscribers,omitempty" xmlrpc:"notificationSubscribers"`
 
 	// A portal user's office phone number.
-	OfficePhone *string `json:"officePhone,omitempty"`
+	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone"`
 
 	// The BlueID username associated to with this user, if the account is managed by OpenIDConnect / BlueID federation
-	OpenIdConnectUserName *string `json:"openIdConnectUserName,omitempty"`
+	OpenIdConnectUserName *string `json:"openIdConnectUserName,omitempty" xmlrpc:"openIdConnectUserName"`
 
 	// A count of an user's associated open tickets.
-	OpenTicketCount *uint `json:"openTicketCount,omitempty"`
+	OpenTicketCount *uint `json:"openTicketCount,omitempty" xmlrpc:"openTicketCount"`
 
 	// An user's associated open tickets.
-	OpenTickets []Ticket `json:"openTickets,omitempty"`
+	OpenTickets []Ticket `json:"openTickets,omitempty" xmlrpc:"openTickets"`
 
 	// A count of a portal user's vpn accessible subnets.
-	OverrideCount *uint `json:"overrideCount,omitempty"`
+	OverrideCount *uint `json:"overrideCount,omitempty" xmlrpc:"overrideCount"`
 
 	// A portal user's vpn accessible subnets.
-	Overrides []Network_Service_Vpn_Overrides `json:"overrides,omitempty"`
+	Overrides []Network_Service_Vpn_Overrides `json:"overrides,omitempty" xmlrpc:"overrides"`
 
 	// A portal user's parent user. If a SoftLayer_User_Customer has a null parentId property then it doesn't have a parent user.
-	Parent *User_Customer `json:"parent,omitempty"`
+	Parent *User_Customer `json:"parent,omitempty" xmlrpc:"parent"`
 
 	// A portal user's parent user. Id a users parentId is ''null'' then it doesn't have a parent user in the customer portal.
-	ParentId *int `json:"parentId,omitempty"`
+	ParentId *int `json:"parentId,omitempty" xmlrpc:"parentId"`
 
 	// The expiration date for the user's password
-	PasswordExpireDate *Time `json:"passwordExpireDate,omitempty"`
+	PasswordExpireDate *Time `json:"passwordExpireDate,omitempty" xmlrpc:"passwordExpireDate"`
 
 	// A count of a portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
-	PermissionCount *uint `json:"permissionCount,omitempty"`
+	PermissionCount *uint `json:"permissionCount,omitempty" xmlrpc:"permissionCount"`
 
 	// no documentation yet
-	PermissionSystemVersion *int `json:"permissionSystemVersion,omitempty"`
+	PermissionSystemVersion *int `json:"permissionSystemVersion,omitempty" xmlrpc:"permissionSystemVersion"`
 
 	// A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
-	Permissions []User_Customer_CustomerPermission_Permission `json:"permissions,omitempty"`
+	Permissions []User_Customer_CustomerPermission_Permission `json:"permissions,omitempty" xmlrpc:"permissions"`
 
 	// The postal code of the mailing address belonging to an portal user.
-	PostalCode *string `json:"postalCode,omitempty"`
+	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode"`
 
 	// Whether a portal user may connect to the SoftLayer private network via PPTP VPN or not.
-	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty"`
+	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag"`
 
 	// A count of
-	PreferenceCount *uint `json:"preferenceCount,omitempty"`
+	PreferenceCount *uint `json:"preferenceCount,omitempty" xmlrpc:"preferenceCount"`
 
 	// no documentation yet
-	Preferences []User_Preference `json:"preferences,omitempty"`
+	Preferences []User_Preference `json:"preferences,omitempty" xmlrpc:"preferences"`
 
 	// A count of
-	RoleCount *uint `json:"roleCount,omitempty"`
+	RoleCount *uint `json:"roleCount,omitempty" xmlrpc:"roleCount"`
 
 	// no documentation yet
-	Roles []User_Permission_Role `json:"roles,omitempty"`
+	Roles []User_Permission_Role `json:"roles,omitempty" xmlrpc:"roles"`
 
 	// no documentation yet
-	SalesforceUserLink *User_Customer_Link `json:"salesforceUserLink,omitempty"`
+	SalesforceUserLink *User_Customer_Link `json:"salesforceUserLink,omitempty" xmlrpc:"salesforceUserLink"`
 
 	// no documentation yet
-	SavedId *string `json:"savedId,omitempty"`
+	SavedId *string `json:"savedId,omitempty" xmlrpc:"savedId"`
 
 	// Whether a user may change their security options (IP restriction, password expiration, or enforce security questions on login) which were pre-selected by their account's master user.
-	SecondaryLoginManagementFlag *bool `json:"secondaryLoginManagementFlag,omitempty"`
+	SecondaryLoginManagementFlag *bool `json:"secondaryLoginManagementFlag,omitempty" xmlrpc:"secondaryLoginManagementFlag"`
 
 	// Whether a user is required to answer a security question when logging into the SoftLayer customer portal.
-	SecondaryLoginRequiredFlag *bool `json:"secondaryLoginRequiredFlag,omitempty"`
+	SecondaryLoginRequiredFlag *bool `json:"secondaryLoginRequiredFlag,omitempty" xmlrpc:"secondaryLoginRequiredFlag"`
 
 	// The date when a user's password was last updated.
-	SecondaryPasswordModifyDate *Time `json:"secondaryPasswordModifyDate,omitempty"`
+	SecondaryPasswordModifyDate *Time `json:"secondaryPasswordModifyDate,omitempty" xmlrpc:"secondaryPasswordModifyDate"`
 
 	// The number of days for which a user's password is active.
-	SecondaryPasswordTimeoutDays *int `json:"secondaryPasswordTimeoutDays,omitempty"`
+	SecondaryPasswordTimeoutDays *int `json:"secondaryPasswordTimeoutDays,omitempty" xmlrpc:"secondaryPasswordTimeoutDays"`
 
 	// A count of a portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
-	SecurityAnswerCount *uint `json:"securityAnswerCount,omitempty"`
+	SecurityAnswerCount *uint `json:"securityAnswerCount,omitempty" xmlrpc:"securityAnswerCount"`
 
 	// A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
-	SecurityAnswers []User_Customer_Security_Answer `json:"securityAnswers,omitempty"`
+	SecurityAnswers []User_Customer_Security_Answer `json:"securityAnswers,omitempty" xmlrpc:"securityAnswers"`
 
 	// A phone number that can receive SMS text messages for this portal user.
-	Sms *string `json:"sms,omitempty"`
+	Sms *string `json:"sms,omitempty" xmlrpc:"sms"`
 
 	// Whether a portal user may connect to the SoftLayer private network via SSL VPN or not.
-	SslVpnAllowedFlag *bool `json:"sslVpnAllowedFlag,omitempty"`
+	SslVpnAllowedFlag *bool `json:"sslVpnAllowedFlag,omitempty" xmlrpc:"sslVpnAllowedFlag"`
 
 	// A two-letter abbreviation of the state in the mailing address belonging to a portal user. If a user does not reside in a province then this is typically blank.
-	State *string `json:"state,omitempty"`
+	State *string `json:"state,omitempty" xmlrpc:"state"`
 
 	// The date a portal users record's last status change.
-	StatusDate *Time `json:"statusDate,omitempty"`
+	StatusDate *Time `json:"statusDate,omitempty" xmlrpc:"statusDate"`
 
 	// A count of a user's notification subscription records.
-	SubscriberCount *uint `json:"subscriberCount,omitempty"`
+	SubscriberCount *uint `json:"subscriberCount,omitempty" xmlrpc:"subscriberCount"`
 
 	// A user's notification subscription records.
-	Subscribers []Notification_User_Subscriber `json:"subscribers,omitempty"`
+	Subscribers []Notification_User_Subscriber `json:"subscribers,omitempty" xmlrpc:"subscribers"`
 
 	// A count of a user's successful attempts to log into the SoftLayer customer portal.
-	SuccessfulLoginCount *uint `json:"successfulLoginCount,omitempty"`
+	SuccessfulLoginCount *uint `json:"successfulLoginCount,omitempty" xmlrpc:"successfulLoginCount"`
 
 	// A user's successful attempts to log into the SoftLayer customer portal.
-	SuccessfulLogins []User_Customer_Access_Authentication `json:"successfulLogins,omitempty"`
+	SuccessfulLogins []User_Customer_Access_Authentication `json:"successfulLogins,omitempty" xmlrpc:"successfulLogins"`
 
 	// Whether or not a user is required to acknowledge the support policy for portal access.
-	SupportPolicyAcknowledgementRequiredFlag *int `json:"supportPolicyAcknowledgementRequiredFlag,omitempty"`
+	SupportPolicyAcknowledgementRequiredFlag *int `json:"supportPolicyAcknowledgementRequiredFlag,omitempty" xmlrpc:"supportPolicyAcknowledgementRequiredFlag"`
 
 	// A count of the surveys that a user has taken in the SoftLayer customer portal.
-	SurveyCount *uint `json:"surveyCount,omitempty"`
+	SurveyCount *uint `json:"surveyCount,omitempty" xmlrpc:"surveyCount"`
 
 	// Whether or not a user must take a brief survey the next time they log into the SoftLayer customer portal.
-	SurveyRequiredFlag *bool `json:"surveyRequiredFlag,omitempty"`
+	SurveyRequiredFlag *bool `json:"surveyRequiredFlag,omitempty" xmlrpc:"surveyRequiredFlag"`
 
 	// The surveys that a user has taken in the SoftLayer customer portal.
-	Surveys []Survey `json:"surveys,omitempty"`
+	Surveys []Survey `json:"surveys,omitempty" xmlrpc:"surveys"`
 
 	// A count of an user's associated tickets.
-	TicketCount *uint `json:"ticketCount,omitempty"`
+	TicketCount *uint `json:"ticketCount,omitempty" xmlrpc:"ticketCount"`
 
 	// An user's associated tickets.
-	Tickets []Ticket `json:"tickets,omitempty"`
+	Tickets []Ticket `json:"tickets,omitempty" xmlrpc:"tickets"`
 
 	// A portal user's time zone.
-	Timezone *Locale_Timezone `json:"timezone,omitempty"`
+	Timezone *Locale_Timezone `json:"timezone,omitempty" xmlrpc:"timezone"`
 
 	// A portal user's time zone.
-	TimezoneId *int `json:"timezoneId,omitempty"`
+	TimezoneId *int `json:"timezoneId,omitempty" xmlrpc:"timezoneId"`
 
 	// A count of a user's unsuccessful attempts to log into the SoftLayer customer portal.
-	UnsuccessfulLoginCount *uint `json:"unsuccessfulLoginCount,omitempty"`
+	UnsuccessfulLoginCount *uint `json:"unsuccessfulLoginCount,omitempty" xmlrpc:"unsuccessfulLoginCount"`
 
 	// A user's unsuccessful attempts to log into the SoftLayer customer portal.
-	UnsuccessfulLogins []User_Customer_Access_Authentication `json:"unsuccessfulLogins,omitempty"`
+	UnsuccessfulLogins []User_Customer_Access_Authentication `json:"unsuccessfulLogins,omitempty" xmlrpc:"unsuccessfulLogins"`
 
 	// A count of
-	UserLinkCount *uint `json:"userLinkCount,omitempty"`
+	UserLinkCount *uint `json:"userLinkCount,omitempty" xmlrpc:"userLinkCount"`
 
 	// no documentation yet
-	UserLinks []User_Customer_Link `json:"userLinks,omitempty"`
+	UserLinks []User_Customer_Link `json:"userLinks,omitempty" xmlrpc:"userLinks"`
 
 	// A portal user's status, which controls overall access to the SoftLayer customer portal and VPN access to the private network.
-	UserStatus *User_Customer_Status `json:"userStatus,omitempty"`
+	UserStatus *User_Customer_Status `json:"userStatus,omitempty" xmlrpc:"userStatus"`
 
 	// A number reflecting the state of a portal user.
-	UserStatusId *int `json:"userStatusId,omitempty"`
+	UserStatusId *int `json:"userStatusId,omitempty" xmlrpc:"userStatusId"`
 
 	// A portal user's username.
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 
 	// A count of a portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
-	VirtualGuestCount *uint `json:"virtualGuestCount,omitempty"`
+	VirtualGuestCount *uint `json:"virtualGuestCount,omitempty" xmlrpc:"virtualGuestCount"`
 
 	// A portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
-	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty"`
+	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty" xmlrpc:"virtualGuests"`
 
 	// Whether a portal user vpn subnets have been manual configured.
-	VpnManualConfig *bool `json:"vpnManualConfig,omitempty"`
+	VpnManualConfig *bool `json:"vpnManualConfig,omitempty" xmlrpc:"vpnManualConfig"`
 
 	// A portal user's Yahoo! Chat name.
-	Yahoo *string `json:"yahoo,omitempty"`
+	Yahoo *string `json:"yahoo,omitempty" xmlrpc:"yahoo"`
 }
 
 // SoftLayer_User_Customer_Access_Authentication models a single attempt to log into the SoftLayer customer portal. A SoftLayer_User_Customer_Access_Authentication record is created every time a user attempts to log into the portal. Use this service to audit your users' portal activity and diagnose potential security breaches of your SoftLayer portal accounts.
@@ -461,22 +461,22 @@ type User_Customer_Access_Authentication struct {
 	Entity
 
 	// The date of an attempt to log into the SoftLayer customer portal.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The IP address of the user who attempted to log into the SoftLayer customer portal.
-	IpAddress *string `json:"ipAddress,omitempty"`
+	IpAddress *string `json:"ipAddress,omitempty" xmlrpc:"ipAddress"`
 
 	// Whether an attempt to log into the SoftLayer customer portal was successful or not.
-	SuccessFlag *bool `json:"successFlag,omitempty"`
+	SuccessFlag *bool `json:"successFlag,omitempty" xmlrpc:"successFlag"`
 
 	// The user who has attempted to log into the SoftLayer customer portal.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// The internal identifier of the user who attempted to log into the SoftLayer customer portal.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 
 	// The username used when attempting to log into the SoftLayer customer portal
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }
 
 // The SoftLayer_User_Customer_AdditionalEmail data type contains the additional email for use in ticket update notifications.
@@ -484,13 +484,13 @@ type User_Customer_AdditionalEmail struct {
 	Entity
 
 	// Email assigned to user for use in ticket update notifications.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// The portal user that owns this additional email address.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// An internal identifier for the portal user who this additional email belongs to.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // The SoftLayer_User_Customer_ApiAuthentication type contains user's authentication key(s).
@@ -498,22 +498,22 @@ type User_Customer_ApiAuthentication struct {
 	Entity
 
 	// The user's authentication key for API access.
-	AuthenticationKey *string `json:"authenticationKey,omitempty"`
+	AuthenticationKey *string `json:"authenticationKey,omitempty" xmlrpc:"authenticationKey"`
 
 	// The user's API authentication identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The IP addresses or IP ranges from which this user may access the SoftLayer API. Specify subnets in CIDR format and separate multiple addresses and subnets by commas. You may combine IPv4 and IPv6 addresses and subnets, for example: 192.168.0.0/16,fe80:021b::0/64.
-	IpAddressRestriction *string `json:"ipAddressRestriction,omitempty"`
+	IpAddressRestriction *string `json:"ipAddressRestriction,omitempty" xmlrpc:"ipAddressRestriction"`
 
 	// The user's authentication key modification date.
-	TimestampKey *int `json:"timestampKey,omitempty"`
+	TimestampKey *int `json:"timestampKey,omitempty" xmlrpc:"timestampKey"`
 
 	// The user who owns the api authentication key.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// The user's identifying number.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // Each SoftLayer portal account is assigned a series of permissions that determine what access the user has to functions within the SoftLayer customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Permissions differ from user status in that user status applies globally to the portal while user permissions are applied to specific portal functions.
@@ -521,13 +521,13 @@ type User_Customer_CustomerPermission_Permission struct {
 	Entity
 
 	// A user permission's short name.
-	Key *string `json:"key,omitempty"`
+	Key *string `json:"key,omitempty" xmlrpc:"key"`
 
 	// A user permission's key name.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// A user permission's name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_User_Customer_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
@@ -535,7 +535,7 @@ type User_Customer_External_Binding struct {
 	User_External_Binding
 
 	// The SoftLayer user that the external authentication binding belongs to.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 }
 
 // The SoftLayer_User_Customer_External_Binding_Attribute data type contains the value for a single attribute associated with an external binding. External binding attributes contain additional information about an external binding.  An attribute can be generic or specific to a 3rd party vendor.  For example these attributes relate to Verisign:
@@ -554,10 +554,10 @@ type User_Customer_External_Binding_Phone struct {
 	User_Customer_External_Binding
 
 	// The current external binding status. It can be "ACTIVE" or "BLOCKED".
-	BindingStatus *string `json:"bindingStatus,omitempty"`
+	BindingStatus *string `json:"bindingStatus,omitempty" xmlrpc:"bindingStatus"`
 
 	// no documentation yet
-	PinLength *string `json:"pinLength,omitempty"`
+	PinLength *string `json:"pinLength,omitempty" xmlrpc:"pinLength"`
 }
 
 // The SoftLayer_User_Customer_External_Binding_Totp data type contains information about a single time-based one time password external binding.  The external binding information is used when a SoftLayer customer logs into the SoftLayer customer portal to authenticate them.
@@ -601,16 +601,16 @@ type User_Customer_External_Binding_Verisign struct {
 	User_Customer_External_Binding
 
 	// The date that a VeriSign credential expires.
-	CredentialExpirationDate *string `json:"credentialExpirationDate,omitempty"`
+	CredentialExpirationDate *string `json:"credentialExpirationDate,omitempty" xmlrpc:"credentialExpirationDate"`
 
 	// The last time a VeriSign credential was updated.
-	CredentialLastUpdateDate *string `json:"credentialLastUpdateDate,omitempty"`
+	CredentialLastUpdateDate *string `json:"credentialLastUpdateDate,omitempty" xmlrpc:"credentialLastUpdateDate"`
 
 	// The current state of a VeriSign credential. This can be 'Enabled', 'Disabled', or 'Locked'.
-	CredentialState *string `json:"credentialState,omitempty"`
+	CredentialState *string `json:"credentialState,omitempty" xmlrpc:"credentialState"`
 
 	// The type of VeriSign credential. This can be either 'Hardware' or 'Software'.
-	CredentialType *string `json:"credentialType,omitempty"`
+	CredentialType *string `json:"credentialType,omitempty" xmlrpc:"credentialType"`
 }
 
 // no documentation yet
@@ -618,46 +618,46 @@ type User_Customer_Invitation struct {
 	Entity
 
 	// no documentation yet
-	Code *string `json:"code,omitempty"`
+	Code *string `json:"code,omitempty" xmlrpc:"code"`
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	CreatorId *int `json:"creatorId,omitempty"`
+	CreatorId *int `json:"creatorId,omitempty" xmlrpc:"creatorId"`
 
 	// no documentation yet
-	CreatorType *string `json:"creatorType,omitempty"`
+	CreatorType *string `json:"creatorType,omitempty" xmlrpc:"creatorType"`
 
 	// no documentation yet
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// no documentation yet
-	ExistingBlueIdFlag *int `json:"existingBlueIdFlag,omitempty"`
+	ExistingBlueIdFlag *int `json:"existingBlueIdFlag,omitempty" xmlrpc:"existingBlueIdFlag"`
 
 	// no documentation yet
-	ExpirationDate *Time `json:"expirationDate,omitempty"`
+	ExpirationDate *Time `json:"expirationDate,omitempty" xmlrpc:"expirationDate"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	IsFederatedEmailDomainFlag *int `json:"isFederatedEmailDomainFlag,omitempty"`
+	IsFederatedEmailDomainFlag *int `json:"isFederatedEmailDomainFlag,omitempty" xmlrpc:"isFederatedEmailDomainFlag"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	ResponseDate *Time `json:"responseDate,omitempty"`
+	ResponseDate *Time `json:"responseDate,omitempty" xmlrpc:"responseDate"`
 
 	// no documentation yet
-	StatusId *int `json:"statusId,omitempty"`
+	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId"`
 
 	// no documentation yet
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// no documentation yet
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // no documentation yet
@@ -665,31 +665,31 @@ type User_Customer_Link struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	DefaultFlag *int `json:"defaultFlag,omitempty"`
+	DefaultFlag *int `json:"defaultFlag,omitempty" xmlrpc:"defaultFlag"`
 
 	// no documentation yet
-	DestinationUserAlphanumericId *string `json:"destinationUserAlphanumericId,omitempty"`
+	DestinationUserAlphanumericId *string `json:"destinationUserAlphanumericId,omitempty" xmlrpc:"destinationUserAlphanumericId"`
 
 	// no documentation yet
-	DestinationUserId *int `json:"destinationUserId,omitempty"`
+	DestinationUserId *int `json:"destinationUserId,omitempty" xmlrpc:"destinationUserId"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
+	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider"`
 
 	// no documentation yet
-	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
+	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId"`
 
 	// no documentation yet
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// no documentation yet
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // no documentation yet
@@ -702,61 +702,61 @@ type User_Customer_MobileDevice struct {
 	Entity
 
 	// A count of notification subscriptions available to a mobile device.
-	AvailablePushNotificationSubscriptionCount *uint `json:"availablePushNotificationSubscriptionCount,omitempty"`
+	AvailablePushNotificationSubscriptionCount *uint `json:"availablePushNotificationSubscriptionCount,omitempty" xmlrpc:"availablePushNotificationSubscriptionCount"`
 
 	// Notification subscriptions available to a mobile device.
-	AvailablePushNotificationSubscriptions []Notification `json:"availablePushNotificationSubscriptions,omitempty"`
+	AvailablePushNotificationSubscriptions []Notification `json:"availablePushNotificationSubscriptions,omitempty" xmlrpc:"availablePushNotificationSubscriptions"`
 
 	// Created date for the record.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The user this mobile device belongs to.
-	Customer *User_Customer `json:"customer,omitempty"`
+	Customer *User_Customer `json:"customer,omitempty" xmlrpc:"customer"`
 
 	// The device resolution formatted width x height
-	DisplayResolutionXxY *string `json:"displayResolutionXxY,omitempty"`
+	DisplayResolutionXxY *string `json:"displayResolutionXxY,omitempty" xmlrpc:"displayResolutionXxY"`
 
 	// Record Identifier
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// Device type identifier.
-	MobileDeviceTypeId *int `json:"mobileDeviceTypeId,omitempty"`
+	MobileDeviceTypeId *int `json:"mobileDeviceTypeId,omitempty" xmlrpc:"mobileDeviceTypeId"`
 
 	// Mobile OS identifier.
-	MobileOperatingSystemId *int `json:"mobileOperatingSystemId,omitempty"`
+	MobileOperatingSystemId *int `json:"mobileOperatingSystemId,omitempty" xmlrpc:"mobileOperatingSystemId"`
 
 	// Device model number
-	ModelNumber *string `json:"modelNumber,omitempty"`
+	ModelNumber *string `json:"modelNumber,omitempty" xmlrpc:"modelNumber"`
 
 	// Last modify date for the record.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// The name of the device the user is using.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// The operating system this device is using
-	OperatingSystem *User_Customer_MobileDevice_OperatingSystem `json:"operatingSystem,omitempty"`
+	OperatingSystem *User_Customer_MobileDevice_OperatingSystem `json:"operatingSystem,omitempty" xmlrpc:"operatingSystem"`
 
 	// Device phone number
-	PhoneNumber *string `json:"phoneNumber,omitempty"`
+	PhoneNumber *string `json:"phoneNumber,omitempty" xmlrpc:"phoneNumber"`
 
 	// A count of notification subscriptions attached to a mobile device.
-	PushNotificationSubscriptionCount *uint `json:"pushNotificationSubscriptionCount,omitempty"`
+	PushNotificationSubscriptionCount *uint `json:"pushNotificationSubscriptionCount,omitempty" xmlrpc:"pushNotificationSubscriptionCount"`
 
 	// Notification subscriptions attached to a mobile device.
-	PushNotificationSubscriptions []Notification_User_Subscriber `json:"pushNotificationSubscriptions,omitempty"`
+	PushNotificationSubscriptions []Notification_User_Subscriber `json:"pushNotificationSubscriptions,omitempty" xmlrpc:"pushNotificationSubscriptions"`
 
 	// Device serial number
-	SerialNumber *string `json:"serialNumber,omitempty"`
+	SerialNumber *string `json:"serialNumber,omitempty" xmlrpc:"serialNumber"`
 
 	// The token that is provided by the mobile device.
-	Token *string `json:"token,omitempty"`
+	Token *string `json:"token,omitempty" xmlrpc:"token"`
 
 	// The type of device this user is using
-	Type *User_Customer_MobileDevice_Type `json:"type,omitempty"`
+	Type *User_Customer_MobileDevice_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// User Identifier
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // This class represents the mobile operating system installed on a user's registered mobile device. It assists us when determining the how to get a push notification to the user.
@@ -764,28 +764,28 @@ type User_Customer_MobileDevice_OperatingSystem struct {
 	Entity
 
 	// Build revision number of the operating system.
-	BuildVersion *int `json:"buildVersion,omitempty"`
+	BuildVersion *int `json:"buildVersion,omitempty" xmlrpc:"buildVersion"`
 
 	// Create date of the record.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// Description of the mobile operating system..
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// Indentifier for the record.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// Major revision number of the operating system.
-	MajorVersion *int `json:"majorVersion,omitempty"`
+	MajorVersion *int `json:"majorVersion,omitempty" xmlrpc:"majorVersion"`
 
 	// Minor revision number of the operating system.
-	MinorVersion *int `json:"minorVersion,omitempty"`
+	MinorVersion *int `json:"minorVersion,omitempty" xmlrpc:"minorVersion"`
 
 	// Modify date of the record.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// Name of the mobile operating system.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // Describes a supported class of mobile device. In this the word class is used in the context of classes of consumer electronic devices, the two most prominent examples being mobile phones and tablets.
@@ -793,19 +793,19 @@ type User_Customer_MobileDevice_Type struct {
 	Entity
 
 	// Record create date.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// A description of the device
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// Indentifier for record.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// Last modify date for record.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// The common name of the device.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The Customer_Notification_Hardware object stores links between customers and the hardware devices they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
@@ -813,19 +813,19 @@ type User_Customer_Notification_Hardware struct {
 	Entity
 
 	// The hardware object that will be monitored.
-	Hardware *Hardware `json:"hardware,omitempty"`
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// The ID of the Hardware object that is to be monitored.
-	HardwareId *int `json:"hardwareId,omitempty"`
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId"`
 
 	// The unique identifier for this object
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The user that will be notified when the associated hardware object fails a monitoring instance.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// The ID of the SoftLayer_User_Customer object that represents the user to be notified on monitoring failure.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
@@ -833,19 +833,19 @@ type User_Customer_Notification_Virtual_Guest struct {
 	Entity
 
 	// The virtual guest object that will be monitored.
-	Guest *Virtual_Guest `json:"guest,omitempty"`
+	Guest *Virtual_Guest `json:"guest,omitempty" xmlrpc:"guest"`
 
 	// The ID of the virtual guest object that is to be monitored.
-	GuestId *int `json:"guestId,omitempty"`
+	GuestId *int `json:"guestId,omitempty" xmlrpc:"guestId"`
 
 	// The unique identifier for this object
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The user that will be notified when the associated virtual guest object fails a monitoring instance.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// The ID of the SoftLayer_User_Customer object that represents the user to be notified on monitoring failure.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // no documentation yet
@@ -858,22 +858,22 @@ type User_Customer_Prospect struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// A count of
-	AssignedEmployeeCount *uint `json:"assignedEmployeeCount,omitempty"`
+	AssignedEmployeeCount *uint `json:"assignedEmployeeCount,omitempty" xmlrpc:"assignedEmployeeCount"`
 
 	// no documentation yet
-	AssignedEmployees []User_Employee `json:"assignedEmployees,omitempty"`
+	AssignedEmployees []User_Employee `json:"assignedEmployees,omitempty" xmlrpc:"assignedEmployees"`
 
 	// A count of
-	QuoteCount *uint `json:"quoteCount,omitempty"`
+	QuoteCount *uint `json:"quoteCount,omitempty" xmlrpc:"quoteCount"`
 
 	// no documentation yet
-	Quotes []Billing_Order_Quote `json:"quotes,omitempty"`
+	Quotes []Billing_Order_Quote `json:"quotes,omitempty" xmlrpc:"quotes"`
 
 	// no documentation yet
-	Type *User_Customer_Prospect_Type `json:"type,omitempty"`
+	Type *User_Customer_Prospect_Type `json:"type,omitempty" xmlrpc:"type"`
 }
 
 // Contains user information for Service Provider Enrollment.
@@ -881,103 +881,103 @@ type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	Entity
 
 	// accountId of existing SoftLayer Customer
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// Service provider address1
-	Address1 *string `json:"address1,omitempty"`
+	Address1 *string `json:"address1,omitempty" xmlrpc:"address1"`
 
 	// Service provider address2
-	Address2 *string `json:"address2,omitempty"`
+	Address2 *string `json:"address2,omitempty" xmlrpc:"address2"`
 
 	// Credit card account number
-	CardAccountNumber *string `json:"cardAccountNumber,omitempty"`
+	CardAccountNumber *string `json:"cardAccountNumber,omitempty" xmlrpc:"cardAccountNumber"`
 
 	// Credit card expiration month
-	CardExpirationMonth *string `json:"cardExpirationMonth,omitempty"`
+	CardExpirationMonth *string `json:"cardExpirationMonth,omitempty" xmlrpc:"cardExpirationMonth"`
 
 	// Credit card expiration year
-	CardExpirationYear *string `json:"cardExpirationYear,omitempty"`
+	CardExpirationYear *string `json:"cardExpirationYear,omitempty" xmlrpc:"cardExpirationYear"`
 
 	// Type of credit card being used
-	CardType *string `json:"cardType,omitempty"`
+	CardType *string `json:"cardType,omitempty" xmlrpc:"cardType"`
 
 	// Credit card verification number
-	CardVerificationNumber *string `json:"cardVerificationNumber,omitempty"`
+	CardVerificationNumber *string `json:"cardVerificationNumber,omitempty" xmlrpc:"cardVerificationNumber"`
 
 	// Service provider city
-	City *string `json:"city,omitempty"`
+	City *string `json:"city,omitempty" xmlrpc:"city"`
 
 	// Service provider company name
-	CompanyName *string `json:"companyName,omitempty"`
+	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName"`
 
 	// Catalyst company types.
-	CompanyType *Catalyst_Company_Type `json:"companyType,omitempty"`
+	CompanyType *Catalyst_Company_Type `json:"companyType,omitempty" xmlrpc:"companyType"`
 
 	// Id of the company type which best describes applicant's company
-	CompanyTypeId *int `json:"companyTypeId,omitempty"`
+	CompanyTypeId *int `json:"companyTypeId,omitempty" xmlrpc:"companyTypeId"`
 
 	// Service provider company url
-	CompanyUrl *string `json:"companyUrl,omitempty"`
+	CompanyUrl *string `json:"companyUrl,omitempty" xmlrpc:"companyUrl"`
 
 	// Service provider contact's email
-	ContactEmail *string `json:"contactEmail,omitempty"`
+	ContactEmail *string `json:"contactEmail,omitempty" xmlrpc:"contactEmail"`
 
 	// Service provider contact's first name
-	ContactFirstName *string `json:"contactFirstName,omitempty"`
+	ContactFirstName *string `json:"contactFirstName,omitempty" xmlrpc:"contactFirstName"`
 
 	// Service provider contact's last name
-	ContactLastName *string `json:"contactLastName,omitempty"`
+	ContactLastName *string `json:"contactLastName,omitempty" xmlrpc:"contactLastName"`
 
 	// Service provider contact's Phone
-	ContactPhone *string `json:"contactPhone,omitempty"`
+	ContactPhone *string `json:"contactPhone,omitempty" xmlrpc:"contactPhone"`
 
 	// Service provider country
-	Country *string `json:"country,omitempty"`
+	Country *string `json:"country,omitempty" xmlrpc:"country"`
 
 	// Customer Prospect id
-	CustomerProspectId *int `json:"customerProspectId,omitempty"`
+	CustomerProspectId *int `json:"customerProspectId,omitempty" xmlrpc:"customerProspectId"`
 
 	// Id of the device fingerprint
-	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty"`
+	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty" xmlrpc:"deviceFingerprintId"`
 
 	// Service provider email
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// Indicates if customer has an existing SoftLayer account
-	ExistingCustomerFlag *bool `json:"existingCustomerFlag,omitempty"`
+	ExistingCustomerFlag *bool `json:"existingCustomerFlag,omitempty" xmlrpc:"existingCustomerFlag"`
 
 	// Service provider first name
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// IBM partner world id
-	IbmPartnerWorldId *string `json:"ibmPartnerWorldId,omitempty"`
+	IbmPartnerWorldId *string `json:"ibmPartnerWorldId,omitempty" xmlrpc:"ibmPartnerWorldId"`
 
 	// Indicates if the customer is IBM partner world member
-	IbmPartnerWorldMemberFlag *bool `json:"ibmPartnerWorldMemberFlag,omitempty"`
+	IbmPartnerWorldMemberFlag *bool `json:"ibmPartnerWorldMemberFlag,omitempty" xmlrpc:"ibmPartnerWorldMemberFlag"`
 
 	// Service provider last name
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// Flag indicating whether or not applicant acknowledged MSA
-	MasterAgreementCompleteFlag *bool `json:"masterAgreementCompleteFlag,omitempty"`
+	MasterAgreementCompleteFlag *bool `json:"masterAgreementCompleteFlag,omitempty" xmlrpc:"masterAgreementCompleteFlag"`
 
 	// Service provider office phone
-	OfficePhone *string `json:"officePhone,omitempty"`
+	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone"`
 
 	// Service provider postalCode
-	PostalCode *string `json:"postalCode,omitempty"`
+	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode"`
 
 	// Flag indicating whether or not applicant acknowledged service provider addendum
-	ServiceProviderAddendumFlag *bool `json:"serviceProviderAddendumFlag,omitempty"`
+	ServiceProviderAddendumFlag *bool `json:"serviceProviderAddendumFlag,omitempty" xmlrpc:"serviceProviderAddendumFlag"`
 
 	// Service provider state
-	State *string `json:"state,omitempty"`
+	State *string `json:"state,omitempty" xmlrpc:"state"`
 
 	// Survey responses
-	SurveyResponses []Survey_Response `json:"surveyResponses,omitempty"`
+	SurveyResponses []Survey_Response `json:"surveyResponses,omitempty" xmlrpc:"surveyResponses"`
 
 	// Applicant's VAT id, if one exists
-	VatId *string `json:"vatId,omitempty"`
+	VatId *string `json:"vatId,omitempty" xmlrpc:"vatId"`
 }
 
 // no documentation yet
@@ -985,22 +985,22 @@ type User_Customer_Prospect_Type struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_User_Customer_Security_Answer type contains user's answers to security questions.
@@ -1008,22 +1008,22 @@ type User_Customer_Security_Answer struct {
 	Entity
 
 	// A user's answer.
-	Answer *string `json:"answer,omitempty"`
+	Answer *string `json:"answer,omitempty" xmlrpc:"answer"`
 
 	// A user's answer identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The question the security answer is associated with.
-	Question *User_Security_Question `json:"question,omitempty"`
+	Question *User_Security_Question `json:"question,omitempty" xmlrpc:"question"`
 
 	// A user's question identifying number.
-	QuestionId *int `json:"questionId,omitempty"`
+	QuestionId *int `json:"questionId,omitempty" xmlrpc:"questionId"`
 
 	// The user who the security answer belongs to.
-	User *User_Customer `json:"user,omitempty"`
+	User *User_Customer `json:"user,omitempty" xmlrpc:"user"`
 
 	// A user's identifying number.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 }
 
 // Each SoftLayer portal account is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
@@ -1031,13 +1031,13 @@ type User_Customer_Status struct {
 	Entity
 
 	// A user's status identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A user's status keyname
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// A user's status. This can be either "Active" for user accounts with portal access, "Inactive" for users disabled by another portal user, "Disabled" for accounts turned off by SoftLayer, or "VPN Only" for user accounts with no access to the customer portal but VPN access to the private network.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // A SoftLayer_User_Employee models a single SoftLayer employee for the purposes of ticket updates created by SoftLayer employees. SoftLayer portal and API users cannot see individual employee names in ticket responses.  SoftLayer employees can be assigned to customer accounts as a personal support representative.  Employee names and email will be available if an employee is assigned to the account.
@@ -1045,67 +1045,67 @@ type User_Employee struct {
 	User_Interface
 
 	// A count of
-	ActionCount *uint `json:"actionCount,omitempty"`
+	ActionCount *uint `json:"actionCount,omitempty" xmlrpc:"actionCount"`
 
 	// no documentation yet
-	Actions []User_Permission_Action `json:"actions,omitempty"`
+	Actions []User_Permission_Action `json:"actions,omitempty" xmlrpc:"actions"`
 
 	// no documentation yet
-	ChatTranscript []Ticket_Chat `json:"chatTranscript,omitempty"`
+	ChatTranscript []Ticket_Chat `json:"chatTranscript,omitempty" xmlrpc:"chatTranscript"`
 
 	// A count of
-	ChatTranscriptCount *uint `json:"chatTranscriptCount,omitempty"`
+	ChatTranscriptCount *uint `json:"chatTranscriptCount,omitempty" xmlrpc:"chatTranscriptCount"`
 
 	// no documentation yet
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName *string `json:"displayName,omitempty" xmlrpc:"displayName"`
 
 	// A SoftLayer employee's email address. Email addresses are only visible to [[SoftLayer_Account|SoftLayer Accounts]] that are assigned to an employee
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// The department that a SoftLayer employee belongs to.
-	EmployeeDepartment *User_Employee_Department `json:"employeeDepartment,omitempty"`
+	EmployeeDepartment *User_Employee_Department `json:"employeeDepartment,omitempty" xmlrpc:"employeeDepartment"`
 
 	// A SoftLayer employee's [[SoftLayer_User_Employee_Department|department]] id.
-	EmployeeDepartmentId *int `json:"employeeDepartmentId,omitempty"`
+	EmployeeDepartmentId *int `json:"employeeDepartmentId,omitempty" xmlrpc:"employeeDepartmentId"`
 
 	// A SoftLayer employee's first name. First names are only visible to [[SoftLayer_Account|SoftLayer Accounts]] that are assigned to an employee
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// A SoftLayer employee's last name. Last names are only visible to [[SoftLayer_Account|SoftLayer Accounts]] that are assigned to an employee
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// A count of
-	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty"`
+	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty" xmlrpc:"layoutProfileCount"`
 
 	// no documentation yet
-	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty"`
+	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty" xmlrpc:"layoutProfiles"`
 
 	// no documentation yet
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty"`
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject"`
 
 	// no documentation yet
-	OfficePhone *string `json:"officePhone,omitempty"`
+	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone"`
 
 	// A count of
-	RoleCount *uint `json:"roleCount,omitempty"`
+	RoleCount *uint `json:"roleCount,omitempty" xmlrpc:"roleCount"`
 
 	// no documentation yet
-	Roles []User_Permission_Role `json:"roles,omitempty"`
+	Roles []User_Permission_Role `json:"roles,omitempty" xmlrpc:"roles"`
 
 	// no documentation yet
-	TicketActivities []Ticket_Activity `json:"ticketActivities,omitempty"`
+	TicketActivities []Ticket_Activity `json:"ticketActivities,omitempty" xmlrpc:"ticketActivities"`
 
 	// A count of
-	TicketActivityCount *uint `json:"ticketActivityCount,omitempty"`
+	TicketActivityCount *uint `json:"ticketActivityCount,omitempty" xmlrpc:"ticketActivityCount"`
 
 	// A count of
-	TicketAttachmentReferenceCount *uint `json:"ticketAttachmentReferenceCount,omitempty"`
+	TicketAttachmentReferenceCount *uint `json:"ticketAttachmentReferenceCount,omitempty" xmlrpc:"ticketAttachmentReferenceCount"`
 
 	// no documentation yet
-	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty"`
+	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty" xmlrpc:"ticketAttachmentReferences"`
 
 	// A representation of a SoftLayer employee's username. In all cases this should simply state "Employee".
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }
 
 // SoftLayer_User_Employee_Department models a department within SoftLayer's internal employee hierarchy. Common departments include Support, Sales, Accounting, Development, Systems, and Networking.
@@ -1113,7 +1113,7 @@ type User_Employee_Department struct {
 	Entity
 
 	// The name of one of SoftLayer's employee departments.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_User_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
@@ -1121,46 +1121,46 @@ type User_External_Binding struct {
 	Entity
 
 	// The flag that determines whether the external binding is active will be used for authentication or not.
-	Active *bool `json:"active,omitempty"`
+	Active *bool `json:"active,omitempty" xmlrpc:"active"`
 
 	// A count of attributes of an external authentication binding.
-	AttributeCount *uint `json:"attributeCount,omitempty"`
+	AttributeCount *uint `json:"attributeCount,omitempty" xmlrpc:"attributeCount"`
 
 	// Attributes of an external authentication binding.
-	Attributes []User_External_Binding_Attribute `json:"attributes,omitempty"`
+	Attributes []User_External_Binding_Attribute `json:"attributes,omitempty" xmlrpc:"attributes"`
 
 	// Information regarding the billing item for external authentication.
-	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem"`
 
 	// The date that the external authentication binding was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The identifier used to identify this binding to an external authentication source.
-	ExternalId *string `json:"externalId,omitempty"`
+	ExternalId *string `json:"externalId,omitempty" xmlrpc:"externalId"`
 
 	// An external authentication binding's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// An optional note for identifying the external binding.
-	Note *string `json:"note,omitempty"`
+	Note *string `json:"note,omitempty" xmlrpc:"note"`
 
 	// The password used to authenticate the external id at an external authentication source.
-	Password *string `json:"password,omitempty"`
+	Password *string `json:"password,omitempty" xmlrpc:"password"`
 
 	// The type of external authentication binding.
-	Type *User_External_Binding_Type `json:"type,omitempty"`
+	Type *User_External_Binding_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// The [[SoftLayer_User_External_Binding_Type|type]] identifier of an external authentication binding.
-	TypeId *int `json:"typeId,omitempty"`
+	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId"`
 
 	// An external authentication binding's associated [[SoftLayer_User_Customer|user account]] id.
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId"`
 
 	// The vendor of an external authentication binding.
-	Vendor *User_External_Binding_Vendor `json:"vendor,omitempty"`
+	Vendor *User_External_Binding_Vendor `json:"vendor,omitempty" xmlrpc:"vendor"`
 
 	// The [[SoftLayer_User_External_Binding_Vendor|vendor]] identifier of an external authentication binding.
-	VendorId *int `json:"vendorId,omitempty"`
+	VendorId *int `json:"vendorId,omitempty" xmlrpc:"vendorId"`
 }
 
 // The SoftLayer_User_External_Binding_Attribute data type contains the value for a single attribute associated with an external binding. External binding attributes contain additional information about an external binding.  An attribute can be generic or specific to a 3rd party vendor.  For example these attributes relate to Verisign:
@@ -1172,10 +1172,10 @@ type User_External_Binding_Attribute struct {
 	Entity
 
 	// The external authentication binding an attribute belongs to.
-	ExternalBinding *User_External_Binding `json:"externalBinding,omitempty"`
+	ExternalBinding *User_External_Binding `json:"externalBinding,omitempty" xmlrpc:"externalBinding"`
 
 	// The value of an external binding attribute.
-	Value *string `json:"value,omitempty"`
+	Value *string `json:"value,omitempty" xmlrpc:"value"`
 }
 
 // The SoftLayer_User_External_Binding_Type data type contains information relating to a type of external authentication binding.  It contains a user friendly name as well as a unique key name.
@@ -1183,10 +1183,10 @@ type User_External_Binding_Type struct {
 	Entity
 
 	// The unique name used to identify a type of external authentication binding.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The user friendly name of a type of external authentication binding.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_User_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
@@ -1194,13 +1194,13 @@ type User_External_Binding_Vendor struct {
 	Entity
 
 	// The unique identifier for an external binding vendor.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A unique version of the name property.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The user friendly name of an external binding vendor.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // A SoftLayer_User_Interface represents a generic user instance within the SoftLayer API. The SoftLayer API uses SoftLayer_User_Interfaces in cases where a user object could be one of many types of users. Currently the [[SoftLayer_User_Customer]] and [[SoftLayer_User_Employee]] classes are abstracted by this type.
@@ -1213,22 +1213,22 @@ type User_Permission_Action struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -1236,46 +1236,46 @@ type User_Permission_Group struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// A permission groups associated [[SoftLayer_Account|customer account]] id.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// A count of
-	ActionCount *uint `json:"actionCount,omitempty"`
+	ActionCount *uint `json:"actionCount,omitempty" xmlrpc:"actionCount"`
 
 	// no documentation yet
-	Actions []User_Permission_Action `json:"actions,omitempty"`
+	Actions []User_Permission_Action `json:"actions,omitempty" xmlrpc:"actions"`
 
 	// The date the permission group record was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The description of the permission group.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// The date the temporary group will be destroyed.
-	ExpirationDate *Time `json:"expirationDate,omitempty"`
+	ExpirationDate *Time `json:"expirationDate,omitempty" xmlrpc:"expirationDate"`
 
 	// A permission groups internal identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The date the permission group record was last modified.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// The name of the permission group.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// A count of
-	RoleCount *uint `json:"roleCount,omitempty"`
+	RoleCount *uint `json:"roleCount,omitempty" xmlrpc:"roleCount"`
 
 	// no documentation yet
-	Roles []User_Permission_Role `json:"roles,omitempty"`
+	Roles []User_Permission_Role `json:"roles,omitempty" xmlrpc:"roles"`
 
 	// The type of the permission group.
-	Type *User_Permission_Group_Type `json:"type,omitempty"`
+	Type *User_Permission_Group_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// The type of permission group.
-	TypeId *int `json:"typeId,omitempty"`
+	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId"`
 }
 
 // no documentation yet
@@ -1283,25 +1283,25 @@ type User_Permission_Group_Type struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// A count of
-	GroupCount *uint `json:"groupCount,omitempty"`
+	GroupCount *uint `json:"groupCount,omitempty" xmlrpc:"groupCount"`
 
 	// no documentation yet
-	Groups []User_Permission_Group `json:"groups,omitempty"`
+	Groups []User_Permission_Group `json:"groups,omitempty" xmlrpc:"groups"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -1309,49 +1309,49 @@ type User_Permission_Role struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// A permission roles associated [[SoftLayer_Account|customer account]] id.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// A count of
-	ActionCount *uint `json:"actionCount,omitempty"`
+	ActionCount *uint `json:"actionCount,omitempty" xmlrpc:"actionCount"`
 
 	// no documentation yet
-	Actions []User_Permission_Action `json:"actions,omitempty"`
+	Actions []User_Permission_Action `json:"actions,omitempty" xmlrpc:"actions"`
 
 	// The date the permission role record was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The description of the permission role.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// A count of
-	GroupCount *uint `json:"groupCount,omitempty"`
+	GroupCount *uint `json:"groupCount,omitempty" xmlrpc:"groupCount"`
 
 	// no documentation yet
-	Groups []User_Permission_Group `json:"groups,omitempty"`
+	Groups []User_Permission_Group `json:"groups,omitempty" xmlrpc:"groups"`
 
 	// A permission roles internal identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The date the permission role record was last modified.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// The name of the permission role.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// A flag showing if new users should be automatically added to this role.
-	NewUserDefaultFlag *int `json:"newUserDefaultFlag,omitempty"`
+	NewUserDefaultFlag *int `json:"newUserDefaultFlag,omitempty" xmlrpc:"newUserDefaultFlag"`
 
 	// A flag showing if the permission role was created by our internal system for a single user. If this flag is set only a single user can be assigned to this permission role and it can not be deleted.
-	SystemFlag *int `json:"systemFlag,omitempty"`
+	SystemFlag *int `json:"systemFlag,omitempty" xmlrpc:"systemFlag"`
 
 	// A count of
-	UserCount *uint `json:"userCount,omitempty"`
+	UserCount *uint `json:"userCount,omitempty" xmlrpc:"userCount"`
 
 	// no documentation yet
-	Users []User_Customer `json:"users,omitempty"`
+	Users []User_Customer `json:"users,omitempty" xmlrpc:"users"`
 }
 
 // The SoftLayer_User_Preference data type contains a single user preference to a specific preference type.
@@ -1359,13 +1359,13 @@ type User_Preference struct {
 	Entity
 
 	// Description of the user preference
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// Type of user preference
-	Type *User_Preference_Type `json:"type,omitempty"`
+	Type *User_Preference_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// The users current preference value
-	Value *string `json:"value,omitempty"`
+	Value *string `json:"value,omitempty" xmlrpc:"value"`
 }
 
 // The SoftLayer_User_Preference_Type data type contains a single preference type including the accepted values.
@@ -1373,16 +1373,16 @@ type User_Preference_Type struct {
 	Entity
 
 	// A description of the preference type
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The name of the preference type
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// An example of accepted preference values
-	ValueExample *string `json:"valueExample,omitempty"`
+	ValueExample *string `json:"valueExample,omitempty" xmlrpc:"valueExample"`
 }
 
 // The SoftLayer_User_Security_Question data type contains questions.
@@ -1390,14 +1390,14 @@ type User_Security_Question struct {
 	Entity
 
 	// A security question's display order.
-	DisplayOrder *int `json:"displayOrder,omitempty"`
+	DisplayOrder *int `json:"displayOrder,omitempty" xmlrpc:"displayOrder"`
 
 	// A security question's internal identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A security question's question.
-	Question *string `json:"question,omitempty"`
+	Question *string `json:"question,omitempty" xmlrpc:"question"`
 
 	// A security question's viewable flag.
-	Viewable *int `json:"viewable,omitempty"`
+	Viewable *int `json:"viewable,omitempty" xmlrpc:"viewable"`
 }

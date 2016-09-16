@@ -25,38 +25,38 @@ type Sales_Presale_Event struct {
 	Entity
 
 	// A flag to indicate that the presale event is currently active. A presale event is active if the current time is between the start and end dates.
-	ActiveFlag *bool `json:"activeFlag,omitempty"`
+	ActiveFlag *bool `json:"activeFlag,omitempty" xmlrpc:"activeFlag"`
 
 	// Description of the presale event.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// End date of the presale event. Orders can be approved and provisioned after this date.
-	EndDate *Time `json:"endDate,omitempty"`
+	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate"`
 
 	// A flag to indicate that the presale event is expired. A presale event is expired if the current time is after the end date.
-	ExpiredFlag *bool `json:"expiredFlag,omitempty"`
+	ExpiredFlag *bool `json:"expiredFlag,omitempty" xmlrpc:"expiredFlag"`
 
 	// Presale event unique identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The [[SoftLayer_Product_Item]] associated with the presale event.
-	Item *Product_Item `json:"item,omitempty"`
+	Item *Product_Item `json:"item,omitempty" xmlrpc:"item"`
 
 	// [[SoftLayer_Product_Item]] id associated with the presale event.
-	ItemId *int `json:"itemId,omitempty"`
+	ItemId *int `json:"itemId,omitempty" xmlrpc:"itemId"`
 
 	// The [[SoftLayer_Location]] associated with the presale event.
-	Location *Location `json:"location,omitempty"`
+	Location *Location `json:"location,omitempty" xmlrpc:"location"`
 
 	// [[SoftLayer_Location]] id for the presale event.
-	LocationId *int `json:"locationId,omitempty"`
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId"`
 
 	// A count of the orders ([[SoftLayer_Billing_Order]]) associated with this presale event that were created for the customer's account.
-	OrderCount *uint `json:"orderCount,omitempty"`
+	OrderCount *uint `json:"orderCount,omitempty" xmlrpc:"orderCount"`
 
 	// The orders ([[SoftLayer_Billing_Order]]) associated with this presale event that were created for the customer's account.
-	Orders []Billing_Order `json:"orders,omitempty"`
+	Orders []Billing_Order `json:"orders,omitempty" xmlrpc:"orders"`
 
 	// Start date of the presale event. Orders cannot be approved before this date.
-	StartDate *Time `json:"startDate,omitempty"`
+	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate"`
 }

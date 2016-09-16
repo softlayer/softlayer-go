@@ -94,7 +94,7 @@ type {{.Name|removePrefix}} struct {
 
 	{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}
 	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{convertType .Type "datatypes" $base .Name}}`+
-	"`json:\"{{.Name}},omitempty\"`"+`
+	"`json:\"{{.Name}},omitempty\" xmlrpc:\"{{.Name}}\"`"+`
 
 	{{end}}
 }
