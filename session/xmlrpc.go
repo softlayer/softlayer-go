@@ -25,6 +25,7 @@ import (
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
+	"strings"
 )
 
 // Used to pool the clients created per service
@@ -93,14 +94,47 @@ func (x *XmlRpcTransport) DoRequest(
 		xmlRpcClients[service] = client
 	}
 
+	// TODO: Support object filter
 	// TODO: Pass args into parameters.
 	// TODO: Support token auth: complexType(PortalLoginToken), userId, and authToken under authenticate.
-	return client.Call(method, map[string]interface{}{
-		"headers": map[string]interface{}{
-			"authenticate": map[string]string{
-				"username": sess.UserName,
-				"apiKey":   sess.APIKey,
-			},
+	// TODO: Handle error responses
+
+	headers := map[string]interface{}{
+		"authenticate": map[string]string{
+			"username": sess.UserName,
+			"apiKey":   sess.APIKey,
 		},
-	}, pResult)
+	}
+
+	if options.Id != nil {
+		headers[fmt.Sprintf("%sInitParameters", service)] = map[string]int{
+			"id": *options.Id,
+		}
+	}
+
+	mask := options.Mask
+	if mask != "" {
+		if !strings.HasPrefix(mask, "mask[") {
+			mask = fmt.Sprintf("mask[%s]", mask)
+		}
+		headers["SoftLayer_ObjectMask"] = map[string]string{"mask": mask}
+	}
+
+	if options.Limit != nil {
+		offset := 0
+		if options.Offset != nil {
+			offset = *options.Offset
+		}
+
+		headers["resultLimit"] = map[string]int{
+			"limit": *options.Limit,
+			"offset": offset,
+		}
+	}
+
+	params := map[string]interface{}{
+		"headers": headers,
+	}
+
+	return client.Call(method, params, pResult)
 }
