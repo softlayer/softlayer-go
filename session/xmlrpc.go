@@ -147,8 +147,15 @@ func (x *XmlRpcTransport) DoRequest(
 		}
 	}
 
-	params := map[string]interface{}{
-		"headers": headers,
+	// Add incoming arguments to xmlrpc parameter array
+	params := []interface{}{
+		map[string]interface{}{
+			"headers": headers,
+		},
+	}
+
+	for _, arg := range args {
+		params = append(params, arg)
 	}
 
 	return client.Call(method, params, pResult)
