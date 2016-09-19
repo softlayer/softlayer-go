@@ -17,6 +17,7 @@
 package session
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -94,7 +95,6 @@ func (x *XmlRpcTransport) DoRequest(
 		xmlRpcClients[service] = client
 	}
 
-	// TODO: Support object filter
 	// TODO: Pass args into parameters.
 	// TODO: Support token auth: complexType(PortalLoginToken), userId, and authToken under authenticate.
 	// TODO: Handle error responses
@@ -118,6 +118,21 @@ func (x *XmlRpcTransport) DoRequest(
 			mask = fmt.Sprintf("mask[%s]", mask)
 		}
 		headers["SoftLayer_ObjectMask"] = map[string]string{"mask": mask}
+	}
+
+	if options.Filter != "" {
+		// FIXME: This json unmarshaling presents a performance problem,
+		// since the filter builder marshals a data structure to json.
+		// This is then undoing that step to pass it to the xmlrpc request.
+		// It would be better to get the umarshaled data structure
+		// from the filter builder, but that will require changes to the
+		// public API in Options.
+		objFilter := map[string]interface{}{}
+		err := json.Unmarshal([]byte(options.Filter), &objFilter)
+		if err != nil {
+			return fmt.Errorf("Error encoding object filter: %s", err)
+		}
+		headers[fmt.Sprintf("%sObjectFilter", service)] = objFilter
 	}
 
 	if options.Limit != nil {
