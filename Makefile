@@ -7,9 +7,15 @@ GO_TEST=$(GO_CMD) test
 
 PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 
-.PHONY: all build deps fmt fmtcheck generate install install_tools release test update_version
+.PHONY: all alpha build deps fmt fmtcheck generate install install_tools release test
 
 all: build
+
+alpha:
+	@$(TOOLS) version --bump patch --prerelease alpha && \
+	git add version.go && \
+	git commit -m "Bump version"
+	@$(GO_INSTALL) . ./tools
 
 build: fmtcheck
 	$(GO_BUILD) ./...
@@ -48,12 +54,6 @@ release: build install_tools
 
 test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
-
-update_version: install_tools
-	@tools version --bump patch --prerelease alpha && \
-	git add version.go && \
-    git commit -m "Bump version"
-	@$(GO_INSTALL) . ./tools
 
 version: install_tools
 	@tools version
