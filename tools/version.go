@@ -107,7 +107,7 @@ func version() {
 func writeVersionFile(v sl.VersionInfo) {
 	// Generate source
 	var buf bytes.Buffer
-	t := template.New("test")
+	t := template.New("version")
 	template.Must(t.Parse(versionfile)).Execute(&buf, v)
 
 	//fmt.Println(string(buf.Bytes()))
