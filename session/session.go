@@ -77,6 +77,12 @@ type Session struct {
 	// Endpoint is the SoftLayer API endpoint to communicate with
 	Endpoint string
 
+	// UserId is the user id for token-based authentication
+	UserId int
+
+	// AuthToken is the token secret for token-based authentication
+	AuthToken string
+
 	// Debug controls logging of request details (URI, parameters, etc.)
 	Debug bool
 

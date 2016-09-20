@@ -95,15 +95,30 @@ func (x *XmlRpcTransport) DoRequest(
 		xmlRpcClients[service] = client
 	}
 
-	// TODO: Pass args into parameters.
-	// TODO: Support token auth: complexType(PortalLoginToken), userId, and authToken under authenticate.
 	// TODO: Handle error responses
 
-	headers := map[string]interface{}{
-		"authenticate": map[string]string{
-			"username": sess.UserName,
-			"apiKey":   sess.APIKey,
-		},
+	authenticate := map[string]interface{}{}
+	if sess.UserName != "" {
+		authenticate["username"] = sess.UserName
+	}
+
+	if sess.APIKey != "" {
+		authenticate["apiKey"] = sess.APIKey
+	}
+
+	if sess.UserId != 0 {
+		authenticate["userId"] = sess.UserId
+		authenticate["complexType"] = "PortalLoginToken"
+	}
+
+	if sess.AuthToken != "" {
+		authenticate["authToken"] = sess.AuthToken
+		authenticate["complexType"] = "PortalLoginToken"
+	}
+
+	headers := map[string]interface{}{}
+	if len(authenticate) > 0 {
+		headers["authenticate"] = authenticate
 	}
 
 	if options.Id != nil {
@@ -123,7 +138,7 @@ func (x *XmlRpcTransport) DoRequest(
 	if options.Filter != "" {
 		// FIXME: This json unmarshaling presents a performance problem,
 		// since the filter builder marshals a data structure to json.
-		// This is then undoing that step to pass it to the xmlrpc request.
+		// This then undoes that step to pass it to the xmlrpc request.
 		// It would be better to get the umarshaled data structure
 		// from the filter builder, but that will require changes to the
 		// public API in Options.
