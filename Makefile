@@ -3,11 +3,13 @@ GO_BUILD=$(GO_CMD) build
 GO_DEPS=$(GO_CMD) get -d -v
 GO_FMT=gofmt
 GO_INSTALL=$(GO_CMD) install
+GO_RUN=$(GO_CMD) run
 GO_TEST=$(GO_CMD) test
+TOOLS=$(GO_RUN) tools/*.go
 
 PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 
-.PHONY: all alpha build deps fmt fmtcheck generate install install_tools release test
+.PHONY: all alpha build deps fmt fmtcheck generate install release test
 
 all: build
 
@@ -36,17 +38,14 @@ fmtcheck:
 			&& echo "$${fmt_list}" && \
 			echo "You can run 'make fmt' to format code" && false)
 
-generate: install_tools
-	@tools generate
+generate:
+	@$(TOOLS) generate
 
 install: fmtcheck
 	@$(GO_INSTALL) ./...
 
-install_tools: fmtcheck
-	@$(GO_INSTALL) . ./tools
-
-release: build install_tools
-	@NEW_VERSION=$$(tools version --bump patch) && \
+release: build
+	@NEW_VERSION=$$($(TOOLS) version --bump patch) && \
 	git add version.go && \
 	git commit -m "Cut release $${NEW_VERSION}" && \
 	git tag $${NEW_VERSION}
@@ -55,5 +54,5 @@ release: build install_tools
 test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
 
-version: install_tools
-	@tools version
+version:
+	@$(TOOLS) version
