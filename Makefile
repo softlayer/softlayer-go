@@ -17,7 +17,6 @@ alpha:
 	@$(TOOLS) version --bump patch --prerelease alpha && \
 	git add version.go && \
 	git commit -m "Bump version"
-	@$(GO_INSTALL) . ./tools
 
 build: fmtcheck
 	$(GO_BUILD) ./...
@@ -49,7 +48,6 @@ release: build
 	git add version.go && \
 	git commit -m "Cut release $${NEW_VERSION}" && \
 	git tag $${NEW_VERSION}
-	@$(GO_INSTALL) . ./tools
 
 test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
