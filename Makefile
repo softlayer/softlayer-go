@@ -15,7 +15,7 @@ all: build
 
 alpha:
 	@$(TOOLS) version --bump patch --prerelease alpha && \
-	git add version.go && \
+	git add sl/version.go && \
 	git commit -m "Bump version"
 
 build: fmtcheck
@@ -45,7 +45,7 @@ install: fmtcheck
 
 release: build
 	@NEW_VERSION=$$($(TOOLS) version --bump patch) && \
-	git add version.go && \
+	git add sl/version.go && \
 	git commit -m "Cut release $${NEW_VERSION}" && \
 	git tag $${NEW_VERSION}
 

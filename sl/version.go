@@ -18,7 +18,7 @@
  * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
  */
 
-package softlayer_go
+package sl
 
 import "fmt"
 
@@ -32,7 +32,7 @@ type VersionInfo struct {
 var Version = VersionInfo{
 	Major: 0,
 	Minor: 1,
-	Patch: 0,
+	Patch: 4,
 	Pre:   "",
 }
 

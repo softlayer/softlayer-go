@@ -24,14 +24,14 @@ import (
 	"os"
 
 	"flag"
-	"github.com/softlayer/softlayer-go"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 var versionfile = fmt.Sprintf(`%s
 
 %s
 
-package softlayer_go
+package sl
 
 import "fmt"
 
@@ -79,7 +79,7 @@ func version() {
 
 	flagset.Parse(os.Args[2:])
 
-	v := softlayer_go.Version
+	v := sl.Version
 
 	switch bump {
 	case "major":
@@ -104,7 +104,7 @@ func version() {
 	fmt.Println(v)
 }
 
-func writeVersionFile(v softlayer_go.VersionInfo) {
+func writeVersionFile(v sl.VersionInfo) {
 	// Generate source
 	var buf bytes.Buffer
 	t := template.New("test")
@@ -120,7 +120,7 @@ func writeVersionFile(v softlayer_go.VersionInfo) {
 	}
 
 	// write go file
-	f, err := os.Create("./version.go")
+	f, err := os.Create("sl/version.go")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
