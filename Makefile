@@ -14,9 +14,10 @@ PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 all: build
 
 alpha:
-	@$(TOOLS) version --bump patch --prerelease alpha && \
-	git add sl/version.go && \
+	@$(TOOLS) version --bump patch --prerelease alpha
+	git add sl/version.go
 	git commit -m "Bump version"
+	git push
 
 build: fmtcheck
 	$(GO_BUILD) ./...
@@ -47,7 +48,9 @@ release: build
 	@NEW_VERSION=$$($(TOOLS) version --bump patch) && \
 	git add sl/version.go && \
 	git commit -m "Cut release $${NEW_VERSION}" && \
-	git tag $${NEW_VERSION}
+	git tag $${NEW_VERSION} && \
+	git push && \
+	git push origin $${NEW_VERSION}
 
 test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
