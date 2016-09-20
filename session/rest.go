@@ -32,7 +32,7 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-type RestTransport struct {}
+type RestTransport struct{}
 
 // DoRequest - Implementation of the TransportHandler interface for handling
 // calls to the REST endpoint.
@@ -89,7 +89,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 	switch pResult.(type) {
 	case *[]uint8:
 		// exclude quotes
-		*pResult.(*[]uint8) = resp[1:len(resp)-1]
+		*pResult.(*[]uint8) = resp[1 : len(resp)-1]
 	case *datatypes.Void:
 	case *uint:
 		var val uint64
@@ -122,7 +122,7 @@ func buildPath(service string, method string, options *sl.Options) string {
 
 	// omit the API method name if the method represents one of the basic REST methods
 	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
-	method != "createObjects" && method != "editObject" && method != "editObjects" {
+		method != "createObjects" && method != "editObject" && method != "editObjects" {
 		path = path + "/" + method
 	}
 

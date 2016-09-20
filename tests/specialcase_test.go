@@ -56,7 +56,7 @@ func TestVoidPatchedReturnTypes(t *testing.T) {
 		reflectedService := reflect.TypeOf(service)
 		reflectedMethod, _ := reflectedService.MethodByName(method)
 		if reflectedMethod.Type.NumOut() > 1 {
-			t.Errorf("Expect %s() to have only one (error) return value, but multiple values found", reflectedService.String() + method)
+			t.Errorf("Expect %s() to have only one (error) return value, but multiple values found", reflectedService.String()+method)
 		}
 	}
 }
