@@ -115,6 +115,8 @@ func New(args ...interface{}) *Session {
 	envFallback("SL_API_KEY", &values[keys["api_key"]])
 	envFallback("SOFTLAYER_API_KEY", &values[keys["api_key"]])
 
+	// Prioritize SL_ENDPOINT_URL
+	envFallback("SL_ENDPOINT_URL", &values[keys["endpoint_url"]])
 	envFallback("SOFTLAYER_ENDPOINT_URL", &values[keys["endpoint_url"]])
 
 	// Read ~/.softlayer for configuration
