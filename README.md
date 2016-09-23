@@ -34,12 +34,15 @@ set in the environment, or from the local config file:
 sess := session.New()
 ```
 
-In this example, the username and API key are read from the environment
-variables `SOFTLAYER_USERNAME`, `SOFTLAYER_API_KEY`. If these are not set,
-the values from the local `~/.softlayer` file are used.
+In this usage, the username, API key, and endpoint are read from specific environment
+variables, then the local configuration file (~/.softlayer).  First match ends
+the search:
 
-The endpoint url is looked up in the `SOFTLAYER_ENDPOINT_URL` environment variable
-and then in `~/.softlayer`. Otherwise it defaults to `https://api.softlayer.com/rest/v3`.
+* Username: `env.SL_USERNAME` || `env.SOFTLAYER_USERNAME` || `config.username`
+* API Key: `env.SL_API_KEY` || `env.SOFTLAYER_API_KEY` || `config.api_key`
+* Endpoint: `env.SL_ENDPOINT_URL` || `env.SOFTLAYER_ENDPOINT_URL` || `config.endpoint_url`
+
+*Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods
 
 ### Instance methods
 
