@@ -106,8 +106,17 @@ func New(args ...interface{}) *Session {
 	}
 
 	// Default to the environment variables
+
+	// Prioritize SL_USERNAME
+	envFallback("SL_USERNAME", &values[keys["username"]])
 	envFallback("SOFTLAYER_USERNAME", &values[keys["username"]])
+
+	// Prioritize SL_API_KEY
+	envFallback("SL_API_KEY", &values[keys["api_key"]])
 	envFallback("SOFTLAYER_API_KEY", &values[keys["api_key"]])
+
+	// Prioritize SL_ENDPOINT_URL
+	envFallback("SL_ENDPOINT_URL", &values[keys["endpoint_url"]])
 	envFallback("SOFTLAYER_ENDPOINT_URL", &values[keys["endpoint_url"]])
 
 	// Read ~/.softlayer for configuration
