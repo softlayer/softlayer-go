@@ -23,10 +23,10 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"time"
+	"strings"
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
-	"strings"
 )
 
 // Used to pool the clients created per service
@@ -35,6 +35,7 @@ var xmlRpcClients = map[string]*xmlrpc.Client{}
 
 // Debugging RoundTripper
 type debugRoundTripper struct{}
+
 func (mrt debugRoundTripper) RoundTrip(request *http.Request) (*http.Response, error) {
 	log.Println("->>>Request:")
 	dumpedReq, _ := httputil.DumpRequestOut(request, true)
@@ -57,7 +58,8 @@ func (mrt debugRoundTripper) RoundTrip(request *http.Request) (*http.Response, e
 type XmlRpcTransport struct {
 	Timeout time.Duration
 }
-const DefaultXmlRpcTimeout = time.Second*30
+
+const DefaultXmlRpcTimeout = time.Second * 30
 
 // err = r.Session.DoRequest("SoftLayer_Account", "activatePartner", params, &r.Options, &resp)
 func (x *XmlRpcTransport) DoRequest(
@@ -94,8 +96,6 @@ func (x *XmlRpcTransport) DoRequest(
 
 		xmlRpcClients[service] = client
 	}
-
-	// TODO: Handle error responses
 
 	authenticate := map[string]interface{}{}
 	if sess.UserName != "" {
@@ -157,7 +157,7 @@ func (x *XmlRpcTransport) DoRequest(
 		}
 
 		headers["resultLimit"] = map[string]int{
-			"limit": *options.Limit,
+			"limit":  *options.Limit,
 			"offset": offset,
 		}
 	}
@@ -173,5 +173,15 @@ func (x *XmlRpcTransport) DoRequest(
 		params = append(params, arg)
 	}
 
-	return client.Call(method, params, pResult)
+	err := client.Call(method, params, pResult)
+	if err != nil {
+		xmlRpcError := err.(*xmlrpc.XmlRpcError)
+		return sl.Error{
+			StatusCode: xmlRpcError.HttpStatusCode,
+			Exception:  xmlRpcError.Code,
+			Message:    xmlRpcError.Err,
+		}
+	}
+
+	return nil
 }
