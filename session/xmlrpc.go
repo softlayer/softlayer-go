@@ -71,7 +71,8 @@ func (x *XmlRpcTransport) DoRequest(
 	pResult interface{},
 ) error {
 
-	client, ok := xmlRpcClients[service]
+	serviceUrl := fmt.Sprintf("%s/%s", sess.Endpoint, service)
+	client, ok := xmlRpcClients[serviceUrl]
 	if !ok {
 		var roundTripper http.RoundTripper
 		var err error
@@ -85,16 +86,12 @@ func (x *XmlRpcTransport) DoRequest(
 			timeout = x.Timeout
 		}
 
-		client, err = xmlrpc.NewClient(
-			fmt.Sprintf("%s/%s", sess.Endpoint, service),
-			roundTripper,
-			timeout,
-		)
+		client, err = xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
 		if err != nil {
 			return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
 		}
 
-		xmlRpcClients[service] = client
+		xmlRpcClients[serviceUrl] = client
 	}
 
 	authenticate := map[string]interface{}{}
