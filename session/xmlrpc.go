@@ -22,8 +22,8 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
-	"time"
 	"strings"
+	"time"
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"

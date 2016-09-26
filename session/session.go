@@ -153,9 +153,9 @@ func New(args ...interface{}) *Session {
 	}
 
 	return &Session{
-		UserName:         values[keys["username"]],
-		APIKey:           values[keys["api_key"]],
-		Endpoint:         endpointURL,
+		UserName: values[keys["username"]],
+		APIKey:   values[keys["api_key"]],
+		Endpoint: endpointURL,
 	}
 }
 
