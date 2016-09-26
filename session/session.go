@@ -22,6 +22,7 @@ import (
 	"os"
 	"os/user"
 	"strings"
+	"time"
 
 	"github.com/softlayer/softlayer-go/config"
 	"github.com/softlayer/softlayer-go/sl"
@@ -91,6 +92,11 @@ type Session struct {
 	// (e.g., REST).  Set automatically for a new Session, based on the
 	// provided Endpoint.
 	TransportHandler TransportHandler
+
+	// Timeout specifies a time limit for http requests made by this
+	// session. Requests that take longer that the specified timeout
+	// will result in an error.
+	Timeout time.Duration
 }
 
 // New creates and returns a pointer to a new session object.  It takes up to
