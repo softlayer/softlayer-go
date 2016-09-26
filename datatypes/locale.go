@@ -25,16 +25,16 @@ type Locale struct {
 	Entity
 
 	// no documentation yet
-	FriendlyName *string `json:"friendlyName,omitempty"`
+	FriendlyName *string `json:"friendlyName,omitempty" xmlrpc:"friendlyName"`
 
 	// Internal identification number of a locale
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	LanguageTag *string `json:"languageTag,omitempty"`
+	LanguageTag *string `json:"languageTag,omitempty" xmlrpc:"languageTag"`
 
 	// Locale name
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -42,19 +42,19 @@ type Locale_Country struct {
 	Entity
 
 	// Binary flag denoting if this country is part of the European Union
-	IsEuropeanUnionFlag *int `json:"isEuropeanUnionFlag,omitempty"`
+	IsEuropeanUnionFlag *int `json:"isEuropeanUnionFlag,omitempty" xmlrpc:"isEuropeanUnionFlag"`
 
 	// no documentation yet
-	LongName *string `json:"longName,omitempty"`
+	LongName *string `json:"longName,omitempty" xmlrpc:"longName"`
 
 	// no documentation yet
-	ShortName *string `json:"shortName,omitempty"`
+	ShortName *string `json:"shortName,omitempty" xmlrpc:"shortName"`
 
 	// A count of states that belong to this country.
-	StateCount *uint `json:"stateCount,omitempty"`
+	StateCount *uint `json:"stateCount,omitempty" xmlrpc:"stateCount"`
 
 	// States that belong to this country.
-	States []Locale_StateProvince `json:"states,omitempty"`
+	States []Locale_StateProvince `json:"states,omitempty" xmlrpc:"states"`
 }
 
 // This object represents a state or province for a country.
@@ -62,10 +62,10 @@ type Locale_StateProvince struct {
 	Entity
 
 	// no documentation yet
-	LongName *string `json:"longName,omitempty"`
+	LongName *string `json:"longName,omitempty" xmlrpc:"longName"`
 
 	// no documentation yet
-	ShortName *string `json:"shortName,omitempty"`
+	ShortName *string `json:"shortName,omitempty" xmlrpc:"shortName"`
 }
 
 // Each User is assigned a timezone allowing for a precise local timestamp.
@@ -73,17 +73,17 @@ type Locale_Timezone struct {
 	Entity
 
 	// A timezone's identifying number.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A timezone's long name. For example, "(GMT-06:00) America/Dallas - CST".
-	LongName *string `json:"longName,omitempty"`
+	LongName *string `json:"longName,omitempty" xmlrpc:"longName"`
 
 	// A timezone's name. For example, "America/Dallas".
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// A timezone's offset based on the GMT standard. For example, Central Standard Time's offset is "-0600" from GMT=0000.
-	Offset *string `json:"offset,omitempty"`
+	Offset *string `json:"offset,omitempty" xmlrpc:"offset"`
 
 	// A timezone's common abbreviation. For example, Central Standard Time's abbreviation is "CST".
-	ShortName *string `json:"shortName,omitempty"`
+	ShortName *string `json:"shortName,omitempty" xmlrpc:"shortName"`
 }

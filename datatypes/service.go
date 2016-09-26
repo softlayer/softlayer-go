@@ -25,14 +25,14 @@ type Service_Provider struct {
 	Entity
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }

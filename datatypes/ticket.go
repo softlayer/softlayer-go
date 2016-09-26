@@ -27,214 +27,214 @@ type Ticket struct {
 	Entity
 
 	// The SoftLayer customer account associated with a ticket.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// An internal identifier of the SoftLayer customer account that a ticket is associated with.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// A count of
-	AssignedAgentCount *uint `json:"assignedAgentCount,omitempty"`
+	AssignedAgentCount *uint `json:"assignedAgentCount,omitempty" xmlrpc:"assignedAgentCount"`
 
 	// no documentation yet
-	AssignedAgents []User_Customer `json:"assignedAgents,omitempty"`
+	AssignedAgents []User_Customer `json:"assignedAgents,omitempty" xmlrpc:"assignedAgents"`
 
 	// The portal user that a ticket is assigned to.
-	AssignedUser *User_Customer `json:"assignedUser,omitempty"`
+	AssignedUser *User_Customer `json:"assignedUser,omitempty" xmlrpc:"assignedUser"`
 
 	// An internal identifier of the portal user that a ticket is assigned to.
-	AssignedUserId *int `json:"assignedUserId,omitempty"`
+	AssignedUserId *int `json:"assignedUserId,omitempty" xmlrpc:"assignedUserId"`
 
 	// A count of the list of additional emails to notify when a ticket update is made.
-	AttachedAdditionalEmailCount *uint `json:"attachedAdditionalEmailCount,omitempty"`
+	AttachedAdditionalEmailCount *uint `json:"attachedAdditionalEmailCount,omitempty" xmlrpc:"attachedAdditionalEmailCount"`
 
 	// The list of additional emails to notify when a ticket update is made.
-	AttachedAdditionalEmails []User_Customer_AdditionalEmail `json:"attachedAdditionalEmails,omitempty"`
+	AttachedAdditionalEmails []User_Customer_AdditionalEmail `json:"attachedAdditionalEmails,omitempty" xmlrpc:"attachedAdditionalEmails"`
 
 	// A count of the files attached to a ticket.
-	AttachedFileCount *uint `json:"attachedFileCount,omitempty"`
+	AttachedFileCount *uint `json:"attachedFileCount,omitempty" xmlrpc:"attachedFileCount"`
 
 	// The files attached to a ticket.
-	AttachedFiles []Ticket_Attachment_File `json:"attachedFiles,omitempty"`
+	AttachedFiles []Ticket_Attachment_File `json:"attachedFiles,omitempty" xmlrpc:"attachedFiles"`
 
 	// The hardware associated with a ticket. This is used in cases where a ticket is directly associated with one or more pieces of hardware.
-	AttachedHardware []Hardware `json:"attachedHardware,omitempty"`
+	AttachedHardware []Hardware `json:"attachedHardware,omitempty" xmlrpc:"attachedHardware"`
 
 	// no documentation yet
-	AttachedHardwareCount *uint `json:"attachedHardwareCount,omitempty"`
+	AttachedHardwareCount *uint `json:"attachedHardwareCount,omitempty" xmlrpc:"attachedHardwareCount"`
 
 	// A count of
-	AttachedResourceCount *uint `json:"attachedResourceCount,omitempty"`
+	AttachedResourceCount *uint `json:"attachedResourceCount,omitempty" xmlrpc:"attachedResourceCount"`
 
 	// no documentation yet
-	AttachedResources []Ticket_Attachment `json:"attachedResources,omitempty"`
+	AttachedResources []Ticket_Attachment `json:"attachedResources,omitempty" xmlrpc:"attachedResources"`
 
 	// A count of the virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
-	AttachedVirtualGuestCount *uint `json:"attachedVirtualGuestCount,omitempty"`
+	AttachedVirtualGuestCount *uint `json:"attachedVirtualGuestCount,omitempty" xmlrpc:"attachedVirtualGuestCount"`
 
 	// The virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
-	AttachedVirtualGuests []Virtual_Guest `json:"attachedVirtualGuests,omitempty"`
+	AttachedVirtualGuests []Virtual_Guest `json:"attachedVirtualGuests,omitempty" xmlrpc:"attachedVirtualGuests"`
 
 	// The last update made to a ticket.
-	AwaitingUserResponseFlag *bool `json:"awaitingUserResponseFlag,omitempty"`
+	AwaitingUserResponseFlag *bool `json:"awaitingUserResponseFlag,omitempty" xmlrpc:"awaitingUserResponseFlag"`
 
 	// Whether a ticket has a one-time charge associated with it. Standard tickets are free while administrative tickets typically cost $3 USD.
-	BillableFlag *bool `json:"billableFlag,omitempty"`
+	BillableFlag *bool `json:"billableFlag,omitempty" xmlrpc:"billableFlag"`
 
 	// A service cancellation request.
-	CancellationRequest *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty"`
+	CancellationRequest *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty" xmlrpc:"cancellationRequest"`
 
 	// no documentation yet
-	ChangeOwnerFlag *bool `json:"changeOwnerFlag,omitempty"`
+	ChangeOwnerFlag *bool `json:"changeOwnerFlag,omitempty" xmlrpc:"changeOwnerFlag"`
 
 	// The date that a ticket was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// A count of
-	EmployeeAttachmentCount *uint `json:"employeeAttachmentCount,omitempty"`
+	EmployeeAttachmentCount *uint `json:"employeeAttachmentCount,omitempty" xmlrpc:"employeeAttachmentCount"`
 
 	// no documentation yet
-	EmployeeAttachments []User_Employee `json:"employeeAttachments,omitempty"`
+	EmployeeAttachments []User_Employee `json:"employeeAttachments,omitempty" xmlrpc:"employeeAttachments"`
 
 	// Feedback left by a portal or API user on their experiences in a ticket. Final comments may be created after a ticket is closed.
-	FinalComments *string `json:"finalComments,omitempty"`
+	FinalComments *string `json:"finalComments,omitempty" xmlrpc:"finalComments"`
 
 	// The first physical or virtual server attached to a ticket.
-	FirstAttachedResource *Ticket_Attachment `json:"firstAttachedResource,omitempty"`
+	FirstAttachedResource *Ticket_Attachment `json:"firstAttachedResource,omitempty" xmlrpc:"firstAttachedResource"`
 
 	// The first update made to a ticket. This is typically the contents of a ticket when it's created.
-	FirstUpdate *Ticket_Update `json:"firstUpdate,omitempty"`
+	FirstUpdate *Ticket_Update `json:"firstUpdate,omitempty" xmlrpc:"firstUpdate"`
 
 	// The SoftLayer department that a ticket is assigned to.
-	Group *Ticket_Group `json:"group,omitempty"`
+	Group *Ticket_Group `json:"group,omitempty" xmlrpc:"group"`
 
 	// The internal identifier of the SoftLayer department that a ticket is assigned to.
-	GroupId *int `json:"groupId,omitempty"`
+	GroupId *int `json:"groupId,omitempty" xmlrpc:"groupId"`
 
 	// A ticket's internal identifier. Each ticket is defined by a unique identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A count of the invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
-	InvoiceItemCount *uint `json:"invoiceItemCount,omitempty"`
+	InvoiceItemCount *uint `json:"invoiceItemCount,omitempty" xmlrpc:"invoiceItemCount"`
 
 	// The invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
-	InvoiceItems []Billing_Invoice_Item `json:"invoiceItems,omitempty"`
+	InvoiceItems []Billing_Invoice_Item `json:"invoiceItems,omitempty" xmlrpc:"invoiceItems"`
 
 	// no documentation yet
-	LastActivity *Ticket_Activity `json:"lastActivity,omitempty"`
+	LastActivity *Ticket_Activity `json:"lastActivity,omitempty" xmlrpc:"lastActivity"`
 
 	// The date that a ticket was last modified. A modification does not necessarily mean that an update was added.
-	LastEditDate *Time `json:"lastEditDate,omitempty"`
+	LastEditDate *Time `json:"lastEditDate,omitempty" xmlrpc:"lastEditDate"`
 
 	// The type of user who last edited or updated a ticket. This is either "EMPLOYEE" or "USER".
-	LastEditType *string `json:"lastEditType,omitempty"`
+	LastEditType *string `json:"lastEditType,omitempty" xmlrpc:"lastEditType"`
 
 	// no documentation yet
-	LastEditor *User_Interface `json:"lastEditor,omitempty"`
+	LastEditor *User_Interface `json:"lastEditor,omitempty" xmlrpc:"lastEditor"`
 
 	// The date that the last ticket update was made
-	LastResponseDate *Time `json:"lastResponseDate,omitempty"`
+	LastResponseDate *Time `json:"lastResponseDate,omitempty" xmlrpc:"lastResponseDate"`
 
 	// The last update made to a ticket.
-	LastUpdate *Ticket_Update `json:"lastUpdate,omitempty"`
+	LastUpdate *Ticket_Update `json:"lastUpdate,omitempty" xmlrpc:"lastUpdate"`
 
 	// A timestamp of the last time the Ticket was viewed by the active user.
-	LastViewedDate *Time `json:"lastViewedDate,omitempty"`
+	LastViewedDate *Time `json:"lastViewedDate,omitempty" xmlrpc:"lastViewedDate"`
 
 	// A ticket's associated location within the SoftLayer location hierarchy.
-	Location *Location `json:"location,omitempty"`
+	Location *Location `json:"location,omitempty" xmlrpc:"location"`
 
 	// The internal identifier of the location associated with a ticket.
-	LocationId *int `json:"locationId,omitempty"`
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId"`
 
 	// The date that a ticket was last updated.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// True if there are new, unread updates to this ticket for the current user, False otherwise.
-	NewUpdatesFlag *bool `json:"newUpdatesFlag,omitempty"`
+	NewUpdatesFlag *bool `json:"newUpdatesFlag,omitempty" xmlrpc:"newUpdatesFlag"`
 
 	// Whether or not the user who owns a ticket is notified via email when a ticket is updated.
-	NotifyUserOnUpdateFlag *bool `json:"notifyUserOnUpdateFlag,omitempty"`
+	NotifyUserOnUpdateFlag *bool `json:"notifyUserOnUpdateFlag,omitempty" xmlrpc:"notifyUserOnUpdateFlag"`
 
 	// The IP address of the user who opened a ticket.
-	OriginatingIpAddress *string `json:"originatingIpAddress,omitempty"`
+	OriginatingIpAddress *string `json:"originatingIpAddress,omitempty" xmlrpc:"originatingIpAddress"`
 
 	// no documentation yet
-	Priority *int `json:"priority,omitempty"`
+	Priority *int `json:"priority,omitempty" xmlrpc:"priority"`
 
 	// no documentation yet
-	ResponsibleBrandId *int `json:"responsibleBrandId,omitempty"`
+	ResponsibleBrandId *int `json:"responsibleBrandId,omitempty" xmlrpc:"responsibleBrandId"`
 
 	// A count of
-	ScheduledActionCount *uint `json:"scheduledActionCount,omitempty"`
+	ScheduledActionCount *uint `json:"scheduledActionCount,omitempty" xmlrpc:"scheduledActionCount"`
 
 	// no documentation yet
-	ScheduledActions []Provisioning_Version1_Transaction `json:"scheduledActions,omitempty"`
+	ScheduledActions []Provisioning_Version1_Transaction `json:"scheduledActions,omitempty" xmlrpc:"scheduledActions"`
 
 	// The amount of money in US Dollars ($USD) that a ticket has charged to an account. A ticket's administrative billing amount is a one time charge and only applies to administrative support tickets.
-	ServerAdministrationBillingAmount *int `json:"serverAdministrationBillingAmount,omitempty"`
+	ServerAdministrationBillingAmount *int `json:"serverAdministrationBillingAmount,omitempty" xmlrpc:"serverAdministrationBillingAmount"`
 
 	// The invoice associated with a ticket. Only tickets with an associated administrative charge have an invoice.
-	ServerAdministrationBillingInvoice *Billing_Invoice `json:"serverAdministrationBillingInvoice,omitempty"`
+	ServerAdministrationBillingInvoice *Billing_Invoice `json:"serverAdministrationBillingInvoice,omitempty" xmlrpc:"serverAdministrationBillingInvoice"`
 
 	// The internal identifier of the invoice associated with a ticket's administrative charge. Only tickets with an administrative charge have an associated invoice.
-	ServerAdministrationBillingInvoiceId *int `json:"serverAdministrationBillingInvoiceId,omitempty"`
+	ServerAdministrationBillingInvoiceId *int `json:"serverAdministrationBillingInvoiceId,omitempty" xmlrpc:"serverAdministrationBillingInvoiceId"`
 
 	// Whether a ticket is a standard or an administrative support ticket. Administrative support tickets typically incur a $3 USD charge.
-	ServerAdministrationFlag *int `json:"serverAdministrationFlag,omitempty"`
+	ServerAdministrationFlag *int `json:"serverAdministrationFlag,omitempty" xmlrpc:"serverAdministrationFlag"`
 
 	// The refund invoice associated with a ticket. Only tickets with a refund applied in them have an associated refund invoice.
-	ServerAdministrationRefundInvoice *Billing_Invoice `json:"serverAdministrationRefundInvoice,omitempty"`
+	ServerAdministrationRefundInvoice *Billing_Invoice `json:"serverAdministrationRefundInvoice,omitempty" xmlrpc:"serverAdministrationRefundInvoice"`
 
 	// The internal identifier of the refund invoice associated with a ticket. Only tickets with an account refund associated with them have an associated refund invoice.
-	ServerAdministrationRefundInvoiceId *int `json:"serverAdministrationRefundInvoiceId,omitempty"`
+	ServerAdministrationRefundInvoiceId *int `json:"serverAdministrationRefundInvoiceId,omitempty" xmlrpc:"serverAdministrationRefundInvoiceId"`
 
 	// no documentation yet
-	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty"`
+	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider"`
 
 	// no documentation yet
-	ServiceProviderId *int `json:"serviceProviderId,omitempty"`
+	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId"`
 
 	// A ticket's internal identifier at its service provider. Each ticket is defined by a unique identifier.
-	ServiceProviderResourceId *int `json:"serviceProviderResourceId,omitempty"`
+	ServiceProviderResourceId *int `json:"serviceProviderResourceId,omitempty" xmlrpc:"serviceProviderResourceId"`
 
 	// no documentation yet
-	State []Ticket_State `json:"state,omitempty"`
+	State []Ticket_State `json:"state,omitempty" xmlrpc:"state"`
 
 	// A count of
-	StateCount *uint `json:"stateCount,omitempty"`
+	StateCount *uint `json:"stateCount,omitempty" xmlrpc:"stateCount"`
 
 	// A ticket's status.
-	Status *Ticket_Status `json:"status,omitempty"`
+	Status *Ticket_Status `json:"status,omitempty" xmlrpc:"status"`
 
 	// A ticket status' internal identifier.
-	StatusId *int `json:"statusId,omitempty"`
+	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId"`
 
 	// A ticket's subject. Only standard support tickets have an associated subject. A standard support ticket's title corresponds with it's subject's name.
-	Subject *Ticket_Subject `json:"subject,omitempty"`
+	Subject *Ticket_Subject `json:"subject,omitempty" xmlrpc:"subject"`
 
 	// An internal identifier of the pre-set subject that a ticket is associated with. Standard support tickets have a subject set while administrative tickets have a null subject. A standard support ticket's title is the name of it's associated subject.
-	SubjectId *int `json:"subjectId,omitempty"`
+	SubjectId *int `json:"subjectId,omitempty" xmlrpc:"subjectId"`
 
 	// A count of
-	TagReferenceCount *uint `json:"tagReferenceCount,omitempty"`
+	TagReferenceCount *uint `json:"tagReferenceCount,omitempty" xmlrpc:"tagReferenceCount"`
 
 	// no documentation yet
-	TagReferences []Tag_Reference `json:"tagReferences,omitempty"`
+	TagReferences []Tag_Reference `json:"tagReferences,omitempty" xmlrpc:"tagReferences"`
 
 	// A ticket's title. This is typically a brief summary of the issue described in the ticket.
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" xmlrpc:"title"`
 
 	// no documentation yet
-	TotalUpdateCount *int `json:"totalUpdateCount,omitempty"`
+	TotalUpdateCount *int `json:"totalUpdateCount,omitempty" xmlrpc:"totalUpdateCount"`
 
 	// A count of a ticket's updates.
-	UpdateCount *uint `json:"updateCount,omitempty"`
+	UpdateCount *uint `json:"updateCount,omitempty" xmlrpc:"updateCount"`
 
 	// A ticket's updates.
-	Updates []Ticket_Update `json:"updates,omitempty"`
+	Updates []Ticket_Update `json:"updates,omitempty" xmlrpc:"updates"`
 
 	// Whether a user is able to update a ticket.
-	UserEditableFlag *bool `json:"userEditableFlag,omitempty"`
+	UserEditableFlag *bool `json:"userEditableFlag,omitempty" xmlrpc:"userEditableFlag"`
 }
 
 // no documentation yet
@@ -242,25 +242,25 @@ type Ticket_Activity struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	CreateTimestamp *Time `json:"createTimestamp,omitempty"`
+	CreateTimestamp *Time `json:"createTimestamp,omitempty" xmlrpc:"createTimestamp"`
 
 	// no documentation yet
-	Editor *User_Interface `json:"editor,omitempty"`
+	Editor *User_Interface `json:"editor,omitempty" xmlrpc:"editor"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	Ticket *Ticket `json:"ticket,omitempty"`
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket"`
 
 	// no documentation yet
-	TicketUpdate *Ticket_Update `json:"ticketUpdate,omitempty"`
+	TicketUpdate *Ticket_Update `json:"ticketUpdate,omitempty" xmlrpc:"ticketUpdate"`
 
 	// no documentation yet
-	Value *string `json:"value,omitempty"`
+	Value *string `json:"value,omitempty" xmlrpc:"value"`
 }
 
 // SoftLayer tickets have the ability to be associated with specific pieces of hardware in a customer's inventory. Attaching hardware to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Hardware data type models the relationship between a piece of hardware and a ticket. Only one attachment record may exist per hardware item per ticket.
@@ -268,25 +268,25 @@ type Ticket_Attachment struct {
 	Entity
 
 	// no documentation yet
-	AssignedAgent *User_Customer `json:"assignedAgent,omitempty"`
+	AssignedAgent *User_Customer `json:"assignedAgent,omitempty" xmlrpc:"assignedAgent"`
 
 	// The internal identifier of an item that is attached to a ticket.
-	AttachmentId *int `json:"attachmentId,omitempty"`
+	AttachmentId *int `json:"attachmentId,omitempty" xmlrpc:"attachmentId"`
 
 	// The date that an item was attached to a ticket.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// A ticket attachment's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	ScheduledAction *Provisioning_Version1_Transaction `json:"scheduledAction,omitempty"`
+	ScheduledAction *Provisioning_Version1_Transaction `json:"scheduledAction,omitempty" xmlrpc:"scheduledAction"`
 
 	// The ticket that an item is attached to.
-	Ticket *Ticket `json:"ticket,omitempty"`
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket"`
 
 	// The internal identifier of the ticket that an item is attached to.
-	TicketId *int `json:"ticketId,omitempty"`
+	TicketId *int `json:"ticketId,omitempty" xmlrpc:"ticketId"`
 }
 
 // no documentation yet
@@ -294,10 +294,10 @@ type Ticket_Attachment_Assigned_Agent struct {
 	Ticket_Attachment
 
 	// The internal identifier of an assigned Agent that is attached to a ticket.
-	AssignedAgentId *int `json:"assignedAgentId,omitempty"`
+	AssignedAgentId *int `json:"assignedAgentId,omitempty" xmlrpc:"assignedAgentId"`
 
 	// no documentation yet
-	Resource *User_Customer `json:"resource,omitempty"`
+	Resource *User_Customer `json:"resource,omitempty" xmlrpc:"resource"`
 }
 
 // This datatype contains tickets referenced from card change request
@@ -305,7 +305,7 @@ type Ticket_Attachment_CardChangeRequest struct {
 	Ticket_Attachment
 
 	// The card change request that is attached to a ticket.
-	Resource *Billing_Payment_Card_ChangeRequest `json:"resource,omitempty"`
+	Resource *Billing_Payment_Card_ChangeRequest `json:"resource,omitempty" xmlrpc:"resource"`
 }
 
 // SoftLayer tickets can have have files attached to them. Attaching a file to a ticket is a good way to report issues, provide documentation, and give examples of an issue. Both SoftLayer customers and employees have the ability to attach files to a ticket. The SoftLayer_Ticket_Attachment_File data type models a single file attached to a ticket.
@@ -313,37 +313,37 @@ type Ticket_Attachment_File struct {
 	Entity
 
 	// The date a file was originally attached to a ticket.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The name of a file attached to a ticket.
-	FileName *string `json:"fileName,omitempty"`
+	FileName *string `json:"fileName,omitempty" xmlrpc:"fileName"`
 
 	// The size of a file attached to a ticket, measured in bytes.
-	FileSize *string `json:"fileSize,omitempty"`
+	FileSize *string `json:"fileSize,omitempty" xmlrpc:"fileSize"`
 
 	// A ticket file attachment's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The date that a file attachment record was last modified.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	Ticket *Ticket `json:"ticket,omitempty"`
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket"`
 
 	// The internal identifier of the ticket that a file is attached to.
-	TicketId *int `json:"ticketId,omitempty"`
+	TicketId *int `json:"ticketId,omitempty" xmlrpc:"ticketId"`
 
 	// The ticket that a file is attached to.
-	Update *Ticket_Update `json:"update,omitempty"`
+	Update *Ticket_Update `json:"update,omitempty" xmlrpc:"update"`
 
 	// The internal identifier of the ticket update the attached file is associated with.
-	UpdateId *int `json:"updateId,omitempty"`
+	UpdateId *int `json:"updateId,omitempty" xmlrpc:"updateId"`
 
 	// The internal identifier of the user that uploaded a ticket file attachment. This is only used when A file attachment's ''uploaderType'' is set to "USER".
-	UploaderId *string `json:"uploaderId,omitempty"`
+	UploaderId *string `json:"uploaderId,omitempty" xmlrpc:"uploaderId"`
 
 	// The type of user that attached a file to a ticket. This is either "USER" if the file was uploaded by a portal or API user or "EMPLOYEE" if the file was uploaded by a SoftLayer employee.
-	UploaderType *string `json:"uploaderType,omitempty"`
+	UploaderType *string `json:"uploaderType,omitempty" xmlrpc:"uploaderType"`
 }
 
 // SoftLayer tickets have the ability to be associated with specific pieces of hardware in a customer's inventory. Attaching hardware to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Hardware data type models the relationship between a piece of hardware and a ticket. Only one attachment record may exist per hardware item per ticket.
@@ -351,13 +351,13 @@ type Ticket_Attachment_Hardware struct {
 	Ticket_Attachment
 
 	// The hardware that is attached to a ticket.
-	Hardware *Hardware `json:"hardware,omitempty"`
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// The internal identifier of a piece of hardware that is attached to a ticket.
-	HardwareId *int `json:"hardwareId,omitempty"`
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId"`
 
 	// The hardware that is attached to a ticket.
-	Resource *Hardware `json:"resource,omitempty"`
+	Resource *Hardware `json:"resource,omitempty" xmlrpc:"resource"`
 }
 
 // This datatype contains tickets referenced from manual payments
@@ -365,7 +365,7 @@ type Ticket_Attachment_ManualPayment struct {
 	Ticket_Attachment
 
 	// The manual payment that is attached to a ticket.
-	Resource *Billing_Payment_Card_ManualPayment `json:"resource,omitempty"`
+	Resource *Billing_Payment_Card_ManualPayment `json:"resource,omitempty" xmlrpc:"resource"`
 }
 
 // no documentation yet
@@ -373,16 +373,16 @@ type Ticket_Attachment_Scheduled_Action struct {
 	Ticket_Attachment
 
 	// no documentation yet
-	Resource *Provisioning_Version1_Transaction `json:"resource,omitempty"`
+	Resource *Provisioning_Version1_Transaction `json:"resource,omitempty" xmlrpc:"resource"`
 
 	// The internal identifier of a scheduled action transaction that is attached to a ticket.
-	RunDate *Time `json:"runDate,omitempty"`
+	RunDate *Time `json:"runDate,omitempty" xmlrpc:"runDate"`
 
 	// no documentation yet
-	Transaction *Provisioning_Version1_Transaction `json:"transaction,omitempty"`
+	Transaction *Provisioning_Version1_Transaction `json:"transaction,omitempty" xmlrpc:"transaction"`
 
 	// The internal identifier of a scheduled action transaction that is attached to a ticket.
-	TransactionId *int `json:"transactionId,omitempty"`
+	TransactionId *int `json:"transactionId,omitempty" xmlrpc:"transactionId"`
 }
 
 // SoftLayer tickets have the ability to be associated with specific pieces of hardware in a customer's inventory. Attaching hardware to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Hardware data type models the relationship between a piece of hardware and a ticket. Only one attachment record may exist per hardware item per ticket.
@@ -390,13 +390,13 @@ type Ticket_Attachment_Virtual_Guest struct {
 	Ticket_Attachment
 
 	// The virtualized guest or CloudLayer Computing Instance that is attached to a ticket.
-	Resource *Virtual_Guest `json:"resource,omitempty"`
+	Resource *Virtual_Guest `json:"resource,omitempty" xmlrpc:"resource"`
 
 	// The virtualized guest or CloudLayer Computing Instance that is attached to a ticket.
-	VirtualGuest *Virtual_Guest `json:"virtualGuest,omitempty"`
+	VirtualGuest *Virtual_Guest `json:"virtualGuest,omitempty" xmlrpc:"virtualGuest"`
 
 	// The internal identifier of the virtualized guest or CloudLayer Computing Instance that is attached to a ticket.
-	VirtualGuestId *int `json:"virtualGuestId,omitempty"`
+	VirtualGuestId *int `json:"virtualGuestId,omitempty" xmlrpc:"virtualGuestId"`
 }
 
 // no documentation yet
@@ -404,25 +404,25 @@ type Ticket_Chat struct {
 	Entity
 
 	// no documentation yet
-	Agent *User_Employee `json:"agent,omitempty"`
+	Agent *User_Employee `json:"agent,omitempty" xmlrpc:"agent"`
 
 	// no documentation yet
-	Customer *User_Customer `json:"customer,omitempty"`
+	Customer *User_Customer `json:"customer,omitempty" xmlrpc:"customer"`
 
 	// no documentation yet
-	CustomerId *int `json:"customerId,omitempty"`
+	CustomerId *int `json:"customerId,omitempty" xmlrpc:"customerId"`
 
 	// no documentation yet
-	EndDate *Time `json:"endDate,omitempty"`
+	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate"`
 
 	// no documentation yet
-	StartDate *Time `json:"startDate,omitempty"`
+	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate"`
 
 	// no documentation yet
-	TicketUpdate *Ticket_Update_Chat `json:"ticketUpdate,omitempty"`
+	TicketUpdate *Ticket_Update_Chat `json:"ticketUpdate,omitempty" xmlrpc:"ticketUpdate"`
 
 	// no documentation yet
-	Transcript *string `json:"transcript,omitempty"`
+	Transcript *string `json:"transcript,omitempty" xmlrpc:"transcript"`
 }
 
 // no documentation yet
@@ -435,7 +435,7 @@ type Ticket_Chat_TranscriptLine struct {
 	Entity
 
 	// no documentation yet
-	Speaker *User_Interface `json:"speaker,omitempty"`
+	Speaker *User_Interface `json:"speaker,omitempty" xmlrpc:"speaker"`
 }
 
 // no documentation yet
@@ -453,22 +453,22 @@ type Ticket_Group struct {
 	Entity
 
 	// A count of
-	AssignedBrandCount *uint `json:"assignedBrandCount,omitempty"`
+	AssignedBrandCount *uint `json:"assignedBrandCount,omitempty" xmlrpc:"assignedBrandCount"`
 
 	// no documentation yet
-	AssignedBrands []Brand `json:"assignedBrands,omitempty"`
+	AssignedBrands []Brand `json:"assignedBrands,omitempty" xmlrpc:"assignedBrands"`
 
 	// The category that a ticket group belongs to.
-	Category *Ticket_Group_Category `json:"category,omitempty"`
+	Category *Ticket_Group_Category `json:"category,omitempty" xmlrpc:"category"`
 
 	// A ticket group's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A ticket group's name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// The internal identifier for the category that a ticket group belongs to..
-	TicketGroupCategoryId *int `json:"ticketGroupCategoryId,omitempty"`
+	TicketGroupCategoryId *int `json:"ticketGroupCategoryId,omitempty" xmlrpc:"ticketGroupCategoryId"`
 }
 
 // SoftLayer's support ticket groups represent the department at SoftLayer that is assigned to work one of your support tickets. Many departments are responsible for handling different types of tickets. These types of tickets are modeled in the SoftLayer_Ticket_Group_Category data type. Ticket group categories also help separate differentiate your tickets' issues in the SoftLayer customer portal.
@@ -476,10 +476,10 @@ type Ticket_Group_Category struct {
 	Entity
 
 	// A ticket group category's unique identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A ticket group category's name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -492,19 +492,19 @@ type Ticket_State struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	StateType *Ticket_State_Type `json:"stateType,omitempty"`
+	StateType *Ticket_State_Type `json:"stateType,omitempty" xmlrpc:"stateType"`
 
 	// no documentation yet
-	StateTypeId *int `json:"stateTypeId,omitempty"`
+	StateTypeId *int `json:"stateTypeId,omitempty" xmlrpc:"stateTypeId"`
 
 	// no documentation yet
-	Ticket *Ticket `json:"ticket,omitempty"`
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket"`
 
 	// no documentation yet
-	TicketId *int `json:"ticketId,omitempty"`
+	TicketId *int `json:"ticketId,omitempty" xmlrpc:"ticketId"`
 }
 
 // no documentation yet
@@ -512,16 +512,16 @@ type Ticket_State_Type struct {
 	Entity
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_Ticket_Status data type models the state of a ticket as it is worked by SoftLayer and its customers. Tickets exist in one of three states:
@@ -535,10 +535,10 @@ type Ticket_Status struct {
 	Entity
 
 	// A ticket status' internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A ticket status' name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // The SoftLayer_Ticket_Subject data type models one of the possible subjects that a standard support ticket may belong to. A basic support ticket's title matches it's corresponding subject's name.
@@ -546,13 +546,13 @@ type Ticket_Subject struct {
 	Entity
 
 	// no documentation yet
-	Group *Ticket_Group `json:"group,omitempty"`
+	Group *Ticket_Group `json:"group,omitempty" xmlrpc:"group"`
 
 	// A ticket subject's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A ticket subject's name. This name is used for a standard support ticket's title.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -565,10 +565,10 @@ type Ticket_Type struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 }
 
 // The SoftLayer_Ticket_Update type relates to a single update to a ticket, either by a customer or an employee.
@@ -576,40 +576,40 @@ type Ticket_Update struct {
 	Entity
 
 	// no documentation yet
-	ChangeOwnerActivity *string `json:"changeOwnerActivity,omitempty"`
+	ChangeOwnerActivity *string `json:"changeOwnerActivity,omitempty" xmlrpc:"changeOwnerActivity"`
 
 	// The data a ticket update was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The user or SoftLayer employee who created a ticket update.
-	Editor *User_Interface `json:"editor,omitempty"`
+	Editor *User_Interface `json:"editor,omitempty" xmlrpc:"editor"`
 
 	// The internal identifier of the SoftLayer portal or API user who created a ticket update. This is only used if a ticket update's ''editorType'' property is "USER".
-	EditorId *int `json:"editorId,omitempty"`
+	EditorId *int `json:"editorId,omitempty" xmlrpc:"editorId"`
 
 	// The type user who created a ticket update. This is either "USER" for an update created by a SoftLayer portal or API user, "EMPLOYEE" for an update created by a SoftLayer employee, or "AUTO" if a ticket update was generated automatically by SoftLayer's backend systems.
-	EditorType *string `json:"editorType,omitempty"`
+	EditorType *string `json:"editorType,omitempty" xmlrpc:"editorType"`
 
 	// The contents of a ticket update.
-	Entry *string `json:"entry,omitempty"`
+	Entry *string `json:"entry,omitempty" xmlrpc:"entry"`
 
 	// The files attached to a ticket update.
-	FileAttachment []Ticket_Attachment_File `json:"fileAttachment,omitempty"`
+	FileAttachment []Ticket_Attachment_File `json:"fileAttachment,omitempty" xmlrpc:"fileAttachment"`
 
 	// A count of the files attached to a ticket update.
-	FileAttachmentCount *uint `json:"fileAttachmentCount,omitempty"`
+	FileAttachmentCount *uint `json:"fileAttachmentCount,omitempty" xmlrpc:"fileAttachmentCount"`
 
 	// A ticket update's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The ticket that a ticket update belongs to.
-	Ticket *Ticket `json:"ticket,omitempty"`
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket"`
 
 	// The internal identifier of the ticket that a ticket update belongs to.
-	TicketId *int `json:"ticketId,omitempty"`
+	TicketId *int `json:"ticketId,omitempty" xmlrpc:"ticketId"`
 
 	// The Type of update to this ticket
-	Type *Ticket_Update_Type `json:"type,omitempty"`
+	Type *Ticket_Update_Type `json:"type,omitempty" xmlrpc:"type"`
 }
 
 // A SoftLayer_Ticket_Update_Agent type models an update to a ticket made by an agent.
@@ -622,7 +622,7 @@ type Ticket_Update_Chat struct {
 	Ticket_Update
 
 	// The chat between the Customer and Agent
-	Chat *Ticket_Chat_Liveperson `json:"chat,omitempty"`
+	Chat *Ticket_Chat_Liveperson `json:"chat,omitempty" xmlrpc:"chat"`
 }
 
 // A SoftLayer_Ticket_Update_Customer is a single update made by a customer to a ticket.
@@ -635,7 +635,7 @@ type Ticket_Update_Employee struct {
 	Ticket_Update
 
 	// A ticket update's response rating. Ticket updates posted by SoftLayer employees have the option of earning a rating from SoftLayer's customers. Ratings are based on a 1 - 5 scale, with one being a poor rating while 5 is a very high rating. This is only used if a ticket update's ''editorType'' property is "EMPLOYEE".
-	ResponseRating *int `json:"responseRating,omitempty"`
+	ResponseRating *int `json:"responseRating,omitempty" xmlrpc:"responseRating"`
 }
 
 // no documentation yet
@@ -643,11 +643,11 @@ type Ticket_Update_Type struct {
 	Entity
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Ticket *Ticket_Update `json:"ticket,omitempty"`
+	Ticket *Ticket_Update `json:"ticket,omitempty" xmlrpc:"ticket"`
 }

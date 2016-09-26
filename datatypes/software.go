@@ -25,25 +25,25 @@ type Software_AccountLicense struct {
 	Entity
 
 	// The customer account this Account License belongs to.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// The ID of the SoftLayer Account to which this Account License belongs to.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// The billing item for a software account license.
-	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem"`
 
 	// Some Account Licenses have capacity information such as CPU specified in the units key. This provides the numerical representation of the capacity of the units.
-	Capacity *string `json:"capacity,omitempty"`
+	Capacity *string `json:"capacity,omitempty" xmlrpc:"capacity"`
 
 	// The License Key for this specific Account License.
-	Key *string `json:"key,omitempty"`
+	Key *string `json:"key,omitempty" xmlrpc:"key"`
 
 	// The SoftLayer_Software_Description that this account license is for.
-	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription"`
 
 	// The unit of measurement that an account license has the capacity of.
-	Units *string `json:"units,omitempty"`
+	Units *string `json:"units,omitempty" xmlrpc:"units"`
 }
 
 // A SoftLayer_Software_Component ties the installation of a specific piece of software onto a specific piece of hardware.
@@ -55,46 +55,46 @@ type Software_Component struct {
 	Entity
 
 	// The average amount of time that a software component takes to install.
-	AverageInstallationDuration *uint `json:"averageInstallationDuration,omitempty"`
+	AverageInstallationDuration *uint `json:"averageInstallationDuration,omitempty" xmlrpc:"averageInstallationDuration"`
 
 	// The billing item for a software component.
-	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem"`
 
 	// The hardware this Software Component is installed upon.
-	Hardware *Hardware `json:"hardware,omitempty"`
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// Hardware Identification Number for the server this Software Component is installed upon.
-	HardwareId *int `json:"hardwareId,omitempty"`
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId"`
 
 	// An ID number identifying this Software Component (Software Installation)
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The manufacturer code that is needed to activate a license.
-	ManufacturerActivationCode *string `json:"manufacturerActivationCode,omitempty"`
+	ManufacturerActivationCode *string `json:"manufacturerActivationCode,omitempty" xmlrpc:"manufacturerActivationCode"`
 
 	// A license key for this specific installation of software, if it is needed.
-	ManufacturerLicenseInstance *string `json:"manufacturerLicenseInstance,omitempty"`
+	ManufacturerLicenseInstance *string `json:"manufacturerLicenseInstance,omitempty" xmlrpc:"manufacturerLicenseInstance"`
 
 	// A count of username/Password pairs used for access to this Software Installation.
-	PasswordCount *uint `json:"passwordCount,omitempty"`
+	PasswordCount *uint `json:"passwordCount,omitempty" xmlrpc:"passwordCount"`
 
 	// History Records for Software Passwords.
-	PasswordHistory []Software_Component_Password_History `json:"passwordHistory,omitempty"`
+	PasswordHistory []Software_Component_Password_History `json:"passwordHistory,omitempty" xmlrpc:"passwordHistory"`
 
 	// A count of history Records for Software Passwords.
-	PasswordHistoryCount *uint `json:"passwordHistoryCount,omitempty"`
+	PasswordHistoryCount *uint `json:"passwordHistoryCount,omitempty" xmlrpc:"passwordHistoryCount"`
 
 	// Username/Password pairs used for access to this Software Installation.
-	Passwords []Software_Component_Password `json:"passwords,omitempty"`
+	Passwords []Software_Component_Password `json:"passwords,omitempty" xmlrpc:"passwords"`
 
 	// The Software Description of this Software Component.
-	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription"`
 
 	// The License this Software Component uses.
-	SoftwareLicense *Software_License `json:"softwareLicense,omitempty"`
+	SoftwareLicense *Software_License `json:"softwareLicense,omitempty" xmlrpc:"softwareLicense"`
 
 	// The virtual guest this software component is installed upon.
-	VirtualGuest *Virtual_Guest `json:"virtualGuest,omitempty"`
+	VirtualGuest *Virtual_Guest `json:"virtualGuest,omitempty" xmlrpc:"virtualGuest"`
 }
 
 // This object specifies a specific type of Software Component:  An analytics instance. Analytics installations have a specific default ports and patterns for usernames and passwords.  Defaults are initiated by this object.
@@ -122,37 +122,37 @@ type Software_Component_AntivirusSpyware_Mcafee_Epo_Version36 struct {
 	Software_Component_AntivirusSpyware_Mcafee
 
 	// The virus scan agent details.
-	AgentDetails *McAfee_Epolicy_Orchestrator_Version36_Agent_Details `json:"agentDetails,omitempty"`
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version36_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails"`
 
 	// The current anti-virus policy.
-	CurrentAntivirusPolicy *int `json:"currentAntivirusPolicy,omitempty"`
+	CurrentAntivirusPolicy *int `json:"currentAntivirusPolicy,omitempty" xmlrpc:"currentAntivirusPolicy"`
 
 	// The virus definition file version.
-	DataFileVersion *McAfee_Epolicy_Orchestrator_Version36_Product_Properties `json:"dataFileVersion,omitempty"`
+	DataFileVersion *McAfee_Epolicy_Orchestrator_Version36_Product_Properties `json:"dataFileVersion,omitempty" xmlrpc:"dataFileVersion"`
 
 	// The version of ePolicy Orchestrator that the anti-virus/spyware client communicates with.
-	EpoVersion *string `json:"epoVersion,omitempty"`
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion"`
 
 	// A count of the latest access protection events.
-	LatestAccessProtectionEventCount *uint `json:"latestAccessProtectionEventCount,omitempty"`
+	LatestAccessProtectionEventCount *uint `json:"latestAccessProtectionEventCount,omitempty" xmlrpc:"latestAccessProtectionEventCount"`
 
 	// The latest access protection events.
-	LatestAccessProtectionEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_AccessProtection `json:"latestAccessProtectionEvents,omitempty"`
+	LatestAccessProtectionEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event_AccessProtection `json:"latestAccessProtectionEvents,omitempty" xmlrpc:"latestAccessProtectionEvents"`
 
 	// A count of the latest anti-virus events.
-	LatestAntivirusEventCount *uint `json:"latestAntivirusEventCount,omitempty"`
+	LatestAntivirusEventCount *uint `json:"latestAntivirusEventCount,omitempty" xmlrpc:"latestAntivirusEventCount"`
 
 	// The latest anti-virus events.
-	LatestAntivirusEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event `json:"latestAntivirusEvents,omitempty"`
+	LatestAntivirusEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event `json:"latestAntivirusEvents,omitempty" xmlrpc:"latestAntivirusEvents"`
 
 	// A count of the latest spyware events.
-	LatestSpywareEventCount *uint `json:"latestSpywareEventCount,omitempty"`
+	LatestSpywareEventCount *uint `json:"latestSpywareEventCount,omitempty" xmlrpc:"latestSpywareEventCount"`
 
 	// The latest spyware events.
-	LatestSpywareEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event `json:"latestSpywareEvents,omitempty"`
+	LatestSpywareEvents []McAfee_Epolicy_Orchestrator_Version36_Antivirus_Event `json:"latestSpywareEvents,omitempty" xmlrpc:"latestSpywareEvents"`
 
 	// The current transaction status of a server.
-	TransactionStatus *string `json:"transactionStatus,omitempty"`
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus"`
 }
 
 // The SoftLayer_Software_Component_AntivirusSpyware_Mcafee_Epo_Version45 data type represents a single McAfee Secure anti-virus/spyware software component that uses the ePolicy Orchestrator version 4.5 backend.
@@ -160,37 +160,37 @@ type Software_Component_AntivirusSpyware_Mcafee_Epo_Version45 struct {
 	Software_Component_AntivirusSpyware_Mcafee
 
 	// The virus scan agent details.
-	AgentDetails *McAfee_Epolicy_Orchestrator_Version45_Agent_Details `json:"agentDetails,omitempty"`
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version45_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails"`
 
 	// The current anti-virus policy.
-	CurrentAntivirusPolicy *int `json:"currentAntivirusPolicy,omitempty"`
+	CurrentAntivirusPolicy *int `json:"currentAntivirusPolicy,omitempty" xmlrpc:"currentAntivirusPolicy"`
 
 	// The virus definition file version.
-	DataFileVersion *McAfee_Epolicy_Orchestrator_Version45_Product_Properties `json:"dataFileVersion,omitempty"`
+	DataFileVersion *McAfee_Epolicy_Orchestrator_Version45_Product_Properties `json:"dataFileVersion,omitempty" xmlrpc:"dataFileVersion"`
 
 	// The version of ePolicy Orchestrator that the anti-virus/spyware client communicates with.
-	EpoVersion *string `json:"epoVersion,omitempty"`
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion"`
 
 	// A count of the latest access protection events.
-	LatestAccessProtectionEventCount *uint `json:"latestAccessProtectionEventCount,omitempty"`
+	LatestAccessProtectionEventCount *uint `json:"latestAccessProtectionEventCount,omitempty" xmlrpc:"latestAccessProtectionEventCount"`
 
 	// The latest access protection events.
-	LatestAccessProtectionEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAccessProtectionEvents,omitempty"`
+	LatestAccessProtectionEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAccessProtectionEvents,omitempty" xmlrpc:"latestAccessProtectionEvents"`
 
 	// A count of the latest anti-virus events.
-	LatestAntivirusEventCount *uint `json:"latestAntivirusEventCount,omitempty"`
+	LatestAntivirusEventCount *uint `json:"latestAntivirusEventCount,omitempty" xmlrpc:"latestAntivirusEventCount"`
 
 	// The latest anti-virus events.
-	LatestAntivirusEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAntivirusEvents,omitempty"`
+	LatestAntivirusEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAntivirusEvents,omitempty" xmlrpc:"latestAntivirusEvents"`
 
 	// A count of the latest spyware events
-	LatestSpywareEventCount *uint `json:"latestSpywareEventCount,omitempty"`
+	LatestSpywareEventCount *uint `json:"latestSpywareEventCount,omitempty" xmlrpc:"latestSpywareEventCount"`
 
 	// The latest spyware events
-	LatestSpywareEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestSpywareEvents,omitempty"`
+	LatestSpywareEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestSpywareEvents,omitempty" xmlrpc:"latestSpywareEvents"`
 
 	// The current transaction status of a server.
-	TransactionStatus *string `json:"transactionStatus,omitempty"`
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus"`
 }
 
 // This object specifies a specific type of Software Component:  A control panel instance. Control panel installations have a specific default ports and patterns for usernames and passwords.  Defaults are initiated by this object.
@@ -273,55 +273,55 @@ type Software_Component_HostIps_Mcafee_Epo_Version36_Hips struct {
 	Software_Component_HostIps_Mcafee
 
 	// The host IPS agent details.
-	AgentDetails *McAfee_Epolicy_Orchestrator_Version36_Agent_Details `json:"agentDetails,omitempty"`
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version36_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails"`
 
 	// A count of the names of the possible policy options for the application mode setting.
-	ApplicationModePolicyNameCount *uint `json:"applicationModePolicyNameCount,omitempty"`
+	ApplicationModePolicyNameCount *uint `json:"applicationModePolicyNameCount,omitempty" xmlrpc:"applicationModePolicyNameCount"`
 
 	// The names of the possible policy options for the application mode setting.
-	ApplicationModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"applicationModePolicyNames,omitempty"`
+	ApplicationModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"applicationModePolicyNames,omitempty" xmlrpc:"applicationModePolicyNames"`
 
 	// A count of the names of the possible policy options for the application rule set setting.
-	ApplicationRuleSetPolicyNameCount *uint `json:"applicationRuleSetPolicyNameCount,omitempty"`
+	ApplicationRuleSetPolicyNameCount *uint `json:"applicationRuleSetPolicyNameCount,omitempty" xmlrpc:"applicationRuleSetPolicyNameCount"`
 
 	// The names of the possible policy options for the application rule set setting.
-	ApplicationRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"applicationRuleSetPolicyNames,omitempty"`
+	ApplicationRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"applicationRuleSetPolicyNames,omitempty" xmlrpc:"applicationRuleSetPolicyNames"`
 
 	// A count of the names of the possible options for the enforcement policy setting.
-	EnforcementPolicyNameCount *uint `json:"enforcementPolicyNameCount,omitempty"`
+	EnforcementPolicyNameCount *uint `json:"enforcementPolicyNameCount,omitempty" xmlrpc:"enforcementPolicyNameCount"`
 
 	// The names of the possible options for the enforcement policy setting.
-	EnforcementPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"enforcementPolicyNames,omitempty"`
+	EnforcementPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"enforcementPolicyNames,omitempty" xmlrpc:"enforcementPolicyNames"`
 
 	// The version of ePolicy Orchestrator that the host IPS client communicates with.
-	EpoVersion *string `json:"epoVersion,omitempty"`
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion"`
 
 	// A count of the names of the possible policy options for the firewall mode setting.
-	FirewallModePolicyNameCount *uint `json:"firewallModePolicyNameCount,omitempty"`
+	FirewallModePolicyNameCount *uint `json:"firewallModePolicyNameCount,omitempty" xmlrpc:"firewallModePolicyNameCount"`
 
 	// The names of the possible policy options for the firewall mode setting.
-	FirewallModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"firewallModePolicyNames,omitempty"`
+	FirewallModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"firewallModePolicyNames,omitempty" xmlrpc:"firewallModePolicyNames"`
 
 	// A count of the names of the possible policy options for the firewall rule set setting.
-	FirewallRuleSetPolicyNameCount *uint `json:"firewallRuleSetPolicyNameCount,omitempty"`
+	FirewallRuleSetPolicyNameCount *uint `json:"firewallRuleSetPolicyNameCount,omitempty" xmlrpc:"firewallRuleSetPolicyNameCount"`
 
 	// The names of the possible policy options for the firewall rule set setting.
-	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty"`
+	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty" xmlrpc:"firewallRuleSetPolicyNames"`
 
 	// A count of the names of the possible policy options for the host IPS mode setting.
-	IpsModePolicyNameCount *uint `json:"ipsModePolicyNameCount,omitempty"`
+	IpsModePolicyNameCount *uint `json:"ipsModePolicyNameCount,omitempty" xmlrpc:"ipsModePolicyNameCount"`
 
 	// The names of the possible policy options for the host IPS mode setting.
-	IpsModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"ipsModePolicyNames,omitempty"`
+	IpsModePolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"ipsModePolicyNames,omitempty" xmlrpc:"ipsModePolicyNames"`
 
 	// A count of the names of the possible policy options for the host IPS protection setting.
-	IpsProtectionPolicyNameCount *uint `json:"ipsProtectionPolicyNameCount,omitempty"`
+	IpsProtectionPolicyNameCount *uint `json:"ipsProtectionPolicyNameCount,omitempty" xmlrpc:"ipsProtectionPolicyNameCount"`
 
 	// The names of the possible policy options for the host IPS protection setting.
-	IpsProtectionPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"ipsProtectionPolicyNames,omitempty"`
+	IpsProtectionPolicyNames []McAfee_Epolicy_Orchestrator_Version36_Policy_Object `json:"ipsProtectionPolicyNames,omitempty" xmlrpc:"ipsProtectionPolicyNames"`
 
 	// The current transaction status of a server.
-	TransactionStatus *string `json:"transactionStatus,omitempty"`
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus"`
 }
 
 // The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version36_Hips_Version6 data type represents a single McAfee Secure Host IPS software component for version 6 of the Host IPS client and uses the ePolicy Orchestrator version 3.6 backend.
@@ -329,16 +329,16 @@ type Software_Component_HostIps_Mcafee_Epo_Version36_Hips_Version6 struct {
 	Software_Component_HostIps_Mcafee_Epo_Version36_Hips
 
 	// A count of the blocked application events for this software component.
-	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty"`
+	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty" xmlrpc:"blockedApplicationEventCount"`
 
 	// The blocked application events for this software component.
-	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_BlockedApplicationEvent `json:"blockedApplicationEvents,omitempty"`
+	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_BlockedApplicationEvent `json:"blockedApplicationEvents,omitempty" xmlrpc:"blockedApplicationEvents"`
 
 	// A count of the host IPS events for this software component.
-	IpsEventCount *uint `json:"ipsEventCount,omitempty"`
+	IpsEventCount *uint `json:"ipsEventCount,omitempty" xmlrpc:"ipsEventCount"`
 
 	// The host IPS events for this software component.
-	IpsEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_IPSEvent `json:"ipsEvents,omitempty"`
+	IpsEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version6_IPSEvent `json:"ipsEvents,omitempty" xmlrpc:"ipsEvents"`
 }
 
 // The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version36_Hips_Version7 data type represents a single McAfee Secure Host IPS software component for version 7 of the Host IPS client and uses the ePolicy Orchestrator version 3.6 backend.
@@ -346,16 +346,16 @@ type Software_Component_HostIps_Mcafee_Epo_Version36_Hips_Version7 struct {
 	Software_Component_HostIps_Mcafee_Epo_Version36_Hips
 
 	// A count of the blocked application events for this software component.
-	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty"`
+	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty" xmlrpc:"blockedApplicationEventCount"`
 
 	// The blocked application events for this software component.
-	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_BlockedApplicationEvent `json:"blockedApplicationEvents,omitempty"`
+	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_BlockedApplicationEvent `json:"blockedApplicationEvents,omitempty" xmlrpc:"blockedApplicationEvents"`
 
 	// A count of the host IPS events for this software component.
-	IpsEventCount *uint `json:"ipsEventCount,omitempty"`
+	IpsEventCount *uint `json:"ipsEventCount,omitempty" xmlrpc:"ipsEventCount"`
 
 	// The host IPS events for this software component.
-	IpsEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_IPSEvent `json:"ipsEvents,omitempty"`
+	IpsEvents []McAfee_Epolicy_Orchestrator_Version36_Hips_Version7_IPSEvent `json:"ipsEvents,omitempty" xmlrpc:"ipsEvents"`
 }
 
 // The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version45_Hips data type represents a single McAfee Secure Host IPS software component that uses the ePolicy Orchestrator version 4.5 backend.
@@ -363,67 +363,67 @@ type Software_Component_HostIps_Mcafee_Epo_Version45_Hips struct {
 	Software_Component_HostIps_Mcafee
 
 	// The host IPS agent details.
-	AgentDetails *McAfee_Epolicy_Orchestrator_Version45_Agent_Details `json:"agentDetails,omitempty"`
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version45_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails"`
 
 	// A count of the names of the possible policy options for the application mode setting.
-	ApplicationModePolicyNameCount *uint `json:"applicationModePolicyNameCount,omitempty"`
+	ApplicationModePolicyNameCount *uint `json:"applicationModePolicyNameCount,omitempty" xmlrpc:"applicationModePolicyNameCount"`
 
 	// The names of the possible policy options for the application mode setting.
-	ApplicationModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"applicationModePolicyNames,omitempty"`
+	ApplicationModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"applicationModePolicyNames,omitempty" xmlrpc:"applicationModePolicyNames"`
 
 	// A count of the names of the possible policy options for the application rule set setting.
-	ApplicationRuleSetPolicyNameCount *uint `json:"applicationRuleSetPolicyNameCount,omitempty"`
+	ApplicationRuleSetPolicyNameCount *uint `json:"applicationRuleSetPolicyNameCount,omitempty" xmlrpc:"applicationRuleSetPolicyNameCount"`
 
 	// The names of the possible policy options for the application rule set setting.
-	ApplicationRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"applicationRuleSetPolicyNames,omitempty"`
+	ApplicationRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"applicationRuleSetPolicyNames,omitempty" xmlrpc:"applicationRuleSetPolicyNames"`
 
 	// A count of the blocked application events for this software component.
-	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty"`
+	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty" xmlrpc:"blockedApplicationEventCount"`
 
 	// The blocked application events for this software component.
-	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"blockedApplicationEvents,omitempty"`
+	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"blockedApplicationEvents,omitempty" xmlrpc:"blockedApplicationEvents"`
 
 	// A count of the names of the possible options for the enforcement policy setting.
-	EnforcementPolicyNameCount *uint `json:"enforcementPolicyNameCount,omitempty"`
+	EnforcementPolicyNameCount *uint `json:"enforcementPolicyNameCount,omitempty" xmlrpc:"enforcementPolicyNameCount"`
 
 	// The names of the possible options for the enforcement policy setting.
-	EnforcementPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"enforcementPolicyNames,omitempty"`
+	EnforcementPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"enforcementPolicyNames,omitempty" xmlrpc:"enforcementPolicyNames"`
 
 	// The version of ePolicy Orchestrator that the host IPS client communicates with.
-	EpoVersion *string `json:"epoVersion,omitempty"`
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion"`
 
 	// A count of the names of the possible policy options for the firewall mode setting.
-	FirewallModePolicyNameCount *uint `json:"firewallModePolicyNameCount,omitempty"`
+	FirewallModePolicyNameCount *uint `json:"firewallModePolicyNameCount,omitempty" xmlrpc:"firewallModePolicyNameCount"`
 
 	// The names of the possible policy options for the firewall mode setting.
-	FirewallModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"firewallModePolicyNames,omitempty"`
+	FirewallModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"firewallModePolicyNames,omitempty" xmlrpc:"firewallModePolicyNames"`
 
 	// A count of the names of the possible policy options for the firewall rule set setting.
-	FirewallRuleSetPolicyNameCount *uint `json:"firewallRuleSetPolicyNameCount,omitempty"`
+	FirewallRuleSetPolicyNameCount *uint `json:"firewallRuleSetPolicyNameCount,omitempty" xmlrpc:"firewallRuleSetPolicyNameCount"`
 
 	// The names of the possible policy options for the firewall rule set setting.
-	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty"`
+	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty" xmlrpc:"firewallRuleSetPolicyNames"`
 
 	// A count of the host IPS events for this software component.
-	IpsEventCount *uint `json:"ipsEventCount,omitempty"`
+	IpsEventCount *uint `json:"ipsEventCount,omitempty" xmlrpc:"ipsEventCount"`
 
 	// The host IPS events for this software component.
-	IpsEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"ipsEvents,omitempty"`
+	IpsEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"ipsEvents,omitempty" xmlrpc:"ipsEvents"`
 
 	// A count of the names of the possible policy options for the host IPS mode setting.
-	IpsModePolicyNameCount *uint `json:"ipsModePolicyNameCount,omitempty"`
+	IpsModePolicyNameCount *uint `json:"ipsModePolicyNameCount,omitempty" xmlrpc:"ipsModePolicyNameCount"`
 
 	// The names of the possible policy options for the host IPS mode setting.
-	IpsModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"ipsModePolicyNames,omitempty"`
+	IpsModePolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"ipsModePolicyNames,omitempty" xmlrpc:"ipsModePolicyNames"`
 
 	// A count of the names of the possible policy options for the host IPS protection setting.
-	IpsProtectionPolicyNameCount *uint `json:"ipsProtectionPolicyNameCount,omitempty"`
+	IpsProtectionPolicyNameCount *uint `json:"ipsProtectionPolicyNameCount,omitempty" xmlrpc:"ipsProtectionPolicyNameCount"`
 
 	// The names of the possible policy options for the host IPS protection setting.
-	IpsProtectionPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"ipsProtectionPolicyNames,omitempty"`
+	IpsProtectionPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"ipsProtectionPolicyNames,omitempty" xmlrpc:"ipsProtectionPolicyNames"`
 
 	// The current transaction status of a server.
-	TransactionStatus *string `json:"transactionStatus,omitempty"`
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus"`
 }
 
 // The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version45_Hips_Version7 data type represents a single McAfee Secure Host IPS software component for version 7 of the Host IPS client and uses the ePolicy Orchestrator version 4.5 backend.
@@ -441,16 +441,16 @@ type Software_Component_OperatingSystem struct {
 	Software_Component
 
 	// The date in which the license for this software expires.
-	LicenseExpirationDate *Time `json:"licenseExpirationDate,omitempty"`
+	LicenseExpirationDate *Time `json:"licenseExpirationDate,omitempty" xmlrpc:"licenseExpirationDate"`
 
 	// A count of an operating system's associated [[SoftLayer_Hardware_Component_Partition_Template|Partition Templates]] that can be used to configure a hardware drive.
-	PartitionTemplateCount *uint `json:"partitionTemplateCount,omitempty"`
+	PartitionTemplateCount *uint `json:"partitionTemplateCount,omitempty" xmlrpc:"partitionTemplateCount"`
 
 	// An operating system's associated [[SoftLayer_Hardware_Component_Partition_Template|Partition Templates]] that can be used to configure a hardware drive.
-	PartitionTemplates []Hardware_Component_Partition_Template `json:"partitionTemplates,omitempty"`
+	PartitionTemplates []Hardware_Component_Partition_Template `json:"partitionTemplates,omitempty" xmlrpc:"partitionTemplates"`
 
 	// An operating systems associated [[SoftLayer_Provisioning_Version1_Transaction_Group|Transaction Group]]. A transaction group is a list of operations that will occur during the installment of an operating system.
-	ReloadTransactionGroup *Provisioning_Version1_Transaction_Group `json:"reloadTransactionGroup,omitempty"`
+	ReloadTransactionGroup *Provisioning_Version1_Transaction_Group `json:"reloadTransactionGroup,omitempty" xmlrpc:"reloadTransactionGroup"`
 }
 
 // This object specifies a specific type of Software Component:  A package instance.
@@ -473,37 +473,37 @@ type Software_Component_Password struct {
 	Entity
 
 	// The date this username/password pair was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// An id number for this specific username/password pair.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The date of the last modification to this username/password pair.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// A note string stored for this username/password pair.
-	Notes *string `json:"notes,omitempty"`
+	Notes *string `json:"notes,omitempty" xmlrpc:"notes"`
 
 	// The password part of the username/password pair.
-	Password *string `json:"password,omitempty"`
+	Password *string `json:"password,omitempty" xmlrpc:"password"`
 
 	// The application access port for the Software Component.
-	Port *int `json:"port,omitempty"`
+	Port *int `json:"port,omitempty" xmlrpc:"port"`
 
 	// The SoftLayer_Software_Component instance that this username/password pair is valid for.
-	Software *Software_Component `json:"software,omitempty"`
+	Software *Software_Component `json:"software,omitempty" xmlrpc:"software"`
 
 	// An id number for the software component this username/password pair is valid for.
-	SoftwareId *int `json:"softwareId,omitempty"`
+	SoftwareId *int `json:"softwareId,omitempty" xmlrpc:"softwareId"`
 
 	// A count of sSH keys to be installed on the server during provisioning or an OS reload.
-	SshKeyCount *uint `json:"sshKeyCount,omitempty"`
+	SshKeyCount *uint `json:"sshKeyCount,omitempty" xmlrpc:"sshKeyCount"`
 
 	// SSH keys to be installed on the server during provisioning or an OS reload.
-	SshKeys []Security_Ssh_Key `json:"sshKeys,omitempty"`
+	SshKeys []Security_Ssh_Key `json:"sshKeys,omitempty" xmlrpc:"sshKeys"`
 
 	// The username part of the username/password pair.
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }
 
 // This object allows you to find the history of password changes for a specific SoftLayer_Software Component
@@ -511,22 +511,22 @@ type Software_Component_Password_History struct {
 	Entity
 
 	// The date this username/password pair was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// A note string stored for this username/password pair.
-	Notes *string `json:"notes,omitempty"`
+	Notes *string `json:"notes,omitempty" xmlrpc:"notes"`
 
 	// The password part of this specific password history instance.
-	Password *string `json:"password,omitempty"`
+	Password *string `json:"password,omitempty" xmlrpc:"password"`
 
 	// An installed and licensed instance of a piece of software
-	SoftwareComponent *Software_Component `json:"softwareComponent,omitempty"`
+	SoftwareComponent *Software_Component `json:"softwareComponent,omitempty" xmlrpc:"softwareComponent"`
 
 	// The id number for the Software Component this username/password pair is for.
-	SoftwareComponentId *int `json:"softwareComponentId,omitempty"`
+	SoftwareComponentId *int `json:"softwareComponentId,omitempty" xmlrpc:"softwareComponentId"`
 
 	// The username part of this specific password history instance.
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }
 
 // This object specifies a specific type of Software Component:  A security instance. Security installations have custom configurations for password requirements.
@@ -548,106 +548,106 @@ type Software_Description struct {
 	Entity
 
 	// A count of
-	AttributeCount *uint `json:"attributeCount,omitempty"`
+	AttributeCount *uint `json:"attributeCount,omitempty" xmlrpc:"attributeCount"`
 
 	// no documentation yet
-	Attributes []Software_Description_Attribute `json:"attributes,omitempty"`
+	Attributes []Software_Description_Attribute `json:"attributes,omitempty" xmlrpc:"attributes"`
 
 	// The average amount of time that a software description takes to install.
-	AverageInstallationDuration *int `json:"averageInstallationDuration,omitempty"`
+	AverageInstallationDuration *int `json:"averageInstallationDuration,omitempty" xmlrpc:"averageInstallationDuration"`
 
 	// A count of a list of the software descriptions that are compatible with this software description.
-	CompatibleSoftwareDescriptionCount *uint `json:"compatibleSoftwareDescriptionCount,omitempty"`
+	CompatibleSoftwareDescriptionCount *uint `json:"compatibleSoftwareDescriptionCount,omitempty" xmlrpc:"compatibleSoftwareDescriptionCount"`
 
 	// A list of the software descriptions that are compatible with this software description.
-	CompatibleSoftwareDescriptions []Software_Description `json:"compatibleSoftwareDescriptions,omitempty"`
+	CompatibleSoftwareDescriptions []Software_Description `json:"compatibleSoftwareDescriptions,omitempty" xmlrpc:"compatibleSoftwareDescriptions"`
 
 	// This is set to '1' if this Software Description describes a Control Panel.
-	ControlPanel *int `json:"controlPanel,omitempty"`
+	ControlPanel *int `json:"controlPanel,omitempty" xmlrpc:"controlPanel"`
 
 	// A count of the feature attributes of a software description.
-	FeatureCount *uint `json:"featureCount,omitempty"`
+	FeatureCount *uint `json:"featureCount,omitempty" xmlrpc:"featureCount"`
 
 	// The feature attributes of a software description.
-	Features []Software_Description_Feature `json:"features,omitempty"`
+	Features []Software_Description_Feature `json:"features,omitempty" xmlrpc:"features"`
 
 	// An ID number to identify this Software Description.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The latest version of a software description.
-	LatestVersion []Software_Description `json:"latestVersion,omitempty"`
+	LatestVersion []Software_Description `json:"latestVersion,omitempty" xmlrpc:"latestVersion"`
 
 	// A count of the latest version of a software description.
-	LatestVersionCount *uint `json:"latestVersionCount,omitempty"`
+	LatestVersionCount *uint `json:"latestVersionCount,omitempty" xmlrpc:"latestVersionCount"`
 
 	// The unit of measurement (day, month, or year) for license registration. Used in conjunction with licenseTermValue to determine overall license registration length of a new license.
-	LicenseTermUnit *string `json:"licenseTermUnit,omitempty"`
+	LicenseTermUnit *string `json:"licenseTermUnit,omitempty" xmlrpc:"licenseTermUnit"`
 
 	// The number of units (licenseTermUnit) a new license is valid for at the time of registration.
-	LicenseTermValue *int `json:"licenseTermValue,omitempty"`
+	LicenseTermValue *int `json:"licenseTermValue,omitempty" xmlrpc:"licenseTermValue"`
 
 	// The manufacturer, name and version of a piece of software.
-	LongDescription *string `json:"longDescription,omitempty"`
+	LongDescription *string `json:"longDescription,omitempty" xmlrpc:"longDescription"`
 
 	// The name of the manufacturer for this specific piece of software.  This name is used by SoftLayer_Software_Component to tailor make (factory) specific types of Software Components that know details like default ports.
-	Manufacturer *string `json:"manufacturer,omitempty"`
+	Manufacturer *string `json:"manufacturer,omitempty" xmlrpc:"manufacturer"`
 
 	// The name of this specific piece of software.  This name is used by SoftLayer_Software_Component to tailor make (factory) specific types of Software Components that know details like default ports.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// This is set to '1' if this Software Description describes an Operating System.
-	OperatingSystem *int `json:"operatingSystem,omitempty"`
+	OperatingSystem *int `json:"operatingSystem,omitempty" xmlrpc:"operatingSystem"`
 
 	// A count of the various product items to which this software description is linked.
-	ProductItemCount *uint `json:"productItemCount,omitempty"`
+	ProductItemCount *uint `json:"productItemCount,omitempty" xmlrpc:"productItemCount"`
 
 	// The various product items to which this software description is linked.
-	ProductItems []Product_Item `json:"productItems,omitempty"`
+	ProductItems []Product_Item `json:"productItems,omitempty" xmlrpc:"productItems"`
 
 	// This details the provisioning transaction group for this software. This is only valid for Operating System software.
-	ProvisionTransactionGroup *Provisioning_Version1_Transaction_Group `json:"provisionTransactionGroup,omitempty"`
+	ProvisionTransactionGroup *Provisioning_Version1_Transaction_Group `json:"provisionTransactionGroup,omitempty" xmlrpc:"provisionTransactionGroup"`
 
 	// A reference code is structured as three tokens separated by underscores. The first token represents the product, the second is the version of the product, and the third is whether the software is 32 or 64bit.
-	ReferenceCode *string `json:"referenceCode,omitempty"`
+	ReferenceCode *string `json:"referenceCode,omitempty" xmlrpc:"referenceCode"`
 
 	// The transaction group that a software description belongs to. A transaction group is a sequence of transactions that must be performed in a specific order for the installation of software.
-	ReloadTransactionGroup *Provisioning_Version1_Transaction_Group `json:"reloadTransactionGroup,omitempty"`
+	ReloadTransactionGroup *Provisioning_Version1_Transaction_Group `json:"reloadTransactionGroup,omitempty" xmlrpc:"reloadTransactionGroup"`
 
 	// The default user created for a given a software description.
-	RequiredUser *string `json:"requiredUser,omitempty"`
+	RequiredUser *string `json:"requiredUser,omitempty" xmlrpc:"requiredUser"`
 
 	// A count of software Licenses that govern this Software Description.
-	SoftwareLicenseCount *uint `json:"softwareLicenseCount,omitempty"`
+	SoftwareLicenseCount *uint `json:"softwareLicenseCount,omitempty" xmlrpc:"softwareLicenseCount"`
 
 	// Software Licenses that govern this Software Description.
-	SoftwareLicenses []Software_License `json:"softwareLicenses,omitempty"`
+	SoftwareLicenses []Software_License `json:"softwareLicenses,omitempty" xmlrpc:"softwareLicenses"`
 
 	// A suggestion for an upgrade path from this Software Description
-	UpgradeSoftwareDescription *Software_Description `json:"upgradeSoftwareDescription,omitempty"`
+	UpgradeSoftwareDescription *Software_Description `json:"upgradeSoftwareDescription,omitempty" xmlrpc:"upgradeSoftwareDescription"`
 
 	// Contains the ID of the suggested upgrade from this Software_Description to a more powerful software installation.
-	UpgradeSoftwareDescriptionId *int `json:"upgradeSoftwareDescriptionId,omitempty"`
+	UpgradeSoftwareDescriptionId *int `json:"upgradeSoftwareDescriptionId,omitempty" xmlrpc:"upgradeSoftwareDescriptionId"`
 
 	// A suggestion for an upgrade path from this Software Description (Deprecated - Use upgradeSoftwareDescription)
-	UpgradeSwDesc *Software_Description `json:"upgradeSwDesc,omitempty"`
+	UpgradeSwDesc *Software_Description `json:"upgradeSwDesc,omitempty" xmlrpc:"upgradeSwDesc"`
 
 	// Contains the ID of the suggested upgrade from this Software_Description to a more powerful software installation. (Deprecated - Use upgradeSoftwareDescriptionId)
-	UpgradeSwDescId *int `json:"upgradeSwDescId,omitempty"`
+	UpgradeSwDescId *int `json:"upgradeSwDescId,omitempty" xmlrpc:"upgradeSwDescId"`
 
 	// A count of
-	ValidFilesystemTypeCount *uint `json:"validFilesystemTypeCount,omitempty"`
+	ValidFilesystemTypeCount *uint `json:"validFilesystemTypeCount,omitempty" xmlrpc:"validFilesystemTypeCount"`
 
 	// no documentation yet
-	ValidFilesystemTypes []Configuration_Storage_Filesystem_Type `json:"validFilesystemTypes,omitempty"`
+	ValidFilesystemTypes []Configuration_Storage_Filesystem_Type `json:"validFilesystemTypes,omitempty" xmlrpc:"validFilesystemTypes"`
 
 	// The version of this specific piece of software.
-	Version *string `json:"version,omitempty"`
+	Version *string `json:"version,omitempty" xmlrpc:"version"`
 
 	// This is set to '1' if this Software Description can be licensed to a Virtual Machine (an IP address).
-	VirtualLicense *int `json:"virtualLicense,omitempty"`
+	VirtualLicense *int `json:"virtualLicense,omitempty" xmlrpc:"virtualLicense"`
 
 	// This is set to '1' if this Software Description a platform for hosting virtual servers.
-	VirtualizationPlatform *int `json:"virtualizationPlatform,omitempty"`
+	VirtualizationPlatform *int `json:"virtualizationPlatform,omitempty" xmlrpc:"virtualizationPlatform"`
 }
 
 // The SoftLayer_Software_Description_Attribute data type represents an attributes associated with this software description.
@@ -655,13 +655,13 @@ type Software_Description_Attribute struct {
 	Entity
 
 	// no documentation yet
-	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription"`
 
 	// no documentation yet
-	Type *Software_Description_Attribute_Type `json:"type,omitempty"`
+	Type *Software_Description_Attribute_Type `json:"type,omitempty" xmlrpc:"type"`
 
 	// The value that was assigned to this attribute.
-	Value *string `json:"value,omitempty"`
+	Value *string `json:"value,omitempty" xmlrpc:"value"`
 }
 
 // The SoftLayer_Software_Description_Attribute_Type data type represents the type of an attribute.
@@ -669,7 +669,7 @@ type Software_Description_Attribute_Type struct {
 	Entity
 
 	// The keyname for this attribute type.
-	Keyname *string `json:"keyname,omitempty"`
+	Keyname *string `json:"keyname,omitempty" xmlrpc:"keyname"`
 }
 
 // The SoftLayer_Software_Description_Feature data type represents a single software description feature. A feature may show up on more than one software description and can not be created, modified, or removed.
@@ -677,16 +677,16 @@ type Software_Description_Feature struct {
 	Entity
 
 	// The unique identifier for a software description feature.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A unique name used to reference this software description feature.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The name of a software description feature.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// The vendor that a software description feature belongs to.
-	Vendor *string `json:"vendor,omitempty"`
+	Vendor *string `json:"vendor,omitempty" xmlrpc:"vendor"`
 }
 
 // This class represents a software description's required user
@@ -694,10 +694,10 @@ type Software_Description_RequiredUser struct {
 	Entity
 
 	// If the default password is set the user will be created with that password, otherwise a random password is generated.
-	DefaultPassword *string `json:"defaultPassword,omitempty"`
+	DefaultPassword *string `json:"defaultPassword,omitempty" xmlrpc:"defaultPassword"`
 
 	// If this software has a required user (such as "root") this string contains it's name.
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" xmlrpc:"username"`
 }
 
 // This class describes a specific type of license, like a Microsoft Windows Site License, a GPL license, or a license of another type.
@@ -705,19 +705,19 @@ type Software_License struct {
 	Entity
 
 	// The account that owns this specific License instance.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// An ID number for this specific License type.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The account that owns this specific License instance.
-	Owner *Account `json:"owner,omitempty"`
+	Owner *Account `json:"owner,omitempty" xmlrpc:"owner"`
 
 	// A Description of the software that this license instance is valid for.
-	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription"`
 
 	// The ID number of a Software Description that this specific license is valid for.
-	SoftwareDescriptionId *int `json:"softwareDescriptionId,omitempty"`
+	SoftwareDescriptionId *int `json:"softwareDescriptionId,omitempty" xmlrpc:"softwareDescriptionId"`
 }
 
 // SoftLayer_Software_VirtualLicense is the application class that handles a special type of Software License.  Most software licenses are licensed to a specific hardware ID;  virtual licenses are designed for virtual machines and therefore are assigned to an IP Address.  Not all software packages can be "virtual licensed".
@@ -725,44 +725,44 @@ type Software_VirtualLicense struct {
 	Entity
 
 	// The customer account this Virtual License belongs to.
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// The ID of the SoftLayer Account to which this Virtual License belongs to.
-	AccountId *int `json:"accountId,omitempty"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
 
 	// The billing item for a software virtual license.
-	BillingItem *Billing_Item `json:"billingItem,omitempty"`
+	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem"`
 
 	// The hardware record to which the software virtual license is assigned.
-	HostHardware *Hardware_Server `json:"hostHardware,omitempty"`
+	HostHardware *Hardware_Server `json:"hostHardware,omitempty" xmlrpc:"hostHardware"`
 
 	// The ID of the SoftLayer Hardware Server record to which this Virtual License belongs.
-	HostHardwareId *int `json:"hostHardwareId,omitempty"`
+	HostHardwareId *int `json:"hostHardwareId,omitempty" xmlrpc:"hostHardwareId"`
 
 	// An ID number for this Virtual License instance.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The specific IP address this Virtual License belongs to.
-	IpAddress *string `json:"ipAddress,omitempty"`
+	IpAddress *string `json:"ipAddress,omitempty" xmlrpc:"ipAddress"`
 
 	// The IP Address record associated with a virtual license.
-	IpAddressRecord *Network_Subnet_IpAddress `json:"ipAddressRecord,omitempty"`
+	IpAddressRecord *Network_Subnet_IpAddress `json:"ipAddressRecord,omitempty" xmlrpc:"ipAddressRecord"`
 
 	// The License Key for this specific Virtual License.
-	Key *string `json:"key,omitempty"`
+	Key *string `json:"key,omitempty" xmlrpc:"key"`
 
 	// A "notes" string attached to this specific Virtual License.
-	Notes *string `json:"notes,omitempty"`
+	Notes *string `json:"notes,omitempty" xmlrpc:"notes"`
 
 	// The SoftLayer_Software_Description that this virtual license is for.
-	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty"`
+	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription"`
 
 	// The Software Description ID this Virtual License is for.
-	SoftwareDescriptionId *int `json:"softwareDescriptionId,omitempty"`
+	SoftwareDescriptionId *int `json:"softwareDescriptionId,omitempty" xmlrpc:"softwareDescriptionId"`
 
 	// The subnet this Virtual License's IP address belongs to.
-	Subnet *Network_Subnet `json:"subnet,omitempty"`
+	Subnet *Network_Subnet `json:"subnet,omitempty" xmlrpc:"subnet"`
 
 	// The ID of the SoftLayer Network Subnet this Virtual License belongs to.
-	SubnetId *int `json:"subnetId,omitempty"`
+	SubnetId *int `json:"subnetId,omitempty" xmlrpc:"subnetId"`
 }

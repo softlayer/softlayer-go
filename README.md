@@ -223,6 +223,42 @@ To enable debug output:
 session.Debug = true
 ```
 
+### Password-based authentication
+
+Password-based authentication (via requesting a token from the API) is
+only supported when talking to the API using the XML-RPC transport protocol.
+
+To use the XML-RPC protocol, simply specify an XML-RPC endpoint url:
+
+```go
+func main() {
+    // Create a session specifying an XML-RPC endpoint url.
+    sess := &session.Session{
+        Endpoint: "https://api.softlayer.com/xmlrpc/v3",
+    }
+
+    // Get a token from the api using your username and password
+    userService := services.GetUserCustomerService(sess)
+    token, err := userService.GetPortalLoginToken(username, password, nil, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Add user id and token to the session.
+    sess.UserId = *token.UserId
+    sess.AuthToken = *token.Hash
+
+    // You have a complete authenticated session now.
+    // Call any api from this point on as normal...
+    keys, err := userService.Id(sess.UserId).GetApiAuthenticationKeys()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    log.Println("API Key:", *keys[0].AuthenticationKey)
+}
+```
+
 ## Copyright
 
 This software is Copyright (c) 2016 IBM Corp. See the bundled LICENSE file for more information.

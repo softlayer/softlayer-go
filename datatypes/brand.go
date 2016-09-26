@@ -27,100 +27,100 @@ type Brand struct {
 	Entity
 
 	// no documentation yet
-	Account *Account `json:"account,omitempty"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account"`
 
 	// A count of all accounts owned by the brand.
-	AllOwnedAccountCount *uint `json:"allOwnedAccountCount,omitempty"`
+	AllOwnedAccountCount *uint `json:"allOwnedAccountCount,omitempty" xmlrpc:"allOwnedAccountCount"`
 
 	// All accounts owned by the brand.
-	AllOwnedAccounts []Account `json:"allOwnedAccounts,omitempty"`
+	AllOwnedAccounts []Account `json:"allOwnedAccounts,omitempty" xmlrpc:"allOwnedAccounts"`
 
 	// This flag indicates if creation of accounts is allowed.
-	AllowAccountCreationFlag *bool `json:"allowAccountCreationFlag,omitempty"`
+	AllowAccountCreationFlag *bool `json:"allowAccountCreationFlag,omitempty" xmlrpc:"allowAccountCreationFlag"`
 
 	// The Product Catalog for the Brand
-	Catalog *Product_Catalog `json:"catalog,omitempty"`
+	Catalog *Product_Catalog `json:"catalog,omitempty" xmlrpc:"catalog"`
 
 	// ID of the Catalog used by this Brand
-	CatalogId *int `json:"catalogId,omitempty"`
+	CatalogId *int `json:"catalogId,omitempty" xmlrpc:"catalogId"`
 
 	// A count of the contacts for the brand.
-	ContactCount *uint `json:"contactCount,omitempty"`
+	ContactCount *uint `json:"contactCount,omitempty" xmlrpc:"contactCount"`
 
 	// The contacts for the brand.
-	Contacts []Brand_Contact `json:"contacts,omitempty"`
+	Contacts []Brand_Contact `json:"contacts,omitempty" xmlrpc:"contacts"`
 
 	// A count of this references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
-	CustomerCountryLocationRestrictionCount *uint `json:"customerCountryLocationRestrictionCount,omitempty"`
+	CustomerCountryLocationRestrictionCount *uint `json:"customerCountryLocationRestrictionCount,omitempty" xmlrpc:"customerCountryLocationRestrictionCount"`
 
 	// This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
-	CustomerCountryLocationRestrictions []Brand_Restriction_Location_CustomerCountry `json:"customerCountryLocationRestrictions,omitempty"`
+	CustomerCountryLocationRestrictions []Brand_Restriction_Location_CustomerCountry `json:"customerCountryLocationRestrictions,omitempty" xmlrpc:"customerCountryLocationRestrictions"`
 
 	// no documentation yet
-	Distributor *Brand `json:"distributor,omitempty"`
+	Distributor *Brand `json:"distributor,omitempty" xmlrpc:"distributor"`
 
 	// no documentation yet
-	DistributorChildFlag *bool `json:"distributorChildFlag,omitempty"`
+	DistributorChildFlag *bool `json:"distributorChildFlag,omitempty" xmlrpc:"distributorChildFlag"`
 
 	// no documentation yet
-	DistributorFlag *string `json:"distributorFlag,omitempty"`
+	DistributorFlag *string `json:"distributorFlag,omitempty" xmlrpc:"distributorFlag"`
 
 	// An account's associated hardware objects.
-	Hardware []Hardware `json:"hardware,omitempty"`
+	Hardware []Hardware `json:"hardware,omitempty" xmlrpc:"hardware"`
 
 	// A count of an account's associated hardware objects.
-	HardwareCount *uint `json:"hardwareCount,omitempty"`
+	HardwareCount *uint `json:"hardwareCount,omitempty" xmlrpc:"hardwareCount"`
 
 	// no documentation yet
-	HasAgentSupportFlag *bool `json:"hasAgentSupportFlag,omitempty"`
+	HasAgentSupportFlag *bool `json:"hasAgentSupportFlag,omitempty" xmlrpc:"hasAgentSupportFlag"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The brand key name.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The brand long name.
-	LongName *string `json:"longName,omitempty"`
+	LongName *string `json:"longName,omitempty" xmlrpc:"longName"`
 
 	// The brand name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// A count of
-	OpenTicketCount *uint `json:"openTicketCount,omitempty"`
+	OpenTicketCount *uint `json:"openTicketCount,omitempty" xmlrpc:"openTicketCount"`
 
 	// no documentation yet
-	OpenTickets []Ticket `json:"openTickets,omitempty"`
+	OpenTickets []Ticket `json:"openTickets,omitempty" xmlrpc:"openTickets"`
 
 	// A count of active accounts owned by the brand.
-	OwnedAccountCount *uint `json:"ownedAccountCount,omitempty"`
+	OwnedAccountCount *uint `json:"ownedAccountCount,omitempty" xmlrpc:"ownedAccountCount"`
 
 	// Active accounts owned by the brand.
-	OwnedAccounts []Account `json:"ownedAccounts,omitempty"`
+	OwnedAccounts []Account `json:"ownedAccounts,omitempty" xmlrpc:"ownedAccounts"`
 
 	// A count of
-	TicketCount *uint `json:"ticketCount,omitempty"`
+	TicketCount *uint `json:"ticketCount,omitempty" xmlrpc:"ticketCount"`
 
 	// A count of
-	TicketGroupCount *uint `json:"ticketGroupCount,omitempty"`
+	TicketGroupCount *uint `json:"ticketGroupCount,omitempty" xmlrpc:"ticketGroupCount"`
 
 	// no documentation yet
-	TicketGroups []Ticket_Group `json:"ticketGroups,omitempty"`
+	TicketGroups []Ticket_Group `json:"ticketGroups,omitempty" xmlrpc:"ticketGroups"`
 
 	// no documentation yet
-	Tickets []Ticket `json:"tickets,omitempty"`
+	Tickets []Ticket `json:"tickets,omitempty" xmlrpc:"tickets"`
 
 	// A count of
-	UserCount *uint `json:"userCount,omitempty"`
+	UserCount *uint `json:"userCount,omitempty" xmlrpc:"userCount"`
 
 	// no documentation yet
-	Users []User_Customer `json:"users,omitempty"`
+	Users []User_Customer `json:"users,omitempty" xmlrpc:"users"`
 
 	// A count of an account's associated virtual guest objects.
-	VirtualGuestCount *uint `json:"virtualGuestCount,omitempty"`
+	VirtualGuestCount *uint `json:"virtualGuestCount,omitempty" xmlrpc:"virtualGuestCount"`
 
 	// An account's associated virtual guest objects.
-	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty"`
+	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty" xmlrpc:"virtualGuests"`
 }
 
 // no documentation yet
@@ -128,7 +128,7 @@ type Brand_Attribute struct {
 	Entity
 
 	// no documentation yet
-	Brand *Brand `json:"brand,omitempty"`
+	Brand *Brand `json:"brand,omitempty" xmlrpc:"brand"`
 }
 
 // SoftLayer_Brand_Contact contains the contact information for the brand such as Corporate or Support contact information
@@ -136,49 +136,49 @@ type Brand_Contact struct {
 	Entity
 
 	// The contact's address 1.
-	Address1 *string `json:"address1,omitempty"`
+	Address1 *string `json:"address1,omitempty" xmlrpc:"address1"`
 
 	// The contact's address 2.
-	Address2 *string `json:"address2,omitempty"`
+	Address2 *string `json:"address2,omitempty" xmlrpc:"address2"`
 
 	// The contact's alternate phone number.
-	AlternatePhone *string `json:"alternatePhone,omitempty"`
+	AlternatePhone *string `json:"alternatePhone,omitempty" xmlrpc:"alternatePhone"`
 
 	// no documentation yet
-	Brand *Brand `json:"brand,omitempty"`
+	Brand *Brand `json:"brand,omitempty" xmlrpc:"brand"`
 
 	// no documentation yet
-	BrandContactType *Brand_Contact_Type `json:"brandContactType,omitempty"`
+	BrandContactType *Brand_Contact_Type `json:"brandContactType,omitempty" xmlrpc:"brandContactType"`
 
 	// The contact's type identifier.
-	BrandContactTypeId *int `json:"brandContactTypeId,omitempty"`
+	BrandContactTypeId *int `json:"brandContactTypeId,omitempty" xmlrpc:"brandContactTypeId"`
 
 	// The contact's city.
-	City *string `json:"city,omitempty"`
+	City *string `json:"city,omitempty" xmlrpc:"city"`
 
 	// The contact's country.
-	Country *string `json:"country,omitempty"`
+	Country *string `json:"country,omitempty" xmlrpc:"country"`
 
 	// The contact's email address.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// The contact's fax number.
-	FaxPhone *string `json:"faxPhone,omitempty"`
+	FaxPhone *string `json:"faxPhone,omitempty" xmlrpc:"faxPhone"`
 
 	// The contact's first name.
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// The contact's last name.
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// The contact's phone number.
-	OfficePhone *string `json:"officePhone,omitempty"`
+	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone"`
 
 	// The contact's postal code.
-	PostalCode *string `json:"postalCode,omitempty"`
+	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode"`
 
 	// The contact's state.
-	State *string `json:"state,omitempty"`
+	State *string `json:"state,omitempty" xmlrpc:"state"`
 }
 
 // SoftLayer_Brand_Contact_Type contains the contact type information for the brand contacts such as Corporate or Support contact type
@@ -186,13 +186,13 @@ type Brand_Contact_Type struct {
 	Entity
 
 	// Contact type description.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// Contact type key name.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// Contact type name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -200,10 +200,10 @@ type Brand_Payment_Processor struct {
 	Entity
 
 	// no documentation yet
-	Brand *Brand `json:"brand,omitempty"`
+	Brand *Brand `json:"brand,omitempty" xmlrpc:"brand"`
 
 	// no documentation yet
-	PaymentProcessor *Billing_Payment_Processor `json:"paymentProcessor,omitempty"`
+	PaymentProcessor *Billing_Payment_Processor `json:"paymentProcessor,omitempty" xmlrpc:"paymentProcessor"`
 }
 
 // The [[SoftLayer_Brand_Restriction_Location_CustomerCountry]] data type defines the relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on the SoftLayer US brand for customers that live in Great Britain.
@@ -211,17 +211,17 @@ type Brand_Restriction_Location_CustomerCountry struct {
 	Entity
 
 	// This references the brand that has a brand-location-country restriction setup.
-	Brand *Brand `json:"brand,omitempty"`
+	Brand *Brand `json:"brand,omitempty" xmlrpc:"brand"`
 
 	// The brand associated with customer's account.
-	BrandId *int `json:"brandId,omitempty"`
+	BrandId *int `json:"brandId,omitempty" xmlrpc:"brandId"`
 
 	// country code associated with customer's account.
-	CustomerCountryCode *string `json:"customerCountryCode,omitempty"`
+	CustomerCountryCode *string `json:"customerCountryCode,omitempty" xmlrpc:"customerCountryCode"`
 
 	// This references the datacenter that has a brand-location-country restriction setup. For example, if a datacenter is listed with a restriction for Canada, a Canadian customer may not be eligible to order services at that location.
-	Location *Location `json:"location,omitempty"`
+	Location *Location `json:"location,omitempty" xmlrpc:"location"`
 
 	// The id for datacenter location.
-	LocationId *int `json:"locationId,omitempty"`
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId"`
 }

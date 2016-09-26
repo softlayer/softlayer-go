@@ -25,28 +25,28 @@ type Auxiliary_Marketing_Event struct {
 	Entity
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// no documentation yet
-	EnabledFlag *int `json:"enabledFlag,omitempty"`
+	EnabledFlag *int `json:"enabledFlag,omitempty" xmlrpc:"enabledFlag"`
 
 	// no documentation yet
-	EndDate *Time `json:"endDate,omitempty"`
+	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate"`
 
 	// no documentation yet
-	Location *string `json:"location,omitempty"`
+	Location *string `json:"location,omitempty" xmlrpc:"location"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// no documentation yet
-	StartDate *Time `json:"startDate,omitempty"`
+	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate"`
 
 	// no documentation yet
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" xmlrpc:"title"`
 
 	// no documentation yet
-	Url *string `json:"url,omitempty"`
+	Url *string `json:"url,omitempty" xmlrpc:"url"`
 }
 
 // no documentation yet
@@ -59,40 +59,40 @@ type Auxiliary_Notification_Emergency struct {
 	Entity
 
 	// The date this event was created.
-	CreateDate *Time `json:"createDate,omitempty"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
 
 	// The device (if any) effected by this event.
-	Device *string `json:"device,omitempty"`
+	Device *string `json:"device,omitempty" xmlrpc:"device"`
 
 	// The duration of this event.
-	Duration *string `json:"duration,omitempty"`
+	Duration *string `json:"duration,omitempty" xmlrpc:"duration"`
 
 	// The device (if any) effected by this event.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The location effected by this event.
-	Location *string `json:"location,omitempty"`
+	Location *string `json:"location,omitempty" xmlrpc:"location"`
 
 	// A message describing this event.
-	Message *string `json:"message,omitempty"`
+	Message *string `json:"message,omitempty" xmlrpc:"message"`
 
 	// The last date this event was modified.
-	ModifyDate *Time `json:"modifyDate,omitempty"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
 
 	// The service(s) (if any) effected by this event.
-	ServicesAffected *string `json:"servicesAffected,omitempty"`
+	ServicesAffected *string `json:"servicesAffected,omitempty" xmlrpc:"servicesAffected"`
 
 	// The signature of the SoftLayer employee department associated with this notification.
-	Signature *Auxiliary_Notification_Emergency_Signature `json:"signature,omitempty"`
+	Signature *Auxiliary_Notification_Emergency_Signature `json:"signature,omitempty" xmlrpc:"signature"`
 
 	// The date this event will start.
-	StartDate *Time `json:"startDate,omitempty"`
+	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate"`
 
 	// The status of this notification.
-	Status *Auxiliary_Notification_Emergency_Status `json:"status,omitempty"`
+	Status *Auxiliary_Notification_Emergency_Status `json:"status,omitempty" xmlrpc:"status"`
 
 	// Current status record for this event.
-	StatusId *int `json:"statusId,omitempty"`
+	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId"`
 }
 
 // Every SoftLayer_Auxiliary_Notification_Emergency has a signatureId that references a SoftLayer_Auxiliary_Notification_Emergency_Signature data type.  The signature is the user or group  responsible for the current event.
@@ -100,7 +100,7 @@ type Auxiliary_Notification_Emergency_Signature struct {
 	Entity
 
 	// The name or signature for the current Emergency Notification.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // Every SoftLayer_Auxiliary_Notification_Emergency has a statusId that references a SoftLayer_Auxiliary_Notification_Emergency_Status data type.  The status is used to determine the current state of the event.
@@ -108,7 +108,7 @@ type Auxiliary_Notification_Emergency_Status struct {
 	Entity
 
 	// A name describing the status of the current Emergency Notification.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -116,43 +116,43 @@ type Auxiliary_Press_Release struct {
 	Entity
 
 	// no documentation yet
-	About []Auxiliary_Press_Release_About_Press_Release `json:"about,omitempty"`
+	About []Auxiliary_Press_Release_About_Press_Release `json:"about,omitempty" xmlrpc:"about"`
 
 	// A count of
-	AboutCount *uint `json:"aboutCount,omitempty"`
+	AboutCount *uint `json:"aboutCount,omitempty" xmlrpc:"aboutCount"`
 
 	// A count of
-	ContactCount *uint `json:"contactCount,omitempty"`
+	ContactCount *uint `json:"contactCount,omitempty" xmlrpc:"contactCount"`
 
 	// no documentation yet
-	Contacts []Auxiliary_Press_Release_Contact_Press_Release `json:"contacts,omitempty"`
+	Contacts []Auxiliary_Press_Release_Contact_Press_Release `json:"contacts,omitempty" xmlrpc:"contacts"`
 
 	// A press release's internal identifier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A count of
-	MediaPartnerCount *uint `json:"mediaPartnerCount,omitempty"`
+	MediaPartnerCount *uint `json:"mediaPartnerCount,omitempty" xmlrpc:"mediaPartnerCount"`
 
 	// no documentation yet
-	MediaPartners []Auxiliary_Press_Release_Media_Partner_Press_Release `json:"mediaPartners,omitempty"`
+	MediaPartners []Auxiliary_Press_Release_Media_Partner_Press_Release `json:"mediaPartners,omitempty" xmlrpc:"mediaPartners"`
 
 	// no documentation yet
-	PressReleaseContent *Auxiliary_Press_Release_Content `json:"pressReleaseContent,omitempty"`
+	PressReleaseContent *Auxiliary_Press_Release_Content `json:"pressReleaseContent,omitempty" xmlrpc:"pressReleaseContent"`
 
 	// The data a press release was published.
-	PublishDate *Time `json:"publishDate,omitempty"`
+	PublishDate *Time `json:"publishDate,omitempty" xmlrpc:"publishDate"`
 
 	// A press release's location.
-	ReleaseLocation *string `json:"releaseLocation,omitempty"`
+	ReleaseLocation *string `json:"releaseLocation,omitempty" xmlrpc:"releaseLocation"`
 
 	// A press release's sub-title.
-	SubTitle *string `json:"subTitle,omitempty"`
+	SubTitle *string `json:"subTitle,omitempty" xmlrpc:"subTitle"`
 
 	// A press release's title.
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" xmlrpc:"title"`
 
 	// Whether or not a press release is highlighted on the SoftLayer Website.
-	WebsiteHighlightFlag *bool `json:"websiteHighlightFlag,omitempty"`
+	WebsiteHighlightFlag *bool `json:"websiteHighlightFlag,omitempty" xmlrpc:"websiteHighlightFlag"`
 }
 
 // no documentation yet
@@ -160,13 +160,13 @@ type Auxiliary_Press_Release_About struct {
 	Entity
 
 	// A press release about's content.
-	Content *string `json:"content,omitempty"`
+	Content *string `json:"content,omitempty" xmlrpc:"content"`
 
 	// A press release about's internal
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A press release about's title.
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" xmlrpc:"title"`
 }
 
 // no documentation yet
@@ -174,28 +174,28 @@ type Auxiliary_Press_Release_About_Press_Release struct {
 	Entity
 
 	// A count of
-	AboutParagraphCount *uint `json:"aboutParagraphCount,omitempty"`
+	AboutParagraphCount *uint `json:"aboutParagraphCount,omitempty" xmlrpc:"aboutParagraphCount"`
 
 	// no documentation yet
-	AboutParagraphs []Auxiliary_Press_Release_About `json:"aboutParagraphs,omitempty"`
+	AboutParagraphs []Auxiliary_Press_Release_About `json:"aboutParagraphs,omitempty" xmlrpc:"aboutParagraphs"`
 
 	// A press release about cross
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A press release about's internal
-	PressReleaseAboutId *int `json:"pressReleaseAboutId,omitempty"`
+	PressReleaseAboutId *int `json:"pressReleaseAboutId,omitempty" xmlrpc:"pressReleaseAboutId"`
 
 	// A count of
-	PressReleaseCount *uint `json:"pressReleaseCount,omitempty"`
+	PressReleaseCount *uint `json:"pressReleaseCount,omitempty" xmlrpc:"pressReleaseCount"`
 
 	// A press release internal identifier.
-	PressReleaseId *int `json:"pressReleaseId,omitempty"`
+	PressReleaseId *int `json:"pressReleaseId,omitempty" xmlrpc:"pressReleaseId"`
 
 	// no documentation yet
-	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
+	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty" xmlrpc:"pressReleases"`
 
 	// The number that associated an about
-	SortOrder *int `json:"sortOrder,omitempty"`
+	SortOrder *int `json:"sortOrder,omitempty" xmlrpc:"sortOrder"`
 }
 
 // no documentation yet
@@ -203,22 +203,22 @@ type Auxiliary_Press_Release_Contact struct {
 	Entity
 
 	// A press release contact's email
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty" xmlrpc:"email"`
 
 	// A press release contact's first name.
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName"`
 
 	// A press release contact's internal
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A press release contact's last name.
-	LastName *string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName"`
 
 	// A press release contact's phone
-	Phone *string `json:"phone,omitempty"`
+	Phone *string `json:"phone,omitempty" xmlrpc:"phone"`
 
 	// A press release contact's
-	ProfessionalTitle *string `json:"professionalTitle,omitempty"`
+	ProfessionalTitle *string `json:"professionalTitle,omitempty" xmlrpc:"professionalTitle"`
 }
 
 // no documentation yet
@@ -226,28 +226,28 @@ type Auxiliary_Press_Release_Contact_Press_Release struct {
 	Entity
 
 	// A count of
-	ContactCount *uint `json:"contactCount,omitempty"`
+	ContactCount *uint `json:"contactCount,omitempty" xmlrpc:"contactCount"`
 
 	// no documentation yet
-	Contacts []Auxiliary_Press_Release_Contact `json:"contacts,omitempty"`
+	Contacts []Auxiliary_Press_Release_Contact `json:"contacts,omitempty" xmlrpc:"contacts"`
 
 	// A press release contact cross
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A press release contact's internal
-	PressReleaseContactId *int `json:"pressReleaseContactId,omitempty"`
+	PressReleaseContactId *int `json:"pressReleaseContactId,omitempty" xmlrpc:"pressReleaseContactId"`
 
 	// A count of
-	PressReleaseCount *uint `json:"pressReleaseCount,omitempty"`
+	PressReleaseCount *uint `json:"pressReleaseCount,omitempty" xmlrpc:"pressReleaseCount"`
 
 	// A press release internal identifier.
-	PressReleaseId *int `json:"pressReleaseId,omitempty"`
+	PressReleaseId *int `json:"pressReleaseId,omitempty" xmlrpc:"pressReleaseId"`
 
 	// no documentation yet
-	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
+	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty" xmlrpc:"pressReleases"`
 
 	// The number that associated a contact
-	SortOrder *int `json:"sortOrder,omitempty"`
+	SortOrder *int `json:"sortOrder,omitempty" xmlrpc:"sortOrder"`
 }
 
 // no documentation yet
@@ -255,13 +255,13 @@ type Auxiliary_Press_Release_Content struct {
 	Entity
 
 	// the id of a single press release
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// the press release id that the content
-	PressReleaseId *int `json:"pressReleaseId,omitempty"`
+	PressReleaseId *int `json:"pressReleaseId,omitempty" xmlrpc:"pressReleaseId"`
 
 	// the content of a press release
-	Text *string `json:"text,omitempty"`
+	Text *string `json:"text,omitempty" xmlrpc:"text"`
 }
 
 // no documentation yet
@@ -269,10 +269,10 @@ type Auxiliary_Press_Release_Media_Partner struct {
 	Entity
 
 	// A press release media partner's
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A press release media partner's name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
 
 // no documentation yet
@@ -280,25 +280,25 @@ type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	Entity
 
 	// A press release media partner cross
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// A count of
-	MediaPartnerCount *uint `json:"mediaPartnerCount,omitempty"`
+	MediaPartnerCount *uint `json:"mediaPartnerCount,omitempty" xmlrpc:"mediaPartnerCount"`
 
 	// A press release media partner's
-	MediaPartnerId *int `json:"mediaPartnerId,omitempty"`
+	MediaPartnerId *int `json:"mediaPartnerId,omitempty" xmlrpc:"mediaPartnerId"`
 
 	// no documentation yet
-	MediaPartners []Auxiliary_Press_Release_Media_Partner `json:"mediaPartners,omitempty"`
+	MediaPartners []Auxiliary_Press_Release_Media_Partner `json:"mediaPartners,omitempty" xmlrpc:"mediaPartners"`
 
 	// A count of
-	PressReleaseCount *uint `json:"pressReleaseCount,omitempty"`
+	PressReleaseCount *uint `json:"pressReleaseCount,omitempty" xmlrpc:"pressReleaseCount"`
 
 	// A press release internal identifier.
-	PressReleaseId *int `json:"pressReleaseId,omitempty"`
+	PressReleaseId *int `json:"pressReleaseId,omitempty" xmlrpc:"pressReleaseId"`
 
 	// no documentation yet
-	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty"`
+	PressReleases []Auxiliary_Press_Release `json:"pressReleases,omitempty" xmlrpc:"pressReleases"`
 }
 
 // The SoftLayer_Auxiliary_Shipping_Courier data type contains general information relating the different (major) couriers that SoftLayer may use for shipping.
@@ -306,16 +306,16 @@ type Auxiliary_Shipping_Courier struct {
 	Entity
 
 	// The unique id of the shipping courier.
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// The unique keyname of the shipping courier.
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// The name of the shipping courier.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 
 	// The url to shipping courier's website.
-	Url *string `json:"url,omitempty"`
+	Url *string `json:"url,omitempty" xmlrpc:"url"`
 }
 
 // no documentation yet
@@ -323,20 +323,20 @@ type Auxiliary_Shipping_Courier_Type struct {
 	Entity
 
 	// no documentation yet
-	Courier []Auxiliary_Shipping_Courier `json:"courier,omitempty"`
+	Courier []Auxiliary_Shipping_Courier `json:"courier,omitempty" xmlrpc:"courier"`
 
 	// A count of
-	CourierCount *uint `json:"courierCount,omitempty"`
+	CourierCount *uint `json:"courierCount,omitempty" xmlrpc:"courierCount"`
 
 	// no documentation yet
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" xmlrpc:"description"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty"`
+	Id *int `json:"id,omitempty" xmlrpc:"id"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
 
 	// no documentation yet
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" xmlrpc:"name"`
 }
