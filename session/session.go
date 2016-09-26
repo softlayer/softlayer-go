@@ -66,6 +66,8 @@ type TransportHandler interface {
 		pResult interface{}) error
 }
 
+const DefaultTimeout = time.Second * 60
+
 // Session stores the information required for communication with the SoftLayer
 // API
 type Session struct {

@@ -23,7 +23,6 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"strings"
-	"time"
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
@@ -57,8 +56,6 @@ func (mrt debugRoundTripper) RoundTrip(request *http.Request) (*http.Response, e
 // XML-RPC Transport
 type XmlRpcTransport struct{}
 
-const DefaultXmlRpcTimeout = time.Second * 60
-
 func (x *XmlRpcTransport) DoRequest(
 	sess *Session,
 	service string,
@@ -78,7 +75,7 @@ func (x *XmlRpcTransport) DoRequest(
 			roundTripper = debugRoundTripper{}
 		}
 
-		timeout := DefaultXmlRpcTimeout
+		timeout := DefaultTimeout
 		if sess.Timeout != 0 {
 			timeout = sess.Timeout
 		}
