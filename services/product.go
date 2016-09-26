@@ -53,7 +53,7 @@ func (r Product_Item_Category) Mask(mask string) Product_Item_Category {
 	return r
 }
 
-func (r Product_Item_Category) Filter(filter string) Product_Item_Category {
+func (r Product_Item_Category) Filter(filter interface{}) Product_Item_Category {
 	r.Options.Filter = filter
 	return r
 }
@@ -119,7 +119,7 @@ func (r Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category
 	return
 }
 
-// Retrieve Any unique options associated with an itme category.
+// Retrieve Any unique options associated with an item category.
 func (r Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &r.Options, &resp)
 	return
@@ -206,7 +206,7 @@ func (r Product_Item_Category_Group) Mask(mask string) Product_Item_Category_Gro
 	return r
 }
 
-func (r Product_Item_Category_Group) Filter(filter string) Product_Item_Category_Group {
+func (r Product_Item_Category_Group) Filter(filter interface{}) Product_Item_Category_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -251,7 +251,7 @@ func (r Product_Item_Policy_Assignment) Mask(mask string) Product_Item_Policy_As
 	return r
 }
 
-func (r Product_Item_Policy_Assignment) Filter(filter string) Product_Item_Policy_Assignment {
+func (r Product_Item_Policy_Assignment) Filter(filter interface{}) Product_Item_Policy_Assignment {
 	r.Options.Filter = filter
 	return r
 }
@@ -323,7 +323,7 @@ func (r Product_Item_Price) Mask(mask string) Product_Item_Price {
 	return r
 }
 
-func (r Product_Item_Price) Filter(filter string) Product_Item_Price {
+func (r Product_Item_Price) Filter(filter interface{}) Product_Item_Price {
 	r.Options.Filter = filter
 	return r
 }
@@ -480,7 +480,7 @@ func (r Product_Item_Price_Premium) Mask(mask string) Product_Item_Price_Premium
 	return r
 }
 
-func (r Product_Item_Price_Premium) Filter(filter string) Product_Item_Price_Premium {
+func (r Product_Item_Price_Premium) Filter(filter interface{}) Product_Item_Price_Premium {
 	r.Options.Filter = filter
 	return r
 }
@@ -543,7 +543,7 @@ func (r Product_Order) Mask(mask string) Product_Order {
 	return r
 }
 
-func (r Product_Order) Filter(filter string) Product_Order {
+func (r Product_Order) Filter(filter interface{}) Product_Order {
 	r.Options.Filter = filter
 	return r
 }
@@ -1140,7 +1140,7 @@ func (r Product_Package) Mask(mask string) Product_Package {
 	return r
 }
 
-func (r Product_Package) Filter(filter string) Product_Package {
+func (r Product_Package) Filter(filter interface{}) Product_Package {
 	r.Options.Filter = filter
 	return r
 }
@@ -1578,7 +1578,7 @@ func (r Product_Package_Preset) Mask(mask string) Product_Package_Preset {
 	return r
 }
 
-func (r Product_Package_Preset) Filter(filter string) Product_Package_Preset {
+func (r Product_Package_Preset) Filter(filter interface{}) Product_Package_Preset {
 	r.Options.Filter = filter
 	return r
 }
@@ -1695,7 +1695,7 @@ func (r Product_Package_Server) Mask(mask string) Product_Package_Server {
 	return r
 }
 
-func (r Product_Package_Server) Filter(filter string) Product_Package_Server {
+func (r Product_Package_Server) Filter(filter interface{}) Product_Package_Server {
 	r.Options.Filter = filter
 	return r
 }
@@ -1776,7 +1776,7 @@ func (r Product_Package_Server_Option) Mask(mask string) Product_Package_Server_
 	return r
 }
 
-func (r Product_Package_Server_Option) Filter(filter string) Product_Package_Server_Option {
+func (r Product_Package_Server_Option) Filter(filter interface{}) Product_Package_Server_Option {
 	r.Options.Filter = filter
 	return r
 }
@@ -1836,7 +1836,7 @@ func (r Product_Package_Type) Mask(mask string) Product_Package_Type {
 	return r
 }
 
-func (r Product_Package_Type) Filter(filter string) Product_Package_Type {
+func (r Product_Package_Type) Filter(filter interface{}) Product_Package_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -1893,7 +1893,7 @@ func (r Product_Upgrade_Request) Mask(mask string) Product_Upgrade_Request {
 	return r
 }
 
-func (r Product_Upgrade_Request) Filter(filter string) Product_Upgrade_Request {
+func (r Product_Upgrade_Request) Filter(filter interface{}) Product_Upgrade_Request {
 	r.Options.Filter = filter
 	return r
 }

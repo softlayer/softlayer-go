@@ -53,7 +53,7 @@ func (r Hardware) Mask(mask string) Hardware {
 	return r
 }
 
-func (r Hardware) Filter(filter string) Hardware {
+func (r Hardware) Filter(filter interface{}) Hardware {
 	r.Options.Filter = filter
 	return r
 }
@@ -1527,7 +1527,7 @@ func (r Hardware_Benchmark_Certification) Mask(mask string) Hardware_Benchmark_C
 	return r
 }
 
-func (r Hardware_Benchmark_Certification) Filter(filter string) Hardware_Benchmark_Certification {
+func (r Hardware_Benchmark_Certification) Filter(filter interface{}) Hardware_Benchmark_Certification {
 	r.Options.Filter = filter
 	return r
 }
@@ -1590,7 +1590,7 @@ func (r Hardware_Component_Model) Mask(mask string) Hardware_Component_Model {
 	return r
 }
 
-func (r Hardware_Component_Model) Filter(filter string) Hardware_Component_Model {
+func (r Hardware_Component_Model) Filter(filter interface{}) Hardware_Component_Model {
 	r.Options.Filter = filter
 	return r
 }
@@ -1707,7 +1707,7 @@ func (r Hardware_Component_Partition_OperatingSystem) Mask(mask string) Hardware
 	return r
 }
 
-func (r Hardware_Component_Partition_OperatingSystem) Filter(filter string) Hardware_Component_Partition_OperatingSystem {
+func (r Hardware_Component_Partition_OperatingSystem) Filter(filter interface{}) Hardware_Component_Partition_OperatingSystem {
 	r.Options.Filter = filter
 	return r
 }
@@ -1773,7 +1773,7 @@ func (r Hardware_Component_Partition_Template) Mask(mask string) Hardware_Compon
 	return r
 }
 
-func (r Hardware_Component_Partition_Template) Filter(filter string) Hardware_Component_Partition_Template {
+func (r Hardware_Component_Partition_Template) Filter(filter interface{}) Hardware_Component_Partition_Template {
 	r.Options.Filter = filter
 	return r
 }
@@ -1848,7 +1848,7 @@ func (r Hardware_Router) Mask(mask string) Hardware_Router {
 	return r
 }
 
-func (r Hardware_Router) Filter(filter string) Hardware_Router {
+func (r Hardware_Router) Filter(filter interface{}) Hardware_Router {
 	r.Options.Filter = filter
 	return r
 }
@@ -3340,7 +3340,7 @@ func (r Hardware_SecurityModule) Mask(mask string) Hardware_SecurityModule {
 	return r
 }
 
-func (r Hardware_SecurityModule) Filter(filter string) Hardware_SecurityModule {
+func (r Hardware_SecurityModule) Filter(filter interface{}) Hardware_SecurityModule {
 	r.Options.Filter = filter
 	return r
 }
@@ -5444,7 +5444,7 @@ func (r Hardware_Server) Mask(mask string) Hardware_Server {
 	return r
 }
 
-func (r Hardware_Server) Filter(filter string) Hardware_Server {
+func (r Hardware_Server) Filter(filter interface{}) Hardware_Server {
 	r.Options.Filter = filter
 	return r
 }

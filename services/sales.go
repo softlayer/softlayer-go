@@ -53,7 +53,7 @@ func (r Sales_Presale_Event) Mask(mask string) Sales_Presale_Event {
 	return r
 }
 
-func (r Sales_Presale_Event) Filter(filter string) Sales_Presale_Event {
+func (r Sales_Presale_Event) Filter(filter interface{}) Sales_Presale_Event {
 	r.Options.Filter = filter
 	return r
 }

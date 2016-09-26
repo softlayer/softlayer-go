@@ -55,7 +55,7 @@ func (r Ticket) Mask(mask string) Ticket {
 	return r
 }
 
-func (r Ticket) Filter(filter string) Ticket {
+func (r Ticket) Filter(filter interface{}) Ticket {
 	r.Options.Filter = filter
 	return r
 }
@@ -615,7 +615,7 @@ func (r Ticket_Attachment_File) Mask(mask string) Ticket_Attachment_File {
 	return r
 }
 
-func (r Ticket_Attachment_File) Filter(filter string) Ticket_Attachment_File {
+func (r Ticket_Attachment_File) Filter(filter interface{}) Ticket_Attachment_File {
 	r.Options.Filter = filter
 	return r
 }
@@ -678,7 +678,7 @@ func (r Ticket_Priority) Mask(mask string) Ticket_Priority {
 	return r
 }
 
-func (r Ticket_Priority) Filter(filter string) Ticket_Priority {
+func (r Ticket_Priority) Filter(filter interface{}) Ticket_Priority {
 	r.Options.Filter = filter
 	return r
 }
@@ -723,7 +723,7 @@ func (r Ticket_Subject) Mask(mask string) Ticket_Subject {
 	return r
 }
 
-func (r Ticket_Subject) Filter(filter string) Ticket_Subject {
+func (r Ticket_Subject) Filter(filter interface{}) Ticket_Subject {
 	r.Options.Filter = filter
 	return r
 }
@@ -786,7 +786,7 @@ func (r Ticket_Survey) Mask(mask string) Ticket_Survey {
 	return r
 }
 
-func (r Ticket_Survey) Filter(filter string) Ticket_Survey {
+func (r Ticket_Survey) Filter(filter interface{}) Ticket_Survey {
 	r.Options.Filter = filter
 	return r
 }
@@ -847,7 +847,7 @@ func (r Ticket_Update_Employee) Mask(mask string) Ticket_Update_Employee {
 	return r
 }
 
-func (r Ticket_Update_Employee) Filter(filter string) Ticket_Update_Employee {
+func (r Ticket_Update_Employee) Filter(filter interface{}) Ticket_Update_Employee {
 	r.Options.Filter = filter
 	return r
 }

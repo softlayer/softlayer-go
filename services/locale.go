@@ -53,7 +53,7 @@ func (r Locale) Mask(mask string) Locale {
 	return r
 }
 
-func (r Locale) Filter(filter string) Locale {
+func (r Locale) Filter(filter interface{}) Locale {
 	r.Options.Filter = filter
 	return r
 }
@@ -107,7 +107,7 @@ func (r Locale_Country) Mask(mask string) Locale_Country {
 	return r
 }
 
-func (r Locale_Country) Filter(filter string) Locale_Country {
+func (r Locale_Country) Filter(filter interface{}) Locale_Country {
 	r.Options.Filter = filter
 	return r
 }
@@ -170,7 +170,7 @@ func (r Locale_Timezone) Mask(mask string) Locale_Timezone {
 	return r
 }
 
-func (r Locale_Timezone) Filter(filter string) Locale_Timezone {
+func (r Locale_Timezone) Filter(filter interface{}) Locale_Timezone {
 	r.Options.Filter = filter
 	return r
 }

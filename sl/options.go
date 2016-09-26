@@ -21,7 +21,7 @@ package sl
 type Options struct {
 	Id     *int
 	Mask   string
-	Filter string
+	Filter interface{}
 	Limit  *int
 	Offset *int
 }

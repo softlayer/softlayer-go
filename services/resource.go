@@ -53,7 +53,7 @@ func (r Resource_Group) Mask(mask string) Resource_Group {
 	return r
 }
 
-func (r Resource_Group) Filter(filter string) Resource_Group {
+func (r Resource_Group) Filter(filter interface{}) Resource_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -155,7 +155,7 @@ func (r Resource_Group_Template) Mask(mask string) Resource_Group_Template {
 	return r
 }
 
-func (r Resource_Group_Template) Filter(filter string) Resource_Group_Template {
+func (r Resource_Group_Template) Filter(filter interface{}) Resource_Group_Template {
 	r.Options.Filter = filter
 	return r
 }
@@ -224,7 +224,7 @@ func (r Resource_Metadata) Mask(mask string) Resource_Metadata {
 	return r
 }
 
-func (r Resource_Metadata) Filter(filter string) Resource_Metadata {
+func (r Resource_Metadata) Filter(filter interface{}) Resource_Metadata {
 	r.Options.Filter = filter
 	return r
 }

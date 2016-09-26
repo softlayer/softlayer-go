@@ -53,7 +53,7 @@ func (r Layout_Container) Mask(mask string) Layout_Container {
 	return r
 }
 
-func (r Layout_Container) Filter(filter string) Layout_Container {
+func (r Layout_Container) Filter(filter interface{}) Layout_Container {
 	r.Options.Filter = filter
 	return r
 }
@@ -116,7 +116,7 @@ func (r Layout_Item) Mask(mask string) Layout_Item {
 	return r
 }
 
-func (r Layout_Item) Filter(filter string) Layout_Item {
+func (r Layout_Item) Filter(filter interface{}) Layout_Item {
 	r.Options.Filter = filter
 	return r
 }
@@ -173,7 +173,7 @@ func (r Layout_Profile) Mask(mask string) Layout_Profile {
 	return r
 }
 
-func (r Layout_Profile) Filter(filter string) Layout_Profile {
+func (r Layout_Profile) Filter(filter interface{}) Layout_Profile {
 	r.Options.Filter = filter
 	return r
 }
@@ -276,7 +276,7 @@ func (r Layout_Profile_Containers) Mask(mask string) Layout_Profile_Containers {
 	return r
 }
 
-func (r Layout_Profile_Containers) Filter(filter string) Layout_Profile_Containers {
+func (r Layout_Profile_Containers) Filter(filter interface{}) Layout_Profile_Containers {
 	r.Options.Filter = filter
 	return r
 }
@@ -351,7 +351,7 @@ func (r Layout_Profile_Customer) Mask(mask string) Layout_Profile_Customer {
 	return r
 }
 
-func (r Layout_Profile_Customer) Filter(filter string) Layout_Profile_Customer {
+func (r Layout_Profile_Customer) Filter(filter interface{}) Layout_Profile_Customer {
 	r.Options.Filter = filter
 	return r
 }
@@ -460,7 +460,7 @@ func (r Layout_Profile_Preference) Mask(mask string) Layout_Profile_Preference {
 	return r
 }
 
-func (r Layout_Profile_Preference) Filter(filter string) Layout_Profile_Preference {
+func (r Layout_Profile_Preference) Filter(filter interface{}) Layout_Profile_Preference {
 	r.Options.Filter = filter
 	return r
 }

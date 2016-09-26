@@ -53,7 +53,7 @@ func (r Monitoring_Agent) Mask(mask string) Monitoring_Agent {
 	return r
 }
 
-func (r Monitoring_Agent) Filter(filter string) Monitoring_Agent {
+func (r Monitoring_Agent) Filter(filter interface{}) Monitoring_Agent {
 	r.Options.Filter = filter
 	return r
 }
@@ -281,7 +281,7 @@ func (r Monitoring_Agent_Configuration_Template_Group) Mask(mask string) Monitor
 	return r
 }
 
-func (r Monitoring_Agent_Configuration_Template_Group) Filter(filter string) Monitoring_Agent_Configuration_Template_Group {
+func (r Monitoring_Agent_Configuration_Template_Group) Filter(filter interface{}) Monitoring_Agent_Configuration_Template_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -389,7 +389,7 @@ func (r Monitoring_Agent_Configuration_Template_Group_Reference) Mask(mask strin
 	return r
 }
 
-func (r Monitoring_Agent_Configuration_Template_Group_Reference) Filter(filter string) Monitoring_Agent_Configuration_Template_Group_Reference {
+func (r Monitoring_Agent_Configuration_Template_Group_Reference) Filter(filter interface{}) Monitoring_Agent_Configuration_Template_Group_Reference {
 	r.Options.Filter = filter
 	return r
 }
@@ -488,7 +488,7 @@ func (r Monitoring_Agent_Configuration_Value) Mask(mask string) Monitoring_Agent
 	return r
 }
 
-func (r Monitoring_Agent_Configuration_Value) Filter(filter string) Monitoring_Agent_Configuration_Value {
+func (r Monitoring_Agent_Configuration_Value) Filter(filter interface{}) Monitoring_Agent_Configuration_Value {
 	r.Options.Filter = filter
 	return r
 }
@@ -557,7 +557,7 @@ func (r Monitoring_Agent_Status) Mask(mask string) Monitoring_Agent_Status {
 	return r
 }
 
-func (r Monitoring_Agent_Status) Filter(filter string) Monitoring_Agent_Status {
+func (r Monitoring_Agent_Status) Filter(filter interface{}) Monitoring_Agent_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -602,7 +602,7 @@ func (r Monitoring_Robot) Mask(mask string) Monitoring_Robot {
 	return r
 }
 
-func (r Monitoring_Robot) Filter(filter string) Monitoring_Robot {
+func (r Monitoring_Robot) Filter(filter interface{}) Monitoring_Robot {
 	r.Options.Filter = filter
 	return r
 }

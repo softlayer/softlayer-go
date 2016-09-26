@@ -53,7 +53,7 @@ func (r Scale_Asset) Mask(mask string) Scale_Asset {
 	return r
 }
 
-func (r Scale_Asset) Filter(filter string) Scale_Asset {
+func (r Scale_Asset) Filter(filter interface{}) Scale_Asset {
 	r.Options.Filter = filter
 	return r
 }
@@ -110,7 +110,7 @@ func (r Scale_Asset_Hardware) Mask(mask string) Scale_Asset_Hardware {
 	return r
 }
 
-func (r Scale_Asset_Hardware) Filter(filter string) Scale_Asset_Hardware {
+func (r Scale_Asset_Hardware) Filter(filter interface{}) Scale_Asset_Hardware {
 	r.Options.Filter = filter
 	return r
 }
@@ -188,7 +188,7 @@ func (r Scale_Asset_Virtual_Guest) Mask(mask string) Scale_Asset_Virtual_Guest {
 	return r
 }
 
-func (r Scale_Asset_Virtual_Guest) Filter(filter string) Scale_Asset_Virtual_Guest {
+func (r Scale_Asset_Virtual_Guest) Filter(filter interface{}) Scale_Asset_Virtual_Guest {
 	r.Options.Filter = filter
 	return r
 }
@@ -266,7 +266,7 @@ func (r Scale_Group) Mask(mask string) Scale_Group {
 	return r
 }
 
-func (r Scale_Group) Filter(filter string) Scale_Group {
+func (r Scale_Group) Filter(filter interface{}) Scale_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -445,7 +445,7 @@ func (r Scale_Group_Status) Mask(mask string) Scale_Group_Status {
 	return r
 }
 
-func (r Scale_Group_Status) Filter(filter string) Scale_Group_Status {
+func (r Scale_Group_Status) Filter(filter interface{}) Scale_Group_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -496,7 +496,7 @@ func (r Scale_LoadBalancer) Mask(mask string) Scale_LoadBalancer {
 	return r
 }
 
-func (r Scale_LoadBalancer) Filter(filter string) Scale_LoadBalancer {
+func (r Scale_LoadBalancer) Filter(filter interface{}) Scale_LoadBalancer {
 	r.Options.Filter = filter
 	return r
 }
@@ -613,7 +613,7 @@ func (r Scale_Member) Mask(mask string) Scale_Member {
 	return r
 }
 
-func (r Scale_Member) Filter(filter string) Scale_Member {
+func (r Scale_Member) Filter(filter interface{}) Scale_Member {
 	r.Options.Filter = filter
 	return r
 }
@@ -670,7 +670,7 @@ func (r Scale_Member_Virtual_Guest) Mask(mask string) Scale_Member_Virtual_Guest
 	return r
 }
 
-func (r Scale_Member_Virtual_Guest) Filter(filter string) Scale_Member_Virtual_Guest {
+func (r Scale_Member_Virtual_Guest) Filter(filter interface{}) Scale_Member_Virtual_Guest {
 	r.Options.Filter = filter
 	return r
 }
@@ -739,7 +739,7 @@ func (r Scale_Network_Vlan) Mask(mask string) Scale_Network_Vlan {
 	return r
 }
 
-func (r Scale_Network_Vlan) Filter(filter string) Scale_Network_Vlan {
+func (r Scale_Network_Vlan) Filter(filter interface{}) Scale_Network_Vlan {
 	r.Options.Filter = filter
 	return r
 }
@@ -811,7 +811,7 @@ func (r Scale_Policy) Mask(mask string) Scale_Policy {
 	return r
 }
 
-func (r Scale_Policy) Filter(filter string) Scale_Policy {
+func (r Scale_Policy) Filter(filter interface{}) Scale_Policy {
 	r.Options.Filter = filter
 	return r
 }
@@ -928,7 +928,7 @@ func (r Scale_Policy_Action) Mask(mask string) Scale_Policy_Action {
 	return r
 }
 
-func (r Scale_Policy_Action) Filter(filter string) Scale_Policy_Action {
+func (r Scale_Policy_Action) Filter(filter interface{}) Scale_Policy_Action {
 	r.Options.Filter = filter
 	return r
 }
@@ -1000,7 +1000,7 @@ func (r Scale_Policy_Action_Scale) Mask(mask string) Scale_Policy_Action_Scale {
 	return r
 }
 
-func (r Scale_Policy_Action_Scale) Filter(filter string) Scale_Policy_Action_Scale {
+func (r Scale_Policy_Action_Scale) Filter(filter interface{}) Scale_Policy_Action_Scale {
 	r.Options.Filter = filter
 	return r
 }
@@ -1081,7 +1081,7 @@ func (r Scale_Policy_Action_Type) Mask(mask string) Scale_Policy_Action_Type {
 	return r
 }
 
-func (r Scale_Policy_Action_Type) Filter(filter string) Scale_Policy_Action_Type {
+func (r Scale_Policy_Action_Type) Filter(filter interface{}) Scale_Policy_Action_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -1132,7 +1132,7 @@ func (r Scale_Policy_Trigger) Mask(mask string) Scale_Policy_Trigger {
 	return r
 }
 
-func (r Scale_Policy_Trigger) Filter(filter string) Scale_Policy_Trigger {
+func (r Scale_Policy_Trigger) Filter(filter interface{}) Scale_Policy_Trigger {
 	r.Options.Filter = filter
 	return r
 }
@@ -1213,7 +1213,7 @@ func (r Scale_Policy_Trigger_OneTime) Mask(mask string) Scale_Policy_Trigger_One
 	return r
 }
 
-func (r Scale_Policy_Trigger_OneTime) Filter(filter string) Scale_Policy_Trigger_OneTime {
+func (r Scale_Policy_Trigger_OneTime) Filter(filter interface{}) Scale_Policy_Trigger_OneTime {
 	r.Options.Filter = filter
 	return r
 }
@@ -1294,7 +1294,7 @@ func (r Scale_Policy_Trigger_Repeating) Mask(mask string) Scale_Policy_Trigger_R
 	return r
 }
 
-func (r Scale_Policy_Trigger_Repeating) Filter(filter string) Scale_Policy_Trigger_Repeating {
+func (r Scale_Policy_Trigger_Repeating) Filter(filter interface{}) Scale_Policy_Trigger_Repeating {
 	r.Options.Filter = filter
 	return r
 }
@@ -1385,7 +1385,7 @@ func (r Scale_Policy_Trigger_ResourceUse) Mask(mask string) Scale_Policy_Trigger
 	return r
 }
 
-func (r Scale_Policy_Trigger_ResourceUse) Filter(filter string) Scale_Policy_Trigger_ResourceUse {
+func (r Scale_Policy_Trigger_ResourceUse) Filter(filter interface{}) Scale_Policy_Trigger_ResourceUse {
 	r.Options.Filter = filter
 	return r
 }
@@ -1472,7 +1472,7 @@ func (r Scale_Policy_Trigger_ResourceUse_Watch) Mask(mask string) Scale_Policy_T
 	return r
 }
 
-func (r Scale_Policy_Trigger_ResourceUse_Watch) Filter(filter string) Scale_Policy_Trigger_ResourceUse_Watch {
+func (r Scale_Policy_Trigger_ResourceUse_Watch) Filter(filter interface{}) Scale_Policy_Trigger_ResourceUse_Watch {
 	r.Options.Filter = filter
 	return r
 }
@@ -1565,7 +1565,7 @@ func (r Scale_Policy_Trigger_Type) Mask(mask string) Scale_Policy_Trigger_Type {
 	return r
 }
 
-func (r Scale_Policy_Trigger_Type) Filter(filter string) Scale_Policy_Trigger_Type {
+func (r Scale_Policy_Trigger_Type) Filter(filter interface{}) Scale_Policy_Trigger_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -1616,7 +1616,7 @@ func (r Scale_Termination_Policy) Mask(mask string) Scale_Termination_Policy {
 	return r
 }
 
-func (r Scale_Termination_Policy) Filter(filter string) Scale_Termination_Policy {
+func (r Scale_Termination_Policy) Filter(filter interface{}) Scale_Termination_Policy {
 	r.Options.Filter = filter
 	return r
 }

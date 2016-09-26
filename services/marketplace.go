@@ -53,7 +53,7 @@ func (r Marketplace_Partner) Mask(mask string) Marketplace_Partner {
 	return r
 }
 
-func (r Marketplace_Partner) Filter(filter string) Marketplace_Partner {
+func (r Marketplace_Partner) Filter(filter interface{}) Marketplace_Partner {
 	r.Options.Filter = filter
 	return r
 }

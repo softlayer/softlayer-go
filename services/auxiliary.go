@@ -53,7 +53,7 @@ func (r Auxiliary_Marketing_Event) Mask(mask string) Auxiliary_Marketing_Event {
 	return r
 }
 
-func (r Auxiliary_Marketing_Event) Filter(filter string) Auxiliary_Marketing_Event {
+func (r Auxiliary_Marketing_Event) Filter(filter interface{}) Auxiliary_Marketing_Event {
 	r.Options.Filter = filter
 	return r
 }
@@ -104,7 +104,7 @@ func (r Auxiliary_Network_Status) Mask(mask string) Auxiliary_Network_Status {
 	return r
 }
 
-func (r Auxiliary_Network_Status) Filter(filter string) Auxiliary_Network_Status {
+func (r Auxiliary_Network_Status) Filter(filter interface{}) Auxiliary_Network_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -163,7 +163,7 @@ func (r Auxiliary_Notification_Emergency) Mask(mask string) Auxiliary_Notificati
 	return r
 }
 
-func (r Auxiliary_Notification_Emergency) Filter(filter string) Auxiliary_Notification_Emergency {
+func (r Auxiliary_Notification_Emergency) Filter(filter interface{}) Auxiliary_Notification_Emergency {
 	r.Options.Filter = filter
 	return r
 }
@@ -232,7 +232,7 @@ func (r Auxiliary_Press_Release) Mask(mask string) Auxiliary_Press_Release {
 	return r
 }
 
-func (r Auxiliary_Press_Release) Filter(filter string) Auxiliary_Press_Release {
+func (r Auxiliary_Press_Release) Filter(filter interface{}) Auxiliary_Press_Release {
 	r.Options.Filter = filter
 	return r
 }
@@ -329,7 +329,7 @@ func (r Auxiliary_Press_Release_About) Mask(mask string) Auxiliary_Press_Release
 	return r
 }
 
-func (r Auxiliary_Press_Release_About) Filter(filter string) Auxiliary_Press_Release_About {
+func (r Auxiliary_Press_Release_About) Filter(filter interface{}) Auxiliary_Press_Release_About {
 	r.Options.Filter = filter
 	return r
 }
@@ -374,7 +374,7 @@ func (r Auxiliary_Press_Release_About_Press_Release) Mask(mask string) Auxiliary
 	return r
 }
 
-func (r Auxiliary_Press_Release_About_Press_Release) Filter(filter string) Auxiliary_Press_Release_About_Press_Release {
+func (r Auxiliary_Press_Release_About_Press_Release) Filter(filter interface{}) Auxiliary_Press_Release_About_Press_Release {
 	r.Options.Filter = filter
 	return r
 }
@@ -431,7 +431,7 @@ func (r Auxiliary_Press_Release_Contact) Mask(mask string) Auxiliary_Press_Relea
 	return r
 }
 
-func (r Auxiliary_Press_Release_Contact) Filter(filter string) Auxiliary_Press_Release_Contact {
+func (r Auxiliary_Press_Release_Contact) Filter(filter interface{}) Auxiliary_Press_Release_Contact {
 	r.Options.Filter = filter
 	return r
 }
@@ -476,7 +476,7 @@ func (r Auxiliary_Press_Release_Contact_Press_Release) Mask(mask string) Auxilia
 	return r
 }
 
-func (r Auxiliary_Press_Release_Contact_Press_Release) Filter(filter string) Auxiliary_Press_Release_Contact_Press_Release {
+func (r Auxiliary_Press_Release_Contact_Press_Release) Filter(filter interface{}) Auxiliary_Press_Release_Contact_Press_Release {
 	r.Options.Filter = filter
 	return r
 }
@@ -533,7 +533,7 @@ func (r Auxiliary_Press_Release_Content) Mask(mask string) Auxiliary_Press_Relea
 	return r
 }
 
-func (r Auxiliary_Press_Release_Content) Filter(filter string) Auxiliary_Press_Release_Content {
+func (r Auxiliary_Press_Release_Content) Filter(filter interface{}) Auxiliary_Press_Release_Content {
 	r.Options.Filter = filter
 	return r
 }
@@ -578,7 +578,7 @@ func (r Auxiliary_Press_Release_Media_Partner) Mask(mask string) Auxiliary_Press
 	return r
 }
 
-func (r Auxiliary_Press_Release_Media_Partner) Filter(filter string) Auxiliary_Press_Release_Media_Partner {
+func (r Auxiliary_Press_Release_Media_Partner) Filter(filter interface{}) Auxiliary_Press_Release_Media_Partner {
 	r.Options.Filter = filter
 	return r
 }
@@ -623,7 +623,7 @@ func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Mask(mask string) A
 	return r
 }
 
-func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Filter(filter string) Auxiliary_Press_Release_Media_Partner_Press_Release {
+func (r Auxiliary_Press_Release_Media_Partner_Press_Release) Filter(filter interface{}) Auxiliary_Press_Release_Media_Partner_Press_Release {
 	r.Options.Filter = filter
 	return r
 }
@@ -680,7 +680,7 @@ func (r Auxiliary_Shipping_Courier_Type) Mask(mask string) Auxiliary_Shipping_Co
 	return r
 }
 
-func (r Auxiliary_Shipping_Courier_Type) Filter(filter string) Auxiliary_Shipping_Courier_Type {
+func (r Auxiliary_Shipping_Courier_Type) Filter(filter interface{}) Auxiliary_Shipping_Courier_Type {
 	r.Options.Filter = filter
 	return r
 }

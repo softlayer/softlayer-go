@@ -53,7 +53,7 @@ func (r FlexibleCredit_Program) Mask(mask string) FlexibleCredit_Program {
 	return r
 }
 
-func (r FlexibleCredit_Program) Filter(filter string) FlexibleCredit_Program {
+func (r FlexibleCredit_Program) Filter(filter interface{}) FlexibleCredit_Program {
 	r.Options.Filter = filter
 	return r
 }

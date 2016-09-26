@@ -53,7 +53,7 @@ func (r Dns_Domain) Mask(mask string) Dns_Domain {
 	return r
 }
 
-func (r Dns_Domain) Filter(filter string) Dns_Domain {
+func (r Dns_Domain) Filter(filter interface{}) Dns_Domain {
 	r.Options.Filter = filter
 	return r
 }
@@ -266,7 +266,7 @@ func (r Dns_Domain_Registration) Mask(mask string) Dns_Domain_Registration {
 	return r
 }
 
-func (r Dns_Domain_Registration) Filter(filter string) Dns_Domain_Registration {
+func (r Dns_Domain_Registration) Filter(filter interface{}) Dns_Domain_Registration {
 	r.Options.Filter = filter
 	return r
 }
@@ -500,7 +500,7 @@ func (r Dns_Domain_Registration_Registrant_Verification_Status) Mask(mask string
 	return r
 }
 
-func (r Dns_Domain_Registration_Registrant_Verification_Status) Filter(filter string) Dns_Domain_Registration_Registrant_Verification_Status {
+func (r Dns_Domain_Registration_Registrant_Verification_Status) Filter(filter interface{}) Dns_Domain_Registration_Registrant_Verification_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -560,7 +560,7 @@ func (r Dns_Domain_Registration_Status) Mask(mask string) Dns_Domain_Registratio
 	return r
 }
 
-func (r Dns_Domain_Registration_Status) Filter(filter string) Dns_Domain_Registration_Status {
+func (r Dns_Domain_Registration_Status) Filter(filter interface{}) Dns_Domain_Registration_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -624,7 +624,7 @@ func (r Dns_Domain_ResourceRecord) Mask(mask string) Dns_Domain_ResourceRecord {
 	return r
 }
 
-func (r Dns_Domain_ResourceRecord) Filter(filter string) Dns_Domain_ResourceRecord {
+func (r Dns_Domain_ResourceRecord) Filter(filter interface{}) Dns_Domain_ResourceRecord {
 	r.Options.Filter = filter
 	return r
 }
@@ -742,7 +742,7 @@ func (r Dns_Domain_ResourceRecord_MxType) Mask(mask string) Dns_Domain_ResourceR
 	return r
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) Filter(filter string) Dns_Domain_ResourceRecord_MxType {
+func (r Dns_Domain_ResourceRecord_MxType) Filter(filter interface{}) Dns_Domain_ResourceRecord_MxType {
 	r.Options.Filter = filter
 	return r
 }
@@ -854,7 +854,7 @@ func (r Dns_Domain_ResourceRecord_SrvType) Mask(mask string) Dns_Domain_Resource
 	return r
 }
 
-func (r Dns_Domain_ResourceRecord_SrvType) Filter(filter string) Dns_Domain_ResourceRecord_SrvType {
+func (r Dns_Domain_ResourceRecord_SrvType) Filter(filter interface{}) Dns_Domain_ResourceRecord_SrvType {
 	r.Options.Filter = filter
 	return r
 }
@@ -966,7 +966,7 @@ func (r Dns_Secondary) Mask(mask string) Dns_Secondary {
 	return r
 }
 
-func (r Dns_Secondary) Filter(filter string) Dns_Secondary {
+func (r Dns_Secondary) Filter(filter interface{}) Dns_Secondary {
 	r.Options.Filter = filter
 	return r
 }

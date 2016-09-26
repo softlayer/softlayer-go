@@ -55,7 +55,7 @@ func (r Virtual_Disk_Image) Mask(mask string) Virtual_Disk_Image {
 	return r
 }
 
-func (r Virtual_Disk_Image) Filter(filter string) Virtual_Disk_Image {
+func (r Virtual_Disk_Image) Filter(filter interface{}) Virtual_Disk_Image {
 	r.Options.Filter = filter
 	return r
 }
@@ -195,7 +195,7 @@ func (r Virtual_Guest) Mask(mask string) Virtual_Guest {
 	return r
 }
 
-func (r Virtual_Guest) Filter(filter string) Virtual_Guest {
+func (r Virtual_Guest) Filter(filter interface{}) Virtual_Guest {
 	r.Options.Filter = filter
 	return r
 }
@@ -1939,7 +1939,7 @@ func (r Virtual_Guest_Block_Device_Template_Group) Mask(mask string) Virtual_Gue
 	return r
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) Filter(filter string) Virtual_Guest_Block_Device_Template_Group {
+func (r Virtual_Guest_Block_Device_Template_Group) Filter(filter interface{}) Virtual_Guest_Block_Device_Template_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -2215,7 +2215,7 @@ func (r Virtual_Guest_Boot_Parameter) Mask(mask string) Virtual_Guest_Boot_Param
 	return r
 }
 
-func (r Virtual_Guest_Boot_Parameter) Filter(filter string) Virtual_Guest_Boot_Parameter {
+func (r Virtual_Guest_Boot_Parameter) Filter(filter interface{}) Virtual_Guest_Boot_Parameter {
 	r.Options.Filter = filter
 	return r
 }
@@ -2296,7 +2296,7 @@ func (r Virtual_Guest_Boot_Parameter_Type) Mask(mask string) Virtual_Guest_Boot_
 	return r
 }
 
-func (r Virtual_Guest_Boot_Parameter_Type) Filter(filter string) Virtual_Guest_Boot_Parameter_Type {
+func (r Virtual_Guest_Boot_Parameter_Type) Filter(filter interface{}) Virtual_Guest_Boot_Parameter_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -2349,7 +2349,7 @@ func (r Virtual_Guest_Network_Component) Mask(mask string) Virtual_Guest_Network
 	return r
 }
 
-func (r Virtual_Guest_Network_Component) Filter(filter string) Virtual_Guest_Network_Component {
+func (r Virtual_Guest_Network_Component) Filter(filter interface{}) Virtual_Guest_Network_Component {
 	r.Options.Filter = filter
 	return r
 }
@@ -2478,7 +2478,7 @@ func (r Virtual_Host) Mask(mask string) Virtual_Host {
 	return r
 }
 
-func (r Virtual_Host) Filter(filter string) Virtual_Host {
+func (r Virtual_Host) Filter(filter interface{}) Virtual_Host {
 	r.Options.Filter = filter
 	return r
 }
@@ -2640,7 +2640,7 @@ func (r Virtual_Storage_Repository) Mask(mask string) Virtual_Storage_Repository
 	return r
 }
 
-func (r Virtual_Storage_Repository) Filter(filter string) Virtual_Storage_Repository {
+func (r Virtual_Storage_Repository) Filter(filter interface{}) Virtual_Storage_Repository {
 	r.Options.Filter = filter
 	return r
 }

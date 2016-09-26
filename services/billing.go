@@ -53,7 +53,7 @@ func (r Billing_Currency) Mask(mask string) Billing_Currency {
 	return r
 }
 
-func (r Billing_Currency) Filter(filter string) Billing_Currency {
+func (r Billing_Currency) Filter(filter interface{}) Billing_Currency {
 	r.Options.Filter = filter
 	return r
 }
@@ -114,7 +114,7 @@ func (r Billing_Currency_ExchangeRate) Mask(mask string) Billing_Currency_Exchan
 	return r
 }
 
-func (r Billing_Currency_ExchangeRate) Filter(filter string) Billing_Currency_ExchangeRate {
+func (r Billing_Currency_ExchangeRate) Filter(filter interface{}) Billing_Currency_ExchangeRate {
 	r.Options.Filter = filter
 	return r
 }
@@ -207,7 +207,7 @@ func (r Billing_Info) Mask(mask string) Billing_Info {
 	return r
 }
 
-func (r Billing_Info) Filter(filter string) Billing_Info {
+func (r Billing_Info) Filter(filter interface{}) Billing_Info {
 	r.Options.Filter = filter
 	return r
 }
@@ -288,7 +288,7 @@ func (r Billing_Invoice) Mask(mask string) Billing_Invoice {
 	return r
 }
 
-func (r Billing_Invoice) Filter(filter string) Billing_Invoice {
+func (r Billing_Invoice) Filter(filter interface{}) Billing_Invoice {
 	r.Options.Filter = filter
 	return r
 }
@@ -523,7 +523,7 @@ func (r Billing_Invoice_Item) Mask(mask string) Billing_Invoice_Item {
 	return r
 }
 
-func (r Billing_Invoice_Item) Filter(filter string) Billing_Invoice_Item {
+func (r Billing_Invoice_Item) Filter(filter interface{}) Billing_Invoice_Item {
 	r.Options.Filter = filter
 	return r
 }
@@ -658,7 +658,7 @@ func (r Billing_Invoice_Next) Mask(mask string) Billing_Invoice_Next {
 	return r
 }
 
-func (r Billing_Invoice_Next) Filter(filter string) Billing_Invoice_Next {
+func (r Billing_Invoice_Next) Filter(filter interface{}) Billing_Invoice_Next {
 	r.Options.Filter = filter
 	return r
 }
@@ -724,7 +724,7 @@ func (r Billing_Invoice_Tax_Status) Mask(mask string) Billing_Invoice_Tax_Status
 	return r
 }
 
-func (r Billing_Invoice_Tax_Status) Filter(filter string) Billing_Invoice_Tax_Status {
+func (r Billing_Invoice_Tax_Status) Filter(filter interface{}) Billing_Invoice_Tax_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -775,7 +775,7 @@ func (r Billing_Invoice_Tax_Type) Mask(mask string) Billing_Invoice_Tax_Type {
 	return r
 }
 
-func (r Billing_Invoice_Tax_Type) Filter(filter string) Billing_Invoice_Tax_Type {
+func (r Billing_Invoice_Tax_Type) Filter(filter interface{}) Billing_Invoice_Tax_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -828,7 +828,7 @@ func (r Billing_Item) Mask(mask string) Billing_Item {
 	return r
 }
 
-func (r Billing_Item) Filter(filter string) Billing_Item {
+func (r Billing_Item) Filter(filter interface{}) Billing_Item {
 	r.Options.Filter = filter
 	return r
 }
@@ -1243,7 +1243,7 @@ func (r Billing_Item_Cancellation_Reason) Mask(mask string) Billing_Item_Cancell
 	return r
 }
 
-func (r Billing_Item_Cancellation_Reason) Filter(filter string) Billing_Item_Cancellation_Reason {
+func (r Billing_Item_Cancellation_Reason) Filter(filter interface{}) Billing_Item_Cancellation_Reason {
 	r.Options.Filter = filter
 	return r
 }
@@ -1312,7 +1312,7 @@ func (r Billing_Item_Cancellation_Reason_Category) Mask(mask string) Billing_Ite
 	return r
 }
 
-func (r Billing_Item_Cancellation_Reason_Category) Filter(filter string) Billing_Item_Cancellation_Reason_Category {
+func (r Billing_Item_Cancellation_Reason_Category) Filter(filter interface{}) Billing_Item_Cancellation_Reason_Category {
 	r.Options.Filter = filter
 	return r
 }
@@ -1369,7 +1369,7 @@ func (r Billing_Item_Cancellation_Request) Mask(mask string) Billing_Item_Cancel
 	return r
 }
 
-func (r Billing_Item_Cancellation_Request) Filter(filter string) Billing_Item_Cancellation_Request {
+func (r Billing_Item_Cancellation_Request) Filter(filter interface{}) Billing_Item_Cancellation_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -1502,7 +1502,7 @@ func (r Billing_Order) Mask(mask string) Billing_Order {
 	return r
 }
 
-func (r Billing_Order) Filter(filter string) Billing_Order {
+func (r Billing_Order) Filter(filter interface{}) Billing_Order {
 	r.Options.Filter = filter
 	return r
 }
@@ -1761,7 +1761,7 @@ func (r Billing_Order_Cart) Mask(mask string) Billing_Order_Cart {
 	return r
 }
 
-func (r Billing_Order_Cart) Filter(filter string) Billing_Order_Cart {
+func (r Billing_Order_Cart) Filter(filter interface{}) Billing_Order_Cart {
 	r.Options.Filter = filter
 	return r
 }
@@ -1943,7 +1943,7 @@ func (r Billing_Order_Item) Mask(mask string) Billing_Order_Item {
 	return r
 }
 
-func (r Billing_Order_Item) Filter(filter string) Billing_Order_Item {
+func (r Billing_Order_Item) Filter(filter interface{}) Billing_Order_Item {
 	r.Options.Filter = filter
 	return r
 }
@@ -2114,7 +2114,7 @@ func (r Billing_Order_Quote) Mask(mask string) Billing_Order_Quote {
 	return r
 }
 
-func (r Billing_Order_Quote) Filter(filter string) Billing_Order_Quote {
+func (r Billing_Order_Quote) Filter(filter interface{}) Billing_Order_Quote {
 	r.Options.Filter = filter
 	return r
 }

@@ -53,7 +53,7 @@ func (r Network) Mask(mask string) Network {
 	return r
 }
 
-func (r Network) Filter(filter string) Network {
+func (r Network) Filter(filter interface{}) Network {
 	r.Options.Filter = filter
 	return r
 }
@@ -218,7 +218,7 @@ func (r Network_Application_Delivery_Controller) Mask(mask string) Network_Appli
 	return r
 }
 
-func (r Network_Application_Delivery_Controller) Filter(filter string) Network_Application_Delivery_Controller {
+func (r Network_Application_Delivery_Controller) Filter(filter interface{}) Network_Application_Delivery_Controller {
 	r.Options.Filter = filter
 	return r
 }
@@ -507,7 +507,7 @@ func (r Network_Application_Delivery_Controller_Configuration_History) Mask(mask
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_Configuration_History) Filter(filter string) Network_Application_Delivery_Controller_Configuration_History {
+func (r Network_Application_Delivery_Controller_Configuration_History) Filter(filter interface{}) Network_Application_Delivery_Controller_Configuration_History {
 	r.Options.Filter = filter
 	return r
 }
@@ -564,7 +564,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) M
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute {
 	r.Options.Filter = filter
 	return r
 }
@@ -621,7 +621,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Ty
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -672,7 +672,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Mask(
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Health_Check {
 	r.Options.Filter = filter
 	return r
 }
@@ -741,7 +741,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) 
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -792,7 +792,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Mas
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Routing_Method {
 	r.Options.Filter = filter
 	return r
 }
@@ -843,7 +843,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Mask(
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Routing_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -894,7 +894,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Mask(mask 
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Service {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Service {
 	r.Options.Filter = filter
 	return r
 }
@@ -1000,7 +1000,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Mask
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_Service_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -1099,7 +1099,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) M
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress {
 	r.Options.Filter = filter
 	return r
 }
@@ -1267,7 +1267,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Mask
 	return r
 }
 
-func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Filter(filter interface{}) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
 	r.Options.Filter = filter
 	return r
 }
@@ -1355,7 +1355,7 @@ func (r Network_Backbone) Mask(mask string) Network_Backbone {
 	return r
 }
 
-func (r Network_Backbone) Filter(filter string) Network_Backbone {
+func (r Network_Backbone) Filter(filter interface{}) Network_Backbone {
 	r.Options.Filter = filter
 	return r
 }
@@ -1439,7 +1439,7 @@ func (r Network_Backbone_Location_Dependent) Mask(mask string) Network_Backbone_
 	return r
 }
 
-func (r Network_Backbone_Location_Dependent) Filter(filter string) Network_Backbone_Location_Dependent {
+func (r Network_Backbone_Location_Dependent) Filter(filter interface{}) Network_Backbone_Location_Dependent {
 	r.Options.Filter = filter
 	return r
 }
@@ -1511,7 +1511,7 @@ func (r Network_Bandwidth_Version1_Allotment) Mask(mask string) Network_Bandwidt
 	return r
 }
 
-func (r Network_Bandwidth_Version1_Allotment) Filter(filter string) Network_Bandwidth_Version1_Allotment {
+func (r Network_Bandwidth_Version1_Allotment) Filter(filter interface{}) Network_Bandwidth_Version1_Allotment {
 	r.Options.Filter = filter
 	return r
 }
@@ -1881,7 +1881,7 @@ func (r Network_Component) Mask(mask string) Network_Component {
 	return r
 }
 
-func (r Network_Component) Filter(filter string) Network_Component {
+func (r Network_Component) Filter(filter interface{}) Network_Component {
 	r.Options.Filter = filter
 	return r
 }
@@ -2146,7 +2146,7 @@ func (r Network_Component_Firewall) Mask(mask string) Network_Component_Firewall
 	return r
 }
 
-func (r Network_Component_Firewall) Filter(filter string) Network_Component_Firewall {
+func (r Network_Component_Firewall) Filter(filter interface{}) Network_Component_Firewall {
 	r.Options.Filter = filter
 	return r
 }
@@ -2233,7 +2233,7 @@ func (r Network_ContentDelivery_Account) Mask(mask string) Network_ContentDelive
 	return r
 }
 
-func (r Network_ContentDelivery_Account) Filter(filter string) Network_ContentDelivery_Account {
+func (r Network_ContentDelivery_Account) Filter(filter interface{}) Network_ContentDelivery_Account {
 	r.Options.Filter = filter
 	return r
 }
@@ -2736,7 +2736,7 @@ func (r Network_ContentDelivery_Authentication_Address) Mask(mask string) Networ
 	return r
 }
 
-func (r Network_ContentDelivery_Authentication_Address) Filter(filter string) Network_ContentDelivery_Authentication_Address {
+func (r Network_ContentDelivery_Authentication_Address) Filter(filter interface{}) Network_ContentDelivery_Authentication_Address {
 	r.Options.Filter = filter
 	return r
 }
@@ -2822,7 +2822,7 @@ func (r Network_ContentDelivery_Authentication_Token) Mask(mask string) Network_
 	return r
 }
 
-func (r Network_ContentDelivery_Authentication_Token) Filter(filter string) Network_ContentDelivery_Authentication_Token {
+func (r Network_ContentDelivery_Authentication_Token) Filter(filter interface{}) Network_ContentDelivery_Authentication_Token {
 	r.Options.Filter = filter
 	return r
 }
@@ -2959,7 +2959,7 @@ func (r Network_Customer_Subnet) Mask(mask string) Network_Customer_Subnet {
 	return r
 }
 
-func (r Network_Customer_Subnet) Filter(filter string) Network_Customer_Subnet {
+func (r Network_Customer_Subnet) Filter(filter interface{}) Network_Customer_Subnet {
 	r.Options.Filter = filter
 	return r
 }
@@ -3019,7 +3019,7 @@ func (r Network_Firewall_AccessControlList) Mask(mask string) Network_Firewall_A
 	return r
 }
 
-func (r Network_Firewall_AccessControlList) Filter(filter string) Network_Firewall_AccessControlList {
+func (r Network_Firewall_AccessControlList) Filter(filter interface{}) Network_Firewall_AccessControlList {
 	r.Options.Filter = filter
 	return r
 }
@@ -3082,7 +3082,7 @@ func (r Network_Firewall_Interface) Mask(mask string) Network_Firewall_Interface
 	return r
 }
 
-func (r Network_Firewall_Interface) Filter(filter string) Network_Firewall_Interface {
+func (r Network_Firewall_Interface) Filter(filter interface{}) Network_Firewall_Interface {
 	r.Options.Filter = filter
 	return r
 }
@@ -3139,7 +3139,7 @@ func (r Network_Firewall_Module_Context_Interface) Mask(mask string) Network_Fir
 	return r
 }
 
-func (r Network_Firewall_Module_Context_Interface) Filter(filter string) Network_Firewall_Module_Context_Interface {
+func (r Network_Firewall_Module_Context_Interface) Filter(filter interface{}) Network_Firewall_Module_Context_Interface {
 	r.Options.Filter = filter
 	return r
 }
@@ -3198,7 +3198,7 @@ func (r Network_Firewall_Template) Mask(mask string) Network_Firewall_Template {
 	return r
 }
 
-func (r Network_Firewall_Template) Filter(filter string) Network_Firewall_Template {
+func (r Network_Firewall_Template) Filter(filter interface{}) Network_Firewall_Template {
 	r.Options.Filter = filter
 	return r
 }
@@ -3259,7 +3259,7 @@ func (r Network_Firewall_Update_Request) Mask(mask string) Network_Firewall_Upda
 	return r
 }
 
-func (r Network_Firewall_Update_Request) Filter(filter string) Network_Firewall_Update_Request {
+func (r Network_Firewall_Update_Request) Filter(filter interface{}) Network_Firewall_Update_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -3363,7 +3363,7 @@ func (r Network_Firewall_Update_Request_Rule) Mask(mask string) Network_Firewall
 	return r
 }
 
-func (r Network_Firewall_Update_Request_Rule) Filter(filter string) Network_Firewall_Update_Request_Rule {
+func (r Network_Firewall_Update_Request_Rule) Filter(filter interface{}) Network_Firewall_Update_Request_Rule {
 	r.Options.Filter = filter
 	return r
 }
@@ -3439,7 +3439,7 @@ func (r Network_Gateway) Mask(mask string) Network_Gateway {
 	return r
 }
 
-func (r Network_Gateway) Filter(filter string) Network_Gateway {
+func (r Network_Gateway) Filter(filter interface{}) Network_Gateway {
 	r.Options.Filter = filter
 	return r
 }
@@ -3596,7 +3596,7 @@ func (r Network_Gateway_Member) Mask(mask string) Network_Gateway_Member {
 	return r
 }
 
-func (r Network_Gateway_Member) Filter(filter string) Network_Gateway_Member {
+func (r Network_Gateway_Member) Filter(filter interface{}) Network_Gateway_Member {
 	r.Options.Filter = filter
 	return r
 }
@@ -3671,7 +3671,7 @@ func (r Network_Gateway_Status) Mask(mask string) Network_Gateway_Status {
 	return r
 }
 
-func (r Network_Gateway_Status) Filter(filter string) Network_Gateway_Status {
+func (r Network_Gateway_Status) Filter(filter interface{}) Network_Gateway_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -3716,7 +3716,7 @@ func (r Network_Gateway_Vlan) Mask(mask string) Network_Gateway_Vlan {
 	return r
 }
 
-func (r Network_Gateway_Vlan) Filter(filter string) Network_Gateway_Vlan {
+func (r Network_Gateway_Vlan) Filter(filter interface{}) Network_Gateway_Vlan {
 	r.Options.Filter = filter
 	return r
 }
@@ -3821,7 +3821,7 @@ func (r Network_LoadBalancer_Global_Account) Mask(mask string) Network_LoadBalan
 	return r
 }
 
-func (r Network_LoadBalancer_Global_Account) Filter(filter string) Network_LoadBalancer_Global_Account {
+func (r Network_LoadBalancer_Global_Account) Filter(filter interface{}) Network_LoadBalancer_Global_Account {
 	r.Options.Filter = filter
 	return r
 }
@@ -3946,7 +3946,7 @@ func (r Network_LoadBalancer_Global_Host) Mask(mask string) Network_LoadBalancer
 	return r
 }
 
-func (r Network_LoadBalancer_Global_Host) Filter(filter string) Network_LoadBalancer_Global_Host {
+func (r Network_LoadBalancer_Global_Host) Filter(filter interface{}) Network_LoadBalancer_Global_Host {
 	r.Options.Filter = filter
 	return r
 }
@@ -4005,7 +4005,7 @@ func (r Network_LoadBalancer_Service) Mask(mask string) Network_LoadBalancer_Ser
 	return r
 }
 
-func (r Network_LoadBalancer_Service) Filter(filter string) Network_LoadBalancer_Service {
+func (r Network_LoadBalancer_Service) Filter(filter interface{}) Network_LoadBalancer_Service {
 	r.Options.Filter = filter
 	return r
 }
@@ -4103,7 +4103,7 @@ func (r Network_LoadBalancer_VirtualIpAddress) Mask(mask string) Network_LoadBal
 	return r
 }
 
-func (r Network_LoadBalancer_VirtualIpAddress) Filter(filter string) Network_LoadBalancer_VirtualIpAddress {
+func (r Network_LoadBalancer_VirtualIpAddress) Filter(filter interface{}) Network_LoadBalancer_VirtualIpAddress {
 	r.Options.Filter = filter
 	return r
 }
@@ -4211,7 +4211,7 @@ func (r Network_Media_Transcode_Account) Mask(mask string) Network_Media_Transco
 	return r
 }
 
-func (r Network_Media_Transcode_Account) Filter(filter string) Network_Media_Transcode_Account {
+func (r Network_Media_Transcode_Account) Filter(filter interface{}) Network_Media_Transcode_Account {
 	r.Options.Filter = filter
 	return r
 }
@@ -4351,7 +4351,7 @@ func (r Network_Media_Transcode_Job) Mask(mask string) Network_Media_Transcode_J
 	return r
 }
 
-func (r Network_Media_Transcode_Job) Filter(filter string) Network_Media_Transcode_Job {
+func (r Network_Media_Transcode_Job) Filter(filter interface{}) Network_Media_Transcode_Job {
 	r.Options.Filter = filter
 	return r
 }
@@ -4459,7 +4459,7 @@ func (r Network_Media_Transcode_Job_Status) Mask(mask string) Network_Media_Tran
 	return r
 }
 
-func (r Network_Media_Transcode_Job_Status) Filter(filter string) Network_Media_Transcode_Job_Status {
+func (r Network_Media_Transcode_Job_Status) Filter(filter interface{}) Network_Media_Transcode_Job_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -4510,7 +4510,7 @@ func (r Network_Message_Delivery) Mask(mask string) Network_Message_Delivery {
 	return r
 }
 
-func (r Network_Message_Delivery) Filter(filter string) Network_Message_Delivery {
+func (r Network_Message_Delivery) Filter(filter interface{}) Network_Message_Delivery {
 	r.Options.Filter = filter
 	return r
 }
@@ -4588,7 +4588,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) Mask(mask string) Network_Messa
 	return r
 }
 
-func (r Network_Message_Delivery_Email_Sendgrid) Filter(filter string) Network_Message_Delivery_Email_Sendgrid {
+func (r Network_Message_Delivery_Email_Sendgrid) Filter(filter interface{}) Network_Message_Delivery_Email_Sendgrid {
 	r.Options.Filter = filter
 	return r
 }
@@ -4772,7 +4772,7 @@ func (r Network_Message_Queue) Mask(mask string) Network_Message_Queue {
 	return r
 }
 
-func (r Network_Message_Queue) Filter(filter string) Network_Message_Queue {
+func (r Network_Message_Queue) Filter(filter interface{}) Network_Message_Queue {
 	r.Options.Filter = filter
 	return r
 }
@@ -4841,7 +4841,7 @@ func (r Network_Message_Queue_Node) Mask(mask string) Network_Message_Queue_Node
 	return r
 }
 
-func (r Network_Message_Queue_Node) Filter(filter string) Network_Message_Queue_Node {
+func (r Network_Message_Queue_Node) Filter(filter interface{}) Network_Message_Queue_Node {
 	r.Options.Filter = filter
 	return r
 }
@@ -4947,7 +4947,7 @@ func (r Network_Message_Queue_Status) Mask(mask string) Network_Message_Queue_St
 	return r
 }
 
-func (r Network_Message_Queue_Status) Filter(filter string) Network_Message_Queue_Status {
+func (r Network_Message_Queue_Status) Filter(filter interface{}) Network_Message_Queue_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -4992,7 +4992,7 @@ func (r Network_Monitor) Mask(mask string) Network_Monitor {
 	return r
 }
 
-func (r Network_Monitor) Filter(filter string) Network_Monitor {
+func (r Network_Monitor) Filter(filter interface{}) Network_Monitor {
 	r.Options.Filter = filter
 	return r
 }
@@ -5051,7 +5051,7 @@ func (r Network_Monitor_Version1_Query_Host) Mask(mask string) Network_Monitor_V
 	return r
 }
 
-func (r Network_Monitor_Version1_Query_Host) Filter(filter string) Network_Monitor_Version1_Query_Host {
+func (r Network_Monitor_Version1_Query_Host) Filter(filter interface{}) Network_Monitor_Version1_Query_Host {
 	r.Options.Filter = filter
 	return r
 }
@@ -5189,7 +5189,7 @@ func (r Network_Monitor_Version1_Query_Host_Stratum) Mask(mask string) Network_M
 	return r
 }
 
-func (r Network_Monitor_Version1_Query_Host_Stratum) Filter(filter string) Network_Monitor_Version1_Query_Host_Stratum {
+func (r Network_Monitor_Version1_Query_Host_Stratum) Filter(filter interface{}) Network_Monitor_Version1_Query_Host_Stratum {
 	r.Options.Filter = filter
 	return r
 }
@@ -5257,7 +5257,7 @@ func (r Network_Pod) Mask(mask string) Network_Pod {
 	return r
 }
 
-func (r Network_Pod) Filter(filter string) Network_Pod {
+func (r Network_Pod) Filter(filter interface{}) Network_Pod {
 	r.Options.Filter = filter
 	return r
 }
@@ -5325,7 +5325,7 @@ func (r Network_Security_Scanner_Request) Mask(mask string) Network_Security_Sca
 	return r
 }
 
-func (r Network_Security_Scanner_Request) Filter(filter string) Network_Security_Scanner_Request {
+func (r Network_Security_Scanner_Request) Filter(filter interface{}) Network_Security_Scanner_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -5415,7 +5415,7 @@ func (r Network_Service_Vpn_Overrides) Mask(mask string) Network_Service_Vpn_Ove
 	return r
 }
 
-func (r Network_Service_Vpn_Overrides) Filter(filter string) Network_Service_Vpn_Overrides {
+func (r Network_Service_Vpn_Overrides) Filter(filter interface{}) Network_Service_Vpn_Overrides {
 	r.Options.Filter = filter
 	return r
 }
@@ -5496,7 +5496,7 @@ func (r Network_Storage) Mask(mask string) Network_Storage {
 	return r
 }
 
-func (r Network_Storage) Filter(filter string) Network_Storage {
+func (r Network_Storage) Filter(filter interface{}) Network_Storage {
 	r.Options.Filter = filter
 	return r
 }
@@ -6708,7 +6708,7 @@ func (r Network_Storage_Allowed_Host) Mask(mask string) Network_Storage_Allowed_
 	return r
 }
 
-func (r Network_Storage_Allowed_Host) Filter(filter string) Network_Storage_Allowed_Host {
+func (r Network_Storage_Allowed_Host) Filter(filter interface{}) Network_Storage_Allowed_Host {
 	r.Options.Filter = filter
 	return r
 }
@@ -6810,7 +6810,7 @@ func (r Network_Storage_Allowed_Host_Hardware) Mask(mask string) Network_Storage
 	return r
 }
 
-func (r Network_Storage_Allowed_Host_Hardware) Filter(filter string) Network_Storage_Allowed_Host_Hardware {
+func (r Network_Storage_Allowed_Host_Hardware) Filter(filter interface{}) Network_Storage_Allowed_Host_Hardware {
 	r.Options.Filter = filter
 	return r
 }
@@ -6918,7 +6918,7 @@ func (r Network_Storage_Allowed_Host_IpAddress) Mask(mask string) Network_Storag
 	return r
 }
 
-func (r Network_Storage_Allowed_Host_IpAddress) Filter(filter string) Network_Storage_Allowed_Host_IpAddress {
+func (r Network_Storage_Allowed_Host_IpAddress) Filter(filter interface{}) Network_Storage_Allowed_Host_IpAddress {
 	r.Options.Filter = filter
 	return r
 }
@@ -7026,7 +7026,7 @@ func (r Network_Storage_Allowed_Host_Subnet) Mask(mask string) Network_Storage_A
 	return r
 }
 
-func (r Network_Storage_Allowed_Host_Subnet) Filter(filter string) Network_Storage_Allowed_Host_Subnet {
+func (r Network_Storage_Allowed_Host_Subnet) Filter(filter interface{}) Network_Storage_Allowed_Host_Subnet {
 	r.Options.Filter = filter
 	return r
 }
@@ -7134,7 +7134,7 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) Mask(mask string) Network_Sto
 	return r
 }
 
-func (r Network_Storage_Allowed_Host_VirtualGuest) Filter(filter string) Network_Storage_Allowed_Host_VirtualGuest {
+func (r Network_Storage_Allowed_Host_VirtualGuest) Filter(filter interface{}) Network_Storage_Allowed_Host_VirtualGuest {
 	r.Options.Filter = filter
 	return r
 }
@@ -7242,7 +7242,7 @@ func (r Network_Storage_Backup_Evault) Mask(mask string) Network_Storage_Backup_
 	return r
 }
 
-func (r Network_Storage_Backup_Evault) Filter(filter string) Network_Storage_Backup_Evault {
+func (r Network_Storage_Backup_Evault) Filter(filter interface{}) Network_Storage_Backup_Evault {
 	r.Options.Filter = filter
 	return r
 }
@@ -8506,7 +8506,7 @@ func (r Network_Storage_Group) Mask(mask string) Network_Storage_Group {
 	return r
 }
 
-func (r Network_Storage_Group) Filter(filter string) Network_Storage_Group {
+func (r Network_Storage_Group) Filter(filter interface{}) Network_Storage_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -8659,7 +8659,7 @@ func (r Network_Storage_Group_Iscsi) Mask(mask string) Network_Storage_Group_Isc
 	return r
 }
 
-func (r Network_Storage_Group_Iscsi) Filter(filter string) Network_Storage_Group_Iscsi {
+func (r Network_Storage_Group_Iscsi) Filter(filter interface{}) Network_Storage_Group_Iscsi {
 	r.Options.Filter = filter
 	return r
 }
@@ -8812,7 +8812,7 @@ func (r Network_Storage_Group_Nfs) Mask(mask string) Network_Storage_Group_Nfs {
 	return r
 }
 
-func (r Network_Storage_Group_Nfs) Filter(filter string) Network_Storage_Group_Nfs {
+func (r Network_Storage_Group_Nfs) Filter(filter interface{}) Network_Storage_Group_Nfs {
 	r.Options.Filter = filter
 	return r
 }
@@ -8965,7 +8965,7 @@ func (r Network_Storage_Group_Type) Mask(mask string) Network_Storage_Group_Type
 	return r
 }
 
-func (r Network_Storage_Group_Type) Filter(filter string) Network_Storage_Group_Type {
+func (r Network_Storage_Group_Type) Filter(filter interface{}) Network_Storage_Group_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -9016,7 +9016,7 @@ func (r Network_Storage_Hub_Cleversafe_Account) Mask(mask string) Network_Storag
 	return r
 }
 
-func (r Network_Storage_Hub_Cleversafe_Account) Filter(filter string) Network_Storage_Hub_Cleversafe_Account {
+func (r Network_Storage_Hub_Cleversafe_Account) Filter(filter interface{}) Network_Storage_Hub_Cleversafe_Account {
 	r.Options.Filter = filter
 	return r
 }
@@ -9136,7 +9136,7 @@ func (r Network_Storage_Hub_Swift_Share) Mask(mask string) Network_Storage_Hub_S
 	return r
 }
 
-func (r Network_Storage_Hub_Swift_Share) Filter(filter string) Network_Storage_Hub_Swift_Share {
+func (r Network_Storage_Hub_Swift_Share) Filter(filter interface{}) Network_Storage_Hub_Swift_Share {
 	r.Options.Filter = filter
 	return r
 }
@@ -9201,7 +9201,7 @@ func (r Network_Storage_Iscsi) Mask(mask string) Network_Storage_Iscsi {
 	return r
 }
 
-func (r Network_Storage_Iscsi) Filter(filter string) Network_Storage_Iscsi {
+func (r Network_Storage_Iscsi) Filter(filter interface{}) Network_Storage_Iscsi {
 	r.Options.Filter = filter
 	return r
 }
@@ -10411,7 +10411,7 @@ func (r Network_Storage_Iscsi_OS_Type) Mask(mask string) Network_Storage_Iscsi_O
 	return r
 }
 
-func (r Network_Storage_Iscsi_OS_Type) Filter(filter string) Network_Storage_Iscsi_OS_Type {
+func (r Network_Storage_Iscsi_OS_Type) Filter(filter interface{}) Network_Storage_Iscsi_OS_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -10462,7 +10462,7 @@ func (r Network_Storage_Schedule) Mask(mask string) Network_Storage_Schedule {
 	return r
 }
 
-func (r Network_Storage_Schedule) Filter(filter string) Network_Storage_Schedule {
+func (r Network_Storage_Schedule) Filter(filter interface{}) Network_Storage_Schedule {
 	r.Options.Filter = filter
 	return r
 }
@@ -10609,7 +10609,7 @@ func (r Network_Storage_Schedule_Property_Type) Mask(mask string) Network_Storag
 	return r
 }
 
-func (r Network_Storage_Schedule_Property_Type) Filter(filter string) Network_Storage_Schedule_Property_Type {
+func (r Network_Storage_Schedule_Property_Type) Filter(filter interface{}) Network_Storage_Schedule_Property_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -10660,7 +10660,7 @@ func (r Network_Subnet) Mask(mask string) Network_Subnet {
 	return r
 }
 
-func (r Network_Subnet) Filter(filter string) Network_Subnet {
+func (r Network_Subnet) Filter(filter interface{}) Network_Subnet {
 	r.Options.Filter = filter
 	return r
 }
@@ -11039,7 +11039,7 @@ func (r Network_Subnet_IpAddress) Mask(mask string) Network_Subnet_IpAddress {
 	return r
 }
 
-func (r Network_Subnet_IpAddress) Filter(filter string) Network_Subnet_IpAddress {
+func (r Network_Subnet_IpAddress) Filter(filter interface{}) Network_Subnet_IpAddress {
 	r.Options.Filter = filter
 	return r
 }
@@ -11327,7 +11327,7 @@ func (r Network_Subnet_IpAddress_Global) Mask(mask string) Network_Subnet_IpAddr
 	return r
 }
 
-func (r Network_Subnet_IpAddress_Global) Filter(filter string) Network_Subnet_IpAddress_Global {
+func (r Network_Subnet_IpAddress_Global) Filter(filter interface{}) Network_Subnet_IpAddress_Global {
 	r.Options.Filter = filter
 	return r
 }
@@ -11417,7 +11417,7 @@ func (r Network_Subnet_Registration) Mask(mask string) Network_Subnet_Registrati
 	return r
 }
 
-func (r Network_Subnet_Registration) Filter(filter string) Network_Subnet_Registration {
+func (r Network_Subnet_Registration) Filter(filter interface{}) Network_Subnet_Registration {
 	r.Options.Filter = filter
 	return r
 }
@@ -11552,7 +11552,7 @@ func (r Network_Subnet_Registration_Details) Mask(mask string) Network_Subnet_Re
 	return r
 }
 
-func (r Network_Subnet_Registration_Details) Filter(filter string) Network_Subnet_Registration_Details {
+func (r Network_Subnet_Registration_Details) Filter(filter interface{}) Network_Subnet_Registration_Details {
 	r.Options.Filter = filter
 	return r
 }
@@ -11628,7 +11628,7 @@ func (r Network_Subnet_Registration_Status) Mask(mask string) Network_Subnet_Reg
 	return r
 }
 
-func (r Network_Subnet_Registration_Status) Filter(filter string) Network_Subnet_Registration_Status {
+func (r Network_Subnet_Registration_Status) Filter(filter interface{}) Network_Subnet_Registration_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -11681,7 +11681,7 @@ func (r Network_Subnet_Rwhois_Data) Mask(mask string) Network_Subnet_Rwhois_Data
 	return r
 }
 
-func (r Network_Subnet_Rwhois_Data) Filter(filter string) Network_Subnet_Rwhois_Data {
+func (r Network_Subnet_Rwhois_Data) Filter(filter interface{}) Network_Subnet_Rwhois_Data {
 	r.Options.Filter = filter
 	return r
 }
@@ -11754,7 +11754,7 @@ func (r Network_Subnet_Swip_Transaction) Mask(mask string) Network_Subnet_Swip_T
 	return r
 }
 
-func (r Network_Subnet_Swip_Transaction) Filter(filter string) Network_Subnet_Swip_Transaction {
+func (r Network_Subnet_Swip_Transaction) Filter(filter interface{}) Network_Subnet_Swip_Transaction {
 	r.Options.Filter = filter
 	return r
 }
@@ -11847,7 +11847,7 @@ func (r Network_TippingPointReporting) Mask(mask string) Network_TippingPointRep
 	return r
 }
 
-func (r Network_TippingPointReporting) Filter(filter string) Network_TippingPointReporting {
+func (r Network_TippingPointReporting) Filter(filter interface{}) Network_TippingPointReporting {
 	r.Options.Filter = filter
 	return r
 }
@@ -11953,7 +11953,7 @@ func (r Network_Tunnel_Module_Context) Mask(mask string) Network_Tunnel_Module_C
 	return r
 }
 
-func (r Network_Tunnel_Module_Context) Filter(filter string) Network_Tunnel_Module_Context {
+func (r Network_Tunnel_Module_Context) Filter(filter interface{}) Network_Tunnel_Module_Context {
 	r.Options.Filter = filter
 	return r
 }
@@ -12357,7 +12357,7 @@ func (r Network_Vlan) Mask(mask string) Network_Vlan {
 	return r
 }
 
-func (r Network_Vlan) Filter(filter string) Network_Vlan {
+func (r Network_Vlan) Filter(filter interface{}) Network_Vlan {
 	r.Options.Filter = filter
 	return r
 }
@@ -12721,7 +12721,7 @@ func (r Network_Vlan_Firewall) Mask(mask string) Network_Vlan_Firewall {
 	return r
 }
 
-func (r Network_Vlan_Firewall) Filter(filter string) Network_Vlan_Firewall {
+func (r Network_Vlan_Firewall) Filter(filter interface{}) Network_Vlan_Firewall {
 	r.Options.Filter = filter
 	return r
 }
@@ -12850,7 +12850,7 @@ func (r Network_Vlan_Type) Mask(mask string) Network_Vlan_Type {
 	return r
 }
 
-func (r Network_Vlan_Type) Filter(filter string) Network_Vlan_Type {
+func (r Network_Vlan_Type) Filter(filter interface{}) Network_Vlan_Type {
 	r.Options.Filter = filter
 	return r
 }

@@ -53,7 +53,7 @@ func (r Location) Mask(mask string) Location {
 	return r
 }
 
-func (r Location) Filter(filter string) Location {
+func (r Location) Filter(filter interface{}) Location {
 	r.Options.Filter = filter
 	return r
 }
@@ -224,7 +224,7 @@ func (r Location_Datacenter) Mask(mask string) Location_Datacenter {
 	return r
 }
 
-func (r Location_Datacenter) Filter(filter string) Location_Datacenter {
+func (r Location_Datacenter) Filter(filter interface{}) Location_Datacenter {
 	r.Options.Filter = filter
 	return r
 }
@@ -467,7 +467,7 @@ func (r Location_Group) Mask(mask string) Location_Group {
 	return r
 }
 
-func (r Location_Group) Filter(filter string) Location_Group {
+func (r Location_Group) Filter(filter interface{}) Location_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -530,7 +530,7 @@ func (r Location_Group_Pricing) Mask(mask string) Location_Group_Pricing {
 	return r
 }
 
-func (r Location_Group_Pricing) Filter(filter string) Location_Group_Pricing {
+func (r Location_Group_Pricing) Filter(filter interface{}) Location_Group_Pricing {
 	r.Options.Filter = filter
 	return r
 }
@@ -599,7 +599,7 @@ func (r Location_Group_Regional) Mask(mask string) Location_Group_Regional {
 	return r
 }
 
-func (r Location_Group_Regional) Filter(filter string) Location_Group_Regional {
+func (r Location_Group_Regional) Filter(filter interface{}) Location_Group_Regional {
 	r.Options.Filter = filter
 	return r
 }
@@ -674,7 +674,7 @@ func (r Location_Reservation) Mask(mask string) Location_Reservation {
 	return r
 }
 
-func (r Location_Reservation) Filter(filter string) Location_Reservation {
+func (r Location_Reservation) Filter(filter interface{}) Location_Reservation {
 	r.Options.Filter = filter
 	return r
 }
@@ -755,7 +755,7 @@ func (r Location_Reservation_Rack) Mask(mask string) Location_Reservation_Rack {
 	return r
 }
 
-func (r Location_Reservation_Rack) Filter(filter string) Location_Reservation_Rack {
+func (r Location_Reservation_Rack) Filter(filter interface{}) Location_Reservation_Rack {
 	r.Options.Filter = filter
 	return r
 }
@@ -824,7 +824,7 @@ func (r Location_Reservation_Rack_Member) Mask(mask string) Location_Reservation
 	return r
 }
 
-func (r Location_Reservation_Rack_Member) Filter(filter string) Location_Reservation_Rack_Member {
+func (r Location_Reservation_Rack_Member) Filter(filter interface{}) Location_Reservation_Rack_Member {
 	r.Options.Filter = filter
 	return r
 }

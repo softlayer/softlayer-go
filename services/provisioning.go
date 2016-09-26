@@ -53,7 +53,7 @@ func (r Provisioning_Hook) Mask(mask string) Provisioning_Hook {
 	return r
 }
 
-func (r Provisioning_Hook) Filter(filter string) Provisioning_Hook {
+func (r Provisioning_Hook) Filter(filter interface{}) Provisioning_Hook {
 	r.Options.Filter = filter
 	return r
 }
@@ -134,7 +134,7 @@ func (r Provisioning_Hook_Type) Mask(mask string) Provisioning_Hook_Type {
 	return r
 }
 
-func (r Provisioning_Hook_Type) Filter(filter string) Provisioning_Hook_Type {
+func (r Provisioning_Hook_Type) Filter(filter interface{}) Provisioning_Hook_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -185,7 +185,7 @@ func (r Provisioning_Maintenance_Classification) Mask(mask string) Provisioning_
 	return r
 }
 
-func (r Provisioning_Maintenance_Classification) Filter(filter string) Provisioning_Maintenance_Classification {
+func (r Provisioning_Maintenance_Classification) Filter(filter interface{}) Provisioning_Maintenance_Classification {
 	r.Options.Filter = filter
 	return r
 }
@@ -251,7 +251,7 @@ func (r Provisioning_Maintenance_Classification_Item_Category) Mask(mask string)
 	return r
 }
 
-func (r Provisioning_Maintenance_Classification_Item_Category) Filter(filter string) Provisioning_Maintenance_Classification_Item_Category {
+func (r Provisioning_Maintenance_Classification_Item_Category) Filter(filter interface{}) Provisioning_Maintenance_Classification_Item_Category {
 	r.Options.Filter = filter
 	return r
 }
@@ -302,7 +302,7 @@ func (r Provisioning_Maintenance_Slots) Mask(mask string) Provisioning_Maintenan
 	return r
 }
 
-func (r Provisioning_Maintenance_Slots) Filter(filter string) Provisioning_Maintenance_Slots {
+func (r Provisioning_Maintenance_Slots) Filter(filter interface{}) Provisioning_Maintenance_Slots {
 	r.Options.Filter = filter
 	return r
 }
@@ -347,7 +347,7 @@ func (r Provisioning_Maintenance_Ticket) Mask(mask string) Provisioning_Maintena
 	return r
 }
 
-func (r Provisioning_Maintenance_Ticket) Filter(filter string) Provisioning_Maintenance_Ticket {
+func (r Provisioning_Maintenance_Ticket) Filter(filter interface{}) Provisioning_Maintenance_Ticket {
 	r.Options.Filter = filter
 	return r
 }
@@ -410,7 +410,7 @@ func (r Provisioning_Maintenance_Window) Mask(mask string) Provisioning_Maintena
 	return r
 }
 
-func (r Provisioning_Maintenance_Window) Filter(filter string) Provisioning_Maintenance_Window {
+func (r Provisioning_Maintenance_Window) Filter(filter interface{}) Provisioning_Maintenance_Window {
 	r.Options.Filter = filter
 	return r
 }
@@ -528,7 +528,7 @@ func (r Provisioning_Version1_Transaction_Group) Mask(mask string) Provisioning_
 	return r
 }
 
-func (r Provisioning_Version1_Transaction_Group) Filter(filter string) Provisioning_Version1_Transaction_Group {
+func (r Provisioning_Version1_Transaction_Group) Filter(filter interface{}) Provisioning_Version1_Transaction_Group {
 	r.Options.Filter = filter
 	return r
 }

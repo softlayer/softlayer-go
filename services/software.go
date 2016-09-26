@@ -53,7 +53,7 @@ func (r Software_AccountLicense) Mask(mask string) Software_AccountLicense {
 	return r
 }
 
-func (r Software_AccountLicense) Filter(filter string) Software_AccountLicense {
+func (r Software_AccountLicense) Filter(filter interface{}) Software_AccountLicense {
 	r.Options.Filter = filter
 	return r
 }
@@ -126,7 +126,7 @@ func (r Software_Component) Mask(mask string) Software_Component {
 	return r
 }
 
-func (r Software_Component) Filter(filter string) Software_Component {
+func (r Software_Component) Filter(filter interface{}) Software_Component {
 	r.Options.Filter = filter
 	return r
 }
@@ -233,7 +233,7 @@ func (r Software_Component_AntivirusSpyware) Mask(mask string) Software_Componen
 	return r
 }
 
-func (r Software_Component_AntivirusSpyware) Filter(filter string) Software_Component_AntivirusSpyware {
+func (r Software_Component_AntivirusSpyware) Filter(filter interface{}) Software_Component_AntivirusSpyware {
 	r.Options.Filter = filter
 	return r
 }
@@ -353,7 +353,7 @@ func (r Software_Component_HostIps) Mask(mask string) Software_Component_HostIps
 	return r
 }
 
-func (r Software_Component_HostIps) Filter(filter string) Software_Component_HostIps {
+func (r Software_Component_HostIps) Filter(filter interface{}) Software_Component_HostIps {
 	r.Options.Filter = filter
 	return r
 }
@@ -479,7 +479,7 @@ func (r Software_Component_Password) Mask(mask string) Software_Component_Passwo
 	return r
 }
 
-func (r Software_Component_Password) Filter(filter string) Software_Component_Password {
+func (r Software_Component_Password) Filter(filter interface{}) Software_Component_Password {
 	r.Options.Filter = filter
 	return r
 }
@@ -591,7 +591,7 @@ func (r Software_Description) Mask(mask string) Software_Description {
 	return r
 }
 
-func (r Software_Description) Filter(filter string) Software_Description {
+func (r Software_Description) Filter(filter interface{}) Software_Description {
 	r.Options.Filter = filter
 	return r
 }
@@ -720,7 +720,7 @@ func (r Software_VirtualLicense) Mask(mask string) Software_VirtualLicense {
 	return r
 }
 
-func (r Software_VirtualLicense) Filter(filter string) Software_VirtualLicense {
+func (r Software_VirtualLicense) Filter(filter interface{}) Software_VirtualLicense {
 	r.Options.Filter = filter
 	return r
 }

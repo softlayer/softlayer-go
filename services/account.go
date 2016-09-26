@@ -55,7 +55,7 @@ func (r Account) Mask(mask string) Account {
 	return r
 }
 
-func (r Account) Filter(filter string) Account {
+func (r Account) Filter(filter interface{}) Account {
 	r.Options.Filter = filter
 	return r
 }
@@ -2025,7 +2025,7 @@ func (r Account_Address) Mask(mask string) Account_Address {
 	return r
 }
 
-func (r Account_Address) Filter(filter string) Account_Address {
+func (r Account_Address) Filter(filter interface{}) Account_Address {
 	r.Options.Filter = filter
 	return r
 }
@@ -2139,7 +2139,7 @@ func (r Account_Address_Type) Mask(mask string) Account_Address_Type {
 	return r
 }
 
-func (r Account_Address_Type) Filter(filter string) Account_Address_Type {
+func (r Account_Address_Type) Filter(filter interface{}) Account_Address_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -2184,7 +2184,7 @@ func (r Account_Affiliation) Mask(mask string) Account_Affiliation {
 	return r
 }
 
-func (r Account_Affiliation) Filter(filter string) Account_Affiliation {
+func (r Account_Affiliation) Filter(filter interface{}) Account_Affiliation {
 	r.Options.Filter = filter
 	return r
 }
@@ -2268,7 +2268,7 @@ func (r Account_Agreement) Mask(mask string) Account_Agreement {
 	return r
 }
 
-func (r Account_Agreement) Filter(filter string) Account_Agreement {
+func (r Account_Agreement) Filter(filter interface{}) Account_Agreement {
 	r.Options.Filter = filter
 	return r
 }
@@ -2349,7 +2349,7 @@ func (r Account_Authentication_Attribute) Mask(mask string) Account_Authenticati
 	return r
 }
 
-func (r Account_Authentication_Attribute) Filter(filter string) Account_Authentication_Attribute {
+func (r Account_Authentication_Attribute) Filter(filter interface{}) Account_Authentication_Attribute {
 	r.Options.Filter = filter
 	return r
 }
@@ -2412,7 +2412,7 @@ func (r Account_Authentication_Attribute_Type) Mask(mask string) Account_Authent
 	return r
 }
 
-func (r Account_Authentication_Attribute_Type) Filter(filter string) Account_Authentication_Attribute_Type {
+func (r Account_Authentication_Attribute_Type) Filter(filter interface{}) Account_Authentication_Attribute_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -2463,7 +2463,7 @@ func (r Account_Authentication_Saml) Mask(mask string) Account_Authentication_Sa
 	return r
 }
 
-func (r Account_Authentication_Saml) Filter(filter string) Account_Authentication_Saml {
+func (r Account_Authentication_Saml) Filter(filter interface{}) Account_Authentication_Saml {
 	r.Options.Filter = filter
 	return r
 }
@@ -2550,7 +2550,7 @@ func (r Account_Contact) Mask(mask string) Account_Contact {
 	return r
 }
 
-func (r Account_Contact) Filter(filter string) Account_Contact {
+func (r Account_Contact) Filter(filter interface{}) Account_Contact {
 	r.Options.Filter = filter
 	return r
 }
@@ -2637,7 +2637,7 @@ func (r Account_Historical_Report) Mask(mask string) Account_Historical_Report {
 	return r
 }
 
-func (r Account_Historical_Report) Filter(filter string) Account_Historical_Report {
+func (r Account_Historical_Report) Filter(filter interface{}) Account_Historical_Report {
 	r.Options.Filter = filter
 	return r
 }
@@ -2760,7 +2760,7 @@ func (r Account_Link_Bluemix) Mask(mask string) Account_Link_Bluemix {
 	return r
 }
 
-func (r Account_Link_Bluemix) Filter(filter string) Account_Link_Bluemix {
+func (r Account_Link_Bluemix) Filter(filter interface{}) Account_Link_Bluemix {
 	r.Options.Filter = filter
 	return r
 }
@@ -2811,7 +2811,7 @@ func (r Account_Link_OpenStack) Mask(mask string) Account_Link_OpenStack {
 	return r
 }
 
-func (r Account_Link_OpenStack) Filter(filter string) Account_Link_OpenStack {
+func (r Account_Link_OpenStack) Filter(filter interface{}) Account_Link_OpenStack {
 	r.Options.Filter = filter
 	return r
 }
@@ -2913,7 +2913,7 @@ func (r Account_Lockdown_Request) Mask(mask string) Account_Lockdown_Request {
 	return r
 }
 
-func (r Account_Lockdown_Request) Filter(filter string) Account_Lockdown_Request {
+func (r Account_Lockdown_Request) Filter(filter interface{}) Account_Lockdown_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -3002,7 +3002,7 @@ func (r Account_MasterServiceAgreement) Mask(mask string) Account_MasterServiceA
 	return r
 }
 
-func (r Account_MasterServiceAgreement) Filter(filter string) Account_MasterServiceAgreement {
+func (r Account_MasterServiceAgreement) Filter(filter interface{}) Account_MasterServiceAgreement {
 	r.Options.Filter = filter
 	return r
 }
@@ -3059,7 +3059,7 @@ func (r Account_Media) Mask(mask string) Account_Media {
 	return r
 }
 
-func (r Account_Media) Filter(filter string) Account_Media {
+func (r Account_Media) Filter(filter interface{}) Account_Media {
 	r.Options.Filter = filter
 	return r
 }
@@ -3176,7 +3176,7 @@ func (r Account_Media_Data_Transfer_Request) Mask(mask string) Account_Media_Dat
 	return r
 }
 
-func (r Account_Media_Data_Transfer_Request) Filter(filter string) Account_Media_Data_Transfer_Request {
+func (r Account_Media_Data_Transfer_Request) Filter(filter interface{}) Account_Media_Data_Transfer_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -3296,7 +3296,7 @@ func (r Account_Note) Mask(mask string) Account_Note {
 	return r
 }
 
-func (r Account_Note) Filter(filter string) Account_Note {
+func (r Account_Note) Filter(filter interface{}) Account_Note {
 	r.Options.Filter = filter
 	return r
 }
@@ -3389,7 +3389,7 @@ func (r Account_Note_Type) Mask(mask string) Account_Note_Type {
 	return r
 }
 
-func (r Account_Note_Type) Filter(filter string) Account_Note_Type {
+func (r Account_Note_Type) Filter(filter interface{}) Account_Note_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -3464,7 +3464,7 @@ func (r Account_Partner_Referral_Prospect) Mask(mask string) Account_Partner_Ref
 	return r
 }
 
-func (r Account_Partner_Referral_Prospect) Filter(filter string) Account_Partner_Referral_Prospect {
+func (r Account_Partner_Referral_Prospect) Filter(filter interface{}) Account_Partner_Referral_Prospect {
 	r.Options.Filter = filter
 	return r
 }
@@ -3525,7 +3525,7 @@ func (r Account_Password) Mask(mask string) Account_Password {
 	return r
 }
 
-func (r Account_Password) Filter(filter string) Account_Password {
+func (r Account_Password) Filter(filter interface{}) Account_Password {
 	r.Options.Filter = filter
 	return r
 }
@@ -3595,7 +3595,7 @@ func (r Account_Regional_Registry_Detail) Mask(mask string) Account_Regional_Reg
 	return r
 }
 
-func (r Account_Regional_Registry_Detail) Filter(filter string) Account_Regional_Registry_Detail {
+func (r Account_Regional_Registry_Detail) Filter(filter interface{}) Account_Regional_Registry_Detail {
 	r.Options.Filter = filter
 	return r
 }
@@ -3702,7 +3702,7 @@ func (r Account_Regional_Registry_Detail_Property) Mask(mask string) Account_Reg
 	return r
 }
 
-func (r Account_Regional_Registry_Detail_Property) Filter(filter string) Account_Regional_Registry_Detail_Property {
+func (r Account_Regional_Registry_Detail_Property) Filter(filter interface{}) Account_Regional_Registry_Detail_Property {
 	r.Options.Filter = filter
 	return r
 }
@@ -3803,7 +3803,7 @@ func (r Account_Regional_Registry_Detail_Property_Type) Mask(mask string) Accoun
 	return r
 }
 
-func (r Account_Regional_Registry_Detail_Property_Type) Filter(filter string) Account_Regional_Registry_Detail_Property_Type {
+func (r Account_Regional_Registry_Detail_Property_Type) Filter(filter interface{}) Account_Regional_Registry_Detail_Property_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -3856,7 +3856,7 @@ func (r Account_Regional_Registry_Detail_Type) Mask(mask string) Account_Regiona
 	return r
 }
 
-func (r Account_Regional_Registry_Detail_Type) Filter(filter string) Account_Regional_Registry_Detail_Type {
+func (r Account_Regional_Registry_Detail_Type) Filter(filter interface{}) Account_Regional_Registry_Detail_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -3907,7 +3907,7 @@ func (r Account_Reports_Request) Mask(mask string) Account_Reports_Request {
 	return r
 }
 
-func (r Account_Reports_Request) Filter(filter string) Account_Reports_Request {
+func (r Account_Reports_Request) Filter(filter interface{}) Account_Reports_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -4026,7 +4026,7 @@ func (r Account_Shipment) Mask(mask string) Account_Shipment {
 	return r
 }
 
-func (r Account_Shipment) Filter(filter string) Account_Shipment {
+func (r Account_Shipment) Filter(filter interface{}) Account_Shipment {
 	r.Options.Filter = filter
 	return r
 }
@@ -4179,7 +4179,7 @@ func (r Account_Shipment_Item) Mask(mask string) Account_Shipment_Item {
 	return r
 }
 
-func (r Account_Shipment_Item) Filter(filter string) Account_Shipment_Item {
+func (r Account_Shipment_Item) Filter(filter interface{}) Account_Shipment_Item {
 	r.Options.Filter = filter
 	return r
 }
@@ -4245,7 +4245,7 @@ func (r Account_Shipment_Item_Type) Mask(mask string) Account_Shipment_Item_Type
 	return r
 }
 
-func (r Account_Shipment_Item_Type) Filter(filter string) Account_Shipment_Item_Type {
+func (r Account_Shipment_Item_Type) Filter(filter interface{}) Account_Shipment_Item_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -4290,7 +4290,7 @@ func (r Account_Shipment_Resource_Type) Mask(mask string) Account_Shipment_Resou
 	return r
 }
 
-func (r Account_Shipment_Resource_Type) Filter(filter string) Account_Shipment_Resource_Type {
+func (r Account_Shipment_Resource_Type) Filter(filter interface{}) Account_Shipment_Resource_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -4335,7 +4335,7 @@ func (r Account_Shipment_Status) Mask(mask string) Account_Shipment_Status {
 	return r
 }
 
-func (r Account_Shipment_Status) Filter(filter string) Account_Shipment_Status {
+func (r Account_Shipment_Status) Filter(filter interface{}) Account_Shipment_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -4380,7 +4380,7 @@ func (r Account_Shipment_Tracking_Data) Mask(mask string) Account_Shipment_Track
 	return r
 }
 
-func (r Account_Shipment_Tracking_Data) Filter(filter string) Account_Shipment_Tracking_Data {
+func (r Account_Shipment_Tracking_Data) Filter(filter interface{}) Account_Shipment_Tracking_Data {
 	r.Options.Filter = filter
 	return r
 }
@@ -4488,7 +4488,7 @@ func (r Account_Shipment_Type) Mask(mask string) Account_Shipment_Type {
 	return r
 }
 
-func (r Account_Shipment_Type) Filter(filter string) Account_Shipment_Type {
+func (r Account_Shipment_Type) Filter(filter interface{}) Account_Shipment_Type {
 	r.Options.Filter = filter
 	return r
 }

@@ -137,7 +137,7 @@ func encodeQuery(opts *sl.Options) string {
 	}
 
 	if opts.Filter != "" {
-		query.Add("objectFilter", opts.Filter)
+		query.Add("objectFilter", opts.Filter.(string))
 	}
 
 	// resultLimit=<offset>,<limit>

@@ -53,7 +53,7 @@ func (r Catalyst_Company_Type) Mask(mask string) Catalyst_Company_Type {
 	return r
 }
 
-func (r Catalyst_Company_Type) Filter(filter string) Catalyst_Company_Type {
+func (r Catalyst_Company_Type) Filter(filter interface{}) Catalyst_Company_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -104,7 +104,7 @@ func (r Catalyst_Enrollment) Mask(mask string) Catalyst_Enrollment {
 	return r
 }
 
-func (r Catalyst_Enrollment) Filter(filter string) Catalyst_Enrollment {
+func (r Catalyst_Enrollment) Filter(filter interface{}) Catalyst_Enrollment {
 	r.Options.Filter = filter
 	return r
 }

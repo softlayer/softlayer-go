@@ -53,7 +53,7 @@ func (r Tag) Mask(mask string) Tag {
 	return r
 }
 
-func (r Tag) Filter(filter string) Tag {
+func (r Tag) Filter(filter interface{}) Tag {
 	r.Options.Filter = filter
 	return r
 }

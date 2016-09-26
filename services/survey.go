@@ -53,7 +53,7 @@ func (r Survey) Mask(mask string) Survey {
 	return r
 }
 
-func (r Survey) Filter(filter string) Survey {
+func (r Survey) Filter(filter interface{}) Survey {
 	r.Options.Filter = filter
 	return r
 }

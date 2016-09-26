@@ -132,7 +132,7 @@ func (x *XmlRpcTransport) DoRequest(
 		headers["SoftLayer_ObjectMask"] = map[string]string{"mask": mask}
 	}
 
-	if options.Filter != "" {
+	if options.Filter != nil {
 		// FIXME: This json unmarshaling presents a performance problem,
 		// since the filter builder marshals a data structure to json.
 		// This then undoes that step to pass it to the xmlrpc request.
@@ -140,11 +140,18 @@ func (x *XmlRpcTransport) DoRequest(
 		// from the filter builder, but that will require changes to the
 		// public API in Options.
 		objFilter := map[string]interface{}{}
-		err := json.Unmarshal([]byte(options.Filter), &objFilter)
-		if err != nil {
-			return fmt.Errorf("Error encoding object filter: %s", err)
+		switch options.Filter.(type) {
+		case string:
+			err := json.Unmarshal([]byte(options.Filter.(string)), &objFilter)
+			if err != nil {
+				return fmt.Errorf("Error encoding object filter: %s", err)
+			}
+			headers[fmt.Sprintf("%sObjectFilter", service)] = objFilter
+		case map[string]interface{}:
+			headers[fmt.Sprintf("%sObjectFilter", service)] = options.Filter
+		default:
+			return fmt.Errorf("Invalid format for filter")
 		}
-		headers[fmt.Sprintf("%sObjectFilter", service)] = objFilter
 	}
 
 	if options.Limit != nil {

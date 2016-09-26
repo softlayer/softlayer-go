@@ -53,7 +53,7 @@ func (r Configuration_Storage_Group_Array_Type) Mask(mask string) Configuration_
 	return r
 }
 
-func (r Configuration_Storage_Group_Array_Type) Filter(filter string) Configuration_Storage_Group_Array_Type {
+func (r Configuration_Storage_Group_Array_Type) Filter(filter interface{}) Configuration_Storage_Group_Array_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -110,7 +110,7 @@ func (r Configuration_Template) Mask(mask string) Configuration_Template {
 	return r
 }
 
-func (r Configuration_Template) Filter(filter string) Configuration_Template {
+func (r Configuration_Template) Filter(filter interface{}) Configuration_Template {
 	r.Options.Filter = filter
 	return r
 }
@@ -250,7 +250,7 @@ func (r Configuration_Template_Section) Mask(mask string) Configuration_Template
 	return r
 }
 
-func (r Configuration_Template_Section) Filter(filter string) Configuration_Template_Section {
+func (r Configuration_Template_Section) Filter(filter interface{}) Configuration_Template_Section {
 	r.Options.Filter = filter
 	return r
 }
@@ -359,7 +359,7 @@ func (r Configuration_Template_Section_Definition) Mask(mask string) Configurati
 	return r
 }
 
-func (r Configuration_Template_Section_Definition) Filter(filter string) Configuration_Template_Section_Definition {
+func (r Configuration_Template_Section_Definition) Filter(filter interface{}) Configuration_Template_Section_Definition {
 	r.Options.Filter = filter
 	return r
 }
@@ -442,7 +442,7 @@ func (r Configuration_Template_Section_Definition_Group) Mask(mask string) Confi
 	return r
 }
 
-func (r Configuration_Template_Section_Definition_Group) Filter(filter string) Configuration_Template_Section_Definition_Group {
+func (r Configuration_Template_Section_Definition_Group) Filter(filter interface{}) Configuration_Template_Section_Definition_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -501,7 +501,7 @@ func (r Configuration_Template_Section_Definition_Type) Mask(mask string) Config
 	return r
 }
 
-func (r Configuration_Template_Section_Definition_Type) Filter(filter string) Configuration_Template_Section_Definition_Type {
+func (r Configuration_Template_Section_Definition_Type) Filter(filter interface{}) Configuration_Template_Section_Definition_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -546,7 +546,7 @@ func (r Configuration_Template_Section_Definition_Value) Mask(mask string) Confi
 	return r
 }
 
-func (r Configuration_Template_Section_Definition_Value) Filter(filter string) Configuration_Template_Section_Definition_Value {
+func (r Configuration_Template_Section_Definition_Value) Filter(filter interface{}) Configuration_Template_Section_Definition_Value {
 	r.Options.Filter = filter
 	return r
 }
@@ -605,7 +605,7 @@ func (r Configuration_Template_Section_Profile) Mask(mask string) Configuration_
 	return r
 }
 
-func (r Configuration_Template_Section_Profile) Filter(filter string) Configuration_Template_Section_Profile {
+func (r Configuration_Template_Section_Profile) Filter(filter interface{}) Configuration_Template_Section_Profile {
 	r.Options.Filter = filter
 	return r
 }
@@ -662,7 +662,7 @@ func (r Configuration_Template_Section_Reference) Mask(mask string) Configuratio
 	return r
 }
 
-func (r Configuration_Template_Section_Reference) Filter(filter string) Configuration_Template_Section_Reference {
+func (r Configuration_Template_Section_Reference) Filter(filter interface{}) Configuration_Template_Section_Reference {
 	r.Options.Filter = filter
 	return r
 }
@@ -721,7 +721,7 @@ func (r Configuration_Template_Section_Type) Mask(mask string) Configuration_Tem
 	return r
 }
 
-func (r Configuration_Template_Section_Type) Filter(filter string) Configuration_Template_Section_Type {
+func (r Configuration_Template_Section_Type) Filter(filter interface{}) Configuration_Template_Section_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -766,7 +766,7 @@ func (r Configuration_Template_Type) Mask(mask string) Configuration_Template_Ty
 	return r
 }
 
-func (r Configuration_Template_Type) Filter(filter string) Configuration_Template_Type {
+func (r Configuration_Template_Type) Filter(filter interface{}) Configuration_Template_Type {
 	r.Options.Filter = filter
 	return r
 }

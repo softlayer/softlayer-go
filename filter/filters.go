@@ -19,7 +19,6 @@
 package filter
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -40,7 +39,7 @@ func New(args ...Filter) Filters {
 
 // This is like calling New().Build().
 // Returns a JSON string that can be used as the object filter.
-func Build(args ...Filter) string {
+func Build(args ...Filter) map[string]interface{} {
 	filters := Filters{}
 
 	for _, arg := range args {
@@ -62,7 +61,7 @@ func Path(path string, val ...interface{}) Filter {
 }
 
 // Builds the filter string in JSON format
-func (fs Filters) Build() string {
+func (fs Filters) Build() map[string]interface{} {
 	// Loops around filters,
 	// splitting path on '.' and looping around path pieces.
 	// Idea is to create a map/tree like map[string]interface{}.
@@ -127,12 +126,11 @@ func (fs Filters) Build() string {
 		}
 	}
 
-	jsonStr, _ := json.Marshal(result)
-	return string(jsonStr)
+	return result
 }
 
 // Builds the filter string in JSON format
-func (f Filter) Build() string {
+func (f Filter) Build() map[string]interface{} {
 	return Build(f)
 }
 

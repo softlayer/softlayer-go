@@ -53,7 +53,7 @@ func (r Metric_Tracking_Object) Mask(mask string) Metric_Tracking_Object {
 	return r
 }
 
-func (r Metric_Tracking_Object) Filter(filter string) Metric_Tracking_Object {
+func (r Metric_Tracking_Object) Filter(filter interface{}) Metric_Tracking_Object {
 	r.Options.Filter = filter
 	return r
 }
@@ -210,7 +210,7 @@ func (r Metric_Tracking_Object_Bandwidth_Summary) Mask(mask string) Metric_Track
 	return r
 }
 
-func (r Metric_Tracking_Object_Bandwidth_Summary) Filter(filter string) Metric_Tracking_Object_Bandwidth_Summary {
+func (r Metric_Tracking_Object_Bandwidth_Summary) Filter(filter interface{}) Metric_Tracking_Object_Bandwidth_Summary {
 	r.Options.Filter = filter
 	return r
 }

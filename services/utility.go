@@ -52,7 +52,7 @@ func (r Utility_Network) Mask(mask string) Utility_Network {
 	return r
 }
 
-func (r Utility_Network) Filter(filter string) Utility_Network {
+func (r Utility_Network) Filter(filter interface{}) Utility_Network {
 	r.Options.Filter = filter
 	return r
 }

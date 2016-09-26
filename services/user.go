@@ -53,7 +53,7 @@ func (r User_Customer) Mask(mask string) User_Customer {
 	return r
 }
 
-func (r User_Customer) Filter(filter string) User_Customer {
+func (r User_Customer) Filter(filter interface{}) User_Customer {
 	r.Options.Filter = filter
 	return r
 }
@@ -451,6 +451,12 @@ func (r User_Customer) GetNotificationSubscribers() (resp []datatypes.Notificati
 // getObject retrieves the SoftLayer_User_Customer object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer service. You can only retrieve users that are assigned to the customer account belonging to the user making the API call.
 func (r User_Customer) GetObject() (resp datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// This API returns a SoftLayer_Container_User_Customer_OpenIdConnect_MigrationState object containing the necessary information to determine what migration state the user is in. If the account is not OpenIdConnect authenticated, then an exception is thrown.
+func (r User_Customer) GetOpenIdConnectMigrationState() (resp datatypes.Container_User_Customer_OpenIdConnect_MigrationState, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getOpenIdConnectMigrationState", nil, &r.Options, &resp)
 	return
 }
 
@@ -1082,7 +1088,7 @@ func (r User_Customer_ApiAuthentication) Mask(mask string) User_Customer_ApiAuth
 	return r
 }
 
-func (r User_Customer_ApiAuthentication) Filter(filter string) User_Customer_ApiAuthentication {
+func (r User_Customer_ApiAuthentication) Filter(filter interface{}) User_Customer_ApiAuthentication {
 	r.Options.Filter = filter
 	return r
 }
@@ -1142,7 +1148,7 @@ func (r User_Customer_CustomerPermission_Permission) Mask(mask string) User_Cust
 	return r
 }
 
-func (r User_Customer_CustomerPermission_Permission) Filter(filter string) User_Customer_CustomerPermission_Permission {
+func (r User_Customer_CustomerPermission_Permission) Filter(filter interface{}) User_Customer_CustomerPermission_Permission {
 	r.Options.Filter = filter
 	return r
 }
@@ -1193,7 +1199,7 @@ func (r User_Customer_External_Binding) Mask(mask string) User_Customer_External
 	return r
 }
 
-func (r User_Customer_External_Binding) Filter(filter string) User_Customer_External_Binding {
+func (r User_Customer_External_Binding) Filter(filter interface{}) User_Customer_External_Binding {
 	r.Options.Filter = filter
 	return r
 }
@@ -1314,7 +1320,7 @@ func (r User_Customer_External_Binding_Phone) Mask(mask string) User_Customer_Ex
 	return r
 }
 
-func (r User_Customer_External_Binding_Phone) Filter(filter string) User_Customer_External_Binding_Phone {
+func (r User_Customer_External_Binding_Phone) Filter(filter interface{}) User_Customer_External_Binding_Phone {
 	r.Options.Filter = filter
 	return r
 }
@@ -1531,7 +1537,7 @@ func (r User_Customer_External_Binding_Totp) Mask(mask string) User_Customer_Ext
 	return r
 }
 
-func (r User_Customer_External_Binding_Totp) Filter(filter string) User_Customer_External_Binding_Totp {
+func (r User_Customer_External_Binding_Totp) Filter(filter interface{}) User_Customer_External_Binding_Totp {
 	r.Options.Filter = filter
 	return r
 }
@@ -1668,7 +1674,7 @@ func (r User_Customer_External_Binding_Vendor) Mask(mask string) User_Customer_E
 	return r
 }
 
-func (r User_Customer_External_Binding_Vendor) Filter(filter string) User_Customer_External_Binding_Vendor {
+func (r User_Customer_External_Binding_Vendor) Filter(filter interface{}) User_Customer_External_Binding_Vendor {
 	r.Options.Filter = filter
 	return r
 }
@@ -1731,7 +1737,7 @@ func (r User_Customer_External_Binding_Verisign) Mask(mask string) User_Customer
 	return r
 }
 
-func (r User_Customer_External_Binding_Verisign) Filter(filter string) User_Customer_External_Binding_Verisign {
+func (r User_Customer_External_Binding_Verisign) Filter(filter interface{}) User_Customer_External_Binding_Verisign {
 	r.Options.Filter = filter
 	return r
 }
@@ -1901,7 +1907,7 @@ func (r User_Customer_Invitation) Mask(mask string) User_Customer_Invitation {
 	return r
 }
 
-func (r User_Customer_Invitation) Filter(filter string) User_Customer_Invitation {
+func (r User_Customer_Invitation) Filter(filter interface{}) User_Customer_Invitation {
 	r.Options.Filter = filter
 	return r
 }
@@ -1952,7 +1958,7 @@ func (r User_Customer_MobileDevice) Mask(mask string) User_Customer_MobileDevice
 	return r
 }
 
-func (r User_Customer_MobileDevice) Filter(filter string) User_Customer_MobileDevice {
+func (r User_Customer_MobileDevice) Filter(filter interface{}) User_Customer_MobileDevice {
 	r.Options.Filter = filter
 	return r
 }
@@ -2051,7 +2057,7 @@ func (r User_Customer_MobileDevice_OperatingSystem) Mask(mask string) User_Custo
 	return r
 }
 
-func (r User_Customer_MobileDevice_OperatingSystem) Filter(filter string) User_Customer_MobileDevice_OperatingSystem {
+func (r User_Customer_MobileDevice_OperatingSystem) Filter(filter interface{}) User_Customer_MobileDevice_OperatingSystem {
 	r.Options.Filter = filter
 	return r
 }
@@ -2102,7 +2108,7 @@ func (r User_Customer_MobileDevice_Type) Mask(mask string) User_Customer_MobileD
 	return r
 }
 
-func (r User_Customer_MobileDevice_Type) Filter(filter string) User_Customer_MobileDevice_Type {
+func (r User_Customer_MobileDevice_Type) Filter(filter interface{}) User_Customer_MobileDevice_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -2153,7 +2159,7 @@ func (r User_Customer_Notification_Hardware) Mask(mask string) User_Customer_Not
 	return r
 }
 
-func (r User_Customer_Notification_Hardware) Filter(filter string) User_Customer_Notification_Hardware {
+func (r User_Customer_Notification_Hardware) Filter(filter interface{}) User_Customer_Notification_Hardware {
 	r.Options.Filter = filter
 	return r
 }
@@ -2248,7 +2254,7 @@ func (r User_Customer_Notification_Virtual_Guest) Mask(mask string) User_Custome
 	return r
 }
 
-func (r User_Customer_Notification_Virtual_Guest) Filter(filter string) User_Customer_Notification_Virtual_Guest {
+func (r User_Customer_Notification_Virtual_Guest) Filter(filter interface{}) User_Customer_Notification_Virtual_Guest {
 	r.Options.Filter = filter
 	return r
 }
@@ -2343,7 +2349,7 @@ func (r User_Customer_OpenIdConnect) Mask(mask string) User_Customer_OpenIdConne
 	return r
 }
 
-func (r User_Customer_OpenIdConnect) Filter(filter string) User_Customer_OpenIdConnect {
+func (r User_Customer_OpenIdConnect) Filter(filter interface{}) User_Customer_OpenIdConnect {
 	r.Options.Filter = filter
 	return r
 }
@@ -2686,7 +2692,7 @@ func (r User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket
 	return
 }
 
-// This API gets the default for the OpenIdConnect identity that is linked from the current SoftLayer user identity. If there is no default present, the API returns null.
+// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null.
 func (r User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -2794,6 +2800,12 @@ func (r User_Customer_OpenIdConnect) GetNotificationSubscribers() (resp []dataty
 // no documentation yet
 func (r User_Customer_OpenIdConnect) GetObject() (resp datatypes.User_Customer_OpenIdConnect, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// This API returns a SoftLayer_Container_User_Customer_OpenIdConnect_MigrationState object containing the necessary information to determine what migration state the user is in. If the account is not OpenIdConnect authenticated, then an exception is thrown.
+func (r User_Customer_OpenIdConnect) GetOpenIdConnectMigrationState() (resp datatypes.Container_User_Customer_OpenIdConnect_MigrationState, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOpenIdConnectMigrationState", nil, &r.Options, &resp)
 	return
 }
 
@@ -3301,7 +3313,7 @@ func (r User_Customer_OpenIdConnect) SamlLogout(samlResponse *string) (err error
 	return
 }
 
-// This API sets the default account for the OpenIdConnect identity that is linked from the current SoftLayer user identity.
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one per account. If an OpenIdConnect identity is mapped to multiple accounts in this manner, one such account should be identified as the default account for that identity.
 func (r User_Customer_OpenIdConnect) SetDefaultAccount(providerType *string, accountId *int) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3456,7 +3468,7 @@ func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Mask(mask string) 
 	return r
 }
 
-func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Filter(filter string) User_Customer_Prospect_ServiceProvider_EnrollRequest {
+func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) Filter(filter interface{}) User_Customer_Prospect_ServiceProvider_EnrollRequest {
 	r.Options.Filter = filter
 	return r
 }
@@ -3516,7 +3528,7 @@ func (r User_Customer_Security_Answer) Mask(mask string) User_Customer_Security_
 	return r
 }
 
-func (r User_Customer_Security_Answer) Filter(filter string) User_Customer_Security_Answer {
+func (r User_Customer_Security_Answer) Filter(filter interface{}) User_Customer_Security_Answer {
 	r.Options.Filter = filter
 	return r
 }
@@ -3573,7 +3585,7 @@ func (r User_Customer_Status) Mask(mask string) User_Customer_Status {
 	return r
 }
 
-func (r User_Customer_Status) Filter(filter string) User_Customer_Status {
+func (r User_Customer_Status) Filter(filter interface{}) User_Customer_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -3624,7 +3636,7 @@ func (r User_External_Binding) Mask(mask string) User_External_Binding {
 	return r
 }
 
-func (r User_External_Binding) Filter(filter string) User_External_Binding {
+func (r User_External_Binding) Filter(filter interface{}) User_External_Binding {
 	r.Options.Filter = filter
 	return r
 }
@@ -3714,7 +3726,7 @@ func (r User_External_Binding_Vendor) Mask(mask string) User_External_Binding_Ve
 	return r
 }
 
-func (r User_External_Binding_Vendor) Filter(filter string) User_External_Binding_Vendor {
+func (r User_External_Binding_Vendor) Filter(filter interface{}) User_External_Binding_Vendor {
 	r.Options.Filter = filter
 	return r
 }
@@ -3765,7 +3777,7 @@ func (r User_Permission_Action) Mask(mask string) User_Permission_Action {
 	return r
 }
 
-func (r User_Permission_Action) Filter(filter string) User_Permission_Action {
+func (r User_Permission_Action) Filter(filter interface{}) User_Permission_Action {
 	r.Options.Filter = filter
 	return r
 }
@@ -3816,7 +3828,7 @@ func (r User_Permission_Group) Mask(mask string) User_Permission_Group {
 	return r
 }
 
-func (r User_Permission_Group) Filter(filter string) User_Permission_Group {
+func (r User_Permission_Group) Filter(filter interface{}) User_Permission_Group {
 	r.Options.Filter = filter
 	return r
 }
@@ -4009,7 +4021,7 @@ func (r User_Permission_Group_Type) Mask(mask string) User_Permission_Group_Type
 	return r
 }
 
-func (r User_Permission_Group_Type) Filter(filter string) User_Permission_Group_Type {
+func (r User_Permission_Group_Type) Filter(filter interface{}) User_Permission_Group_Type {
 	r.Options.Filter = filter
 	return r
 }
@@ -4060,7 +4072,7 @@ func (r User_Permission_Role) Mask(mask string) User_Permission_Role {
 	return r
 }
 
-func (r User_Permission_Role) Filter(filter string) User_Permission_Role {
+func (r User_Permission_Role) Filter(filter interface{}) User_Permission_Role {
 	r.Options.Filter = filter
 	return r
 }
@@ -4193,7 +4205,7 @@ func (r User_Security_Question) Mask(mask string) User_Security_Question {
 	return r
 }
 
-func (r User_Security_Question) Filter(filter string) User_Security_Question {
+func (r User_Security_Question) Filter(filter interface{}) User_Security_Question {
 	r.Options.Filter = filter
 	return r
 }

@@ -53,7 +53,7 @@ func (r Event_Log) Mask(mask string) Event_Log {
 	return r
 }
 
-func (r Event_Log) Filter(filter string) Event_Log {
+func (r Event_Log) Filter(filter interface{}) Event_Log {
 	r.Options.Filter = filter
 	return r
 }

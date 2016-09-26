@@ -137,7 +137,7 @@ import (
 		return r
 	}
 
-	func (r {{$base}}) Filter(filter string) {{$base}} {
+	func (r {{$base}}) Filter(filter interface{}) {{$base}} {
 		r.Options.Filter = filter
 		return r
 	}

@@ -53,7 +53,7 @@ func (r Compliance_Report_Type) Mask(mask string) Compliance_Report_Type {
 	return r
 }
 
-func (r Compliance_Report_Type) Filter(filter string) Compliance_Report_Type {
+func (r Compliance_Report_Type) Filter(filter interface{}) Compliance_Report_Type {
 	r.Options.Filter = filter
 	return r
 }

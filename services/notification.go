@@ -53,7 +53,7 @@ func (r Notification) Mask(mask string) Notification {
 	return r
 }
 
-func (r Notification) Filter(filter string) Notification {
+func (r Notification) Filter(filter interface{}) Notification {
 	r.Options.Filter = filter
 	return r
 }
@@ -116,7 +116,7 @@ func (r Notification_Mobile) Mask(mask string) Notification_Mobile {
 	return r
 }
 
-func (r Notification_Mobile) Filter(filter string) Notification_Mobile {
+func (r Notification_Mobile) Filter(filter interface{}) Notification_Mobile {
 	r.Options.Filter = filter
 	return r
 }
@@ -190,7 +190,7 @@ func (r Notification_Occurrence_Event) Mask(mask string) Notification_Occurrence
 	return r
 }
 
-func (r Notification_Occurrence_Event) Filter(filter string) Notification_Occurrence_Event {
+func (r Notification_Occurrence_Event) Filter(filter interface{}) Notification_Occurrence_Event {
 	r.Options.Filter = filter
 	return r
 }
@@ -334,7 +334,7 @@ func (r Notification_Occurrence_User) Mask(mask string) Notification_Occurrence_
 	return r
 }
 
-func (r Notification_Occurrence_User) Filter(filter string) Notification_Occurrence_User {
+func (r Notification_Occurrence_User) Filter(filter interface{}) Notification_Occurrence_User {
 	r.Options.Filter = filter
 	return r
 }
@@ -417,7 +417,7 @@ func (r Notification_User_Subscriber) Mask(mask string) Notification_User_Subscr
 	return r
 }
 
-func (r Notification_User_Subscriber) Filter(filter string) Notification_User_Subscriber {
+func (r Notification_User_Subscriber) Filter(filter interface{}) Notification_User_Subscriber {
 	r.Options.Filter = filter
 	return r
 }
@@ -550,7 +550,7 @@ func (r Notification_User_Subscriber_Billing) Mask(mask string) Notification_Use
 	return r
 }
 
-func (r Notification_User_Subscriber_Billing) Filter(filter string) Notification_User_Subscriber_Billing {
+func (r Notification_User_Subscriber_Billing) Filter(filter interface{}) Notification_User_Subscriber_Billing {
 	r.Options.Filter = filter
 	return r
 }
@@ -683,7 +683,7 @@ func (r Notification_User_Subscriber_Mobile) Mask(mask string) Notification_User
 	return r
 }
 
-func (r Notification_User_Subscriber_Mobile) Filter(filter string) Notification_User_Subscriber_Mobile {
+func (r Notification_User_Subscriber_Mobile) Filter(filter interface{}) Notification_User_Subscriber_Mobile {
 	r.Options.Filter = filter
 	return r
 }
@@ -832,7 +832,7 @@ func (r Notification_User_Subscriber_Preference) Mask(mask string) Notification_
 	return r
 }
 
-func (r Notification_User_Subscriber_Preference) Filter(filter string) Notification_User_Subscriber_Preference {
+func (r Notification_User_Subscriber_Preference) Filter(filter interface{}) Notification_User_Subscriber_Preference {
 	r.Options.Filter = filter
 	return r
 }

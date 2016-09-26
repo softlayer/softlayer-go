@@ -53,7 +53,7 @@ func (r Search) Mask(mask string) Search {
 	return r
 }
 
-func (r Search) Filter(filter string) Search {
+func (r Search) Filter(filter interface{}) Search {
 	r.Options.Filter = filter
 	return r
 }

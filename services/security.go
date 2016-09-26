@@ -53,7 +53,7 @@ func (r Security_Certificate) Mask(mask string) Security_Certificate {
 	return r
 }
 
-func (r Security_Certificate) Filter(filter string) Security_Certificate {
+func (r Security_Certificate) Filter(filter interface{}) Security_Certificate {
 	r.Options.Filter = filter
 	return r
 }
@@ -151,7 +151,7 @@ func (r Security_Certificate_Request) Mask(mask string) Security_Certificate_Req
 	return r
 }
 
-func (r Security_Certificate_Request) Filter(filter string) Security_Certificate_Request {
+func (r Security_Certificate_Request) Filter(filter interface{}) Security_Certificate_Request {
 	r.Options.Filter = filter
 	return r
 }
@@ -285,7 +285,7 @@ func (r Security_Certificate_Request_ServerType) Mask(mask string) Security_Cert
 	return r
 }
 
-func (r Security_Certificate_Request_ServerType) Filter(filter string) Security_Certificate_Request_ServerType {
+func (r Security_Certificate_Request_ServerType) Filter(filter interface{}) Security_Certificate_Request_ServerType {
 	r.Options.Filter = filter
 	return r
 }
@@ -336,7 +336,7 @@ func (r Security_Certificate_Request_Status) Mask(mask string) Security_Certific
 	return r
 }
 
-func (r Security_Certificate_Request_Status) Filter(filter string) Security_Certificate_Request_Status {
+func (r Security_Certificate_Request_Status) Filter(filter interface{}) Security_Certificate_Request_Status {
 	r.Options.Filter = filter
 	return r
 }
@@ -387,7 +387,7 @@ func (r Security_Ssh_Key) Mask(mask string) Security_Ssh_Key {
 	return r
 }
 
-func (r Security_Ssh_Key) Filter(filter string) Security_Ssh_Key {
+func (r Security_Ssh_Key) Filter(filter interface{}) Security_Ssh_Key {
 	r.Options.Filter = filter
 	return r
 }

@@ -55,7 +55,7 @@ func (r Brand) Mask(mask string) Brand {
 	return r
 }
 
-func (r Brand) Filter(filter string) Brand {
+func (r Brand) Filter(filter interface{}) Brand {
 	r.Options.Filter = filter
 	return r
 }
@@ -251,7 +251,7 @@ func (r Brand_Restriction_Location_CustomerCountry) Mask(mask string) Brand_Rest
 	return r
 }
 
-func (r Brand_Restriction_Location_CustomerCountry) Filter(filter string) Brand_Restriction_Location_CustomerCountry {
+func (r Brand_Restriction_Location_CustomerCountry) Filter(filter interface{}) Brand_Restriction_Location_CustomerCountry {
 	r.Options.Filter = filter
 	return r
 }
