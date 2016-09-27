@@ -17,13 +17,12 @@
 package tests
 
 import (
-	"github.com/jarcoal/httpmock"
 	"net/http"
 	"strconv"
 )
 
 // Returns a responder whose response body is the request body
-func NewEchoResponder(status int) httpmock.Responder {
+func NewEchoResponder(status int) func(*http.Request) (*http.Response, error) {
 	return func(req *http.Request) (*http.Response, error) {
 		return &http.Response{
 			Status:     strconv.Itoa(status),

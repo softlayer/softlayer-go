@@ -10,7 +10,7 @@ TOOLS=$(GO_RUN) tools/*.go
 
 PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 
-.PHONY: all alpha build deps fmt fmtcheck generate install release test
+.PHONY: all alpha build deps fmt fmtcheck generate install release test test_deps update_deps version
 
 all: build
 
@@ -50,8 +50,11 @@ release: build
 	git push && \
 	git push origin $${NEW_VERSION}
 
-test: fmtcheck
+test: fmtcheck test_deps
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
+
+test_deps:
+	$(GO_DEPS) -t ./...
 
 update_deps:
 	$(GO_DEPS_UPDATE) ./...

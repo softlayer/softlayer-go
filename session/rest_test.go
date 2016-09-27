@@ -30,6 +30,8 @@ import (
 
 var s *Session
 
+const restEndpoint = "https://api.softlayer.com/rest/v3"
+
 // structure of a single testcase
 type testcase struct {
 	description string
@@ -216,6 +218,8 @@ var testcases = []testcase{
 func TestRest(t *testing.T) {
 	// setup session and mock environment
 	s = New()
+	s.Endpoint = restEndpoint
+
 	//s.Debug = true
 	httpmock.Activate()
 	defer httpmock.Deactivate()
@@ -265,7 +269,7 @@ func TestRest(t *testing.T) {
 func setup(tc testcase) {
 	httpmock.RegisterResponder(
 		httpMethod(tc.method, tc.args),
-		fmt.Sprintf("https://api.softlayer.com/rest/v3/%s", buildPath(tc.service, tc.method, &tc.options)),
+		fmt.Sprintf("%s/%s", restEndpoint, buildPath(tc.service, tc.method, &tc.options)),
 		tc.responder)
 }
 
