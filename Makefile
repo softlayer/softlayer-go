@@ -24,10 +24,7 @@ build: fmtcheck deps
 	$(GO_BUILD) ./...
 
 deps:
-	@for p in $(PACKAGE_LIST); do \
-		echo "==> Install dependencies for $$p ..."; \
-		$(GO_DEPS) $$p || exit 1; \
-	done
+	$(GO_DEPS) ./...
 
 fmt:
 	@$(GO_FMT) -w `find . -name '*.go' | grep -v vendor`
@@ -57,10 +54,7 @@ test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
 
 update_deps:
-	@for p in $(PACKAGE_LIST); do \
-		echo "==> Install dependencies for $$p ..."; \
-		$(GO_DEPS_UPDATE) $$p || exit 1; \
-	done
+	$(GO_DEPS_UPDATE) ./...
 
 version:
 	@$(TOOLS) version
