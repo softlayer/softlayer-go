@@ -156,6 +156,10 @@ func encodeQuery(opts *sl.Options) string {
 
 func makeHTTPRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
 	client := http.DefaultClient
+	client.Timeout = DefaultTimeout
+	if session.Timeout != 0 {
+		client.Timeout = session.Timeout
+	}
 
 	var url string
 	if session.Endpoint == "" {

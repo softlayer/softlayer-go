@@ -23,7 +23,6 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"strings"
-	"time"
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
@@ -55,13 +54,8 @@ func (mrt debugRoundTripper) RoundTrip(request *http.Request) (*http.Response, e
 }
 
 // XML-RPC Transport
-type XmlRpcTransport struct {
-	Timeout time.Duration
-}
+type XmlRpcTransport struct{}
 
-const DefaultXmlRpcTimeout = time.Second * 30
-
-// err = r.Session.DoRequest("SoftLayer_Account", "activatePartner", params, &r.Options, &resp)
 func (x *XmlRpcTransport) DoRequest(
 	sess *Session,
 	service string,
@@ -81,9 +75,9 @@ func (x *XmlRpcTransport) DoRequest(
 			roundTripper = debugRoundTripper{}
 		}
 
-		timeout := DefaultXmlRpcTimeout
-		if x.Timeout != 0 {
-			timeout = x.Timeout
+		timeout := DefaultTimeout
+		if sess.Timeout != 0 {
+			timeout = sess.Timeout
 		}
 
 		client, err = xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
