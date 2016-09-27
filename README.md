@@ -259,6 +259,34 @@ func main() {
 }
 ```
 
+## Development
+
+### Setup
+
+To get _softlayer-go_:
+
+```
+go get github.com/softlayer/softlayer-go
+```
+
+### Build
+
+```
+make
+```
+
+### Test
+
+```
+make test
+```
+
+### Updating dependencies
+
+```
+make update_deps
+```
+
 ## Copyright
 
 This software is Copyright (c) 2016 IBM Corp. See the bundled LICENSE file for more information.

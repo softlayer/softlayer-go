@@ -1,6 +1,7 @@
 GO_CMD=go
 GO_BUILD=$(GO_CMD) build
 GO_DEPS=$(GO_CMD) get -d -v
+GO_DEPS_UPDATE=$(GO_DEPS) -u
 GO_FMT=gofmt
 GO_INSTALL=$(GO_CMD) install
 GO_RUN=$(GO_CMD) run
@@ -19,7 +20,7 @@ alpha:
 	git commit -m "Bump version"
 	git push
 
-build: fmtcheck
+build: fmtcheck deps
 	$(GO_BUILD) ./...
 
 deps:
@@ -41,7 +42,7 @@ fmtcheck:
 generate:
 	@$(TOOLS) generate
 
-install: fmtcheck
+install: fmtcheck deps
 	@$(GO_INSTALL) ./...
 
 release: build
@@ -54,6 +55,12 @@ release: build
 
 test: fmtcheck
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
+
+update_deps:
+	@for p in $(PACKAGE_LIST); do \
+		echo "==> Install dependencies for $$p ..."; \
+		$(GO_DEPS_UPDATE) $$p || exit 1; \
+	done
 
 version:
 	@$(TOOLS) version
