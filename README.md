@@ -272,7 +272,7 @@ go get github.com/softlayer/softlayer-go
 ### Build
 
 ```
-make build
+make
 ```
 
 ### Test
