@@ -65,7 +65,7 @@ func (x *XmlRpcTransport) DoRequest(
 	pResult interface{},
 ) error {
 
-	serviceUrl := fmt.Sprintf("%s/%s", sess.Endpoint, service)
+	serviceUrl := fmt.Sprintf("%s/%s", strings.TrimRight(sess.Endpoint, "/"), service)
 	client, ok := xmlRpcClients[serviceUrl]
 	if !ok {
 		var roundTripper http.RoundTripper
