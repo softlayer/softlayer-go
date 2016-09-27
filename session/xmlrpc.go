@@ -65,7 +65,7 @@ func (x *XmlRpcTransport) DoRequest(
 	pResult interface{},
 ) error {
 
-	serviceUrl := fmt.Sprintf("%s/%s", sess.Endpoint, service)
+	serviceUrl := fmt.Sprintf("%s/%s", strings.TrimRight(sess.Endpoint, "/"), service)
 	client, ok := xmlRpcClients[serviceUrl]
 	if !ok {
 		var roundTripper http.RoundTripper
@@ -165,8 +165,7 @@ func (x *XmlRpcTransport) DoRequest(
 	}
 
 	err := client.Call(method, params, pResult)
-	if err != nil {
-		xmlRpcError := err.(*xmlrpc.XmlRpcError)
+	if xmlRpcError, ok := err.(*xmlrpc.XmlRpcError); ok {
 		return sl.Error{
 			StatusCode: xmlRpcError.HttpStatusCode,
 			Exception:  xmlRpcError.Code,
@@ -174,5 +173,5 @@ func (x *XmlRpcTransport) DoRequest(
 		}
 	}
 
-	return nil
+	return err
 }

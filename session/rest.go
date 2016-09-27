@@ -167,7 +167,7 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	} else {
 		url = url + session.Endpoint
 	}
-	url = url + "/" + path
+	url = fmt.Sprintf("%s/%s", strings.TrimRight(url, "/"), path)
 	req, err := http.NewRequest(requestType, url, requestBody)
 	if err != nil {
 		return nil, 0, err
