@@ -150,6 +150,16 @@ var testcases = []testcase{
 		expectError: false,
 	},
 	{
+		description: "negative int return",
+		service:     "SoftLayer_Scale_Asset_Hardware",
+		method:      "getHardwareId",
+		args:        nil,
+		options:     sl.Options{Id: sl.Int(123456)},
+		responder:   httpmock.NewStringResponder(200, `-345`),
+		expected:    int(-345),
+		expectError: false,
+	},
+	{
 		description: "[]byte return",
 		service:     "SoftLayer_Account",
 		method:      "getNextInvoicePdf",
