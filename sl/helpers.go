@@ -30,6 +30,11 @@ func Int(v int) *int {
 	return &v
 }
 
+// Uint returns a pointer to the uint value provided
+func Uint(v uint) *uint {
+	return &v
+}
+
 // String returns a pointer to the string value provided
 func String(v string) *string {
 	return &v
