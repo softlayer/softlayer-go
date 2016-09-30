@@ -17,40 +17,65 @@
 package order
 
 import (
+	"fmt"
+
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 )
 
-// CheckBillingOrderStatus returns true if the status of the billing order for
-// the provided product order receipt is in the list of provided statuses.
-// Returns false otherwise, along with the billing order item used to check the statuses,
-// and any error encountered.
-func CheckBillingOrderStatus(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt, statuses []string) (bool, *datatypes.Billing_Order_Item, error) {
+// CheckOrderItemProvisionTransactionStatus returns true if the status of the
+// provision transaction for the provided order item is in the list of
+// provided statuses. Returns false otherwise.
+//
+// As a side-effect, the original passed order item is updated with the latest
+// billing item.
+//
+// Returns an error if the order item has no billing item or the billing item
+// has no provision transaction (this probably just means that the billing
+// item has not been created yet)
+func CheckOrderItemProvisionStatus(sess *session.Session, orderItem *datatypes.Billing_Order_Item, statuses []string) (bool, error) {
 	service := services.GetBillingOrderItemService(sess)
 
-	item, err := service.
-		Id(*receipt.PlacedOrder.Items[0].Id).
-		Mask("mask[id,billingItem[id,provisionTransaction[id,transactionStatus[name]]]]").
-		GetObject()
+	billingItem, err := service.
+		Id(*orderItem.Id).
+		Mask("mask[id,provisionTransaction[id,transactionStatus[name]]]").
+		GetBillingItem()
 
 	if err != nil {
-		return false, nil, err
+		return false, err
 	}
 
-	currentStatus := *item.BillingItem.ProvisionTransaction.TransactionStatus.Name
+	if billingItem.Id == nil {
+		return false, fmt.Errorf("The billing item is nil - unable to proceed with transaction check")
+	}
+
+	// Set the updated billing item in the order item, for the caller's convenience
+	orderItem.BillingItem = &billingItem
+
+	if billingItem.ProvisionTransaction == nil {
+		return false, fmt.Errorf("Order item %d has no associated provision transaction", *orderItem.Id)
+	}
+
 	for _, status := range statuses {
-		if currentStatus == status {
-			return true, &item, nil
+		if *billingItem.ProvisionTransaction.TransactionStatus.Name == status {
+			return true, nil
 		}
 	}
 
-	return false, &item, nil
+	return false, nil
 }
 
-// CheckBillingOrderComplete returns true if the status of the billing order for
-// the provided product order receipt is "COMPLETE". Returns false otherwise,
-// along with the billing order item used to check the statuses, and any error encountered.
-func CheckBillingOrderComplete(sess *session.Session, receipt *datatypes.Container_Product_Order_Receipt) (bool, *datatypes.Billing_Order_Item, error) {
-	return CheckBillingOrderStatus(sess, receipt, []string{"COMPLETE"})
+// CheckOrderItemProvisionTransactionStatus returns true if the status of the
+// provision transaction for the provided order item is "COMPLETE". Returns
+// false otherwise.
+//
+// As a side-effect, the original passed order item is updated with the latest
+// billing item.
+//
+// Returns an error if the order item has no billing item or the billing item
+// has no provision transaction (this probably just means that the billing
+// item has not been created yet)
+func CheckOrderItemProvisionComplete(sess *session.Session, orderItem *datatypes.Billing_Order_Item) (bool, error) {
+	return CheckOrderItemProvisionStatus(sess, orderItem, []string{"COMPLETE"})
 }
