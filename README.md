@@ -1,6 +1,7 @@
 # softlayer-go
 
 <!-- [![Build Status](https://travis-ci.org/softlayer/softlayer-go.svg?branch=master)](https://travis-ci.org/softlayer/softlayer-go) -->
+[![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
 
 SoftLayer API Client for the Go language
 
