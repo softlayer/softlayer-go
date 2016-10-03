@@ -24,14 +24,6 @@ import (
 	"github.com/softlayer/softlayer-go/session"
 )
 
-func getOrderItemIds(orderItems []datatypes.Billing_Order_Item) []interface{} {
-	result := make([]interface{}, len(orderItems))
-	for _, item := range orderItems {
-		result = append(result, *item.Id)
-	}
-	return result
-}
-
 // CheckItemProvisionStatus returns true if the status of the provision
 // transaction for ALL of the provided order items is in the list of provided
 // statuses. Returns false otherwise.  The order items provided must be part of
