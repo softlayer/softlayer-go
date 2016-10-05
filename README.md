@@ -2,6 +2,7 @@
 
 <!-- [![Build Status](https://travis-ci.org/softlayer/softlayer-go.svg?branch=master)](https://travis-ci.org/softlayer/softlayer-go) -->
 [![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 SoftLayer API Client for the Go language
 
