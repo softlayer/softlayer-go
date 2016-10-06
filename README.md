@@ -29,6 +29,8 @@ accountService := services.GetAccountService(sess)
 account, err := accountService.getObject()
 ```
 
+[More examples](https://github.com/softlayer/softlayer-go/tree/master/examples)
+
 ### Sessions
 
 In addition to the example above, sessions can also be created using values
