@@ -270,7 +270,7 @@ func main() {
 To get _softlayer-go_:
 
 ```
-go get github.com/softlayer/softlayer-go
+go get github.com/softlayer/softlayer-go/...
 ```
 
 ### Build
