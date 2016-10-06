@@ -133,7 +133,7 @@ accountServiceWithMaskAndFilter = accountService.Mask("id;hostname").
 Result limits are specified as separate `Limit` and `Offset` values:
 
 ```go
-accountSerice.
+accountService.
 	Offset(100).      // start at the 100th element in the list
 	Limit(25).        // limit to 25 results
 	GetVirtualGuests()
