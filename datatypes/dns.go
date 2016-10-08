@@ -25,31 +25,31 @@ type Dns_Domain struct {
 	Entity
 
 	// The SoftLayer customer account that owns a domain.
-	Account *Account `json:"account,omitempty" xmlrpc:"account"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// A domain record's internal identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// A flag indicating that the dns domain record is a managed resource.
-	ManagedResourceFlag *bool `json:"managedResourceFlag,omitempty" xmlrpc:"managedResourceFlag"`
+	ManagedResourceFlag *bool `json:"managedResourceFlag,omitempty" xmlrpc:"managedResourceFlag,omitempty"`
 
 	// A domain's name including top-level domain, for example "example.com".
-	Name *string `json:"name,omitempty" xmlrpc:"name"`
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// A count of the individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
-	ResourceRecordCount *uint `json:"resourceRecordCount,omitempty" xmlrpc:"resourceRecordCount"`
+	ResourceRecordCount *uint `json:"resourceRecordCount,omitempty" xmlrpc:"resourceRecordCount,omitempty"`
 
 	// The individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
-	ResourceRecords []Dns_Domain_ResourceRecord `json:"resourceRecords,omitempty" xmlrpc:"resourceRecords"`
+	ResourceRecords []Dns_Domain_ResourceRecord `json:"resourceRecords,omitempty" xmlrpc:"resourceRecords,omitempty"`
 
 	// The secondary DNS record that defines this domain as being managed through zone transfers.
-	Secondary *Dns_Secondary `json:"secondary,omitempty" xmlrpc:"secondary"`
+	Secondary *Dns_Secondary `json:"secondary,omitempty" xmlrpc:"secondary,omitempty"`
 
 	// A unique number denoting the latest revision of a domain. Whenever a domain is changed its corresponding serial number is also changed. Serial numbers typically follow the format yyyymmdd## where yyyy is the current year, mm is the current month, dd is the current day of the month, and ## is the number of the revision for that day. A domain's serial number is automatically updated when edited via the API.
-	Serial *int `json:"serial,omitempty" xmlrpc:"serial"`
+	Serial *int `json:"serial,omitempty" xmlrpc:"serial,omitempty"`
 
 	// The date that this domain record was last updated.
-	UpdateDate *Time `json:"updateDate,omitempty" xmlrpc:"updateDate"`
+	UpdateDate *Time `json:"updateDate,omitempty" xmlrpc:"updateDate,omitempty"`
 }
 
 // The SoftLayer_Dns_Domain_Forward data type represents a single DNS domain record hosted on the SoftLayer nameservers. Domains contain general information about the domain name such as name and serial. Individual records such as A, AAAA, CTYPE, and MX records are stored in the domain's associated [[SoftLayer_Dns_Domain_ResourceRecord (type)|SoftLayer_Dns_Domain_ResourceRecord]] records.
@@ -62,43 +62,43 @@ type Dns_Domain_Registration struct {
 	Entity
 
 	// The SoftLayer customer account that the domain is registered to.
-	Account *Account `json:"account,omitempty" xmlrpc:"account"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// The domain registration status.
-	DomainRegistrationStatus *Dns_Domain_Registration_Status `json:"domainRegistrationStatus,omitempty" xmlrpc:"domainRegistrationStatus"`
+	DomainRegistrationStatus *Dns_Domain_Registration_Status `json:"domainRegistrationStatus,omitempty" xmlrpc:"domainRegistrationStatus,omitempty"`
 
 	// no documentation yet
-	DomainRegistrationStatusId *int `json:"domainRegistrationStatusId,omitempty" xmlrpc:"domainRegistrationStatusId"`
+	DomainRegistrationStatusId *int `json:"domainRegistrationStatusId,omitempty" xmlrpc:"domainRegistrationStatusId,omitempty"`
 
 	// The date that the domain registration will expire.
-	ExpireDate *Time `json:"expireDate,omitempty" xmlrpc:"expireDate"`
+	ExpireDate *Time `json:"expireDate,omitempty" xmlrpc:"expireDate,omitempty"`
 
 	// A domain record's internal identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Indicates whether a domain is locked or unlocked.
-	LockedFlag *int `json:"lockedFlag,omitempty" xmlrpc:"lockedFlag"`
+	LockedFlag *int `json:"lockedFlag,omitempty" xmlrpc:"lockedFlag,omitempty"`
 
 	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate"`
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// A domain's name, for example "example.com".
-	Name *string `json:"name,omitempty" xmlrpc:"name"`
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// The registrant verification status.
-	RegistrantVerificationStatus *Dns_Domain_Registration_Registrant_Verification_Status `json:"registrantVerificationStatus,omitempty" xmlrpc:"registrantVerificationStatus"`
+	RegistrantVerificationStatus *Dns_Domain_Registration_Registrant_Verification_Status `json:"registrantVerificationStatus,omitempty" xmlrpc:"registrantVerificationStatus,omitempty"`
 
 	// no documentation yet
-	RegistrantVerificationStatusId *int `json:"registrantVerificationStatusId,omitempty" xmlrpc:"registrantVerificationStatusId"`
+	RegistrantVerificationStatusId *int `json:"registrantVerificationStatusId,omitempty" xmlrpc:"registrantVerificationStatusId,omitempty"`
 
 	// no documentation yet
-	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider"`
+	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider,omitempty"`
 
 	// no documentation yet
-	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId"`
+	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status models the state of the registrant. Here are the following status codes:
@@ -116,16 +116,16 @@ type Dns_Domain_Registration_Registrant_Verification_Status struct {
 	Entity
 
 	// The description of the registrant verification status.
-	Description *string `json:"description,omitempty" xmlrpc:"description"`
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// The unique identifier of the registrant verification status
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The unique keyname of the registrant verification status.
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// The name of the registrant verification status.
-	Name *string `json:"name,omitempty" xmlrpc:"name"`
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_Registration_Status models the state of domain name. Here are the following status codes:
@@ -142,16 +142,16 @@ type Dns_Domain_Registration_Status struct {
 	Entity
 
 	// The description of the domain registration status names.
-	Description *string `json:"description,omitempty" xmlrpc:"description"`
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// The unique identifier of the domain registration status
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The unique keyname of the domain registration status.
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// The name of the domain registration status.
-	Name *string `json:"name,omitempty" xmlrpc:"name"`
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
 // The SoftLayer_Dns_Domain_ResourceRecord data type represents a single resource record entry in a SoftLayer hosted domain. Each resource record contains a ''host'' and ''data'' property, defining a resource's name and it's target data. Domains contain multiple types of resource records. The ''type'' property separates out resource records by type. ''Type'' can take one of the following values:
@@ -172,61 +172,61 @@ type Dns_Domain_ResourceRecord struct {
 	Entity
 
 	// The value of a domain's resource record. This can be an IP address or a hostname. Fully qualified host and domain name data must end with the "." character.
-	Data *string `json:"data,omitempty" xmlrpc:"data"`
+	Data *string `json:"data,omitempty" xmlrpc:"data,omitempty"`
 
 	// The domain that a resource record belongs to.
-	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain"`
+	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// An identifier belonging to the domain that a resource record is associated with.
-	DomainId *int `json:"domainId,omitempty" xmlrpc:"domainId"`
+	DomainId *int `json:"domainId,omitempty" xmlrpc:"domainId,omitempty"`
 
 	// The amount of time in seconds that a secondary name server (or servers) will hold a zone before it is no longer considered authoritative.
-	Expire *int `json:"expire,omitempty" xmlrpc:"expire"`
+	Expire *int `json:"expire,omitempty" xmlrpc:"expire,omitempty"`
 
 	// The host defined by a resource record. A value of "@" denotes a wildcard.
-	Host *string `json:"host,omitempty" xmlrpc:"host"`
+	Host *string `json:"host,omitempty" xmlrpc:"host,omitempty"`
 
 	// A domain resource record's internal identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Whether the address associated with a PTR record is the gateway address of a subnet.
-	IsGatewayAddress *bool `json:"isGatewayAddress,omitempty" xmlrpc:"isGatewayAddress"`
+	IsGatewayAddress *bool `json:"isGatewayAddress,omitempty" xmlrpc:"isGatewayAddress,omitempty"`
 
 	// The amount of time in seconds that a domain's resource records are valid. This is also known as a minimum TTL, and can be overridden by an individual resource record's TTL.
-	Minimum *int `json:"minimum,omitempty" xmlrpc:"minimum"`
+	Minimum *int `json:"minimum,omitempty" xmlrpc:"minimum,omitempty"`
 
 	// Useful in cases where a domain has more than one mail exchanger, the priority property is the priority of the MTA that delivers mail for a domain. A lower number denotes a higher priority, and mail will attempt to deliver through that MTA before moving to lower priority mail servers. Priority is defaulted to 10 upon resource record creation.
-	MxPriority *int `json:"mxPriority,omitempty" xmlrpc:"mxPriority"`
+	MxPriority *int `json:"mxPriority,omitempty" xmlrpc:"mxPriority,omitempty"`
 
 	// The TCP or UDP port on which the service is to be found.
-	Port *int `json:"port,omitempty" xmlrpc:"port"`
+	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
 	// The priority of the target host, lower value means more preferred.
-	Priority *int `json:"priority,omitempty" xmlrpc:"priority"`
+	Priority *int `json:"priority,omitempty" xmlrpc:"priority,omitempty"`
 
 	// The protocol of the desired service; this is usually either TCP or UDP.
-	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol"`
+	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
 
 	// The amount of time in seconds that a secondary name server should wait to check for a new copy of a DNS zone from the domain's primary name server. If a zone file has changed then the secondary DNS server will update it's copy of the zone to match the primary DNS server's zone.
-	Refresh *int `json:"refresh,omitempty" xmlrpc:"refresh"`
+	Refresh *int `json:"refresh,omitempty" xmlrpc:"refresh,omitempty"`
 
 	// The email address of the person responsible for a domain, with the "@" replaced with a ".". For instance, if root@example.org is responsible for example.org, then example.org's SOA responsibility is "root.example.org.".
-	ResponsiblePerson *string `json:"responsiblePerson,omitempty" xmlrpc:"responsiblePerson"`
+	ResponsiblePerson *string `json:"responsiblePerson,omitempty" xmlrpc:"responsiblePerson,omitempty"`
 
 	// The amount of time in seconds that a domain's primary name server (or servers) should wait if an attempt to refresh by a secondary name server failed before attempting to refresh a domain's zone with that secondary name server again.
-	Retry *int `json:"retry,omitempty" xmlrpc:"retry"`
+	Retry *int `json:"retry,omitempty" xmlrpc:"retry,omitempty"`
 
 	// The symbolic name of the desired service
-	Service *string `json:"service,omitempty" xmlrpc:"service"`
+	Service *string `json:"service,omitempty" xmlrpc:"service,omitempty"`
 
 	// The Time To Live value of a resource record, measured in seconds. TTL is used by a name server to determine how long to cache a resource record. An SOA record's TTL value defines the domain's overall TTL.
-	Ttl *int `json:"ttl,omitempty" xmlrpc:"ttl"`
+	Ttl *int `json:"ttl,omitempty" xmlrpc:"ttl,omitempty"`
 
 	// A domain resource record's type. A value of "a" denotes an A (address) record, "aaaa" denotes an AAAA (IPv6 address) record, "cname" denotes a CNAME (canonical name) record, "mx" denotes an MX (mail exchanger) record, "ns" denotes an NS (nameserver) record, "ptr" denotes a PTR (pointer/reverse) record, "soa" denotes the SOA (start of authority) record, "spf" denotes a SPF (sender policy framework) record, and "txt" denotes a TXT (text) record. A domain record's type also denotes which class in the SoftLayer API is a best match for extending a resource record.
-	Type *string `json:"type,omitempty" xmlrpc:"type"`
+	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// A relative weight for records with the same priority.
-	Weight *int `json:"weight,omitempty" xmlrpc:"weight"`
+	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_ResourceRecord_AType is a SoftLayer_Dns_Domain_ResourceRecord object whose ''type'' property is set to "a" and defines a DNS A record on a SoftLayer hosted domain. An A record directs a host name to an IP address. For instance if the A record for "host.example.org" points to the IP address 10.0.0.1 then the ''host'' property for the A record equals "host" and the ''data'' property equals "10.0.0.1".
@@ -279,7 +279,7 @@ type Dns_Domain_ResourceRecord_PtrType struct {
 	Dns_Domain_ResourceRecord
 
 	// Whether the address associated with a PTR record is the gateway address of a subnet.
-	IsGatewayAddress *bool `json:"isGatewayAddress,omitempty" xmlrpc:"isGatewayAddress"`
+	IsGatewayAddress *bool `json:"isGatewayAddress,omitempty" xmlrpc:"isGatewayAddress,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_ResourceRecord_SoaType defines a domains' Start of Authority (or SOA) resource record. A domain's SOA record contains a domain's general and propagation information. Every domain must have one SOA record, and it is not possible to remove a domain's SOA record.
@@ -301,19 +301,19 @@ type Dns_Domain_ResourceRecord_SrvType struct {
 	Dns_Domain_ResourceRecord
 
 	// The TCP or UDP port on which the service is to be found.
-	Port *int `json:"port,omitempty" xmlrpc:"port"`
+	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
 	// The priority of the target host, lower value means more preferred.
-	Priority *int `json:"priority,omitempty" xmlrpc:"priority"`
+	Priority *int `json:"priority,omitempty" xmlrpc:"priority,omitempty"`
 
 	// The protocol of the desired service; this is usually either TCP or UDP.
-	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol"`
+	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
 
 	// The symbolic name of the desired service
-	Service *string `json:"service,omitempty" xmlrpc:"service"`
+	Service *string `json:"service,omitempty" xmlrpc:"service,omitempty"`
 
 	// A relative weight for records with the same priority.
-	Weight *int `json:"weight,omitempty" xmlrpc:"weight"`
+	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
 }
 
 // SoftLayer_Dns_Domain_ResourceRecord_TxtType is a SoftLayer_Dns_Domain_ResourceRecord object whose ''type'' property is set to "txt" and defines a DNS TXT record on a SoftLayer hosted domain. A TXT record provides a text description for a host. For instance, if defining the TXT record "My test host" for "host.example.org". then the ''host'' property equals "host" and the ''data'' property equals "My test host".
@@ -328,7 +328,7 @@ type Dns_Domain_Reverse struct {
 	Dns_Domain
 
 	// Network address the domain is associated with.
-	NetworkAddress *string `json:"networkAddress,omitempty" xmlrpc:"networkAddress"`
+	NetworkAddress *string `json:"networkAddress,omitempty" xmlrpc:"networkAddress,omitempty"`
 }
 
 // The SoftLayer_Dns_Domain_Reverse_Version4 data type represents a reverse IPv4 address record.
@@ -346,25 +346,25 @@ type Dns_Message struct {
 	Entity
 
 	// The date the message was created.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// The domain that is associated with a message.
-	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain"`
+	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// The internal identifier for a DNS message.
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The message text.
-	Message *string `json:"message,omitempty" xmlrpc:"message"`
+	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
 
 	// The priority level for a DNS message.  The possible levels are 'notice' and 'error'.
-	Priority *string `json:"priority,omitempty" xmlrpc:"priority"`
+	Priority *string `json:"priority,omitempty" xmlrpc:"priority,omitempty"`
 
 	// The resource record that is associated with a message.
-	ResourceRecord *Dns_Domain_ResourceRecord `json:"resourceRecord,omitempty" xmlrpc:"resourceRecord"`
+	ResourceRecord *Dns_Domain_ResourceRecord `json:"resourceRecord,omitempty" xmlrpc:"resourceRecord,omitempty"`
 
 	// The secondary DNS record that a message belongs to.
-	Secondary *Dns_Secondary `json:"secondary,omitempty" xmlrpc:"secondary"`
+	Secondary *Dns_Secondary `json:"secondary,omitempty" xmlrpc:"secondary,omitempty"`
 }
 
 // The SoftLayer_Dns_Secondary data type contains information on a single secondary DNS zone which is managed through SoftLayer's zone transfer service. Domains created via zone transfer may not be modified by the SoftLayer portal or API.
@@ -372,47 +372,47 @@ type Dns_Secondary struct {
 	Entity
 
 	// The SoftLayer account that owns a secondary DNS record.
-	Account *Account `json:"account,omitempty" xmlrpc:"account"`
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The date a secondary DNS record was created.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate"`
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// The domain record created by zone transfer from a secondary DNS record.
-	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain"`
+	Domain *Dns_Domain `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// A count of the error messages created during secondary DNS record transfer.
-	ErrorMessageCount *uint `json:"errorMessageCount,omitempty" xmlrpc:"errorMessageCount"`
+	ErrorMessageCount *uint `json:"errorMessageCount,omitempty" xmlrpc:"errorMessageCount,omitempty"`
 
 	// The error messages created during secondary DNS record transfer.
-	ErrorMessages []Dns_Message `json:"errorMessages,omitempty" xmlrpc:"errorMessages"`
+	ErrorMessages []Dns_Message `json:"errorMessages,omitempty" xmlrpc:"errorMessages,omitempty"`
 
 	// The internal identifier for a secondary DNS record.
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The date when the most recent secondary DNS zone transfer took place.
-	LastUpdate *Time `json:"lastUpdate,omitempty" xmlrpc:"lastUpdate"`
+	LastUpdate *Time `json:"lastUpdate,omitempty" xmlrpc:"lastUpdate,omitempty"`
 
 	// The IP address of the master name server where a secondary DNS zone is transferred from.
-	MasterIpAddress *string `json:"masterIpAddress,omitempty" xmlrpc:"masterIpAddress"`
+	MasterIpAddress *string `json:"masterIpAddress,omitempty" xmlrpc:"masterIpAddress,omitempty"`
 
 	// The current status of the secondary DNS zone.
-	Status *Dns_Status `json:"status,omitempty" xmlrpc:"status"`
+	Status *Dns_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// The current status of a secondary DNS record.  The status may be one of the following:
 	// :*'''0''': Disabled
 	// :*'''1''': Active
 	// :*'''2''': Transfer Now
 	// :*'''3''': An error occurred that prevented the zone transfer from being completed.
-	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId"`
+	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 
 	// The textual representation of a secondary DNS zone's status.
-	StatusText *string `json:"statusText,omitempty" xmlrpc:"statusText"`
+	StatusText *string `json:"statusText,omitempty" xmlrpc:"statusText,omitempty"`
 
 	// How often a secondary DNS zone should be transferred in minutes.
-	TransferFrequency *int `json:"transferFrequency,omitempty" xmlrpc:"transferFrequency"`
+	TransferFrequency *int `json:"transferFrequency,omitempty" xmlrpc:"transferFrequency,omitempty"`
 
 	// The name of the zone that is transferred.
-	ZoneName *string `json:"zoneName,omitempty" xmlrpc:"zoneName"`
+	ZoneName *string `json:"zoneName,omitempty" xmlrpc:"zoneName,omitempty"`
 }
 
 // The SoftLayer_Dns_Status data type contains information for a DNS status
@@ -420,8 +420,8 @@ type Dns_Status struct {
 	Entity
 
 	// Internal identifier of a DNS status
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Monitoring DNS status name
-	Name *string `json:"name,omitempty" xmlrpc:"name"`
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }

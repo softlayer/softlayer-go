@@ -25,10 +25,10 @@ type Marketplace_EmailDistribution struct {
 	Entity
 
 	// no documentation yet
-	Email *string `json:"email,omitempty" xmlrpc:"email"`
+	Email *string `json:"email,omitempty" xmlrpc:"email,omitempty"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 }
 
 // no documentation yet
@@ -36,79 +36,79 @@ type Marketplace_Partner struct {
 	Entity
 
 	// no documentation yet
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId"`
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// no documentation yet
-	AttachedFiles []Marketplace_Partner_Attachment `json:"attachedFiles,omitempty" xmlrpc:"attachedFiles"`
+	AttachedFiles []Marketplace_Partner_Attachment `json:"attachedFiles,omitempty" xmlrpc:"attachedFiles,omitempty"`
 
 	// A count of
-	AttachmentCount *uint `json:"attachmentCount,omitempty" xmlrpc:"attachmentCount"`
+	AttachmentCount *uint `json:"attachmentCount,omitempty" xmlrpc:"attachmentCount,omitempty"`
 
 	// no documentation yet
-	Attachments []Marketplace_Partner_Attachment `json:"attachments,omitempty" xmlrpc:"attachments"`
+	Attachments []Marketplace_Partner_Attachment `json:"attachments,omitempty" xmlrpc:"attachments,omitempty"`
 
 	// no documentation yet
-	CompanyDescription *string `json:"companyDescription,omitempty" xmlrpc:"companyDescription"`
+	CompanyDescription *string `json:"companyDescription,omitempty" xmlrpc:"companyDescription,omitempty"`
 
 	// no documentation yet
-	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName"`
+	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName,omitempty"`
 
 	// no documentation yet
-	HeadlineDescription *string `json:"headlineDescription,omitempty" xmlrpc:"headlineDescription"`
+	HeadlineDescription *string `json:"headlineDescription,omitempty" xmlrpc:"headlineDescription,omitempty"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-	LinkFreeTrial *string `json:"linkFreeTrial,omitempty" xmlrpc:"linkFreeTrial"`
+	LinkFreeTrial *string `json:"linkFreeTrial,omitempty" xmlrpc:"linkFreeTrial,omitempty"`
 
 	// no documentation yet
-	LinkOrderPage *string `json:"linkOrderPage,omitempty" xmlrpc:"linkOrderPage"`
+	LinkOrderPage *string `json:"linkOrderPage,omitempty" xmlrpc:"linkOrderPage,omitempty"`
 
 	// no documentation yet
-	LinkWebsite *string `json:"linkWebsite,omitempty" xmlrpc:"linkWebsite"`
+	LinkWebsite *string `json:"linkWebsite,omitempty" xmlrpc:"linkWebsite,omitempty"`
 
 	// no documentation yet
-	LogoMedium *Marketplace_Partner_Attachment `json:"logoMedium,omitempty" xmlrpc:"logoMedium"`
+	LogoMedium *Marketplace_Partner_Attachment `json:"logoMedium,omitempty" xmlrpc:"logoMedium,omitempty"`
 
 	// no documentation yet
-	LogoMediumTemp *Marketplace_Partner_Attachment `json:"logoMediumTemp,omitempty" xmlrpc:"logoMediumTemp"`
+	LogoMediumTemp *Marketplace_Partner_Attachment `json:"logoMediumTemp,omitempty" xmlrpc:"logoMediumTemp,omitempty"`
 
 	// no documentation yet
-	LogoSmall *Marketplace_Partner_Attachment `json:"logoSmall,omitempty" xmlrpc:"logoSmall"`
+	LogoSmall *Marketplace_Partner_Attachment `json:"logoSmall,omitempty" xmlrpc:"logoSmall,omitempty"`
 
 	// no documentation yet
-	LogoSmallTemp *Marketplace_Partner_Attachment `json:"logoSmallTemp,omitempty" xmlrpc:"logoSmallTemp"`
+	LogoSmallTemp *Marketplace_Partner_Attachment `json:"logoSmallTemp,omitempty" xmlrpc:"logoSmallTemp,omitempty"`
 
 	// no documentation yet
-	MetaDescription *string `json:"metaDescription,omitempty" xmlrpc:"metaDescription"`
+	MetaDescription *string `json:"metaDescription,omitempty" xmlrpc:"metaDescription,omitempty"`
 
 	// no documentation yet
-	MetaKeywords *string `json:"metaKeywords,omitempty" xmlrpc:"metaKeywords"`
+	MetaKeywords *string `json:"metaKeywords,omitempty" xmlrpc:"metaKeywords,omitempty"`
 
 	// no documentation yet
-	ProductBenefits *string `json:"productBenefits,omitempty" xmlrpc:"productBenefits"`
+	ProductBenefits *string `json:"productBenefits,omitempty" xmlrpc:"productBenefits,omitempty"`
 
 	// no documentation yet
-	ProductCategoryId *int `json:"productCategoryId,omitempty" xmlrpc:"productCategoryId"`
+	ProductCategoryId *int `json:"productCategoryId,omitempty" xmlrpc:"productCategoryId,omitempty"`
 
 	// no documentation yet
-	ProductDescriptionLong *string `json:"productDescriptionLong,omitempty" xmlrpc:"productDescriptionLong"`
+	ProductDescriptionLong *string `json:"productDescriptionLong,omitempty" xmlrpc:"productDescriptionLong,omitempty"`
 
 	// no documentation yet
-	ProductDescriptionShort *string `json:"productDescriptionShort,omitempty" xmlrpc:"productDescriptionShort"`
+	ProductDescriptionShort *string `json:"productDescriptionShort,omitempty" xmlrpc:"productDescriptionShort,omitempty"`
 
 	// no documentation yet
-	ProductFeatures *string `json:"productFeatures,omitempty" xmlrpc:"productFeatures"`
+	ProductFeatures *string `json:"productFeatures,omitempty" xmlrpc:"productFeatures,omitempty"`
 
 	// no documentation yet
-	ProductName *string `json:"productName,omitempty" xmlrpc:"productName"`
+	ProductName *string `json:"productName,omitempty" xmlrpc:"productName,omitempty"`
 
 	// no documentation yet
-	ProductTitle *string `json:"productTitle,omitempty" xmlrpc:"productTitle"`
+	ProductTitle *string `json:"productTitle,omitempty" xmlrpc:"productTitle,omitempty"`
 
 	// no documentation yet
-	UrlIdentifier *string `json:"urlIdentifier,omitempty" xmlrpc:"urlIdentifier"`
+	UrlIdentifier *string `json:"urlIdentifier,omitempty" xmlrpc:"urlIdentifier,omitempty"`
 }
 
 // no documentation yet
@@ -116,28 +116,28 @@ type Marketplace_Partner_Attachment struct {
 	Entity
 
 	// no documentation yet
-	AttachmentType *Marketplace_Partner_Attachment_Type `json:"attachmentType,omitempty" xmlrpc:"attachmentType"`
+	AttachmentType *Marketplace_Partner_Attachment_Type `json:"attachmentType,omitempty" xmlrpc:"attachmentType,omitempty"`
 
 	// no documentation yet
-	AttachmentTypeId *int `json:"attachmentTypeId,omitempty" xmlrpc:"attachmentTypeId"`
+	AttachmentTypeId *int `json:"attachmentTypeId,omitempty" xmlrpc:"attachmentTypeId,omitempty"`
 
 	// no documentation yet
-	BaseName *string `json:"baseName,omitempty" xmlrpc:"baseName"`
+	BaseName *string `json:"baseName,omitempty" xmlrpc:"baseName,omitempty"`
 
 	// no documentation yet
-	DisplayName *string `json:"displayName,omitempty" xmlrpc:"displayName"`
+	DisplayName *string `json:"displayName,omitempty" xmlrpc:"displayName,omitempty"`
 
 	// no documentation yet
-	FileName *string `json:"fileName,omitempty" xmlrpc:"fileName"`
+	FileName *string `json:"fileName,omitempty" xmlrpc:"fileName,omitempty"`
 
 	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-	MarketplacePartnerId *int `json:"marketplacePartnerId,omitempty" xmlrpc:"marketplacePartnerId"`
+	MarketplacePartnerId *int `json:"marketplacePartnerId,omitempty" xmlrpc:"marketplacePartnerId,omitempty"`
 
 	// no documentation yet
-	SaveAsName *string `json:"saveAsName,omitempty" xmlrpc:"saveAsName"`
+	SaveAsName *string `json:"saveAsName,omitempty" xmlrpc:"saveAsName,omitempty"`
 }
 
 // no documentation yet
@@ -145,13 +145,13 @@ type Marketplace_Partner_Attachment_Type struct {
 	Entity
 
 	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id"`
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName"`
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
-	Type *string `json:"type,omitempty" xmlrpc:"type"`
+	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
 // no documentation yet
@@ -159,10 +159,10 @@ type Marketplace_Partner_File struct {
 	Entity
 
 	// no documentation yet
-	Attributes *Marketplace_Partner_File_Attributes `json:"attributes,omitempty" xmlrpc:"attributes"`
+	Attributes *Marketplace_Partner_File_Attributes `json:"attributes,omitempty" xmlrpc:"attributes,omitempty"`
 
 	// no documentation yet
-	Contents *[]byte `json:"contents,omitempty" xmlrpc:"contents"`
+	Contents *[]byte `json:"contents,omitempty" xmlrpc:"contents,omitempty"`
 }
 
 // no documentation yet
@@ -170,26 +170,26 @@ type Marketplace_Partner_File_Attributes struct {
 	Entity
 
 	// no documentation yet
-	Bits *int `json:"bits,omitempty" xmlrpc:"bits"`
+	Bits *int `json:"bits,omitempty" xmlrpc:"bits,omitempty"`
 
 	// no documentation yet
-	Channels *int `json:"channels,omitempty" xmlrpc:"channels"`
+	Channels *int `json:"channels,omitempty" xmlrpc:"channels,omitempty"`
 
 	// no documentation yet
-	Height *int `json:"height,omitempty" xmlrpc:"height"`
+	Height *int `json:"height,omitempty" xmlrpc:"height,omitempty"`
 
 	// no documentation yet
-	HtmlAttributes *string `json:"htmlAttributes,omitempty" xmlrpc:"htmlAttributes"`
+	HtmlAttributes *string `json:"htmlAttributes,omitempty" xmlrpc:"htmlAttributes,omitempty"`
 
 	// no documentation yet
-	ImageType *int `json:"imageType,omitempty" xmlrpc:"imageType"`
+	ImageType *int `json:"imageType,omitempty" xmlrpc:"imageType,omitempty"`
 
 	// no documentation yet
-	IsImage *bool `json:"isImage,omitempty" xmlrpc:"isImage"`
+	IsImage *bool `json:"isImage,omitempty" xmlrpc:"isImage,omitempty"`
 
 	// no documentation yet
-	MimeType *string `json:"mimeType,omitempty" xmlrpc:"mimeType"`
+	MimeType *string `json:"mimeType,omitempty" xmlrpc:"mimeType,omitempty"`
 
 	// no documentation yet
-	Width *int `json:"width,omitempty" xmlrpc:"width"`
+	Width *int `json:"width,omitempty" xmlrpc:"width,omitempty"`
 }
