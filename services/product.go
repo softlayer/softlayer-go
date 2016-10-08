@@ -119,7 +119,7 @@ func (r Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category
 	return
 }
 
-// Retrieve Any unique options associated with an itme category.
+// Retrieve Any unique options associated with an item category.
 func (r Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &r.Options, &resp)
 	return

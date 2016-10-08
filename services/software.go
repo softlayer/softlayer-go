@@ -630,6 +630,12 @@ func (r Software_Description) GetCompatibleSoftwareDescriptions() (resp []dataty
 	return
 }
 
+// no documentation yet
+func (r Software_Description) GetCustomerOwnedLicenseDescriptions() (resp []datatypes.Software_Description, err error) {
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getCustomerOwnedLicenseDescriptions", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The feature attributes of a software description.
 func (r Software_Description) GetFeatures() (resp []datatypes.Software_Description_Feature, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getFeatures", nil, &r.Options, &resp)

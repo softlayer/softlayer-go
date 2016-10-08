@@ -1494,6 +1494,12 @@ func (r Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
 	return
 }
 
+// Retrieve When true this virtual guest must be migrated using SoftLayer_Virtual_Guest::migrate.
+func (r Virtual_Guest) GetPendingMigrationFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPendingMigrationFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The current power state of a virtual guest.
 func (r Virtual_Guest) GetPowerState() (resp datatypes.Virtual_Guest_Power_State, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPowerState", nil, &r.Options, &resp)
@@ -1731,6 +1737,12 @@ func (r Virtual_Guest) IsPingable() (resp bool, err error) {
 func (r Virtual_Guest) IsolateInstanceForDestructiveAction() (err error) {
 	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "isolateInstanceForDestructiveAction", nil, &r.Options, &resp)
+	return
+}
+
+// Creates a transaction to migrate a virtual guest to a new host. NOTE: Will only migrate if SoftLayer_Virtual_Guest property pendingMigrationFlag = true
+func (r Virtual_Guest) Migrate() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "migrate", nil, &r.Options, &resp)
 	return
 }
 

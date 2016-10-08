@@ -353,6 +353,12 @@ func (r Account) GetAllTopLevelBillingItemsUnfiltered() (resp []datatypes.Billin
 	return
 }
 
+// Retrieve Indicates whether this account is allowed to silently migrate to use IBMid Authentication.
+func (r Account) GetAllowIbmIdSilentMigrationFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllowIbmIdSilentMigrationFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Flag indicating if this account can be linked with Bluemix.
 func (r Account) GetAllowsBluemixAccountLinkingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAllowsBluemixAccountLinkingFlag", nil, &r.Options, &resp)
@@ -870,6 +876,12 @@ func (r Account) GetHourlyVirtualGuests() (resp []datatypes.Virtual_Guest, err e
 // Retrieve An account's associated Virtual Storage volumes.
 func (r Account) GetHubNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHubNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Timestamp representing the point in time when an account is required to use IBMid authentication.
+func (r Account) GetIbmIdMigrationExpirationTimestamp() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getIbmIdMigrationExpirationTimestamp", nil, &r.Options, &resp)
 	return
 }
 

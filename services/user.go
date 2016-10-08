@@ -230,7 +230,19 @@ func (r User_Customer) CreateNotificationSubscriber(keyName *string, resourceTab
 	return
 }
 
-// Create a new user in the SoftLayer customer portal. createObject() creates a user's portal record and adds them into the SoftLayer community forums. It is no longer possible to set up the SSL or PPTP enable flag in this call since the manage permissions have not yet been set.  You will need to make a subsequent call to edit object in order to enable VPN access. An account's master user and sub-users who have the User Manage permission can add new users. createObject() creates users with a default permission set. After adding a user it may be helpful to set their permissions and hardware access. Note, both password parameters are not required anymore.  When a new user is created, an email will be sent to the new user's email address with a link to a url that will allow the new user to create their own password for the SoftLayer customer portal. The password parameter provided is not used at this time.  The user must set their portal password using the link sent in email within 24 hours.  If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  A vpnOnly user MUST supply the vpnPassword.  If the vpnPassword is not provided, then a generated password will be used, and the user will need to use the portal to change the vpnPassword.
+// Create a new user in the SoftLayer customer portal. createObject() creates a user's portal record and adds them into the SoftLayer community forums. It is no longer possible to set up the SSL or PPTP enable flag in this call since the manage permissions have not yet been set.  You will need to make a subsequent call to edit object in order to enable VPN access. An account's master user and sub-users who have the User Manage permission can add new users. createObject() creates users with a default permission set. After adding a user it may be helpful to set their permissions and hardware access.
+//
+// Note, neither password nor vpnPassword parameters are required.
+//
+// Password When a new user is created, an email will be sent to the new user's email address with a link to a url that will allow the new user to create or change their password for the SoftLayer customer portal.
+//
+// If the password parameter is provided and is not null, then that value will be validated. If it is a valid password, then the user will be created with this password.  This user will still receive a portal password email.  It can be used within 24 hours to change their password, or it can be allowed to expire, and the password provided during user creation will remain as the user's password.
+//
+// If the password parameter is not provided or the value is null, the user must set their portal password using the link sent in email within 24 hours.  If the user fails to set their password within 24 hours, then a non-master user can use the "Reset Password" link on the login page of the portal to request a new email.  A master user can use the link to retrieve a phone number to call to assist in resetting their password.
+//
+// The password parameter is ignored for VPN_ONLY users or for IBMid authenticated users.
+//
+// vpnPassword If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  When creating a vpn only user, the vpnPassword MUST be supplied.  If the vpnPassword is not provided, then the user will need to use the portal to edit their profile and set the vpnPassword.
 //
 //
 func (r User_Customer) CreateObject(templateObject *datatypes.User_Customer, password *string, vpnPassword *string) (resp datatypes.User_Customer, err error) {
@@ -451,6 +463,12 @@ func (r User_Customer) GetNotificationSubscribers() (resp []datatypes.Notificati
 // getObject retrieves the SoftLayer_User_Customer object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer service. You can only retrieve users that are assigned to the customer account belonging to the user making the API call.
 func (r User_Customer) GetObject() (resp datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// This API returns a SoftLayer_Container_User_Customer_OpenIdConnect_MigrationState object containing the necessary information to determine what migration state the user is in. If the account is not OpenIdConnect authenticated, then an exception is thrown.
+func (r User_Customer) GetOpenIdConnectMigrationState() (resp datatypes.Container_User_Customer_OpenIdConnect_MigrationState, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getOpenIdConnectMigrationState", nil, &r.Options, &resp)
 	return
 }
 
@@ -706,6 +724,8 @@ func (r User_Customer) IsMasterUser() (resp bool, err error) {
 	return
 }
 
+// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, any password verified will return false.
+//
 // Determine if a string is the given user's login password to the SoftLayer community forums.
 func (r User_Customer) IsValidForumPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -958,6 +978,17 @@ func (r User_Customer) SetPasswordFromLostPasswordRequest(key *string, password 
 	return
 }
 
+// no documentation yet
+func (r User_Customer) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
+	params := []interface{}{
+		providerType,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "silentlyMigrateUserOpenIdConnect", params, &r.Options, &resp)
+	return
+}
+
+// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, this method will return false.
+//
 // Update a user's password on the SoftLayer community forums. As with portal passwords, user forum passwords must match the following restrictions. Forum passwords must...
 // * ...be over eight characters long.
 // * ...be under twenty characters long.
@@ -2532,7 +2563,19 @@ func (r User_Customer_OpenIdConnect) CreateNotificationSubscriber(keyName *strin
 	return
 }
 
-// Create a new user in the SoftLayer customer portal. createObject() creates a user's portal record and adds them into the SoftLayer community forums. It is no longer possible to set up the SSL or PPTP enable flag in this call since the manage permissions have not yet been set.  You will need to make a subsequent call to edit object in order to enable VPN access. An account's master user and sub-users who have the User Manage permission can add new users. createObject() creates users with a default permission set. After adding a user it may be helpful to set their permissions and hardware access. Note, both password parameters are not required anymore.  When a new user is created, an email will be sent to the new user's email address with a link to a url that will allow the new user to create their own password for the SoftLayer customer portal. The password parameter provided is not used at this time.  The user must set their portal password using the link sent in email within 24 hours.  If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  A vpnOnly user MUST supply the vpnPassword.  If the vpnPassword is not provided, then a generated password will be used, and the user will need to use the portal to change the vpnPassword.
+// Create a new user in the SoftLayer customer portal. createObject() creates a user's portal record and adds them into the SoftLayer community forums. It is no longer possible to set up the SSL or PPTP enable flag in this call since the manage permissions have not yet been set.  You will need to make a subsequent call to edit object in order to enable VPN access. An account's master user and sub-users who have the User Manage permission can add new users. createObject() creates users with a default permission set. After adding a user it may be helpful to set their permissions and hardware access.
+//
+// Note, neither password nor vpnPassword parameters are required.
+//
+// Password When a new user is created, an email will be sent to the new user's email address with a link to a url that will allow the new user to create or change their password for the SoftLayer customer portal.
+//
+// If the password parameter is provided and is not null, then that value will be validated. If it is a valid password, then the user will be created with this password.  This user will still receive a portal password email.  It can be used within 24 hours to change their password, or it can be allowed to expire, and the password provided during user creation will remain as the user's password.
+//
+// If the password parameter is not provided or the value is null, the user must set their portal password using the link sent in email within 24 hours.  If the user fails to set their password within 24 hours, then a non-master user can use the "Reset Password" link on the login page of the portal to request a new email.  A master user can use the link to retrieve a phone number to call to assist in resetting their password.
+//
+// The password parameter is ignored for VPN_ONLY users or for IBMid authenticated users.
+//
+// vpnPassword If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  When creating a vpn only user, the vpnPassword MUST be supplied.  If the vpnPassword is not provided, then the user will need to use the portal to edit their profile and set the vpnPassword.
 //
 //
 func (r User_Customer_OpenIdConnect) CreateObject(templateObject *datatypes.User_Customer, password *string, vpnPassword *string) (resp datatypes.User_Customer, err error) {
@@ -2686,7 +2729,7 @@ func (r User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket
 	return
 }
 
-// This API gets the default for the OpenIdConnect identity that is linked from the current SoftLayer user identity. If there is no default present, the API returns null.
+// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null.
 func (r User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -2764,6 +2807,16 @@ func (r User_Customer_OpenIdConnect) GetLocale() (resp datatypes.Locale, err err
 	return
 }
 
+// Validates a supplied OpenIdConnect access token to the SoftLayer customer portal and returns the default account name and id for the active user. An exception will be thrown if no matching customer is found.
+func (r User_Customer_OpenIdConnect) GetLoginAccountInfoOpenIdConnect(providerType *string, accessToken *string) (resp datatypes.Container_User_Customer_OpenIdConnect_LoginAccountInfo, err error) {
+	params := []interface{}{
+		providerType,
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLoginAccountInfoOpenIdConnect", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve A user's attempts to log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetLoginAttempts() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLoginAttempts", nil, &r.Options, &resp)
@@ -2794,6 +2847,12 @@ func (r User_Customer_OpenIdConnect) GetNotificationSubscribers() (resp []dataty
 // no documentation yet
 func (r User_Customer_OpenIdConnect) GetObject() (resp datatypes.User_Customer_OpenIdConnect, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// This API returns a SoftLayer_Container_User_Customer_OpenIdConnect_MigrationState object containing the necessary information to determine what migration state the user is in. If the account is not OpenIdConnect authenticated, then an exception is thrown.
+func (r User_Customer_OpenIdConnect) GetOpenIdConnectMigrationState() (resp datatypes.Container_User_Customer_OpenIdConnect_MigrationState, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOpenIdConnectMigrationState", nil, &r.Options, &resp)
 	return
 }
 
@@ -2844,11 +2903,13 @@ func (r User_Customer_OpenIdConnect) GetPortalLoginToken(username *string, passw
 }
 
 // Attempt to authenticate a supplied OpenIdConnect access token to the SoftLayer customer portal. If authentication is successful then the API returns a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
-func (r User_Customer_OpenIdConnect) GetPortalLoginTokenOpenIdConnect(providerType *string, accessToken *string, accountId *int) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
+func (r User_Customer_OpenIdConnect) GetPortalLoginTokenOpenIdConnect(providerType *string, accessToken *string, accountId *int, securityQuestionId *int, securityQuestionAnswer *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		providerType,
 		accessToken,
 		accountId,
+		securityQuestionId,
+		securityQuestionAnswer,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPortalLoginTokenOpenIdConnect", params, &r.Options, &resp)
 	return
@@ -3070,6 +3131,8 @@ func (r User_Customer_OpenIdConnect) IsMasterUser() (resp bool, err error) {
 	return
 }
 
+// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, any password verified will return false.
+//
 // Determine if a string is the given user's login password to the SoftLayer community forums.
 func (r User_Customer_OpenIdConnect) IsValidForumPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -3301,7 +3364,7 @@ func (r User_Customer_OpenIdConnect) SamlLogout(samlResponse *string) (err error
 	return
 }
 
-// This API sets the default account for the OpenIdConnect identity that is linked from the current SoftLayer user identity.
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one per account. If an OpenIdConnect identity is mapped to multiple accounts in this manner, one such account should be identified as the default account for that identity.
 func (r User_Customer_OpenIdConnect) SetDefaultAccount(providerType *string, accountId *int) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3332,6 +3395,17 @@ func (r User_Customer_OpenIdConnect) SetPasswordFromLostPasswordRequest(key *str
 	return
 }
 
+// no documentation yet
+func (r User_Customer_OpenIdConnect) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
+	params := []interface{}{
+		providerType,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "silentlyMigrateUserOpenIdConnect", params, &r.Options, &resp)
+	return
+}
+
+// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, this method will return false.
+//
 // Update a user's password on the SoftLayer community forums. As with portal passwords, user forum passwords must match the following restrictions. Forum passwords must...
 // * ...be over eight characters long.
 // * ...be under twenty characters long.

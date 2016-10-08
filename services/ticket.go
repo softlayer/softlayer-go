@@ -745,6 +745,12 @@ func (r Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err er
 }
 
 // Retrieve
+func (r Ticket_Subject) GetCategory() (resp datatypes.Ticket_Subject_Category, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getCategory", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getGroup", nil, &r.Options, &resp)
 	return
@@ -759,6 +765,63 @@ func (r Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
 // SoftLayer maintains relationships between the generic subjects for standard administration and the top five commonly asked questions about these subjects. getTopFileKnowledgeLayerQuestions() retrieves the top five questions and answers from the SoftLayer KnowledgeLayer related to the given ticket subject.
 func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getTopFiveKnowledgeLayerQuestions", nil, &r.Options, &resp)
+	return
+}
+
+// SoftLayer_Ticket_Subject_Category groups ticket subjects into logical group.
+type Ticket_Subject_Category struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+func GetTicketSubjectCategoryService(sess *session.Session) Ticket_Subject_Category {
+	return Ticket_Subject_Category{Session: sess}
+}
+
+func (r Ticket_Subject_Category) Id(id int) Ticket_Subject_Category {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Ticket_Subject_Category) Mask(mask string) Ticket_Subject_Category {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Ticket_Subject_Category) Filter(filter string) Ticket_Subject_Category {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Ticket_Subject_Category) Limit(limit int) Ticket_Subject_Category {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Ticket_Subject_Category) Offset(offset int) Ticket_Subject_Category {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieve all ticket subject categories.
+func (r Ticket_Subject_Category) GetAllObjects() (resp []datatypes.Ticket_Subject_Category, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Ticket_Subject_Category) GetObject() (resp datatypes.Ticket_Subject_Category, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Ticket_Subject_Category) GetSubjects() (resp []datatypes.Ticket_Subject, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getSubjects", nil, &r.Options, &resp)
 	return
 }
 
