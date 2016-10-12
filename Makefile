@@ -7,10 +7,11 @@ GO_INSTALL=$(GO_CMD) install
 GO_RUN=$(GO_CMD) run
 GO_TEST=$(GO_CMD) test
 TOOLS=$(GO_RUN) tools/*.go
+VETARGS?=-all
 
 PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 
-.PHONY: all alpha build deps fmt fmtcheck generate install release test test_deps update_deps version
+.PHONY: all alpha build deps fmt fmtcheck generate install release test test_deps update_deps version vet
 
 all: build
 
@@ -20,7 +21,7 @@ alpha:
 	git commit -m "Bump version"
 	git push
 
-build: fmtcheck deps
+build: fmtcheck vet deps
 	$(GO_BUILD) ./...
 
 deps:
@@ -50,7 +51,7 @@ release: build
 	git push && \
 	git push origin $${NEW_VERSION}
 
-test: fmtcheck test_deps
+test: fmtcheck vet test_deps
 	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
 
 test_deps:
@@ -61,3 +62,14 @@ update_deps:
 
 version:
 	@$(TOOLS) version
+
+# vet runs the Go source code static analysis tool `vet` to find
+# any common errors.
+vet:
+	@echo "go tool vet $(VETARGS) ."
+	@go tool vet $(VETARGS) $$(ls -d */ | grep -v vendor) ; if [ $$? -eq 1 ]; then \
+		echo ""; \
+		echo "Vet found suspicious constructs. Please check the reported constructs"; \
+		echo "and fix them if necessary before submitting the code for review."; \
+		exit 1; \
+	fi
