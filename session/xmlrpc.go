@@ -28,10 +28,6 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-// Used to pool the clients created per service
-// so as to re-use service clients created previously
-var xmlRpcClients = map[string]*xmlrpc.Client{}
-
 // Debugging RoundTripper
 type debugRoundTripper struct{}
 
@@ -66,26 +62,20 @@ func (x *XmlRpcTransport) DoRequest(
 ) error {
 
 	serviceUrl := fmt.Sprintf("%s/%s", strings.TrimRight(sess.Endpoint, "/"), service)
-	client, ok := xmlRpcClients[serviceUrl]
-	if !ok {
-		var roundTripper http.RoundTripper
-		var err error
 
-		if sess.Debug {
-			roundTripper = debugRoundTripper{}
-		}
+	var roundTripper http.RoundTripper
+	if sess.Debug {
+		roundTripper = debugRoundTripper{}
+	}
 
-		timeout := DefaultTimeout
-		if sess.Timeout != 0 {
-			timeout = sess.Timeout
-		}
+	timeout := DefaultTimeout
+	if sess.Timeout != 0 {
+		timeout = sess.Timeout
+	}
 
-		client, err = xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
-		if err != nil {
-			return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
-		}
-
-		xmlRpcClients[serviceUrl] = client
+	client, err := xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
+	if err != nil {
+		return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
 	}
 
 	authenticate := map[string]interface{}{}
@@ -164,7 +154,7 @@ func (x *XmlRpcTransport) DoRequest(
 		params = append(params, arg)
 	}
 
-	err := client.Call(method, params, pResult)
+	err = client.Call(method, params, pResult)
 	if xmlRpcError, ok := err.(*xmlrpc.XmlRpcError); ok {
 		return sl.Error{
 			StatusCode: xmlRpcError.HttpStatusCode,

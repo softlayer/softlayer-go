@@ -108,6 +108,7 @@ type Session struct {
 // 1. UserName
 // 2. Api Key
 // 3. Endpoint
+// 4. Timeout
 //
 // If one or more are omitted, New() will attempt to retrieve these values from
 // the environment, and the ~/.softlayer config file, in that order.
