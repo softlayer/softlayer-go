@@ -1464,7 +1464,7 @@ type Hardware_Router struct {
 	SanStorageCapabilityFlag *bool `json:"sanStorageCapabilityFlag,omitempty" xmlrpc:"sanStorageCapabilityFlag,omitempty"`
 }
 
-// The SoftLayer_Hardware_Router_Frontend data type contains general information relating to a single SoftLayer router item for hardware.
+// The SoftLayer_Hardware_Router_Backend data type contains general information relating to a single SoftLayer router item for hardware.
 type Hardware_Router_Backend struct {
 	Hardware_Router
 }

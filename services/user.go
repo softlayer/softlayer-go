@@ -448,6 +448,15 @@ func (r User_Customer) GetLoginAttempts() (resp []datatypes.User_Customer_Access
 	return
 }
 
+// Attempt to authenticate a user to the SoftLayer customer portal using the provided authentication container. Depending on the specific type of authentication container that is used, this API will leverage the appropriate authentication protocol. If authentication is successful then the API returns a list of linked accounts for the user, a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
+func (r User_Customer) GetLoginToken(request *datatypes.Container_Authentication_Request_Contract) (resp datatypes.Container_Authentication_Response_Common, err error) {
+	params := []interface{}{
+		request,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLoginToken", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve A portal user's associated mobile device profiles.
 func (r User_Customer) GetMobileDevices() (resp []datatypes.User_Customer_MobileDevice, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getMobileDevices", nil, &r.Options, &resp)
@@ -774,7 +783,7 @@ func (r User_Customer) PerformExternalAuthentication(authenticationContainer *da
 // * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ + =
 // * ...not match your username
 // * ...not match your forum password
-func (r User_Customer) ProcessPasswordSetRequest(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+func (r User_Customer) ProcessPasswordSetRequest(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		passwordSet,
 		authenticationContainer,
@@ -978,7 +987,7 @@ func (r User_Customer) SetPasswordFromLostPasswordRequest(key *string, password 
 	return
 }
 
-// no documentation yet
+// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. If the SoftLayer user is already linked to IBMid, this will reset the existing link. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
 func (r User_Customer) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
 	params := []interface{}{
 		providerType,
@@ -2823,6 +2832,15 @@ func (r User_Customer_OpenIdConnect) GetLoginAttempts() (resp []datatypes.User_C
 	return
 }
 
+// Attempt to authenticate a user to the SoftLayer customer portal using the provided authentication container. Depending on the specific type of authentication container that is used, this API will leverage the appropriate authentication protocol. If authentication is successful then the API returns a list of linked accounts for the user, a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
+func (r User_Customer_OpenIdConnect) GetLoginToken(request *datatypes.Container_Authentication_Request_Contract) (resp datatypes.Container_Authentication_Response_Common, err error) {
+	params := []interface{}{
+		request,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLoginToken", params, &r.Options, &resp)
+	return
+}
+
 // An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one SoftLayer user per account. This effectively links the OpenIdConnect identity to those accounts. This API returns a list of all the accounts for which there is a link between the OpenIdConnect identity and a SoftLayer user.
 func (r User_Customer_OpenIdConnect) GetMappedAccounts(providerType *string) (resp []datatypes.Account, err error) {
 	params := []interface{}{
@@ -3181,7 +3199,7 @@ func (r User_Customer_OpenIdConnect) PerformExternalAuthentication(authenticatio
 // * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ + =
 // * ...not match your username
 // * ...not match your forum password
-func (r User_Customer_OpenIdConnect) ProcessPasswordSetRequest(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+func (r User_Customer_OpenIdConnect) ProcessPasswordSetRequest(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		passwordSet,
 		authenticationContainer,
@@ -3395,7 +3413,7 @@ func (r User_Customer_OpenIdConnect) SetPasswordFromLostPasswordRequest(key *str
 	return
 }
 
-// no documentation yet
+// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. If the SoftLayer user is already linked to IBMid, this will reset the existing link. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
 func (r User_Customer_OpenIdConnect) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
 	params := []interface{}{
 		providerType,

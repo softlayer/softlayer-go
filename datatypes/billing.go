@@ -495,6 +495,9 @@ type Billing_Invoice_Item struct {
 	// A unique identifier for a SoftLayer Service that is associated to an invoice item.
 	ResourceTableId *int `json:"resourceTableId,omitempty" xmlrpc:"resourceTableId,omitempty"`
 
+	// The service provider for the invoice item.
+	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId,omitempty"`
+
 	// An invoice item's setup fee total after taxes. This does not include any child invoice items.
 	SetupAfterTaxAmount *Float64 `json:"setupAfterTaxAmount,omitempty" xmlrpc:"setupAfterTaxAmount,omitempty"`
 
@@ -1471,6 +1474,11 @@ type Billing_Item_Network_Vlan struct {
 
 	// The resource for a network vlan related billing item.
 	Resource *Network_Vlan `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// no documentation yet
+type Billing_Item_NewCustomerSetup struct {
+	Billing_Item
 }
 
 // The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware components.

@@ -1850,7 +1850,7 @@ func (r Billing_Order_Cart) GetPdf() (resp []byte, err error) {
 	return
 }
 
-// Retrieve a valid quote record of a SoftLayer order. Quote whose promotion code expired or one of the items is no longer available will not be retrieved.
+// This method will return a [[SoftLayer_Billing_Order_Quote]] that is identified by the quote key specified. If you do not have access to the quote or it does not exist, an exception will be thrown indicating so.
 func (r Billing_Order_Cart) GetQuoteByQuoteKey(quoteKey *string) (resp datatypes.Billing_Order_Quote, err error) {
 	params := []interface{}{
 		quoteKey,
@@ -2177,7 +2177,7 @@ func (r Billing_Order_Quote) GetPdf() (resp []byte, err error) {
 	return
 }
 
-// Retrieve a valid quote record of a SoftLayer order. Quote whose promotion code expired or one of the items is no longer available will not be retrieved.
+// This method will return a [[SoftLayer_Billing_Order_Quote]] that is identified by the quote key specified. If you do not have access to the quote or it does not exist, an exception will be thrown indicating so.
 func (r Billing_Order_Quote) GetQuoteByQuoteKey(quoteKey *string) (resp datatypes.Billing_Order_Quote, err error) {
 	params := []interface{}{
 		quoteKey,

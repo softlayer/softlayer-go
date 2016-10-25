@@ -214,6 +214,200 @@ type Container_Account_Payment_Method_CreditCard struct {
 	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
 }
 
+// The SoftLayer_Container_Authentication_Request_Common data type contains common information for requests to the getPortalLogin API. This is an abstract class that serves as a base that more specialized classes will derive from. For example, a request class specific to SoftLayer Native IMS Login (username and password).
+type Container_Authentication_Request_Common struct {
+	Container_Authentication_Request_Contract
+
+	// The answer to your security question.
+	SecurityQuestionAnswer *string `json:"securityQuestionAnswer,omitempty" xmlrpc:"securityQuestionAnswer,omitempty"`
+
+	// A security question you wish to answer when authenticating to the SoftLayer customer portal. This parameter isn't required if no security questions are set on your portal account or if your account is configured to not require answering a security account upon login.
+	SecurityQuestionId *int `json:"securityQuestionId,omitempty" xmlrpc:"securityQuestionId,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_Contract provides a common set of operations for implementing classes.
+type Container_Authentication_Request_Contract struct {
+	Entity
+}
+
+// The SoftLayer_Container_Authentication_Request_Native data type contains information for requests to the getPortalLogin API. This class is specific to the SoftLayer Native login (username/password). The request information will be verified to ensure it is valid, and then there will be an attempt to obtain a portal login token in authenticating the user with the provided information.
+type Container_Authentication_Request_Native struct {
+	Container_Authentication_Request_Common
+
+	// Your SoftLayer customer portal user's portal password.
+	Password *string `json:"password,omitempty" xmlrpc:"password,omitempty"`
+
+	// The username you wish to authenticate to the SoftLayer customer portal with.
+	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_Native_External data type contains information for requests to the getPortalLogin API. This class serves as a base class for more specialized external authentication classes to the SoftLayer Native login (username/password).
+type Container_Authentication_Request_Native_External struct {
+	Container_Authentication_Request_Native
+}
+
+// The SoftLayer_Container_Authentication_Request_Native_External_Totp data type contains information for requests to the getPortalLogin API. This class provides information to allow the user to submit a request to the native SoftLayer (username/password) login service for a portal login token, as well as submitting a request to the TOTP 2 factor authentication service.
+type Container_Authentication_Request_Native_External_Totp struct {
+	Container_Authentication_Request_Native_External
+
+	// no documentation yet
+	SecondSecurityCode *string `json:"secondSecurityCode,omitempty" xmlrpc:"secondSecurityCode,omitempty"`
+
+	// no documentation yet
+	SecurityCode *string `json:"securityCode,omitempty" xmlrpc:"securityCode,omitempty"`
+
+	// no documentation yet
+	Vendor *string `json:"vendor,omitempty" xmlrpc:"vendor,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_Native_External_Verisign data type contains information for requests to the getPortalLogin API. This class provides information to allow the user to submit a request to the native SoftLayer (username/password) login service for a portal login token, as well as submitting a request to the Verisign 2 factor authentication service.
+type Container_Authentication_Request_Native_External_Verisign struct {
+	Container_Authentication_Request_Native_External
+
+	// no documentation yet
+	SecondSecurityCode *string `json:"secondSecurityCode,omitempty" xmlrpc:"secondSecurityCode,omitempty"`
+
+	// no documentation yet
+	SecurityCode *string `json:"securityCode,omitempty" xmlrpc:"securityCode,omitempty"`
+
+	// no documentation yet
+	Vendor *string `json:"vendor,omitempty" xmlrpc:"vendor,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_OpenIdConnect data type contains information for requests to the getPortalLogin API. This class is specific to the SoftLayer Cloud Token login. The request information will be verified to ensure it is valid, and then there will be an attempt to obtain a portal login token in authenticating the user with the provided information.
+type Container_Authentication_Request_OpenIdConnect struct {
+	Container_Authentication_Request_Common
+
+	// no documentation yet
+	OpenIdConnectAccessToken *string `json:"openIdConnectAccessToken,omitempty" xmlrpc:"openIdConnectAccessToken,omitempty"`
+
+	// no documentation yet
+	OpenIdConnectAccountId *int `json:"openIdConnectAccountId,omitempty" xmlrpc:"openIdConnectAccountId,omitempty"`
+
+	// no documentation yet
+	OpenIdConnectProvider *string `json:"openIdConnectProvider,omitempty" xmlrpc:"openIdConnectProvider,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_OpenIdConnect_External data type contains information for requests to the getPortalLogin API. This class serves as a base class for more specialized external authentication classes to the SoftLayer OpenIdConnect login service.
+type Container_Authentication_Request_OpenIdConnect_External struct {
+	Container_Authentication_Request_OpenIdConnect
+}
+
+// The SoftLayer_Container_Authentication_Request_OpenIdConnect_External_Totp data type contains information for requests to the getPortalLogin API. This class provides information to allow the user to submit a request to the SoftLayer OpenIdConnect (token) login service for a portal login token, as well as submitting a request to the TOTP 2 factor authentication service.
+type Container_Authentication_Request_OpenIdConnect_External_Totp struct {
+	Container_Authentication_Request_OpenIdConnect_External
+
+	// no documentation yet
+	SecondSecurityCode *string `json:"secondSecurityCode,omitempty" xmlrpc:"secondSecurityCode,omitempty"`
+
+	// no documentation yet
+	SecurityCode *string `json:"securityCode,omitempty" xmlrpc:"securityCode,omitempty"`
+
+	// no documentation yet
+	Vendor *string `json:"vendor,omitempty" xmlrpc:"vendor,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Request_OpenIdConnect_External_Verisign data type contains information for requests to the getPortalLogin API. This class provides information to allow the user to submit a request to the SoftLayer OpenIdConnect (token) login service for a portal login token, as well as submitting a request to the Verisign 2 factor authentication service.
+type Container_Authentication_Request_OpenIdConnect_External_Verisign struct {
+	Container_Authentication_Request_OpenIdConnect_External
+
+	// no documentation yet
+	SecondSecurityCode *string `json:"secondSecurityCode,omitempty" xmlrpc:"secondSecurityCode,omitempty"`
+
+	// no documentation yet
+	SecurityCode *int `json:"securityCode,omitempty" xmlrpc:"securityCode,omitempty"`
+
+	// no documentation yet
+	Vendor *string `json:"vendor,omitempty" xmlrpc:"vendor,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_2FactorAuthenticationNeeded data type contains information for specific responses from the getPortalLogin API. This class is indicative of a request that is missing the appropriate 2FA information.
+type Container_Authentication_Response_2FactorAuthenticationNeeded struct {
+	Container_Authentication_Response_Common
+
+	// no documentation yet
+	AdditionalData *Container_Authentication_Response_Common `json:"additionalData,omitempty" xmlrpc:"additionalData,omitempty"`
+
+	// no documentation yet
+	StatusKeyName *string `json:"statusKeyName,omitempty" xmlrpc:"statusKeyName,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_Account data type contains account information for responses from the getPortalLogin API.
+type Container_Authentication_Response_Account struct {
+	Entity
+
+	// no documentation yet
+	AccountCompanyName *string `json:"accountCompanyName,omitempty" xmlrpc:"accountCompanyName,omitempty"`
+
+	// no documentation yet
+	AccountCountry *string `json:"accountCountry,omitempty" xmlrpc:"accountCountry,omitempty"`
+
+	// no documentation yet
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// no documentation yet
+	AccountStatusName *string `json:"accountStatusName,omitempty" xmlrpc:"accountStatusName,omitempty"`
+
+	// no documentation yet
+	BluemixAccountId *string `json:"bluemixAccountId,omitempty" xmlrpc:"bluemixAccountId,omitempty"`
+
+	// no documentation yet
+	DefaultAccount *bool `json:"defaultAccount,omitempty" xmlrpc:"defaultAccount,omitempty"`
+
+	// no documentation yet
+	PhoneFactorExternalAuthenticationRequired *bool `json:"phoneFactorExternalAuthenticationRequired,omitempty" xmlrpc:"phoneFactorExternalAuthenticationRequired,omitempty"`
+
+	// no documentation yet
+	SecurityQuestionRequired *bool `json:"securityQuestionRequired,omitempty" xmlrpc:"securityQuestionRequired,omitempty"`
+
+	// no documentation yet
+	TotpExternalAuthenticationRequired *bool `json:"totpExternalAuthenticationRequired,omitempty" xmlrpc:"totpExternalAuthenticationRequired,omitempty"`
+
+	// no documentation yet
+	UserId *int `json:"userId,omitempty" xmlrpc:"userId,omitempty"`
+
+	// no documentation yet
+	VerisignExternalAuthenticationRequired *bool `json:"verisignExternalAuthenticationRequired,omitempty" xmlrpc:"verisignExternalAuthenticationRequired,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_AccountIdMissing data type contains information for specific responses from the getPortalLogin API. This class is indicative of a request that is missing the account id.
+type Container_Authentication_Response_AccountIdMissing struct {
+	Container_Authentication_Response_Common
+
+	// no documentation yet
+	StatusKeyName *string `json:"statusKeyName,omitempty" xmlrpc:"statusKeyName,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_Common data type contains common information for responses from the getPortalLogin API. This is an abstract class that serves as a base that more specialized classes will derive from. For example, a response class that is specific to a successful response from the getPortalLogin API.
+type Container_Authentication_Response_Common struct {
+	Entity
+
+	// The list of linked accounts for the authenticated SoftLayer customer portal user.
+	Accounts []Container_Authentication_Response_Account `json:"accounts,omitempty" xmlrpc:"accounts,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_LOGIN_FAILED data type contains information for specific responses from the getPortalLogin API. This class is indicative of a request where there was an inability to login based on the information that was provided.
+type Container_Authentication_Response_LoginFailed struct {
+	Container_Authentication_Response_Common
+
+	// no documentation yet
+	ErrorMessage *string `json:"errorMessage,omitempty" xmlrpc:"errorMessage,omitempty"`
+
+	// no documentation yet
+	StatusKeyName *string `json:"statusKeyName,omitempty" xmlrpc:"statusKeyName,omitempty"`
+}
+
+// The SoftLayer_Container_Authentication_Response_SUCCESS data type contains information for specific responses from the getPortalLogin API. This class is indicative of a request that was successful in obtaining a portal login token from the getPortalLogin API.
+type Container_Authentication_Response_Success struct {
+	Container_Authentication_Response_Common
+
+	// no documentation yet
+	StatusKeyName *string `json:"statusKeyName,omitempty" xmlrpc:"statusKeyName,omitempty"`
+
+	// The token for interacting with the SoftLayer customer portal.
+	Token *Container_User_Authentication_Token `json:"token,omitempty" xmlrpc:"token,omitempty"`
+}
+
 // The SoftLayer_Container_Auxiliary_Network_Status_Reading data type contains information relating to an object being monitored from outside the SoftLayer network.  It is primarily used to check the status of our edge routers from multiple locations around the world.
 type Container_Auxiliary_Network_Status_Reading struct {
 	Entity
@@ -1018,7 +1212,7 @@ type Container_Hardware_Server_Configuration struct {
 	// IDs to SoftLayer_Security_Ssh_Key objects on the current account which will be added to the server for authentication. SSH Keys will not be added to servers with Microsoft Windows.
 	SshKeyIds []int `json:"sshKeyIds,omitempty" xmlrpc:"sshKeyIds,omitempty"`
 
-	// A flag indicating that the the BIOS will not be updated when installing the operating system.
+	// A flag indicating that the BIOS will be updated when installing the operating system.
 	UpgradeBios *int `json:"upgradeBios,omitempty" xmlrpc:"upgradeBios,omitempty"`
 
 	// A flag indicating that the firmware on all hard drives will be updated when installing the operating system.
@@ -3090,6 +3284,20 @@ type Container_Product_Order_Network_Vlans struct {
 	PublicVlans []Container_Product_Order `json:"publicVlans,omitempty" xmlrpc:"publicVlans,omitempty"`
 }
 
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder when linking a Bluemix account to a newly created SoftLayer account.
+type Container_Product_Order_NewCustomerSetup struct {
+	Container_Product_Order
+
+	// no documentation yet
+	AuthorizationToken *string `json:"authorizationToken,omitempty" xmlrpc:"authorizationToken,omitempty"`
+
+	// no documentation yet
+	ExternalAccountId *string `json:"externalAccountId,omitempty" xmlrpc:"externalAccountId,omitempty"`
+
+	// no documentation yet
+	ExternalServiceProviderKey *string `json:"externalServiceProviderKey,omitempty" xmlrpc:"externalServiceProviderKey,omitempty"`
+}
+
 // This is used for storing various items about the order. Currently used for storing additional raid information when ordering servers. This is optional
 type Container_Product_Order_Property struct {
 	Entity
@@ -3255,6 +3463,11 @@ type Container_Product_Order_Storage_Group_Partition struct {
 
 	// The size of this partition
 	Size *Float64 `json:"size,omitempty" xmlrpc:"size,omitempty"`
+}
+
+// When ordering paid support this datatype needs to be populated and sent to SoftLayer_Product_Order::placeOrder.
+type Container_Product_Order_Support struct {
+	Container_Product_Order
 }
 
 // This container type is used for placing orders for external authentication, such as phone-based authentication.

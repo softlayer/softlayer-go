@@ -6052,6 +6052,14 @@ func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, er
 	return
 }
 
+//
+//
+//
+func (r Network_Storage) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date of a file within a Storage account. This does not download file content.
 func (r Network_Storage) GetFileByIdentifier(identifier *string) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
@@ -7808,6 +7816,14 @@ func (r Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Networ
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+//
+//
+//
+func (r Network_Storage_Backup_Evault) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
 	return
 }
 
@@ -9754,6 +9770,14 @@ func (r Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storag
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+//
+//
+//
+func (r Network_Storage_Iscsi) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
 	return
 }
 
