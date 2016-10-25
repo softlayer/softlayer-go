@@ -1108,7 +1108,11 @@ func (r Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price) 
 // <code>verifyOrder</code> accepts the same [[SoftLayer_Container_Product_Order (type)|container types]] as <code>placeOrder</code>, so see [[SoftLayer_Product_Order/placeOrder|placeOrder]] for more details.
 //
 //
-func (r Product_Order) VerifyOrder(orderData *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order, err error) {
+func (r Product_Order) VerifyOrder(orderData interface{}) (resp datatypes.Container_Product_Order, err error) {
+	err = datatypes.SetComplexType(orderData)
+	if err != nil {
+		return
+	}
 	params := []interface{}{
 		orderData,
 	}

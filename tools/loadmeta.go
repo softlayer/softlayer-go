@@ -155,7 +155,7 @@ import (
 	{{$rawBase := .Name}}{{range .Methods}}{{$methodName := .Name}}{{.Doc|goDoc}}
 	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{phraseMethodArg $methodName .Name .TypeArray .Type}}{{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
-		{{end}}{{if .Name|eq "placeOrder"}}err = datatypes.SetComplexType(orderData)
+		{{end}}{{if or (eq .Name "placeOrder") (eq .Name "verifyOrder")}}err = datatypes.SetComplexType(orderData)
 		if err != nil {
 			return
 		}
@@ -387,8 +387,9 @@ func fixReturnType(service *Type) {
 func phraseMethodArg(methodName string, argName string, isArray bool, argType string) string {
 	argName = RemoveReservedWords(argName)
 
-	// Handle special case - placeOrder should take any kind of order type.
-	if methodName == "placeOrder" && strings.HasPrefix(argType, "SoftLayer_Container_Product_Order") {
+	// Handle special case - placeOrder/verifyOrder should take any kind of order type.
+	if (methodName == "placeOrder" || methodName == "verifyOrder") &&
+		strings.HasPrefix(argType, "SoftLayer_Container_Product_Order") {
 		return fmt.Sprintf("%s interface{}, ", argName)
 	}
 
