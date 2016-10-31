@@ -19,7 +19,7 @@ The library was designed to feel as natural as possible for programmers familiar
 Three easy steps:
 
 ```go
-// 1. Create a `Session`
+// 1. Create a session
 sess := session.New(username, apikey)
 
 // 2. Get a service
@@ -34,7 +34,7 @@ account, err := accountService.getObject()
 ### Sessions
 
 In addition to the example above, sessions can also be created using values
-set in the environment, or from the local config file:
+set in the environment, or from the [local config file](http://softlayer-python.readthedocs.io/en/latest/config_file.html#config-file):
 
 ```go
 sess := session.New()
@@ -44,11 +44,24 @@ In this usage, the username, API key, and endpoint are read from specific enviro
 variables, then the local configuration file (~/.softlayer).  First match ends
 the search:
 
-* Username: `env.SL_USERNAME` || `env.SOFTLAYER_USERNAME` || `config.username`
-* API Key: `env.SL_API_KEY` || `env.SOFTLAYER_API_KEY` || `config.api_key`
-* Endpoint: `env.SL_ENDPOINT_URL` || `env.SOFTLAYER_ENDPOINT_URL` || `config.endpoint_url`
+* _Username_
+	1. environment variable `SL_USERNAME`
+	1. environment variable `SOFTLAYER_USERNAME`
+	1. local config `username`.
+* _API Key_
+	1. environment variable `SL_API_KEY`
+	1. environment variable `SOFTLAYER_API_KEY`
+	1. local config `api_key`.
+* _Endpoint_
+	1. environment variable `SL_ENDPOINT_URL`
+	1. environment variable `SOFTLAYER_ENDPOINT_URL`
+	1. local config `endpoint_url`.
+* _Timeout_
+	1. environment variable `SL_TIMEOUT`
+	1. environment variable `SOFTLAYER_TIMEOUT`
+	1. local config `timeout`.
 
-*Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods
+*Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods. Timeout defaults to 60 seconds.
 
 ### Instance methods
 
