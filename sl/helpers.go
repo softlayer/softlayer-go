@@ -18,6 +18,7 @@ package sl
 
 import (
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/softlayer/softlayer-go/datatypes"
@@ -102,4 +103,74 @@ func GetOk(p interface{}) (interface{}, bool) {
 
 	// p is a nil pointer.  Return the zero value for the pointed-to type
 	return reflect.Zero(t.Elem()).Interface(), false
+}
+
+// Grab returns the value specified by the path given,
+// starting from the struct s.
+// If at any point in the path the lookup falls short
+// (i.e. a field is not found), or if the last field in the path is nil
+// itself, a type-appropriate zero-value is returned.
+// This behavior can be overidden by providing a default value.
+//
+// This is useful for getting values our of deeply nested structures
+// Example: val := sl.Grab(virtualGuest, "Datacenter.Name")
+func Grab(s interface{}, path string, d ...interface{}) interface{} {
+	var (
+		val interface{}
+		ok  bool
+	)
+
+	if val, ok = GrabOk(s, path); ok {
+		return val
+	}
+
+	if len(d) > 0 {
+		return d[0]
+	}
+
+	return val
+}
+
+// GrabOk returns the value specified by the path given,
+// starting from the struct s.
+// If at any point in the path the lookup falls short
+// (i.e. a field is not found), or if the last field in the path is nil
+// itself, a type-appropriate zero-value is returned.
+// It returns a second value, a boolean, which will be false if it failed
+// to lookup the value, including if the last field in the path was nil.
+//
+// This is useful for getting values our of deeply nested structures
+// Example: val, ok := sl.GrabOk(virtualGuest, "Datacenter.Name")
+func GrabOk(s interface{}, path string) (interface{}, bool) {
+	t := reflect.TypeOf(s)
+	if t.Kind() != reflect.Struct {
+		return nil, false
+	}
+
+	dotIndex := strings.Index(path, ".")
+	if dotIndex == -1 {
+		dotIndex = len(path)
+	}
+
+	fieldName := path[0:dotIndex]
+	val := reflect.ValueOf(s)
+	fieldVal := val.FieldByName(fieldName)
+	if fieldVal.Kind() == reflect.Ptr {
+		if fieldVal.IsNil() {
+			return reflect.Zero(fieldVal.Type().Elem()).Interface(), false
+		}
+
+		fieldVal = reflect.Indirect(fieldVal)
+	}
+
+	result, ok := GetOk(fieldVal.Interface())
+	if !ok {
+		return result, ok
+	}
+
+	if dotIndex == len(path) {
+		return result, ok
+	}
+
+	return GrabOk(result, path[dotIndex+1:len(path)])
 }
