@@ -10,7 +10,7 @@ The Official and Complete SoftLayer API Client for Golang (the Go programming la
 
 This library contains a complete implementation of the SoftLayer API for client application development in the Go programming language. Code for each API data type and service method is pre-generated, using the SoftLayer API metadata endpoint as input, thus ensuring 100% coverage of the API right out of the gate.
 
-The library was designed to feel as natural as possible for programmers familiar with other popular SoftLayer SDKs, and attempts to minimize unnecessary boilerplate and type assertions where possible.
+It was designed to feel as natural as possible for programmers familiar with other popular SoftLayer SDKs, and attempts to minimize unnecessary boilerplate and type assertions where possible.
 
 ## Usage
 
@@ -93,28 +93,47 @@ userCustomerService.RemoveVirtualGuestAccess(sl.Int(123456))
 A complete library of SoftLayer API data type structs exists in the `datatypes` package. Like method parameters, all non-slice members are declared as pointers. This has the advantage of permitting updates without re-sending the complete data structure (since `nil` values are omitted from the resulting JSON). Use the same set of helper functions to assist in populating individual members.
 
 ```go
-// Get the Virtual_Guest service
-service := services.GetVirtualGuestService(sess)
+package main
 
-// Create an empty Virtual_Guest struct as a template
-vGuestTemplate := datatypes.Virtual_Guest{}
+import (
+	"fmt"
+	"log"
 
-// Set Creation values - use helpers from the sl package to set pointer values.
-// Unset (nil) values are not sent
-vGuestTemplate.Hostname = sl.String("sample")
-vGuestTemplate.Domain = sl.String("example.com")
-vGuestTemplate.MaxMemory = sl.Int(4096)
-vGuestTemplate.StartCpus = sl.Int(1)
-vGuestTemplate.Datacenter = &datatypes.Location{Name: sl.String("wdc01")}
-vGuestTemplate.OperatingSystemReferenceCode = sl.String("UBUNTU_LATEST")
-vGuestTemplate.LocalDiskFlag = sl.Bool(true)
+	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/services"
+	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
+)
 
-newGuest, err := service.CreateObject(&vGuestTemplate)
+func main() {
+	sess := session.New() // See above for details about creating a new session
 
-// optional error checking...
+	// Get the Virtual_Guest service
+	service := services.GetVirtualGuestService(sess)
 
-// Print the ID of the new guest.  Don't forget to dereference
-fmt.Printf("New guest %d created", *newGuest.Id)
+	// Create a Virtual_Guest struct as a template
+	vGuestTemplate := datatypes.Virtual_Guest{
+		// Set Creation values - use helpers from the sl package to set pointer values.
+		// Unset (nil) values are not sent
+		Hostname:                     sl.String("sample"),
+		Domain:                       sl.String("example.com"),
+		MaxMemory:                    sl.Int(4096),
+		StartCpus:                    sl.Int(1),
+		Datacenter:                   &datatypes.Location{Name: sl.String("wdc01")},
+		OperatingSystemReferenceCode: sl.String("UBUNTU_LATEST"),
+		LocalDiskFlag:                sl.Bool(true),
+	}
+
+	// Tell the API to create the virtual guest
+	newGuest, err := service.CreateObject(&vGuestTemplate)
+	// optional error checking...
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Print the ID of the new guest.  Don't forget to dereference
+	fmt.Printf("New guest %d created", *newGuest.Id)
+}
 ```
 
 ### Object Masks, Filters, Result Limits
