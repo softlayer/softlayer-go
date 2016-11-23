@@ -3039,6 +3039,9 @@ type Network_Storage struct {
 	// The events which have taken place on a network storage volume.
 	Events []Network_Storage_Event `json:"events,omitempty" xmlrpc:"events,omitempty"`
 
+	// Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
+	FileNetworkMountAddress *string `json:"fileNetworkMountAddress,omitempty" xmlrpc:"fileNetworkMountAddress,omitempty"`
+
 	// The unique identification number of the guest associated with a Storage volume.
 	GuestId *int `json:"guestId,omitempty" xmlrpc:"guestId,omitempty"`
 

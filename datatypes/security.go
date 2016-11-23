@@ -194,7 +194,7 @@ type Security_Certificate_Request_ServerType struct {
 	Value *int `json:"value,omitempty" xmlrpc:"value,omitempty"`
 }
 
-// SoftLayer_Security_Certificate_Request_Status data type represents the status of an SSL certificate request.
+// Represents the status of an SSL certificate request.
 type Security_Certificate_Request_Status struct {
 	Entity
 

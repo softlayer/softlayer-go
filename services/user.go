@@ -718,8 +718,9 @@ func (r User_Customer) InitiatePortalPasswordChangeByBrandAgent(username *string
 	return
 }
 
-// Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect.
-func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string) (resp bool, err error) {
+// Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
+func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
+	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
 	}
@@ -3134,8 +3135,9 @@ func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChangeByBrandAgent(us
 	return
 }
 
-// Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect.
-func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string) (resp bool, err error) {
+// Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
+func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
+	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
 	}

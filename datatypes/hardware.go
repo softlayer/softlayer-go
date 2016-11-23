@@ -742,6 +742,24 @@ type Hardware_Component struct {
 	// The date that a hardware component was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
+	// A count of the module's hardware components
+	ModuleComponentCount *uint `json:"moduleComponentCount,omitempty" xmlrpc:"moduleComponentCount,omitempty"`
+
+	// The module's hardware components
+	ModuleComponents []Hardware_Component `json:"moduleComponents,omitempty" xmlrpc:"moduleComponents,omitempty"`
+
+	// A count of the module's hardware components
+	ModuleHardwareComponentCount *uint `json:"moduleHardwareComponentCount,omitempty" xmlrpc:"moduleHardwareComponentCount,omitempty"`
+
+	// The module's hardware components
+	ModuleHardwareComponents []Hardware_Component `json:"moduleHardwareComponents,omitempty" xmlrpc:"moduleHardwareComponents,omitempty"`
+
+	// A count of the module's network components
+	ModuleNetworkComponentCount *uint `json:"moduleNetworkComponentCount,omitempty" xmlrpc:"moduleNetworkComponentCount,omitempty"`
+
+	// The module's network components
+	ModuleNetworkComponents []Hardware_Component `json:"moduleNetworkComponents,omitempty" xmlrpc:"moduleNetworkComponents,omitempty"`
+
 	// The name of this component as referenced by the operating system.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
@@ -756,6 +774,9 @@ type Hardware_Component struct {
 
 	// A components parent. Devices that are usually integrated or in some way attached to a component.
 	Parent *Hardware_Component `json:"parent,omitempty" xmlrpc:"parent,omitempty"`
+
+	// no documentation yet
+	PrefixAttribute *Hardware_Component_Model_Attribute `json:"prefixAttribute,omitempty" xmlrpc:"prefixAttribute,omitempty"`
 
 	// A RAID controllers RAID mode.
 	RaidMode *string `json:"raidMode,omitempty" xmlrpc:"raidMode,omitempty"`

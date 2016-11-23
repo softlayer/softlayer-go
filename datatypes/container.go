@@ -355,6 +355,9 @@ type Container_Authentication_Response_Account struct {
 	DefaultAccount *bool `json:"defaultAccount,omitempty" xmlrpc:"defaultAccount,omitempty"`
 
 	// no documentation yet
+	IsMasterUserFlag *bool `json:"isMasterUserFlag,omitempty" xmlrpc:"isMasterUserFlag,omitempty"`
+
+	// no documentation yet
 	PhoneFactorExternalAuthenticationRequired *bool `json:"phoneFactorExternalAuthenticationRequired,omitempty" xmlrpc:"phoneFactorExternalAuthenticationRequired,omitempty"`
 
 	// no documentation yet

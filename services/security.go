@@ -166,7 +166,7 @@ func (r Security_Certificate_Request) Offset(offset int) Security_Certificate_Re
 	return r
 }
 
-// Cancels a pending SSL certificate order at Certificate Authority
+// Cancels a pending SSL certificate order at the Certificate Authority
 func (r Security_Certificate_Request) CancelSslOrder() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "cancelSslOrder", nil, &r.Options, &resp)
 	return
@@ -238,7 +238,7 @@ func (r Security_Certificate_Request) GetStatus() (resp datatypes.Security_Certi
 	return
 }
 
-// A Certificate Authority sends out various emails to your domain administrator or your technical contact. Use this service to re-send these emails if you did not receive them initially.
+// A Certificate Authority sends out various emails to your domain administrator or your technical contact. Use this service to have these emails re-sent.
 func (r Security_Certificate_Request) ResendEmail(emailType *string) (resp bool, err error) {
 	params := []interface{}{
 		emailType,
@@ -300,8 +300,8 @@ func (r Security_Certificate_Request_ServerType) Offset(offset int) Security_Cer
 	return r
 }
 
-// Returns all SSL certificate server types, which  passed in on a certificate order.
-func (r Security_Certificate_Request_ServerType) GetAllObjects() (resp []datatypes.Security_Certificate_Request, err error) {
+// Returns all SSL certificate server types, which are passed in on a [[SoftLayer_Container_Product_Order_Security_Certificate|certificate order]].
+func (r Security_Certificate_Request_ServerType) GetAllObjects() (resp []datatypes.Security_Certificate_Request_ServerType, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
@@ -312,7 +312,7 @@ func (r Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Sec
 	return
 }
 
-// SoftLayer_Security_Certificate_Request_Status data type represents the status of an SSL certificate request.
+// Represents the status of an SSL certificate request.
 type Security_Certificate_Request_Status struct {
 	Session *session.Session
 	Options sl.Options

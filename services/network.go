@@ -6085,6 +6085,12 @@ func (r Network_Storage) GetFileList(folder *string, path *string) (resp []datat
 	return
 }
 
+// Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
+func (r Network_Storage) GetFileNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileNetworkMountAddress", nil, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage) GetFilePendingDeleteCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFilePendingDeleteCount", nil, &r.Options, &resp)
@@ -6173,6 +6179,12 @@ func (r Network_Storage) GetMountableFlag() (resp string, err error) {
 // no documentation yet
 func (r Network_Storage) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage) GetNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getNetworkMountAddress", nil, &r.Options, &resp)
 	return
 }
 
@@ -7852,6 +7864,12 @@ func (r Network_Storage_Backup_Evault) GetFileList(folder *string, path *string)
 	return
 }
 
+// Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
+func (r Network_Storage_Backup_Evault) GetFileNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileNetworkMountAddress", nil, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage_Backup_Evault) GetFilePendingDeleteCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFilePendingDeleteCount", nil, &r.Options, &resp)
@@ -7960,6 +7978,12 @@ func (r Network_Storage_Backup_Evault) GetMountableFlag() (resp string, err erro
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Backup_Evault) GetNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getNetworkMountAddress", nil, &r.Options, &resp)
 	return
 }
 
@@ -9806,6 +9830,12 @@ func (r Network_Storage_Iscsi) GetFileList(folder *string, path *string) (resp [
 	return
 }
 
+// Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
+func (r Network_Storage_Iscsi) GetFileNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileNetworkMountAddress", nil, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve the number of files pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted.
 func (r Network_Storage_Iscsi) GetFilePendingDeleteCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFilePendingDeleteCount", nil, &r.Options, &resp)
@@ -9894,6 +9924,12 @@ func (r Network_Storage_Iscsi) GetMountableFlag() (resp string, err error) {
 // no documentation yet
 func (r Network_Storage_Iscsi) GetNetworkConnectionDetails() (resp datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Iscsi) GetNetworkMountAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getNetworkMountAddress", nil, &r.Options, &resp)
 	return
 }
 

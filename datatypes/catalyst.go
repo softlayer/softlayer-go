@@ -171,9 +171,6 @@ type Catalyst_Enrollment_Request struct {
 	// Name of the investor, if any
 	InvestorName *string `json:"investorName,omitempty" xmlrpc:"investorName,omitempty"`
 
-	// no documentation yet
-	IpAddress *string `json:"ipAddress,omitempty" xmlrpc:"ipAddress,omitempty"`
-
 	// Applicant's last name
 	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName,omitempty"`
 
