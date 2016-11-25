@@ -86,16 +86,16 @@ func doCreateVMTest(sess *session.Session) {
 	service := services.GetVirtualGuestService(sess)
 
 	// Create a Virtual_Guest instance as a template
-	vGuestTemplate := datatypes.Virtual_Guest{}
-
-	//Set Creation values - use helpers from the sl package to set pointer values
-	vGuestTemplate.Hostname = sl.String("sample")
-	vGuestTemplate.Domain = sl.String("example.com")
-	vGuestTemplate.MaxMemory = sl.Int(4096)
-	vGuestTemplate.StartCpus = sl.Int(1)
-	vGuestTemplate.Datacenter = &datatypes.Location{Name: sl.String("wdc01")}
-	vGuestTemplate.OperatingSystemReferenceCode = sl.String("UBUNTU_LATEST")
-	vGuestTemplate.LocalDiskFlag = sl.Bool(true)
+	vGuestTemplate := datatypes.Virtual_Guest{
+		Hostname:                     sl.String("sample"),
+		Domain:                       sl.String("example.com"),
+		MaxMemory:                    sl.Int(4096),
+		StartCpus:                    sl.Int(1),
+		Datacenter:                   &datatypes.Location{Name: sl.String("wdc01")},
+		OperatingSystemReferenceCode: sl.String("UBUNTU_LATEST"),
+		LocalDiskFlag:                sl.Bool(true),
+		HourlyBillingFlag:            sl.Bool(true),
+	}
 
 	vGuest, err := service.Mask("id;domain").CreateObject(&vGuestTemplate)
 	if err != nil {
