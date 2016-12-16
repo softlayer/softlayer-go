@@ -138,25 +138,37 @@ func New(args ...interface{}) *Session {
 	envFallback("SOFTLAYER_TIMEOUT", &values[keys["timeout"]])
 
 	// Read ~/.softlayer for configuration
+	var homeDir string
 	u, err := user.Current()
 	if err != nil {
-		panic("session: Could not determine current user.")
+		for _, name := range []string{"HOME", "USERPROFILE"} { // *nix, windows
+			if dir := os.Getenv(name); dir != "" {
+				homeDir = dir
+				break
+			}
+		}
+	} else {
+		homeDir = u.HomeDir
 	}
 
-	configPath := fmt.Sprintf("%s/.softlayer", u.HomeDir)
-	if _, err = os.Stat(configPath); !os.IsNotExist(err) {
-		// config file exists
-		file, err := config.LoadFile(configPath)
-		if err != nil {
-			log.Println(fmt.Sprintf("[WARN] session: Could not parse %s : %s", configPath, err))
-		} else {
-			for k, v := range keys {
-				value, ok := file.Get("softlayer", k)
-				if ok && values[v] == "" {
-					values[v] = value
+	if homeDir != "" {
+		configPath := fmt.Sprintf("%s/.softlayer", homeDir)
+		if _, err = os.Stat(configPath); !os.IsNotExist(err) {
+			// config file exists
+			file, err := config.LoadFile(configPath)
+			if err != nil {
+				log.Println(fmt.Sprintf("[WARN] session: Could not parse %s : %s", configPath, err))
+			} else {
+				for k, v := range keys {
+					value, ok := file.Get("softlayer", k)
+					if ok && values[v] == "" {
+						values[v] = value
+					}
 				}
 			}
 		}
+	} else {
+		log.Println("[WARN] session: home dir could not be determined. Skipping read of ~/.softlayer.")
 	}
 
 	endpointURL := values[keys["endpoint_url"]]
