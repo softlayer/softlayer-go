@@ -137,6 +137,12 @@ func SelectProductPricesByCategory(
 		forPublicNetwork = public[0]
 	}
 
+	// Check type of cores
+	forPublicCores := true
+	if len(public) > 0 {
+		forPublicCores = public[1]
+	}
+
 	// Filter product items based on sets of category codes and capacity numbers
 	prices := []datatypes.Product_Item_Price{}
 	priceCheck := map[string]bool{}
@@ -164,7 +170,7 @@ func SelectProductPricesByCategory(
 				// Logic taken from softlayer-python @ http://bit.ly/2bN9Gbu
 				switch categoryCode {
 				case CPUCategoryCode:
-					if forPublicNetwork == isPrivate {
+					if forPublicCores == isPrivate {
 						continue
 					}
 				case NICSpeedCategoryCode:
