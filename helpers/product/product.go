@@ -139,7 +139,7 @@ func SelectProductPricesByCategory(
 
 	// Check type of cores
 	forPublicCores := true
-	if len(public) > 0 {
+	if len(public) > 1 {
 		forPublicCores = public[1]
 	}
 
