@@ -79,6 +79,7 @@ var fMap = template.FuncMap{
 	"titleCase":       strings.Title,       // TitleCase the argument
 	"desnake":         Desnake,             // Remove '_' from Snake_Case
 	"goDoc":           GoDoc,               // Format a go doc string
+	"tags":            Tags,                // Remove omitempty tags if required
 	"phraseMethodArg": phraseMethodArg,     // Get proper phrase for method argument
 }
 
@@ -94,7 +95,7 @@ type {{.Name|removePrefix}} struct {
 
 	{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}
 	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{convertType .Type "datatypes" $base .Name}}`+
-	"`json:\"{{.Name}},omitempty\" xmlrpc:\"{{.Name}},omitempty\"`"+`
+	"`json:\"{{.Name|tags}}\" xmlrpc:\"{{.Name|tags}}\"`"+`
 
 	{{end}}
 }
@@ -320,6 +321,18 @@ func GoDoc(args ...interface{}) string {
 	}
 
 	return "// " + strings.Replace(s, "\n", "\n// ", -1)
+}
+
+// Remove omitempty tags if required
+func Tags(args ...interface{}) string {
+	n := args[0].(string)
+
+	switch n {
+	case "resourceRecords":
+		return n
+	default:
+		return n + ",omitempty"
+	}
 }
 
 // private
