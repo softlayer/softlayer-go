@@ -40,7 +40,7 @@ type Dns_Domain struct {
 	ResourceRecordCount *uint `json:"resourceRecordCount,omitempty" xmlrpc:"resourceRecordCount,omitempty"`
 
 	// The individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
-	ResourceRecords []Dns_Domain_ResourceRecord `json:"resourceRecords,omitempty" xmlrpc:"resourceRecords,omitempty"`
+	ResourceRecords []Dns_Domain_ResourceRecord `json:"resourceRecords" xmlrpc:"resourceRecords"`
 
 	// The secondary DNS record that defines this domain as being managed through zone transfers.
 	Secondary *Dns_Secondary `json:"secondary,omitempty" xmlrpc:"secondary,omitempty"`
