@@ -126,6 +126,9 @@ func GetPackageProducts(
 // For example, these are the options to specify an upgrade to 8 cpus and 32
 // GB or memory:
 // {"guest_core": 8.0, "ram": 32.0}
+// public[0] checks type of network.
+// public[1] checks type of cores.
+
 func SelectProductPricesByCategory(
 	productItems []datatypes.Product_Item,
 	options map[string]float64,
@@ -135,6 +138,12 @@ func SelectProductPricesByCategory(
 	forPublicNetwork := true
 	if len(public) > 0 {
 		forPublicNetwork = public[0]
+	}
+
+	// Check type of cores
+	forPublicCores := true
+	if len(public) > 1 {
+		forPublicCores = public[1]
 	}
 
 	// Filter product items based on sets of category codes and capacity numbers
@@ -164,7 +173,7 @@ func SelectProductPricesByCategory(
 				// Logic taken from softlayer-python @ http://bit.ly/2bN9Gbu
 				switch categoryCode {
 				case CPUCategoryCode:
-					if forPublicNetwork == isPrivate {
+					if forPublicCores == isPrivate {
 						continue
 					}
 				case NICSpeedCategoryCode:

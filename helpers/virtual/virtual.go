@@ -38,14 +38,15 @@ func UpgradeVirtualGuest(
 	when ...time.Time,
 ) (datatypes.Container_Product_Order_Receipt, error) {
 
-	if guest.PrivateNetworkOnlyFlag == nil {
+	if guest.PrivateNetworkOnlyFlag == nil || guest.DedicatedAccountHostOnlyFlag == nil {
 		service := services.GetVirtualGuestService(sess)
-		guestForFlag, err := service.Id(*guest.Id).Mask("privateNetworkOnlyFlag").GetObject()
+		guestForFlag, err := service.Id(*guest.Id).Mask("privateNetworkOnlyFlag,dedicatedAccountHostOnlyFlag").GetObject()
 		if err != nil {
 			return datatypes.Container_Product_Order_Receipt{}, err
 		}
 
 		guest.PrivateNetworkOnlyFlag = guestForFlag.PrivateNetworkOnlyFlag
+		guest.DedicatedAccountHostOnlyFlag = guestForFlag.DedicatedAccountHostOnlyFlag
 	}
 
 	pkg, err := product.GetPackageByType(sess, "VIRTUAL_SERVER_INSTANCE")
@@ -58,7 +59,7 @@ func UpgradeVirtualGuest(
 		return datatypes.Container_Product_Order_Receipt{}, err
 	}
 
-	prices := product.SelectProductPricesByCategory(productItems, options, !*guest.PrivateNetworkOnlyFlag)
+	prices := product.SelectProductPricesByCategory(productItems, options, !*guest.PrivateNetworkOnlyFlag, !*guest.DedicatedAccountHostOnlyFlag)
 
 	upgradeTime := time.Now().UTC().Format(time.RFC3339)
 	if len(when) > 0 {
