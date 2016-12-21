@@ -126,6 +126,9 @@ func GetPackageProducts(
 // For example, these are the options to specify an upgrade to 8 cpus and 32
 // GB or memory:
 // {"guest_core": 8.0, "ram": 32.0}
+// Public[0] checks type of network.
+// public[1] checks type of cores.
+
 func SelectProductPricesByCategory(
 	productItems []datatypes.Product_Item,
 	options map[string]float64,
