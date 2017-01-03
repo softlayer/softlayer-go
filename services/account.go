@@ -1246,7 +1246,7 @@ func (r Account) GetNotificationSubscribers() (resp []datatypes.Notification_Sub
 	return
 }
 
-// getObject retrieves the SoftLayer_Account object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Account service. You can only retrieve the account that your portal user is assigned to.
+// GetObject retrieves the SoftLayer_Account object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Account service. You can only retrieve the account that your portal user is assigned to.
 func (r Account) GetObject() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getObject", nil, &r.Options, &resp)
 	return
