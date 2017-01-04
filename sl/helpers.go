@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// Package sl has convenience functions for returning pointers to values
 package sl
 
 import (
@@ -23,8 +24,6 @@ import (
 
 	"github.com/softlayer/softlayer-go/datatypes"
 )
-
-// Convenience functions for returning pointers to values
 
 // Int returns a pointer to the int value provided
 func Int(v int) *int {
