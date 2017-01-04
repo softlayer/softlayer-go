@@ -26,7 +26,7 @@ sess := session.New(username, apikey)
 accountService := services.GetAccountService(sess)
 
 // 3. Invoke a method:
-account, err := accountService.getObject()
+account, err := accountService.GetObject()
 ```
 
 [More examples](https://github.com/softlayer/softlayer-go/tree/master/examples)
