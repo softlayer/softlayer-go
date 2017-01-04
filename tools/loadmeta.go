@@ -120,6 +120,7 @@ import (
 		Options sl.Options
 	}
 
+	// Get{{$base | desnake}}Service returns an instance of the {{$base}} SoftLayer service
 	func Get{{$base | desnake}}Service(sess *session.Session) {{$base}} {
 		return {{$base}}{Session: sess}
 	}

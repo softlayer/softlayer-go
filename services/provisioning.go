@@ -35,6 +35,7 @@ type Provisioning_Hook struct {
 	Options sl.Options
 }
 
+// GetProvisioningHookService returns an instance of the Provisioning_Hook SoftLayer service
 func GetProvisioningHookService(sess *session.Session) Provisioning_Hook {
 	return Provisioning_Hook{Session: sess}
 }
@@ -116,6 +117,7 @@ type Provisioning_Hook_Type struct {
 	Options sl.Options
 }
 
+// GetProvisioningHookTypeService returns an instance of the Provisioning_Hook_Type SoftLayer service
 func GetProvisioningHookTypeService(sess *session.Session) Provisioning_Hook_Type {
 	return Provisioning_Hook_Type{Session: sess}
 }
@@ -167,6 +169,7 @@ type Provisioning_Maintenance_Classification struct {
 	Options sl.Options
 }
 
+// GetProvisioningMaintenanceClassificationService returns an instance of the Provisioning_Maintenance_Classification SoftLayer service
 func GetProvisioningMaintenanceClassificationService(sess *session.Session) Provisioning_Maintenance_Classification {
 	return Provisioning_Maintenance_Classification{Session: sess}
 }
@@ -233,6 +236,7 @@ type Provisioning_Maintenance_Classification_Item_Category struct {
 	Options sl.Options
 }
 
+// GetProvisioningMaintenanceClassificationItemCategoryService returns an instance of the Provisioning_Maintenance_Classification_Item_Category SoftLayer service
 func GetProvisioningMaintenanceClassificationItemCategoryService(sess *session.Session) Provisioning_Maintenance_Classification_Item_Category {
 	return Provisioning_Maintenance_Classification_Item_Category{Session: sess}
 }
@@ -284,6 +288,7 @@ type Provisioning_Maintenance_Slots struct {
 	Options sl.Options
 }
 
+// GetProvisioningMaintenanceSlotsService returns an instance of the Provisioning_Maintenance_Slots SoftLayer service
 func GetProvisioningMaintenanceSlotsService(sess *session.Session) Provisioning_Maintenance_Slots {
 	return Provisioning_Maintenance_Slots{Session: sess}
 }
@@ -329,6 +334,7 @@ type Provisioning_Maintenance_Ticket struct {
 	Options sl.Options
 }
 
+// GetProvisioningMaintenanceTicketService returns an instance of the Provisioning_Maintenance_Ticket SoftLayer service
 func GetProvisioningMaintenanceTicketService(sess *session.Session) Provisioning_Maintenance_Ticket {
 	return Provisioning_Maintenance_Ticket{Session: sess}
 }
@@ -392,6 +398,7 @@ type Provisioning_Maintenance_Window struct {
 	Options sl.Options
 }
 
+// GetProvisioningMaintenanceWindowService returns an instance of the Provisioning_Maintenance_Window SoftLayer service
 func GetProvisioningMaintenanceWindowService(sess *session.Session) Provisioning_Maintenance_Window {
 	return Provisioning_Maintenance_Window{Session: sess}
 }
@@ -510,6 +517,7 @@ type Provisioning_Version1_Transaction_Group struct {
 	Options sl.Options
 }
 
+// GetProvisioningVersion1TransactionGroupService returns an instance of the Provisioning_Version1_Transaction_Group SoftLayer service
 func GetProvisioningVersion1TransactionGroupService(sess *session.Session) Provisioning_Version1_Transaction_Group {
 	return Provisioning_Version1_Transaction_Group{Session: sess}
 }

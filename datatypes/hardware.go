@@ -669,6 +669,9 @@ type Hardware_Chassis struct {
 	BayCapacity *string `json:"bayCapacity,omitempty" xmlrpc:"bayCapacity,omitempty"`
 
 	// no documentation yet
+	BookCapacity *string `json:"bookCapacity,omitempty" xmlrpc:"bookCapacity,omitempty"`
+
+	// no documentation yet
 	DriveCapacity *string `json:"driveCapacity,omitempty" xmlrpc:"driveCapacity,omitempty"`
 
 	// no documentation yet
@@ -774,6 +777,9 @@ type Hardware_Component struct {
 
 	// A components parent. Devices that are usually integrated or in some way attached to a component.
 	Parent *Hardware_Component `json:"parent,omitempty" xmlrpc:"parent,omitempty"`
+
+	// no documentation yet
+	ParentModule *Hardware_Component `json:"parentModule,omitempty" xmlrpc:"parentModule,omitempty"`
 
 	// no documentation yet
 	PrefixAttribute *Hardware_Component_Model_Attribute `json:"prefixAttribute,omitempty" xmlrpc:"prefixAttribute,omitempty"`

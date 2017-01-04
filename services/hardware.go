@@ -35,6 +35,7 @@ type Hardware struct {
 	Options sl.Options
 }
 
+// GetHardwareService returns an instance of the Hardware SoftLayer service
 func GetHardwareService(sess *session.Session) Hardware {
 	return Hardware{Session: sess}
 }
@@ -1503,12 +1504,22 @@ func (r Hardware) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
+// This method will update the root IPMI password on this SoftLayer_Hardware.
+func (r Hardware) UpdateIpmiPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware", "updateIpmiPassword", params, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Hardware_Benchmark_Certification data type contains general information relating to a single SoftLayer hardware benchmark certification document.
 type Hardware_Benchmark_Certification struct {
 	Session *session.Session
 	Options sl.Options
 }
 
+// GetHardwareBenchmarkCertificationService returns an instance of the Hardware_Benchmark_Certification SoftLayer service
 func GetHardwareBenchmarkCertificationService(sess *session.Session) Hardware_Benchmark_Certification {
 	return Hardware_Benchmark_Certification{Session: sess}
 }
@@ -1572,6 +1583,7 @@ type Hardware_Component_Model struct {
 	Options sl.Options
 }
 
+// GetHardwareComponentModelService returns an instance of the Hardware_Component_Model SoftLayer service
 func GetHardwareComponentModelService(sess *session.Session) Hardware_Component_Model {
 	return Hardware_Component_Model{Session: sess}
 }
@@ -1689,6 +1701,7 @@ type Hardware_Component_Partition_OperatingSystem struct {
 	Options sl.Options
 }
 
+// GetHardwareComponentPartitionOperatingSystemService returns an instance of the Hardware_Component_Partition_OperatingSystem SoftLayer service
 func GetHardwareComponentPartitionOperatingSystemService(sess *session.Session) Hardware_Component_Partition_OperatingSystem {
 	return Hardware_Component_Partition_OperatingSystem{Session: sess}
 }
@@ -1755,6 +1768,7 @@ type Hardware_Component_Partition_Template struct {
 	Options sl.Options
 }
 
+// GetHardwareComponentPartitionTemplateService returns an instance of the Hardware_Component_Partition_Template SoftLayer service
 func GetHardwareComponentPartitionTemplateService(sess *session.Session) Hardware_Component_Partition_Template {
 	return Hardware_Component_Partition_Template{Session: sess}
 }
@@ -1830,6 +1844,7 @@ type Hardware_Router struct {
 	Options sl.Options
 }
 
+// GetHardwareRouterService returns an instance of the Hardware_Router SoftLayer service
 func GetHardwareRouterService(sess *session.Session) Hardware_Router {
 	return Hardware_Router{Session: sess}
 }
@@ -3316,12 +3331,22 @@ func (r Hardware_Router) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
+// This method will update the root IPMI password on this SoftLayer_Hardware.
+func (r Hardware_Router) UpdateIpmiPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "updateIpmiPassword", params, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 type Hardware_SecurityModule struct {
 	Session *session.Session
 	Options sl.Options
 }
 
+// GetHardwareSecurityModuleService returns an instance of the Hardware_SecurityModule SoftLayer service
 func GetHardwareSecurityModuleService(sess *session.Session) Hardware_SecurityModule {
 	return Hardware_SecurityModule{Session: sess}
 }
@@ -5410,6 +5435,15 @@ func (r Hardware_SecurityModule) SparePool(action *string, newOrder *bool) (resp
 	return
 }
 
+// This method will update the root IPMI password on this SoftLayer_Hardware.
+func (r Hardware_SecurityModule) UpdateIpmiPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "updateIpmiPassword", params, &r.Options, &resp)
+	return
+}
+
 // Validates a collection of partitions for an operating system
 func (r Hardware_SecurityModule) ValidatePartitionsForOperatingSystem(operatingSystem *datatypes.Software_Description, partitions []datatypes.Hardware_Component_Partition) (resp bool, err error) {
 	params := []interface{}{
@@ -5426,6 +5460,7 @@ type Hardware_Server struct {
 	Options sl.Options
 }
 
+// GetHardwareServerService returns an instance of the Hardware_Server SoftLayer service
 func GetHardwareServerService(sess *session.Session) Hardware_Server {
 	return Hardware_Server{Session: sess}
 }
@@ -7511,6 +7546,15 @@ func (r Hardware_Server) SparePool(action *string, newOrder *bool) (resp bool, e
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "sparePool", params, &r.Options, &resp)
+	return
+}
+
+// This method will update the root IPMI password on this SoftLayer_Hardware.
+func (r Hardware_Server) UpdateIpmiPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "updateIpmiPassword", params, &r.Options, &resp)
 	return
 }
 

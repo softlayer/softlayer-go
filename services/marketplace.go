@@ -35,6 +35,7 @@ type Marketplace_Partner struct {
 	Options sl.Options
 }
 
+// GetMarketplacePartnerService returns an instance of the Marketplace_Partner SoftLayer service
 func GetMarketplacePartnerService(sess *session.Session) Marketplace_Partner {
 	return Marketplace_Partner{Session: sess}
 }

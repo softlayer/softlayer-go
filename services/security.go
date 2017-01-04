@@ -35,6 +35,7 @@ type Security_Certificate struct {
 	Options sl.Options
 }
 
+// GetSecurityCertificateService returns an instance of the Security_Certificate SoftLayer service
 func GetSecurityCertificateService(sess *session.Session) Security_Certificate {
 	return Security_Certificate{Session: sess}
 }
@@ -133,6 +134,7 @@ type Security_Certificate_Request struct {
 	Options sl.Options
 }
 
+// GetSecurityCertificateRequestService returns an instance of the Security_Certificate_Request SoftLayer service
 func GetSecurityCertificateRequestService(sess *session.Session) Security_Certificate_Request {
 	return Security_Certificate_Request{Session: sess}
 }
@@ -267,6 +269,7 @@ type Security_Certificate_Request_ServerType struct {
 	Options sl.Options
 }
 
+// GetSecurityCertificateRequestServerTypeService returns an instance of the Security_Certificate_Request_ServerType SoftLayer service
 func GetSecurityCertificateRequestServerTypeService(sess *session.Session) Security_Certificate_Request_ServerType {
 	return Security_Certificate_Request_ServerType{Session: sess}
 }
@@ -318,6 +321,7 @@ type Security_Certificate_Request_Status struct {
 	Options sl.Options
 }
 
+// GetSecurityCertificateRequestStatusService returns an instance of the Security_Certificate_Request_Status SoftLayer service
 func GetSecurityCertificateRequestStatusService(sess *session.Session) Security_Certificate_Request_Status {
 	return Security_Certificate_Request_Status{Session: sess}
 }
@@ -369,6 +373,7 @@ type Security_Ssh_Key struct {
 	Options sl.Options
 }
 
+// GetSecuritySshKeyService returns an instance of the Security_Ssh_Key SoftLayer service
 func GetSecuritySshKeyService(sess *session.Session) Security_Ssh_Key {
 	return Security_Ssh_Key{Session: sess}
 }

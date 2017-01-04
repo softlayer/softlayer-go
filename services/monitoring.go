@@ -35,6 +35,7 @@ type Monitoring_Agent struct {
 	Options sl.Options
 }
 
+// GetMonitoringAgentService returns an instance of the Monitoring_Agent SoftLayer service
 func GetMonitoringAgentService(sess *session.Session) Monitoring_Agent {
 	return Monitoring_Agent{Session: sess}
 }
@@ -263,6 +264,7 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 	Options sl.Options
 }
 
+// GetMonitoringAgentConfigurationTemplateGroupService returns an instance of the Monitoring_Agent_Configuration_Template_Group SoftLayer service
 func GetMonitoringAgentConfigurationTemplateGroupService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group {
 	return Monitoring_Agent_Configuration_Template_Group{Session: sess}
 }
@@ -371,6 +373,7 @@ type Monitoring_Agent_Configuration_Template_Group_Reference struct {
 	Options sl.Options
 }
 
+// GetMonitoringAgentConfigurationTemplateGroupReferenceService returns an instance of the Monitoring_Agent_Configuration_Template_Group_Reference SoftLayer service
 func GetMonitoringAgentConfigurationTemplateGroupReferenceService(sess *session.Session) Monitoring_Agent_Configuration_Template_Group_Reference {
 	return Monitoring_Agent_Configuration_Template_Group_Reference{Session: sess}
 }
@@ -470,6 +473,7 @@ type Monitoring_Agent_Configuration_Value struct {
 	Options sl.Options
 }
 
+// GetMonitoringAgentConfigurationValueService returns an instance of the Monitoring_Agent_Configuration_Value SoftLayer service
 func GetMonitoringAgentConfigurationValueService(sess *session.Session) Monitoring_Agent_Configuration_Value {
 	return Monitoring_Agent_Configuration_Value{Session: sess}
 }
@@ -539,6 +543,7 @@ type Monitoring_Agent_Status struct {
 	Options sl.Options
 }
 
+// GetMonitoringAgentStatusService returns an instance of the Monitoring_Agent_Status SoftLayer service
 func GetMonitoringAgentStatusService(sess *session.Session) Monitoring_Agent_Status {
 	return Monitoring_Agent_Status{Session: sess}
 }
@@ -584,6 +589,7 @@ type Monitoring_Robot struct {
 	Options sl.Options
 }
 
+// GetMonitoringRobotService returns an instance of the Monitoring_Robot SoftLayer service
 func GetMonitoringRobotService(sess *session.Session) Monitoring_Robot {
 	return Monitoring_Robot{Session: sess}
 }

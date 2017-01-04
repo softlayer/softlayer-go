@@ -35,6 +35,7 @@ type Scale_Asset struct {
 	Options sl.Options
 }
 
+// GetScaleAssetService returns an instance of the Scale_Asset SoftLayer service
 func GetScaleAssetService(sess *session.Session) Scale_Asset {
 	return Scale_Asset{Session: sess}
 }
@@ -92,6 +93,7 @@ type Scale_Asset_Hardware struct {
 	Options sl.Options
 }
 
+// GetScaleAssetHardwareService returns an instance of the Scale_Asset_Hardware SoftLayer service
 func GetScaleAssetHardwareService(sess *session.Session) Scale_Asset_Hardware {
 	return Scale_Asset_Hardware{Session: sess}
 }
@@ -170,6 +172,7 @@ type Scale_Asset_Virtual_Guest struct {
 	Options sl.Options
 }
 
+// GetScaleAssetVirtualGuestService returns an instance of the Scale_Asset_Virtual_Guest SoftLayer service
 func GetScaleAssetVirtualGuestService(sess *session.Session) Scale_Asset_Virtual_Guest {
 	return Scale_Asset_Virtual_Guest{Session: sess}
 }
@@ -248,6 +251,7 @@ type Scale_Group struct {
 	Options sl.Options
 }
 
+// GetScaleGroupService returns an instance of the Scale_Group SoftLayer service
 func GetScaleGroupService(sess *session.Session) Scale_Group {
 	return Scale_Group{Session: sess}
 }
@@ -427,6 +431,7 @@ type Scale_Group_Status struct {
 	Options sl.Options
 }
 
+// GetScaleGroupStatusService returns an instance of the Scale_Group_Status SoftLayer service
 func GetScaleGroupStatusService(sess *session.Session) Scale_Group_Status {
 	return Scale_Group_Status{Session: sess}
 }
@@ -478,6 +483,7 @@ type Scale_LoadBalancer struct {
 	Options sl.Options
 }
 
+// GetScaleLoadBalancerService returns an instance of the Scale_LoadBalancer SoftLayer service
 func GetScaleLoadBalancerService(sess *session.Session) Scale_LoadBalancer {
 	return Scale_LoadBalancer{Session: sess}
 }
@@ -595,6 +601,7 @@ type Scale_Member struct {
 	Options sl.Options
 }
 
+// GetScaleMemberService returns an instance of the Scale_Member SoftLayer service
 func GetScaleMemberService(sess *session.Session) Scale_Member {
 	return Scale_Member{Session: sess}
 }
@@ -652,6 +659,7 @@ type Scale_Member_Virtual_Guest struct {
 	Options sl.Options
 }
 
+// GetScaleMemberVirtualGuestService returns an instance of the Scale_Member_Virtual_Guest SoftLayer service
 func GetScaleMemberVirtualGuestService(sess *session.Session) Scale_Member_Virtual_Guest {
 	return Scale_Member_Virtual_Guest{Session: sess}
 }
@@ -721,6 +729,7 @@ type Scale_Network_Vlan struct {
 	Options sl.Options
 }
 
+// GetScaleNetworkVlanService returns an instance of the Scale_Network_Vlan SoftLayer service
 func GetScaleNetworkVlanService(sess *session.Session) Scale_Network_Vlan {
 	return Scale_Network_Vlan{Session: sess}
 }
@@ -793,6 +802,7 @@ type Scale_Policy struct {
 	Options sl.Options
 }
 
+// GetScalePolicyService returns an instance of the Scale_Policy SoftLayer service
 func GetScalePolicyService(sess *session.Session) Scale_Policy {
 	return Scale_Policy{Session: sess}
 }
@@ -910,6 +920,7 @@ type Scale_Policy_Action struct {
 	Options sl.Options
 }
 
+// GetScalePolicyActionService returns an instance of the Scale_Policy_Action SoftLayer service
 func GetScalePolicyActionService(sess *session.Session) Scale_Policy_Action {
 	return Scale_Policy_Action{Session: sess}
 }
@@ -982,6 +993,7 @@ type Scale_Policy_Action_Scale struct {
 	Options sl.Options
 }
 
+// GetScalePolicyActionScaleService returns an instance of the Scale_Policy_Action_Scale SoftLayer service
 func GetScalePolicyActionScaleService(sess *session.Session) Scale_Policy_Action_Scale {
 	return Scale_Policy_Action_Scale{Session: sess}
 }
@@ -1063,6 +1075,7 @@ type Scale_Policy_Action_Type struct {
 	Options sl.Options
 }
 
+// GetScalePolicyActionTypeService returns an instance of the Scale_Policy_Action_Type SoftLayer service
 func GetScalePolicyActionTypeService(sess *session.Session) Scale_Policy_Action_Type {
 	return Scale_Policy_Action_Type{Session: sess}
 }
@@ -1114,6 +1127,7 @@ type Scale_Policy_Trigger struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerService returns an instance of the Scale_Policy_Trigger SoftLayer service
 func GetScalePolicyTriggerService(sess *session.Session) Scale_Policy_Trigger {
 	return Scale_Policy_Trigger{Session: sess}
 }
@@ -1195,6 +1209,7 @@ type Scale_Policy_Trigger_OneTime struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerOneTimeService returns an instance of the Scale_Policy_Trigger_OneTime SoftLayer service
 func GetScalePolicyTriggerOneTimeService(sess *session.Session) Scale_Policy_Trigger_OneTime {
 	return Scale_Policy_Trigger_OneTime{Session: sess}
 }
@@ -1276,6 +1291,7 @@ type Scale_Policy_Trigger_Repeating struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerRepeatingService returns an instance of the Scale_Policy_Trigger_Repeating SoftLayer service
 func GetScalePolicyTriggerRepeatingService(sess *session.Session) Scale_Policy_Trigger_Repeating {
 	return Scale_Policy_Trigger_Repeating{Session: sess}
 }
@@ -1367,6 +1383,7 @@ type Scale_Policy_Trigger_ResourceUse struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerResourceUseService returns an instance of the Scale_Policy_Trigger_ResourceUse SoftLayer service
 func GetScalePolicyTriggerResourceUseService(sess *session.Session) Scale_Policy_Trigger_ResourceUse {
 	return Scale_Policy_Trigger_ResourceUse{Session: sess}
 }
@@ -1454,6 +1471,7 @@ type Scale_Policy_Trigger_ResourceUse_Watch struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerResourceUseWatchService returns an instance of the Scale_Policy_Trigger_ResourceUse_Watch SoftLayer service
 func GetScalePolicyTriggerResourceUseWatchService(sess *session.Session) Scale_Policy_Trigger_ResourceUse_Watch {
 	return Scale_Policy_Trigger_ResourceUse_Watch{Session: sess}
 }
@@ -1547,6 +1565,7 @@ type Scale_Policy_Trigger_Type struct {
 	Options sl.Options
 }
 
+// GetScalePolicyTriggerTypeService returns an instance of the Scale_Policy_Trigger_Type SoftLayer service
 func GetScalePolicyTriggerTypeService(sess *session.Session) Scale_Policy_Trigger_Type {
 	return Scale_Policy_Trigger_Type{Session: sess}
 }
@@ -1598,6 +1617,7 @@ type Scale_Termination_Policy struct {
 	Options sl.Options
 }
 
+// GetScaleTerminationPolicyService returns an instance of the Scale_Termination_Policy SoftLayer service
 func GetScaleTerminationPolicyService(sess *session.Session) Scale_Termination_Policy {
 	return Scale_Termination_Policy{Session: sess}
 }

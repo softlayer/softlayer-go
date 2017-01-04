@@ -37,6 +37,7 @@ type Brand struct {
 	Options sl.Options
 }
 
+// GetBrandService returns an instance of the Brand SoftLayer service
 func GetBrandService(sess *session.Session) Brand {
 	return Brand{Session: sess}
 }
@@ -233,6 +234,7 @@ type Brand_Restriction_Location_CustomerCountry struct {
 	Options sl.Options
 }
 
+// GetBrandRestrictionLocationCustomerCountryService returns an instance of the Brand_Restriction_Location_CustomerCountry SoftLayer service
 func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) Brand_Restriction_Location_CustomerCountry {
 	return Brand_Restriction_Location_CustomerCountry{Session: sess}
 }

@@ -35,6 +35,7 @@ type FlexibleCredit_Program struct {
 	Options sl.Options
 }
 
+// GetFlexibleCreditProgramService returns an instance of the FlexibleCredit_Program SoftLayer service
 func GetFlexibleCreditProgramService(sess *session.Session) FlexibleCredit_Program {
 	return FlexibleCredit_Program{Session: sess}
 }

@@ -35,6 +35,7 @@ type Survey struct {
 	Options sl.Options
 }
 
+// GetSurveyService returns an instance of the Survey SoftLayer service
 func GetSurveyService(sess *session.Session) Survey {
 	return Survey{Session: sess}
 }

@@ -35,6 +35,7 @@ type Search struct {
 	Options sl.Options
 }
 
+// GetSearchService returns an instance of the Search SoftLayer service
 func GetSearchService(sess *session.Session) Search {
 	return Search{Session: sess}
 }

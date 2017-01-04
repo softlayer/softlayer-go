@@ -35,6 +35,7 @@ type Billing_Currency struct {
 	Options sl.Options
 }
 
+// GetBillingCurrencyService returns an instance of the Billing_Currency SoftLayer service
 func GetBillingCurrencyService(sess *session.Session) Billing_Currency {
 	return Billing_Currency{Session: sess}
 }
@@ -96,6 +97,7 @@ type Billing_Currency_ExchangeRate struct {
 	Options sl.Options
 }
 
+// GetBillingCurrencyExchangeRateService returns an instance of the Billing_Currency_ExchangeRate SoftLayer service
 func GetBillingCurrencyExchangeRateService(sess *session.Session) Billing_Currency_ExchangeRate {
 	return Billing_Currency_ExchangeRate{Session: sess}
 }
@@ -189,6 +191,7 @@ type Billing_Info struct {
 	Options sl.Options
 }
 
+// GetBillingInfoService returns an instance of the Billing_Info SoftLayer service
 func GetBillingInfoService(sess *session.Session) Billing_Info {
 	return Billing_Info{Session: sess}
 }
@@ -270,6 +273,7 @@ type Billing_Invoice struct {
 	Options sl.Options
 }
 
+// GetBillingInvoiceService returns an instance of the Billing_Invoice SoftLayer service
 func GetBillingInvoiceService(sess *session.Session) Billing_Invoice {
 	return Billing_Invoice{Session: sess}
 }
@@ -505,6 +509,7 @@ type Billing_Invoice_Item struct {
 	Options sl.Options
 }
 
+// GetBillingInvoiceItemService returns an instance of the Billing_Invoice_Item SoftLayer service
 func GetBillingInvoiceItemService(sess *session.Session) Billing_Invoice_Item {
 	return Billing_Invoice_Item{Session: sess}
 }
@@ -640,6 +645,7 @@ type Billing_Invoice_Next struct {
 	Options sl.Options
 }
 
+// GetBillingInvoiceNextService returns an instance of the Billing_Invoice_Next SoftLayer service
 func GetBillingInvoiceNextService(sess *session.Session) Billing_Invoice_Next {
 	return Billing_Invoice_Next{Session: sess}
 }
@@ -706,6 +712,7 @@ type Billing_Invoice_Tax_Status struct {
 	Options sl.Options
 }
 
+// GetBillingInvoiceTaxStatusService returns an instance of the Billing_Invoice_Tax_Status SoftLayer service
 func GetBillingInvoiceTaxStatusService(sess *session.Session) Billing_Invoice_Tax_Status {
 	return Billing_Invoice_Tax_Status{Session: sess}
 }
@@ -757,6 +764,7 @@ type Billing_Invoice_Tax_Type struct {
 	Options sl.Options
 }
 
+// GetBillingInvoiceTaxTypeService returns an instance of the Billing_Invoice_Tax_Type SoftLayer service
 func GetBillingInvoiceTaxTypeService(sess *session.Session) Billing_Invoice_Tax_Type {
 	return Billing_Invoice_Tax_Type{Session: sess}
 }
@@ -810,6 +818,7 @@ type Billing_Item struct {
 	Options sl.Options
 }
 
+// GetBillingItemService returns an instance of the Billing_Item SoftLayer service
 func GetBillingItemService(sess *session.Session) Billing_Item {
 	return Billing_Item{Session: sess}
 }
@@ -1225,6 +1234,7 @@ type Billing_Item_Cancellation_Reason struct {
 	Options sl.Options
 }
 
+// GetBillingItemCancellationReasonService returns an instance of the Billing_Item_Cancellation_Reason SoftLayer service
 func GetBillingItemCancellationReasonService(sess *session.Session) Billing_Item_Cancellation_Reason {
 	return Billing_Item_Cancellation_Reason{Session: sess}
 }
@@ -1294,6 +1304,7 @@ type Billing_Item_Cancellation_Reason_Category struct {
 	Options sl.Options
 }
 
+// GetBillingItemCancellationReasonCategoryService returns an instance of the Billing_Item_Cancellation_Reason_Category SoftLayer service
 func GetBillingItemCancellationReasonCategoryService(sess *session.Session) Billing_Item_Cancellation_Reason_Category {
 	return Billing_Item_Cancellation_Reason_Category{Session: sess}
 }
@@ -1351,6 +1362,7 @@ type Billing_Item_Cancellation_Request struct {
 	Options sl.Options
 }
 
+// GetBillingItemCancellationRequestService returns an instance of the Billing_Item_Cancellation_Request SoftLayer service
 func GetBillingItemCancellationRequestService(sess *session.Session) Billing_Item_Cancellation_Request {
 	return Billing_Item_Cancellation_Request{Session: sess}
 }
@@ -1484,6 +1496,7 @@ type Billing_Order struct {
 	Options sl.Options
 }
 
+// GetBillingOrderService returns an instance of the Billing_Order SoftLayer service
 func GetBillingOrderService(sess *session.Session) Billing_Order {
 	return Billing_Order{Session: sess}
 }
@@ -1743,6 +1756,7 @@ type Billing_Order_Cart struct {
 	Options sl.Options
 }
 
+// GetBillingOrderCartService returns an instance of the Billing_Order_Cart SoftLayer service
 func GetBillingOrderCartService(sess *session.Session) Billing_Order_Cart {
 	return Billing_Order_Cart{Session: sess}
 }
@@ -1929,6 +1943,7 @@ type Billing_Order_Item struct {
 	Options sl.Options
 }
 
+// GetBillingOrderItemService returns an instance of the Billing_Order_Item SoftLayer service
 func GetBillingOrderItemService(sess *session.Session) Billing_Order_Item {
 	return Billing_Order_Item{Session: sess}
 }
@@ -2100,6 +2115,7 @@ type Billing_Order_Quote struct {
 	Options sl.Options
 }
 
+// GetBillingOrderQuoteService returns an instance of the Billing_Order_Quote SoftLayer service
 func GetBillingOrderQuoteService(sess *session.Session) Billing_Order_Quote {
 	return Billing_Order_Quote{Session: sess}
 }

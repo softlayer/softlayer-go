@@ -48,6 +48,9 @@ type Dns_Domain struct {
 	// A unique number denoting the latest revision of a domain. Whenever a domain is changed its corresponding serial number is also changed. Serial numbers typically follow the format yyyymmdd## where yyyy is the current year, mm is the current month, dd is the current day of the month, and ## is the number of the revision for that day. A domain's serial number is automatically updated when edited via the API.
 	Serial *int `json:"serial,omitempty" xmlrpc:"serial,omitempty"`
 
+	// The start of authority (SOA) record contains authoritative and propagation details for a DNS zone. This property is not considered in requests to createObject and editObject.
+	SoaResourceRecord *Dns_Domain_ResourceRecord_SoaType `json:"soaResourceRecord,omitempty" xmlrpc:"soaResourceRecord,omitempty"`
+
 	// The date that this domain record was last updated.
 	UpdateDate *Time `json:"updateDate,omitempty" xmlrpc:"updateDate,omitempty"`
 }

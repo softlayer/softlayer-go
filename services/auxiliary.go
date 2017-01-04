@@ -35,6 +35,7 @@ type Auxiliary_Marketing_Event struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryMarketingEventService returns an instance of the Auxiliary_Marketing_Event SoftLayer service
 func GetAuxiliaryMarketingEventService(sess *session.Session) Auxiliary_Marketing_Event {
 	return Auxiliary_Marketing_Event{Session: sess}
 }
@@ -86,6 +87,7 @@ type Auxiliary_Network_Status struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryNetworkStatusService returns an instance of the Auxiliary_Network_Status SoftLayer service
 func GetAuxiliaryNetworkStatusService(sess *session.Session) Auxiliary_Network_Status {
 	return Auxiliary_Network_Status{Session: sess}
 }
@@ -145,6 +147,7 @@ type Auxiliary_Notification_Emergency struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryNotificationEmergencyService returns an instance of the Auxiliary_Notification_Emergency SoftLayer service
 func GetAuxiliaryNotificationEmergencyService(sess *session.Session) Auxiliary_Notification_Emergency {
 	return Auxiliary_Notification_Emergency{Session: sess}
 }
@@ -214,6 +217,7 @@ type Auxiliary_Press_Release struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseService returns an instance of the Auxiliary_Press_Release SoftLayer service
 func GetAuxiliaryPressReleaseService(sess *session.Session) Auxiliary_Press_Release {
 	return Auxiliary_Press_Release{Session: sess}
 }
@@ -311,6 +315,7 @@ type Auxiliary_Press_Release_About struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseAboutService returns an instance of the Auxiliary_Press_Release_About SoftLayer service
 func GetAuxiliaryPressReleaseAboutService(sess *session.Session) Auxiliary_Press_Release_About {
 	return Auxiliary_Press_Release_About{Session: sess}
 }
@@ -356,6 +361,7 @@ type Auxiliary_Press_Release_About_Press_Release struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseAboutPressReleaseService returns an instance of the Auxiliary_Press_Release_About_Press_Release SoftLayer service
 func GetAuxiliaryPressReleaseAboutPressReleaseService(sess *session.Session) Auxiliary_Press_Release_About_Press_Release {
 	return Auxiliary_Press_Release_About_Press_Release{Session: sess}
 }
@@ -413,6 +419,7 @@ type Auxiliary_Press_Release_Contact struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseContactService returns an instance of the Auxiliary_Press_Release_Contact SoftLayer service
 func GetAuxiliaryPressReleaseContactService(sess *session.Session) Auxiliary_Press_Release_Contact {
 	return Auxiliary_Press_Release_Contact{Session: sess}
 }
@@ -458,6 +465,7 @@ type Auxiliary_Press_Release_Contact_Press_Release struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseContactPressReleaseService returns an instance of the Auxiliary_Press_Release_Contact_Press_Release SoftLayer service
 func GetAuxiliaryPressReleaseContactPressReleaseService(sess *session.Session) Auxiliary_Press_Release_Contact_Press_Release {
 	return Auxiliary_Press_Release_Contact_Press_Release{Session: sess}
 }
@@ -515,6 +523,7 @@ type Auxiliary_Press_Release_Content struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseContentService returns an instance of the Auxiliary_Press_Release_Content SoftLayer service
 func GetAuxiliaryPressReleaseContentService(sess *session.Session) Auxiliary_Press_Release_Content {
 	return Auxiliary_Press_Release_Content{Session: sess}
 }
@@ -560,6 +569,7 @@ type Auxiliary_Press_Release_Media_Partner struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseMediaPartnerService returns an instance of the Auxiliary_Press_Release_Media_Partner SoftLayer service
 func GetAuxiliaryPressReleaseMediaPartnerService(sess *session.Session) Auxiliary_Press_Release_Media_Partner {
 	return Auxiliary_Press_Release_Media_Partner{Session: sess}
 }
@@ -605,6 +615,7 @@ type Auxiliary_Press_Release_Media_Partner_Press_Release struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryPressReleaseMediaPartnerPressReleaseService returns an instance of the Auxiliary_Press_Release_Media_Partner_Press_Release SoftLayer service
 func GetAuxiliaryPressReleaseMediaPartnerPressReleaseService(sess *session.Session) Auxiliary_Press_Release_Media_Partner_Press_Release {
 	return Auxiliary_Press_Release_Media_Partner_Press_Release{Session: sess}
 }
@@ -662,6 +673,7 @@ type Auxiliary_Shipping_Courier_Type struct {
 	Options sl.Options
 }
 
+// GetAuxiliaryShippingCourierTypeService returns an instance of the Auxiliary_Shipping_Courier_Type SoftLayer service
 func GetAuxiliaryShippingCourierTypeService(sess *session.Session) Auxiliary_Shipping_Courier_Type {
 	return Auxiliary_Shipping_Courier_Type{Session: sess}
 }

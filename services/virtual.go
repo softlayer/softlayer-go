@@ -37,6 +37,7 @@ type Virtual_Disk_Image struct {
 	Options sl.Options
 }
 
+// GetVirtualDiskImageService returns an instance of the Virtual_Disk_Image SoftLayer service
 func GetVirtualDiskImageService(sess *session.Session) Virtual_Disk_Image {
 	return Virtual_Disk_Image{Session: sess}
 }
@@ -177,6 +178,7 @@ type Virtual_Guest struct {
 	Options sl.Options
 }
 
+// GetVirtualGuestService returns an instance of the Virtual_Guest SoftLayer service
 func GetVirtualGuestService(sess *session.Session) Virtual_Guest {
 	return Virtual_Guest{Session: sess}
 }
@@ -1933,6 +1935,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	Options sl.Options
 }
 
+// GetVirtualGuestBlockDeviceTemplateGroupService returns an instance of the Virtual_Guest_Block_Device_Template_Group SoftLayer service
 func GetVirtualGuestBlockDeviceTemplateGroupService(sess *session.Session) Virtual_Guest_Block_Device_Template_Group {
 	return Virtual_Guest_Block_Device_Template_Group{Session: sess}
 }
@@ -2209,6 +2212,7 @@ type Virtual_Guest_Boot_Parameter struct {
 	Options sl.Options
 }
 
+// GetVirtualGuestBootParameterService returns an instance of the Virtual_Guest_Boot_Parameter SoftLayer service
 func GetVirtualGuestBootParameterService(sess *session.Session) Virtual_Guest_Boot_Parameter {
 	return Virtual_Guest_Boot_Parameter{Session: sess}
 }
@@ -2290,6 +2294,7 @@ type Virtual_Guest_Boot_Parameter_Type struct {
 	Options sl.Options
 }
 
+// GetVirtualGuestBootParameterTypeService returns an instance of the Virtual_Guest_Boot_Parameter_Type SoftLayer service
 func GetVirtualGuestBootParameterTypeService(sess *session.Session) Virtual_Guest_Boot_Parameter_Type {
 	return Virtual_Guest_Boot_Parameter_Type{Session: sess}
 }
@@ -2343,6 +2348,7 @@ type Virtual_Guest_Network_Component struct {
 	Options sl.Options
 }
 
+// GetVirtualGuestNetworkComponentService returns an instance of the Virtual_Guest_Network_Component SoftLayer service
 func GetVirtualGuestNetworkComponentService(sess *session.Session) Virtual_Guest_Network_Component {
 	return Virtual_Guest_Network_Component{Session: sess}
 }
@@ -2472,6 +2478,7 @@ type Virtual_Host struct {
 	Options sl.Options
 }
 
+// GetVirtualHostService returns an instance of the Virtual_Host SoftLayer service
 func GetVirtualHostService(sess *session.Session) Virtual_Host {
 	return Virtual_Host{Session: sess}
 }
@@ -2634,6 +2641,7 @@ type Virtual_Storage_Repository struct {
 	Options sl.Options
 }
 
+// GetVirtualStorageRepositoryService returns an instance of the Virtual_Storage_Repository SoftLayer service
 func GetVirtualStorageRepositoryService(sess *session.Session) Virtual_Storage_Repository {
 	return Virtual_Storage_Repository{Session: sess}
 }

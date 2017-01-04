@@ -74,7 +74,7 @@ type Ticket struct {
 	// The virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
 	AttachedVirtualGuests []Virtual_Guest `json:"attachedVirtualGuests,omitempty" xmlrpc:"attachedVirtualGuests,omitempty"`
 
-	// The last update made to a ticket.
+	// Ticket is waiting on a response from a customer flag.
 	AwaitingUserResponseFlag *bool `json:"awaitingUserResponseFlag,omitempty" xmlrpc:"awaitingUserResponseFlag,omitempty"`
 
 	// Whether a ticket has a one-time charge associated with it. Standard tickets are free while administrative tickets typically cost $3 USD.

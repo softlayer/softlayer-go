@@ -35,6 +35,7 @@ type Resource_Group struct {
 	Options sl.Options
 }
 
+// GetResourceGroupService returns an instance of the Resource_Group SoftLayer service
 func GetResourceGroupService(sess *session.Session) Resource_Group {
 	return Resource_Group{Session: sess}
 }
@@ -137,6 +138,7 @@ type Resource_Group_Template struct {
 	Options sl.Options
 }
 
+// GetResourceGroupTemplateService returns an instance of the Resource_Group_Template SoftLayer service
 func GetResourceGroupTemplateService(sess *session.Session) Resource_Group_Template {
 	return Resource_Group_Template{Session: sess}
 }
@@ -206,6 +208,7 @@ type Resource_Metadata struct {
 	Options sl.Options
 }
 
+// GetResourceMetadataService returns an instance of the Resource_Metadata SoftLayer service
 func GetResourceMetadataService(sess *session.Session) Resource_Metadata {
 	return Resource_Metadata{Session: sess}
 }

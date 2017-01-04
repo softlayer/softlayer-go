@@ -35,6 +35,7 @@ type Notification struct {
 	Options sl.Options
 }
 
+// GetNotificationService returns an instance of the Notification SoftLayer service
 func GetNotificationService(sess *session.Session) Notification {
 	return Notification{Session: sess}
 }
@@ -98,6 +99,7 @@ type Notification_Mobile struct {
 	Options sl.Options
 }
 
+// GetNotificationMobileService returns an instance of the Notification_Mobile SoftLayer service
 func GetNotificationMobileService(sess *session.Session) Notification_Mobile {
 	return Notification_Mobile{Session: sess}
 }
@@ -172,6 +174,7 @@ type Notification_Occurrence_Event struct {
 	Options sl.Options
 }
 
+// GetNotificationOccurrenceEventService returns an instance of the Notification_Occurrence_Event SoftLayer service
 func GetNotificationOccurrenceEventService(sess *session.Session) Notification_Occurrence_Event {
 	return Notification_Occurrence_Event{Session: sess}
 }
@@ -316,6 +319,7 @@ type Notification_Occurrence_User struct {
 	Options sl.Options
 }
 
+// GetNotificationOccurrenceUserService returns an instance of the Notification_Occurrence_User SoftLayer service
 func GetNotificationOccurrenceUserService(sess *session.Session) Notification_Occurrence_User {
 	return Notification_Occurrence_User{Session: sess}
 }
@@ -399,6 +403,7 @@ type Notification_User_Subscriber struct {
 	Options sl.Options
 }
 
+// GetNotificationUserSubscriberService returns an instance of the Notification_User_Subscriber SoftLayer service
 func GetNotificationUserSubscriberService(sess *session.Session) Notification_User_Subscriber {
 	return Notification_User_Subscriber{Session: sess}
 }
@@ -532,6 +537,7 @@ type Notification_User_Subscriber_Billing struct {
 	Options sl.Options
 }
 
+// GetNotificationUserSubscriberBillingService returns an instance of the Notification_User_Subscriber_Billing SoftLayer service
 func GetNotificationUserSubscriberBillingService(sess *session.Session) Notification_User_Subscriber_Billing {
 	return Notification_User_Subscriber_Billing{Session: sess}
 }
@@ -665,6 +671,7 @@ type Notification_User_Subscriber_Mobile struct {
 	Options sl.Options
 }
 
+// GetNotificationUserSubscriberMobileService returns an instance of the Notification_User_Subscriber_Mobile SoftLayer service
 func GetNotificationUserSubscriberMobileService(sess *session.Session) Notification_User_Subscriber_Mobile {
 	return Notification_User_Subscriber_Mobile{Session: sess}
 }
@@ -814,6 +821,7 @@ type Notification_User_Subscriber_Preference struct {
 	Options sl.Options
 }
 
+// GetNotificationUserSubscriberPreferenceService returns an instance of the Notification_User_Subscriber_Preference SoftLayer service
 func GetNotificationUserSubscriberPreferenceService(sess *session.Session) Notification_User_Subscriber_Preference {
 	return Notification_User_Subscriber_Preference{Session: sess}
 }

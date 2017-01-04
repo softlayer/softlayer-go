@@ -35,6 +35,7 @@ type Sales_Presale_Event struct {
 	Options sl.Options
 }
 
+// GetSalesPresaleEventService returns an instance of the Sales_Presale_Event SoftLayer service
 func GetSalesPresaleEventService(sess *session.Session) Sales_Presale_Event {
 	return Sales_Presale_Event{Session: sess}
 }

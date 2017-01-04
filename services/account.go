@@ -37,6 +37,7 @@ type Account struct {
 	Options sl.Options
 }
 
+// GetAccountService returns an instance of the Account SoftLayer service
 func GetAccountService(sess *session.Session) Account {
 	return Account{Session: sess}
 }
@@ -2019,6 +2020,7 @@ type Account_Address struct {
 	Options sl.Options
 }
 
+// GetAccountAddressService returns an instance of the Account_Address SoftLayer service
 func GetAccountAddressService(sess *session.Session) Account_Address {
 	return Account_Address{Session: sess}
 }
@@ -2133,6 +2135,7 @@ type Account_Address_Type struct {
 	Options sl.Options
 }
 
+// GetAccountAddressTypeService returns an instance of the Account_Address_Type SoftLayer service
 func GetAccountAddressTypeService(sess *session.Session) Account_Address_Type {
 	return Account_Address_Type{Session: sess}
 }
@@ -2178,6 +2181,7 @@ type Account_Affiliation struct {
 	Options sl.Options
 }
 
+// GetAccountAffiliationService returns an instance of the Account_Affiliation SoftLayer service
 func GetAccountAffiliationService(sess *session.Session) Account_Affiliation {
 	return Account_Affiliation{Session: sess}
 }
@@ -2262,6 +2266,7 @@ type Account_Agreement struct {
 	Options sl.Options
 }
 
+// GetAccountAgreementService returns an instance of the Account_Agreement SoftLayer service
 func GetAccountAgreementService(sess *session.Session) Account_Agreement {
 	return Account_Agreement{Session: sess}
 }
@@ -2343,6 +2348,7 @@ type Account_Authentication_Attribute struct {
 	Options sl.Options
 }
 
+// GetAccountAuthenticationAttributeService returns an instance of the Account_Authentication_Attribute SoftLayer service
 func GetAccountAuthenticationAttributeService(sess *session.Session) Account_Authentication_Attribute {
 	return Account_Authentication_Attribute{Session: sess}
 }
@@ -2406,6 +2412,7 @@ type Account_Authentication_Attribute_Type struct {
 	Options sl.Options
 }
 
+// GetAccountAuthenticationAttributeTypeService returns an instance of the Account_Authentication_Attribute_Type SoftLayer service
 func GetAccountAuthenticationAttributeTypeService(sess *session.Session) Account_Authentication_Attribute_Type {
 	return Account_Authentication_Attribute_Type{Session: sess}
 }
@@ -2457,6 +2464,7 @@ type Account_Authentication_Saml struct {
 	Options sl.Options
 }
 
+// GetAccountAuthenticationSamlService returns an instance of the Account_Authentication_Saml SoftLayer service
 func GetAccountAuthenticationSamlService(sess *session.Session) Account_Authentication_Saml {
 	return Account_Authentication_Saml{Session: sess}
 }
@@ -2544,6 +2552,7 @@ type Account_Contact struct {
 	Options sl.Options
 }
 
+// GetAccountContactService returns an instance of the Account_Contact SoftLayer service
 func GetAccountContactService(sess *session.Session) Account_Contact {
 	return Account_Contact{Session: sess}
 }
@@ -2631,6 +2640,7 @@ type Account_Historical_Report struct {
 	Options sl.Options
 }
 
+// GetAccountHistoricalReportService returns an instance of the Account_Historical_Report SoftLayer service
 func GetAccountHistoricalReportService(sess *session.Session) Account_Historical_Report {
 	return Account_Historical_Report{Session: sess}
 }
@@ -2754,6 +2764,7 @@ type Account_Link_Bluemix struct {
 	Options sl.Options
 }
 
+// GetAccountLinkBluemixService returns an instance of the Account_Link_Bluemix SoftLayer service
 func GetAccountLinkBluemixService(sess *session.Session) Account_Link_Bluemix {
 	return Account_Link_Bluemix{Session: sess}
 }
@@ -2805,6 +2816,7 @@ type Account_Link_OpenStack struct {
 	Options sl.Options
 }
 
+// GetAccountLinkOpenStackService returns an instance of the Account_Link_OpenStack SoftLayer service
 func GetAccountLinkOpenStackService(sess *session.Session) Account_Link_OpenStack {
 	return Account_Link_OpenStack{Session: sess}
 }
@@ -2907,6 +2919,7 @@ type Account_Lockdown_Request struct {
 	Options sl.Options
 }
 
+// GetAccountLockdownRequestService returns an instance of the Account_Lockdown_Request SoftLayer service
 func GetAccountLockdownRequestService(sess *session.Session) Account_Lockdown_Request {
 	return Account_Lockdown_Request{Session: sess}
 }
@@ -2996,6 +3009,7 @@ type Account_MasterServiceAgreement struct {
 	Options sl.Options
 }
 
+// GetAccountMasterServiceAgreementService returns an instance of the Account_MasterServiceAgreement SoftLayer service
 func GetAccountMasterServiceAgreementService(sess *session.Session) Account_MasterServiceAgreement {
 	return Account_MasterServiceAgreement{Session: sess}
 }
@@ -3053,6 +3067,7 @@ type Account_Media struct {
 	Options sl.Options
 }
 
+// GetAccountMediaService returns an instance of the Account_Media SoftLayer service
 func GetAccountMediaService(sess *session.Session) Account_Media {
 	return Account_Media{Session: sess}
 }
@@ -3170,6 +3185,7 @@ type Account_Media_Data_Transfer_Request struct {
 	Options sl.Options
 }
 
+// GetAccountMediaDataTransferRequestService returns an instance of the Account_Media_Data_Transfer_Request SoftLayer service
 func GetAccountMediaDataTransferRequestService(sess *session.Session) Account_Media_Data_Transfer_Request {
 	return Account_Media_Data_Transfer_Request{Session: sess}
 }
@@ -3290,6 +3306,7 @@ type Account_Note struct {
 	Options sl.Options
 }
 
+// GetAccountNoteService returns an instance of the Account_Note SoftLayer service
 func GetAccountNoteService(sess *session.Session) Account_Note {
 	return Account_Note{Session: sess}
 }
@@ -3383,6 +3400,7 @@ type Account_Note_Type struct {
 	Options sl.Options
 }
 
+// GetAccountNoteTypeService returns an instance of the Account_Note_Type SoftLayer service
 func GetAccountNoteTypeService(sess *session.Session) Account_Note_Type {
 	return Account_Note_Type{Session: sess}
 }
@@ -3458,6 +3476,7 @@ type Account_Partner_Referral_Prospect struct {
 	Options sl.Options
 }
 
+// GetAccountPartnerReferralProspectService returns an instance of the Account_Partner_Referral_Prospect SoftLayer service
 func GetAccountPartnerReferralProspectService(sess *session.Session) Account_Partner_Referral_Prospect {
 	return Account_Partner_Referral_Prospect{Session: sess}
 }
@@ -3519,6 +3538,7 @@ type Account_Password struct {
 	Options sl.Options
 }
 
+// GetAccountPasswordService returns an instance of the Account_Password SoftLayer service
 func GetAccountPasswordService(sess *session.Session) Account_Password {
 	return Account_Password{Session: sess}
 }
@@ -3589,6 +3609,7 @@ type Account_Regional_Registry_Detail struct {
 	Options sl.Options
 }
 
+// GetAccountRegionalRegistryDetailService returns an instance of the Account_Regional_Registry_Detail SoftLayer service
 func GetAccountRegionalRegistryDetailService(sess *session.Session) Account_Regional_Registry_Detail {
 	return Account_Regional_Registry_Detail{Session: sess}
 }
@@ -3696,6 +3717,7 @@ type Account_Regional_Registry_Detail_Property struct {
 	Options sl.Options
 }
 
+// GetAccountRegionalRegistryDetailPropertyService returns an instance of the Account_Regional_Registry_Detail_Property SoftLayer service
 func GetAccountRegionalRegistryDetailPropertyService(sess *session.Session) Account_Regional_Registry_Detail_Property {
 	return Account_Regional_Registry_Detail_Property{Session: sess}
 }
@@ -3797,6 +3819,7 @@ type Account_Regional_Registry_Detail_Property_Type struct {
 	Options sl.Options
 }
 
+// GetAccountRegionalRegistryDetailPropertyTypeService returns an instance of the Account_Regional_Registry_Detail_Property_Type SoftLayer service
 func GetAccountRegionalRegistryDetailPropertyTypeService(sess *session.Session) Account_Regional_Registry_Detail_Property_Type {
 	return Account_Regional_Registry_Detail_Property_Type{Session: sess}
 }
@@ -3850,6 +3873,7 @@ type Account_Regional_Registry_Detail_Type struct {
 	Options sl.Options
 }
 
+// GetAccountRegionalRegistryDetailTypeService returns an instance of the Account_Regional_Registry_Detail_Type SoftLayer service
 func GetAccountRegionalRegistryDetailTypeService(sess *session.Session) Account_Regional_Registry_Detail_Type {
 	return Account_Regional_Registry_Detail_Type{Session: sess}
 }
@@ -3901,6 +3925,7 @@ type Account_Reports_Request struct {
 	Options sl.Options
 }
 
+// GetAccountReportsRequestService returns an instance of the Account_Reports_Request SoftLayer service
 func GetAccountReportsRequestService(sess *session.Session) Account_Reports_Request {
 	return Account_Reports_Request{Session: sess}
 }
@@ -4020,6 +4045,7 @@ type Account_Shipment struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentService returns an instance of the Account_Shipment SoftLayer service
 func GetAccountShipmentService(sess *session.Session) Account_Shipment {
 	return Account_Shipment{Session: sess}
 }
@@ -4173,6 +4199,7 @@ type Account_Shipment_Item struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentItemService returns an instance of the Account_Shipment_Item SoftLayer service
 func GetAccountShipmentItemService(sess *session.Session) Account_Shipment_Item {
 	return Account_Shipment_Item{Session: sess}
 }
@@ -4239,6 +4266,7 @@ type Account_Shipment_Item_Type struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentItemTypeService returns an instance of the Account_Shipment_Item_Type SoftLayer service
 func GetAccountShipmentItemTypeService(sess *session.Session) Account_Shipment_Item_Type {
 	return Account_Shipment_Item_Type{Session: sess}
 }
@@ -4284,6 +4312,7 @@ type Account_Shipment_Resource_Type struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentResourceTypeService returns an instance of the Account_Shipment_Resource_Type SoftLayer service
 func GetAccountShipmentResourceTypeService(sess *session.Session) Account_Shipment_Resource_Type {
 	return Account_Shipment_Resource_Type{Session: sess}
 }
@@ -4329,6 +4358,7 @@ type Account_Shipment_Status struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentStatusService returns an instance of the Account_Shipment_Status SoftLayer service
 func GetAccountShipmentStatusService(sess *session.Session) Account_Shipment_Status {
 	return Account_Shipment_Status{Session: sess}
 }
@@ -4374,6 +4404,7 @@ type Account_Shipment_Tracking_Data struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentTrackingDataService returns an instance of the Account_Shipment_Tracking_Data SoftLayer service
 func GetAccountShipmentTrackingDataService(sess *session.Session) Account_Shipment_Tracking_Data {
 	return Account_Shipment_Tracking_Data{Session: sess}
 }
@@ -4482,6 +4513,7 @@ type Account_Shipment_Type struct {
 	Options sl.Options
 }
 
+// GetAccountShipmentTypeService returns an instance of the Account_Shipment_Type SoftLayer service
 func GetAccountShipmentTypeService(sess *session.Session) Account_Shipment_Type {
 	return Account_Shipment_Type{Session: sess}
 }

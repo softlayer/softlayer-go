@@ -35,6 +35,7 @@ type User_Customer struct {
 	Options sl.Options
 }
 
+// GetUserCustomerService returns an instance of the User_Customer SoftLayer service
 func GetUserCustomerService(sess *session.Session) User_Customer {
 	return User_Customer{Session: sess}
 }
@@ -719,10 +720,11 @@ func (r User_Customer) InitiatePortalPasswordChangeByBrandAgent(username *string
 }
 
 // Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
-func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
+func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string, linkedBluemixAccountMatchAlreadyChecked *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
+		linkedBluemixAccountMatchAlreadyChecked,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "inviteUserToLinkOpenIdConnect", params, &r.Options, &resp)
 	return
@@ -1105,6 +1107,7 @@ type User_Customer_ApiAuthentication struct {
 	Options sl.Options
 }
 
+// GetUserCustomerApiAuthenticationService returns an instance of the User_Customer_ApiAuthentication SoftLayer service
 func GetUserCustomerApiAuthenticationService(sess *session.Session) User_Customer_ApiAuthentication {
 	return User_Customer_ApiAuthentication{Session: sess}
 }
@@ -1165,6 +1168,7 @@ type User_Customer_CustomerPermission_Permission struct {
 	Options sl.Options
 }
 
+// GetUserCustomerCustomerPermissionPermissionService returns an instance of the User_Customer_CustomerPermission_Permission SoftLayer service
 func GetUserCustomerCustomerPermissionPermissionService(sess *session.Session) User_Customer_CustomerPermission_Permission {
 	return User_Customer_CustomerPermission_Permission{Session: sess}
 }
@@ -1216,6 +1220,7 @@ type User_Customer_External_Binding struct {
 	Options sl.Options
 }
 
+// GetUserCustomerExternalBindingService returns an instance of the User_Customer_External_Binding SoftLayer service
 func GetUserCustomerExternalBindingService(sess *session.Session) User_Customer_External_Binding {
 	return User_Customer_External_Binding{Session: sess}
 }
@@ -1337,6 +1342,7 @@ type User_Customer_External_Binding_Phone struct {
 	Options sl.Options
 }
 
+// GetUserCustomerExternalBindingPhoneService returns an instance of the User_Customer_External_Binding_Phone SoftLayer service
 func GetUserCustomerExternalBindingPhoneService(sess *session.Session) User_Customer_External_Binding_Phone {
 	return User_Customer_External_Binding_Phone{Session: sess}
 }
@@ -1554,6 +1560,7 @@ type User_Customer_External_Binding_Totp struct {
 	Options sl.Options
 }
 
+// GetUserCustomerExternalBindingTotpService returns an instance of the User_Customer_External_Binding_Totp SoftLayer service
 func GetUserCustomerExternalBindingTotpService(sess *session.Session) User_Customer_External_Binding_Totp {
 	return User_Customer_External_Binding_Totp{Session: sess}
 }
@@ -1691,6 +1698,7 @@ type User_Customer_External_Binding_Vendor struct {
 	Options sl.Options
 }
 
+// GetUserCustomerExternalBindingVendorService returns an instance of the User_Customer_External_Binding_Vendor SoftLayer service
 func GetUserCustomerExternalBindingVendorService(sess *session.Session) User_Customer_External_Binding_Vendor {
 	return User_Customer_External_Binding_Vendor{Session: sess}
 }
@@ -1754,6 +1762,7 @@ type User_Customer_External_Binding_Verisign struct {
 	Options sl.Options
 }
 
+// GetUserCustomerExternalBindingVerisignService returns an instance of the User_Customer_External_Binding_Verisign SoftLayer service
 func GetUserCustomerExternalBindingVerisignService(sess *session.Session) User_Customer_External_Binding_Verisign {
 	return User_Customer_External_Binding_Verisign{Session: sess}
 }
@@ -1924,6 +1933,7 @@ type User_Customer_Invitation struct {
 	Options sl.Options
 }
 
+// GetUserCustomerInvitationService returns an instance of the User_Customer_Invitation SoftLayer service
 func GetUserCustomerInvitationService(sess *session.Session) User_Customer_Invitation {
 	return User_Customer_Invitation{Session: sess}
 }
@@ -1975,6 +1985,7 @@ type User_Customer_MobileDevice struct {
 	Options sl.Options
 }
 
+// GetUserCustomerMobileDeviceService returns an instance of the User_Customer_MobileDevice SoftLayer service
 func GetUserCustomerMobileDeviceService(sess *session.Session) User_Customer_MobileDevice {
 	return User_Customer_MobileDevice{Session: sess}
 }
@@ -2074,6 +2085,7 @@ type User_Customer_MobileDevice_OperatingSystem struct {
 	Options sl.Options
 }
 
+// GetUserCustomerMobileDeviceOperatingSystemService returns an instance of the User_Customer_MobileDevice_OperatingSystem SoftLayer service
 func GetUserCustomerMobileDeviceOperatingSystemService(sess *session.Session) User_Customer_MobileDevice_OperatingSystem {
 	return User_Customer_MobileDevice_OperatingSystem{Session: sess}
 }
@@ -2125,6 +2137,7 @@ type User_Customer_MobileDevice_Type struct {
 	Options sl.Options
 }
 
+// GetUserCustomerMobileDeviceTypeService returns an instance of the User_Customer_MobileDevice_Type SoftLayer service
 func GetUserCustomerMobileDeviceTypeService(sess *session.Session) User_Customer_MobileDevice_Type {
 	return User_Customer_MobileDevice_Type{Session: sess}
 }
@@ -2176,6 +2189,7 @@ type User_Customer_Notification_Hardware struct {
 	Options sl.Options
 }
 
+// GetUserCustomerNotificationHardwareService returns an instance of the User_Customer_Notification_Hardware SoftLayer service
 func GetUserCustomerNotificationHardwareService(sess *session.Session) User_Customer_Notification_Hardware {
 	return User_Customer_Notification_Hardware{Session: sess}
 }
@@ -2271,6 +2285,7 @@ type User_Customer_Notification_Virtual_Guest struct {
 	Options sl.Options
 }
 
+// GetUserCustomerNotificationVirtualGuestService returns an instance of the User_Customer_Notification_Virtual_Guest SoftLayer service
 func GetUserCustomerNotificationVirtualGuestService(sess *session.Session) User_Customer_Notification_Virtual_Guest {
 	return User_Customer_Notification_Virtual_Guest{Session: sess}
 }
@@ -2366,6 +2381,7 @@ type User_Customer_OpenIdConnect struct {
 	Options sl.Options
 }
 
+// GetUserCustomerOpenIdConnectService returns an instance of the User_Customer_OpenIdConnect SoftLayer service
 func GetUserCustomerOpenIdConnectService(sess *session.Session) User_Customer_OpenIdConnect {
 	return User_Customer_OpenIdConnect{Session: sess}
 }
@@ -2739,7 +2755,7 @@ func (r User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket
 	return
 }
 
-// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null.
+// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IBMid. In that case, we will set the link from the IBMid to that user as default, and return the account of which that user is a member.
 func (r User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3136,10 +3152,11 @@ func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChangeByBrandAgent(us
 }
 
 // Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
-func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
+func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string, linkedBluemixAccountMatchAlreadyChecked *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
+		linkedBluemixAccountMatchAlreadyChecked,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "inviteUserToLinkOpenIdConnect", params, &r.Options, &resp)
 	return
@@ -3532,6 +3549,7 @@ type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	Options sl.Options
 }
 
+// GetUserCustomerProspectServiceProviderEnrollRequestService returns an instance of the User_Customer_Prospect_ServiceProvider_EnrollRequest SoftLayer service
 func GetUserCustomerProspectServiceProviderEnrollRequestService(sess *session.Session) User_Customer_Prospect_ServiceProvider_EnrollRequest {
 	return User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: sess}
 }
@@ -3592,6 +3610,7 @@ type User_Customer_Security_Answer struct {
 	Options sl.Options
 }
 
+// GetUserCustomerSecurityAnswerService returns an instance of the User_Customer_Security_Answer SoftLayer service
 func GetUserCustomerSecurityAnswerService(sess *session.Session) User_Customer_Security_Answer {
 	return User_Customer_Security_Answer{Session: sess}
 }
@@ -3649,6 +3668,7 @@ type User_Customer_Status struct {
 	Options sl.Options
 }
 
+// GetUserCustomerStatusService returns an instance of the User_Customer_Status SoftLayer service
 func GetUserCustomerStatusService(sess *session.Session) User_Customer_Status {
 	return User_Customer_Status{Session: sess}
 }
@@ -3700,6 +3720,7 @@ type User_External_Binding struct {
 	Options sl.Options
 }
 
+// GetUserExternalBindingService returns an instance of the User_External_Binding SoftLayer service
 func GetUserExternalBindingService(sess *session.Session) User_External_Binding {
 	return User_External_Binding{Session: sess}
 }
@@ -3790,6 +3811,7 @@ type User_External_Binding_Vendor struct {
 	Options sl.Options
 }
 
+// GetUserExternalBindingVendorService returns an instance of the User_External_Binding_Vendor SoftLayer service
 func GetUserExternalBindingVendorService(sess *session.Session) User_External_Binding_Vendor {
 	return User_External_Binding_Vendor{Session: sess}
 }
@@ -3841,6 +3863,7 @@ type User_Permission_Action struct {
 	Options sl.Options
 }
 
+// GetUserPermissionActionService returns an instance of the User_Permission_Action SoftLayer service
 func GetUserPermissionActionService(sess *session.Session) User_Permission_Action {
 	return User_Permission_Action{Session: sess}
 }
@@ -3892,6 +3915,7 @@ type User_Permission_Group struct {
 	Options sl.Options
 }
 
+// GetUserPermissionGroupService returns an instance of the User_Permission_Group SoftLayer service
 func GetUserPermissionGroupService(sess *session.Session) User_Permission_Group {
 	return User_Permission_Group{Session: sess}
 }
@@ -4085,6 +4109,7 @@ type User_Permission_Group_Type struct {
 	Options sl.Options
 }
 
+// GetUserPermissionGroupTypeService returns an instance of the User_Permission_Group_Type SoftLayer service
 func GetUserPermissionGroupTypeService(sess *session.Session) User_Permission_Group_Type {
 	return User_Permission_Group_Type{Session: sess}
 }
@@ -4136,6 +4161,7 @@ type User_Permission_Role struct {
 	Options sl.Options
 }
 
+// GetUserPermissionRoleService returns an instance of the User_Permission_Role SoftLayer service
 func GetUserPermissionRoleService(sess *session.Session) User_Permission_Role {
 	return User_Permission_Role{Session: sess}
 }
@@ -4269,6 +4295,7 @@ type User_Security_Question struct {
 	Options sl.Options
 }
 
+// GetUserSecurityQuestionService returns an instance of the User_Security_Question SoftLayer service
 func GetUserSecurityQuestionService(sess *session.Session) User_Security_Question {
 	return User_Security_Question{Session: sess}
 }

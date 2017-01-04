@@ -35,6 +35,7 @@ type Locale struct {
 	Options sl.Options
 }
 
+// GetLocaleService returns an instance of the Locale SoftLayer service
 func GetLocaleService(sess *session.Session) Locale {
 	return Locale{Session: sess}
 }
@@ -89,6 +90,7 @@ type Locale_Country struct {
 	Options sl.Options
 }
 
+// GetLocaleCountryService returns an instance of the Locale_Country SoftLayer service
 func GetLocaleCountryService(sess *session.Session) Locale_Country {
 	return Locale_Country{Session: sess}
 }
@@ -152,6 +154,7 @@ type Locale_Timezone struct {
 	Options sl.Options
 }
 
+// GetLocaleTimezoneService returns an instance of the Locale_Timezone SoftLayer service
 func GetLocaleTimezoneService(sess *session.Session) Locale_Timezone {
 	return Locale_Timezone{Session: sess}
 }

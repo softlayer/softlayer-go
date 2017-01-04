@@ -35,6 +35,7 @@ type Metric_Tracking_Object struct {
 	Options sl.Options
 }
 
+// GetMetricTrackingObjectService returns an instance of the Metric_Tracking_Object SoftLayer service
 func GetMetricTrackingObjectService(sess *session.Session) Metric_Tracking_Object {
 	return Metric_Tracking_Object{Session: sess}
 }
@@ -192,6 +193,7 @@ type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Options sl.Options
 }
 
+// GetMetricTrackingObjectBandwidthSummaryService returns an instance of the Metric_Tracking_Object_Bandwidth_Summary SoftLayer service
 func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) Metric_Tracking_Object_Bandwidth_Summary {
 	return Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
 }

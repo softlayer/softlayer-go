@@ -35,6 +35,7 @@ type Event_Log struct {
 	Options sl.Options
 }
 
+// GetEventLogService returns an instance of the Event_Log SoftLayer service
 func GetEventLogService(sess *session.Session) Event_Log {
 	return Event_Log{Session: sess}
 }

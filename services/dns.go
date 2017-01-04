@@ -35,6 +35,7 @@ type Dns_Domain struct {
 	Options sl.Options
 }
 
+// GetDnsDomainService returns an instance of the Dns_Domain SoftLayer service
 func GetDnsDomainService(sess *session.Session) Dns_Domain {
 	return Dns_Domain{Session: sess}
 }
@@ -236,6 +237,12 @@ func (r Dns_Domain) GetSecondary() (resp datatypes.Dns_Secondary, err error) {
 	return
 }
 
+// Retrieve The start of authority (SOA) record contains authoritative and propagation details for a DNS zone. This property is not considered in requests to createObject and editObject.
+func (r Dns_Domain) GetSoaResourceRecord() (resp datatypes.Dns_Domain_ResourceRecord_SoaType, err error) {
+	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getSoaResourceRecord", nil, &r.Options, &resp)
+	return
+}
+
 // Return a SoftLayer hosted domain and resource records' data formatted as zone file.
 func (r Dns_Domain) GetZoneFileContents() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getZoneFileContents", nil, &r.Options, &resp)
@@ -248,6 +255,7 @@ type Dns_Domain_Registration struct {
 	Options sl.Options
 }
 
+// GetDnsDomainRegistrationService returns an instance of the Dns_Domain_Registration SoftLayer service
 func GetDnsDomainRegistrationService(sess *session.Session) Dns_Domain_Registration {
 	return Dns_Domain_Registration{Session: sess}
 }
@@ -482,6 +490,7 @@ type Dns_Domain_Registration_Registrant_Verification_Status struct {
 	Options sl.Options
 }
 
+// GetDnsDomainRegistrationRegistrantVerificationStatusService returns an instance of the Dns_Domain_Registration_Registrant_Verification_Status SoftLayer service
 func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) Dns_Domain_Registration_Registrant_Verification_Status {
 	return Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
 }
@@ -542,6 +551,7 @@ type Dns_Domain_Registration_Status struct {
 	Options sl.Options
 }
 
+// GetDnsDomainRegistrationStatusService returns an instance of the Dns_Domain_Registration_Status SoftLayer service
 func GetDnsDomainRegistrationStatusService(sess *session.Session) Dns_Domain_Registration_Status {
 	return Dns_Domain_Registration_Status{Session: sess}
 }
@@ -606,6 +616,7 @@ type Dns_Domain_ResourceRecord struct {
 	Options sl.Options
 }
 
+// GetDnsDomainResourceRecordService returns an instance of the Dns_Domain_ResourceRecord SoftLayer service
 func GetDnsDomainResourceRecordService(sess *session.Session) Dns_Domain_ResourceRecord {
 	return Dns_Domain_ResourceRecord{Session: sess}
 }
@@ -724,6 +735,7 @@ type Dns_Domain_ResourceRecord_MxType struct {
 	Options sl.Options
 }
 
+// GetDnsDomainResourceRecordMxTypeService returns an instance of the Dns_Domain_ResourceRecord_MxType SoftLayer service
 func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) Dns_Domain_ResourceRecord_MxType {
 	return Dns_Domain_ResourceRecord_MxType{Session: sess}
 }
@@ -836,6 +848,7 @@ type Dns_Domain_ResourceRecord_SrvType struct {
 	Options sl.Options
 }
 
+// GetDnsDomainResourceRecordSrvTypeService returns an instance of the Dns_Domain_ResourceRecord_SrvType SoftLayer service
 func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) Dns_Domain_ResourceRecord_SrvType {
 	return Dns_Domain_ResourceRecord_SrvType{Session: sess}
 }
@@ -948,6 +961,7 @@ type Dns_Secondary struct {
 	Options sl.Options
 }
 
+// GetDnsSecondaryService returns an instance of the Dns_Secondary SoftLayer service
 func GetDnsSecondaryService(sess *session.Session) Dns_Secondary {
 	return Dns_Secondary{Session: sess}
 }

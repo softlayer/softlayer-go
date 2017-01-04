@@ -35,6 +35,7 @@ type Product_Item_Category struct {
 	Options sl.Options
 }
 
+// GetProductItemCategoryService returns an instance of the Product_Item_Category SoftLayer service
 func GetProductItemCategoryService(sess *session.Session) Product_Item_Category {
 	return Product_Item_Category{Session: sess}
 }
@@ -188,6 +189,7 @@ type Product_Item_Category_Group struct {
 	Options sl.Options
 }
 
+// GetProductItemCategoryGroupService returns an instance of the Product_Item_Category_Group SoftLayer service
 func GetProductItemCategoryGroupService(sess *session.Session) Product_Item_Category_Group {
 	return Product_Item_Category_Group{Session: sess}
 }
@@ -233,6 +235,7 @@ type Product_Item_Policy_Assignment struct {
 	Options sl.Options
 }
 
+// GetProductItemPolicyAssignmentService returns an instance of the Product_Item_Policy_Assignment SoftLayer service
 func GetProductItemPolicyAssignmentService(sess *session.Session) Product_Item_Policy_Assignment {
 	return Product_Item_Policy_Assignment{Session: sess}
 }
@@ -305,6 +308,7 @@ type Product_Item_Price struct {
 	Options sl.Options
 }
 
+// GetProductItemPriceService returns an instance of the Product_Item_Price SoftLayer service
 func GetProductItemPriceService(sess *session.Session) Product_Item_Price {
 	return Product_Item_Price{Session: sess}
 }
@@ -462,6 +466,7 @@ type Product_Item_Price_Premium struct {
 	Options sl.Options
 }
 
+// GetProductItemPricePremiumService returns an instance of the Product_Item_Price_Premium SoftLayer service
 func GetProductItemPricePremiumService(sess *session.Session) Product_Item_Price_Premium {
 	return Product_Item_Price_Premium{Session: sess}
 }
@@ -525,6 +530,7 @@ type Product_Order struct {
 	Options sl.Options
 }
 
+// GetProductOrderService returns an instance of the Product_Order SoftLayer service
 func GetProductOrderService(sess *session.Session) Product_Order {
 	return Product_Order{Session: sess}
 }
@@ -646,7 +652,7 @@ func (r Product_Order) GetTaxCalculationResult(orderHash *string) (resp datatype
 // <ul> <li><code>port_speed</code></li> <li>A disk category, such as <code>guest_disk0</code> or <code>disk0</code>, with values of either <code>LOCAL_DISK</code> or <code>SAN_DISK</code></li> <li><code>private_network_only</code></li> <li><code>dual_path_network</code></li> </ul>
 //
 // For most customers, it's sufficient to only provide the first 2 parameters.
-func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *string, vlanIds []int, subnetIds []int, accountId *int, orderContainer *datatypes.Container_Product_Order) (resp datatypes.Container_Product_Order_Network_Vlans, err error) {
+func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *string, vlanIds []int, subnetIds []int, accountId *int, orderContainer *datatypes.Container_Product_Order, hardwareFirewallOrderedFlag *bool) (resp datatypes.Container_Product_Order_Network_Vlans, err error) {
 	params := []interface{}{
 		locationId,
 		packageId,
@@ -655,6 +661,7 @@ func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *
 		subnetIds,
 		accountId,
 		orderContainer,
+		hardwareFirewallOrderedFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Order", "getVlans", params, &r.Options, &resp)
 	return
@@ -711,6 +718,11 @@ func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *
 //     <td>Content delivery network</td>
 //     <td>[[SoftLayer_Container_Product_Order_Network_ContentDelivery_Account (type)|Network_ContentDelivery_Account]]</td>
 //     <td>ADDITIONAL_SERVICES_CDN</td>
+//   </tr>
+//   <tr>
+//     <td>Content delivery network Addon</td>
+//     <td>[[SoftLayer_Container_Product_Order_Network_ContentDelivery_Account_Addon (type)|Network_ContentDelivery_Account_Addon]]</td>
+//     <td>ADDITIONAL_SERVICES_CDN_ADDON</td>
 //   </tr>
 //   <tr>
 //     <td>Message queue</td>
@@ -1126,6 +1138,7 @@ type Product_Package struct {
 	Options sl.Options
 }
 
+// GetProductPackageService returns an instance of the Product_Package SoftLayer service
 func GetProductPackageService(sess *session.Session) Product_Package {
 	return Product_Package{Session: sess}
 }
@@ -1564,6 +1577,7 @@ type Product_Package_Preset struct {
 	Options sl.Options
 }
 
+// GetProductPackagePresetService returns an instance of the Product_Package_Preset SoftLayer service
 func GetProductPackagePresetService(sess *session.Session) Product_Package_Preset {
 	return Product_Package_Preset{Session: sess}
 }
@@ -1681,6 +1695,7 @@ type Product_Package_Server struct {
 	Options sl.Options
 }
 
+// GetProductPackageServerService returns an instance of the Product_Package_Server SoftLayer service
 func GetProductPackageServerService(sess *session.Session) Product_Package_Server {
 	return Product_Package_Server{Session: sess}
 }
@@ -1762,6 +1777,7 @@ type Product_Package_Server_Option struct {
 	Options sl.Options
 }
 
+// GetProductPackageServerOptionService returns an instance of the Product_Package_Server_Option SoftLayer service
 func GetProductPackageServerOptionService(sess *session.Session) Product_Package_Server_Option {
 	return Product_Package_Server_Option{Session: sess}
 }
@@ -1822,6 +1838,7 @@ type Product_Package_Type struct {
 	Options sl.Options
 }
 
+// GetProductPackageTypeService returns an instance of the Product_Package_Type SoftLayer service
 func GetProductPackageTypeService(sess *session.Session) Product_Package_Type {
 	return Product_Package_Type{Session: sess}
 }
@@ -1879,6 +1896,7 @@ type Product_Upgrade_Request struct {
 	Options sl.Options
 }
 
+// GetProductUpgradeRequestService returns an instance of the Product_Upgrade_Request SoftLayer service
 func GetProductUpgradeRequestService(sess *session.Session) Product_Upgrade_Request {
 	return Product_Upgrade_Request{Session: sess}
 }

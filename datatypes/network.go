@@ -1071,6 +1071,9 @@ type Network_Component struct {
 	// The VLANs that are trunked to this network component.
 	NetworkVlanTrunks []Network_Component_Network_Vlan_Trunk `json:"networkVlanTrunks,omitempty" xmlrpc:"networkVlanTrunks,omitempty"`
 
+	// no documentation yet
+	ParentModule *Hardware_Component `json:"parentModule,omitempty" xmlrpc:"parentModule,omitempty"`
+
 	// A network component's port number. Most hardware has more than one network interface. The port property separates these interfaces. Use this in conjunction with the ''name'' property to identify a network component. For instance, the "eth0" interface on a server has the network component name "eth" and port 0.
 	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
@@ -3383,7 +3386,7 @@ type Network_Storage_Backup_Evault_Version6 struct {
 	Tasks []Container_Network_Storage_Evault_Vault_Task `json:"tasks,omitempty" xmlrpc:"tasks,omitempty"`
 }
 
-// <<<
+// The SoftLayer_Network_Storage_Credential data type will give you an overview of the usernames that are currently attached to your storage device.
 type Network_Storage_Credential struct {
 	Entity
 
@@ -3608,37 +3611,37 @@ type Network_Storage_Hub struct {
 type Network_Storage_Hub_Cleversafe_Account struct {
 	Entity
 
-	// no documentation yet
+	// SoftLayer account to which an IBM Cloud Object Storage account belongs to.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
-	// The ID of the SoftLayer_Account which this Cleversafe Account is associated with.
+	// The ID of the SoftLayer_Account which this IBM Cloud Object Storage account is associated with.
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
-	// no documentation yet
+	// An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
-	// no documentation yet
+	// An associated parent billing item which has been cancelled.
 	CancelledBillingItem *Billing_Item `json:"cancelledBillingItem,omitempty" xmlrpc:"cancelledBillingItem,omitempty"`
 
-	// A count of
+	// A count of credentials used for generating an AWS signature. Max of 2.
 	CredentialCount *uint `json:"credentialCount,omitempty" xmlrpc:"credentialCount,omitempty"`
 
-	// no documentation yet
+	// Credentials used for generating an AWS signature. Max of 2.
 	Credentials []Network_Storage_Credential `json:"credentials,omitempty" xmlrpc:"credentials,omitempty"`
 
-	// The IMS ID of the SoftLayer_Network_Storage_Hub_Cleversafe_Account.
+	// The IMS ID of an IBM Cloud Object Storage account.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// no documentation yet
+	// Provides an interface to various metrics relating to the usage of an IBM Cloud Object Storage account.
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// A user-defined field of notes.
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 
-	// Human readable identifier of Cleversafe accounts.
+	// Human readable identifier of IBM Cloud Object Storage accounts.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 
-	// no documentation yet
+	// Unique identifier for an IBM Cloud Object Storage account.
 	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
 }
 

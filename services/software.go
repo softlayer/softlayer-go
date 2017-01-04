@@ -35,6 +35,7 @@ type Software_AccountLicense struct {
 	Options sl.Options
 }
 
+// GetSoftwareAccountLicenseService returns an instance of the Software_AccountLicense SoftLayer service
 func GetSoftwareAccountLicenseService(sess *session.Session) Software_AccountLicense {
 	return Software_AccountLicense{Session: sess}
 }
@@ -108,6 +109,7 @@ type Software_Component struct {
 	Options sl.Options
 }
 
+// GetSoftwareComponentService returns an instance of the Software_Component SoftLayer service
 func GetSoftwareComponentService(sess *session.Session) Software_Component {
 	return Software_Component{Session: sess}
 }
@@ -215,6 +217,7 @@ type Software_Component_AntivirusSpyware struct {
 	Options sl.Options
 }
 
+// GetSoftwareComponentAntivirusSpywareService returns an instance of the Software_Component_AntivirusSpyware SoftLayer service
 func GetSoftwareComponentAntivirusSpywareService(sess *session.Session) Software_Component_AntivirusSpyware {
 	return Software_Component_AntivirusSpyware{Session: sess}
 }
@@ -335,6 +338,7 @@ type Software_Component_HostIps struct {
 	Options sl.Options
 }
 
+// GetSoftwareComponentHostIpsService returns an instance of the Software_Component_HostIps SoftLayer service
 func GetSoftwareComponentHostIpsService(sess *session.Session) Software_Component_HostIps {
 	return Software_Component_HostIps{Session: sess}
 }
@@ -461,6 +465,7 @@ type Software_Component_Password struct {
 	Options sl.Options
 }
 
+// GetSoftwareComponentPasswordService returns an instance of the Software_Component_Password SoftLayer service
 func GetSoftwareComponentPasswordService(sess *session.Session) Software_Component_Password {
 	return Software_Component_Password{Session: sess}
 }
@@ -573,6 +578,7 @@ type Software_Description struct {
 	Options sl.Options
 }
 
+// GetSoftwareDescriptionService returns an instance of the Software_Description SoftLayer service
 func GetSoftwareDescriptionService(sess *session.Session) Software_Description {
 	return Software_Description{Session: sess}
 }
@@ -708,6 +714,7 @@ type Software_VirtualLicense struct {
 	Options sl.Options
 }
 
+// GetSoftwareVirtualLicenseService returns an instance of the Software_VirtualLicense SoftLayer service
 func GetSoftwareVirtualLicenseService(sess *session.Session) Software_VirtualLicense {
 	return Software_VirtualLicense{Session: sess}
 }

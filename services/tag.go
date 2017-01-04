@@ -35,6 +35,7 @@ type Tag struct {
 	Options sl.Options
 }
 
+// GetTagService returns an instance of the Tag SoftLayer service
 func GetTagService(sess *session.Session) Tag {
 	return Tag{Session: sess}
 }

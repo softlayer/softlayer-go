@@ -35,6 +35,7 @@ type Layout_Container struct {
 	Options sl.Options
 }
 
+// GetLayoutContainerService returns an instance of the Layout_Container SoftLayer service
 func GetLayoutContainerService(sess *session.Session) Layout_Container {
 	return Layout_Container{Session: sess}
 }
@@ -98,6 +99,7 @@ type Layout_Item struct {
 	Options sl.Options
 }
 
+// GetLayoutItemService returns an instance of the Layout_Item SoftLayer service
 func GetLayoutItemService(sess *session.Session) Layout_Item {
 	return Layout_Item{Session: sess}
 }
@@ -155,6 +157,7 @@ type Layout_Profile struct {
 	Options sl.Options
 }
 
+// GetLayoutProfileService returns an instance of the Layout_Profile SoftLayer service
 func GetLayoutProfileService(sess *session.Session) Layout_Profile {
 	return Layout_Profile{Session: sess}
 }
@@ -258,6 +261,7 @@ type Layout_Profile_Containers struct {
 	Options sl.Options
 }
 
+// GetLayoutProfileContainersService returns an instance of the Layout_Profile_Containers SoftLayer service
 func GetLayoutProfileContainersService(sess *session.Session) Layout_Profile_Containers {
 	return Layout_Profile_Containers{Session: sess}
 }
@@ -333,6 +337,7 @@ type Layout_Profile_Customer struct {
 	Options sl.Options
 }
 
+// GetLayoutProfileCustomerService returns an instance of the Layout_Profile_Customer SoftLayer service
 func GetLayoutProfileCustomerService(sess *session.Session) Layout_Profile_Customer {
 	return Layout_Profile_Customer{Session: sess}
 }
@@ -442,6 +447,7 @@ type Layout_Profile_Preference struct {
 	Options sl.Options
 }
 
+// GetLayoutProfilePreferenceService returns an instance of the Layout_Profile_Preference SoftLayer service
 func GetLayoutProfilePreferenceService(sess *session.Session) Layout_Profile_Preference {
 	return Layout_Profile_Preference{Session: sess}
 }

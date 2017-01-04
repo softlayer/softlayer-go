@@ -35,6 +35,7 @@ type Catalyst_Company_Type struct {
 	Options sl.Options
 }
 
+// GetCatalystCompanyTypeService returns an instance of the Catalyst_Company_Type SoftLayer service
 func GetCatalystCompanyTypeService(sess *session.Session) Catalyst_Company_Type {
 	return Catalyst_Company_Type{Session: sess}
 }
@@ -86,6 +87,7 @@ type Catalyst_Enrollment struct {
 	Options sl.Options
 }
 
+// GetCatalystEnrollmentService returns an instance of the Catalyst_Enrollment SoftLayer service
 func GetCatalystEnrollmentService(sess *session.Session) Catalyst_Enrollment {
 	return Catalyst_Enrollment{Session: sess}
 }

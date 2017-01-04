@@ -37,6 +37,7 @@ type Ticket struct {
 	Options sl.Options
 }
 
+// GetTicketService returns an instance of the Ticket SoftLayer service
 func GetTicketService(sess *session.Session) Ticket {
 	return Ticket{Session: sess}
 }
@@ -360,7 +361,7 @@ func (r Ticket) GetAttachedVirtualGuests() (resp []datatypes.Virtual_Guest, err 
 	return
 }
 
-// Retrieve The last update made to a ticket.
+// Retrieve Ticket is waiting on a response from a customer flag.
 func (r Ticket) GetAwaitingUserResponseFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getAwaitingUserResponseFlag", nil, &r.Options, &resp)
 	return
@@ -597,6 +598,7 @@ type Ticket_Attachment_File struct {
 	Options sl.Options
 }
 
+// GetTicketAttachmentFileService returns an instance of the Ticket_Attachment_File SoftLayer service
 func GetTicketAttachmentFileService(sess *session.Session) Ticket_Attachment_File {
 	return Ticket_Attachment_File{Session: sess}
 }
@@ -660,6 +662,7 @@ type Ticket_Priority struct {
 	Options sl.Options
 }
 
+// GetTicketPriorityService returns an instance of the Ticket_Priority SoftLayer service
 func GetTicketPriorityService(sess *session.Session) Ticket_Priority {
 	return Ticket_Priority{Session: sess}
 }
@@ -705,6 +708,7 @@ type Ticket_Subject struct {
 	Options sl.Options
 }
 
+// GetTicketSubjectService returns an instance of the Ticket_Subject SoftLayer service
 func GetTicketSubjectService(sess *session.Session) Ticket_Subject {
 	return Ticket_Subject{Session: sess}
 }
@@ -774,6 +778,7 @@ type Ticket_Subject_Category struct {
 	Options sl.Options
 }
 
+// GetTicketSubjectCategoryService returns an instance of the Ticket_Subject_Category SoftLayer service
 func GetTicketSubjectCategoryService(sess *session.Session) Ticket_Subject_Category {
 	return Ticket_Subject_Category{Session: sess}
 }
@@ -831,6 +836,7 @@ type Ticket_Survey struct {
 	Options sl.Options
 }
 
+// GetTicketSurveyService returns an instance of the Ticket_Survey SoftLayer service
 func GetTicketSurveyService(sess *session.Session) Ticket_Survey {
 	return Ticket_Survey{Session: sess}
 }
@@ -892,6 +898,7 @@ type Ticket_Update_Employee struct {
 	Options sl.Options
 }
 
+// GetTicketUpdateEmployeeService returns an instance of the Ticket_Update_Employee SoftLayer service
 func GetTicketUpdateEmployeeService(sess *session.Session) Ticket_Update_Employee {
 	return Ticket_Update_Employee{Session: sess}
 }

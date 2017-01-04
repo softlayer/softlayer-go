@@ -35,6 +35,7 @@ type Location struct {
 	Options sl.Options
 }
 
+// GetLocationService returns an instance of the Location SoftLayer service
 func GetLocationService(sess *session.Session) Location {
 	return Location{Session: sess}
 }
@@ -206,6 +207,7 @@ type Location_Datacenter struct {
 	Options sl.Options
 }
 
+// GetLocationDatacenterService returns an instance of the Location_Datacenter SoftLayer service
 func GetLocationDatacenterService(sess *session.Session) Location_Datacenter {
 	return Location_Datacenter{Session: sess}
 }
@@ -449,6 +451,7 @@ type Location_Group struct {
 	Options sl.Options
 }
 
+// GetLocationGroupService returns an instance of the Location_Group SoftLayer service
 func GetLocationGroupService(sess *session.Session) Location_Group {
 	return Location_Group{Session: sess}
 }
@@ -512,6 +515,7 @@ type Location_Group_Pricing struct {
 	Options sl.Options
 }
 
+// GetLocationGroupPricingService returns an instance of the Location_Group_Pricing SoftLayer service
 func GetLocationGroupPricingService(sess *session.Session) Location_Group_Pricing {
 	return Location_Group_Pricing{Session: sess}
 }
@@ -581,6 +585,7 @@ type Location_Group_Regional struct {
 	Options sl.Options
 }
 
+// GetLocationGroupRegionalService returns an instance of the Location_Group_Regional SoftLayer service
 func GetLocationGroupRegionalService(sess *session.Session) Location_Group_Regional {
 	return Location_Group_Regional{Session: sess}
 }
@@ -656,6 +661,7 @@ type Location_Reservation struct {
 	Options sl.Options
 }
 
+// GetLocationReservationService returns an instance of the Location_Reservation SoftLayer service
 func GetLocationReservationService(sess *session.Session) Location_Reservation {
 	return Location_Reservation{Session: sess}
 }
@@ -737,6 +743,7 @@ type Location_Reservation_Rack struct {
 	Options sl.Options
 }
 
+// GetLocationReservationRackService returns an instance of the Location_Reservation_Rack SoftLayer service
 func GetLocationReservationRackService(sess *session.Session) Location_Reservation_Rack {
 	return Location_Reservation_Rack{Session: sess}
 }
@@ -806,6 +813,7 @@ type Location_Reservation_Rack_Member struct {
 	Options sl.Options
 }
 
+// GetLocationReservationRackMemberService returns an instance of the Location_Reservation_Rack_Member SoftLayer service
 func GetLocationReservationRackMemberService(sess *session.Session) Location_Reservation_Rack_Member {
 	return Location_Reservation_Rack_Member{Session: sess}
 }
