@@ -178,7 +178,7 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	req.URL.RawQuery = encodeQuery(options)
 
 	if session.Debug {
-		log.Println("[DEBUG] Path: ", req.URL)
+		log.Println("[DEBUG] Request URL: ", requestType, req.URL)
 		log.Println("[DEBUG] Parameters: ", requestBody.String())
 	}
 
