@@ -59,7 +59,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 		options)
 
 	if err != nil {
-		return fmt.Errorf("Error during HTTP request: %s", err)
+		return sl.Error{Wrapped: err}
 	}
 
 	if code < 200 || code > 299 {
