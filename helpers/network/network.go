@@ -20,6 +20,7 @@ import (
 	"fmt"
 
 	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/filter"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 )
@@ -80,4 +81,35 @@ func GetNadcLbVipServiceByName(
 	return nil, fmt.Errorf(
 		"Could not find service %s in VIP %s for load balancer %d",
 		serviceName, vipName, nadcId)
+}
+
+// GetOsTypeByName retrieves an object of type SoftLayer_Network_Storage_Iscsi_OS_Type.
+// To order block storage, OS type is required as a mandatory input.
+// GetOsTypeByName helps in getting the OS id and keyName
+// Examples:
+// id:6   name: Hyper-V  keyName: HYPER_V
+// id:12  name: Linux    keyName: LINUX
+// id:22  name: VMWare   keyName: VMWARE
+// id:30  name: Xen      keyName: XEN
+func GetOsTypeByName(sess *session.Session, name string, args ...interface{}) (datatypes.Network_Storage_Iscsi_OS_Type, error) {
+	var mask string
+	if len(args) > 0 {
+		mask = args[0].(string)
+	}
+
+	osTypes, err := services.GetNetworkStorageIscsiOSTypeService(sess).
+		Mask(mask).
+		Filter(filter.New(filter.Path("name").Eq(name)).Build()).
+		GetAllObjects()
+
+	if err != nil {
+		return datatypes.Network_Storage_Iscsi_OS_Type{}, err
+	}
+
+	// An empty filtered result set does not raise an error
+	if len(osTypes) == 0 {
+		return datatypes.Network_Storage_Iscsi_OS_Type{}, fmt.Errorf("No OS type found with name of %s", name)
+	}
+
+	return osTypes[0], nil
 }
