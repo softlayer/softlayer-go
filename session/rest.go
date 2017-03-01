@@ -173,7 +173,11 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 		return nil, 0, err
 	}
 
-	req.SetBasicAuth(session.UserName, session.APIKey)
+	if session.APIKey != "" {
+		req.SetBasicAuth(session.UserName, session.APIKey)
+	} else {
+		req.SetBasicAuth(fmt.Sprintf("%d", session.UserId), session.AuthToken)
+	}
 
 	req.URL.RawQuery = encodeQuery(options)
 
