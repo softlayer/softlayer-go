@@ -144,10 +144,10 @@ func (x *XmlRpcTransport) DoRequest(
 	}
 
 	// Add incoming arguments to xmlrpc parameter array
-	params := []interface{}{
-		map[string]interface{}{
-			"headers": headers,
-		},
+	params := []interface{}{}
+
+	if len(headers) > 0 {
+		params = append(params, map[string]interface{}{"headers": headers})
 	}
 
 	for _, arg := range args {
