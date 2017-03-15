@@ -100,7 +100,14 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 	case *bool:
 		*pResult.(*bool), err = strconv.ParseBool(string(resp))
 	case *string:
-		*pResult.(*string) = string(resp)
+		str := string(resp)
+		strIdx := len(str) - 1
+		if str == "null" {
+			str = ""
+		} else if str[0] == '"' && str[strIdx] == '"' {
+			str = str[1:strIdx]
+		}
+		*pResult.(*string) = str
 	default:
 		// Must be a json representation of one of the many softlayer datatypes
 		err = json.Unmarshal(resp, pResult)
