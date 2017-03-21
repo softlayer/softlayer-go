@@ -34,14 +34,14 @@ account, err := accountService.GetObject()
 ### Sessions
 
 In addition to the example above, sessions can also be created using values
-set in the environment, or from the [local config file](http://softlayer-python.readthedocs.io/en/latest/config_file.html#config-file):
+set in the environment, or from the local configuration file (i.e. ~/.softlayer):
 
 ```go
 sess := session.New()
 ```
 
 In this usage, the username, API key, and endpoint are read from specific environment
-variables, then the local configuration file (~/.softlayer).  First match ends
+variables, then the local configuration file (i.e. ~/.softlayer).  First match ends
 the search:
 
 * _Username_
@@ -62,6 +62,15 @@ the search:
 	1. local config `timeout`.
 
 *Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods. Timeout defaults to 60 seconds.
+
+Example of the **~/.softlayer** local configuration file:
+```
+[softlayer]
+username = <your username>
+api_key = <your api key>
+endpoint_url = <optional>
+timeout = <optional>
+```
 
 ### Instance methods
 
