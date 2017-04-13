@@ -204,15 +204,15 @@ func (f Filter) GreaterThanOrEqual(val interface{}) Filter {
 
 // Set this filter to test if property is null
 func (f Filter) IsNull() Filter {
-	f.Op = "is null"
-	f.Val = nil
+	f.Op = ""
+	f.Val = "is null"
 	return f
 }
 
 // Set this filter to test if property is not null
 func (f Filter) NotNull() Filter {
-	f.Op = "not null"
-	f.Val = nil
+	f.Op = ""
+	f.Val = "not null"
 	return f
 }
 
