@@ -105,7 +105,11 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 		if str == "null" {
 			str = ""
 		} else if str[0] == '"' && str[strIdx] == '"' {
-			str = str[1:strIdx]
+			s := struct{ Resp string }{str}
+			err = json.Unmarshal([]byte(`{"resp":`+str+`}`), &s)
+			if err == nil {
+				str = s.Resp
+			}
 		}
 		*pResult.(*string) = str
 	default:
