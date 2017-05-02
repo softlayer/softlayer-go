@@ -280,26 +280,26 @@ func (f Filter) DaysPast(val interface{}) Filter {
 func (f Filter) Date(date string) Filter {
 	f.Op = "isDate"
 	f.Val = nil
-	return f.Opt("date", date)
+	return f.Opt("date", []string{date})
 }
 
 // Set this filter to test if property has a date before the value.
 func (f Filter) DateBefore(date string) Filter {
 	f.Op = "lessThanDate"
 	f.Val = nil
-	return f.Opt("date", date)
+	return f.Opt("date", []string{date})
 }
 
 // Set this filter to test if property has a date after the value.
 func (f Filter) DateAfter(date string) Filter {
 	f.Op = "greaterThanDate"
 	f.Val = nil
-	return f.Opt("date", date)
+	return f.Opt("date", []string{date})
 }
 
 // Set this filter to test if property has a date between the values.
 func (f Filter) DateBetween(start string, end string) Filter {
 	f.Op = "betweenDate"
 	f.Val = nil
-	return f.Opt("startDate", start).Opt("endDate", end)
+	return f.Opt("startDate", []string{start}).Opt("endDate", []string{end})
 }
