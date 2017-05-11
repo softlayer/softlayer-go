@@ -2728,6 +2728,9 @@ type Container_Product_Order struct {
 	// The number of cores for the server being ordered. This value is set internally.
 	ServerCoreCount *int `json:"serverCoreCount,omitempty" xmlrpc:"serverCoreCount,omitempty"`
 
+	// An optional service token. Do not set.
+	ServiceToken *string `json:"serviceToken,omitempty" xmlrpc:"serviceToken,omitempty"`
+
 	// An optional computing instance identifier to be used as an installation base for a computing instance order
 	SourceVirtualGuestId *int `json:"sourceVirtualGuestId,omitempty" xmlrpc:"sourceVirtualGuestId,omitempty"`
 
