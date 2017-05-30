@@ -61,7 +61,7 @@ the search:
 	1. environment variable `SOFTLAYER_TIMEOUT`
 	1. local config `timeout`.
 
-*Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods. Timeout defaults to 60 seconds.
+*Note:* Endpoint defaults to `https://api.softlayer.com/rest/v3` if not configured through any of the above methods. Timeout defaults to 120 seconds.
 
 Example of the **~/.softlayer** local configuration file:
 ```
