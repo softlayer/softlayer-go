@@ -19,6 +19,8 @@ package session
 import (
 	"fmt"
 	"log"
+	"math/rand"
+	"net"
 	"os"
 	"os/user"
 	"runtime"
@@ -75,7 +77,10 @@ type TransportHandler interface {
 		pResult interface{}) error
 }
 
-const DefaultTimeout = time.Second * 120
+const (
+	DefaultTimeout   = time.Second * 120
+	DefaultRetryWait = time.Second * 3
+)
 
 // Session stores the information required for communication with the SoftLayer
 // API
@@ -109,9 +114,19 @@ type Session struct {
 	// will result in an error.
 	Timeout time.Duration
 
-	// The user agent to send with each API request
+	// Retries is the number of times to retry a connection that failed due to a timeout.
+	Retries int
+
+	// RetryWait minimum wait time to retry a request
+	RetryWait time.Duration
+
+	// userAgent is the user agent to send with each API request
 	// User shouldn't be able to change or set the base user agent
 	userAgent string
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
 }
 
 // New creates and returns a pointer to a new session object.  It takes up to
@@ -204,6 +219,8 @@ func New(args ...interface{}) *Session {
 		}
 	}
 
+	sess.RetryWait = DefaultRetryWait
+
 	return sess
 }
 
@@ -254,10 +271,34 @@ func getDefaultTransport(endpointURL string) TransportHandler {
 	return transportHandler
 }
 
+<<<<<<< HEAD
 func getDefaultUserAgent() string {
 	return fmt.Sprintf("softlayer-go/%s (%s;%s;%s)", sl.Version.String(),
 		runtime.Version(),
 		runtime.GOARCH,
 		runtime.GOOS,
 	)
+=======
+func isTimeout(err error) bool {
+	if slErr, ok := err.(sl.Error); ok {
+		switch slErr.StatusCode {
+		case 408, 504, 599:
+			return true
+		}
+	}
+
+	if netErr, ok := err.(net.Error); ok && netErr.Timeout() {
+		return true
+	}
+
+	if netErr, ok := err.(*net.OpError); ok && netErr.Timeout() {
+		return true
+	}
+
+	if netErr, ok := err.(net.UnknownNetworkError); ok && netErr.Timeout() {
+		return true
+	}
+
+	return false
+>>>>>>> 022e5f1... Add retry logic
 }

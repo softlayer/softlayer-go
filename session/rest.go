@@ -21,11 +21,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"net/url"
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
@@ -50,7 +52,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 
 	path := buildPath(service, method, options)
 
-	resp, code, err := makeHTTPRequest(
+	resp, code, err := sendHTTPRequest(
 		sess,
 		path,
 		restMethod,
@@ -58,7 +60,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 		options)
 
 	if err != nil {
-		return sl.Error{Wrapped: err}
+		return sl.Error{Wrapped: err, StatusCode: code}
 	}
 
 	if code < 200 || code > 299 {
@@ -168,7 +170,49 @@ func encodeQuery(opts *sl.Options) string {
 	return query.Encode()
 }
 
-func makeHTTPRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
+func sendHTTPRequest(
+	sess *Session, path string, requestType string,
+	requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
+
+	retries := sess.Retries
+	if retries < 2 {
+		return makeHTTPRequest(sess, path, requestType, requestBody, options)
+	}
+
+	wait := sess.RetryWait
+	if wait == 0 {
+		wait = DefaultRetryWait
+	}
+
+	return tryHTTPRequest(retries, wait, sess, path, requestType, requestBody, options)
+}
+
+func tryHTTPRequest(
+	retries int, wait time.Duration, sess *Session,
+	path string, requestType string, requestBody *bytes.Buffer,
+	options *sl.Options) ([]byte, int, error) {
+
+	resp, code, err := makeHTTPRequest(sess, path, requestType, requestBody, options)
+	if err != nil {
+		if !isTimeout(err) {
+			return resp, code, err
+		}
+
+		if retries--; retries > 0 {
+			jitter := time.Duration(rand.Int63n(int64(wait)))
+			wait = wait + jitter/2
+			time.Sleep(wait)
+			return tryHTTPRequest(
+				retries, wait, sess, path, requestType, requestBody, options)
+		}
+	}
+
+	return resp, code, err
+}
+
+func makeHTTPRequest(
+	session *Session, path string, requestType string,
+	requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
 	log := Logger
 	client := http.DefaultClient
 	client.Timeout = DefaultTimeout
@@ -210,7 +254,16 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, 520, err
+		statusCode := 520
+		if resp != nil && resp.StatusCode != 0 {
+			statusCode = resp.StatusCode
+		}
+
+		if isTimeout(err) {
+			statusCode = 599
+		}
+
+		return nil, statusCode, err
 	}
 
 	defer resp.Body.Close()
