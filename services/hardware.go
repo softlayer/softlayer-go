@@ -602,6 +602,12 @@ func (r Hardware) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Hardware) GetComponentDetailsXML() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponentDetailsXML", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's components.
 func (r Hardware) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponents", nil, &r.Options, &resp)
@@ -1203,6 +1209,12 @@ func (r Hardware) GetRemoteManagementComponent() (resp datatypes.Network_Compone
 }
 
 // Retrieve
+func (r Hardware) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Hardware) GetResourceGroupMemberReferences() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
 	return
@@ -1662,6 +1674,12 @@ func (r Hardware_Component_Model) GetHardwareGenericComponentModel() (resp datat
 // Retrieve
 func (r Hardware_Component_Model) GetInfinibandCompatibleAttribute() (resp datatypes.Hardware_Component_Model_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getInfinibandCompatibleAttribute", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_Component_Model) GetIsFlexSkuCompatible() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getIsFlexSkuCompatible", nil, &r.Options, &resp)
 	return
 }
 
@@ -2417,6 +2435,12 @@ func (r Hardware_Router) GetBusinessContinuanceInsuranceFlag() (resp bool, err e
 	return
 }
 
+// no documentation yet
+func (r Hardware_Router) GetComponentDetailsXML() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponentDetailsXML", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's components.
 func (r Hardware_Router) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponents", nil, &r.Options, &resp)
@@ -3020,6 +3044,12 @@ func (r Hardware_Router) GetRemoteManagementAccounts() (resp []datatypes.Hardwar
 // Retrieve A hardware's associated remote management component. This is normally IPMI.
 func (r Hardware_Router) GetRemoteManagementComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRemoteManagementComponent", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_Router) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceConfigurations", nil, &r.Options, &resp)
 	return
 }
 
@@ -4072,6 +4102,18 @@ func (r Hardware_SecurityModule) GetBusinessContinuanceInsuranceFlag() (resp boo
 	return
 }
 
+// Retrieve Child hardware.
+func (r Hardware_SecurityModule) GetChildrenHardware() (resp []datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getChildrenHardware", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_SecurityModule) GetComponentDetailsXML() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponentDetailsXML", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's components.
 func (r Hardware_SecurityModule) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponents", nil, &r.Options, &resp)
@@ -4970,6 +5012,12 @@ func (r Hardware_SecurityModule) GetRemoteManagementUsers() (resp []datatypes.Ha
 }
 
 // Retrieve
+func (r Hardware_SecurityModule) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Hardware_SecurityModule) GetResourceGroupMemberReferences() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
 	return
@@ -5261,9 +5309,63 @@ func (r Hardware_SecurityModule) IsWindowsServer() (resp bool, err error) {
 	return
 }
 
+// You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
+//
+// In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
+func (r Hardware_SecurityModule) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+		harddrive,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareUpdate", params, &r.Options, &resp)
+	return
+}
+
+// Reloads current or customer specified operating system configuration.
+//
+// This service has a confirmation protocol for proceeding with the reload. To proceed with the reload without confirmation, simply pass in 'FORCE' as the token parameter. To proceed with the reload with confirmation, simply call the service with no parameter. A token string will be returned by this service. The token will remain active for 10 minutes. Use this token as the parameter to confirm that a reload is to be performed for the server.
+//
+// As a precaution, we strongly  recommend backing up all data before reloading the operating system. The reload will format the primary disk and will reconfigure the server to the current specifications on record.
+//
+// The reload will take AT MINIMUM 66 minutes.
+func (r Hardware_SecurityModule) MassReloadOperatingSystem(hardwareIds []string, token *string, config *datatypes.Container_Hardware_Server_Configuration) (resp string, err error) {
+	params := []interface{}{
+		hardwareIds,
+		token,
+		config,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massReloadOperatingSystem", params, &r.Options, &resp)
+	return
+}
+
+// The ability to place multiple bare metal servers in a state where they are powered down and ports closed yet still allocated to the customer as a part of the Spare Pool program.
+func (r Hardware_SecurityModule) MassSparePool(hardwareIds []string, action *string, newOrder *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		action,
+		newOrder,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massSparePool", params, &r.Options, &resp)
+	return
+}
+
 // Issues a ping command to the server and returns the ping response.
 func (r Hardware_SecurityModule) Ping() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "ping", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_SecurityModule) PopulateServer(hardwareId *int, serialString *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		hardwareId,
+		serialString,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "populateServer", params, &r.Options, &resp)
 	return
 }
 
@@ -6186,6 +6288,18 @@ func (r Hardware_Server) GetBusinessContinuanceInsuranceFlag() (resp bool, err e
 	return
 }
 
+// Retrieve Child hardware.
+func (r Hardware_Server) GetChildrenHardware() (resp []datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getChildrenHardware", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_Server) GetComponentDetailsXML() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponentDetailsXML", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's components.
 func (r Hardware_Server) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponents", nil, &r.Options, &resp)
@@ -7084,6 +7198,12 @@ func (r Hardware_Server) GetRemoteManagementUsers() (resp []datatypes.Hardware_C
 }
 
 // Retrieve
+func (r Hardware_Server) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Hardware_Server) GetResourceGroupMemberReferences() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
 	return
@@ -7375,9 +7495,63 @@ func (r Hardware_Server) IsWindowsServer() (resp bool, err error) {
 	return
 }
 
+// You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
+//
+// In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
+func (r Hardware_Server) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+		harddrive,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareUpdate", params, &r.Options, &resp)
+	return
+}
+
+// Reloads current or customer specified operating system configuration.
+//
+// This service has a confirmation protocol for proceeding with the reload. To proceed with the reload without confirmation, simply pass in 'FORCE' as the token parameter. To proceed with the reload with confirmation, simply call the service with no parameter. A token string will be returned by this service. The token will remain active for 10 minutes. Use this token as the parameter to confirm that a reload is to be performed for the server.
+//
+// As a precaution, we strongly  recommend backing up all data before reloading the operating system. The reload will format the primary disk and will reconfigure the server to the current specifications on record.
+//
+// The reload will take AT MINIMUM 66 minutes.
+func (r Hardware_Server) MassReloadOperatingSystem(hardwareIds []string, token *string, config *datatypes.Container_Hardware_Server_Configuration) (resp string, err error) {
+	params := []interface{}{
+		hardwareIds,
+		token,
+		config,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massReloadOperatingSystem", params, &r.Options, &resp)
+	return
+}
+
+// The ability to place multiple bare metal servers in a state where they are powered down and ports closed yet still allocated to the customer as a part of the Spare Pool program.
+func (r Hardware_Server) MassSparePool(hardwareIds []string, action *string, newOrder *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		action,
+		newOrder,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massSparePool", params, &r.Options, &resp)
+	return
+}
+
 // Issues a ping command to the server and returns the ping response.
 func (r Hardware_Server) Ping() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "ping", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_Server) PopulateServer(hardwareId *int, serialString *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		hardwareId,
+		serialString,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "populateServer", params, &r.Options, &resp)
 	return
 }
 

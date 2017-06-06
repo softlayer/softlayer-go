@@ -734,6 +734,9 @@ type Network_Bandwidth_Version1_Allotment struct {
 	// The average daily public bandwidth usage for the current billing cycle.
 	AverageDailyPublicBandwidthUsage *Float64 `json:"averageDailyPublicBandwidthUsage,omitempty" xmlrpc:"averageDailyPublicBandwidthUsage,omitempty"`
 
+	// The bandwidth allotment type of this virtual rack.
+	BandwidthAllotmentType *Network_Bandwidth_Version1_Allotment_Type `json:"bandwidthAllotmentType,omitempty" xmlrpc:"bandwidthAllotmentType,omitempty"`
+
 	// An identifier marking this allotment as a virtual private rack (1) or a bandwidth pooling(2).
 	BandwidthAllotmentTypeId *int `json:"bandwidthAllotmentTypeId,omitempty" xmlrpc:"bandwidthAllotmentTypeId,omitempty"`
 
@@ -888,6 +891,23 @@ type Network_Bandwidth_Version1_Allotment_Detail struct {
 
 	// Service Provider Id for an allotment
 	ServiceProviderId *int `json:"serviceProviderId,omitempty" xmlrpc:"serviceProviderId,omitempty"`
+}
+
+// The SoftLayer_Network_Bandwidth_Version1_Allotment_Type contains a description of the associated SoftLayer_Network_Bandwidth_Version1_Allotment object.
+type Network_Bandwidth_Version1_Allotment_Type struct {
+	Entity
+
+	// no documentation yet
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// no documentation yet
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// no documentation yet
+	ShortDescription *string `json:"shortDescription,omitempty" xmlrpc:"shortDescription,omitempty"`
 }
 
 // The SoftLayer_Network_Bandwidth_Version1_Host type contains general information used to the route a server to its pod.
@@ -1071,9 +1091,6 @@ type Network_Component struct {
 	// The VLANs that are trunked to this network component.
 	NetworkVlanTrunks []Network_Component_Network_Vlan_Trunk `json:"networkVlanTrunks,omitempty" xmlrpc:"networkVlanTrunks,omitempty"`
 
-	// no documentation yet
-	ParentModule *Hardware_Component `json:"parentModule,omitempty" xmlrpc:"parentModule,omitempty"`
-
 	// A network component's port number. Most hardware has more than one network interface. The port property separates these interfaces. Use this in conjunction with the ''name'' property to identify a network component. For instance, the "eth0" interface on a server has the network component name "eth" and port 0.
 	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
@@ -1083,7 +1100,7 @@ type Network_Component struct {
 	// The primary IPv4 Address record for a network component.
 	PrimaryIpAddressRecord *Network_Subnet_IpAddress `json:"primaryIpAddressRecord,omitempty" xmlrpc:"primaryIpAddressRecord,omitempty"`
 
-	// A network component's subnet for its primary IP address
+	// The subnet of the primary IP address assigned to this network component.
 	PrimarySubnet *Network_Subnet `json:"primarySubnet,omitempty" xmlrpc:"primarySubnet,omitempty"`
 
 	// The primary IPv6 Address record for a network component.
@@ -1878,6 +1895,257 @@ type Network_Gateway_Vlan struct {
 
 	// The internal identifier of the network VLAN.
 	NetworkVlanId *int `json:"networkVlanId,omitempty" xmlrpc:"networkVlanId,omitempty"`
+}
+
+// The SoftLayer_Network_LBaaS_Listener type presents a data structure for a load balancers listener, also called frontend.
+type Network_LBaaS_Listener struct {
+	Entity
+
+	// Limit of connections a listener can accept
+	ConnectionLimit *int `json:"connectionLimit,omitempty" xmlrpc:"connectionLimit,omitempty"`
+
+	// Specifies when the listener was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
+	DefaultPool *Network_LBaaS_Pool `json:"defaultPool,omitempty" xmlrpc:"defaultPool,omitempty"`
+
+	// no documentation yet
+	LoadBalancer *Network_LBaaS_LoadBalancer `json:"loadBalancer,omitempty" xmlrpc:"loadBalancer,omitempty"`
+
+	// Specifies when the listener was updated previously.
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// Listeners protocol, one of "TCP", "HTTP", "HTTPS".
+	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
+
+	// Listeners protocol port number.
+	ProtocolPort *int `json:"protocolPort,omitempty" xmlrpc:"protocolPort,omitempty"`
+
+	// The provisioning status of listener.
+	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
+
+	// This references to SSL/TLS certificate (optional) for a listener
+	TlsCertificateId *int `json:"tlsCertificateId,omitempty" xmlrpc:"tlsCertificateId,omitempty"`
+
+	// The UUID of a listener.
+	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// The SoftLayer_Network_LBaaS_LoadBalancer type presents a structure containing attributes of a load balancer, and its related objects including listeners, pools and members.
+type Network_LBaaS_LoadBalancer struct {
+	Entity
+
+	// The account this load balancer belongs to.
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// Specifies when a load balancer was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// Datacenter, where load balancer is located.
+	Datacenter *Location `json:"datacenter,omitempty" xmlrpc:"datacenter,omitempty"`
+
+	// Description of a load balancer.
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// no documentation yet
+	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty" xmlrpc:"ipAddress,omitempty"`
+
+	// Specifies if a load balancer is public=1 or private=0.
+	IsPublic *int `json:"isPublic,omitempty" xmlrpc:"isPublic,omitempty"`
+
+	// A count of listeners assigned to load balancer.
+	ListenerCount *uint `json:"listenerCount,omitempty" xmlrpc:"listenerCount,omitempty"`
+
+	// Listeners assigned to load balancer.
+	Listeners []Network_LBaaS_Listener `json:"listeners,omitempty" xmlrpc:"listeners,omitempty"`
+
+	// This references to location with type datacenter
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
+
+	// A count of members assigned to load balancer.
+	MemberCount *uint `json:"memberCount,omitempty" xmlrpc:"memberCount,omitempty"`
+
+	// Members assigned to load balancer.
+	Members []Network_LBaaS_Member `json:"members,omitempty" xmlrpc:"members,omitempty"`
+
+	// Specifies when a load balancer was updated last.
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// The load balancer's name.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// The operation status "ONLINE" or "OFFLINE" of a load balancer.
+	OperatingStatus *string `json:"operatingStatus,omitempty" xmlrpc:"operatingStatus,omitempty"`
+
+	// Error message of previous API call in case of failure
+	PreviousErrorText *string `json:"previousErrorText,omitempty" xmlrpc:"previousErrorText,omitempty"`
+
+	// The provisioning status of a load balancer.
+	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
+
+	// The UUID of a load balancer.
+	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_LoadBalancerProtocolConfiguration specifies the protocol, port, maximum number of allowed connections and session stickiness for load balancer's front- and backend.
+type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
+	Entity
+
+	// Backends port
+	BackendPort *int `json:"backendPort,omitempty" xmlrpc:"backendPort,omitempty"`
+
+	// <<EOT
+	BackendProtocol *string `json:"backendProtocol,omitempty" xmlrpc:"backendProtocol,omitempty"`
+
+	// Frontends port
+	FrontendPort *int `json:"frontendPort,omitempty" xmlrpc:"frontendPort,omitempty"`
+
+	// <<EOT
+	FrontendProtocol *string `json:"frontendProtocol,omitempty" xmlrpc:"frontendProtocol,omitempty"`
+
+	// Listeners UUID, required for update only
+	ListenerUuid *string `json:"listenerUuid,omitempty" xmlrpc:"listenerUuid,omitempty"`
+
+	// <<EOT
+	LoadBalancingMethod *string `json:"loadBalancingMethod,omitempty" xmlrpc:"loadBalancingMethod,omitempty"`
+
+	// Maximum number of allowed connections
+	MaxConn *int `json:"maxConn,omitempty" xmlrpc:"maxConn,omitempty"`
+
+	// Sessions cookie name
+	SessionCookieName *string `json:"sessionCookieName,omitempty" xmlrpc:"sessionCookieName,omitempty"`
+
+	// Session stickiness type. Valid values are "SOURCE_IP"
+	SessionType *string `json:"sessionType,omitempty" xmlrpc:"sessionType,omitempty"`
+
+	// ssl/tls certificate id
+	TlsCertificateId *int `json:"tlsCertificateId,omitempty" xmlrpc:"tlsCertificateId,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_LoadBalancerServerInstanceInfo specifies the application server, usually an IBM SoftLayer virtual server or bare metal system, to be assigned to a load balancer.
+type Network_LBaaS_LoadBalancerServerInstanceInfo struct {
+	Entity
+
+	// Servers private IP address
+	PrivateIpAddress *string `json:"privateIpAddress,omitempty" xmlrpc:"privateIpAddress,omitempty"`
+
+	// Load balancing weight for a server
+	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_LoadBalancerStatistics is a collection of metrics retrieved from a load balancer instance. The available metrics are: <ul> <li>Total number of current sessions</li> <li>Total number of error requests</li> <li>Total number of received packets</li> <li>Total number of transmitted packets</li> <li>Total number of accepted/alive connections</li> <li>Request rate</li> <li>Number of members down</li> <li>NUmber of members up</li> <li>Throughput</li> <li>Connection rate</li> </ul>
+type Network_LBaaS_LoadBalancerStatistics struct {
+	Entity
+
+	// Number of members in DOWN health state
+	NumberOfMembersDown *int `json:"numberOfMembersDown,omitempty" xmlrpc:"numberOfMembersDown,omitempty"`
+
+	// Number of members in UP health state
+	NumberOfMembersUp *int `json:"numberOfMembersUp,omitempty" xmlrpc:"numberOfMembersUp,omitempty"`
+
+	// Number of total established connections
+	TotalConnections *int `json:"totalConnections,omitempty" xmlrpc:"totalConnections,omitempty"`
+
+	// Number of total current sessions
+	TotalCurrentSessions *int `json:"totalCurrentSessions,omitempty" xmlrpc:"totalCurrentSessions,omitempty"`
+}
+
+// The SoftLayer_Network_LBaaS_Member represents the backend member for a load balancer. It can be either a virtual server or a bare metal machine.
+type Network_LBaaS_Member struct {
+	Entity
+
+	// The IP address of a load balancer member.
+	Address *string `json:"address,omitempty" xmlrpc:"address,omitempty"`
+
+	// Specifies when a load balancers
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
+	LoadBalancer *Network_LBaaS_LoadBalancer `json:"loadBalancer,omitempty" xmlrpc:"loadBalancer,omitempty"`
+
+	// Specifies when a load balancers
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// The provisioning status of a load balancer member.
+	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
+
+	// The UUID of a load balancer member.
+	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+
+	// The weight of a load balancer member.
+	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_MemberHealth is a collection member metrics retrieved from a LBaaS VSI instance. The available metrics are: <ul> <li>Name of the member</li> <li>Status of the member up or down</li> <li>Uuid of the member</li> </ul>
+type Network_LBaaS_MemberHealth struct {
+	Entity
+
+	// Members status (UP/DOWN).
+	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
+	// Members UUID.
+	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// The SoftLayer_Network_LBaaS_Pool type presents a structure containing attributes of a load balancer pool such as the protocol, protocol port and the load balancing algorithm used.
+type Network_LBaaS_Pool struct {
+	Entity
+
+	// Create date of the pool instance
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
+	LoadBalancer *Network_LBaaS_LoadBalancer `json:"loadBalancer,omitempty" xmlrpc:"loadBalancer,omitempty"`
+
+	// Load balancing algorithm: "ROUNDROBIN", "WEIGHTED_RR", "LEASTCONNECTION"
+	LoadBalancingAlgorithm *string `json:"loadBalancingAlgorithm,omitempty" xmlrpc:"loadBalancingAlgorithm,omitempty"`
+
+	// A count of
+	MemberCount *uint `json:"memberCount,omitempty" xmlrpc:"memberCount,omitempty"`
+
+	// no documentation yet
+	Members []Network_LBaaS_Member `json:"members,omitempty" xmlrpc:"members,omitempty"`
+
+	// Last updated date of the pool
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// Backends protocol, supported protocols are "TCP", "HTTP"
+	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
+
+	// Backends protocol port
+	ProtocolPort *int `json:"protocolPort,omitempty" xmlrpc:"protocolPort,omitempty"`
+
+	// Provisioning status of a load balancer pool.
+	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
+
+	// no documentation yet
+	SessionAffinity *Network_LBaaS_SessionAffinity `json:"sessionAffinity,omitempty" xmlrpc:"sessionAffinity,omitempty"`
+
+	// Instance uuid of the pool
+	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_PoolMembersHealth provides statistics of members belonging to a particular pool.
+type Network_LBaaS_PoolMembersHealth struct {
+	Entity
+
+	// Members statistics of the pool
+	MembersHealth []Network_LBaaS_MemberHealth `json:"membersHealth,omitempty" xmlrpc:"membersHealth,omitempty"`
+
+	// Instance uuid of the pool
+	PoolUuid *string `json:"poolUuid,omitempty" xmlrpc:"poolUuid,omitempty"`
+}
+
+// SoftLayer_Network_LBaaS_SessionAffinity represents the session affinity, aka session persistence, configuration for a load balancer backend pool.
+type Network_LBaaS_SessionAffinity struct {
+	Entity
+
+	// no documentation yet
+	Pool *Network_LBaaS_Pool `json:"pool,omitempty" xmlrpc:"pool,omitempty"`
+
+	// Type of the session persistence
+	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
 // The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
@@ -2693,6 +2961,89 @@ type Network_Regional_Internet_Registry struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+//
+// This is a Beta release of the Security Group feature. The use of this feature is restricted to select
+// users. When the Beta period is over, security groups will be available for all users. Contact sgbeta@us.ibm.com
+// using 'Security Groups' in the subject line with any questions.
+//
+//
+// The SoftLayer_Network_SecurityGroup data type contains general information for a single security group.
+// Security groups contain a set of [[SoftLayer_Network_SecurityGroup_Rule (type)|rules]] that handle traffic
+// to virtual guest instances and a set of
+// [[SoftLayer_Virtual_Network_SecurityGroup_NetworkComponentBinding (type)|bindings]] to associate virtual guest
+// network components with the security group.
+type Network_SecurityGroup struct {
+	Entity
+
+	// The account for this security group
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
+
+	// The date a security group was created
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// The description for a security group
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// The unique ID for a security group
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The date a security group was last modified
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// The name for a security group
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// A count of the network component bindings for this security group
+	NetworkComponentBindingCount *uint `json:"networkComponentBindingCount,omitempty" xmlrpc:"networkComponentBindingCount,omitempty"`
+
+	// The network component bindings for this security group
+	NetworkComponentBindings []Virtual_Network_SecurityGroup_NetworkComponentBinding `json:"networkComponentBindings,omitempty" xmlrpc:"networkComponentBindings,omitempty"`
+
+	// A count of the rules for this security group
+	RuleCount *uint `json:"ruleCount,omitempty" xmlrpc:"ruleCount,omitempty"`
+
+	// The rules for this security group
+	Rules []Network_SecurityGroup_Rule `json:"rules,omitempty" xmlrpc:"rules,omitempty"`
+}
+
+// The SoftLayer_Network_SecurityGroup_Rule data type contains general information for a single rule that belongs to a [[SoftLayer_Network_SecurityGroup|security group]]. Rule information in this type define how to handle incoming (ingress) or outgoing (egress) traffic to the public and private interfaces of a virtual guest.
+type Network_SecurityGroup_Rule struct {
+	Entity
+
+	// The direction of traffic (ingress or egress)
+	Direction *string `json:"direction,omitempty" xmlrpc:"direction,omitempty"`
+
+	// IPv4 or IPv6. If the remoteIp or ethertype properties are not specified, the default is IPv4.
+	Ethertype *string `json:"ethertype,omitempty" xmlrpc:"ethertype,omitempty"`
+
+	// The unique ID for a rule
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The end of the port range for allowed traffic
+	PortRangeMax *int `json:"portRangeMax,omitempty" xmlrpc:"portRangeMax,omitempty"`
+
+	// The start of the port range for allowed traffic
+	PortRangeMin *int `json:"portRangeMin,omitempty" xmlrpc:"portRangeMin,omitempty"`
+
+	// The protocol of packets (icmp, tcp, or udp)
+	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
+
+	// The remote security group allowed as part of this rule
+	RemoteGroup *Network_SecurityGroup `json:"remoteGroup,omitempty" xmlrpc:"remoteGroup,omitempty"`
+
+	// The ID of the remote security group allowed as part of the rule. This property is mutually exclusive with the remoteIp property
+	RemoteGroupId *int `json:"remoteGroupId,omitempty" xmlrpc:"remoteGroupId,omitempty"`
+
+	// CIDR or IP address for allowed connections. This property is mutually exclusive with the remoteGroupId property
+	RemoteIp *string `json:"remoteIp,omitempty" xmlrpc:"remoteIp,omitempty"`
+
+	// The security group of this rule
+	SecurityGroup *Network_SecurityGroup `json:"securityGroup,omitempty" xmlrpc:"securityGroup,omitempty"`
+
+	// The ID of the security group that owns the rule.
+	SecurityGroupId *int `json:"securityGroupId,omitempty" xmlrpc:"securityGroupId,omitempty"`
+}
+
 // The SoftLayer_Network_Security_Scanner_Request data type represents a single vulnerability scan request. It provides information on when the scan was created, last updated, and the current status. The status messages are as follows:
 // *Scan Pending
 // *Scan Processing
@@ -3069,6 +3420,12 @@ type Network_Storage struct {
 	// The maximum number of IOPs selected for this volume.
 	Iops *string `json:"iops,omitempty" xmlrpc:"iops,omitempty"`
 
+	// Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
+	IsReadyForSnapshot *bool `json:"isReadyForSnapshot,omitempty" xmlrpc:"isReadyForSnapshot,omitempty"`
+
+	// Determines whether a volume is ready to have Hosts authorized to access it. This does not indicate whether another operation may be blocking, please refer to this volume's volumeStatus property for details.
+	IsReadyToMount *bool `json:"isReadyToMount,omitempty" xmlrpc:"isReadyToMount,omitempty"`
+
 	// A count of relationship between a container volume and iSCSI LUNs.
 	IscsiLunCount *uint `json:"iscsiLunCount,omitempty" xmlrpc:"iscsiLunCount,omitempty"`
 
@@ -3089,6 +3446,9 @@ type Network_Storage struct {
 
 	// Whether or not a network storage volume may be mounted.
 	MountableFlag *string `json:"mountableFlag,omitempty" xmlrpc:"mountableFlag,omitempty"`
+
+	// The current status of split or move operation as a part of volume duplication.
+	MoveAndSplitStatus *string `json:"moveAndSplitStatus,omitempty" xmlrpc:"moveAndSplitStatus,omitempty"`
 
 	// A Storage account's type. Valid examples are "NAS", "LOCKBOX", "ISCSI", "EVAULT", and "HUB".
 	NasType *string `json:"nasType,omitempty" xmlrpc:"nasType,omitempty"`
@@ -4121,6 +4481,9 @@ type Network_Subnet struct {
 	// The upstream network component firewall.
 	NetworkComponentFirewall *Network_Component_Firewall `json:"networkComponentFirewall,omitempty" xmlrpc:"networkComponentFirewall,omitempty"`
 
+	// The Private Network identifier this subnet is within, if applicable.
+	NetworkId *int `json:"networkId,omitempty" xmlrpc:"networkId,omitempty"`
+
 	// A subnet's network identifier. This is the first IP address of a subnet and may not be assigned to a network interface.
 	NetworkIdentifier *string `json:"networkIdentifier,omitempty" xmlrpc:"networkIdentifier,omitempty"`
 
@@ -4207,6 +4570,9 @@ type Network_Subnet struct {
 
 	// The number of IP addresses that can be addressed within this subnet. For IPv4 subnets with a CIDR value of at most 30, a discount of 3 is taken from the total number of IP addresses for the subnet's unusable network, gateway and broadcast IP addresses. For IPv6 subnets with a CIDR value of at most 126, a discount of 2 is taken for the subnet's network and gateway IP addresses.
 	UsableIpAddressCount *Float64 `json:"usableIpAddressCount,omitempty" xmlrpc:"usableIpAddressCount,omitempty"`
+
+	// Provides the total number of utilized IP addresses on this subnet. The primary consumer of IP addresses are compute resources, which can consume more than one address. This value is only supported for primary subnet types.
+	UtilizedIpAddressCount *uint `json:"utilizedIpAddressCount,omitempty" xmlrpc:"utilizedIpAddressCount,omitempty"`
 
 	// This is the Internet Protocol version. Current values may be either 4 or 6.
 	Version *int `json:"version,omitempty" xmlrpc:"version,omitempty"`

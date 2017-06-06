@@ -112,6 +112,12 @@ type Product_Item struct {
 	// Some Product Items have capacity information such as RAM and bandwidth, and others. This provides the numerical representation of the capacity given in the description of this product item.
 	Capacity *Float64 `json:"capacity,omitempty" xmlrpc:"capacity,omitempty"`
 
+	// When the product capacity is best described as a range, this holds the ceiling of the range.
+	CapacityMaximum *string `json:"capacityMaximum,omitempty" xmlrpc:"capacityMaximum,omitempty"`
+
+	// When the product capacity is best described as a range, this holds the floor of the range.
+	CapacityMinimum *string `json:"capacityMinimum,omitempty" xmlrpc:"capacityMinimum,omitempty"`
+
 	// This flag indicates that this product is restricted by a capacity on a related product.
 	CapacityRestrictedProductFlag *bool `json:"capacityRestrictedProductFlag,omitempty" xmlrpc:"capacityRestrictedProductFlag,omitempty"`
 
@@ -126,9 +132,6 @@ type Product_Item struct {
 
 	// Some product items have configuration templates which can be used to during provisioning of that product.
 	ConfigurationTemplates []Configuration_Template `json:"configurationTemplates,omitempty" xmlrpc:"configurationTemplates,omitempty"`
-
-	// A count of an item's conflicts. For example, McAfee LinuxShield cannot be ordered with Windows. It was not meant for that operating system and as such is a conflict.
-	ConflictCount *uint `json:"conflictCount,omitempty" xmlrpc:"conflictCount,omitempty"`
 
 	// An item's conflicts. For example, McAfee LinuxShield cannot be ordered with Windows. It was not meant for that operating system and as such is a conflict.
 	Conflicts []Product_Item_Resource_Conflict `json:"conflicts,omitempty" xmlrpc:"conflicts,omitempty"`
@@ -147,9 +150,6 @@ type Product_Item struct {
 
 	// Some product items have a downgrade path. These are those product items.
 	DowngradeItems []Product_Item `json:"downgradeItems,omitempty" xmlrpc:"downgradeItems,omitempty"`
-
-	// A count of an item's category conflicts. For example, 10 Gbps redundant network functionality cannot be ordered with a secondary GPU and as such is a conflict.
-	GlobalCategoryConflictCount *uint `json:"globalCategoryConflictCount,omitempty" xmlrpc:"globalCategoryConflictCount,omitempty"`
 
 	// An item's category conflicts. For example, 10 Gbps redundant network functionality cannot be ordered with a secondary GPU and as such is a conflict.
 	GlobalCategoryConflicts []Product_Item_Resource_Conflict `json:"globalCategoryConflicts,omitempty" xmlrpc:"globalCategoryConflicts,omitempty"`
@@ -181,9 +181,6 @@ type Product_Item struct {
 	// A unique key name for the product.
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
-	// A count of an item's location conflicts. For example, Dual Path network functionality cannot be ordered in WDC and as such is a conflict.
-	LocationConflictCount *uint `json:"locationConflictCount,omitempty" xmlrpc:"locationConflictCount,omitempty"`
-
 	// An item's location conflicts. For example, Dual Path network functionality cannot be ordered in WDC and as such is a conflict.
 	LocationConflicts []Product_Item_Resource_Conflict `json:"locationConflicts,omitempty" xmlrpc:"locationConflicts,omitempty"`
 
@@ -214,11 +211,14 @@ type Product_Item struct {
 	// A product item's prices.
 	Prices []Product_Item_Price `json:"prices,omitempty" xmlrpc:"prices,omitempty"`
 
-	// A count of if an item must be ordered with another item, it will have a requirement item here.
-	RequirementCount *uint `json:"requirementCount,omitempty" xmlrpc:"requirementCount,omitempty"`
-
 	// If an item must be ordered with another item, it will have a requirement item here.
 	Requirements []Product_Item_Requirement `json:"requirements,omitempty" xmlrpc:"requirements,omitempty"`
+
+	// A count of an item's rules. This includes the requirements and conflicts to resources that an item has.
+	RuleCount *uint `json:"ruleCount,omitempty" xmlrpc:"ruleCount,omitempty"`
+
+	// An item's rules. This includes the requirements and conflicts to resources that an item has.
+	Rules []Product_Item_Rule `json:"rules,omitempty" xmlrpc:"rules,omitempty"`
 
 	// The SoftLayer_Software_Description tied to this item. This will only be populated for software items.
 	SoftwareDescription *Software_Description `json:"softwareDescription,omitempty" xmlrpc:"softwareDescription,omitempty"`
@@ -819,6 +819,122 @@ type Product_Item_Resource_Conflict_Location struct {
 	Resource *Location `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
+// The item rule data type represents a rule that must be followed when the item assigned to the rule is ordered. The type and operation applied to the resources of the rule will affect how the rule is checked during ordering.
+type Product_Item_Rule struct {
+	Entity
+
+	// The product item that a rule applies to.
+	Item *Product_Item `json:"item,omitempty" xmlrpc:"item,omitempty"`
+
+	// A count of
+	ItemCategoryResourceCount *uint `json:"itemCategoryResourceCount,omitempty" xmlrpc:"itemCategoryResourceCount,omitempty"`
+
+	// no documentation yet
+	ItemCategoryResources []Product_Item_Rule_Resource_Item_Category `json:"itemCategoryResources,omitempty" xmlrpc:"itemCategoryResources,omitempty"`
+
+	// The unique identifier of the item that the rule applies to.
+	ItemId *int `json:"itemId,omitempty" xmlrpc:"itemId,omitempty"`
+
+	// A count of
+	ItemResourceCount *uint `json:"itemResourceCount,omitempty" xmlrpc:"itemResourceCount,omitempty"`
+
+	// no documentation yet
+	ItemResources []Product_Item_Rule_Resource_Item `json:"itemResources,omitempty" xmlrpc:"itemResources,omitempty"`
+
+	// A count of
+	LocationResourceCount *uint `json:"locationResourceCount,omitempty" xmlrpc:"locationResourceCount,omitempty"`
+
+	// no documentation yet
+	LocationResources []Product_Item_Rule_Resource_Location `json:"locationResources,omitempty" xmlrpc:"locationResources,omitempty"`
+
+	// An optional message shown for when the rule is found to be invalid when ordering.
+	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
+
+	// no documentation yet
+	Operation *string `json:"operation,omitempty" xmlrpc:"operation,omitempty"`
+
+	// The package that a rule is applicable to when ordering. If no package exists, the rule applies to any package.
+	Package *Product_Package `json:"package,omitempty" xmlrpc:"package,omitempty"`
+
+	// The unique identifier of the service offering that is associated with the rule.
+	PackageId *int `json:"packageId,omitempty" xmlrpc:"packageId,omitempty"`
+
+	// A count of
+	PermissionResourceCount *uint `json:"permissionResourceCount,omitempty" xmlrpc:"permissionResourceCount,omitempty"`
+
+	// no documentation yet
+	PermissionResources []Product_Item_Rule_Resource_Permission `json:"permissionResources,omitempty" xmlrpc:"permissionResources,omitempty"`
+
+	// A count of resources for this rule that are validated when ordering.
+	ResourceCount *uint `json:"resourceCount,omitempty" xmlrpc:"resourceCount,omitempty"`
+
+	// Resources for this rule that are validated when ordering.
+	Resources []Product_Item_Rule_Resource `json:"resources,omitempty" xmlrpc:"resources,omitempty"`
+
+	// The type a rule is. The type affects how the rule is validated when ordering.
+	Type *Product_Item_Rule_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
+	// The unique identifier of the type of resource rule.
+	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
+}
+
+// The item rule resource data type represents a resource that is part of an item rule. The item rule resource is used when its item rule is checked on an order.
+type Product_Item_Rule_Resource struct {
+	Entity
+
+	// no documentation yet
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The unique identifier of the resource.
+	ResourceTableId *int `json:"resourceTableId,omitempty" xmlrpc:"resourceTableId,omitempty"`
+
+	// no documentation yet
+	Rule *Product_Item_Rule `json:"rule,omitempty" xmlrpc:"rule,omitempty"`
+
+	// The unique identifier of the rule this resource is included in.
+	RuleId *int `json:"ruleId,omitempty" xmlrpc:"ruleId,omitempty"`
+}
+
+// no documentation yet
+type Product_Item_Rule_Resource_Item struct {
+	Product_Item_Rule_Resource
+
+	// A product item that the associated rule applies to.
+	Resource *Product_Item `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// no documentation yet
+type Product_Item_Rule_Resource_Item_Category struct {
+	Product_Item_Rule_Resource
+
+	// An item category that the associated rule applies to.
+	Resource *Product_Item_Category `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// no documentation yet
+type Product_Item_Rule_Resource_Location struct {
+	Product_Item_Rule_Resource
+
+	// A location that the associated rule applies to.
+	Resource *Location `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// no documentation yet
+type Product_Item_Rule_Resource_Permission struct {
+	Product_Item_Rule_Resource
+
+	// A user permission that the associated rule applies to.
+	Resource *User_Customer_CustomerPermission_Permission `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// The item rule type data type represents the type of an item rule.
+type Product_Item_Rule_Type struct {
+	Entity
+
+	// The identifier for the item rule type.
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+}
+
 // The SoftLayer_Product_Item_Tax_Category data type contains the tax categories that are associated with products.
 type Product_Item_Tax_Category struct {
 	Entity
@@ -831,6 +947,9 @@ type Product_Item_Tax_Category struct {
 
 	// no documentation yet
 	Items []Product_Item `json:"items,omitempty" xmlrpc:"items,omitempty"`
+
+	// The key name of the tax category.
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// The name of the tax category.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
@@ -965,17 +1084,11 @@ type Product_Package struct {
 	// no documentation yet
 	IsActive *int `json:"isActive,omitempty" xmlrpc:"isActive,omitempty"`
 
-	// A count of the item-item conflicts associated with a package.
-	ItemConflictCount *uint `json:"itemConflictCount,omitempty" xmlrpc:"itemConflictCount,omitempty"`
-
 	// The item-item conflicts associated with a package.
 	ItemConflicts []Product_Item_Resource_Conflict `json:"itemConflicts,omitempty" xmlrpc:"itemConflicts,omitempty"`
 
 	// A count of a collection of valid items available for purchase in this package.
 	ItemCount *uint `json:"itemCount,omitempty" xmlrpc:"itemCount,omitempty"`
-
-	// A count of the item-location conflicts associated with a package.
-	ItemLocationConflictCount *uint `json:"itemLocationConflictCount,omitempty" xmlrpc:"itemLocationConflictCount,omitempty"`
 
 	// The item-location conflicts associated with a package.
 	ItemLocationConflicts []Product_Item_Resource_Conflict `json:"itemLocationConflicts,omitempty" xmlrpc:"itemLocationConflicts,omitempty"`
@@ -1315,8 +1428,6 @@ type Product_Package_Order_Step_Next struct {
 
 // Package presets are used to simplify ordering by eliminating the need for price ids when submitting orders.
 //
-// Orders submitted without prices or a preset id defined will use the “DEFAULT” preset for the package id. The default package presets include the base options required for a package configuration.
-//
 // Orders submitted with a preset id defined will use the prices included in the package preset. Prices submitted on an order with a preset id will replace the prices included in the package preset for that prices category. If the package preset has a fixed configuration flag <em>(fixedConfigurationFlag)</em> set then the prices included in the preset configuration cannot be replaced by prices submitted on the order. The only exception to the fixed configuration flag would be if a price submitted on the order is an account-restricted price for the same product item.
 type Product_Package_Preset struct {
 	Entity
@@ -1460,6 +1571,9 @@ type Product_Package_Server struct {
 
 	// Flag to indicate if the server configuration supports dual path network routing.
 	DualPathNetworkFlag *bool `json:"dualPathNetworkFlag,omitempty" xmlrpc:"dualPathNetworkFlag,omitempty"`
+
+	// no documentation yet
+	FlexCoreServerFlag *bool `json:"flexCoreServerFlag,omitempty" xmlrpc:"flexCoreServerFlag,omitempty"`
 
 	// Indicates whether or not the server contains a GPU.
 	GpuFlag *bool `json:"gpuFlag,omitempty" xmlrpc:"gpuFlag,omitempty"`

@@ -50,6 +50,12 @@ type Ticket struct {
 	// The list of additional emails to notify when a ticket update is made.
 	AttachedAdditionalEmails []User_Customer_AdditionalEmail `json:"attachedAdditionalEmails,omitempty" xmlrpc:"attachedAdditionalEmails,omitempty"`
 
+	// A count of the Dedicated Hosts associated with a ticket. This is used in cases where a ticket is directly associated with one or more Dedicated Hosts.
+	AttachedDedicatedHostCount *uint `json:"attachedDedicatedHostCount,omitempty" xmlrpc:"attachedDedicatedHostCount,omitempty"`
+
+	// The Dedicated Hosts associated with a ticket. This is used in cases where a ticket is directly associated with one or more Dedicated Hosts.
+	AttachedDedicatedHosts []Virtual_DedicatedHost `json:"attachedDedicatedHosts,omitempty" xmlrpc:"attachedDedicatedHosts,omitempty"`
+
 	// A count of the files attached to a ticket.
 	AttachedFileCount *uint `json:"attachedFileCount,omitempty" xmlrpc:"attachedFileCount,omitempty"`
 
@@ -308,6 +314,20 @@ type Ticket_Attachment_CardChangeRequest struct {
 	Resource *Billing_Payment_Card_ChangeRequest `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
+// SoftLayer tickets have the ability to be associated with specific pieces of dedicated hosts in a customer's inventory. Attaching a dedicated host to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Dedicated_Host data type models the relationship between a dedicated host and a ticket. Only one attachment record may exist per dedicated host item per ticket.
+type Ticket_Attachment_Dedicated_Host struct {
+	Ticket_Attachment
+
+	// The Dedicated Host that is attached to a ticket.
+	DedicatedHost *Virtual_DedicatedHost `json:"dedicatedHost,omitempty" xmlrpc:"dedicatedHost,omitempty"`
+
+	// The internal identifier of the Dedicated Host that is attached to a ticket.
+	DedicatedHostId *int `json:"dedicatedHostId,omitempty" xmlrpc:"dedicatedHostId,omitempty"`
+
+	// The Dedicated Host that is attached to a ticket.
+	Resource *Virtual_DedicatedHost `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
 // SoftLayer tickets can have have files attached to them. Attaching a file to a ticket is a good way to report issues, provide documentation, and give examples of an issue. Both SoftLayer customers and employees have the ability to attach files to a ticket. The SoftLayer_Ticket_Attachment_File data type models a single file attached to a ticket.
 type Ticket_Attachment_File struct {
 	Entity
@@ -385,7 +405,7 @@ type Ticket_Attachment_Scheduled_Action struct {
 	TransactionId *int `json:"transactionId,omitempty" xmlrpc:"transactionId,omitempty"`
 }
 
-// SoftLayer tickets have the ability to be associated with specific pieces of hardware in a customer's inventory. Attaching hardware to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Hardware data type models the relationship between a piece of hardware and a ticket. Only one attachment record may exist per hardware item per ticket.
+// SoftLayer tickets have the ability to be associated with specific virtual guests in a customer's inventory. Attaching virtual guests to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Virtual_Guest data type models the relationship between a virtual guest and a ticket. Only one attachment record may exist per virtual guest per ticket.
 type Ticket_Attachment_Virtual_Guest struct {
 	Ticket_Attachment
 
@@ -451,12 +471,6 @@ type Ticket_Chat_TranscriptLine_Employee struct {
 // SoftLayer tickets have the ability to be assigned to one of SoftLayer's internal departments. The department that a ticket is assigned to is modeled by the SoftLayer_Ticket_Group data type. Ticket groups help to ensure that the proper department is handling a ticket. Standard support tickets are created from a number of pre-determined subjects. These subjects help determine which group a standard ticket is assigned to.
 type Ticket_Group struct {
 	Entity
-
-	// A count of
-	AssignedBrandCount *uint `json:"assignedBrandCount,omitempty" xmlrpc:"assignedBrandCount,omitempty"`
-
-	// no documentation yet
-	AssignedBrands []Brand `json:"assignedBrands,omitempty" xmlrpc:"assignedBrands,omitempty"`
 
 	// The category that a ticket group belongs to.
 	Category *Ticket_Group_Category `json:"category,omitempty" xmlrpc:"category,omitempty"`
@@ -551,6 +565,12 @@ type Ticket_Subject struct {
 	// The subject category id that this ticket subject belongs to.
 	CategoryId *int `json:"categoryId,omitempty" xmlrpc:"categoryId,omitempty"`
 
+	// A child subject
+	Children []Ticket_Subject `json:"children,omitempty" xmlrpc:"children,omitempty"`
+
+	// A count of a child subject
+	ChildrenCount *uint `json:"childrenCount,omitempty" xmlrpc:"childrenCount,omitempty"`
+
 	// no documentation yet
 	Group *Ticket_Group `json:"group,omitempty" xmlrpc:"group,omitempty"`
 
@@ -559,6 +579,12 @@ type Ticket_Subject struct {
 
 	// A ticket subject's name. This name is used for a standard support ticket's title.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// A parent subject
+	Parent *Ticket_Subject `json:"parent,omitempty" xmlrpc:"parent,omitempty"`
+
+	// Specifies the parent subject id.
+	ParentId *int `json:"parentId,omitempty" xmlrpc:"parentId,omitempty"`
 }
 
 // SoftLayer_Ticket_Subject_Category groups ticket subjects into logical group.

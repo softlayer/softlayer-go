@@ -248,6 +248,9 @@ type User_Customer struct {
 	// no documentation yet
 	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty" xmlrpc:"layoutProfiles,omitempty"`
 
+	// The linked account integration mode
+	LinkedAccountIntegrationMode *string `json:"linkedAccountIntegrationMode,omitempty" xmlrpc:"linkedAccountIntegrationMode,omitempty"`
+
 	// A user's locale. Locale holds user's language and region information.
 	Locale *Locale `json:"locale,omitempty" xmlrpc:"locale,omitempty"`
 
@@ -433,6 +436,9 @@ type User_Customer struct {
 
 	// A portal user's username.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
+
+	// The verification code from Bluemix BSS to save in the invitation
+	VerificationCode *string `json:"verificationCode,omitempty" xmlrpc:"verificationCode,omitempty"`
 
 	// A count of a portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
 	VirtualGuestCount *uint `json:"virtualGuestCount,omitempty" xmlrpc:"virtualGuestCount,omitempty"`
@@ -1220,6 +1226,9 @@ type User_Permission_Action struct {
 
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	Key *string `json:"key,omitempty" xmlrpc:"key,omitempty"`
 
 	// no documentation yet
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`

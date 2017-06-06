@@ -131,6 +131,18 @@ func (r Account) CountHourlyInstances() (resp int, err error) {
 	return
 }
 
+// Create a new Customer user record in the SoftLayer customer portal. This is a wrapper around the Customer::createObject call, please see the documentation of that API. This wrapper adds the feature of the "silentlyCreate" option, which bypasses the IBMid invitation email process.  False (the default) goes through the IBMid invitation email process, which creates the IBMid/SoftLayer Single-Sign-On (SSO) user link when the invitation is accepted (meaning the email has been received, opened, and the link(s) inside the email have been clicked to complete the process). True will silently (no email) create the IBMid/SoftLayer user SSO link immediately. Either case will use the value in the template object 'email' field to indicate the IBMid to use. This can be the username or, if unique, the email address of an IBMid.  In the silent case, the IBMid must already exist.  In the non-silent invitation email case, the IBMid can be created during this flow, by specifying an email address to be used to create the IBMid.All the features and restrictions of createObject apply to this API as well.  In addition, note that the "silentlyCreate" flag is ONLY valid for IBMid-authenticated accounts.
+func (r Account) CreateUser(templateObject *datatypes.User_Customer, password *string, vpnPassword *string, silentlyCreateFlag *bool) (resp datatypes.User_Customer, err error) {
+	params := []interface{}{
+		templateObject,
+		password,
+		vpnPassword,
+		silentlyCreateFlag,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account", "createUser", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve An email address that is responsible for abuse and legal inquiries on behalf of an account. For instance, new legal and abuse tickets are sent to this address.
 func (r Account) GetAbuseEmail() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAbuseEmail", nil, &r.Options, &resp)
@@ -563,6 +575,12 @@ func (r Account) GetDatacentersWithSubnetAllocations() (resp []datatypes.Locatio
 	return
 }
 
+// Retrieve An account's associated virtual dedicated host objects.
+func (r Account) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHosts", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag indicating whether payments are processed for this account.
 func (r Account) GetDisablePaymentProcessingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDisablePaymentProcessingFlag", nil, &r.Options, &resp)
@@ -726,6 +744,12 @@ func (r Account) GetHardwareOverBandwidthAllocation() (resp []datatypes.Hardware
 	return
 }
 
+// Return a collection of managed hardware pools.
+func (r Account) GetHardwarePools() (resp []datatypes.Container_Hardware_Pool_Details, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwarePools", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An account's associated hardware objects projected to go over bandwidth allocation.
 func (r Account) GetHardwareProjectedOverBandwidthAllocation() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareProjectedOverBandwidthAllocation", nil, &r.Options, &resp)
@@ -877,6 +901,12 @@ func (r Account) GetHourlyVirtualGuests() (resp []datatypes.Virtual_Guest, err e
 // Retrieve An account's associated Virtual Storage volumes.
 func (r Account) GetHubNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHubNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Unique identifier for a customer used throughout IBM.
+func (r Account) GetIbmCustomerNumber() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getIbmCustomerNumber", nil, &r.Options, &resp)
 	return
 }
 
@@ -1571,6 +1601,12 @@ func (r Account) GetReplicationEvents() (resp []datatypes.Network_Storage_Event,
 	return
 }
 
+// Retrieve Indicates whether newly created users under this account will be associated with IBMid via an email requiring a response, or not.
+func (r Account) GetRequireSilentIBMidUserCreation() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getRequireSilentIBMidUserCreation", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An account's associated top-level resource groups.
 func (r Account) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getResourceGroups", nil, &r.Options, &resp)
@@ -1616,6 +1652,12 @@ func (r Account) GetSecondaryDomains() (resp []datatypes.Dns_Secondary, err erro
 // Retrieve Stored security certificates (ie. SSL)
 func (r Account) GetSecurityCertificates() (resp []datatypes.Security_Certificate, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityCertificates", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The security groups belonging to this account.
+func (r Account) GetSecurityGroups() (resp []datatypes.Network_SecurityGroup, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityGroups", nil, &r.Options, &resp)
 	return
 }
 
@@ -1904,6 +1946,12 @@ func (r Account) HourlyInstanceLimit() (resp int, err error) {
 // This method will return the limit (number) of hourly bare metal servers the account is allowed to have.
 func (r Account) HourlyServerLimit() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "hourlyServerLimit", nil, &r.Options, &resp)
+	return
+}
+
+// Returns true if this account is eligible for the local currency program, false otherwise.
+func (r Account) IsEligibleForLocalCurrencyProgram() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "isEligibleForLocalCurrencyProgram", nil, &r.Options, &resp)
 	return
 }
 

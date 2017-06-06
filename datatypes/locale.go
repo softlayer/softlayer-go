@@ -48,6 +48,12 @@ type Locale_Country struct {
 	LongName *string `json:"longName,omitempty" xmlrpc:"longName,omitempty"`
 
 	// no documentation yet
+	PostalCodeFormat *string `json:"postalCodeFormat,omitempty" xmlrpc:"postalCodeFormat,omitempty"`
+
+	// no documentation yet
+	PostalCodeRequiredFlag *int `json:"postalCodeRequiredFlag,omitempty" xmlrpc:"postalCodeRequiredFlag,omitempty"`
+
+	// no documentation yet
 	ShortName *string `json:"shortName,omitempty" xmlrpc:"shortName,omitempty"`
 
 	// A count of states that belong to this country.

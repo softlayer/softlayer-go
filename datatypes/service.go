@@ -20,6 +20,23 @@
 
 package datatypes
 
+// The SoftLayer_Service_External_Resource is a placeholder that references a service being provided outside of the standard SoftLayer system.
+type Service_External_Resource struct {
+	Entity
+
+	// The customer account that is consuming the service.
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
+
+	// The customer account that is consuming the related service.
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// The unique identifier in the service provider's system.
+	ExternalIdentifier *string `json:"externalIdentifier,omitempty" xmlrpc:"externalIdentifier,omitempty"`
+
+	// An external resource's unique identifier in the SoftLayer system.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+}
+
 // no documentation yet
 type Service_Provider struct {
 	Entity

@@ -102,7 +102,7 @@ func (r Brand) GetAllOwnedAccounts() (resp []datatypes.Account, err error) {
 	return
 }
 
-// no documentation yet
+// (DEPRECATED) Use [[SoftLayer_Ticket_Subject::getAllObjects]] method.
 func (r Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
 	params := []interface{}{
 		account,

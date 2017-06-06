@@ -29,6 +29,112 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
+// This type presents the structure for a DedicatedHost. The type contains relational properties to distinguish a host, associate an account to it.
+type Virtual_DedicatedHost struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetVirtualDedicatedHostService returns an instance of the Virtual_DedicatedHost SoftLayer service
+func GetVirtualDedicatedHostService(sess *session.Session) Virtual_DedicatedHost {
+	return Virtual_DedicatedHost{Session: sess}
+}
+
+func (r Virtual_DedicatedHost) Id(id int) Virtual_DedicatedHost {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Virtual_DedicatedHost) Mask(mask string) Virtual_DedicatedHost {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Virtual_DedicatedHost) Filter(filter string) Virtual_DedicatedHost {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Virtual_DedicatedHost) Limit(limit int) Virtual_DedicatedHost {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Virtual_DedicatedHost) Offset(offset int) Virtual_DedicatedHost {
+	r.Options.Offset = &offset
+	return r
+}
+
+// This method will cancel a dedicated virtual host immediately.
+func (r Virtual_DedicatedHost) DeleteObject() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "deleteObject", nil, &r.Options, &resp)
+	return
+}
+
+// Edit a dedicated host's properties
+func (r Virtual_DedicatedHost) EditObject(templateObject *datatypes.Virtual_DedicatedHost) (resp bool, err error) {
+	params := []interface{}{
+		templateObject,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "editObject", params, &r.Options, &resp)
+	return
+}
+
+// Get the allocation properties for a specified virtual host
+func (r Virtual_DedicatedHost) FetchAllocationStatus() (resp datatypes.Container_Virtual_DedicatedHost_AllocationStatus, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "fetchAllocationStatus", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The account which dedicated host belongs to.
+func (r Virtual_DedicatedHost) GetAccount() (resp datatypes.Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getAccount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The container representing allocations on a dedicated host.
+func (r Virtual_DedicatedHost) GetAllocationStatus() (resp datatypes.Container_Virtual_DedicatedHost_AllocationStatus, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getAllocationStatus", nil, &r.Options, &resp)
+	return
+}
+
+// This method will get the available backend routers to order [[SoftLayer_Virtual_DedicatedHost]]
+func (r Virtual_DedicatedHost) GetAvailableRouters(dedicatedHost *datatypes.Virtual_DedicatedHost) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		dedicatedHost,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getAvailableRouters", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve The backendRouter behind dedicated host's pool.
+func (r Virtual_DedicatedHost) GetBackendRouter() (resp datatypes.Hardware_Router_Backend, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getBackendRouter", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The datacenter that the host resides in.
+func (r Virtual_DedicatedHost) GetDatacenter() (resp datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getDatacenter", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The guests associated with a host.
+func (r Virtual_DedicatedHost) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getGuests", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Virtual_DedicatedHost) GetObject() (resp datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getObject", nil, &r.Options, &resp)
+	return
+}
+
 // The virtual disk image data type presents the structure in which a virtual disk image will be presented.
 //
 // Virtual block devices are assigned to disk images.
@@ -1155,6 +1261,12 @@ func (r Virtual_Guest) GetDatacenter() (resp datatypes.Location, err error) {
 	return
 }
 
+// Retrieve The dedicated host associated with this guest.
+func (r Virtual_Guest) GetDedicatedHost() (resp datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getDedicatedHost", nil, &r.Options, &resp)
+	return
+}
+
 // Return a drive retention SoftLayer_Item_Price object for a guest.
 func (r Virtual_Guest) GetDriveRetentionItemPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getDriveRetentionItemPrice", nil, &r.Options, &resp)
@@ -1667,6 +1779,12 @@ func (r Virtual_Guest) GetTagReferences() (resp []datatypes.Tag_Reference, err e
 	return
 }
 
+// Retrieve The type of this virtual guest.
+func (r Virtual_Guest) GetType() (resp datatypes.Virtual_Guest_Type, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getType", nil, &r.Options, &resp)
+	return
+}
+
 // getUpgradeItemPrices() retrieves a list of all upgrades available to a CloudLayer Computing Instance. Upgradeable items include, but are not limited to, number of cores, amount of RAM, storage configuration, and network port speed.
 //
 // This method exclude downgrade item prices by default. You can set the "includeDowngradeItemPrices" parameter to true so that it can include downgrade item prices.
@@ -1745,6 +1863,16 @@ func (r Virtual_Guest) IsolateInstanceForDestructiveAction() (err error) {
 // Creates a transaction to migrate a virtual guest to a new host. NOTE: Will only migrate if SoftLayer_Virtual_Guest property pendingMigrationFlag = true
 func (r Virtual_Guest) Migrate() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "migrate", nil, &r.Options, &resp)
+	return
+}
+
+// Create a transaction to migrate an instance from one dedicated host to another dedicated host
+func (r Virtual_Guest) MigrateDedicatedHost(destinationHostId *int) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		destinationHostId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "migrateDedicatedHost", params, &r.Options, &resp)
 	return
 }
 
@@ -1969,6 +2097,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) Offset(offset int) Virtual_Gu
 	return r
 }
 
+// <<<EOT
+func (r Virtual_Guest_Block_Device_Template_Group) AddCloudInitAttribute() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "addCloudInitAttribute", nil, &r.Options, &resp)
+	return
+}
+
 // This method will create transaction(s) to add available locations to an archive image template.
 func (r Virtual_Guest_Block_Device_Template_Group) AddLocations(locations []datatypes.Location) (resp bool, err error) {
 	params := []interface{}{
@@ -2005,6 +2139,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) CreatePublicArchiveTransactio
 		locations,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "createPublicArchiveTransaction", params, &r.Options, &resp)
+	return
+}
+
+// <<<EOT
+func (r Virtual_Guest_Block_Device_Template_Group) DeleteCloudInitAttribute() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "deleteCloudInitAttribute", nil, &r.Options, &resp)
 	return
 }
 
@@ -2059,6 +2199,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevices() (resp []dat
 // Retrieve The total disk space of all images in a image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevicesDiskSpaceTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevicesDiskSpaceTotal", nil, &r.Options, &resp)
+	return
+}
+
+// <<<EOT
+func (r Virtual_Guest_Block_Device_Template_Group) GetBootMode() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBootMode", nil, &r.Options, &resp)
 	return
 }
 
@@ -2170,6 +2316,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescripti
 	return
 }
 
+// <<<EOT
+func (r Virtual_Guest_Block_Device_Template_Group) IsCloudInit() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "isCloudInit", nil, &r.Options, &resp)
+	return
+}
+
 // This method will permit another SoftLayer customer account access to provision CloudLayer Computing Instances from an image template group. Template access should only be given to the parent template group object, not the child.
 func (r Virtual_Guest_Block_Device_Template_Group) PermitSharingAccess(accountId *int) (resp bool, err error) {
 	params := []interface{}{
@@ -2194,6 +2346,15 @@ func (r Virtual_Guest_Block_Device_Template_Group) SetAvailableLocations(locatio
 		locations,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "setAvailableLocations", params, &r.Options, &resp)
+	return
+}
+
+// <<<EOT
+func (r Virtual_Guest_Block_Device_Template_Group) SetBootMode(newBootMode *string) (resp bool, err error) {
+	params := []interface{}{
+		newBootMode,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "setBootMode", params, &r.Options, &resp)
 	return
 }
 
@@ -2460,6 +2621,12 @@ func (r Virtual_Guest_Network_Component) GetRouter() (resp datatypes.Hardware_Ro
 	return
 }
 
+// Retrieve The bindings associating security groups to this network component
+func (r Virtual_Guest_Network_Component) GetSecurityGroupBindings() (resp []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSecurityGroupBindings", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A network component's subnets. A subnet is a group of IP addresses
 func (r Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSubnets", nil, &r.Options, &resp)
@@ -2469,6 +2636,12 @@ func (r Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network_
 // Issues a ping command and returns the success (true) or failure (false) of the ping command.
 func (r Virtual_Guest_Network_Component) IsPingable() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "isPingable", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Virtual_Guest_Network_Component) SecurityGroupsReady() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "securityGroupsReady", nil, &r.Options, &resp)
 	return
 }
 

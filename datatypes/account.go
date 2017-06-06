@@ -311,6 +311,12 @@ type Account struct {
 	// Datacenters which contain subnets that the account has access to route.
 	DatacentersWithSubnetAllocations []Location `json:"datacentersWithSubnetAllocations,omitempty" xmlrpc:"datacentersWithSubnetAllocations,omitempty"`
 
+	// A count of an account's associated virtual dedicated host objects.
+	DedicatedHostCount *uint `json:"dedicatedHostCount,omitempty" xmlrpc:"dedicatedHostCount,omitempty"`
+
+	// An account's associated virtual dedicated host objects.
+	DedicatedHosts []Virtual_DedicatedHost `json:"dedicatedHosts,omitempty" xmlrpc:"dedicatedHosts,omitempty"`
+
 	// Device Fingerprint Identifier - Used internally and can safely be ignored.
 	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty" xmlrpc:"deviceFingerprintId,omitempty"`
 
@@ -520,6 +526,9 @@ type Account struct {
 
 	// A count of an account's associated Virtual Storage volumes.
 	HubNetworkStorageCount *uint `json:"hubNetworkStorageCount,omitempty" xmlrpc:"hubNetworkStorageCount,omitempty"`
+
+	// Unique identifier for a customer used throughout IBM.
+	IbmCustomerNumber *string `json:"ibmCustomerNumber,omitempty" xmlrpc:"ibmCustomerNumber,omitempty"`
 
 	// Timestamp representing the point in time when an account is required to use IBMid authentication.
 	IbmIdMigrationExpirationTimestamp *string `json:"ibmIdMigrationExpirationTimestamp,omitempty" xmlrpc:"ibmIdMigrationExpirationTimestamp,omitempty"`
@@ -1079,6 +1088,9 @@ type Account struct {
 	// The Replication events for all Network Storage volumes on an account.
 	ReplicationEvents []Network_Storage_Event `json:"replicationEvents,omitempty" xmlrpc:"replicationEvents,omitempty"`
 
+	// Indicates whether newly created users under this account will be associated with IBMid via an email requiring a response, or not.
+	RequireSilentIBMidUserCreation *bool `json:"requireSilentIBMidUserCreation,omitempty" xmlrpc:"requireSilentIBMidUserCreation,omitempty"`
+
 	// A count of an account's associated top-level resource groups.
 	ResourceGroupCount *uint `json:"resourceGroupCount,omitempty" xmlrpc:"resourceGroupCount,omitempty"`
 
@@ -1117,6 +1129,12 @@ type Account struct {
 
 	// Stored security certificates (ie. SSL)
 	SecurityCertificates []Security_Certificate `json:"securityCertificates,omitempty" xmlrpc:"securityCertificates,omitempty"`
+
+	// A count of the security groups belonging to this account.
+	SecurityGroupCount *uint `json:"securityGroupCount,omitempty" xmlrpc:"securityGroupCount,omitempty"`
+
+	// The security groups belonging to this account.
+	SecurityGroups []Network_SecurityGroup `json:"securityGroups,omitempty" xmlrpc:"securityGroups,omitempty"`
 
 	// A count of an account's vulnerability scan requests.
 	SecurityScanRequestCount *uint `json:"securityScanRequestCount,omitempty" xmlrpc:"securityScanRequestCount,omitempty"`

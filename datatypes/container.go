@@ -352,10 +352,16 @@ type Container_Authentication_Response_Account struct {
 	BluemixAccountId *string `json:"bluemixAccountId,omitempty" xmlrpc:"bluemixAccountId,omitempty"`
 
 	// no documentation yet
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
 	DefaultAccount *bool `json:"defaultAccount,omitempty" xmlrpc:"defaultAccount,omitempty"`
 
 	// no documentation yet
 	IsMasterUserFlag *bool `json:"isMasterUserFlag,omitempty" xmlrpc:"isMasterUserFlag,omitempty"`
+
+	// no documentation yet
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
 	PhoneFactorExternalAuthenticationRequired *bool `json:"phoneFactorExternalAuthenticationRequired,omitempty" xmlrpc:"phoneFactorExternalAuthenticationRequired,omitempty"`
@@ -545,6 +551,17 @@ type Container_Bandwidth_Projection struct {
 
 	// The minimum date included in this list.
 	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
+}
+
+// no documentation yet
+type Container_Billing_Currency_Country struct {
+	Entity
+
+	// no documentation yet
+	AvailableCurrencies []Billing_Currency `json:"availableCurrencies,omitempty" xmlrpc:"availableCurrencies,omitempty"`
+
+	// no documentation yet
+	Country *Locale_Country `json:"country,omitempty" xmlrpc:"country,omitempty"`
 }
 
 // no documentation yet
@@ -1184,6 +1201,64 @@ type Container_Hardware_MassUpdate struct {
 	SuccessFlag *string `json:"successFlag,omitempty" xmlrpc:"successFlag,omitempty"`
 }
 
+// no documentation yet
+type Container_Hardware_Pool_Details struct {
+	Entity
+
+	// no documentation yet
+	PoolDescription *string `json:"poolDescription,omitempty" xmlrpc:"poolDescription,omitempty"`
+
+	// no documentation yet
+	PoolKeyName *string `json:"poolKeyName,omitempty" xmlrpc:"poolKeyName,omitempty"`
+
+	// no documentation yet
+	PoolName *string `json:"poolName,omitempty" xmlrpc:"poolName,omitempty"`
+
+	// no documentation yet
+	Routers []Container_Hardware_Pool_Details_Router `json:"routers,omitempty" xmlrpc:"routers,omitempty"`
+
+	// no documentation yet
+	TotalHardware *int `json:"totalHardware,omitempty" xmlrpc:"totalHardware,omitempty"`
+
+	// no documentation yet
+	TotalInventoryHardware *int `json:"totalInventoryHardware,omitempty" xmlrpc:"totalInventoryHardware,omitempty"`
+
+	// no documentation yet
+	TotalProvisionedHardware *int `json:"totalProvisionedHardware,omitempty" xmlrpc:"totalProvisionedHardware,omitempty"`
+
+	// no documentation yet
+	TotalTestedHardware *int `json:"totalTestedHardware,omitempty" xmlrpc:"totalTestedHardware,omitempty"`
+
+	// no documentation yet
+	TotalTestingHardware *int `json:"totalTestingHardware,omitempty" xmlrpc:"totalTestingHardware,omitempty"`
+}
+
+// no documentation yet
+type Container_Hardware_Pool_Details_Router struct {
+	Entity
+
+	// no documentation yet
+	RouterId *int `json:"routerId,omitempty" xmlrpc:"routerId,omitempty"`
+
+	// no documentation yet
+	RouterName *string `json:"routerName,omitempty" xmlrpc:"routerName,omitempty"`
+
+	// no documentation yet
+	TotalHardware *int `json:"totalHardware,omitempty" xmlrpc:"totalHardware,omitempty"`
+
+	// no documentation yet
+	TotalInventoryHardware *int `json:"totalInventoryHardware,omitempty" xmlrpc:"totalInventoryHardware,omitempty"`
+
+	// no documentation yet
+	TotalProvisionedHardware *int `json:"totalProvisionedHardware,omitempty" xmlrpc:"totalProvisionedHardware,omitempty"`
+
+	// no documentation yet
+	TotalTestedHardware *int `json:"totalTestedHardware,omitempty" xmlrpc:"totalTestedHardware,omitempty"`
+
+	// no documentation yet
+	TotalTestingHardware *int `json:"totalTestingHardware,omitempty" xmlrpc:"totalTestingHardware,omitempty"`
+}
+
 // The SoftLayer_Container_Hardware_Server_Configuration data type contains information relating to a server's item price information, and hard drive partition information.
 type Container_Hardware_Server_Configuration struct {
 	Entity
@@ -1208,6 +1283,9 @@ type Container_Hardware_Server_Configuration struct {
 
 	// The item prices that a server can be configured with.
 	ItemPrices []Product_Item_Price `json:"itemPrices,omitempty" xmlrpc:"itemPrices,omitempty"`
+
+	// A flag indicating that the provision should use LVM for all logical drives.
+	LvmFlag *bool `json:"lvmFlag,omitempty" xmlrpc:"lvmFlag,omitempty"`
 
 	// A flag indicating that the remote management cards password will be reset.
 	ResetIpmiPassword *int `json:"resetIpmiPassword,omitempty" xmlrpc:"resetIpmiPassword,omitempty"`
@@ -1234,6 +1312,20 @@ type Container_Hardware_Server_Details struct {
 
 	// The software that belong to a piece of hardware.
 	Software []Software_Component `json:"software,omitempty" xmlrpc:"software,omitempty"`
+}
+
+// no documentation yet
+type Container_Hardware_Server_Request struct {
+	Entity
+
+	// no documentation yet
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
+
+	// no documentation yet
+	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
+
+	// no documentation yet
+	SuccessFlag *bool `json:"successFlag,omitempty" xmlrpc:"successFlag,omitempty"`
 }
 
 // SoftLayer_Container_KnowledgeLayer_QuestionAnswer models a single question and answer pair from SoftLayer's KnowledgeLayer knowledge base. SoftLayer's backend network interfaces with the KnowledgeLayer to recommend helpful articles when support tickets are created.
@@ -2318,6 +2410,23 @@ type Container_Network_Storage_Host struct {
 	ObjectType *string `json:"objectType,omitempty" xmlrpc:"objectType,omitempty"`
 }
 
+// SoftLayer_Container_Network_Storage_Hub_ObjectStorage_Bucket provides description of a bucket
+type Container_Network_Storage_Hub_ObjectStorage_Bucket struct {
+	Entity
+
+	// no documentation yet
+	BytesUsed *int `json:"bytesUsed,omitempty" xmlrpc:"bytesUsed,omitempty"`
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	ObjectCount *int `json:"objectCount,omitempty" xmlrpc:"objectCount,omitempty"`
+
+	// no documentation yet
+	StorageLocation *string `json:"storageLocation,omitempty" xmlrpc:"storageLocation,omitempty"`
+}
+
 // SoftLayer_Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl provides specific details is a container which contains the cdn urls associated with an object storage account
 type Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl struct {
 	Entity
@@ -2408,6 +2517,41 @@ type Container_Network_Storage_NetworkConnectionInformation struct {
 
 	// no documentation yet
 	StorageType *string `json:"storageType,omitempty" xmlrpc:"storageType,omitempty"`
+}
+
+// Container for Volume Clone Information
+type Container_Network_Storage_VolumeCloneParameters struct {
+	Entity
+
+	// The iopsPerGB of the volume
+	IopsPerGb *Float64 `json:"iopsPerGb,omitempty" xmlrpc:"iopsPerGb,omitempty"`
+
+	// Returns true if volume is cloneable; false otherwise
+	IsCloneable *bool `json:"isCloneable,omitempty" xmlrpc:"isCloneable,omitempty"`
+
+	// The maximumIopsPerGb allowed for a cloned volume
+	MaximumIopsPerGb *Float64 `json:"maximumIopsPerGb,omitempty" xmlrpc:"maximumIopsPerGb,omitempty"`
+
+	// The maximumIopsTier allowed for a cloned volume
+	MaximumIopsTier *Float64 `json:"maximumIopsTier,omitempty" xmlrpc:"maximumIopsTier,omitempty"`
+
+	// The maximumVolumeSize allowed for a cloned volume
+	MaximumVolumeSize *int `json:"maximumVolumeSize,omitempty" xmlrpc:"maximumVolumeSize,omitempty"`
+
+	// The minimumIopsPerGb allowed for a cloned volume
+	MinimumIopsPerGb *Float64 `json:"minimumIopsPerGb,omitempty" xmlrpc:"minimumIopsPerGb,omitempty"`
+
+	// The minimumIopsTier allowed for a cloned volume
+	MinimumIopsTier *Float64 `json:"minimumIopsTier,omitempty" xmlrpc:"minimumIopsTier,omitempty"`
+
+	// The minimumVolumeSize allowed for a cloned volume
+	MinimumVolumeSize *int `json:"minimumVolumeSize,omitempty" xmlrpc:"minimumVolumeSize,omitempty"`
+
+	// The volume clone status description
+	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
+	// This represents the volume username
+	VolumeUsername *string `json:"volumeUsername,omitempty" xmlrpc:"volumeUsername,omitempty"`
 }
 
 // SoftLayer_Container_Subnet_IPAddress models an IP v4 address as it exists as a member of it's subnet, letting the user know if it is a network identifier, gateway, broadcast, or useable address. Addresses that are neither the network identifier nor the gateway nor the broadcast addresses are usable by SoftLayer servers.
@@ -2727,6 +2871,9 @@ type Container_Product_Order struct {
 
 	// The number of cores for the server being ordered. This value is set internally.
 	ServerCoreCount *int `json:"serverCoreCount,omitempty" xmlrpc:"serverCoreCount,omitempty"`
+
+	// The token of a requesting service. Do not set.
+	ServiceToken *string `json:"serviceToken,omitempty" xmlrpc:"serviceToken,omitempty"`
 
 	// An optional computing instance identifier to be used as an installation base for a computing instance order
 	SourceVirtualGuestId *int `json:"sourceVirtualGuestId,omitempty" xmlrpc:"sourceVirtualGuestId,omitempty"`
@@ -3059,6 +3206,26 @@ type Container_Product_Order_Network_LoadBalancer struct {
 	Container_Product_Order
 }
 
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order for a Load Balancer as a Service.
+type Container_Product_Order_Network_LoadBalancer_AsAService struct {
+	Container_Product_Order
+
+	// A description of this Load Balancer.
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// A name to identify this Load Balancer.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// The [[SoftLayer_Network_LBaaS_LoadBalancerProtocolConfiguration]]s for this Load Balancer.
+	ProtocolConfigurations []Network_LBaaS_LoadBalancerProtocolConfiguration `json:"protocolConfigurations,omitempty" xmlrpc:"protocolConfigurations,omitempty"`
+
+	// The [[SoftLayer_Network_LBaaS_LoadBalancerServerInstanceInfo]]s for this Load Balancer.
+	ServerInstancesInformation []Network_LBaaS_LoadBalancerServerInstanceInfo `json:"serverInstancesInformation,omitempty" xmlrpc:"serverInstancesInformation,omitempty"`
+
+	// The [[SoftLayer_Network_Subnet]]s where this Load Balancer will be provisioned.
+	Subnets []Network_Subnet `json:"subnets,omitempty" xmlrpc:"subnets,omitempty"`
+}
+
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a global load balancer order with SoftLayer.
 type Container_Product_Order_Network_LoadBalancer_Global struct {
 	Container_Product_Order
@@ -3121,6 +3288,32 @@ type Container_Product_Order_Network_Protection_Firewall_Dedicated struct {
 
 	// generic properties.
 	VlanId *int `json:"vlanId,omitempty" xmlrpc:"vlanId,omitempty"`
+}
+
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order for Storage as a Service.
+type Container_Product_Order_Network_Storage_AsAService struct {
+	Container_Product_Order
+
+	// This must be populated only for duplicating a specific snapshot for volume duplicating. It represents the identifier of the origin [[SoftLayer_Network_Storage_Snapshot]]
+	DuplicateOriginSnapshotId *int `json:"duplicateOriginSnapshotId,omitempty" xmlrpc:"duplicateOriginSnapshotId,omitempty"`
+
+	// This must be populated only for duplicate volume ordering. It represents the identifier of the origin [[SoftLayer_Network_Storage]].
+	DuplicateOriginVolumeId *int `json:"duplicateOriginVolumeId,omitempty" xmlrpc:"duplicateOriginVolumeId,omitempty"`
+
+	// When ordering performance by IOPS, populate this property with how many.
+	Iops *int `json:"iops,omitempty" xmlrpc:"iops,omitempty"`
+
+	// This must be populated only for replicant volume ordering. It represents the identifier of the origin [[SoftLayer_Network_Storage]].
+	OriginVolumeId *int `json:"originVolumeId,omitempty" xmlrpc:"originVolumeId,omitempty"`
+
+	// This must be populated only for replicant volume ordering. It represents the [[SoftLayer_Network_Storage_Schedule]] that will be be used to replicate the origin [[SoftLayer_Network_Storage]] volume.
+	OriginVolumeScheduleId *int `json:"originVolumeScheduleId,omitempty" xmlrpc:"originVolumeScheduleId,omitempty"`
+
+	// This must be populated for block storage orders. This should match the OS type of the host(s) that will connect to the volume. The only required property is the keyName of the OS type. This property is ignored for file storage orders.
+	OsFormatType *Network_Storage_Iscsi_OS_Type `json:"osFormatType,omitempty" xmlrpc:"osFormatType,omitempty"`
+
+	// Volume size in GB's.
+	VolumeSize *int `json:"volumeSize,omitempty" xmlrpc:"volumeSize,omitempty"`
 }
 
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order for additional Evault plugins.
@@ -3299,6 +3492,11 @@ type Container_Product_Order_NewCustomerSetup struct {
 
 	// no documentation yet
 	ExternalServiceProviderKey *string `json:"externalServiceProviderKey,omitempty" xmlrpc:"externalServiceProviderKey,omitempty"`
+}
+
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order for Private Cloud.
+type Container_Product_Order_Private_Cloud struct {
+	Container_Product_Order
 }
 
 // This is used for storing various items about the order. Currently used for storing additional raid information when ordering servers. This is optional
@@ -4302,9 +4500,52 @@ type Container_Utility_Network_Subnet_Mask_Generic_Detail struct {
 	Mask *string `json:"mask,omitempty" xmlrpc:"mask,omitempty"`
 }
 
+// This type represents the structure to hold the allocation properties of a [[SoftLayer_Virtual_DedicatedHost]].
+type Container_Virtual_DedicatedHost_AllocationStatus struct {
+	Entity
+
+	// Number of CPU cores allocated on the specified DedicatedHost
+	CpuAllocated *int `json:"cpuAllocated,omitempty" xmlrpc:"cpuAllocated,omitempty"`
+
+	// Number of CPU cores available on the specified DedicatedHost
+	CpuAvailable *int `json:"cpuAvailable,omitempty" xmlrpc:"cpuAvailable,omitempty"`
+
+	// Total number of cpu cores on the DedicatedHost
+	CpuCount *int `json:"cpuCount,omitempty" xmlrpc:"cpuCount,omitempty"`
+
+	// Amount of disk space allocated on the specified DedicatedHost
+	DiskAllocated *int `json:"diskAllocated,omitempty" xmlrpc:"diskAllocated,omitempty"`
+
+	// Amount of disk space available on the specified DedicatedHost
+	DiskAvailable *int `json:"diskAvailable,omitempty" xmlrpc:"diskAvailable,omitempty"`
+
+	// Total amount of disk capacity on the DedicatedHost
+	DiskCapacity *int `json:"diskCapacity,omitempty" xmlrpc:"diskCapacity,omitempty"`
+
+	// Number of guests allocated on the specified DedicatedHost
+	GuestCount *int `json:"guestCount,omitempty" xmlrpc:"guestCount,omitempty"`
+
+	// Amount of memory allocated on the specified DedicatedHost
+	MemoryAllocated *int `json:"memoryAllocated,omitempty" xmlrpc:"memoryAllocated,omitempty"`
+
+	// Amount of memory available on the specified DedicatedHost
+	MemoryAvailable *int `json:"memoryAvailable,omitempty" xmlrpc:"memoryAvailable,omitempty"`
+
+	// Total amount of memory capacity on the DedicatedHost
+	MemoryCapacity *int `json:"memoryCapacity,omitempty" xmlrpc:"memoryCapacity,omitempty"`
+}
+
 // The SoftLayer_Container_Virtual_Guest_Block_Device_Template_Configuration data type contains information relating to a template's external location for importing and exporting
 type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	Entity
+
+	//
+	// Optional virtualization boot mode parameter, if set, can mark a template to boot specifically into PV or HVM.
+	BootMode *string `json:"bootMode,omitempty" xmlrpc:"bootMode,omitempty"`
+
+	//
+	// Specifies if image requires cloud-init.
+	CloudInit *bool `json:"cloudInit,omitempty" xmlrpc:"cloudInit,omitempty"`
 
 	// The group name to be applied to the imported template
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`

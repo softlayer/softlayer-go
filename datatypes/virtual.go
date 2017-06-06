@@ -20,6 +20,53 @@
 
 package datatypes
 
+// This type presents the structure for a DedicatedHost. The type contains relational properties to distinguish a host, associate an account to it.
+type Virtual_DedicatedHost struct {
+	Entity
+
+	// The account which dedicated host belongs to.
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
+
+	// Dedicated host's associated account id
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// The container representing allocations on a dedicated host.
+	AllocationStatus *Container_Virtual_DedicatedHost_AllocationStatus `json:"allocationStatus,omitempty" xmlrpc:"allocationStatus,omitempty"`
+
+	// The backendRouter behind dedicated host's pool.
+	BackendRouter *Hardware_Router_Backend `json:"backendRouter,omitempty" xmlrpc:"backendRouter,omitempty"`
+
+	// Capacity this dedicated host's cpu allocation is restricted to
+	CpuCount *int `json:"cpuCount,omitempty" xmlrpc:"cpuCount,omitempty"`
+
+	// The date dedicated host was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// The datacenter that the host resides in.
+	Datacenter *Location `json:"datacenter,omitempty" xmlrpc:"datacenter,omitempty"`
+
+	// Capacity this dedicated host's disk allocation is restricted to
+	DiskCapacity *int `json:"diskCapacity,omitempty" xmlrpc:"diskCapacity,omitempty"`
+
+	// A count of the guests associated with a host.
+	GuestCount *uint `json:"guestCount,omitempty" xmlrpc:"guestCount,omitempty"`
+
+	// The guests associated with a host.
+	Guests []Virtual_Guest `json:"guests,omitempty" xmlrpc:"guests,omitempty"`
+
+	// Unique ID for dedicated host.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Capacity this dedicated host's memory allocation is restricted to
+	MemoryCapacity *int `json:"memoryCapacity,omitempty" xmlrpc:"memoryCapacity,omitempty"`
+
+	// The date dedicated host was last modified.
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// Dedicated host's name.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
 // The virtual disk image data type presents the structure in which a virtual disk image will be presented.
 //
 // Virtual block devices are assigned to disk images.
@@ -306,6 +353,9 @@ type Virtual_Guest struct {
 	// When true this flag specifies that a compute instance is to run on hosts that only have guests from the same account.
 	DedicatedAccountHostOnlyFlag *bool `json:"dedicatedAccountHostOnlyFlag,omitempty" xmlrpc:"dedicatedAccountHostOnlyFlag,omitempty"`
 
+	// The dedicated host associated with this guest.
+	DedicatedHost *Virtual_DedicatedHost `json:"dedicatedHost,omitempty" xmlrpc:"dedicatedHost,omitempty"`
+
 	// A computing instance's domain name
 	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
@@ -584,6 +634,12 @@ type Virtual_Guest struct {
 
 	// no documentation yet
 	TagReferences []Tag_Reference `json:"tagReferences,omitempty" xmlrpc:"tagReferences,omitempty"`
+
+	// The type of this virtual guest.
+	Type *Virtual_Guest_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
+	// Gives the type of guest categorized as PUBLIC, DEDICATED or PRIVATE.
+	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
 
 	// A computing instance's associated upgrade request object if any.
 	UpgradeRequest *Product_Upgrade_Request `json:"upgradeRequest,omitempty" xmlrpc:"upgradeRequest,omitempty"`
@@ -1015,6 +1071,12 @@ type Virtual_Guest_Network_Component struct {
 	// A network component's routers.
 	Router *Hardware_Router `json:"router,omitempty" xmlrpc:"router,omitempty"`
 
+	// A count of the bindings associating security groups to this network component
+	SecurityGroupBindingCount *uint `json:"securityGroupBindingCount,omitempty" xmlrpc:"securityGroupBindingCount,omitempty"`
+
+	// The bindings associating security groups to this network component
+	SecurityGroupBindings []Virtual_Network_SecurityGroup_NetworkComponentBinding `json:"securityGroupBindings,omitempty" xmlrpc:"securityGroupBindings,omitempty"`
+
 	// A computing instance network component's speed, measured in Mbit per second.
 	Speed *int `json:"speed,omitempty" xmlrpc:"speed,omitempty"`
 
@@ -1087,6 +1149,20 @@ type Virtual_Guest_SupplementalCreateObjectOptions struct {
 	PostInstallScriptUri *string `json:"postInstallScriptUri,omitempty" xmlrpc:"postInstallScriptUri,omitempty"`
 }
 
+// SoftLayer_Virtual_Guest_Type models the type of a [[SoftLayer_Virtual_Guest]] (PUBLIC | DEDICATED | PRIVATE)
+type Virtual_Guest_Type struct {
+	Entity
+
+	// no documentation yet
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
 // The virtual host represents the platform on which virtual guests reside. At times a virtual host has no allocations on the physical server, however with many modern platforms it is a virtual machine with small CPU and Memory allocations that runs in the Control Domain.
 type Virtual_Host struct {
 	Entity
@@ -1141,6 +1217,26 @@ type Virtual_Host struct {
 
 	// Unique ID for a virtual host's record on a virtualization platform.
 	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// The SoftLayer_Virtual_Network_SecurityGroup_NetworkComponentBinding data type contains general information for a single binding. A binding associates a [[SoftLayer_Virtual_Guest_Network_Component]] with a [[SoftLayer_Network_SecurityGroup]].
+type Virtual_Network_SecurityGroup_NetworkComponentBinding struct {
+	Entity
+
+	// The unique ID for a binding
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	NetworkComponent *Virtual_Guest_Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
+
+	// The ID of the network component
+	NetworkComponentId *int `json:"networkComponentId,omitempty" xmlrpc:"networkComponentId,omitempty"`
+
+	// no documentation yet
+	SecurityGroup *Network_SecurityGroup `json:"securityGroup,omitempty" xmlrpc:"securityGroup,omitempty"`
+
+	// The ID of the security group
+	SecurityGroupId *int `json:"securityGroupId,omitempty" xmlrpc:"securityGroupId,omitempty"`
 }
 
 // The SoftLayer_Virtual_Storage_Repository represents a web based storage system that can be accessed through many types of devices, interfaces, and other resources.

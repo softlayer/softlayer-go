@@ -21,6 +21,11 @@
 package datatypes
 
 // no documentation yet
+type Resource_Configuration struct {
+	Entity
+}
+
+// no documentation yet
 type Resource_Group struct {
 	Entity
 

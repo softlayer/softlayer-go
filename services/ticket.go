@@ -322,6 +322,12 @@ func (r Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_Ad
 	return
 }
 
+// Retrieve The Dedicated Hosts associated with a ticket. This is used in cases where a ticket is directly associated with one or more Dedicated Hosts.
+func (r Ticket) GetAttachedDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedDedicatedHosts", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve the file attached to a SoftLayer ticket by it's given identifier. To retrieve a list of files attached to a ticket either call the SoftLayer_Ticket::getAttachedFiles method or call SoftLayer_Ticket::getObject with ''attachedFiles'' defined in an object mask.
 func (r Ticket) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
 	params := []interface{}{
@@ -592,6 +598,64 @@ func (r Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err 
 	return
 }
 
+// SoftLayer tickets have the ability to be associated with specific pieces of dedicated hosts in a customer's inventory. Attaching a dedicated host to a ticket can greatly increase response time from SoftLayer for issues that are related to one or more specific servers on a customer's account. The SoftLayer_Ticket_Attachment_Dedicated_Host data type models the relationship between a dedicated host and a ticket. Only one attachment record may exist per dedicated host item per ticket.
+type Ticket_Attachment_Dedicated_Host struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetTicketAttachmentDedicatedHostService returns an instance of the Ticket_Attachment_Dedicated_Host SoftLayer service
+func GetTicketAttachmentDedicatedHostService(sess *session.Session) Ticket_Attachment_Dedicated_Host {
+	return Ticket_Attachment_Dedicated_Host{Session: sess}
+}
+
+func (r Ticket_Attachment_Dedicated_Host) Id(id int) Ticket_Attachment_Dedicated_Host {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Ticket_Attachment_Dedicated_Host) Mask(mask string) Ticket_Attachment_Dedicated_Host {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Ticket_Attachment_Dedicated_Host) Filter(filter string) Ticket_Attachment_Dedicated_Host {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Ticket_Attachment_Dedicated_Host) Limit(limit int) Ticket_Attachment_Dedicated_Host {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Ticket_Attachment_Dedicated_Host) Offset(offset int) Ticket_Attachment_Dedicated_Host {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieve The Dedicated Host that is attached to a ticket.
+func (r Ticket_Attachment_Dedicated_Host) GetDedicatedHost() (resp datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_Dedicated_Host", "getDedicatedHost", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Ticket_Attachment_Dedicated_Host) GetObject() (resp datatypes.Ticket_Attachment_Dedicated_Host, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_Dedicated_Host", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The Dedicated Host that is attached to a ticket.
+func (r Ticket_Attachment_Dedicated_Host) GetResource() (resp datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_Dedicated_Host", "getResource", nil, &r.Options, &resp)
+	return
+}
+
 // SoftLayer tickets can have have files attached to them. Attaching a file to a ticket is a good way to report issues, provide documentation, and give examples of an issue. Both SoftLayer customers and employees have the ability to attach files to a ticket. The SoftLayer_Ticket_Attachment_File data type models a single file attached to a ticket.
 type Ticket_Attachment_File struct {
 	Session *session.Session
@@ -754,6 +818,12 @@ func (r Ticket_Subject) GetCategory() (resp datatypes.Ticket_Subject_Category, e
 	return
 }
 
+// Retrieve A child subject
+func (r Ticket_Subject) GetChildren() (resp []datatypes.Ticket_Subject, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getChildren", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getGroup", nil, &r.Options, &resp)
@@ -763,6 +833,12 @@ func (r Ticket_Subject) GetGroup() (resp datatypes.Ticket_Group, err error) {
 // getObject retrieves the SoftLayer_Ticket_Subject object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Ticket_Subject service.
 func (r Ticket_Subject) GetObject() (resp datatypes.Ticket_Subject, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A parent subject
+func (r Ticket_Subject) GetParent() (resp datatypes.Ticket_Subject, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getParent", nil, &r.Options, &resp)
 	return
 }
 

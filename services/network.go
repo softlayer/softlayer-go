@@ -125,15 +125,20 @@ func (r Network) CreateSubnet(subnet *datatypes.Network_Subnet, pod *datatypes.N
 	return
 }
 
-// Remove the specified Network. This operation may only be completed if the Network has no Subnets. Attempting to remove a Network with subnets will result in an error.
+// Remove the specified Network along with any Subnets.
 func (r Network) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
-// ```Currently not supported. If attempted and if the subnet would be removed, an error will be presented.```
 //
-// Remove a Subnet from the Network. Specification of the Subnet to be removed may be done by specifying the ``ID`` property, or by specifying both the ``networkIdentifier`` and ``cidr`` properties on the Subnet template parameter. If the ``ID`` is provided, the ``networkIdentifier``/``cidr`` will be ignored.
+//
+// Provide a Subnet template containing the following properties:
+// * networkIdentifier
+// * cidr
+// The ``networkIdentifier`` must represent an IP address within that specified by the Network. The ``cidr`` must be an integer between 24 and 29, inclusive, and represent a subnet size smaller than the Network's. The ``networkIdentifier``/``cidr`` must represent a valid subnet specification. Or:
+// * id
+// The ``id`` must identify a Subnet in the Network. If the ``id`` is provided, the ``networkIdentifier``/``cidr`` will be ignored.
 //
 // Subnets may only be removed when no compute resources are utilizing them.
 func (r Network) DeleteSubnet(subnet *datatypes.Network_Subnet) (resp bool, err error) {
@@ -1603,6 +1608,12 @@ func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *
 	return
 }
 
+// Retrieve The bandwidth allotment type of this virtual rack.
+func (r Network_Bandwidth_Version1_Allotment) GetBandwidthAllotmentType() (resp datatypes.Network_Bandwidth_Version1_Allotment_Type, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthAllotmentType", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve a collection of bandwidth data from an individual public or private network tracking object. Data is ideal if you with to employ your own traffic storage and graphing systems.
 func (r Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -2043,12 +2054,6 @@ func (r Network_Component) GetObject() (resp datatypes.Network_Component, err er
 	return
 }
 
-// Retrieve
-func (r Network_Component) GetParentModule() (resp datatypes.Hardware_Component, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Component", "getParentModule", nil, &r.Options, &resp)
-	return
-}
-
 //
 // **DEPRECATED - This operation will cease to function after April 4th, 2016 and will be removed from v3.2**
 // Retrieve various network statistics.  The network statistics are retrieved from the network device using snmpget. Below is a list of statistics retrieved:
@@ -2072,7 +2077,7 @@ func (r Network_Component) GetPrimaryIpAddressRecord() (resp datatypes.Network_S
 	return
 }
 
-// Retrieve A network component's subnet for its primary IP address
+// Retrieve The subnet of the primary IP address assigned to this network component.
 func (r Network_Component) GetPrimarySubnet() (resp datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getPrimarySubnet", nil, &r.Options, &resp)
 	return
@@ -3841,6 +3846,288 @@ func (r Network_Gateway_Vlan) Unbypass() (err error) {
 	return
 }
 
+// The SoftLayer_Network_LBaaS_Listener type presents a data structure for a load balancers listener, also called frontend.
+type Network_LBaaS_Listener struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkLBaaSListenerService returns an instance of the Network_LBaaS_Listener SoftLayer service
+func GetNetworkLBaaSListenerService(sess *session.Session) Network_LBaaS_Listener {
+	return Network_LBaaS_Listener{Session: sess}
+}
+
+func (r Network_LBaaS_Listener) Id(id int) Network_LBaaS_Listener {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_LBaaS_Listener) Mask(mask string) Network_LBaaS_Listener {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_LBaaS_Listener) Filter(filter string) Network_LBaaS_Listener {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_LBaaS_Listener) Limit(limit int) Network_LBaaS_Listener {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_LBaaS_Listener) Offset(offset int) Network_LBaaS_Listener {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Delete load balancers front- and backend protocols and return load balancer object with listeners (frontend), pools (backend), server instances (members) and datacenter populated.
+func (r Network_LBaaS_Listener) DeleteLoadBalancerProtocols(loadBalancerUuid *string, listenerUuids []string) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		listenerUuids,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "deleteLoadBalancerProtocols", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_LBaaS_Listener) GetDefaultPool() (resp datatypes.Network_LBaaS_Pool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getDefaultPool", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_LBaaS_Listener) GetLoadBalancer() (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getLoadBalancer", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_LBaaS_Listener) GetObject() (resp datatypes.Network_LBaaS_Listener, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Update (create) load balancers front- and backend protocols and return load balancer object with listeners (frontend), pools (backend), server instances (members) and datacenter populated. Note if a protocolConfiguration has no listenerUuid set, this function will create the specified front- and backend accordingly. Otherwise the given front- and backend will be updated with the new protocol and port.
+func (r Network_LBaaS_Listener) UpdateLoadBalancerProtocols(loadBalancerUuid *string, protocolConfigurations []datatypes.Network_LBaaS_LoadBalancerProtocolConfiguration) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		protocolConfigurations,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "updateLoadBalancerProtocols", params, &r.Options, &resp)
+	return
+}
+
+// The SoftLayer_Network_LBaaS_LoadBalancer type presents a structure containing attributes of a load balancer, and its related objects including listeners, pools and members.
+type Network_LBaaS_LoadBalancer struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkLBaaSLoadBalancerService returns an instance of the Network_LBaaS_LoadBalancer SoftLayer service
+func GetNetworkLBaaSLoadBalancerService(sess *session.Session) Network_LBaaS_LoadBalancer {
+	return Network_LBaaS_LoadBalancer{Session: sess}
+}
+
+func (r Network_LBaaS_LoadBalancer) Id(id int) Network_LBaaS_LoadBalancer {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_LBaaS_LoadBalancer) Mask(mask string) Network_LBaaS_LoadBalancer {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_LBaaS_LoadBalancer) Filter(filter string) Network_LBaaS_LoadBalancer {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_LBaaS_LoadBalancer) Limit(limit int) Network_LBaaS_LoadBalancer {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_LBaaS_LoadBalancer) Offset(offset int) Network_LBaaS_LoadBalancer {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Cancel a load balancer with the given uuid. The billing system will execute the deletion of load balancer and all objects associated with it such as load balancer appliances, listeners, pools and members in the background.
+func (r Network_LBaaS_LoadBalancer) CancelLoadBalancer(uuid *string) (resp bool, err error) {
+	params := []interface{}{
+		uuid,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "cancelLoadBalancer", params, &r.Options, &resp)
+	return
+}
+
+// Return all existing load balancers
+func (r Network_LBaaS_LoadBalancer) GetAllObjects() (resp []datatypes.Network_LBaaS_LoadBalancer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Datacenter, where load balancer is located.
+func (r Network_LBaaS_LoadBalancer) GetDatacenter() (resp datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getDatacenter", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_LBaaS_LoadBalancer) GetIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getIpAddress", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Listeners assigned to load balancer.
+func (r Network_LBaaS_LoadBalancer) GetListeners() (resp []datatypes.Network_LBaaS_Listener, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListeners", nil, &r.Options, &resp)
+	return
+}
+
+// Get the load balancer object with given uuid.
+func (r Network_LBaaS_LoadBalancer) GetLoadBalancer(uuid *string) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		uuid,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancer", params, &r.Options, &resp)
+	return
+}
+
+// Return load balancer members health
+func (r Network_LBaaS_LoadBalancer) GetLoadBalancerMemberHealth(uuid *string) (resp []datatypes.Network_LBaaS_PoolMembersHealth, err error) {
+	params := []interface{}{
+		uuid,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancerMemberHealth", params, &r.Options, &resp)
+	return
+}
+
+// Return load balancers statistics such as total number of current sessions and total number of accumulated connections.
+func (r Network_LBaaS_LoadBalancer) GetLoadBalancerStatistics(uuid *string) (resp datatypes.Network_LBaaS_LoadBalancerStatistics, err error) {
+	params := []interface{}{
+		uuid,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancerStatistics", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve Members assigned to load balancer.
+func (r Network_LBaaS_LoadBalancer) GetMembers() (resp []datatypes.Network_LBaaS_Member, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getMembers", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_LBaaS_LoadBalancer) GetObject() (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Update load balancer's description, and return the load balancer object containing all listeners, pools, members and datacenter.
+func (r Network_LBaaS_LoadBalancer) UpdateLoadBalancer(uuid *string, newDescription *string) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		uuid,
+		newDescription,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "updateLoadBalancer", params, &r.Options, &resp)
+	return
+}
+
+// The SoftLayer_Network_LBaaS_Member represents the backend member for a load balancer. It can be either a virtual server or a bare metal machine.
+type Network_LBaaS_Member struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkLBaaSMemberService returns an instance of the Network_LBaaS_Member SoftLayer service
+func GetNetworkLBaaSMemberService(sess *session.Session) Network_LBaaS_Member {
+	return Network_LBaaS_Member{Session: sess}
+}
+
+func (r Network_LBaaS_Member) Id(id int) Network_LBaaS_Member {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_LBaaS_Member) Mask(mask string) Network_LBaaS_Member {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_LBaaS_Member) Filter(filter string) Network_LBaaS_Member {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_LBaaS_Member) Limit(limit int) Network_LBaaS_Member {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_LBaaS_Member) Offset(offset int) Network_LBaaS_Member {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Add server instances as members to load balancer and return it with listeners, pools and members populated
+func (r Network_LBaaS_Member) AddLoadBalancerMembers(loadBalancerUuid *string, serverInstances []datatypes.Network_LBaaS_LoadBalancerServerInstanceInfo) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		serverInstances,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Member", "addLoadBalancerMembers", params, &r.Options, &resp)
+	return
+}
+
+// Delete given members from load balancer and return load balancer object with listeners, pools and members populated
+func (r Network_LBaaS_Member) DeleteLoadBalancerMembers(loadBalancerUuid *string, memberUuids []string) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		memberUuids,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Member", "deleteLoadBalancerMembers", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_LBaaS_Member) GetLoadBalancer() (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Member", "getLoadBalancer", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_LBaaS_Member) GetObject() (resp datatypes.Network_LBaaS_Member, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Member", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Update members weight and return load balancer object with listeners, pools and members populated
+func (r Network_LBaaS_Member) UpdateLoadBalancerMembers(loadBalancerUuid *string, members []datatypes.Network_LBaaS_Member) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		members,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Member", "updateLoadBalancerMembers", params, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
 type Network_LoadBalancer_Global_Account struct {
 	Session *session.Session
@@ -5356,6 +5643,158 @@ func (r Network_Pod) ListCapabilities() (resp []string, err error) {
 	return
 }
 
+//
+// This is a Beta release of the Security Group feature. The use of this feature is restricted to select
+// users. When the Beta period is over, security groups will be available for all users. Contact sgbeta@us.ibm.com
+// using 'Security Groups' in the subject line with any questions.
+//
+//
+// The SoftLayer_Network_SecurityGroup data type contains general information for a single security group.
+// Security groups contain a set of [[SoftLayer_Network_SecurityGroup_Rule (type)|rules]] that handle traffic
+// to virtual guest instances and a set of
+// [[SoftLayer_Virtual_Network_SecurityGroup_NetworkComponentBinding (type)|bindings]] to associate virtual guest
+// network components with the security group.
+type Network_SecurityGroup struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkSecurityGroupService returns an instance of the Network_SecurityGroup SoftLayer service
+func GetNetworkSecurityGroupService(sess *session.Session) Network_SecurityGroup {
+	return Network_SecurityGroup{Session: sess}
+}
+
+func (r Network_SecurityGroup) Id(id int) Network_SecurityGroup {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_SecurityGroup) Mask(mask string) Network_SecurityGroup {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_SecurityGroup) Filter(filter string) Network_SecurityGroup {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_SecurityGroup) Limit(limit int) Network_SecurityGroup {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_SecurityGroup) Offset(offset int) Network_SecurityGroup {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Add new rules to a security group by sending in an array of template [[SoftLayer_Network_SecurityGroup_Rule (type)]] objects to be created.
+func (r Network_SecurityGroup) AddRules(ruleTemplates []datatypes.Network_SecurityGroup_Rule) (resp bool, err error) {
+	params := []interface{}{
+		ruleTemplates,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "addRules", params, &r.Options, &resp)
+	return
+}
+
+// Attach virtual guest network components to a security group by creating [[SoftLayer_Virtual_Network_SecurityGroup_NetworkComponentBinding (type)]] objects.
+func (r Network_SecurityGroup) AttachNetworkComponents(networkComponentIds []int) (resp bool, err error) {
+	params := []interface{}{
+		networkComponentIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "attachNetworkComponents", params, &r.Options, &resp)
+	return
+}
+
+// Create new security groups
+func (r Network_SecurityGroup) CreateObjects(templateObjects []datatypes.Network_SecurityGroup) (resp []datatypes.Network_SecurityGroup, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "createObjects", params, &r.Options, &resp)
+	return
+}
+
+// Delete security groups for an account. A security group cannot be deleted if any network components are attached or if the security group is a remote security group for a [[SoftLayer_Network_SecurityGroup_Rule (type)|rule]].
+func (r Network_SecurityGroup) DeleteObjects(templateObjects []datatypes.Network_SecurityGroup) (resp bool, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "deleteObjects", params, &r.Options, &resp)
+	return
+}
+
+// Detach virtual guest network components from a security group by deleting its [[SoftLayer_Virtual_Network_SecurityGroup_NetworkComponentBinding (type)]]
+func (r Network_SecurityGroup) DetachNetworkComponents(networkComponentIds []int) (resp bool, err error) {
+	params := []interface{}{
+		networkComponentIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "detachNetworkComponents", params, &r.Options, &resp)
+	return
+}
+
+// Edit security groups
+func (r Network_SecurityGroup) EditObjects(templateObjects []datatypes.Network_SecurityGroup) (resp bool, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "editObjects", params, &r.Options, &resp)
+	return
+}
+
+// Edit rules that belong to the security group. An array of skeleton [SoftLayer_Network_SecurityGroup_Rule]] objects must be sent in with only the properties defined that you want to change. Unchanged properties are left alone.
+func (r Network_SecurityGroup) EditRules(rules []datatypes.Network_SecurityGroup_Rule) (resp bool, err error) {
+	params := []interface{}{
+		rules,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "editRules", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve The account for this security group
+func (r Network_SecurityGroup) GetAccount() (resp datatypes.Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getAccount", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_SecurityGroup) GetAllObjects() (resp []datatypes.Network_SecurityGroup, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network component bindings for this security group
+func (r Network_SecurityGroup) GetNetworkComponentBindings() (resp []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getNetworkComponentBindings", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_SecurityGroup) GetObject() (resp datatypes.Network_SecurityGroup, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The rules for this security group
+func (r Network_SecurityGroup) GetRules() (resp []datatypes.Network_SecurityGroup_Rule, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getRules", nil, &r.Options, &resp)
+	return
+}
+
+// Remove rules from a security group
+func (r Network_SecurityGroup) RemoveRules(ruleIds []int) (resp bool, err error) {
+	params := []interface{}{
+		ruleIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "removeRules", params, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Network_Security_Scanner_Request data type represents a single vulnerability scan request. It provides information on when the scan was created, last updated, and the current status. The status messages are as follows:
 // *Scan Pending
 // *Scan Processing
@@ -6209,6 +6648,18 @@ func (r Network_Storage) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
+func (r Network_Storage) GetIsReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether a volume is ready to have Hosts authorized to access it. This does not indicate whether another operation may be blocking, please refer to this volume's volumeStatus property for details.
+func (r Network_Storage) GetIsReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsReadyToMount", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiLuns", nil, &r.Options, &resp)
@@ -6236,6 +6687,12 @@ func (r Network_Storage) GetMetricTrackingObject() (resp datatypes.Metric_Tracki
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage) GetMountableFlag() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getMountableFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The current status of split or move operation as a part of volume duplication.
+func (r Network_Storage) GetMoveAndSplitStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getMoveAndSplitStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -6505,6 +6962,12 @@ func (r Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err er
 	return
 }
 
+// This method returns the parameters for cloning a volume
+func (r Network_Storage) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeHistory", nil, &r.Options, &resp)
@@ -6544,6 +7007,18 @@ func (r Network_Storage) IsBlockingOperationInProgress(exemptStatusKeyNames []st
 		exemptStatusKeyNames,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "isBlockingOperationInProgress", params, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready for snapshot.
+func (r Network_Storage) IsDuplicateReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "isDuplicateReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready to mount.
+func (r Network_Storage) IsDuplicateReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "isDuplicateReadyToMount", nil, &r.Options, &resp)
 	return
 }
 
@@ -8014,6 +8489,18 @@ func (r Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
+func (r Network_Storage_Backup_Evault) GetIsReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether a volume is ready to have Hosts authorized to access it. This does not indicate whether another operation may be blocking, please refer to this volume's volumeStatus property for details.
+func (r Network_Storage_Backup_Evault) GetIsReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsReadyToMount", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Backup_Evault) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiLuns", nil, &r.Options, &resp)
@@ -8041,6 +8528,12 @@ func (r Network_Storage_Backup_Evault) GetMetricTrackingObject() (resp datatypes
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage_Backup_Evault) GetMountableFlag() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getMountableFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The current status of split or move operation as a part of volume duplication.
+func (r Network_Storage_Backup_Evault) GetMoveAndSplitStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getMoveAndSplitStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -8308,6 +8801,12 @@ func (r Network_Storage_Backup_Evault) GetVirtualGuest() (resp datatypes.Virtual
 	return
 }
 
+// This method returns the parameters for cloning a volume
+func (r Network_Storage_Backup_Evault) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Backup_Evault) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeHistory", nil, &r.Options, &resp)
@@ -8368,6 +8867,18 @@ func (r Network_Storage_Backup_Evault) IsBlockingOperationInProgress(exemptStatu
 		exemptStatusKeyNames,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "isBlockingOperationInProgress", params, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready for snapshot.
+func (r Network_Storage_Backup_Evault) IsDuplicateReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "isDuplicateReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready to mount.
+func (r Network_Storage_Backup_Evault) IsDuplicateReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "isDuplicateReadyToMount", nil, &r.Options, &resp)
 	return
 }
 
@@ -9166,9 +9677,21 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetAccount() (resp datatypes.Acc
 	return
 }
 
+// no documentation yet
+func (r Network_Storage_Hub_Cleversafe_Account) GetAllObjects() (resp []datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
 func (r Network_Storage_Hub_Cleversafe_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBillingItem", nil, &r.Options, &resp)
+	return
+}
+
+// Get buckets
+func (r Network_Storage_Hub_Cleversafe_Account) GetBuckets() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Bucket, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBuckets", nil, &r.Options, &resp)
 	return
 }
 
@@ -9967,6 +10490,18 @@ func (r Network_Storage_Iscsi) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
+func (r Network_Storage_Iscsi) GetIsReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether a volume is ready to have Hosts authorized to access it. This does not indicate whether another operation may be blocking, please refer to this volume's volumeStatus property for details.
+func (r Network_Storage_Iscsi) GetIsReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsReadyToMount", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Iscsi) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiLuns", nil, &r.Options, &resp)
@@ -9994,6 +10529,12 @@ func (r Network_Storage_Iscsi) GetMetricTrackingObject() (resp datatypes.Metric_
 // Retrieve Whether or not a network storage volume may be mounted.
 func (r Network_Storage_Iscsi) GetMountableFlag() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getMountableFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The current status of split or move operation as a part of volume duplication.
+func (r Network_Storage_Iscsi) GetMoveAndSplitStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getMoveAndSplitStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -10261,6 +10802,12 @@ func (r Network_Storage_Iscsi) GetVirtualGuest() (resp datatypes.Virtual_Guest, 
 	return
 }
 
+// This method returns the parameters for cloning a volume
+func (r Network_Storage_Iscsi) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Iscsi) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeHistory", nil, &r.Options, &resp)
@@ -10300,6 +10847,18 @@ func (r Network_Storage_Iscsi) IsBlockingOperationInProgress(exemptStatusKeyName
 		exemptStatusKeyNames,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isBlockingOperationInProgress", params, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready for snapshot.
+func (r Network_Storage_Iscsi) IsDuplicateReadyForSnapshot() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isDuplicateReadyForSnapshot", nil, &r.Options, &resp)
+	return
+}
+
+// This method returns a boolean indicating whether the clone volume is ready to mount.
+func (r Network_Storage_Iscsi) IsDuplicateReadyToMount() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isDuplicateReadyToMount", nil, &r.Options, &resp)
 	return
 }
 
@@ -11023,6 +11582,12 @@ func (r Network_Subnet) GetNetworkComponentFirewall() (resp datatypes.Network_Co
 	return
 }
 
+// Retrieve The Private Network identifier this subnet is within, if applicable.
+func (r Network_Subnet) GetNetworkId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkId", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Network_Subnet) GetNetworkProtectionAddresses() (resp []datatypes.Network_Protection_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkProtectionAddresses", nil, &r.Options, &resp)
@@ -11137,6 +11702,12 @@ func (r Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Sw
 // Retrieve
 func (r Network_Subnet) GetUnboundDescendants() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUnboundDescendants", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Provides the total number of utilized IP addresses on this subnet. The primary consumer of IP addresses are compute resources, which can consume more than one address. This value is only supported for primary subnet types.
+func (r Network_Subnet) GetUtilizedIpAddressCount() (resp uint, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUtilizedIpAddressCount", nil, &r.Options, &resp)
 	return
 }
 

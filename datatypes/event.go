@@ -48,6 +48,9 @@ type Event_Log struct {
 	// Event object name such as "server", "dns" and so on.
 	ObjectName *string `json:"objectName,omitempty" xmlrpc:"objectName,omitempty"`
 
+	// OpenIdConnectUserName of the customer who initiated the event
+	OpenIdConnectUserName *string `json:"openIdConnectUserName,omitempty" xmlrpc:"openIdConnectUserName,omitempty"`
+
 	// A resource object that is associated with the event
 	Resource *Entity `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 

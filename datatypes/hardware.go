@@ -480,6 +480,12 @@ type Hardware struct {
 	// A hardware's associated remote management component. This is normally IPMI.
 	RemoteManagementComponent *Network_Component `json:"remoteManagementComponent,omitempty" xmlrpc:"remoteManagementComponent,omitempty"`
 
+	// A count of
+	ResourceConfigurationCount *uint `json:"resourceConfigurationCount,omitempty" xmlrpc:"resourceConfigurationCount,omitempty"`
+
+	// no documentation yet
+	ResourceConfigurations []Hardware_Resource_Configuration `json:"resourceConfigurations,omitempty" xmlrpc:"resourceConfigurations,omitempty"`
+
 	// A count of the resource groups in which this hardware is a member.
 	ResourceGroupCount *uint `json:"resourceGroupCount,omitempty" xmlrpc:"resourceGroupCount,omitempty"`
 
@@ -638,6 +644,11 @@ type Hardware_Attribute_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// no documentation yet
+type Hardware_Attribute_UserData struct {
+	Hardware_Attribute
+}
+
 // The SoftLayer_Hardware_Benchmark_Certification data type contains general information relating to a single SoftLayer hardware benchmark certification document.
 type Hardware_Benchmark_Certification struct {
 	Entity
@@ -676,6 +687,9 @@ type Hardware_Chassis struct {
 
 	// no documentation yet
 	DriveControllerCapacity *string `json:"driveControllerCapacity,omitempty" xmlrpc:"driveControllerCapacity,omitempty"`
+
+	// no documentation yet
+	ExternalStorageSupportedFlag *string `json:"externalStorageSupportedFlag,omitempty" xmlrpc:"externalStorageSupportedFlag,omitempty"`
 
 	// A hardware form factor internal identifier.
 	FormFactorId *int `json:"formFactorId,omitempty" xmlrpc:"formFactorId,omitempty"`
@@ -782,7 +796,7 @@ type Hardware_Component struct {
 	ParentModule *Hardware_Component `json:"parentModule,omitempty" xmlrpc:"parentModule,omitempty"`
 
 	// no documentation yet
-	PrefixAttribute *Hardware_Component_Model_Attribute `json:"prefixAttribute,omitempty" xmlrpc:"prefixAttribute,omitempty"`
+	PrefixAttribute *Hardware_Component_Model_Generic_Attribute `json:"prefixAttribute,omitempty" xmlrpc:"prefixAttribute,omitempty"`
 
 	// A RAID controllers RAID mode.
 	RaidMode *string `json:"raidMode,omitempty" xmlrpc:"raidMode,omitempty"`
@@ -910,6 +924,9 @@ type Hardware_Component_Model struct {
 
 	// no documentation yet
 	InfinibandCompatibleAttribute *Hardware_Component_Model_Attribute `json:"infinibandCompatibleAttribute,omitempty" xmlrpc:"infinibandCompatibleAttribute,omitempty"`
+
+	// no documentation yet
+	IsFlexSkuCompatible *bool `json:"isFlexSkuCompatible,omitempty" xmlrpc:"isFlexSkuCompatible,omitempty"`
 
 	// no documentation yet
 	IsInfinibandCompatible *bool `json:"isInfinibandCompatible,omitempty" xmlrpc:"isInfinibandCompatible,omitempty"`
@@ -1203,6 +1220,9 @@ type Hardware_Component_Partition_Template_Partition struct {
 
 	// A partition's associated [[SoftLayer_Hardware_Component_Partition_Template|Partition Template]] Id.
 	PartitionTemplateId *int `json:"partitionTemplateId,omitempty" xmlrpc:"partitionTemplateId,omitempty"`
+
+	// The volume the partition will be put on
+	VolumeNumber *int `json:"volumeNumber,omitempty" xmlrpc:"volumeNumber,omitempty"`
 }
 
 // The SoftLayer_Hardware_Component_Processor data type abstracts information related to a processor.
@@ -1474,6 +1494,77 @@ type Hardware_Power_Component struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 }
 
+// no documentation yet
+type Hardware_Resource_Configuration struct {
+	Entity
+
+	// no documentation yet
+	ConfigurationTypeId *int `json:"configurationTypeId,omitempty" xmlrpc:"configurationTypeId,omitempty"`
+
+	// no documentation yet
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware,omitempty"`
+
+	// no documentation yet
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
+
+	// no documentation yet
+	Properties []Hardware_Resource_Configuration_Property `json:"properties,omitempty" xmlrpc:"properties,omitempty"`
+
+	// A count of
+	PropertyCount *uint `json:"propertyCount,omitempty" xmlrpc:"propertyCount,omitempty"`
+
+	// no documentation yet
+	Type *Hardware_Resource_Configuration_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Resource_Configuration_Property struct {
+	Entity
+
+	// no documentation yet
+	Configuration *Hardware_Resource_Configuration `json:"configuration,omitempty" xmlrpc:"configuration,omitempty"`
+
+	// no documentation yet
+	ConfigurationId *int `json:"configurationId,omitempty" xmlrpc:"configurationId,omitempty"`
+
+	// no documentation yet
+	ConfigurationPropertyTypeId *int `json:"configurationPropertyTypeId,omitempty" xmlrpc:"configurationPropertyTypeId,omitempty"`
+
+	// no documentation yet
+	Type *Hardware_Resource_Configuration_Property_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
+	// no documentation yet
+	Value *string `json:"value,omitempty" xmlrpc:"value,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Resource_Configuration_Property_Type struct {
+	Entity
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	Properties []Hardware_Resource_Configuration_Property `json:"properties,omitempty" xmlrpc:"properties,omitempty"`
+
+	// A count of
+	PropertyCount *uint `json:"propertyCount,omitempty" xmlrpc:"propertyCount,omitempty"`
+
+	// no documentation yet
+	Unit *string `json:"unit,omitempty" xmlrpc:"unit,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Resource_Configuration_Type struct {
+	Entity
+
+	// no documentation yet
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
 // The SoftLayer_Hardware_Router data type contains general information relating to a single SoftLayer router.
 type Hardware_Router struct {
 	Hardware_Switch
@@ -1551,6 +1642,12 @@ type Hardware_Server struct {
 
 	// The raw public bandwidth usage data for the current billing cycle.
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty" xmlrpc:"billingCyclePublicBandwidthUsage,omitempty"`
+
+	// Child hardware.
+	ChildrenHardware []Hardware `json:"childrenHardware,omitempty" xmlrpc:"childrenHardware,omitempty"`
+
+	// A count of child hardware.
+	ChildrenHardwareCount *uint `json:"childrenHardwareCount,omitempty" xmlrpc:"childrenHardwareCount,omitempty"`
 
 	// no documentation yet
 	ContainsSolidStateDrivesFlag *bool `json:"containsSolidStateDrivesFlag,omitempty" xmlrpc:"containsSolidStateDrivesFlag,omitempty"`
@@ -1656,6 +1753,14 @@ type Hardware_Status struct {
 
 	// A hardware's status code. See the SoftLayer_Hardware_Status Overview for ''status''' possible values.
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+}
+
+// no documentation yet
+type Hardware_StorageEnclosure struct {
+	Hardware
+
+	// Parent Hardware.
+	ParentHardware *Hardware `json:"parentHardware,omitempty" xmlrpc:"parentHardware,omitempty"`
 }
 
 // The SoftLayer_Hardware_Switch object extends the base functionality of the SoftLayer_Hardware service.

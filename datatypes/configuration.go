@@ -100,6 +100,9 @@ type Configuration_Storage_Group_Order struct {
 	HotSpareDrives []int `json:"hotSpareDrives,omitempty" xmlrpc:"hotSpareDrives,omitempty"`
 
 	// no documentation yet
+	LvmFlag *bool `json:"lvmFlag,omitempty" xmlrpc:"lvmFlag,omitempty"`
+
+	// no documentation yet
 	PartitionData *string `json:"partitionData,omitempty" xmlrpc:"partitionData,omitempty"`
 }
 

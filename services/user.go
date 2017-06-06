@@ -374,6 +374,15 @@ func (r User_Customer) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IBMid. In that case, we will set the link from the IBMid to that user as default, and return the account of which that user is a member. Invoke this only on IBMid-authenticated users.
+func (r User_Customer) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
+	params := []interface{}{
+		providerType,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getDefaultAccount", params, &r.Options, &resp)
+	return
+}
+
 // <strong>This method is deprecated.  Please see documentation for initiatePortalPasswordChange</strong>
 func (r User_Customer) GetDefaultSecurityQuestions(key *string) (resp []datatypes.User_Security_Question, err error) {
 	params := []interface{}{
@@ -455,6 +464,15 @@ func (r User_Customer) GetLoginToken(request *datatypes.Container_Authentication
 		request,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLoginToken", params, &r.Options, &resp)
+	return
+}
+
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one SoftLayer user per account. This effectively links the OpenIdConnect identity to those accounts. This API returns a list of all the accounts for which there is a link between the OpenIdConnect identity and a SoftLayer user. Invoke this only on IBMid-authenticated users.
+func (r User_Customer) GetMappedAccounts(providerType *string) (resp []datatypes.Account, err error) {
+	params := []interface{}{
+		providerType,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getMappedAccounts", params, &r.Options, &resp)
 	return
 }
 
@@ -702,6 +720,10 @@ func (r User_Customer) InitiateExternalAuthentication(authenticationContainer *d
 }
 
 // Sends password change email to the user containing url that allows the user the change their password. This is the first step when a user wishes to change their password.  The url that is generated contains a one-time use token that is valid for only 24-hours.
+//
+// If this is a new master user who has never logged into the portal, then password reset will be initiated. Once a master user has logged into the portal, they must setup their security questions prior to logging out because master users are required to answer a security question during the password reset process.  Should a master user not have security questions defined and not remember their password in order to define the security questions, then they will need to contact support at live chat or Revenue Services for assistance.
+//
+// Due to security reasons, the number reset requests per username are limited within a undisclosed timeframe.
 func (r User_Customer) InitiatePortalPasswordChange(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -710,7 +732,7 @@ func (r User_Customer) InitiatePortalPasswordChange(username *string) (resp bool
 	return
 }
 
-// A Brand Agent that has permissions to Add Customer Accounts will be able to request the password email be sent to the Master User of a Customer Account created by the same Brand as the agent making the request.
+// A Brand Agent that has permissions to Add Customer Accounts will be able to request the password email be sent to the Master User of a Customer Account created by the same Brand as the agent making the request. Due to security reasons, the number of reset requests are limited within an undisclosed timeframe.
 func (r User_Customer) InitiatePortalPasswordChangeByBrandAgent(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -720,11 +742,10 @@ func (r User_Customer) InitiatePortalPasswordChangeByBrandAgent(username *string
 }
 
 // Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
-func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string, linkedBluemixAccountMatchAlreadyChecked *bool) (err error) {
+func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
-		linkedBluemixAccountMatchAlreadyChecked,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "inviteUserToLinkOpenIdConnect", params, &r.Options, &resp)
 	return
@@ -775,7 +796,7 @@ func (r User_Customer) PerformExternalAuthentication(authenticationContainer *da
 	return
 }
 
-// Set the password for a user who has an outstanding password request. A user with an outstanding password request will have an unused and unexpired password key.  The password key is part of the url provided to the user in the email sent to the user with information on how to set their password.  The email was generated by the [[SoftLayer_User_Customer::setNewUserPassword|setNewUserPassword]] method. Password recovery keys are valid for 24 hours after they're generated.
+// Set the password for a user who has an outstanding password request. A user with an outstanding password request will have an unused and unexpired password key.  The password key is part of the url provided to the user in the email sent to the user with information on how to set their password.  The email was generated by the [[SoftLayer_User_Customer::processPasswordSetRequest|processPasswordSetRequest]] method. Password recovery keys are valid for 24 hours after they're generated.
 //
 // User portal passwords must match the following restrictions. Portal passwords must...
 // * ...be over eight characters long.
@@ -969,6 +990,16 @@ func (r User_Customer) SamlLogout(samlResponse *string) (err error) {
 	return
 }
 
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one per account. If an OpenIdConnect identity is mapped to multiple accounts in this manner, one such account should be identified as the default account for that identity. Invoke this only on IBMid-authenticated users.
+func (r User_Customer) SetDefaultAccount(providerType *string, accountId *int) (resp datatypes.Account, err error) {
+	params := []interface{}{
+		providerType,
+		accountId,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "setDefaultAccount", params, &r.Options, &resp)
+	return
+}
+
 // Set a user's password via the lost password recovery system, using a password recovery key received in an email generated by the [[SoftLayer_User_Customer::lostPassword|lostPassword]] method. Password recovery keys are valid for 24 hours after they're generated.
 //
 // User portal passwords must match the following restrictions. Portal passwords must...
@@ -990,7 +1021,7 @@ func (r User_Customer) SetPasswordFromLostPasswordRequest(key *string, password 
 	return
 }
 
-// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. If the SoftLayer user is already linked to IBMid, this will reset the existing link. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
+// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. NOTE: If the SoftLayer user is already linked to IBMid, this call will fail. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
 func (r User_Customer) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
 	params := []interface{}{
 		providerType,
@@ -2422,6 +2453,17 @@ func (r User_Customer_OpenIdConnect) AcknowledgeSupportPolicy() (err error) {
 	return
 }
 
+// Completes invitation process for an OpenIdConnect user created by Bluemix Unified User Console.
+func (r User_Customer_OpenIdConnect) ActivateOpenIdConnectUser(verificationCode *string, userInfo *datatypes.User_Customer) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		verificationCode,
+		userInfo,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "activateOpenIdConnectUser", params, &r.Options, &resp)
+	return
+}
+
 // Create a user's API authentication key, allowing that user access to query the SoftLayer API. addApiAuthenticationKey() returns the users new API key. Each portal user is allowed a maximum of two API keys.
 func (r User_Customer_OpenIdConnect) AddApiAuthenticationKey() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "addApiAuthenticationKey", nil, &r.Options, &resp)
@@ -2755,7 +2797,7 @@ func (r User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket
 	return
 }
 
-// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IBMid. In that case, we will set the link from the IBMid to that user as default, and return the account of which that user is a member.
+// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IBMid. In that case, we will set the link from the IBMid to that user as default, and return the account of which that user is a member. Invoke this only on IBMid-authenticated users.
 func (r User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -2858,7 +2900,7 @@ func (r User_Customer_OpenIdConnect) GetLoginToken(request *datatypes.Container_
 	return
 }
 
-// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one SoftLayer user per account. This effectively links the OpenIdConnect identity to those accounts. This API returns a list of all the accounts for which there is a link between the OpenIdConnect identity and a SoftLayer user.
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one SoftLayer user per account. This effectively links the OpenIdConnect identity to those accounts. This API returns a list of all the accounts for which there is a link between the OpenIdConnect identity and a SoftLayer user. Invoke this only on IBMid-authenticated users.
 func (r User_Customer_OpenIdConnect) GetMappedAccounts(providerType *string) (resp []datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3064,6 +3106,15 @@ func (r User_Customer_OpenIdConnect) GetUnsuccessfulLogins() (resp []datatypes.U
 	return
 }
 
+// Returns an IMS User Object from the provided OpenIdConnect User ID for the Account of the active user. Enforces the User Management permissions for the Active User. An exception will be thrown if no matching IMS User is found.
+func (r User_Customer_OpenIdConnect) GetUserForUnifiedInvitation(openIdConnectUserId *string) (resp datatypes.User_Customer_OpenIdConnect, err error) {
+	params := []interface{}{
+		openIdConnectUserId,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserForUnifiedInvitation", params, &r.Options, &resp)
+	return
+}
+
 // <strong>This method is deprecated.  Please see documentation for initiatePortalPasswordChange</strong> Retrieve a user object using a password recovery key received in an email generated by the [[SoftLayer_User_Customer::lostPassword|lostPassword]] method. The SoftLayer customer portal uses getUserFromLostPasswordRequest() to retrieve user security questions. Password recovery keys are valid for 24 hours after they're generated.
 func (r User_Customer_OpenIdConnect) GetUserFromLostPasswordRequest(key *string) (resp []datatypes.User_Security_Question, err error) {
 	params := []interface{}{
@@ -3134,6 +3185,10 @@ func (r User_Customer_OpenIdConnect) InitiateExternalAuthentication(authenticati
 }
 
 // Sends password change email to the user containing url that allows the user the change their password. This is the first step when a user wishes to change their password.  The url that is generated contains a one-time use token that is valid for only 24-hours.
+//
+// If this is a new master user who has never logged into the portal, then password reset will be initiated. Once a master user has logged into the portal, they must setup their security questions prior to logging out because master users are required to answer a security question during the password reset process.  Should a master user not have security questions defined and not remember their password in order to define the security questions, then they will need to contact support at live chat or Revenue Services for assistance.
+//
+// Due to security reasons, the number reset requests per username are limited within a undisclosed timeframe.
 func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChange(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -3142,7 +3197,7 @@ func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChange(username *stri
 	return
 }
 
-// A Brand Agent that has permissions to Add Customer Accounts will be able to request the password email be sent to the Master User of a Customer Account created by the same Brand as the agent making the request.
+// A Brand Agent that has permissions to Add Customer Accounts will be able to request the password email be sent to the Master User of a Customer Account created by the same Brand as the agent making the request. Due to security reasons, the number of reset requests are limited within an undisclosed timeframe.
 func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChangeByBrandAgent(username *string) (resp bool, err error) {
 	params := []interface{}{
 		username,
@@ -3152,11 +3207,10 @@ func (r User_Customer_OpenIdConnect) InitiatePortalPasswordChangeByBrandAgent(us
 }
 
 // Send email invitation to a user to join a SoftLayer account and authenticate with OpenIdConnect. Throws an exception on error.
-func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string, linkedBluemixAccountMatchAlreadyChecked *bool) (err error) {
+func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
-		linkedBluemixAccountMatchAlreadyChecked,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "inviteUserToLinkOpenIdConnect", params, &r.Options, &resp)
 	return
@@ -3207,7 +3261,7 @@ func (r User_Customer_OpenIdConnect) PerformExternalAuthentication(authenticatio
 	return
 }
 
-// Set the password for a user who has an outstanding password request. A user with an outstanding password request will have an unused and unexpired password key.  The password key is part of the url provided to the user in the email sent to the user with information on how to set their password.  The email was generated by the [[SoftLayer_User_Customer::setNewUserPassword|setNewUserPassword]] method. Password recovery keys are valid for 24 hours after they're generated.
+// Set the password for a user who has an outstanding password request. A user with an outstanding password request will have an unused and unexpired password key.  The password key is part of the url provided to the user in the email sent to the user with information on how to set their password.  The email was generated by the [[SoftLayer_User_Customer::processPasswordSetRequest|processPasswordSetRequest]] method. Password recovery keys are valid for 24 hours after they're generated.
 //
 // User portal passwords must match the following restrictions. Portal passwords must...
 // * ...be over eight characters long.
@@ -3401,7 +3455,7 @@ func (r User_Customer_OpenIdConnect) SamlLogout(samlResponse *string) (err error
 	return
 }
 
-// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one per account. If an OpenIdConnect identity is mapped to multiple accounts in this manner, one such account should be identified as the default account for that identity.
+// An OpenIdConnect identity, for example an IBMid, can be linked or mapped to one or more individual SoftLayer users, but no more than one per account. If an OpenIdConnect identity is mapped to multiple accounts in this manner, one such account should be identified as the default account for that identity. Invoke this only on IBMid-authenticated users.
 func (r User_Customer_OpenIdConnect) SetDefaultAccount(providerType *string, accountId *int) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3432,7 +3486,7 @@ func (r User_Customer_OpenIdConnect) SetPasswordFromLostPasswordRequest(key *str
 	return
 }
 
-// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. If the SoftLayer user is already linked to IBMid, this will reset the existing link. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
+// As master user, calling this api for the IBMid provider type when there is an existing IBMid for the email on the SL account will silently (without sending an invitation email) create a link for the IBMid. NOTE: If the SoftLayer user is already linked to IBMid, this call will fail. If the IBMid specified by the email of this user, is already used in a link to another user in this account, this call will fail. If there is already an open invitation from this SoftLayer user to this or any IBMid, this call will fail. If there is already an open invitation from some other SoftLayer user in this account to this IBMid, then this call will fail.
 func (r User_Customer_OpenIdConnect) SilentlyMigrateUserOpenIdConnect(providerType *string) (resp bool, err error) {
 	params := []interface{}{
 		providerType,

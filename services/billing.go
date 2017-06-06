@@ -91,6 +91,58 @@ func (r Billing_Currency) GetPrice(price *datatypes.Float64, formatOptions *data
 	return
 }
 
+// The SoftLayer_Billing_Currency_Country data type maps what currencies are valid for specific countries. US Dollars are valid from any country, but other currencies are only available to customers in certain countries.
+type Billing_Currency_Country struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetBillingCurrencyCountryService returns an instance of the Billing_Currency_Country SoftLayer service
+func GetBillingCurrencyCountryService(sess *session.Session) Billing_Currency_Country {
+	return Billing_Currency_Country{Session: sess}
+}
+
+func (r Billing_Currency_Country) Id(id int) Billing_Currency_Country {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Billing_Currency_Country) Mask(mask string) Billing_Currency_Country {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Billing_Currency_Country) Filter(filter string) Billing_Currency_Country {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Billing_Currency_Country) Limit(limit int) Billing_Currency_Country {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Billing_Currency_Country) Offset(offset int) Billing_Currency_Country {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Billing_Currency_Country) GetCountriesWithListOfEligibleCurrencies() (resp []datatypes.Container_Billing_Currency_Country, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency_Country", "getCountriesWithListOfEligibleCurrencies", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Billing_Currency_Country) GetObject() (resp datatypes.Billing_Currency_Country, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency_Country", "getObject", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 type Billing_Currency_ExchangeRate struct {
 	Session *session.Session
@@ -2207,9 +2259,9 @@ func (r Billing_Order_Quote) GetQuoteByQuoteKey(quoteKey *string) (resp datatype
 }
 
 // Generate an [[SoftLayer_Container_Product_Order|order container]] from the previously-created quote. This will take into account promotions, reseller status, estimated taxes and all other standard order verification processes.
-func (r Billing_Order_Quote) GetRecalculatedOrderContainer(orderData *datatypes.Container_Product_Order, orderBeingPlacedFlag *bool) (resp datatypes.Container_Product_Order, err error) {
+func (r Billing_Order_Quote) GetRecalculatedOrderContainer(userOrderData *datatypes.Container_Product_Order, orderBeingPlacedFlag *bool) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
-		orderData,
+		userOrderData,
 		orderBeingPlacedFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "getRecalculatedOrderContainer", params, &r.Options, &resp)

@@ -34,6 +34,20 @@ type Billing_Currency struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// The SoftLayer_Billing_Currency_Country data type maps what currencies are valid for specific countries. US Dollars are valid from any country, but other currencies are only available to customers in certain countries.
+type Billing_Currency_Country struct {
+	Entity
+
+	// A unique identifier for the related country.
+	CountryId *int `json:"countryId,omitempty" xmlrpc:"countryId,omitempty"`
+
+	// A unique identifier for the related currency.
+	CurrencyId *int `json:"currencyId,omitempty" xmlrpc:"currencyId,omitempty"`
+
+	// A unique identifier for a map between a country and currency.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+}
+
 // no documentation yet
 type Billing_Currency_ExchangeRate struct {
 	Entity
@@ -1478,6 +1492,11 @@ type Billing_Item_Network_Vlan struct {
 
 // no documentation yet
 type Billing_Item_NewCustomerSetup struct {
+	Billing_Item
+}
+
+// The SoftLayer_Billing_Item_Private_Cloud data type contains general information relating to a single billing item for a private cloud.
+type Billing_Item_Private_Cloud struct {
 	Billing_Item
 }
 

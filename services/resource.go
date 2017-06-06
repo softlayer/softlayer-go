@@ -30,6 +30,55 @@ import (
 )
 
 // no documentation yet
+type Resource_Configuration struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetResourceConfigurationService returns an instance of the Resource_Configuration SoftLayer service
+func GetResourceConfigurationService(sess *session.Session) Resource_Configuration {
+	return Resource_Configuration{Session: sess}
+}
+
+func (r Resource_Configuration) Id(id int) Resource_Configuration {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Resource_Configuration) Mask(mask string) Resource_Configuration {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Resource_Configuration) Filter(filter string) Resource_Configuration {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Resource_Configuration) Limit(limit int) Resource_Configuration {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Resource_Configuration) Offset(offset int) Resource_Configuration {
+	r.Options.Offset = &offset
+	return r
+}
+
+// The setOsPasswordFromEncrypted method is used to set the operating system password from a key/pair encrypted password signed by SoftLayer.
+func (r Resource_Configuration) SetOsPasswordFromEncrypted(encryptedPassword *string) (resp bool, err error) {
+	params := []interface{}{
+		encryptedPassword,
+	}
+	err = r.Session.DoRequest("SoftLayer_Resource_Configuration", "setOsPasswordFromEncrypted", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Resource_Group struct {
 	Session *session.Session
 	Options sl.Options
