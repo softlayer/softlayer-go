@@ -83,9 +83,9 @@ func Get(p interface{}, d ...interface{}) interface{} {
 }
 
 // GetOk returns the value of p, either p itself, or, if p is a pointer, the
-// value that p points to. If d is not specified, and p is nil, a type-
-// appropriate zero-value is returned instead. If p is a value or non-nil
-// pointer, the second return value will be true.  Otherwise, it will be false
+// value that p points to. If p is nil, a type-appropriate zero-value is
+// returned instead. If p is a value or non-nil pointer, the second return
+// value will be true.  Otherwise, it will be false.
 func GetOk(p interface{}) (interface{}, bool) {
 	t := reflect.TypeOf(p)
 
