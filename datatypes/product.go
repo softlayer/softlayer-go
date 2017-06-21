@@ -72,6 +72,14 @@ type Product_Catalog_Item_Price struct {
 	PriceId *int `json:"priceId,omitempty" xmlrpc:"priceId,omitempty"`
 }
 
+// The SoftLayer_Product_Group data type contains product group relationship.
+type Product_Group struct {
+	Entity
+
+	// The name of the product group.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
 // The SoftLayer_Product_Item data type contains general information relating to a single SoftLayer product.
 type Product_Item struct {
 	Entity
@@ -181,6 +189,9 @@ type Product_Item struct {
 	// A unique key name for the product.
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
+	// no documentation yet
+	LocalDiskFlag *bool `json:"localDiskFlag,omitempty" xmlrpc:"localDiskFlag,omitempty"`
+
 	// An item's location conflicts. For example, Dual Path network functionality cannot be ordered in WDC and as such is a conflict.
 	LocationConflicts []Product_Item_Resource_Conflict `json:"locationConflicts,omitempty" xmlrpc:"locationConflicts,omitempty"`
 
@@ -188,7 +199,13 @@ type Product_Item struct {
 	LongDescription *string `json:"longDescription,omitempty" xmlrpc:"longDescription,omitempty"`
 
 	// no documentation yet
+	ObjectStorageClusterGeolocationType *string `json:"objectStorageClusterGeolocationType,omitempty" xmlrpc:"objectStorageClusterGeolocationType,omitempty"`
+
+	// no documentation yet
 	ObjectStorageItemFlag *bool `json:"objectStorageItemFlag,omitempty" xmlrpc:"objectStorageItemFlag,omitempty"`
+
+	// no documentation yet
+	ObjectStorageServiceClass *string `json:"objectStorageServiceClass,omitempty" xmlrpc:"objectStorageServiceClass,omitempty"`
 
 	// A count of a collection of all the SoftLayer_Product_Package(s) in which this item exists.
 	PackageCount *uint `json:"packageCount,omitempty" xmlrpc:"packageCount,omitempty"`
@@ -391,6 +408,9 @@ type Product_Item_Category struct {
 
 	// The questions that are associated with an item category.
 	Questions []Product_Item_Category_Question `json:"questions,omitempty" xmlrpc:"questions,omitempty"`
+
+	// The sort order of the category. It may be used to affect the order in which the category may appear in lists (on order forms and invoices).
+	SortOrder *int `json:"sortOrder,omitempty" xmlrpc:"sortOrder,omitempty"`
 }
 
 // The SoftLayer_Product_Item_Category_Group data type contains general category group information.

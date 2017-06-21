@@ -6737,6 +6737,24 @@ func (r Network_Storage) GetObjectsByCredential(credentialObject *datatypes.Netw
 	return
 }
 
+// Retrieve The name of the snapshot that this volume was duplicated from.
+func (r Network_Storage) GetOriginalSnapshotName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOriginalSnapshotName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The name of the volume that this volume was duplicated from.
+func (r Network_Storage) GetOriginalVolumeName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOriginalVolumeName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The size (in GB) of the volume that this volume was duplicated from, or in the case of iSCSI LUNs, the size of the base originally-provisioned LUN.
+func (r Network_Storage) GetOriginalVolumeSize() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOriginalVolumeSize", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOsType", nil, &r.Options, &resp)
@@ -6776,6 +6794,12 @@ func (r Network_Storage) GetPermissionsGroups() (resp []datatypes.Network_Storag
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The number of IOPs provisioned for this volume.
+func (r Network_Storage) GetProvisionedIops() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getProvisionedIops", nil, &r.Options, &resp)
 	return
 }
 
@@ -6963,7 +6987,7 @@ func (r Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err er
 }
 
 // This method returns the parameters for cloning a volume
-func (r Network_Storage) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+func (r Network_Storage) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
 	return
 }
@@ -8576,6 +8600,24 @@ func (r Network_Storage_Backup_Evault) GetObjectsByCredential(credentialObject *
 	return
 }
 
+// Retrieve The name of the snapshot that this volume was duplicated from.
+func (r Network_Storage_Backup_Evault) GetOriginalSnapshotName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOriginalSnapshotName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The name of the volume that this volume was duplicated from.
+func (r Network_Storage_Backup_Evault) GetOriginalVolumeName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOriginalVolumeName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The size (in GB) of the volume that this volume was duplicated from, or in the case of iSCSI LUNs, the size of the base originally-provisioned LUN.
+func (r Network_Storage_Backup_Evault) GetOriginalVolumeSize() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOriginalVolumeSize", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage_Backup_Evault) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOsType", nil, &r.Options, &resp)
@@ -8615,6 +8657,12 @@ func (r Network_Storage_Backup_Evault) GetPermissionsGroups() (resp []datatypes.
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Backup_Evault) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The number of IOPs provisioned for this volume.
+func (r Network_Storage_Backup_Evault) GetProvisionedIops() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getProvisionedIops", nil, &r.Options, &resp)
 	return
 }
 
@@ -8802,7 +8850,7 @@ func (r Network_Storage_Backup_Evault) GetVirtualGuest() (resp datatypes.Virtual
 }
 
 // This method returns the parameters for cloning a volume
-func (r Network_Storage_Backup_Evault) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+func (r Network_Storage_Backup_Evault) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
 	return
 }
@@ -10577,6 +10625,24 @@ func (r Network_Storage_Iscsi) GetObjectsByCredential(credentialObject *datatype
 	return
 }
 
+// Retrieve The name of the snapshot that this volume was duplicated from.
+func (r Network_Storage_Iscsi) GetOriginalSnapshotName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOriginalSnapshotName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The name of the volume that this volume was duplicated from.
+func (r Network_Storage_Iscsi) GetOriginalVolumeName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOriginalVolumeName", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The size (in GB) of the volume that this volume was duplicated from, or in the case of iSCSI LUNs, the size of the base originally-provisioned LUN.
+func (r Network_Storage_Iscsi) GetOriginalVolumeSize() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOriginalVolumeSize", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 func (r Network_Storage_Iscsi) GetOsType() (resp datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOsType", nil, &r.Options, &resp)
@@ -10616,6 +10682,12 @@ func (r Network_Storage_Iscsi) GetPermissionsGroups() (resp []datatypes.Network_
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Iscsi) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The number of IOPs provisioned for this volume.
+func (r Network_Storage_Iscsi) GetProvisionedIops() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getProvisionedIops", nil, &r.Options, &resp)
 	return
 }
 
@@ -10803,7 +10875,7 @@ func (r Network_Storage_Iscsi) GetVirtualGuest() (resp datatypes.Virtual_Guest, 
 }
 
 // This method returns the parameters for cloning a volume
-func (r Network_Storage_Iscsi) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeCloneParameters, err error) {
+func (r Network_Storage_Iscsi) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
 	return
 }

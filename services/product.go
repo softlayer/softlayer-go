@@ -97,8 +97,11 @@ func (r Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []
 }
 
 // no documentation yet
-func (r Product_Item_Category) GetCustomUsageRatesCategories() (resp []datatypes.Product_Item_Category, err error) {
-	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getCustomUsageRatesCategories", nil, &r.Options, &resp)
+func (r Product_Item_Category) GetCustomUsageRatesCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getCustomUsageRatesCategories", params, &r.Options, &resp)
 	return
 }
 
@@ -117,6 +120,15 @@ func (r Product_Item_Category) GetGroups() (resp []datatypes.Product_Package_Ite
 // Each product item price must be tied to a category for it to be sold. These categories describe how a particular product item is sold. For example, the 250GB hard drive can be sold as disk0, disk1, ... disk11. There are different prices for this product item depending on which category it is. This keeps down the number of products in total.
 func (r Product_Item_Category) GetObject() (resp datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Product_Item_Category) GetObjectStorageCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getObjectStorageCategories", params, &r.Options, &resp)
 	return
 }
 
@@ -809,6 +821,11 @@ func (r Product_Order) GetVlans(locationId *int, packageId *int, selectedItems *
 //     <td>[[SoftLayer_Container_Product_Order_User_Customer_External_Binding (type)|User_Customer_External_Binding]]</td>
 //     <td>ADDITIONAL_SERVICES</td>
 //   </tr>
+//   <tr>
+//     <td>Dedicated Host</td>
+//     <td>[[SoftLayer_Container_Product_Order_Virtual_DedicatedHost (type)|Virtual_DedicatedHosts]]</td>
+//     <td>DEDICATED_HOST</td>
+//   </tr>
 // </table>
 //
 //
@@ -1474,6 +1491,12 @@ func (r Product_Package) GetObject() (resp datatypes.Product_Package, err error)
 // This method will return a collection of [[SoftLayer_Container_Product_Order_Network_Storage_Hub_Datacenter]] objects which contain a datacenter location and all the associated active usage rate prices where object storage is available. This method is really only applicable to the object storage additional service package which has a [[SoftLayer_Product_Package_Type]] of '''ADDITIONAL_SERVICES_OBJECT_STORAGE'''. This information is useful so that you can see the "pay as you go" rates per datacenter.
 func (r Product_Package) GetObjectStorageDatacenters() (resp []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageDatacenters", nil, &r.Options, &resp)
+	return
+}
+
+// This method will return a collection of [[SoftLayer_Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup]] objects which contain a location group and all the associated active usage rate prices where object storage is available. This method is really only applicable to the object storage additional service package which has a [[SoftLayer_Product_Package_Type]] of '''ADDITIONAL_SERVICES_OBJECT_STORAGE'''. This information is useful so that you can see the "pay as you go" rates per location group.
+func (r Product_Package) GetObjectStorageLocationGroups() (resp []datatypes.Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageLocationGroups", nil, &r.Options, &resp)
 	return
 }
 

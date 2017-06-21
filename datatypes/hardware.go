@@ -114,6 +114,12 @@ type Hardware struct {
 	// Status indicating whether or not a piece of hardware has business continuance insurance.
 	BusinessContinuanceInsuranceFlag *bool `json:"businessContinuanceInsuranceFlag,omitempty" xmlrpc:"businessContinuanceInsuranceFlag,omitempty"`
 
+	// Child hardware.
+	ChildrenHardware []Hardware `json:"childrenHardware,omitempty" xmlrpc:"childrenHardware,omitempty"`
+
+	// A count of child hardware.
+	ChildrenHardwareCount *uint `json:"childrenHardwareCount,omitempty" xmlrpc:"childrenHardwareCount,omitempty"`
+
 	// A count of a piece of hardware's components.
 	ComponentCount *uint `json:"componentCount,omitempty" xmlrpc:"componentCount,omitempty"`
 
@@ -408,6 +414,9 @@ type Hardware struct {
 	// The total public outbound bandwidth for this hardware for the current billing cycle.
 	OutboundPublicBandwidthUsage *Float64 `json:"outboundPublicBandwidthUsage,omitempty" xmlrpc:"outboundPublicBandwidthUsage,omitempty"`
 
+	// Parent Hardware.
+	ParentHardware *Hardware `json:"parentHardware,omitempty" xmlrpc:"parentHardware,omitempty"`
+
 	// Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 	PointOfPresenceLocation *Location `json:"pointOfPresenceLocation,omitempty" xmlrpc:"pointOfPresenceLocation,omitempty"`
 
@@ -687,9 +696,6 @@ type Hardware_Chassis struct {
 
 	// no documentation yet
 	DriveControllerCapacity *string `json:"driveControllerCapacity,omitempty" xmlrpc:"driveControllerCapacity,omitempty"`
-
-	// no documentation yet
-	ExternalStorageSupportedFlag *string `json:"externalStorageSupportedFlag,omitempty" xmlrpc:"externalStorageSupportedFlag,omitempty"`
 
 	// A hardware form factor internal identifier.
 	FormFactorId *int `json:"formFactorId,omitempty" xmlrpc:"formFactorId,omitempty"`
@@ -1643,12 +1649,6 @@ type Hardware_Server struct {
 	// The raw public bandwidth usage data for the current billing cycle.
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty" xmlrpc:"billingCyclePublicBandwidthUsage,omitempty"`
 
-	// Child hardware.
-	ChildrenHardware []Hardware `json:"childrenHardware,omitempty" xmlrpc:"childrenHardware,omitempty"`
-
-	// A count of child hardware.
-	ChildrenHardwareCount *uint `json:"childrenHardwareCount,omitempty" xmlrpc:"childrenHardwareCount,omitempty"`
-
 	// no documentation yet
 	ContainsSolidStateDrivesFlag *bool `json:"containsSolidStateDrivesFlag,omitempty" xmlrpc:"containsSolidStateDrivesFlag,omitempty"`
 
@@ -1753,14 +1753,6 @@ type Hardware_Status struct {
 
 	// A hardware's status code. See the SoftLayer_Hardware_Status Overview for ''status''' possible values.
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
-}
-
-// no documentation yet
-type Hardware_StorageEnclosure struct {
-	Hardware
-
-	// Parent Hardware.
-	ParentHardware *Hardware `json:"parentHardware,omitempty" xmlrpc:"parentHardware,omitempty"`
 }
 
 // The SoftLayer_Hardware_Switch object extends the base functionality of the SoftLayer_Hardware service.

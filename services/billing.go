@@ -631,6 +631,12 @@ func (r Billing_Invoice_Item) GetFilteredAssociatedChildren() (resp []datatypes.
 	return
 }
 
+// Retrieve Indicating whether this invoice item is billed on an hourly basis.
+func (r Billing_Invoice_Item) GetHourlyFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getHourlyFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The invoice to which this item belongs.
 func (r Billing_Invoice_Item) GetInvoice() (resp datatypes.Billing_Invoice, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getInvoice", nil, &r.Options, &resp)
@@ -664,6 +670,12 @@ func (r Billing_Invoice_Item) GetParent() (resp datatypes.Billing_Invoice_Item, 
 // Retrieve The entry in the product catalog that a invoice item is based upon.
 func (r Billing_Invoice_Item) GetProduct() (resp datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getProduct", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A string representing the name of parent level product group of an invoice item.
+func (r Billing_Invoice_Item) GetTopLevelProductGroupName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getTopLevelProductGroupName", nil, &r.Options, &resp)
 	return
 }
 
@@ -1539,6 +1551,428 @@ func (r Billing_Item_Cancellation_Request) Void(closeRelatedTicketFlag *bool) (r
 		closeRelatedTicketFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "void", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Billing_Item_Virtual_DedicatedHost struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetBillingItemVirtualDedicatedHostService returns an instance of the Billing_Item_Virtual_DedicatedHost SoftLayer service
+func GetBillingItemVirtualDedicatedHostService(sess *session.Session) Billing_Item_Virtual_DedicatedHost {
+	return Billing_Item_Virtual_DedicatedHost{Session: sess}
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) Id(id int) Billing_Item_Virtual_DedicatedHost {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) Mask(mask string) Billing_Item_Virtual_DedicatedHost {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) Filter(filter string) Billing_Item_Virtual_DedicatedHost {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) Limit(limit int) Billing_Item_Virtual_DedicatedHost {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) Offset(offset int) Billing_Item_Virtual_DedicatedHost {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Cancel the resource or service for a billing Item. By default the billing item will be cancelled immediately and reclaim of the resource will begin shortly. Setting the "cancelImmediately" property to false will delay the cancellation until the next bill date.
+//
+//
+// * The reason parameter could be from the list below:
+// * "No longer needed"
+// * "Business closing down"
+// * "Server / Upgrade Costs"
+// * "Migrating to larger server"
+// * "Migrating to smaller server"
+// * "Migrating to a different SoftLayer datacenter"
+// * "Network performance / latency"
+// * "Support response / timing"
+// * "Sales process / upgrades"
+// * "Moving to competitor"
+func (r Billing_Item_Virtual_DedicatedHost) CancelItem(cancelImmediately *bool, cancelAssociatedBillingItems *bool, reason *string, customerNote *string) (resp bool, err error) {
+	params := []interface{}{
+		cancelImmediately,
+		cancelAssociatedBillingItems,
+		reason,
+		customerNote,
+	}
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "cancelItem", params, &r.Options, &resp)
+	return
+}
+
+// Cancel the resource or service (excluding bare metal servers) for a billing Item. The billing item will be cancelled immediately and reclaim of the resource will begin shortly.
+func (r Billing_Item_Virtual_DedicatedHost) CancelService() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "cancelService", nil, &r.Options, &resp)
+	return
+}
+
+// Cancel the resource or service for a billing Item
+func (r Billing_Item_Virtual_DedicatedHost) CancelServiceOnAnniversaryDate() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "cancelServiceOnAnniversaryDate", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The account that a billing item belongs to.
+func (r Billing_Item_Virtual_DedicatedHost) GetAccount() (resp datatypes.Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAccount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAgreement() (resp datatypes.Account_Agreement, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAgreement", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A flag indicating that the billing item is under an active agreement.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAgreementFlag() (resp datatypes.Account_Agreement, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAgreementFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's active associated child billing items. This includes "floating" items that are not necessarily child items of this billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedGuestDiskBillingItems() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's active bundled billing items.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveBundledItems() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A service cancellation request item that corresponds to the billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveCancellationItem() (resp datatypes.Billing_Item_Cancellation_Request_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveCancellationItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's active child billing items.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolAssociatedGuestDiskBillingItems() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's spare pool bundled billing items.
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolBundledItems() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's associated parent. This is to be used for billing items that are "floating", and therefore are not child items of any parent billing item. If it is desired to associate an item to another, populate this with the SoftLayer_Billing_Item ID of that associated parent item.
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedBillingItem() (resp datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedBillingItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A history of billing items which a billing item has been associated with.
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedBillingItemHistory() (resp []datatypes.Billing_Item_Association_History, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedBillingItemHistory", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's associated parent billing item. This object will be the same as the parent billing item if parentId is set.
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedParent() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedParent", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Billing_Item_Virtual_DedicatedHost) GetAvailableMatchingVlans() (resp []datatypes.Network_Vlan, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAvailableMatchingVlans", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The bandwidth allocation for a billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetBandwidthAllocation() (resp datatypes.Network_Bandwidth_Version1_Allocation, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBandwidthAllocation", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's recurring child items that have once been billed and are scheduled to be billed in the future.
+func (r Billing_Item_Virtual_DedicatedHost) GetBillableChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBillableChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's bundled billing items
+func (r Billing_Item_Virtual_DedicatedHost) GetBundleItems() (resp []datatypes.Product_Item_Bundles, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundleItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's bundled billing items'
+func (r Billing_Item_Virtual_DedicatedHost) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's active child billing items.
+func (r Billing_Item_Virtual_DedicatedHost) GetCanceledChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCanceledChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The billing item's cancellation reason.
+func (r Billing_Item_Virtual_DedicatedHost) GetCancellationReason() (resp datatypes.Billing_Item_Cancellation_Reason, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCancellationReason", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve This will return any cancellation requests that are associated with this billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetCancellationRequests() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCancellationRequests", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The item category to which the billing item's item belongs.
+func (r Billing_Item_Virtual_DedicatedHost) GetCategory() (resp datatypes.Product_Item_Category, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCategory", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's child billing items'
+func (r Billing_Item_Virtual_DedicatedHost) GetChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's active child billing items.
+func (r Billing_Item_Virtual_DedicatedHost) GetChildrenWithActiveAgreement() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildrenWithActiveAgreement", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve For product items which have a downgrade path defined, this will return those product items.
+func (r Billing_Item_Virtual_DedicatedHost) GetDowngradeItems() (resp []datatypes.Product_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getDowngradeItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's associated child billing items, excluding some items with a $0.00 recurring fee.
+func (r Billing_Item_Virtual_DedicatedHost) GetFilteredNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getFilteredNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A flag that will reflect whether this billing item is billed on an hourly basis or not.
+func (r Billing_Item_Virtual_DedicatedHost) GetHourlyFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getHourlyFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Invoice items associated with this billing item
+func (r Billing_Item_Virtual_DedicatedHost) GetInvoiceItem() (resp datatypes.Billing_Invoice_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getInvoiceItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve All invoice items associated with the billing item
+func (r Billing_Item_Virtual_DedicatedHost) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getInvoiceItems", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The entry in the SoftLayer product catalog that a billing item is based upon.
+func (r Billing_Item_Virtual_DedicatedHost) GetItem() (resp datatypes.Product_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The location of the billing item. Some billing items have physical properties such as the server itself. For items such as these, we provide location information.
+func (r Billing_Item_Virtual_DedicatedHost) GetLocation() (resp datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getLocation", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's child billing items and associated items'
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's total, including any child billing items if they exist.'
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceTotalOneTimeAmount() (resp datatypes.Float64, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceTotalOneTimeAmount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's total, including any child billing items if they exist.'
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceTotalOneTimeTaxAmount() (resp datatypes.Float64, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceTotalOneTimeTaxAmount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's total, including any child billing items and associated billing items if they exist.'
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceTotalRecurringAmount() (resp datatypes.Float64, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceTotalRecurringAmount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve This is deprecated and will always be zero. Because tax is calculated in real-time, previewing the next recurring invoice is pre-tax only.
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceTotalRecurringTaxAmount() (resp datatypes.Float64, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceTotalRecurringTaxAmount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
+func (r Billing_Item_Virtual_DedicatedHost) GetNonZeroNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNonZeroNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Billing_Item_Virtual_DedicatedHost) GetObject() (resp datatypes.Billing_Item_Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's original order item. Simply a reference to the original order from which this billing item was created.
+func (r Billing_Item_Virtual_DedicatedHost) GetOrderItem() (resp datatypes.Billing_Order_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getOrderItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The original physical location for this billing item--may differ from current.
+func (r Billing_Item_Virtual_DedicatedHost) GetOriginalLocation() (resp datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getOriginalLocation", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The package under which this billing item was sold. A Package is the general grouping of products as seen on our order forms.
+func (r Billing_Item_Virtual_DedicatedHost) GetPackage() (resp datatypes.Product_Package, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getPackage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's parent item. If a billing item has no parent item then this value is null.
+func (r Billing_Item_Virtual_DedicatedHost) GetParent() (resp datatypes.Billing_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getParent", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A billing item's parent item. If a billing item has no parent item then this value is null.
+func (r Billing_Item_Virtual_DedicatedHost) GetParentVirtualGuestBillingItem() (resp datatypes.Billing_Item_Virtual_Guest, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getParentVirtualGuestBillingItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve This flag indicates whether a billing item is scheduled to be canceled or not.
+func (r Billing_Item_Virtual_DedicatedHost) GetPendingCancellationFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getPendingCancellationFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The new order item that will replace this billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetPendingOrderItem() (resp datatypes.Billing_Order_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getPendingOrderItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Provisioning transaction for this billing item
+func (r Billing_Item_Virtual_DedicatedHost) GetProvisionTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getProvisionTransaction", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The resource for a virtual dedicated host billing item.
+func (r Billing_Item_Virtual_DedicatedHost) GetResource() (resp datatypes.Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getResource", nil, &r.Options, &resp)
+	return
+}
+
+// This service returns billing items of a specified category code. This service should be used to retrieve billing items that you wish to cancel. Some billing items can be canceled via [[SoftLayer_Security_Certificate_Request|service cancellation]] service.
+//
+// In order to find billing items for cancellation, use [[SoftLayer_Product_Item_Category::getValidCancelableServiceItemCategories|product categories]] service to retrieve category codes that are eligible for cancellation.
+func (r Billing_Item_Virtual_DedicatedHost) GetServiceBillingItemsByCategory(categoryCode *string, includeZeroRecurringFee *bool) (resp []datatypes.Billing_Item, err error) {
+	params := []interface{}{
+		categoryCode,
+		includeZeroRecurringFee,
+	}
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getServiceBillingItemsByCategory", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve A friendly description of software component
+func (r Billing_Item_Virtual_DedicatedHost) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getSoftwareDescription", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Billing items whose product item has an upgrade path defined in our system will return the next product item in the upgrade path.
+func (r Billing_Item_Virtual_DedicatedHost) GetUpgradeItem() (resp datatypes.Product_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getUpgradeItem", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Billing items whose product item has an upgrade path defined in our system will return all the product items in the upgrade path.
+func (r Billing_Item_Virtual_DedicatedHost) GetUpgradeItems() (resp []datatypes.Product_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getUpgradeItems", nil, &r.Options, &resp)
+	return
+}
+
+// Remove the association from a billing item.
+func (r Billing_Item_Virtual_DedicatedHost) RemoveAssociationId() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "removeAssociationId", nil, &r.Options, &resp)
+	return
+}
+
+// Set an associated billing item to an orphan billing item. Associations allow you to tie an "orphaned" billing item, any non-server billing item that doesn't have a parent item such as secondary IP subnets or StorageLayer accounts, to a server billing item. You may only set an association for an orphan to a server. You cannot associate a server to an orphan if the either the server or orphan billing items have a cancellation date set.
+func (r Billing_Item_Virtual_DedicatedHost) SetAssociationId(associatedId *int) (resp bool, err error) {
+	params := []interface{}{
+		associatedId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "setAssociationId", params, &r.Options, &resp)
+	return
+}
+
+// Void a previously made cancellation for a service
+func (r Billing_Item_Virtual_DedicatedHost) VoidCancelService() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "voidCancelService", nil, &r.Options, &resp)
 	return
 }
 

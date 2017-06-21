@@ -2505,6 +2505,26 @@ type Container_Network_Storage_Hub_ObjectStorage_Policy struct {
 	PolicyCode *string `json:"policyCode,omitempty" xmlrpc:"policyCode,omitempty"`
 }
 
+// SoftLayer_Container_Network_Storage_Hub_ObjectStorage_Provision provides description of a provision
+type Container_Network_Storage_Hub_ObjectStorage_Provision struct {
+	Entity
+
+	// no documentation yet
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// no documentation yet
+	Provision *string `json:"provision,omitempty" xmlrpc:"provision,omitempty"`
+
+	// no documentation yet
+	ProvisionCreateDate *Time `json:"provisionCreateDate,omitempty" xmlrpc:"provisionCreateDate,omitempty"`
+
+	// no documentation yet
+	ProvisionModifyDate *Time `json:"provisionModifyDate,omitempty" xmlrpc:"provisionModifyDate,omitempty"`
+
+	// no documentation yet
+	ProvisionTime *int `json:"provisionTime,omitempty" xmlrpc:"provisionTime,omitempty"`
+}
+
 // no documentation yet
 type Container_Network_Storage_NetworkConnectionInformation struct {
 	Entity
@@ -2519,35 +2539,47 @@ type Container_Network_Storage_NetworkConnectionInformation struct {
 	StorageType *string `json:"storageType,omitempty" xmlrpc:"storageType,omitempty"`
 }
 
-// Container for Volume Clone Information
-type Container_Network_Storage_VolumeCloneParameters struct {
+// Container for Volume Duplicate Information
+type Container_Network_Storage_VolumeDuplicateParameters struct {
 	Entity
+
+	// The number of ongoing concurrentDuplicateOperations.
+	ConcurrentDuplicateOperations *int `json:"concurrentDuplicateOperations,omitempty" xmlrpc:"concurrentDuplicateOperations,omitempty"`
 
 	// The iopsPerGB of the volume
 	IopsPerGb *Float64 `json:"iopsPerGb,omitempty" xmlrpc:"iopsPerGb,omitempty"`
 
-	// Returns true if volume is cloneable; false otherwise
-	IsCloneable *bool `json:"isCloneable,omitempty" xmlrpc:"isCloneable,omitempty"`
+	// Returns true if volume can be duplicated; false otherwise
+	IsDuplicatable *bool `json:"isDuplicatable,omitempty" xmlrpc:"isDuplicatable,omitempty"`
 
-	// The maximumIopsPerGb allowed for a cloned volume
+	// This represents the location id
+	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
+
+	// This represents the location name
+	LocationName *string `json:"locationName,omitempty" xmlrpc:"locationName,omitempty"`
+
+	// The maximumIopsPerGb allowed for a duplicated volume
 	MaximumIopsPerGb *Float64 `json:"maximumIopsPerGb,omitempty" xmlrpc:"maximumIopsPerGb,omitempty"`
 
-	// The maximumIopsTier allowed for a cloned volume
+	// The maximumIopsTier allowed for a duplicated volume
 	MaximumIopsTier *Float64 `json:"maximumIopsTier,omitempty" xmlrpc:"maximumIopsTier,omitempty"`
 
-	// The maximumVolumeSize allowed for a cloned volume
+	// The maximumVolumeSize allowed for a duplicated volume
 	MaximumVolumeSize *int `json:"maximumVolumeSize,omitempty" xmlrpc:"maximumVolumeSize,omitempty"`
 
-	// The minimumIopsPerGb allowed for a cloned volume
+	// The minimumIopsPerGb allowed for a duplicated volume
 	MinimumIopsPerGb *Float64 `json:"minimumIopsPerGb,omitempty" xmlrpc:"minimumIopsPerGb,omitempty"`
 
-	// The minimumIopsTier allowed for a cloned volume
+	// The minimumIopsTier allowed for a duplicated volume
 	MinimumIopsTier *Float64 `json:"minimumIopsTier,omitempty" xmlrpc:"minimumIopsTier,omitempty"`
 
-	// The minimumVolumeSize allowed for a cloned volume
+	// The minimumVolumeSize allowed for a duplicated volume
 	MinimumVolumeSize *int `json:"minimumVolumeSize,omitempty" xmlrpc:"minimumVolumeSize,omitempty"`
 
-	// The volume clone status description
+	// The snapshotSpaceSize allowed for a cloned volume
+	SnapshotSpaceSize *int `json:"snapshotSpaceSize,omitempty" xmlrpc:"snapshotSpaceSize,omitempty"`
+
+	// The volume duplicate status description
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// This represents the volume username
@@ -3412,6 +3444,20 @@ type Container_Product_Order_Network_Storage_Object struct {
 	Container_Product_Order
 }
 
+// This class is used to contain a location group and its associated active usage rate prices for object storage ordering.
+type Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup struct {
+	Entity
+
+	// The datacenter location where object storage is available.
+	ClusterGeolocationType *string `json:"clusterGeolocationType,omitempty" xmlrpc:"clusterGeolocationType,omitempty"`
+
+	// The datacenter location where object storage is available.
+	LocationGroup *Location_Group `json:"locationGroup,omitempty" xmlrpc:"locationGroup,omitempty"`
+
+	// The collection of active usage rate item prices.
+	UsageRatePrices []Product_Item_Price `json:"usageRatePrices,omitempty" xmlrpc:"usageRatePrices,omitempty"`
+}
+
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a subnet order with SoftLayer.
 type Container_Product_Order_Network_Subnet struct {
 	Container_Product_Order
@@ -3685,6 +3731,11 @@ type Container_Product_Order_User_Customer_External_Binding struct {
 	VendorId *int `json:"vendorId,omitempty" xmlrpc:"vendorId,omitempty"`
 }
 
+// This is the default container type for Dedicated Virtual Host orders.
+type Container_Product_Order_Virtual_DedicatedHost struct {
+	Container_Product_Order
+}
+
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a Portable Storage order with SoftLayer.
 type Container_Product_Order_Virtual_Disk_Image struct {
 	Container_Product_Order
@@ -3699,6 +3750,9 @@ type Container_Product_Order_Virtual_Guest struct {
 
 	// Identifier of the [[SoftLayer_Virtual_Disk_Image]] to boot from.
 	BootableDiskId *int `json:"bootableDiskId,omitempty" xmlrpc:"bootableDiskId,omitempty"`
+
+	// Identifier of [[SoftLayer_Virtual_DedicatedHost]] to order
+	HostId *int `json:"hostId,omitempty" xmlrpc:"hostId,omitempty"`
 }
 
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
@@ -4542,6 +4596,10 @@ type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	//
 	// Optional virtualization boot mode parameter, if set, can mark a template to boot specifically into PV or HVM.
 	BootMode *string `json:"bootMode,omitempty" xmlrpc:"bootMode,omitempty"`
+
+	//
+	// Specifies if image is using a customer's software license.
+	Byol *bool `json:"byol,omitempty" xmlrpc:"byol,omitempty"`
 
 	//
 	// Specifies if image requires cloud-init.

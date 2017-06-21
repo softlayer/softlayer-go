@@ -117,6 +117,12 @@ func (r Virtual_DedicatedHost) GetBackendRouter() (resp datatypes.Hardware_Route
 	return
 }
 
+// Retrieve The billing item for a dedicated host.
+func (r Virtual_DedicatedHost) GetBillingItem() (resp datatypes.Billing_Item_Virtual_DedicatedHost, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The datacenter that the host resides in.
 func (r Virtual_DedicatedHost) GetDatacenter() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getDatacenter", nil, &r.Options, &resp)

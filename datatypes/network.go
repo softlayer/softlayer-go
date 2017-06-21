@@ -3462,6 +3462,15 @@ type Network_Storage struct {
 	// The subscribers that will be notified for usage amount warnings and overages.
 	NotificationSubscribers []Notification_User_Subscriber `json:"notificationSubscribers,omitempty" xmlrpc:"notificationSubscribers,omitempty"`
 
+	// The name of the snapshot that this volume was duplicated from.
+	OriginalSnapshotName *string `json:"originalSnapshotName,omitempty" xmlrpc:"originalSnapshotName,omitempty"`
+
+	// The name of the volume that this volume was duplicated from.
+	OriginalVolumeName *string `json:"originalVolumeName,omitempty" xmlrpc:"originalVolumeName,omitempty"`
+
+	// The size (in GB) of the volume that this volume was duplicated from, or in the case of iSCSI LUNs, the size of the base originally-provisioned LUN.
+	OriginalVolumeSize *string `json:"originalVolumeSize,omitempty" xmlrpc:"originalVolumeSize,omitempty"`
+
 	// A volume's configured SoftLayer_Network_Storage_Iscsi_OS_Type.
 	OsType *Network_Storage_Iscsi_OS_Type `json:"osType,omitempty" xmlrpc:"osType,omitempty"`
 
@@ -3497,6 +3506,9 @@ type Network_Storage struct {
 
 	// A count of the properties used to provide additional details about a network storage volume.
 	PropertyCount *uint `json:"propertyCount,omitempty" xmlrpc:"propertyCount,omitempty"`
+
+	// The number of IOPs provisioned for this volume.
+	ProvisionedIops *string `json:"provisionedIops,omitempty" xmlrpc:"provisionedIops,omitempty"`
 
 	// A count of the iSCSI LUN volumes being replicated by this network storage volume.
 	ReplicatingLunCount *uint `json:"replicatingLunCount,omitempty" xmlrpc:"replicatingLunCount,omitempty"`

@@ -602,6 +602,12 @@ func (r Hardware) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve Child hardware.
+func (r Hardware) GetChildrenHardware() (resp []datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getChildrenHardware", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Hardware) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -1089,6 +1095,12 @@ func (r Hardware) GetOutboundBandwidthUsage() (resp datatypes.Float64, err error
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Parent Hardware.
+func (r Hardware) GetParentHardware() (resp datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getParentHardware", nil, &r.Options, &resp)
 	return
 }
 
@@ -2435,6 +2447,12 @@ func (r Hardware_Router) GetBusinessContinuanceInsuranceFlag() (resp bool, err e
 	return
 }
 
+// Retrieve Child hardware.
+func (r Hardware_Router) GetChildrenHardware() (resp []datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getChildrenHardware", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Hardware_Router) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -2928,6 +2946,12 @@ func (r Hardware_Router) GetOutboundBandwidthUsage() (resp datatypes.Float64, er
 // Retrieve The total public outbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware_Router) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getOutboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Parent Hardware.
+func (r Hardware_Router) GetParentHardware() (resp datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getParentHardware", nil, &r.Options, &resp)
 	return
 }
 
@@ -4754,6 +4778,12 @@ func (r Hardware_SecurityModule) GetOverBandwidthAllocationFlag() (resp int, err
 // Retrieve a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures system temperatures, voltages, and other local server settings. Sensor data is cached for 30 seconds. Calls made to getSensorData for the same server within 30 seconds of each other will return the same data. Subsequent calls will return new data once the cache expires.
 func (r Hardware_SecurityModule) GetPMInfo() (resp []datatypes.Container_RemoteManagement_PmInfo, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPMInfo", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Parent Hardware.
+func (r Hardware_SecurityModule) GetParentHardware() (resp datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getParentHardware", nil, &r.Options, &resp)
 	return
 }
 
@@ -6940,6 +6970,12 @@ func (r Hardware_Server) GetOverBandwidthAllocationFlag() (resp int, err error) 
 // Retrieve a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures system temperatures, voltages, and other local server settings. Sensor data is cached for 30 seconds. Calls made to getSensorData for the same server within 30 seconds of each other will return the same data. Subsequent calls will return new data once the cache expires.
 func (r Hardware_Server) GetPMInfo() (resp []datatypes.Container_RemoteManagement_PmInfo, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPMInfo", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Parent Hardware.
+func (r Hardware_Server) GetParentHardware() (resp datatypes.Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getParentHardware", nil, &r.Options, &resp)
 	return
 }
 

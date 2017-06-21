@@ -434,6 +434,9 @@ type Billing_Invoice_Item struct {
 	// The Host name of the invoiced item. This is only used on invoice items whose category is "server".
 	HostName *string `json:"hostName,omitempty" xmlrpc:"hostName,omitempty"`
 
+	// Indicating whether this invoice item is billed on an hourly basis.
+	HourlyFlag *bool `json:"hourlyFlag,omitempty" xmlrpc:"hourlyFlag,omitempty"`
+
 	// The hourly recurring fee of the invoice item represented by a floating point decimal in US Dollars ($USD)
 	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty" xmlrpc:"hourlyRecurringFee,omitempty"`
 
@@ -523,6 +526,9 @@ type Billing_Invoice_Item struct {
 
 	// An invoice item's setup tax amount. This does not include any child invoice items.
 	SetupTaxAmount *Float64 `json:"setupTaxAmount,omitempty" xmlrpc:"setupTaxAmount,omitempty"`
+
+	// A string representing the name of parent level product group of an invoice item.
+	TopLevelProductGroupName *string `json:"topLevelProductGroupName,omitempty" xmlrpc:"topLevelProductGroupName,omitempty"`
 
 	// An invoice Item's total, including any child invoice items if they exist.
 	TotalOneTimeAmount *Float64 `json:"totalOneTimeAmount,omitempty" xmlrpc:"totalOneTimeAmount,omitempty"`
@@ -1585,6 +1591,17 @@ type Billing_Item_User_Customer_External_Binding struct {
 
 	// The external authentication binding that a billing item is associated with.
 	Resource *User_Customer_External_Binding `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
+// no documentation yet
+type Billing_Item_Virtual_DedicatedHost struct {
+	Billing_Item
+
+	// The resource for a virtual dedicated host billing item.
+	Resource *Virtual_DedicatedHost `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+
+	// The resource (unique identifier) for a server billing item.
+	ResourceTableId *int `json:"resourceTableId,omitempty" xmlrpc:"resourceTableId,omitempty"`
 }
 
 // A SoftLayer_Billing_Item_Virtual_Dedicated_Rack data type models the billing information for a single bandwidth pooling. Bandwidth pooling members share their public bandwidth allocations, and incur overage charges instead of the overages on individual rack members. Virtual rack billing items are the parent items for all of it's rack membership billing items.

@@ -36,6 +36,9 @@ type Virtual_DedicatedHost struct {
 	// The backendRouter behind dedicated host's pool.
 	BackendRouter *Hardware_Router_Backend `json:"backendRouter,omitempty" xmlrpc:"backendRouter,omitempty"`
 
+	// The billing item for a dedicated host.
+	BillingItem *Billing_Item_Virtual_DedicatedHost `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
+
 	// Capacity this dedicated host's cpu allocation is restricted to
 	CpuCount *int `json:"cpuCount,omitempty" xmlrpc:"cpuCount,omitempty"`
 
