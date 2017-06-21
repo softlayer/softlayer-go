@@ -190,7 +190,7 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 
 	if session.APIKey != "" {
 		req.SetBasicAuth(session.UserName, session.APIKey)
-	} else {
+	} else if session.AuthToken != "" {
 		req.SetBasicAuth(fmt.Sprintf("%d", session.UserId), session.AuthToken)
 	}
 
