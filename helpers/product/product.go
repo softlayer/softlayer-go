@@ -150,7 +150,7 @@ func SelectProductPricesByCategory(
 	prices := []datatypes.Product_Item_Price{}
 	priceCheck := map[string]bool{}
 	for _, productItem := range productItems {
-		isPrivate := strings.HasPrefix(sl.Get(productItem.Description, "").(string), "Private")
+		isPrivate := strings.Contains(sl.Get(productItem.KeyName, "").(string), "PRIVATE")
 		isPublic := strings.Contains(sl.Get(productItem.Description, "Public").(string), "Public")
 		for _, category := range productItem.Prices[0].Categories {
 			for categoryCode, capacity := range options {
