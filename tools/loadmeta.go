@@ -369,11 +369,7 @@ func addComplexType(dataType *Type) {
 
 // Special case for fixing some datatype properties in the metadata
 func fixDatatype(t *Type, meta map[string]Type) {
-	if t.Name == "SoftLayer_Virtual_Guest_Block_Device_Template_Group" {
-		property := t.Properties["imageType"]
-		property.Type = "SoftLayer_Virtual_Disk_Image_Type"
-		t.Properties["imageType"] = property
-	} else if strings.HasPrefix(t.Name, "SoftLayer_Dns_Domain_ResourceRecord_") {
+	if strings.HasPrefix(t.Name, "SoftLayer_Dns_Domain_ResourceRecord_") {
 		baseRecordType, _ := meta["SoftLayer_Dns_Domain_ResourceRecord"]
 		for propName, prop := range t.Properties {
 			baseRecordType.Properties[propName] = prop
