@@ -161,7 +161,7 @@ func (x *XmlRpcTransport) DoRequest(
 	if xmlRpcError, ok := err.(*xmlrpc.XmlRpcError); ok {
 		return sl.Error{
 			StatusCode: xmlRpcError.HttpStatusCode,
-			Exception:  xmlRpcError.Code,
+			Exception:  xmlRpcError.Code.(string),
 			Message:    xmlRpcError.Err,
 		}
 	}
