@@ -21,7 +21,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -197,8 +196,8 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	req.URL.RawQuery = encodeQuery(options)
 
 	if session.Debug {
-		log.Println("[DEBUG] Request URL: ", requestType, req.URL)
-		log.Println("[DEBUG] Parameters: ", requestBody.String())
+		session.Logger.Println("[DEBUG] Request URL: ", requestType, req.URL)
+		session.Logger.Println("[DEBUG] Parameters: ", requestBody.String())
 	}
 
 	resp, err := client.Do(req)
@@ -214,7 +213,7 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	}
 
 	if session.Debug {
-		log.Println("[DEBUG] Response: ", string(responseBody))
+		session.Logger.Println("[DEBUG] Response: ", string(responseBody))
 	}
 	return responseBody, resp.StatusCode, nil
 }
