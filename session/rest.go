@@ -169,6 +169,7 @@ func encodeQuery(opts *sl.Options) string {
 }
 
 func makeHTTPRequest(session *Session, path string, requestType string, requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
+	log := session.Logger
 	client := http.DefaultClient
 	client.Timeout = DefaultTimeout
 	if session.Timeout != 0 {
@@ -196,8 +197,8 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	req.URL.RawQuery = encodeQuery(options)
 
 	if session.Debug {
-		session.Logger.Println("[DEBUG] Request URL: ", requestType, req.URL)
-		session.Logger.Println("[DEBUG] Parameters: ", requestBody.String())
+		log.Println("[DEBUG] Request URL: ", requestType, req.URL)
+		log.Println("[DEBUG] Parameters: ", requestBody.String())
 	}
 
 	resp, err := client.Do(req)
@@ -213,7 +214,7 @@ func makeHTTPRequest(session *Session, path string, requestType string, requestB
 	}
 
 	if session.Debug {
-		session.Logger.Println("[DEBUG] Response: ", string(responseBody))
+		log.Println("[DEBUG] Response: ", string(responseBody))
 	}
 	return responseBody, resp.StatusCode, nil
 }

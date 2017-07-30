@@ -18,13 +18,14 @@ package session
 
 import (
 	"fmt"
-	"github.com/softlayer/softlayer-go/config"
-	"github.com/softlayer/softlayer-go/sl"
 	"log"
 	"os"
 	"os/user"
 	"strings"
 	"time"
+
+	"github.com/softlayer/softlayer-go/config"
+	"github.com/softlayer/softlayer-go/sl"
 )
 
 // DefaultEndpoint is the default endpoint for API calls, when no override
@@ -180,13 +181,11 @@ func New(args ...interface{}) *Session {
 		endpointURL = DefaultEndpoint
 	}
 
-	logger := log.New(os.Stderr, "", log.LstdFlags)
-
 	sess := &Session{
 		UserName: values[keys["username"]],
 		APIKey:   values[keys["api_key"]],
 		Endpoint: endpointURL,
-		Logger:   logger,
+		Logger:   log.New(os.Stderr, "", log.LstdFlags),
 	}
 
 	timeout := values[keys["timeout"]]
