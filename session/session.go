@@ -99,6 +99,11 @@ type Session struct {
 	// session. Requests that take longer that the specified timeout
 	// will result in an error.
 	Timeout time.Duration
+
+	// Logger specified a string format of log information.
+	// A Logger represents an active logging object that
+	// generates lines of output to an io.Writer.
+	Logger *log.Logger
 }
 
 // New creates and returns a pointer to a new session object.  It takes up to
@@ -180,6 +185,7 @@ func New(args ...interface{}) *Session {
 		UserName: values[keys["username"]],
 		APIKey:   values[keys["api_key"]],
 		Endpoint: endpointURL,
+		Logger:   log.New(os.Stderr, "", log.LstdFlags),
 	}
 
 	timeout := values[keys["timeout"]]
