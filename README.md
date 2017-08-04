@@ -270,6 +270,14 @@ To enable debug output:
 session.Debug = true
 ```
 
+By default, the debug output is sent to standard output. You can customize this by setting up your own logger:
+
+```go
+import "github.com/softlayer/softlayer-go/session"
+
+session.Logger = log.New(os.Stderr, "[CUSTOMIZED] ", log.LstdFlags)
+```
+
 ### Password-based authentication
 
 Password-based authentication (via requesting a token from the API) is
