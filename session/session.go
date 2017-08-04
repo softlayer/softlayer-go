@@ -43,7 +43,7 @@ func init() {
 // is provided.
 const DefaultEndpoint = "https://api.softlayer.com/rest/v3"
 
-// TransportHandler
+// TransportHandler interface for the protocol-specific handling of API requests.
 type TransportHandler interface {
 	// DoRequest is the protocol-specific handler for making API requests.
 	//
@@ -238,11 +238,43 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	return r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
 }
 
-// AppendUserAgent allows higher level application to identify themselves by appending to the useragent string
+// SetTimeout creates a copy of the session and sets the passed timeout into it
+// before returning it.
+func (r *Session) SetTimeout(timeout time.Duration) *Session {
+	var s Session
+	s = *r
+	s.Timeout = timeout
+
+	return &s
+}
+
+// SetRetries creates a copy of the session and sets the passed retries into it
+// before returning it.
+func (r *Session) SetRetries(retries int) *Session {
+	var s Session
+	s = *r
+	s.Retries = retries
+
+	return &s
+}
+
+// SetRetryWait creates a copy of the session and sets the passed retryWait into it
+// before returning it.
+func (r *Session) SetRetryWait(retryWait time.Duration) *Session {
+	var s Session
+	s = *r
+	s.RetryWait = retryWait
+
+	return &s
+}
+
+// AppendUserAgent allows higher level application to identify themselves by
+// appending to the useragent string
 func (r *Session) AppendUserAgent(agent string) {
 	if r.userAgent == "" {
 		r.userAgent = getDefaultUserAgent()
 	}
+
 	if agent != "" {
 		r.userAgent += " " + agent
 	}
@@ -271,14 +303,6 @@ func getDefaultTransport(endpointURL string) TransportHandler {
 	return transportHandler
 }
 
-<<<<<<< HEAD
-func getDefaultUserAgent() string {
-	return fmt.Sprintf("softlayer-go/%s (%s;%s;%s)", sl.Version.String(),
-		runtime.Version(),
-		runtime.GOARCH,
-		runtime.GOOS,
-	)
-=======
 func isTimeout(err error) bool {
 	if slErr, ok := err.(sl.Error); ok {
 		switch slErr.StatusCode {
@@ -300,5 +324,12 @@ func isTimeout(err error) bool {
 	}
 
 	return false
->>>>>>> 022e5f1... Add retry logic
+}
+
+func getDefaultUserAgent() string {
+	return fmt.Sprintf("softlayer-go/%s (%s;%s;%s)", sl.Version.String(),
+		runtime.Version(),
+		runtime.GOARCH,
+		runtime.GOOS,
+	)
 }
