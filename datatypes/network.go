@@ -2447,6 +2447,9 @@ type Network_LoadBalancer_Service struct {
 
 	// Weight affects the choices the load balancer makes between your services.  The weight of each service is expressed as a percentage of the TOTAL CONNECTION LIMIT on the virtual IP Address.  All services draw from the same pool of connections, so if you expect to have 4 times as much HTTP traffic as HTTPS, your weights for the above example routes would be 40%, 40%, 10%, 10% respectively.  The weights should add up to 100%  If you go over 100%, an exception will be thrown.  Weights must be whole numbers, no fractions or decimals are accepted.
 	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
+
+	// Usip configures the service to report the source ip of the client to service being load balanced.
+	Usip *string `json:"usip,omitempty" xmlrpc:"usip,omitempty"`
 }
 
 // The SoftLayer_Network_LoadBalancer_VirtualIpAddress data type contains all the information relating to a specific load balancer assigned to a customer account.
