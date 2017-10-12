@@ -375,6 +375,12 @@ func fixDatatype(t *Type, meta map[string]Type) {
 			baseRecordType.Properties[propName] = prop
 		}
 		meta["SoftLayer_Dns_Domain_ResourceRecord"] = baseRecordType
+	} else if t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign" || t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign_Totp" {
+		baseType, _ := meta["SoftLayer_Container_User_Customer_External_Binding"]
+		for propName, prop := range t.Properties {
+			baseType.Properties[propName] = prop
+		}
+		meta["SoftLayer_Container_User_Customer_External_Binding"] = baseType
 	}
 }
 
