@@ -2012,7 +2012,7 @@ type Network_Interconnect_Tenant struct {
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// no documentation yet
+	// Link speed of a Direct Link connection.
 	LinkSpeed *int `json:"linkSpeed,omitempty" xmlrpc:"linkSpeed,omitempty"`
 
 	// IP address (v4 or v6) of "near" router serial interface. No check/update of IP Address table.
@@ -2024,8 +2024,11 @@ type Network_Interconnect_Tenant struct {
 	// Specifies the Interconnect connection name.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
-	// no documentation yet
+	// This field will have the ticket id if the tenant workflow fails
 	Note *string `json:"note,omitempty" xmlrpc:"note,omitempty"`
+
+	// Link speed of a Direct Link connection on Equinix Side.
+	PeerLinkSpeed *int `json:"peerLinkSpeed,omitempty" xmlrpc:"peerLinkSpeed,omitempty"`
 
 	// Specifies redundant connection is available if 1.
 	RedundancyFlag *bool `json:"redundancyFlag,omitempty" xmlrpc:"redundancyFlag,omitempty"`
@@ -4333,7 +4336,7 @@ type Network_Storage_MassDataMigration_Request struct {
 	// The address id of address assigned to this request.
 	AddressId *int `json:"addressId,omitempty" xmlrpc:"addressId,omitempty"`
 
-	// The billing item for the original request.
+	// An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// The employee user who created the request.
@@ -5861,6 +5864,9 @@ type Network_Vlan_Firewall struct {
 
 	// The credentials to log in to a firewall device. This is only present for dedicated appliances.
 	ManagementCredentials *Software_Component_Password `json:"managementCredentials,omitempty" xmlrpc:"managementCredentials,omitempty"`
+
+	// A firewall's metric tracking object.
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// The metric tracking object ID for this firewall.
 	MetricTrackingObjectId *int `json:"metricTrackingObjectId,omitempty" xmlrpc:"metricTrackingObjectId,omitempty"`

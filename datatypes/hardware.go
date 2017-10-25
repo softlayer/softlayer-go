@@ -878,6 +878,9 @@ type Hardware_Component_Firmware struct {
 	// no documentation yet
 	BuildDate *Time `json:"buildDate,omitempty" xmlrpc:"buildDate,omitempty"`
 
+	// no documentation yet
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
 	// The Hardware Component Model this Firmware applies to.
 	HardwareComponentModel *Hardware_Component_Model `json:"hardwareComponentModel,omitempty" xmlrpc:"hardwareComponentModel,omitempty"`
 
@@ -886,6 +889,9 @@ type Hardware_Component_Firmware struct {
 
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	IsQualified *int `json:"isQualified,omitempty" xmlrpc:"isQualified,omitempty"`
 
 	// no documentation yet
 	ReleaseNotes *string `json:"releaseNotes,omitempty" xmlrpc:"releaseNotes,omitempty"`

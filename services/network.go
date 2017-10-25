@@ -2198,18 +2198,6 @@ func (r Network_CdnMarketplace_Configuration_Mapping) GetObject() (resp datatype
 }
 
 // no documentation yet
-func (r Network_CdnMarketplace_Configuration_Mapping) ListCustomerDomains(transactionId *int, softLayerAccountId *int, vendorName *string, status *int) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
-	params := []interface{}{
-		transactionId,
-		softLayerAccountId,
-		vendorName,
-		status,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listCustomerDomains", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping) ListDomainMappingByUniqueId(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
 	params := []interface{}{
 		uniqueId,
@@ -12427,7 +12415,7 @@ func (r Network_Storage_MassDataMigration_Request) GetAllRequestStatuses() (resp
 	return
 }
 
-// Retrieve The billing item for the original request.
+// Retrieve An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
 func (r Network_Storage_MassDataMigration_Request) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getBillingItem", nil, &r.Options, &resp)
 	return
@@ -14979,6 +14967,12 @@ func (r Network_Vlan_Firewall) GetFullyQualifiedDomainName() (resp string, err e
 // Retrieve The credentials to log in to a firewall device. This is only present for dedicated appliances.
 func (r Network_Vlan_Firewall) GetManagementCredentials() (resp datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getManagementCredentials", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A firewall's metric tracking object.
+func (r Network_Vlan_Firewall) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
 

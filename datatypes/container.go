@@ -1724,6 +1724,9 @@ type Container_Network_CdnMarketplace_Configuration_Mapping_Path struct {
 	FileExtension *string `json:"fileExtension,omitempty" xmlrpc:"fileExtension,omitempty"`
 
 	// no documentation yet
+	Header *string `json:"header,omitempty" xmlrpc:"header,omitempty"`
+
+	// no documentation yet
 	HttpPort *int `json:"httpPort,omitempty" xmlrpc:"httpPort,omitempty"`
 
 	// no documentation yet
@@ -3054,7 +3057,7 @@ type Container_Product_Order struct {
 	// The URL to which PayPal redirects browser after checkout has been canceled before completion of a payment.
 	CancelUrl *string `json:"cancelUrl,omitempty" xmlrpc:"cancelUrl,omitempty"`
 
-	// Added by Gopherlayer. This hints to the API what kind of product order this is.
+	// Added by softlayer-go. This hints to the API what kind of product order this is.
 	ComplexType *string `json:"complexType,omitempty" xmlrpc:"complexType,omitempty"`
 
 	// User-specified description to identify a particular order container. This is useful if you have a multi-configuration order (multiple <code>orderContainers</code>) and you want to be able to easily determine one from another. Populating this value may be helpful if an exception is thrown when placing an order and it's tied to a specific order container.
@@ -4595,6 +4598,9 @@ type Container_User_Customer_External_Binding struct {
 
 	// The unique token that is created by an external authentication request.
 	AuthenticationToken *string `json:"authenticationToken,omitempty" xmlrpc:"authenticationToken,omitempty"`
+
+	// Added by softlayer-go. This hints to the API what kind of binding this is.
+	ComplexType *string `json:"complexType,omitempty" xmlrpc:"complexType,omitempty"`
 
 	// The OpenID Connect access token which provides access to a resource by the OpenID Connect provider.
 	OpenIdConnectAccessToken *string `json:"openIdConnectAccessToken,omitempty" xmlrpc:"openIdConnectAccessToken,omitempty"`
