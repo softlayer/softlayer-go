@@ -32,6 +32,8 @@ import (
 	"golang.org/x/tools/imports"
 )
 
+const SoftLayerMetadataAPIURL = "https://api.softlayer.com/metadata/v3.1"
+
 type Type struct {
 	Name       string              `json:"name"`
 	Base       string              `json:"base"`
@@ -180,7 +182,7 @@ func generateAPI() {
 	outputPath := flag.String("o", ".", "the root of the go project to be refreshed")
 	flagset.Parse(os.Args[2:])
 
-	jsonResp, code, err := makeHttpRequest("https://api.softlayer.com/metadata/v3.1", "GET", new(bytes.Buffer))
+	jsonResp, code, err := makeHttpRequest(SoftLayerMetadataAPIURL, "GET", new(bytes.Buffer))
 
 	if err != nil {
 		fmt.Printf("Error retrieving metadata API: %s", err)
