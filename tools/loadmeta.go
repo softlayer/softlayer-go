@@ -364,7 +364,14 @@ func addComplexType(dataType *Type) {
 			Name: "complexType",
 			Type: "string",
 			Form: "local",
-			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
+			Doc:  "Added by softlayer-go. This hints to the API what kind of product order this is.",
+		}
+	} else if dataType.Name == "SoftLayer_Container_User_Customer_External_Binding" {
+		dataType.Properties["complexType"] = Property{
+			Name: "complexType",
+			Type: "string",
+			Form: "local",
+			Doc:  "Added by softlayer-go. This hints to the API what kind of binding this is.",
 		}
 	}
 }
