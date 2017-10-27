@@ -32,6 +32,8 @@ import (
 	"golang.org/x/tools/imports"
 )
 
+const SoftLayerMetadataAPIURL = "https://api.softlayer.com/metadata/v3.1"
+
 type Type struct {
 	Name       string              `json:"name"`
 	Base       string              `json:"base"`
@@ -180,7 +182,7 @@ func generateAPI() {
 	outputPath := flag.String("o", ".", "the root of the go project to be refreshed")
 	flagset.Parse(os.Args[2:])
 
-	jsonResp, code, err := makeHttpRequest("https://api.softlayer.com/metadata/v3.1", "GET", new(bytes.Buffer))
+	jsonResp, code, err := makeHttpRequest(SoftLayerMetadataAPIURL, "GET", new(bytes.Buffer))
 
 	if err != nil {
 		fmt.Printf("Error retrieving metadata API: %s", err)
@@ -362,7 +364,14 @@ func addComplexType(dataType *Type) {
 			Name: "complexType",
 			Type: "string",
 			Form: "local",
-			Doc:  "Added by Gopherlayer. This hints to the API what kind of product order this is.",
+			Doc:  "Added by softlayer-go. This hints to the API what kind of product order this is.",
+		}
+	} else if dataType.Name == "SoftLayer_Container_User_Customer_External_Binding" {
+		dataType.Properties["complexType"] = Property{
+			Name: "complexType",
+			Type: "string",
+			Form: "local",
+			Doc:  "Added by softlayer-go. This hints to the API what kind of binding this is.",
 		}
 	}
 }
@@ -375,6 +384,12 @@ func fixDatatype(t *Type, meta map[string]Type) {
 			baseRecordType.Properties[propName] = prop
 		}
 		meta["SoftLayer_Dns_Domain_ResourceRecord"] = baseRecordType
+	} else if t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign" || t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign_Totp" {
+		baseType, _ := meta["SoftLayer_Container_User_Customer_External_Binding"]
+		for propName, prop := range t.Properties {
+			baseType.Properties[propName] = prop
+		}
+		meta["SoftLayer_Container_User_Customer_External_Binding"] = baseType
 	}
 }
 
