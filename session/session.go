@@ -221,14 +221,19 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	return r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
 }
 
-// AddToUserAgent allows higher level application to identify themselves by appending to the useragent string
-func (r *Session) AddToUserAgent(agent string) {
+// AppendUserAgent allows higher level application to identify themselves by appending to the useragent string
+func (r *Session) AppendUserAgent(agent string) {
 	if r.userAgent == "" {
 		r.userAgent = getDefaultUserAgent()
 	}
 	if agent != "" {
 		r.userAgent += " " + agent
 	}
+}
+
+// ResetUserAgent resets the current user agent to the default value
+func (r *Session) ResetUserAgent() {
+	r.userAgent = getDefaultUserAgent()
 }
 
 func envFallback(keyName string, value *string) {
