@@ -741,6 +741,9 @@ type Hardware_Component struct {
 	// A count of a components sub components. Devices that are usually integrated or in some way attached to a component.
 	ChildrenCount *uint `json:"childrenCount,omitempty" xmlrpc:"childrenCount,omitempty"`
 
+	// A component's Revision.
+	ComponentRevision *string `json:"componentRevision,omitempty" xmlrpc:"componentRevision,omitempty"`
+
 	// A count of
 	DownlinkHardwareComponentCount *uint `json:"downlinkHardwareComponentCount,omitempty" xmlrpc:"downlinkHardwareComponentCount,omitempty"`
 
@@ -809,9 +812,6 @@ type Hardware_Component struct {
 
 	// A RAID controllers RAID mode.
 	RaidMode *string `json:"raidMode,omitempty" xmlrpc:"raidMode,omitempty"`
-
-	// The component revision designation.
-	Revision *Hardware_Component_Revision `json:"revision,omitempty" xmlrpc:"revision,omitempty"`
 
 	// The component serial number.
 	SerialNumber *string `json:"serialNumber,omitempty" xmlrpc:"serialNumber,omitempty"`
@@ -993,6 +993,9 @@ type Hardware_Component_Model struct {
 
 	// A count of
 	FirmwareCount *uint `json:"firmwareCount,omitempty" xmlrpc:"firmwareCount,omitempty"`
+
+	// no documentation yet
+	FirmwareQuantity *uint `json:"firmwareQuantity,omitempty" xmlrpc:"firmwareQuantity,omitempty"`
 
 	// no documentation yet
 	Firmwares []Hardware_Component_Firmware `json:"firmwares,omitempty" xmlrpc:"firmwares,omitempty"`
@@ -1388,26 +1391,6 @@ type Hardware_Component_RemoteManagement_User struct {
 
 	// The username used for this remote management command.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
-}
-
-// no documentation yet
-type Hardware_Component_Revision struct {
-	Entity
-
-	// The Firmware installed on this record's Hardware Component.
-	Firmware *Hardware_Component_Firmware `json:"firmware,omitempty" xmlrpc:"firmware,omitempty"`
-
-	// no documentation yet
-	FirmwareVersionId *int `json:"firmwareVersionId,omitempty" xmlrpc:"firmwareVersionId,omitempty"`
-
-	// The Hardware Component this revision record applies to.
-	HardwareComponent *Hardware_Component `json:"hardwareComponent,omitempty" xmlrpc:"hardwareComponent,omitempty"`
-
-	// no documentation yet
-	HardwareComponentId *int `json:"hardwareComponentId,omitempty" xmlrpc:"hardwareComponentId,omitempty"`
-
-	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 }
 
 // The SoftLayer_Hardware_Component_SecurityDevice is used to determine the security devices attached to the hardware component.

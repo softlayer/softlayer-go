@@ -2006,6 +2006,9 @@ type Network_Interconnect_Tenant struct {
 	// no documentation yet
 	DatacenterName *string `json:"datacenterName,omitempty" xmlrpc:"datacenterName,omitempty"`
 
+	// no documentation yet
+	ErrorMessage *string `json:"errorMessage,omitempty" xmlrpc:"errorMessage,omitempty"`
+
 	// The Direct Link connectivity to all SoftLayer data centers if globalRoutingFlag = 1 and local connectivity if globalRoutingFlag = 0.
 	GlobalRoutingFlag *bool `json:"globalRoutingFlag,omitempty" xmlrpc:"globalRoutingFlag,omitempty"`
 
@@ -3189,6 +3192,9 @@ type Network_SecurityGroup_OrderBinding struct {
 
 	// The unique ID for a security group, order, binding
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The order associated with the binding
+	Order *Billing_Order `json:"order,omitempty" xmlrpc:"order,omitempty"`
 
 	// The ID of the order associated with the security group.
 	OrderId *int `json:"orderId,omitempty" xmlrpc:"orderId,omitempty"`
