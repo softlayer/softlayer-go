@@ -15042,6 +15042,12 @@ func (r Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Referenc
 	return
 }
 
+// Whether this firewall qualifies for High Availability upgrade.
+func (r Network_Vlan_Firewall) IsHighAvailabilityUpgradeAvailable() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "isHighAvailabilityUpgradeAvailable", nil, &r.Options, &resp)
+	return
+}
+
 // Reject a request from technical support to bypass the firewall. Once rejected, IBM support will not be able to route and unroute the VLAN on the firewall.
 func (r Network_Vlan_Firewall) RejectBypassRequest() (err error) {
 	var resp datatypes.Void

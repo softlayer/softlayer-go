@@ -1678,6 +1678,12 @@ func (r Hardware_Component_Model) GetCompatibleParentComponentModels() (resp []d
 }
 
 // Retrieve
+func (r Hardware_Component_Model) GetFirmwareQuantity() (resp uint, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getFirmwareQuantity", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Hardware_Component_Model) GetFirmwares() (resp []datatypes.Hardware_Component_Firmware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getFirmwares", nil, &r.Options, &resp)
 	return
