@@ -3768,6 +3768,14 @@ type Container_Product_Order_Network_Protection_Firewall_Dedicated struct {
 	VlanId *int `json:"vlanId,omitempty" xmlrpc:"vlanId,omitempty"`
 }
 
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
+type Container_Product_Order_Network_Protection_Firewall_Dedicated_Upgrade struct {
+	Container_Product_Order_Network_Protection_Firewall_Dedicated
+
+	// no documentation yet
+	FirewallId *int `json:"firewallId,omitempty" xmlrpc:"firewallId,omitempty"`
+}
+
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order for Storage as a Service.
 type Container_Product_Order_Network_Storage_AsAService struct {
 	Container_Product_Order

@@ -24,6 +24,9 @@ package datatypes
 type Hardware struct {
 	Entity
 
+	// Determine if hardware object has Software Guard Extension (SGX) enabled.
+	SGXEnabled *bool `json:"SGXEnabled,omitempty" xmlrpc:"SGXEnabled,omitempty"`
+
 	// The account associated with a piece of hardware.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
@@ -813,6 +816,9 @@ type Hardware_Component struct {
 	// A RAID controllers RAID mode.
 	RaidMode *string `json:"raidMode,omitempty" xmlrpc:"raidMode,omitempty"`
 
+	// The component revision designation.
+	Revision *Hardware_Component_Revision `json:"revision,omitempty" xmlrpc:"revision,omitempty"`
+
 	// The component serial number.
 	SerialNumber *string `json:"serialNumber,omitempty" xmlrpc:"serialNumber,omitempty"`
 
@@ -1391,6 +1397,32 @@ type Hardware_Component_RemoteManagement_User struct {
 
 	// The username used for this remote management command.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Component_Revision struct {
+	Entity
+
+	// The firmware build date
+	BiosDate *Time `json:"biosDate,omitempty" xmlrpc:"biosDate,omitempty"`
+
+	// The Firmware installed on this record's Hardware Component.
+	Firmware *Hardware_Component_Firmware `json:"firmware,omitempty" xmlrpc:"firmware,omitempty"`
+
+	// no documentation yet
+	FirmwareVersionId *int `json:"firmwareVersionId,omitempty" xmlrpc:"firmwareVersionId,omitempty"`
+
+	// The Hardware Component this revision record applies to.
+	HardwareComponent *Hardware_Component `json:"hardwareComponent,omitempty" xmlrpc:"hardwareComponent,omitempty"`
+
+	// no documentation yet
+	HardwareComponentId *int `json:"hardwareComponentId,omitempty" xmlrpc:"hardwareComponentId,omitempty"`
+
+	// no documentation yet
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The firmware revision
+	Revision *string `json:"revision,omitempty" xmlrpc:"revision,omitempty"`
 }
 
 // The SoftLayer_Hardware_Component_SecurityDevice is used to determine the security devices attached to the hardware component.

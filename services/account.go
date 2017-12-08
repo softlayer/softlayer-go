@@ -499,12 +499,6 @@ func (r Account) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_
 	return
 }
 
-// Retrieve This field is deprecated and should not be used.
-func (r Account) GetBlueIdAuthenticationRequiredFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getBlueIdAuthenticationRequiredFlag", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve The Bluemix account link associated with this SoftLayer account, if one exists.
 func (r Account) GetBluemixAccountLink() (resp datatypes.Account_Link_Bluemix, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBluemixAccountLink", nil, &r.Options, &resp)

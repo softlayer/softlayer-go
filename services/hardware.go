@@ -1256,6 +1256,12 @@ func (r Hardware) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+// Retrieve Determine if hardware object has Software Guard Extension (SGX) enabled.
+func (r Hardware) GetSGXEnabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getSGXEnabled", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Collection of scale assets this hardware corresponds to.
 func (r Hardware) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getScaleAssets", nil, &r.Options, &resp)
@@ -3122,6 +3128,12 @@ func (r Hardware_Router) GetResourceGroups() (resp []datatypes.Resource_Group, e
 // Retrieve A hardware's routers.
 func (r Hardware_Router) GetRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRouters", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if hardware object has Software Guard Extension (SGX) enabled.
+func (r Hardware_Router) GetSGXEnabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSGXEnabled", nil, &r.Options, &resp)
 	return
 }
 
@@ -5104,6 +5116,12 @@ func (r Hardware_SecurityModule) GetReverseDomainRecords() (resp []datatypes.Dns
 // Retrieve A hardware's routers.
 func (r Hardware_SecurityModule) GetRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRouters", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if hardware object has Software Guard Extension (SGX) enabled.
+func (r Hardware_SecurityModule) GetSGXEnabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSGXEnabled", nil, &r.Options, &resp)
 	return
 }
 
@@ -7302,6 +7320,12 @@ func (r Hardware_Server) GetReverseDomainRecords() (resp []datatypes.Dns_Domain,
 // Retrieve A hardware's routers.
 func (r Hardware_Server) GetRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRouters", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if hardware object has Software Guard Extension (SGX) enabled.
+func (r Hardware_Server) GetSGXEnabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSGXEnabled", nil, &r.Options, &resp)
 	return
 }
 
