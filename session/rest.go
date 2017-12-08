@@ -138,7 +138,7 @@ func buildPath(service string, method string, options *sl.Options) string {
 
 	// omit the API method name if the method represents one of the basic REST methods
 	if method != "getObject" && method != "deleteObject" && method != "createObject" &&
-		method != "createObjects" && method != "editObject" && method != "editObjects" {
+		method != "editObject" && method != "editObjects" {
 		path = path + "/" + method
 	}
 
