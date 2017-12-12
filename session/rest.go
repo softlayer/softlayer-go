@@ -33,6 +33,10 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
+var exceptionRetryList = []string{
+	"SoftLayer_Exception_WebService_RateLimitExceeded",
+}
+
 type RestTransport struct{}
 
 // DoRequest - Implementation of the TransportHandler interface for handling
@@ -276,6 +280,29 @@ func makeHTTPRequest(
 	if session.Debug {
 		log.Println("[DEBUG] Response: ", string(responseBody))
 	}
+
+	// Check cases where we want to retry based on the response returned.
+	// For example, a SoftLayer_Exception_WebService_RateLimitExceeded should be retried
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		e := sl.Error{StatusCode: resp.StatusCode}
+
+		err = json.Unmarshal(responseBody, &e)
+		// If unparseable, wrap the json error
+		if err != nil {
+			e.Wrapped = err
+			e.Message = err.Error()
+		}
+
+		for _, retryError := range exceptionRetryList {
+			// If the error in the response body is in the retry list, set the error code to a retry (599)
+			if e.Exception == retryError {
+				e.StatusCode = 599
+				break
+			}
+		}
+		return responseBody, resp.StatusCode, e
+	}
+
 	return responseBody, resp.StatusCode, nil
 }
 
