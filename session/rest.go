@@ -297,10 +297,9 @@ func makeHTTPRequest(
 			// If the error in the response body is in the retry list, set the error code to a retry (599)
 			if e.Exception == retryError {
 				e.StatusCode = 599
-				break
+				return responseBody, resp.StatusCode, e
 			}
 		}
-		return responseBody, resp.StatusCode, e
 	}
 
 	return responseBody, resp.StatusCode, nil
