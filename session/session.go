@@ -328,7 +328,7 @@ func isTimeout(err error) bool {
 	return false
 }
 
-func isRetryableErrorCode(err error) bool {
+func hasRetryableCode(err error) bool {
 	for _, code := range retryableErrorCodes {
 		if slErr, ok := err.(sl.Error); ok {
 			if slErr.Exception == code {
@@ -340,7 +340,7 @@ func isRetryableErrorCode(err error) bool {
 }
 
 func isRetryable(err error) bool {
-	return isTimeout(err) || isRetryableErrorCode(err)
+	return isTimeout(err) || hasRetryableCode(err)
 }
 
 func getDefaultUserAgent() string {

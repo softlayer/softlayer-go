@@ -63,7 +63,7 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 		return sl.Error{Wrapped: err, StatusCode: code}
 	}
 
-	err = parseResponseBodyForError(code, resp)
+	err = findResponseError(code, resp)
 	if err != nil {
 		return err
 	}
@@ -267,7 +267,7 @@ func makeHTTPRequest(
 	if session.Debug {
 		log.Println("[DEBUG] Response: ", string(responseBody))
 	}
-	err = parseResponseBodyForError(resp.StatusCode, responseBody)
+	err = findResponseError(resp.StatusCode, responseBody)
 	return responseBody, resp.StatusCode, err
 }
 
@@ -283,7 +283,7 @@ func httpMethod(name string, args []interface{}) string {
 	return "GET"
 }
 
-func parseResponseBodyForError(code int, resp []byte) error {
+func findResponseError(code int, resp []byte) error {
 	if code < 200 || code > 299 {
 		e := sl.Error{StatusCode: code}
 		err := json.Unmarshal(resp, &e)
