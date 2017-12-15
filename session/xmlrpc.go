@@ -185,7 +185,6 @@ func (x *XmlRpcTransport) DoRequest(
 			Message:    xmlRpcError.Err,
 		}
 	}
-
 	return err
 }
 
@@ -194,8 +193,17 @@ func makeXmlRequest(
 	method string, params []interface{}, pResult interface{}) error {
 
 	err := client.Call(method, params, pResult)
+
+	if xmlRpcError, ok := err.(*xmlrpc.XmlRpcError); ok {
+		err = sl.Error{
+			StatusCode: xmlRpcError.HttpStatusCode,
+			Exception:  xmlRpcError.Code.(string),
+			Message:    xmlRpcError.Err,
+		}
+	}
+
 	if err != nil {
-		if !isTimeout(err) {
+		if !isRetryable(err) {
 			return err
 		}
 

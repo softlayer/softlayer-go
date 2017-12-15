@@ -63,18 +63,9 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 		return sl.Error{Wrapped: err, StatusCode: code}
 	}
 
-	if code < 200 || code > 299 {
-		e := sl.Error{StatusCode: code}
-
-		err = json.Unmarshal(resp, &e)
-
-		// If unparseable, wrap the json error
-		if err != nil {
-			e.Wrapped = err
-			e.Message = err.Error()
-		}
-
-		return e
+	err = findResponseError(code, resp)
+	if err != nil {
+		return err
 	}
 
 	// Some APIs that normally return a collection, omit the []'s when the API returns a single value
@@ -194,7 +185,7 @@ func tryHTTPRequest(
 
 	resp, code, err := makeHTTPRequest(sess, path, requestType, requestBody, options)
 	if err != nil {
-		if !isTimeout(err) {
+		if !isRetryable(err) {
 			return resp, code, err
 		}
 
@@ -276,7 +267,8 @@ func makeHTTPRequest(
 	if session.Debug {
 		log.Println("[DEBUG] Response: ", string(responseBody))
 	}
-	return responseBody, resp.StatusCode, nil
+	err = findResponseError(resp.StatusCode, responseBody)
+	return responseBody, resp.StatusCode, err
 }
 
 func httpMethod(name string, args []interface{}) string {
@@ -289,4 +281,18 @@ func httpMethod(name string, args []interface{}) string {
 	}
 
 	return "GET"
+}
+
+func findResponseError(code int, resp []byte) error {
+	if code < 200 || code > 299 {
+		e := sl.Error{StatusCode: code}
+		err := json.Unmarshal(resp, &e)
+		// If unparseable, wrap the json error
+		if err != nil {
+			e.Wrapped = err
+			e.Message = err.Error()
+		}
+		return e
+	}
+	return nil
 }

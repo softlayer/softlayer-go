@@ -43,6 +43,8 @@ func init() {
 // is provided.
 const DefaultEndpoint = "https://api.softlayer.com/rest/v3"
 
+var retryableErrorCodes = []string{"SoftLayer_Exception_WebService_RateLimitExceeded"}
+
 // TransportHandler interface for the protocol-specific handling of API requests.
 type TransportHandler interface {
 	// DoRequest is the protocol-specific handler for making API requests.
@@ -324,6 +326,21 @@ func isTimeout(err error) bool {
 	}
 
 	return false
+}
+
+func hasRetryableCode(err error) bool {
+	for _, code := range retryableErrorCodes {
+		if slErr, ok := err.(sl.Error); ok {
+			if slErr.Exception == code {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isRetryable(err error) bool {
+	return isTimeout(err) || hasRetryableCode(err)
 }
 
 func getDefaultUserAgent() string {
