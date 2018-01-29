@@ -211,7 +211,12 @@ func makeHTTPRequest(
 	session *Session, path string, requestType string,
 	requestBody *bytes.Buffer, options *sl.Options) ([]byte, int, error) {
 	log := Logger
-	client := defaultClient
+
+	client := session.HTTPClient
+	if client == nil {
+		client = defaultClient
+	}
+
 	client.Timeout = DefaultTimeout
 	if session.Timeout != 0 {
 		client.Timeout = session.Timeout
