@@ -276,6 +276,7 @@ func makeHTTPRequest(
 	}
 
 	if session.Debug {
+		log.Println("[DEBUG] Status Code: ", resp.StatusCode)
 		log.Println("[DEBUG] Response: ", string(responseBody))
 	}
 	err = findResponseError(resp.StatusCode, responseBody)
