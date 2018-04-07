@@ -67,9 +67,3 @@ func (r IntegratedOfferingTeam_Region) Offset(offset int) IntegratedOfferingTeam
 	r.Options.Offset = &offset
 	return r
 }
-
-// no documentation yet
-func (r IntegratedOfferingTeam_Region) GetAllObjects() (resp []IntegratedOfferingTeam_Container_Region, err error) {
-	err = r.Session.DoRequest("IntegratedOfferingTeam_Region", "getAllObjects", nil, &r.Options, &resp)
-	return
-}

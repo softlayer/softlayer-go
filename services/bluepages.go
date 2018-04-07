@@ -67,12 +67,3 @@ func (r BluePages_Search) Offset(offset int) BluePages_Search {
 	r.Options.Offset = &offset
 	return r
 }
-
-// Given an IBM email address, searches BluePages and returns the employee's details
-func (r BluePages_Search) FindBluePagesProfile(emailAddress *string) (resp BluePages_Container_EmployeeProfile, err error) {
-	params := []interface{}{
-		emailAddress,
-	}
-	err = r.Session.DoRequest("BluePages_Search", "findBluePagesProfile", params, &r.Options, &resp)
-	return
-}
