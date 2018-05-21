@@ -1375,6 +1375,12 @@ type Account struct {
 
 	// A count of an account's associated virtual server public storage repositories.
 	VirtualStoragePublicRepositoryCount *uint `json:"virtualStoragePublicRepositoryCount,omitempty" xmlrpc:"virtualStoragePublicRepositoryCount,omitempty"`
+
+	// A count of an account's associated VPC configured virtual guest objects.
+	VpcVirtualGuestCount *uint `json:"vpcVirtualGuestCount,omitempty" xmlrpc:"vpcVirtualGuestCount,omitempty"`
+
+	// An account's associated VPC configured virtual guest objects.
+	VpcVirtualGuests []Virtual_Guest `json:"vpcVirtualGuests,omitempty" xmlrpc:"vpcVirtualGuests,omitempty"`
 }
 
 // An unfortunate facet of the hosting business is the necessity of with legal and network abuse inquiries. As these types of inquiries frequently contain sensitive information SoftLayer keeps a separate account contact email address for direct contact about legal and abuse matters, modeled by the SoftLayer_Account_AbuseEmail data type. SoftLayer will typically email an account's abuse email addresses in these types of cases, and an email is automatically sent to an account's abuse email addresses when a legal or abuse ticket is created or updated.
@@ -2433,6 +2439,11 @@ type Account_Password_Type struct {
 
 	// A description of the use for the account username/password combination.
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+}
+
+// no documentation yet
+type Account_ProofOfConcept struct {
+	Entity
 }
 
 // This class represents a Proof of Concept account approver.

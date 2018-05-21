@@ -1578,26 +1578,12 @@ type Network_Customer_Subnet_IpAddress struct {
 	Translations []Network_Tunnel_Module_Context_Address_Translation `json:"translations,omitempty" xmlrpc:"translations,omitempty"`
 }
 
-// The SoftLayer_Network_DirectLink_CloudExchangeProvider presents a structure containing attributes of a Direct Link Cloud exchange provider.
-type Network_DirectLink_CloudExchangeProvider struct {
-	Entity
-
-	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
 // The SoftLayer_Network_DirectLink_Location presents a structure containing attributes of a Direct Link location, and its related object SoftLayer location.
 type Network_DirectLink_Location struct {
 	Entity
 
 	// The Direct Link specific location owner for POP/DC facilities. Like Equinix, Pacnet, Verizon etc.
 	BuildingColocationOwner *string `json:"buildingColocationOwner,omitempty" xmlrpc:"buildingColocationOwner,omitempty"`
-
-	// The Id of Direct Link cloud exchange provider.
-	CloudExchangeProvider *Network_DirectLink_CloudExchangeProvider `json:"cloudExchangeProvider,omitempty" xmlrpc:"cloudExchangeProvider,omitempty"`
 
 	// The unique identifier of a Direct Link location.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
@@ -3197,6 +3183,9 @@ type Network_SecurityGroup struct {
 	// The unique ID for a security group.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
+	// no documentation yet
+	Metadata *string `json:"metadata,omitempty" xmlrpc:"metadata,omitempty"`
+
 	// The date a security group was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
@@ -4544,6 +4533,9 @@ type Network_Storage_MassDataMigration_Request_DeviceConfiguration struct {
 
 	// The request id.
 	RequestId *int `json:"requestId,omitempty" xmlrpc:"requestId,omitempty"`
+
+	// The Cloud Object Storage bucket URL.
+	S3Url *string `json:"s3Url,omitempty" xmlrpc:"s3Url,omitempty"`
 
 	// The name of network share.
 	ShareName *string `json:"shareName,omitempty" xmlrpc:"shareName,omitempty"`

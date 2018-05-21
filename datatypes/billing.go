@@ -49,6 +49,9 @@ type Billing_Currency_Country struct {
 
 	// A unique identifier for a map between a country and currency.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The country currency locale.
+	Locale *string `json:"locale,omitempty" xmlrpc:"locale,omitempty"`
 }
 
 // no documentation yet

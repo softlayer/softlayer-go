@@ -1130,6 +1130,12 @@ func (r Account) GetNasNetworkStorage() (resp []datatypes.Network_Storage, err e
 	return
 }
 
+// This returns a collection of active NetApp software account license keys.
+func (r Account) GetNetAppActiveAccountLicenseKeys() (resp []string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetAppActiveAccountLicenseKeys", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Whether or not this account can define their own networks.
 func (r Account) GetNetworkCreationFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkCreationFlag", nil, &r.Options, &resp)
@@ -1976,6 +1982,12 @@ func (r Account) GetVmWareActiveAccountLicenseKeys() (resp []string, err error) 
 	return
 }
 
+// Retrieve An account's associated VPC configured virtual guest objects.
+func (r Account) GetVpcVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getVpcVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve a list of an account's hardware's Windows Update status. This list includes which servers have available updates, which servers require rebooting due to updates, which servers have failed retrieving updates, and which servers have failed to communicate with the SoftLayer private Windows Software Update Services server.
 func (r Account) GetWindowsUpdateStatus() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getWindowsUpdateStatus", nil, &r.Options, &resp)
@@ -2099,6 +2111,13 @@ func (r Account) SetVlanSpan(enabled *bool) (resp bool, err error) {
 // no documentation yet
 func (r Account) SwapCreditCards() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "swapCreditCards", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Account) SyncCurrentUserPopulationWithPaas() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Account", "syncCurrentUserPopulationWithPaas", nil, &r.Options, &resp)
 	return
 }
 
@@ -4014,6 +4033,89 @@ func (r Account_Password) GetObject() (resp datatypes.Account_Password, err erro
 // Retrieve The service that an account/password combination is tied to.
 func (r Account_Password) GetType() (resp datatypes.Account_Password_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Password", "getType", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Account_ProofOfConcept struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetAccountProofOfConceptService returns an instance of the Account_ProofOfConcept SoftLayer service
+func GetAccountProofOfConceptService(sess *session.Session) Account_ProofOfConcept {
+	return Account_ProofOfConcept{Session: sess}
+}
+
+func (r Account_ProofOfConcept) Id(id int) Account_ProofOfConcept {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Account_ProofOfConcept) Mask(mask string) Account_ProofOfConcept {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Account_ProofOfConcept) Filter(filter string) Account_ProofOfConcept {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Account_ProofOfConcept) Limit(limit int) Account_ProofOfConcept {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Account_ProofOfConcept) Offset(offset int) Account_ProofOfConcept {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Allows authorized IBMer to pull all the details of a single proof of concept account request.
+func (r Account_ProofOfConcept) GetSubmittedRequest(requestId *int) (resp datatypes.Container_Account_ProofOfConcept_Review, err error) {
+	params := []interface{}{
+		requestId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequest", params, &r.Options, &resp)
+	return
+}
+
+// Allows authorized IBMer to retrieve a list summarizing all previously submitted proof of concept requests.
+//
+// Note that the proof of concept system is for internal IBM employees only and is not applicable to users outside the IBM organization.
+func (r Account_ProofOfConcept) GetSubmittedRequests(email *string, sortOrder *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		email,
+		sortOrder,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequests", params, &r.Options, &resp)
+	return
+}
+
+// Allows authorized IBMer's to apply for a proof of concept account using account team funding. Requests will be reviewed by multiple internal teams before an account is created.
+//
+// Note that the proof of concept system is for internal IBM employees only and is not applicable to users outside the IBM organization.
+func (r Account_ProofOfConcept) RequestAccountTeamFundedAccount(request *datatypes.Container_Account_ProofOfConcept_Request_AccountFunded) (resp datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		request,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "requestAccountTeamFundedAccount", params, &r.Options, &resp)
+	return
+}
+
+// Allows authorized IBMer's to apply for a proof of concept account using global funding. Requests will be reviewed by multiple internal teams before an account is created.
+//
+// Note that the proof of concept system is for internal IBM employees only and is not applicable to users outside the IBM organization.
+func (r Account_ProofOfConcept) RequestGlobalFundedAccount(request *datatypes.Container_Account_ProofOfConcept_Request_GlobalFunded) (resp datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		request,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "requestGlobalFundedAccount", params, &r.Options, &resp)
 	return
 }
 

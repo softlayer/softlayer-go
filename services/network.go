@@ -3657,52 +3657,6 @@ func (r Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Su
 	return
 }
 
-// The SoftLayer_Network_DirectLink_CloudExchangeProvider presents a structure containing attributes of a Direct Link Cloud exchange provider.
-type Network_DirectLink_CloudExchangeProvider struct {
-	Session *session.Session
-	Options sl.Options
-}
-
-// GetNetworkDirectLinkCloudExchangeProviderService returns an instance of the Network_DirectLink_CloudExchangeProvider SoftLayer service
-func GetNetworkDirectLinkCloudExchangeProviderService(sess *session.Session) Network_DirectLink_CloudExchangeProvider {
-	return Network_DirectLink_CloudExchangeProvider{Session: sess}
-}
-
-func (r Network_DirectLink_CloudExchangeProvider) Id(id int) Network_DirectLink_CloudExchangeProvider {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Network_DirectLink_CloudExchangeProvider) Mask(mask string) Network_DirectLink_CloudExchangeProvider {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Network_DirectLink_CloudExchangeProvider) Filter(filter string) Network_DirectLink_CloudExchangeProvider {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Network_DirectLink_CloudExchangeProvider) Limit(limit int) Network_DirectLink_CloudExchangeProvider {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Network_DirectLink_CloudExchangeProvider) Offset(offset int) Network_DirectLink_CloudExchangeProvider {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-func (r Network_DirectLink_CloudExchangeProvider) GetObject() (resp datatypes.Network_DirectLink_CloudExchangeProvider, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_CloudExchangeProvider", "getObject", nil, &r.Options, &resp)
-	return
-}
-
 // The SoftLayer_Network_DirectLink_Location presents a structure containing attributes of a Direct Link location, and its related object SoftLayer location.
 type Network_DirectLink_Location struct {
 	Session *session.Session
@@ -3746,21 +3700,6 @@ func (r Network_DirectLink_Location) Offset(offset int) Network_DirectLink_Locat
 // Return all existing Direct Link location.
 func (r Network_DirectLink_Location) GetAllObjects() (resp []datatypes.Network_DirectLink_Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The Id of Direct Link cloud exchange provider.
-func (r Network_DirectLink_Location) GetCloudExchangeProvider() (resp datatypes.Network_DirectLink_CloudExchangeProvider, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getCloudExchangeProvider", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve all locations for a Cloud Exchange Provider. IBM SoftLayer's datacenters exist in various cities and each contain one or more infrastructure.
-func (r Network_DirectLink_Location) GetCloudExchangeProviderLocations(provider *string) (resp []datatypes.Network_DirectLink_Location, err error) {
-	params := []interface{}{
-		provider,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getCloudExchangeProviderLocations", params, &r.Options, &resp)
 	return
 }
 

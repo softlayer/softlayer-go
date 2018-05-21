@@ -881,6 +881,13 @@ func (r Virtual_Guest) DeleteObject() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Virtual_Guest) DeleteTransientWebhook() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "deleteTransientWebhook", nil, &r.Options, &resp)
+	return
+}
+
 // Creates a transaction to detach a guest's disk image. If the disk image is already detached it will be ignored.
 //
 // WARNING: The transaction created by this service will shut down the guest while the disk image is attached. The guest will be turned back on once this process is complete.
@@ -1866,6 +1873,12 @@ func (r Virtual_Guest) GetTransientGuestFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve The endpoint used to notify customers their transient guest is terminating.
+func (r Virtual_Guest) GetTransientWebhookURI() (resp datatypes.Virtual_Guest_Attribute, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getTransientWebhookURI", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The type of this virtual guest.
 func (r Virtual_Guest) GetType() (resp datatypes.Virtual_Guest_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getType", nil, &r.Options, &resp)
@@ -2097,6 +2110,17 @@ func (r Virtual_Guest) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Virtual_Guest) SetTransientWebhook(uri *string, secret *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		uri,
+		secret,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "setTransientWebhook", params, &r.Options, &resp)
+	return
+}
+
 // Sets the data that will be written to the configuration drive.
 func (r Virtual_Guest) SetUserMetadata(metadata []string) (resp bool, err error) {
 	params := []interface{}{
@@ -2277,6 +2301,15 @@ func (r Virtual_Guest_Block_Device_Template_Group) EditObject(templateObject *da
 		templateObject,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "editObject", params, &r.Options, &resp)
+	return
+}
+
+// Find block device template groups contain GC enabled image for the current active user. Caller can optionally specify data center names to retrieve GC image from those data centers only.
+func (r Virtual_Guest_Block_Device_Template_Group) FindGcImagesByCurrentUser(dataCenters []string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	params := []interface{}{
+		dataCenters,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "findGcImagesByCurrentUser", params, &r.Options, &resp)
 	return
 }
 

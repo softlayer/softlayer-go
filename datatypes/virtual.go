@@ -656,6 +656,9 @@ type Virtual_Guest struct {
 	// Whether or not a computing instance is a Transient Instance.
 	TransientGuestFlag *bool `json:"transientGuestFlag,omitempty" xmlrpc:"transientGuestFlag,omitempty"`
 
+	// The endpoint used to notify customers their transient guest is terminating.
+	TransientWebhookURI *Virtual_Guest_Attribute `json:"transientWebhookURI,omitempty" xmlrpc:"transientWebhookURI,omitempty"`
+
 	// The type of this virtual guest.
 	Type *Virtual_Guest_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
