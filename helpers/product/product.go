@@ -288,9 +288,9 @@ func GetPackageByKeyName(
 	return packages[0], nil
 }
 
-// GetPriceIDByPackageIdandLocationGroup return the priceId of the item according to the location group ids of the datacenter you specify
+// GetPriceIDByPackageIdandLocationGroups return the priceId of the item according to the location group ids of the datacenter you specify
 // addon is the description of the item for which you want to get its priceId
-func GetPriceIDByPackageIdandLocationGroup(sess *session.Session, locationGroupIds []int, packageid int, addon string) (int, error) {
+func GetPriceIDByPackageIdandLocationGroups(sess *session.Session, locationGroupIds []int, packageid int, addon string) (int, error) {
 	productpackageservice := services.GetProductPackageService(sess)
 	productpackageservicefilter := strings.Replace(`{"items":{"description":{"operation":"appliance"}}}`, "appliance", addon, -1)
 	productpackageservicemask := "description,prices.locationGroupId,prices.id"
