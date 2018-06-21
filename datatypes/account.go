@@ -983,6 +983,9 @@ type Account struct {
 	// The postal code of the mailing address belonging to an account.
 	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
 
+	// Boolean flag dictating whether or not this account supports PPTP VPN Access.
+	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
+
 	// A count of an account's associated portal users with PPTP VPN access.
 	PptpVpnUserCount *uint `json:"pptpVpnUserCount,omitempty" xmlrpc:"pptpVpnUserCount,omitempty"`
 
@@ -2367,23 +2370,6 @@ type Account_Note_Type struct {
 	ValueExpression *string `json:"valueExpression,omitempty" xmlrpc:"valueExpression,omitempty"`
 }
 
-// The SoftLayer_Account_Partner_Business data type contains specific information concerning an Account's relationship with Business Partner Data, in the form of the Account's Country Experience Identifier (CEID), Channel ID, and Segment ID.
-type Account_Partner_Business struct {
-	Entity
-
-	// The SoftLayer customer account associated with this business partner data.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// The Channel ID associated with the Account.
-	ChannelId *int `json:"channelId,omitempty" xmlrpc:"channelId,omitempty"`
-
-	// The Country Enterprise Code associated with the Account.
-	CountryEnterpriseCode *string `json:"countryEnterpriseCode,omitempty" xmlrpc:"countryEnterpriseCode,omitempty"`
-
-	// The Segment ID associated with the Account.
-	SegmentId *int `json:"segmentId,omitempty" xmlrpc:"segmentId,omitempty"`
-}
-
 // no documentation yet
 type Account_Partner_Referral_Prospect struct {
 	User_Customer_Prospect
@@ -2442,6 +2428,17 @@ type Account_Password_Type struct {
 }
 
 // no documentation yet
+type Account_PersonalData_RemoveRequestReview struct {
+	Entity
+
+	// no documentation yet
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
+
+	// no documentation yet
+	ApprovedFlag *Account_PersonalData_RemoveRequestReview `json:"approvedFlag,omitempty" xmlrpc:"approvedFlag,omitempty"`
+}
+
+// no documentation yet
 type Account_ProofOfConcept struct {
 	Entity
 }
@@ -2452,6 +2449,9 @@ type Account_ProofOfConcept_Approver struct {
 
 	// Approval slot of the approver.
 	ApprovalOrder *int `json:"approvalOrder,omitempty" xmlrpc:"approvalOrder,omitempty"`
+
+	// Internal identifier.
+	BluepagesUid *string `json:"bluepagesUid,omitempty" xmlrpc:"bluepagesUid,omitempty"`
 
 	// Email of the approver.
 	Email *string `json:"email,omitempty" xmlrpc:"email,omitempty"`

@@ -342,6 +342,53 @@ type Container_Account_Payment_Method_CreditCard struct {
 	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
 }
 
+// no documentation yet
+type Container_Account_PersonalInformation struct {
+	Entity
+
+	// no documentation yet
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// no documentation yet
+	Address1 *string `json:"address1,omitempty" xmlrpc:"address1,omitempty"`
+
+	// no documentation yet
+	Address2 *string `json:"address2,omitempty" xmlrpc:"address2,omitempty"`
+
+	// no documentation yet
+	AlternatePhone *string `json:"alternatePhone,omitempty" xmlrpc:"alternatePhone,omitempty"`
+
+	// no documentation yet
+	City *string `json:"city,omitempty" xmlrpc:"city,omitempty"`
+
+	// no documentation yet
+	Country *string `json:"country,omitempty" xmlrpc:"country,omitempty"`
+
+	// no documentation yet
+	Email *string `json:"email,omitempty" xmlrpc:"email,omitempty"`
+
+	// no documentation yet
+	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName,omitempty"`
+
+	// no documentation yet
+	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName,omitempty"`
+
+	// no documentation yet
+	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone,omitempty"`
+
+	// no documentation yet
+	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
+
+	// no documentation yet
+	RequestDate *Time `json:"requestDate,omitempty" xmlrpc:"requestDate,omitempty"`
+
+	// no documentation yet
+	RequestId *int `json:"requestId,omitempty" xmlrpc:"requestId,omitempty"`
+
+	// no documentation yet
+	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+}
+
 // The customer and prospective owner of a proof of concept account established by an IBMer.
 type Container_Account_ProofOfConcept_Contact_Customer struct {
 	Entity
@@ -567,6 +614,9 @@ type Container_Account_ProofOfConcept_Review struct {
 	// Name of the integrated offering team lead reviewing the request
 	IotLeadName *string `json:"iotLeadName,omitempty" xmlrpc:"iotLeadName,omitempty"`
 
+	// Name of the integrated offering team region
+	IotRegionName *string `json:"iotRegionName,omitempty" xmlrpc:"iotRegionName,omitempty"`
+
 	// Name of requesting IBMer's manager
 	ManagerName *string `json:"managerName,omitempty" xmlrpc:"managerName,omitempty"`
 
@@ -596,6 +646,18 @@ type Container_Account_ProofOfConcept_Review_Summary struct {
 	// Current account owner
 	AccountOwnerName *string `json:"accountOwnerName,omitempty" xmlrpc:"accountOwnerName,omitempty"`
 
+	// Dollar amount requested
+	Amount *Float64 `json:"amount,omitempty" xmlrpc:"amount,omitempty"`
+
+	// Date the request was submitted
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// Email of the customer receiving the proof of concept account
+	CustomerEmail *string `json:"customerEmail,omitempty" xmlrpc:"customerEmail,omitempty"`
+
+	// Name of the customer receiving the proof of concept account
+	CustomerName *string `json:"customerName,omitempty" xmlrpc:"customerName,omitempty"`
+
 	// Request record's id
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
@@ -604,6 +666,9 @@ type Container_Account_ProofOfConcept_Review_Summary struct {
 
 	// Email address of the reviewer, if any, currently reviewing the request
 	NextApproverEmail *string `json:"nextApproverEmail,omitempty" xmlrpc:"nextApproverEmail,omitempty"`
+
+	// Email address of the requester
+	RequesterEmail *string `json:"requesterEmail,omitempty" xmlrpc:"requesterEmail,omitempty"`
 
 	// Requesting IBMer's full name
 	RequesterName *string `json:"requesterName,omitempty" xmlrpc:"requesterName,omitempty"`
@@ -2006,6 +2071,9 @@ type Container_Network_CdnMarketplace_Configuration_Input struct {
 
 	// no documentation yet
 	FileExtension *string `json:"fileExtension,omitempty" xmlrpc:"fileExtension,omitempty"`
+
+	// no documentation yet
+	GeoblockingRule *Network_CdnMarketplace_Configuration_Behavior_Geoblocking `json:"geoblockingRule,omitempty" xmlrpc:"geoblockingRule,omitempty"`
 
 	// no documentation yet
 	Header *string `json:"header,omitempty" xmlrpc:"header,omitempty"`
@@ -3527,6 +3595,9 @@ type Container_Product_Order struct {
 	// The [[SoftLayer_Product_Item_Price]] for the Flexible Credit Program discount.  The <code>oneTimeFee</code> field contains the calculated discount being applied to the order.
 	FlexibleCreditProgramPrice *Product_Item_Price `json:"flexibleCreditProgramPrice,omitempty" xmlrpc:"flexibleCreditProgramPrice,omitempty"`
 
+	// This flag indicates that the customer consented to the GDPR terms for the quote.
+	GdprConsentFlag *bool `json:"gdprConsentFlag,omitempty" xmlrpc:"gdprConsentFlag,omitempty"`
+
 	// For orders that contain servers (bare metal, virtual server, big data, etc.), the hardware property is required. This property is an array of [[SoftLayer_Hardware]] objects. The <code>hostname</code> and <code>domain</code> properties are required for each hardware object. Note that virtual server ([[SoftLayer_Container_Product_Order_Virtual_Guest]]) orders may populate this field instead of the <code>virtualGuests</code> property.
 	Hardware []Hardware `json:"hardware,omitempty" xmlrpc:"hardware,omitempty"`
 
@@ -4673,7 +4744,13 @@ type Container_Product_Order_Virtual_Guest_Vpc struct {
 	ServerId *string `json:"serverId,omitempty" xmlrpc:"serverId,omitempty"`
 
 	// no documentation yet
+	ServicePortInterfaceId *string `json:"servicePortInterfaceId,omitempty" xmlrpc:"servicePortInterfaceId,omitempty"`
+
+	// no documentation yet
 	ServicePortIpAllocationId *string `json:"servicePortIpAllocationId,omitempty" xmlrpc:"servicePortIpAllocationId,omitempty"`
+
+	// no documentation yet
+	ServicePortVpcId *string `json:"servicePortVpcId,omitempty" xmlrpc:"servicePortVpcId,omitempty"`
 
 	// no documentation yet
 	Subnets []Container_Product_Order_Virtual_Guest_Vpc_Subnet `json:"subnets,omitempty" xmlrpc:"subnets,omitempty"`
@@ -4695,6 +4772,9 @@ type Container_Product_Order_Virtual_Guest_Vpc_NetworkInterface struct {
 	Entity
 
 	// no documentation yet
+	InterfaceId *string `json:"interfaceId,omitempty" xmlrpc:"interfaceId,omitempty"`
+
+	// no documentation yet
 	IpAllocationId *string `json:"ipAllocationId,omitempty" xmlrpc:"ipAllocationId,omitempty"`
 
 	// no documentation yet
@@ -4702,6 +4782,9 @@ type Container_Product_Order_Virtual_Guest_Vpc_NetworkInterface struct {
 
 	// no documentation yet
 	SubnetId *string `json:"subnetId,omitempty" xmlrpc:"subnetId,omitempty"`
+
+	// no documentation yet
+	VpcId *string `json:"vpcId,omitempty" xmlrpc:"vpcId,omitempty"`
 }
 
 // no documentation yet
@@ -5562,6 +5645,26 @@ type Container_Virtual_DedicatedHost_AllocationStatus struct {
 	MemoryCapacity *int `json:"memoryCapacity,omitempty" xmlrpc:"memoryCapacity,omitempty"`
 }
 
+// This data type represents PCI device allocation properties of a [[SoftLayer_Virtual_DedicatedHost]].
+type Container_Virtual_DedicatedHost_Pci_Device_AllocationStatus struct {
+	Entity
+
+	// The number of PCI devices on the host.
+	DeviceCount *int `json:"deviceCount,omitempty" xmlrpc:"deviceCount,omitempty"`
+
+	// The number of PCI devices currently allocated to guests.
+	DevicesAllocated *int `json:"devicesAllocated,omitempty" xmlrpc:"devicesAllocated,omitempty"`
+
+	// The number of PCI devices available for allocation.
+	DevicesAvailable *int `json:"devicesAvailable,omitempty" xmlrpc:"devicesAvailable,omitempty"`
+
+	// The generic component model ID of the PCI device.
+	HardwareComponentModelGenericId *int `json:"hardwareComponentModelGenericId,omitempty" xmlrpc:"hardwareComponentModelGenericId,omitempty"`
+
+	// The ID of the host that the dedicated host is on.
+	HostId *int `json:"hostId,omitempty" xmlrpc:"hostId,omitempty"`
+}
+
 // The SoftLayer_Container_Virtual_Guest_Block_Device_Template_Configuration data type contains information relating to a template's external location for importing and exporting
 type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	Entity
@@ -5587,6 +5690,10 @@ type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	//
 	// The referenceCode of the operating system software description for the imported VHD
 	OperatingSystemReferenceCode *string `json:"operatingSystemReferenceCode,omitempty" xmlrpc:"operatingSystemReferenceCode,omitempty"`
+
+	//
+	// Optional Collection of modes that this template supports booting into.
+	SupportedBootModes []string `json:"supportedBootModes,omitempty" xmlrpc:"supportedBootModes,omitempty"`
 
 	//
 	// The URI for an object storage object (.vhd/.iso file)

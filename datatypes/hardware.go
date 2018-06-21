@@ -594,10 +594,10 @@ type Hardware struct {
 	// Information regarding the network component that is one level higher than a piece of hardware on the network infrastructure.
 	UplinkNetworkComponents []Network_Component `json:"uplinkNetworkComponents,omitempty" xmlrpc:"uplinkNetworkComponents,omitempty"`
 
-	// An array containing a single string of custom user data for a hardware order.
+	// An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 	UserData []Hardware_Attribute `json:"userData,omitempty" xmlrpc:"userData,omitempty"`
 
-	// A count of an array containing a single string of custom user data for a hardware order.
+	// A count of an array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 	UserDataCount *uint `json:"userDataCount,omitempty" xmlrpc:"userDataCount,omitempty"`
 
 	// Information regarding the virtual chassis for a piece of hardware.
@@ -802,6 +802,9 @@ type Hardware_Component struct {
 
 	// A hardware component's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// A component's M.2 SATA capacity.
+	M2SataSlotCapacity *string `json:"m2SataSlotCapacity,omitempty" xmlrpc:"m2SataSlotCapacity,omitempty"`
 
 	// The date that a hardware component was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`

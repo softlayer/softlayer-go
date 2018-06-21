@@ -1511,6 +1511,12 @@ func (r Account) GetPostProvisioningHooks() (resp []datatypes.Provisioning_Hook,
 	return
 }
 
+// Retrieve Boolean flag dictating whether or not this account supports PPTP VPN Access.
+func (r Account) GetPptpVpnAllowedFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnAllowedFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An account's associated portal users with PPTP VPN access.
 func (r Account) GetPptpVpnUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnUsers", nil, &r.Options, &resp)
@@ -3855,58 +3861,6 @@ func (r Account_Note_Type) GetObject() (resp datatypes.Account_Note_Type, err er
 	return
 }
 
-// The SoftLayer_Account_Partner_Business data type contains specific information concerning an Account's relationship with Business Partner Data, in the form of the Account's Country Experience Identifier (CEID), Channel ID, and Segment ID.
-type Account_Partner_Business struct {
-	Session *session.Session
-	Options sl.Options
-}
-
-// GetAccountPartnerBusinessService returns an instance of the Account_Partner_Business SoftLayer service
-func GetAccountPartnerBusinessService(sess *session.Session) Account_Partner_Business {
-	return Account_Partner_Business{Session: sess}
-}
-
-func (r Account_Partner_Business) Id(id int) Account_Partner_Business {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Partner_Business) Mask(mask string) Account_Partner_Business {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Partner_Business) Filter(filter string) Account_Partner_Business {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Partner_Business) Limit(limit int) Account_Partner_Business {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Partner_Business) Offset(offset int) Account_Partner_Business {
-	r.Options.Offset = &offset
-	return r
-}
-
-// Retrieve The SoftLayer customer account associated with this business partner data.
-func (r Account_Partner_Business) GetAccount() (resp datatypes.Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Partner_Business", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Partner_Business) GetObject() (resp datatypes.Account_Partner_Business, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Partner_Business", "getObject", nil, &r.Options, &resp)
-	return
-}
-
 // no documentation yet
 type Account_Partner_Referral_Prospect struct {
 	Session *session.Session
@@ -4037,6 +3991,108 @@ func (r Account_Password) GetType() (resp datatypes.Account_Password_Type, err e
 }
 
 // no documentation yet
+type Account_PersonalData_RemoveRequestReview struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetAccountPersonalDataRemoveRequestReviewService returns an instance of the Account_PersonalData_RemoveRequestReview SoftLayer service
+func GetAccountPersonalDataRemoveRequestReviewService(sess *session.Session) Account_PersonalData_RemoveRequestReview {
+	return Account_PersonalData_RemoveRequestReview{Session: sess}
+}
+
+func (r Account_PersonalData_RemoveRequestReview) Id(id int) Account_PersonalData_RemoveRequestReview {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Account_PersonalData_RemoveRequestReview) Mask(mask string) Account_PersonalData_RemoveRequestReview {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Account_PersonalData_RemoveRequestReview) Filter(filter string) Account_PersonalData_RemoveRequestReview {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Account_PersonalData_RemoveRequestReview) Limit(limit int) Account_PersonalData_RemoveRequestReview {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Account_PersonalData_RemoveRequestReview) Offset(offset int) Account_PersonalData_RemoveRequestReview {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Approve a personal information removal request.
+func (r Account_PersonalData_RemoveRequestReview) ApproveRequest(requestId *int, accessToken *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		requestId,
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "approveRequest", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Account_PersonalData_RemoveRequestReview) GetAccount() (resp datatypes.Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getAccount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Account_PersonalData_RemoveRequestReview) GetApprovedFlag() (resp datatypes.Account_PersonalData_RemoveRequestReview, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getApprovedFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Gets the redirect URL for GDPR removal review.
+func (r Account_PersonalData_RemoveRequestReview) GetAuthorizationUrl() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getAuthorizationUrl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Account_PersonalData_RemoveRequestReview) GetObject() (resp datatypes.Account_PersonalData_RemoveRequestReview, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Gets information removal requests to review.
+func (r Account_PersonalData_RemoveRequestReview) GetPendingRequests(accessToken *string) (resp []datatypes.Container_Account_PersonalInformation, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getPendingRequests", params, &r.Options, &resp)
+	return
+}
+
+// Retrieves an access token.
+func (r Account_PersonalData_RemoveRequestReview) GetReviewerAccessToken(code *string) (resp string, err error) {
+	params := []interface{}{
+		code,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getReviewerAccessToken", params, &r.Options, &resp)
+	return
+}
+
+// Finds a reviewer's email using the access token
+func (r Account_PersonalData_RemoveRequestReview) GetReviewerEmailFromAccessToken(accessToken *string) (resp string, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_PersonalData_RemoveRequestReview", "getReviewerEmailFromAccessToken", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Account_ProofOfConcept struct {
 	Session *session.Session
 	Options sl.Options
@@ -4076,6 +4132,74 @@ func (r Account_ProofOfConcept) Offset(offset int) Account_ProofOfConcept {
 	return r
 }
 
+// Allows a verified reviewer to approve a request
+func (r Account_ProofOfConcept) ApproveReview(requestId *int, accessToken *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		requestId,
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "approveReview", params, &r.Options, &resp)
+	return
+}
+
+// Allows verified reviewer to deny a request
+func (r Account_ProofOfConcept) DenyReview(requestId *int, accessToken *string, reason *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		requestId,
+		accessToken,
+		reason,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "denyReview", params, &r.Options, &resp)
+	return
+}
+
+// Returns URL used to authenticate reviewers
+func (r Account_ProofOfConcept) GetAuthenticationUrl(targetPage *string) (resp string, err error) {
+	params := []interface{}{
+		targetPage,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getAuthenticationUrl", params, &r.Options, &resp)
+	return
+}
+
+// Retrieves a list of requests that are pending review in the specified regions
+func (r Account_ProofOfConcept) GetRequestsPendingIntegratedOfferingTeamReview(accessToken *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingIntegratedOfferingTeamReview", params, &r.Options, &resp)
+	return
+}
+
+// Retrieves a list of requests that are pending over threshold review
+func (r Account_ProofOfConcept) GetRequestsPendingOverThresholdReview(accessToken *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingOverThresholdReview", params, &r.Options, &resp)
+	return
+}
+
+// Exchanges a code for a token during reviewer validation.
+func (r Account_ProofOfConcept) GetReviewerAccessToken(unverifiedAuthenticationCode *string) (resp string, err error) {
+	params := []interface{}{
+		unverifiedAuthenticationCode,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getReviewerAccessToken", params, &r.Options, &resp)
+	return
+}
+
+// Finds a reviewer's email using the access token
+func (r Account_ProofOfConcept) GetReviewerEmailFromAccessToken(accessToken *string) (resp string, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getReviewerEmailFromAccessToken", params, &r.Options, &resp)
+	return
+}
+
 // Allows authorized IBMer to pull all the details of a single proof of concept account request.
 func (r Account_ProofOfConcept) GetSubmittedRequest(requestId *int) (resp datatypes.Container_Account_ProofOfConcept_Review, err error) {
 	params := []interface{}{
@@ -4094,6 +4218,30 @@ func (r Account_ProofOfConcept) GetSubmittedRequests(email *string, sortOrder *s
 		sortOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequests", params, &r.Options, &resp)
+	return
+}
+
+// Gets email address users can use to ask for help/support
+func (r Account_ProofOfConcept) GetSupportEmailAddress() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSupportEmailAddress", nil, &r.Options, &resp)
+	return
+}
+
+// Indicates whether or not a reviewer belongs to the integrated offering team
+func (r Account_ProofOfConcept) IsIntegratedOfferingTeamReviewer(emailAddress *string) (resp bool, err error) {
+	params := []interface{}{
+		emailAddress,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "isIntegratedOfferingTeamReviewer", params, &r.Options, &resp)
+	return
+}
+
+// Indicates whether or not a reviewer belongs to the threshold team.
+func (r Account_ProofOfConcept) IsOverThresholdReviewer(emailAddress *string) (resp bool, err error) {
+	params := []interface{}{
+		emailAddress,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "isOverThresholdReviewer", params, &r.Options, &resp)
 	return
 }
 
@@ -4116,6 +4264,17 @@ func (r Account_ProofOfConcept) RequestGlobalFundedAccount(request *datatypes.Co
 		request,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "requestGlobalFundedAccount", params, &r.Options, &resp)
+	return
+}
+
+// Verifies that a potential reviewer is an approved internal IBM employee
+func (r Account_ProofOfConcept) VerifyReviewer(requestId *int, reviewerEmailAddress *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		requestId,
+		reviewerEmailAddress,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "verifyReviewer", params, &r.Options, &resp)
 	return
 }
 
@@ -4157,6 +4316,12 @@ func (r Account_ProofOfConcept_Approver) Limit(limit int) Account_ProofOfConcept
 func (r Account_ProofOfConcept_Approver) Offset(offset int) Account_ProofOfConcept_Approver {
 	r.Options.Offset = &offset
 	return r
+}
+
+// Retrieves a list of reviewers
+func (r Account_ProofOfConcept_Approver) GetAllObjects() (resp []datatypes.Account_ProofOfConcept_Approver, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver", "getAllObjects", nil, &r.Options, &resp)
+	return
 }
 
 // no documentation yet

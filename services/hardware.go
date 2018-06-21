@@ -1383,7 +1383,7 @@ func (r Hardware) GetUplinkNetworkComponents() (resp []datatypes.Network_Compone
 	return
 }
 
-// Retrieve An array containing a single string of custom user data for a hardware order.
+// Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getUserData", nil, &r.Options, &resp)
 	return
@@ -3322,7 +3322,7 @@ func (r Hardware_Router) GetUplinkNetworkComponents() (resp []datatypes.Network_
 	return
 }
 
-// Retrieve An array containing a single string of custom user data for a hardware order.
+// Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_Router) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUserData", nil, &r.Options, &resp)
 	return
@@ -5346,7 +5346,7 @@ func (r Hardware_SecurityModule) GetUplinkNetworkComponents() (resp []datatypes.
 	return
 }
 
-// Retrieve An array containing a single string of custom user data for a hardware order.
+// Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_SecurityModule) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUserData", nil, &r.Options, &resp)
 	return
@@ -7579,7 +7579,7 @@ func (r Hardware_SecurityModule750) GetUplinkNetworkComponents() (resp []datatyp
 	return
 }
 
-// Retrieve An array containing a single string of custom user data for a hardware order.
+// Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_SecurityModule750) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUserData", nil, &r.Options, &resp)
 	return
@@ -9812,7 +9812,7 @@ func (r Hardware_Server) GetUplinkNetworkComponents() (resp []datatypes.Network_
 	return
 }
 
-// Retrieve An array containing a single string of custom user data for a hardware order.
+// Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_Server) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUserData", nil, &r.Options, &resp)
 	return

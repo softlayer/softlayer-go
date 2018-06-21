@@ -78,6 +78,9 @@ type Virtual_DedicatedHost struct {
 	// A note of up to 1,000 characters about a dedicated host.
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 
+	// The container that represents PCI device allocations on the dedicated host.
+	PciDeviceAllocationStatus *Container_Virtual_DedicatedHost_Pci_Device_AllocationStatus `json:"pciDeviceAllocationStatus,omitempty" xmlrpc:"pciDeviceAllocationStatus,omitempty"`
+
 	// A count of
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty" xmlrpc:"tagReferenceCount,omitempty"`
 
@@ -1050,6 +1053,9 @@ type Virtual_Guest_Network_Component struct {
 	// no documentation yet
 	HighAvailabilityFirewallFlag *bool `json:"highAvailabilityFirewallFlag,omitempty" xmlrpc:"highAvailabilityFirewallFlag,omitempty"`
 
+	// no documentation yet
+	IcpBinding *Virtual_Guest_Network_Component_IcpBinding `json:"icpBinding,omitempty" xmlrpc:"icpBinding,omitempty"`
+
 	// A computing instance's network component's unique ID.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
@@ -1118,6 +1124,26 @@ type Virtual_Guest_Network_Component struct {
 
 	// A computing instance's network component's unique ID on a virtualization platform.
 	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
+}
+
+// no documentation yet
+type Virtual_Guest_Network_Component_IcpBinding struct {
+	Entity
+
+	// no documentation yet
+	InterfaceId *string `json:"interfaceId,omitempty" xmlrpc:"interfaceId,omitempty"`
+
+	// no documentation yet
+	IpAllocationId *string `json:"ipAllocationId,omitempty" xmlrpc:"ipAllocationId,omitempty"`
+
+	// The network component associated with this object.
+	NetworkComponent *Virtual_Guest_Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
+
+	// The type of IP that this IP allocation id record references.  Set to PRIMARY for the first servic port.
+	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
+	// no documentation yet
+	VpcId *string `json:"vpcId,omitempty" xmlrpc:"vpcId,omitempty"`
 }
 
 // The SoftLayer_Virtual_Guest_Network_Component_IpAddress data type contains general information relating to the binding of a single network component to a single SoftLayer IP address.
