@@ -4659,9 +4659,25 @@ type Container_Product_Order_Virtual_Guest_Upgrade struct {
 	Container_Product_Order_Virtual_Guest
 }
 
+type SoftLayer_Container_Product_Order_SshKeys struct {
+	SshKeyIds []*int `json:"sshKeyIds,omitempty" xmlrpc:"sshKeyIds,omitempty"`
+}
+
 // no documentation yet
 type Container_Product_Order_Virtual_Guest_Vpc struct {
-	Container_Product_Order_Virtual_Guest
+	ImageTemplateId  *int                 `json:"imageTemplateId,omitempty" xmlrpc:"imageTemplateId,omitempty"`
+	Location         *string              `json:"location,omitempty" xmlrpc:"location,omitempty"`
+	PackageId        *int                 `json:"packageId,omitempty" xmlrpc:"packageId,omitempty"`
+	PresetId         *int                 `json:"presetId,omitempty" xmlrpc:"presetId,omitempty"`
+	UseHourlyPricing *bool                `json:"useHourlyPricing,omitempty" xmlrpc:"useHourlyPricing,omitempty"`
+	Prices           []Product_Item_Price `json:"prices,omitempty" xmlrpc:"prices,omitempty"`
+
+	Quantity               *int                                        `json:"quantity,omitempty" xmlrpc:"quantity,omitempty"`
+	VirtualGuests          []Virtual_Guest                             `json:"virtualGuests,omitempty" xmlrpc:"virtualGuests,omitempty"`
+	SshKeys                []SoftLayer_Container_Product_Order_SshKeys `json:"sshKeys,omitempty" xmlrpc:"sshKeys,omitempty"`
+	ComplexType            *string                                     `json:"complexType,omitempty" xmlrpc:"complexType,omitempty"`
+	ServicePortVpcId       *string                                     `json:"servicePortVpcId,omitempty" xmlrpc:"servicePortVpcId,omitempty"`
+	ServicePortInterfaceId *string                                     `json:"servicePortInterfaceId,omitempty" xmlrpc:"servicePortInterfaceId,omitempty"`
 
 	// no documentation yet
 	AdditionalNetworkInterfaces []Container_Product_Order_Virtual_Guest_Vpc_NetworkInterface `json:"additionalNetworkInterfaces,omitempty" xmlrpc:"additionalNetworkInterfaces,omitempty"`
@@ -4693,6 +4709,10 @@ type Container_Product_Order_Virtual_Guest_Vpc_IpAllocation struct {
 // no documentation yet
 type Container_Product_Order_Virtual_Guest_Vpc_NetworkInterface struct {
 	Entity
+
+	VpcId *string `json:"vpcId,omitempty" xmlrpc:"vpcId,omitempty"`
+
+	InterfaceId *string `json:"interfaceId,omitempty" xmlrpc:"interfaceId,omitempty"`
 
 	// no documentation yet
 	IpAllocationId *string `json:"ipAllocationId,omitempty" xmlrpc:"ipAllocationId,omitempty"`
