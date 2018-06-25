@@ -234,21 +234,20 @@ func New(args ...interface{}) *Session {
 	return sess
 }
 
-// NewCert creates and returns a pointer to a new session object that uses SSL certs to authenticate.  It takes three
+// NewTls creates and returns a pointer to a new session object that uses TLS to authenticate.  It takes three
 // parameters, the first parameter is required and the last two can be empty strings.  If specified, they will be
 // interpreted in the following sequence:
 //
-// 1. TLS config object
+// 1. Pointer to TLS config object
 // 2. Endpoint
 // 3. Timeout
 //
 // If either endpoint_url or timeout parameters are omitted, NewTlS() will attempt to retrieve these values from
 // the environment, and the ~/.softlayer config file, in that order.
-func NewTLS(tls_config *tls.Config, endpoint_url string, timeout string) *Session {
+func NewTLS(tlsConfig *tls.Config, endpointUrl string, timeout string) *Session {
 	keys := map[string]int{"endpoint_url": 0, "timeout": 1}
-	values := []string{endpoint_url, timeout}
-
-
+	values := []string{endpointUrl, timeout}
+	
 	// Default to environment variables
 
 	// Prioritize SL_ENDPOINT_URL
@@ -298,7 +297,7 @@ func NewTLS(tls_config *tls.Config, endpoint_url string, timeout string) *Sessio
 	}
 
 	sess := &Session{
-		TlsConfig:  tls_config,
+		TlsConfig:  tlsConfig,
 		Endpoint:  endpointURL,
 		userAgent: getDefaultUserAgent(),
 	}
