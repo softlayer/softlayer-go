@@ -247,7 +247,7 @@ func New(args ...interface{}) *Session {
 func NewTLS(tlsConfig *tls.Config, endpointUrl string, timeout string) *Session {
 	keys := map[string]int{"endpoint_url": 0, "timeout": 1}
 	values := []string{endpointUrl, timeout}
-	
+
 	// Default to environment variables
 
 	// Prioritize SL_ENDPOINT_URL

@@ -90,8 +90,7 @@ func (x *XmlRpcTransport) DoRequest(
 	if err != nil {
 		return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
 	}
-
-
+	
 	authenticate := map[string]interface{}{}
 	if sess.UserName != "" {
 		authenticate["username"] = sess.UserName
