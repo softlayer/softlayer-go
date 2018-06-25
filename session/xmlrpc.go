@@ -27,6 +27,8 @@ import (
 
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
+	"crypto/tls"
+	"log"
 )
 
 // Debugging RoundTripper
@@ -63,21 +65,38 @@ func (x *XmlRpcTransport) DoRequest(
 	pResult interface{},
 ) error {
 
+	var err error
 	serviceUrl := fmt.Sprintf("%s/%s", strings.TrimRight(sess.Endpoint, "/"), service)
-
-	var roundTripper http.RoundTripper
-	if sess.Debug {
-		roundTripper = debugRoundTripper{}
-	}
 
 	timeout := DefaultTimeout
 	if sess.Timeout != 0 {
 		timeout = sess.Timeout
 	}
 
-	client, err := xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
-	if err != nil {
-		return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
+	// Declaring client outside of the if /else. So we can set the correct http transport based if it is TLS or not
+	var client *xmlrpc.Client
+	if sess.TlsConfig != new(tls.Config) {
+		if err != nil {
+			log.Println(err)
+		}
+
+		transport := &http.Transport{TLSClientConfig: sess.TlsConfig}
+
+		client, err = xmlrpc.NewClient(serviceUrl, transport, timeout)
+		if err != nil {
+			return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
+		}
+	} else {
+		var roundTripper http.RoundTripper
+		if sess.Debug {
+			roundTripper = debugRoundTripper{}
+		}
+
+		var err error
+		client, err = xmlrpc.NewClient(serviceUrl, roundTripper, timeout)
+		if err != nil {
+			return fmt.Errorf("Could not create an xmlrpc client for %s: %s", service, err)
+		}
 	}
 
 	authenticate := map[string]interface{}{}
