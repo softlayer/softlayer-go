@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
+	"crypto/tls"
 	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
-	"crypto/tls"
 )
 
 // Debugging RoundTripper

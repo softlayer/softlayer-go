@@ -28,9 +28,9 @@ import (
 	"strings"
 	"time"
 
+	"crypto/tls"
 	"github.com/softlayer/softlayer-go/config"
 	"github.com/softlayer/softlayer-go/sl"
-	"crypto/tls"
 )
 
 // Logger is the logger used by the SoftLayer session package. Can be overridden by the user.
@@ -297,7 +297,7 @@ func NewTLS(tlsConfig *tls.Config, endpointUrl string, timeout string) *Session 
 	}
 
 	sess := &Session{
-		TlsConfig:  tlsConfig,
+		TlsConfig: tlsConfig,
 		Endpoint:  endpointURL,
 		userAgent: getDefaultUserAgent(),
 	}
