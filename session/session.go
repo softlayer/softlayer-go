@@ -28,7 +28,6 @@ import (
 	"strings"
 	"time"
 
-	"crypto/tls"
 	"github.com/softlayer/softlayer-go/config"
 	"github.com/softlayer/softlayer-go/sl"
 )
@@ -94,9 +93,6 @@ type Session struct {
 
 	// ApiKey is the secret for making API calls
 	APIKey string
-
-	//TLS config object used for TLS authentication
-	TlsConfig *tls.Config
 
 	// Endpoint is the SoftLayer API endpoint to communicate with
 	Endpoint string
@@ -222,86 +218,6 @@ func New(args ...interface{}) *Session {
 	}
 
 	timeout := values[keys["timeout"]]
-	if timeout != "" {
-		timeoutDuration, err := time.ParseDuration(fmt.Sprintf("%ss", timeout))
-		if err == nil {
-			sess.Timeout = timeoutDuration
-		}
-	}
-
-	sess.RetryWait = DefaultRetryWait
-
-	return sess
-}
-
-// NewTls creates and returns a pointer to a new session object that uses TLS to authenticate.  It takes three
-// parameters, the first parameter is required and the last two can be empty strings.  If specified, they will be
-// interpreted in the following sequence:
-//
-// 1. Pointer to TLS config object
-// 2. Endpoint
-// 3. Timeout
-//
-// If either endpoint_url or timeout parameters are omitted, NewTlS() will attempt to retrieve these values from
-// the environment, and the ~/.softlayer config file, in that order.
-func NewTLS(tlsConfig *tls.Config, endpointUrl string, timeout string) *Session {
-	keys := map[string]int{"endpoint_url": 0, "timeout": 1}
-	values := []string{endpointUrl, timeout}
-
-	// Default to environment variables
-
-	// Prioritize SL_ENDPOINT_URL
-	envFallback("SL_ENDPOINT_URL", &values[keys["endpoint_url"]])
-	envFallback("SOFTLAYER_ENDPOINT_URL", &values[keys["endpoint_url"]])
-
-	envFallback("SL_TIMEOUT", &values[keys["timeout"]])
-	envFallback("SOFTLAYER_TIMEOUT", &values[keys["timeout"]])
-
-	// Read ~/.softlayer for configuration
-	var homeDir string
-	u, err := user.Current()
-	if err != nil {
-		for _, name := range []string{"HOME", "USERPROFILE"} { // *nix, windows
-			if dir := os.Getenv(name); dir != "" {
-				homeDir = dir
-				break
-			}
-		}
-	} else {
-		homeDir = u.HomeDir
-	}
-
-	if homeDir != "" {
-		configPath := fmt.Sprintf("%s/.softlayer", homeDir)
-		if _, err = os.Stat(configPath); !os.IsNotExist(err) {
-			// config file exists
-			file, err := config.LoadFile(configPath)
-			if err != nil {
-				log.Println(fmt.Sprintf("[WARN] session: Could not parse %s : %s", configPath, err))
-			} else {
-				for k, v := range keys {
-					value, ok := file.Get("softlayer", k)
-					if ok && values[v] == "" {
-						values[v] = value
-					}
-				}
-			}
-		}
-	} else {
-		log.Println("[WARN] session: home dir could not be determined. Skipping read of ~/.softlayer.")
-	}
-
-	endpointURL := values[keys["endpoint_url"]]
-	if endpointURL == "" {
-		endpointURL = DefaultEndpoint
-	}
-
-	sess := &Session{
-		TlsConfig: tlsConfig,
-		Endpoint:  endpointURL,
-		userAgent: getDefaultUserAgent(),
-	}
-
 	if timeout != "" {
 		timeoutDuration, err := time.ParseDuration(fmt.Sprintf("%ss", timeout))
 		if err == nil {
