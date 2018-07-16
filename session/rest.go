@@ -245,7 +245,7 @@ func makeHTTPRequest(
 
 	req.Header.Set("User-Agent", session.userAgent)
 
-	if session.Headers !=  nil {
+	if session.Headers != nil {
 		for key, value := range session.Headers {
 			req.Header.Set(key, value)
 		}
