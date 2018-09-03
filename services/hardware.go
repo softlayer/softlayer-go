@@ -642,13 +642,13 @@ func (r Hardware) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, er
 	return
 }
 
-// Get the billing detail for this instance for the current billing period. This does not include bandwidth usage.
+// Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingDetail", nil, &r.Options, &resp)
 	return
 }
 
-// The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
+// Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
@@ -2569,13 +2569,13 @@ func (r Hardware_Router) GetCurrentBillableBandwidthUsage() (resp datatypes.Floa
 	return
 }
 
-// Get the billing detail for this instance for the current billing period. This does not include bandwidth usage.
+// Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware_Router) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingDetail", nil, &r.Options, &resp)
 	return
 }
 
-// The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
+// Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_Router) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
@@ -4296,13 +4296,13 @@ func (r Hardware_SecurityModule) GetCurrentBillableBandwidthUsage() (resp dataty
 	return
 }
 
-// Get the billing detail for this instance for the current billing period. This does not include bandwidth usage.
+// Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware_SecurityModule) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingDetail", nil, &r.Options, &resp)
 	return
 }
 
-// The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
+// Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_SecurityModule) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
@@ -4601,6 +4601,12 @@ func (r Hardware_SecurityModule) GetInboundPublicBandwidthUsage() (resp datatype
 // Retrieve Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
 func (r Hardware_SecurityModule) GetIsCloudReadyNodeCertified() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getIsCloudReadyNodeCertified", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if remote management has been disabled due to port speed.
+func (r Hardware_SecurityModule) GetIsIpmiDisabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getIsIpmiDisabled", nil, &r.Options, &resp)
 	return
 }
 
@@ -5702,6 +5708,15 @@ func (r Hardware_SecurityModule) SparePool(action *string, newOrder *bool) (resp
 	return
 }
 
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+func (r Hardware_SecurityModule) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
+	params := []interface{}{
+		enabled,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "toggleManagementInterface", params, &r.Options, &resp)
+	return
+}
+
 // This method will update the root IPMI password on this SoftLayer_Hardware.
 func (r Hardware_SecurityModule) UpdateIpmiPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -6529,13 +6544,13 @@ func (r Hardware_SecurityModule750) GetCurrentBillableBandwidthUsage() (resp dat
 	return
 }
 
-// Get the billing detail for this instance for the current billing period. This does not include bandwidth usage.
+// Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware_SecurityModule750) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCurrentBillingDetail", nil, &r.Options, &resp)
 	return
 }
 
-// The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
+// Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_SecurityModule750) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
@@ -6834,6 +6849,12 @@ func (r Hardware_SecurityModule750) GetInboundPublicBandwidthUsage() (resp datat
 // Retrieve Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
 func (r Hardware_SecurityModule750) GetIsCloudReadyNodeCertified() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getIsCloudReadyNodeCertified", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if remote management has been disabled due to port speed.
+func (r Hardware_SecurityModule750) GetIsIpmiDisabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getIsIpmiDisabled", nil, &r.Options, &resp)
 	return
 }
 
@@ -7935,6 +7956,15 @@ func (r Hardware_SecurityModule750) SparePool(action *string, newOrder *bool) (r
 	return
 }
 
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+func (r Hardware_SecurityModule750) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
+	params := []interface{}{
+		enabled,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "toggleManagementInterface", params, &r.Options, &resp)
+	return
+}
+
 // This method will update the root IPMI password on this SoftLayer_Hardware.
 func (r Hardware_SecurityModule750) UpdateIpmiPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -8762,13 +8792,13 @@ func (r Hardware_Server) GetCurrentBillableBandwidthUsage() (resp datatypes.Floa
 	return
 }
 
-// Get the billing detail for this instance for the current billing period. This does not include bandwidth usage.
+// Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware_Server) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingDetail", nil, &r.Options, &resp)
 	return
 }
 
-// The '''getCurrentBillingTotal''' method retrieves the total bill amount in US Dollars ($) for the current billing period. In addition to the total bill amount, the billing detail also includes all bandwidth used up to the point the method is called on the piece of hardware.
+// Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_Server) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingTotal", nil, &r.Options, &resp)
 	return
@@ -9067,6 +9097,12 @@ func (r Hardware_Server) GetInboundPublicBandwidthUsage() (resp datatypes.Float6
 // Retrieve Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
 func (r Hardware_Server) GetIsCloudReadyNodeCertified() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getIsCloudReadyNodeCertified", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if remote management has been disabled due to port speed.
+func (r Hardware_Server) GetIsIpmiDisabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getIsIpmiDisabled", nil, &r.Options, &resp)
 	return
 }
 
@@ -10165,6 +10201,15 @@ func (r Hardware_Server) SparePool(action *string, newOrder *bool) (resp bool, e
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "sparePool", params, &r.Options, &resp)
+	return
+}
+
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+func (r Hardware_Server) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
+	params := []interface{}{
+		enabled,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "toggleManagementInterface", params, &r.Options, &resp)
 	return
 }
 
