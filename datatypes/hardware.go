@@ -1907,6 +1907,9 @@ type Hardware_Server struct {
 	// A server's remote management card used for statistics.
 	StatisticsRemoteManagement *Hardware_Component_RemoteManagement `json:"statisticsRemoteManagement,omitempty" xmlrpc:"statisticsRemoteManagement,omitempty"`
 
+	// Whether to use UEFI boot instead of BIOS.
+	UefiBootFlag *bool `json:"uefiBootFlag,omitempty" xmlrpc:"uefiBootFlag,omitempty"`
+
 	// A count of a list of users that have access to this computing instance.
 	UserCount *uint `json:"userCount,omitempty" xmlrpc:"userCount,omitempty"`
 
