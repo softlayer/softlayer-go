@@ -3588,6 +3588,9 @@ type Network_SecurityGroup_RequestRules struct {
 type Network_SecurityGroup_Rule struct {
 	Entity
 
+	// The date that the security group rule was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
 	// The direction of traffic (ingress or egress).
 	Direction *string `json:"direction,omitempty" xmlrpc:"direction,omitempty"`
 
@@ -3596,6 +3599,9 @@ type Network_SecurityGroup_Rule struct {
 
 	// The unique ID for a rule.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The date that the security group rule was previously modified
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// The end of the port range for allowed traffic.  When the protocol is icmp, this value specifies the icmp code to permit.  When icmp code is specified, icmp type is required.
 	PortRangeMax *int `json:"portRangeMax,omitempty" xmlrpc:"portRangeMax,omitempty"`
