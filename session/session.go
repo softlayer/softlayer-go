@@ -100,6 +100,9 @@ type Session struct {
 	// UserId is the user id for token-based authentication
 	UserId int
 
+	//IAMToken is the IAM token secret that included IMS account for token-based authentication
+	IAMToken string
+
 	// AuthToken is the token secret for token-based authentication
 	AuthToken string
 
