@@ -261,6 +261,11 @@ func makeHTTPRequest(
 		log.Println("[DEBUG] Parameters: ", requestBody.String())
 	}
 
+	// Apply custom context.Context, if supplied
+	if session.Context != nil {
+		req = req.WithContext(session.Context)
+	}
+
 	resp, err := client.Do(req)
 	if err != nil {
 		statusCode := 520

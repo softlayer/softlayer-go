@@ -17,6 +17,7 @@
 package session
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"math/rand"
@@ -117,6 +118,9 @@ type Session struct {
 
 	// HTTPClient This allows a custom user configured HTTP Client.
 	HTTPClient *http.Client
+
+	// Context allows a custom context.Context for outbound HTTP requests
+	Context context.Context
 
 	// Custom Headers to be used on each request (Currently only for rest)
 	Headers map[string]string
