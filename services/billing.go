@@ -2600,6 +2600,12 @@ func (r Billing_Order_Item) GetPreset() (resp datatypes.Product_Package_Preset, 
 	return
 }
 
+// Retrieve
+func (r Billing_Order_Item) GetPromoCode() (resp datatypes.Product_Promotion, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getPromoCode", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A count of power supplies contained within this SoftLayer_Billing_Order
 func (r Billing_Order_Item) GetRedundantPowerSupplyCount() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getRedundantPowerSupplyCount", nil, &r.Options, &resp)

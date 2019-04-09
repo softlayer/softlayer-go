@@ -1045,6 +1045,17 @@ type Network_CdnMarketplace_Configuration_Behavior_Geoblocking_Type struct {
 	RegionType []string `json:"regionType,omitempty" xmlrpc:"regionType,omitempty"`
 }
 
+// no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection struct {
+	Entity
+
+	// no documentation yet
+	ProtectionType *string `json:"protectionType,omitempty" xmlrpc:"protectionType,omitempty"`
+
+	// no documentation yet
+	RefererValues *string `json:"refererValues,omitempty" xmlrpc:"refererValues,omitempty"`
+}
+
 // This data type models a purge event that occurs in caching server. It contains a reference to a mapping configuration, the path to execute the purge on, the status of the purge, and flag that enables saving the purge information for future use.
 type Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Entity
@@ -2022,6 +2033,9 @@ type Network_Gateway_Member_Attribute struct {
 	// A gateway member's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
+	// The previous vSRX version of the gateway software
+	LastvSRXVersion *string `json:"lastvSRXVersion,omitempty" xmlrpc:"lastvSRXVersion,omitempty"`
+
 	// The gateway member for this attribute.
 	MemberId *int `json:"memberId,omitempty" xmlrpc:"memberId,omitempty"`
 
@@ -2059,6 +2073,20 @@ type Network_Gateway_Status struct {
 
 	// A gateway status's human-friendly name.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
+// no documentation yet
+type Network_Gateway_VersionUpgrade struct {
+	Entity
+
+	// Gateway version being upgraded from.
+	FromVersion *string `json:"fromVersion,omitempty" xmlrpc:"fromVersion,omitempty"`
+
+	// A gateway status's internal identifier.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Gateway version available for upgrade.
+	ToVersion *string `json:"toVersion,omitempty" xmlrpc:"toVersion,omitempty"`
 }
 
 // no documentation yet
@@ -2183,34 +2211,34 @@ type Network_Interconnect_Tenant struct {
 type Network_LBaaS_HealthMonitor struct {
 	Entity
 
-	// no documentation yet
+	// Create date of the health monitor instance
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// no documentation yet
+	// Health monitor's identifier
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// no documentation yet
+	// Interval in seconds to perform health check
 	Interval *int `json:"interval,omitempty" xmlrpc:"interval,omitempty"`
 
-	// no documentation yet
+	// Maximum number of health check retries in case of failure
 	MaxRetries *int `json:"maxRetries,omitempty" xmlrpc:"maxRetries,omitempty"`
 
-	// no documentation yet
+	// Modify date of the health monitor instance
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// no documentation yet
+	// Type of health check, valid values are "TCP", "HTTP" and "HTTPS"
 	MonitorType *string `json:"monitorType,omitempty" xmlrpc:"monitorType,omitempty"`
 
-	// no documentation yet
+	// Provisioning status of the health monitor, supported values are "CREATE_PENDING",
 	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
 
-	// no documentation yet
+	// Timeout in seconds to wait for health checks response
 	Timeout *int `json:"timeout,omitempty" xmlrpc:"timeout,omitempty"`
 
-	// no documentation yet
+	// If monitorType is "HTTP" this specifies the whole URL path
 	UrlPath *string `json:"urlPath,omitempty" xmlrpc:"urlPath,omitempty"`
 
-	// no documentation yet
+	// Health monitor's UUID
 	Uuid *string `json:"uuid,omitempty" xmlrpc:"uuid,omitempty"`
 }
 
@@ -2717,7 +2745,7 @@ type Network_LBaaS_Pool struct {
 	// Last updated date of the pool
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// Backends protocol, supported protocols are "TCP", "HTTP"
+	// Backends protocol, supported protocols are "TCP", "HTTP" and "HTTPS"
 	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
 
 	// Backends protocol port
@@ -3588,6 +3616,9 @@ type Network_SecurityGroup_RequestRules struct {
 type Network_SecurityGroup_Rule struct {
 	Entity
 
+	// The createDate field for a rule. It is essentially the date and time that the security group rule was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
 	// The direction of traffic (ingress or egress).
 	Direction *string `json:"direction,omitempty" xmlrpc:"direction,omitempty"`
 
@@ -3597,13 +3628,16 @@ type Network_SecurityGroup_Rule struct {
 	// The unique ID for a rule.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// The end of the port range for allowed traffic.  When the protocol is icmp, this value specifies the icmp code to permit.  When icmp code is specified, icmp type is required.
+	// The modifyDate field for a rule. It is essentially the date and time that the security group rule was last changed.
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// The end of the port range for allowed traffic.  When the protocol is icmp, this value specifies the icmp code to permit.  When icmp code is specified, icmp type is required. When the protocol is vrrp, ports cannot be specified.
 	PortRangeMax *int `json:"portRangeMax,omitempty" xmlrpc:"portRangeMax,omitempty"`
 
 	// The start of the port range for allowed traffic.  When the protocol is icmp, this value specifies the icmp type to permit.
 	PortRangeMin *int `json:"portRangeMin,omitempty" xmlrpc:"portRangeMin,omitempty"`
 
-	// The protocol of packets (icmp, tcp, or udp).
+	// The protocol of packets (icmp, tcp, udp, or vrrp).
 	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
 
 	// The remote security group allowed as part of this rule.
@@ -3612,7 +3646,7 @@ type Network_SecurityGroup_Rule struct {
 	// The ID of the remote security group allowed as part of the rule. This property is mutually exclusive with the remoteIp property.
 	RemoteGroupId *int `json:"remoteGroupId,omitempty" xmlrpc:"remoteGroupId,omitempty"`
 
-	// CIDR or IP address for allowed connections. This property is mutually exclusive with the remoteGroupId property.
+	// CIDR or IP address for allowed connections. This property is mutually exclusive with the remoteGroupId property. When the protocol is vrrp, ports cannot be specified.
 	RemoteIp *string `json:"remoteIp,omitempty" xmlrpc:"remoteIp,omitempty"`
 
 	// The security group of this rule.
@@ -4662,6 +4696,11 @@ type Network_Storage_Hub_Swift struct {
 // no documentation yet
 type Network_Storage_Hub_Swift_Container struct {
 	Network_Storage_Hub_Swift
+}
+
+// no documentation yet
+type Network_Storage_Hub_Swift_Metrics struct {
+	Entity
 }
 
 // no documentation yet

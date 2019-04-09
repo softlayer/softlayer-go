@@ -281,7 +281,7 @@ func (r User_Customer) CreateNotificationSubscriber(keyName *string, resourceTab
 //
 // vpnPassword If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  When creating a vpn only user, the vpnPassword MUST be supplied.  If the vpnPassword is not provided, then the user will need to use the portal to edit their profile and set the vpnPassword.
 //
-//
+// IBMid considerations When a SoftLayer account is linked to a Platform Services (PaaS, formerly Bluemix) account, AND the trait on the SoftLayer Account indicating IBMid authentication is set, then SoftLayer will delegate the creation of the user to PaaS.  The Platform Services "invite user" API call is asynchronous, and so no user object can be returned from this API call.  In this specific case, this API will throw a SoftLayer_Exception_User_Customer_DelegateIamIdInvitationToPaas exception, with text indicating that the call was at least accepted by Platform Services.  The Platform Services API is the preferred API for creating users based on IBMid in a linked account pair.  If you have automation using this API that depends on getting a synchronous response with a user object with an id, you should contact SoftLayer Support to have the "IBMid authentication" trait set to 0 on this account.  In that case, a normal SoftLayer user will be created (no IBMid association set up) and the createObject call will return synchronously as before.
 func (r User_Customer) CreateObject(templateObject *datatypes.User_Customer, password *string, vpnPassword *string) (resp datatypes.User_Customer, err error) {
 	params := []interface{}{
 		templateObject,
@@ -2487,11 +2487,12 @@ func (r User_Customer_OpenIdConnect) AcknowledgeSupportPolicy() (err error) {
 }
 
 // Completes invitation process for an OpenIdConnect user created by Bluemix Unified User Console.
-func (r User_Customer_OpenIdConnect) ActivateOpenIdConnectUser(verificationCode *string, userInfo *datatypes.User_Customer) (err error) {
+func (r User_Customer_OpenIdConnect) ActivateOpenIdConnectUser(verificationCode *string, userInfo *datatypes.User_Customer, iamId *string) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		verificationCode,
 		userInfo,
+		iamId,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "activateOpenIdConnectUser", params, &r.Options, &resp)
 	return
@@ -2714,7 +2715,7 @@ func (r User_Customer_OpenIdConnect) CreateNotificationSubscriber(keyName *strin
 //
 // vpnPassword If the vpnPassword is provided, then the user's vpnPassword will be set to the provided password.  When creating a vpn only user, the vpnPassword MUST be supplied.  If the vpnPassword is not provided, then the user will need to use the portal to edit their profile and set the vpnPassword.
 //
-//
+// IBMid considerations When a SoftLayer account is linked to a Platform Services (PaaS, formerly Bluemix) account, AND the trait on the SoftLayer Account indicating IBMid authentication is set, then SoftLayer will delegate the creation of the user to PaaS.  The Platform Services "invite user" API call is asynchronous, and so no user object can be returned from this API call.  In this specific case, this API will throw a SoftLayer_Exception_User_Customer_DelegateIamIdInvitationToPaas exception, with text indicating that the call was at least accepted by Platform Services.  The Platform Services API is the preferred API for creating users based on IBMid in a linked account pair.  If you have automation using this API that depends on getting a synchronous response with a user object with an id, you should contact SoftLayer Support to have the "IBMid authentication" trait set to 0 on this account.  In that case, a normal SoftLayer user will be created (no IBMid association set up) and the createObject call will return synchronously as before.
 func (r User_Customer_OpenIdConnect) CreateObject(templateObject *datatypes.User_Customer_OpenIdConnect, password *string, vpnPassword *string) (resp datatypes.User_Customer_OpenIdConnect, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3191,10 +3192,11 @@ func (r User_Customer_OpenIdConnect) GetUnsuccessfulLogins() (resp []datatypes.U
 }
 
 // Returns an IMS User Object from the provided OpenIdConnect User ID or IBMid Unique Identifier for the Account of the active user. Enforces the User Management permissions for the Active User. An exception will be thrown if no matching IMS User is found. NOTE that providing IBMid Unique Identifier is optional, but it will be preferred over OpenIdConnect User ID if provided.
-func (r User_Customer_OpenIdConnect) GetUserForUnifiedInvitation(openIdConnectUserId *string, uniqueIdentifier *string) (resp datatypes.User_Customer_OpenIdConnect, err error) {
+func (r User_Customer_OpenIdConnect) GetUserForUnifiedInvitation(openIdConnectUserId *string, uniqueIdentifier *string, searchInvitationsNotLinksFlag *string) (resp datatypes.User_Customer_OpenIdConnect, err error) {
 	params := []interface{}{
 		openIdConnectUserId,
 		uniqueIdentifier,
+		searchInvitationsNotLinksFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserForUnifiedInvitation", params, &r.Options, &resp)
 	return
@@ -3661,6 +3663,55 @@ func (r User_Customer_OpenIdConnect) ValidateAuthenticationToken(authenticationT
 	return
 }
 
+// no documentation yet
+type User_Customer_Profile_Event_HyperWarp struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetUserCustomerProfileEventHyperWarpService returns an instance of the User_Customer_Profile_Event_HyperWarp SoftLayer service
+func GetUserCustomerProfileEventHyperWarpService(sess *session.Session) User_Customer_Profile_Event_HyperWarp {
+	return User_Customer_Profile_Event_HyperWarp{Session: sess}
+}
+
+func (r User_Customer_Profile_Event_HyperWarp) Id(id int) User_Customer_Profile_Event_HyperWarp {
+	r.Options.Id = &id
+	return r
+}
+
+func (r User_Customer_Profile_Event_HyperWarp) Mask(mask string) User_Customer_Profile_Event_HyperWarp {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r User_Customer_Profile_Event_HyperWarp) Filter(filter string) User_Customer_Profile_Event_HyperWarp {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r User_Customer_Profile_Event_HyperWarp) Limit(limit int) User_Customer_Profile_Event_HyperWarp {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r User_Customer_Profile_Event_HyperWarp) Offset(offset int) User_Customer_Profile_Event_HyperWarp {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r User_Customer_Profile_Event_HyperWarp) ReceiveEventDirect(eventJson *datatypes.Container_User_Customer_Profile_Event_HyperWarp_ProfileChange) (resp bool, err error) {
+	params := []interface{}{
+		eventJson,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_Profile_Event_HyperWarp", "receiveEventDirect", params, &r.Options, &resp)
+	return
+}
+
 // Contains user information for Service Provider Enrollment.
 type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
 	Session *session.Session
@@ -3780,7 +3831,11 @@ func (r User_Customer_Security_Answer) GetUser() (resp datatypes.User_Customer, 
 	return
 }
 
-// Each SoftLayer portal account is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
+// Each SoftLayer User Customer instance is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
+//
+// Note that a status of "PENDING" also has been added. This status is specific to users that are configured to use IBMid authentication. This would include some (not all) users on accounts that are linked to Platform Services (PaaS, formerly Bluemix) accounts, but is not limited to users in such accounts. Using IBMid authentication is optional for active users even if it is not required by the account type. PENDING status indicates that a relationship between an IBMid and a user is being set up but is not complete. To be complete, PENDING users need to perform an action ("accepting the invitation") before becoming an active user within IBM Cloud and/or IMS. PENDING is a system state, and can not be administered by users (including the account master user). SoftLayer Commercial is the only environment where IBMid and/or account linking are used.
+//
+//
 type User_Customer_Status struct {
 	Session *session.Session
 	Options sl.Options

@@ -69,7 +69,25 @@ func (r Network) Offset(offset int) Network {
 	return r
 }
 
-// Connect user account network to Private Endpoint Service account. Network update occurs asynchronously after a successful connect request.
+// Initiate the automated process to establish connectivity granting the account private back-end network access to the services available through IBM Cloud Service Endpoint. Once initiated, the configuration process occurs asynchronously in the background.
+//
+//
+//
+// <h2>Responses</h2>
+//
+// <code>True</code> The request to connect was successfully initiated.
+//
+// <code>False</code> The account and Service Endpoint networks are already connected.
+//
+//
+//
+// <h2>Exceptions</h2>
+//
+// <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
+//
+//
+//
+//
 func (r Network) ConnectPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "connectPrivateEndpointService", nil, &r.Options, &resp)
 	return
@@ -155,7 +173,25 @@ func (r Network) DeleteSubnet(subnet *datatypes.Network_Subnet) (resp bool, err 
 	return
 }
 
-// Disconnect user account network from Private Endpoint Service account. Network update occurs asynchronously after a successful disconnect request.
+// Initiate the automated process to revoke mutual connectivity from the account network and IBM Cloud Service Endpoint network. Once initiated, the configuration process occurs asynchronously in the background.
+//
+//
+//
+// <h2>Responses</h2>
+//
+// <code>True</code> The request to disconnect was successfully initiated.
+//
+// <code>False</code> The account and Service Endpoint networks are already disconnected.
+//
+//
+//
+// <h2>Exceptions</h2>
+//
+// <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
+//
+//
+//
+//
 func (r Network) DisconnectPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "disconnectPrivateEndpointService", nil, &r.Options, &resp)
 	return
@@ -212,7 +248,25 @@ func (r Network) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	return
 }
 
-// Checks connectivity between user account and Private Endpoint Service. Returns True if user account and Private Endpoint Service are connected. Returns False if user account and Private Endpoint Service are ready for connections but not connected.
+// Accessing select IBM Cloud services attached to the private back-end network is made possible by establishing a network relationship between an account's private network and the Service Endpoint network.
+//
+//
+//
+// <h2>Responses</h2>
+//
+// <code>True</code> The account and Service Endpoint networks are currently connected.
+//
+// <code>False</code> The account and Service Endpoint networks are not connected; both networks are properly configured to connect.
+//
+//
+//
+// <h2>Exceptions</h2>
+//
+// <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
+//
+//
+//
+//
 func (r Network) IsConnectedToPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "isConnectedToPrivateEndpointService", nil, &r.Options, &resp)
 	return
@@ -2066,6 +2120,88 @@ func (r Network_CdnMarketplace_Configuration_Behavior_Geoblocking) UpdateGeobloc
 	return
 }
 
+// no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkCdnMarketplaceConfigurationBehaviorHotlinkProtectionService returns an instance of the Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection SoftLayer service
+func GetNetworkCdnMarketplaceConfigurationBehaviorHotlinkProtectionService(sess *session.Session) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	return Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection{Session: sess}
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) Id(id int) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) Mask(mask string) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) Filter(filter string) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) Limit(limit int) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) Offset(offset int) Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) CreateHotlinkProtection(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection", "createHotlinkProtection", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) DeleteHotlinkProtection(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection", "deleteHotlinkProtection", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) GetHotlinkProtection(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection", "getHotlinkProtection", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) UpdateHotlinkProtection(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection", "updateHotlinkProtection", params, &r.Options, &resp)
+	return
+}
+
 // This data type models a purge event that occurs in caching server. It contains a reference to a mapping configuration, the path to execute the purge on, the status of the purge, and flag that enables saving the purge information for future use.
 type Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Session *session.Session
@@ -3438,7 +3574,7 @@ func (r Network_ContentDelivery_Account) RemoveFile(source *string) (resp bool, 
 	return
 }
 
-// CDN servers will invoke a Web Service method to validate a content authentication token. CDN uses the default Web Service provided by SoftLayer to validate a token. A customer can use their own implementation of the token authentication Web Service. A valid SOAP WSDL will look similar [https://manage.softlayer.com/CdnService/authenticationWsdlExample/wsdl this].
+// CDN servers will invoke a Web Service method to validate a content authentication token. CDN uses the default Web Service provided by SoftLayer to validate a token. A customer can use their own implementation of the token authentication Web Service.
 func (r Network_ContentDelivery_Account) SetAuthenticationServiceEndpoint(webserviceEndpoint *string, protocol *string) (resp bool, err error) {
 	params := []interface{}{
 		webserviceEndpoint,
@@ -4411,6 +4547,17 @@ func (r Network_Gateway) BypassVlans(vlans []datatypes.Network_Gateway_Vlan) (er
 	return
 }
 
+// Used to create a transaction to upgrade or rollback the vSRX version for Juniper gateway.
+//
+//
+func (r Network_Gateway) ChangeGatewayVersion(versionId *int) (resp bool, err error) {
+	params := []interface{}{
+		versionId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "changeGatewayVersion", params, &r.Options, &resp)
+	return
+}
+
 // Create and return a new gateway. This object can be created with any number of members or VLANs, but they all must be in the same pod. By creating a gateway with members and/or VLANs attached, it is the equivalent of individually calling their createObject methods except this will start a single asynchronous process to setup the gateway. The status of this process can be checked using the status field.
 func (r Network_Gateway) CreateObject(templateObject *datatypes.Network_Gateway) (resp datatypes.Network_Gateway, err error) {
 	params := []interface{}{
@@ -4735,6 +4882,80 @@ func (r Network_Gateway_Status) GetObject() (resp datatypes.Network_Gateway_Stat
 }
 
 // no documentation yet
+type Network_Gateway_VersionUpgrade struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkGatewayVersionUpgradeService returns an instance of the Network_Gateway_VersionUpgrade SoftLayer service
+func GetNetworkGatewayVersionUpgradeService(sess *session.Session) Network_Gateway_VersionUpgrade {
+	return Network_Gateway_VersionUpgrade{Session: sess}
+}
+
+func (r Network_Gateway_VersionUpgrade) Id(id int) Network_Gateway_VersionUpgrade {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Gateway_VersionUpgrade) Mask(mask string) Network_Gateway_VersionUpgrade {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Gateway_VersionUpgrade) Filter(filter string) Network_Gateway_VersionUpgrade {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Gateway_VersionUpgrade) Limit(limit int) Network_Gateway_VersionUpgrade {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Gateway_VersionUpgrade) Offset(offset int) Network_Gateway_VersionUpgrade {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_Gateway_VersionUpgrade) GetAllByFromVersion(fromVersion *string) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
+	params := []interface{}{
+		fromVersion,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByFromVersion", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlId(upgradePkgUrlId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
+	params := []interface{}{
+		upgradePkgUrlId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByUpgradePkgUrlId", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Gateway_VersionUpgrade) GetObject() (resp datatypes.Network_Gateway_VersionUpgrade, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Gateway_VersionUpgrade) ValidateVersionChange(gatewayId *int, upgradePkgUrlId *int) (resp bool, err error) {
+	params := []interface{}{
+		gatewayId,
+		upgradePkgUrlId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "validateVersionChange", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Network_Gateway_Vlan struct {
 	Session *session.Session
 	Options sl.Options
@@ -4934,6 +5155,12 @@ func (r Network_Interconnect_Tenant) GetAllPortLabelsWithCurrentUsage(directLink
 		directLinkLocationId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllPortLabelsWithCurrentUsage", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Interconnect_Tenant) GetBgpIpRange() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getBgpIpRange", nil, &r.Options, &resp)
 	return
 }
 
@@ -5556,6 +5783,16 @@ func (r Network_LBaaS_LoadBalancer) CancelLoadBalancer(uuid *string) (resp bool,
 		uuid,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "cancelLoadBalancer", params, &r.Options, &resp)
+	return
+}
+
+// When enabled, data log would be forwarded to logging service.
+func (r Network_LBaaS_LoadBalancer) EnableOrDisableDataLogs(uuid *string, enabled *bool) (resp datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		uuid,
+		enabled,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "enableOrDisableDataLogs", params, &r.Options, &resp)
 	return
 }
 
@@ -8576,6 +8813,12 @@ func (r Network_Storage) IsDuplicateReadyToMount() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Network_Storage) IsVolumeActive() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "isVolumeActive", nil, &r.Options, &resp)
+	return
+}
+
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
 func (r Network_Storage) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
@@ -10763,6 +11006,12 @@ func (r Network_Storage_Backup_Evault) IsDuplicateReadyToMount() (resp bool, err
 	return
 }
 
+// no documentation yet
+func (r Network_Storage_Backup_Evault) IsVolumeActive() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "isVolumeActive", nil, &r.Options, &resp)
+	return
+}
+
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
 func (r Network_Storage_Backup_Evault) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
@@ -11653,6 +11902,58 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetObject() (resp datatypes.Netw
 // Retrieve Unique identifier for an IBM Cloud Object Storage account.
 func (r Network_Storage_Hub_Cleversafe_Account) GetUuid() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getUuid", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Network_Storage_Hub_Swift_Metrics struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkStorageHubSwiftMetricsService returns an instance of the Network_Storage_Hub_Swift_Metrics SoftLayer service
+func GetNetworkStorageHubSwiftMetricsService(sess *session.Session) Network_Storage_Hub_Swift_Metrics {
+	return Network_Storage_Hub_Swift_Metrics{Session: sess}
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) Id(id int) Network_Storage_Hub_Swift_Metrics {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) Mask(mask string) Network_Storage_Hub_Swift_Metrics {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) Filter(filter string) Network_Storage_Hub_Swift_Metrics {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) Limit(limit int) Network_Storage_Hub_Swift_Metrics {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) Offset(offset int) Network_Storage_Hub_Swift_Metrics {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_Storage_Hub_Swift_Metrics) GetSummaryData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+		validTypes,
+		summaryPeriod,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getSummaryData", params, &r.Options, &resp)
 	return
 }
 
@@ -12829,6 +13130,12 @@ func (r Network_Storage_Iscsi) IsDuplicateReadyForSnapshot() (resp bool, err err
 // This method returns a boolean indicating whether the clone volume is ready to mount.
 func (r Network_Storage_Iscsi) IsDuplicateReadyToMount() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isDuplicateReadyToMount", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Iscsi) IsVolumeActive() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isVolumeActive", nil, &r.Options, &resp)
 	return
 }
 
@@ -15725,6 +16032,14 @@ func (r Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err e
 		enabled,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "updateFirewallIntraVlanCommunication", params, &r.Options, &resp)
+	return
+}
+
+// Convert the VLAN to a paid resource. This can be done for any VLAN which was automatically allocated. Upgrading an existing VLAN provides the same benefits as a purchased VLAN. A purchased VLAN will remain on the account until cancelled. This operation cannot be undone! Once a VLAN is purchased, it can only be cancelled which will result in it being reclaimed.
+//
+// This operation is a convenience for utilizing the SoftLayer_Product_Order.placeOrder operation. It will place an order to upgrade the VLAN it is executed against. It will take a few moments for the order to be processed and the upgrade to complete. Note that the order is placed in such a way that any account state which prevents automatic order approval will prevent the order from being placed. Thus, if no error is received, the order was placed and approved, and the VLAN will be upgraded shortly.
+func (r Network_Vlan) Upgrade() (resp datatypes.Container_Product_Order_Network_Vlan, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "upgrade", nil, &r.Options, &resp)
 	return
 }
 

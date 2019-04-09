@@ -524,7 +524,7 @@ func (r Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []dat
 	return
 }
 
-// Retrieve Wether employees' updates of this ticket could be rated by customer
+// Retrieve Whether employees' updates of this ticket could be rated by customer
 func (r Ticket) GetUpdateRatingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getUpdateRatingFlag", nil, &r.Options, &resp)
 	return

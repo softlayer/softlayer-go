@@ -941,6 +941,9 @@ type Hardware_Component_Firmware struct {
 	IsQualified *int `json:"isQualified,omitempty" xmlrpc:"isQualified,omitempty"`
 
 	// no documentation yet
+	QualificationType *Hardware_Component_Firmware_QualificationTypes `json:"qualificationType,omitempty" xmlrpc:"qualificationType,omitempty"`
+
+	// no documentation yet
 	ReleaseNotes *string `json:"releaseNotes,omitempty" xmlrpc:"releaseNotes,omitempty"`
 
 	// A count of all revisions of this firmware.
@@ -990,6 +993,23 @@ type Hardware_Component_Firmware_Attribute_Type struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// A hardware component firmware attribute type's name.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
+// The SoftLayer_Hardware_Component_Firmware_QualificationTypes data type describes the current qualification status for a particular firmware.
+type Hardware_Component_Firmware_QualificationTypes struct {
+	Entity
+
+	// A description about the qualificationType.
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// The Id of the qualificationType.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// KeyName representation for the qualificationType.
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// The qualificationType name.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
@@ -1849,6 +1869,9 @@ type Hardware_Server struct {
 
 	// Determine if remote management has been disabled due to port speed.
 	IsIpmiDisabled *bool `json:"isIpmiDisabled,omitempty" xmlrpc:"isIpmiDisabled,omitempty"`
+
+	// Determine if hardware object is a Virtual Private Cloud node.
+	IsVirtualPrivateCloudNode *bool `json:"isVirtualPrivateCloudNode,omitempty" xmlrpc:"isVirtualPrivateCloudNode,omitempty"`
 
 	// The last transaction that a server's operating system was loaded.
 	LastOperatingSystemReload *Provisioning_Version1_Transaction `json:"lastOperatingSystemReload,omitempty" xmlrpc:"lastOperatingSystemReload,omitempty"`

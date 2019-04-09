@@ -242,7 +242,7 @@ type Ticket struct {
 	// A count of a ticket's updates.
 	UpdateCount *uint `json:"updateCount,omitempty" xmlrpc:"updateCount,omitempty"`
 
-	// Wether employees' updates of this ticket could be rated by customer
+	// Whether employees' updates of this ticket could be rated by customer
 	UpdateRatingFlag *bool `json:"updateRatingFlag,omitempty" xmlrpc:"updateRatingFlag,omitempty"`
 
 	// A ticket's updates.

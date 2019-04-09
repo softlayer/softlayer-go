@@ -372,6 +372,12 @@ func (r Product_Item_Price) GetAttributes() (resp []datatypes.Product_Item_Price
 	return
 }
 
+// Retrieve Signifies pricing that is only available on a bare metal reserved capacity order.
+func (r Product_Item_Price) GetBareMetalReservedCapacityFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBareMetalReservedCapacityFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Whether the price is for Big Data OS/Journal disks only. (Deprecated)
 func (r Product_Item_Price) GetBigDataOsJournalDiskFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBigDataOsJournalDiskFlag", nil, &r.Options, &resp)
@@ -417,6 +423,12 @@ func (r Product_Item_Price) GetDedicatedHostInstanceFlag() (resp bool, err error
 // Retrieve Whether this price defines a software license for its product item.
 func (r Product_Item_Price) GetDefinedSoftwareLicenseFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getDefinedSoftwareLicenseFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Eligibility strategy to assess if a customer can order using this price.
+func (r Product_Item_Price) GetEligibilityStrategy() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getEligibilityStrategy", nil, &r.Options, &resp)
 	return
 }
 
@@ -1681,6 +1693,12 @@ func (r Product_Package_Preset) GetAvailableStorageUnits() (resp uint, err error
 	return
 }
 
+// Retrieve When true this preset is for ordering a Bare Metal Reserved server.
+func (r Product_Package_Preset) GetBareMetalReservedFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getBareMetalReservedFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The item categories that are included in this package preset configuration.
 func (r Product_Package_Preset) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getCategories", nil, &r.Options, &resp)
@@ -1963,6 +1981,61 @@ func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, 
 // Retrieve All the packages associated with the given package type.
 func (r Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getPackages", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Product_Promotion struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetProductPromotionService returns an instance of the Product_Promotion SoftLayer service
+func GetProductPromotionService(sess *session.Session) Product_Promotion {
+	return Product_Promotion{Session: sess}
+}
+
+func (r Product_Promotion) Id(id int) Product_Promotion {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Product_Promotion) Mask(mask string) Product_Promotion {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Product_Promotion) Filter(filter string) Product_Promotion {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Product_Promotion) Limit(limit int) Product_Promotion {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Product_Promotion) Offset(offset int) Product_Promotion {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieves a promotion using its code.
+func (r Product_Promotion) FindByPromoCode(code *string) (resp datatypes.Container_Product_Promotion, err error) {
+	params := []interface{}{
+		code,
+	}
+	err = r.Session.DoRequest("SoftLayer_Product_Promotion", "findByPromoCode", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Product_Promotion) GetObject() (resp datatypes.Product_Promotion, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Promotion", "getObject", nil, &r.Options, &resp)
 	return
 }
 

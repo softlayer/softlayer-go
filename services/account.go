@@ -551,7 +551,7 @@ func (r Account) GetBusinessPartner() (resp datatypes.Account_Business_Partner, 
 	return
 }
 
-// Retrieve Indicating whether this account can order additional Vlans.
+// Retrieve [DEPRECATED] All accounts may order VLANs.
 func (r Account) GetCanOrderAdditionalVlansFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getCanOrderAdditionalVlansFlag", nil, &r.Options, &resp)
 	return
@@ -973,7 +973,7 @@ func (r Account) GetIbmIdAuthenticationRequiredFlag() (resp bool, err error) {
 	return
 }
 
-// Retrieve Timestamp representing the point in time when an account is required to use IBMid authentication.
+// Retrieve This key is deprecated and should not be used.
 func (r Account) GetIbmIdMigrationExpirationTimestamp() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getIbmIdMigrationExpirationTimestamp", nil, &r.Options, &resp)
 	return
@@ -2066,6 +2066,12 @@ func (r Account) HourlyServerLimit() (resp int, err error) {
 	return
 }
 
+// no documentation yet
+func (r Account) IsActiveVmwareCustomer() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "isActiveVmwareCustomer", nil, &r.Options, &resp)
+	return
+}
+
 // Returns true if this account is eligible for the local currency program, false otherwise.
 func (r Account) IsEligibleForLocalCurrencyProgram() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "isEligibleForLocalCurrencyProgram", nil, &r.Options, &resp)
@@ -2184,8 +2190,7 @@ func (r Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (r
 	return
 }
 
-// This method will validate the following account fields. Included are the allowed characters for each field.<br> <strong>Email Address<sup>*</sup>:</strong> letters, numbers, space, period, dash, parenthesis, exclamation point, at sign, ampersand, colon, comma, underscore, apostrophe, octothorpe.<br><br> <strong>Company Name<sup>*</sup>:</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parenthesis, exclamation point. (Note: may not contain an email address)<br> <strong>First Name<sup>*</sup>:</strong> alphabet, space, period, dash, comma, apostrophe.<br> <strong>Last Name<sup>*</sup>:</strong> alphabet, space, period, dash, comma, apostrophe.<br> <strong>Address 1<sup>*</sup>:</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe.<br> <strong>Address 2:</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe.<br> <strong>City<sup>*</sup>:</strong> alphabet, space, period, dash, apostrophe.<br> <strong>State<sup>*</sup>:</strong> Required if country is US or Canada. Must be valid Alpha-2 ISO 3166-1 state code for that country.<br> <strong>Postal Code<sup>*</sup>:</strong> alphabet, numbers, dash, space.<br> <strong>Country<sup>*</sup>:</strong> alphabet, numbers. Must be valid Alpha-2 ISO 3166-1 country code.<br> <strong>Office Phone<sup>*</sup>:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br> <strong>Alternate Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br> <strong>Fax Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br>
-// * denotes a required field.
+// This method will validate the following account fields. Included are the allowed characters for each field.<br> <strong>Company Name (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parenthesis, exclamation point. (Note: may not contain an email address)<br> <strong>First Name (required):</strong> alphabet, space, period, dash, comma, apostrophe.<br> <strong>Last Name (required):</strong> alphabet, space, period, dash, comma, apostrophe.<br> <strong>Email (required):</strong> Validates e-mail addresses against the syntax in RFC 822.<br> <strong>Address 1 (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe.<br> <strong>Address 2 (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, backward slash, comma, colon, at sign, ampersand, underscore, apostrophe.<br> <strong>City (required):</strong> alphabet, space, period, dash, apostrophe, forward slash.<br> <strong>State (required):</strong> Required if country is US, Brazil, Canada or India. Must be valid Alpha-2 ISO 3166-1 state code for that country.<br> <strong>Postal Code (required):</strong> alphabet, numbers, dash, space.<br> <strong>Country (required):</strong> alphabet, numbers. Must be valid Alpha-2 ISO 3166-1 country code.<br> <strong>Office Phone (required):</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br> <strong>Alternate Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br> <strong>Fax Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign.<br>
 func (r Account) Validate(account *datatypes.Account) (resp []string, err error) {
 	params := []interface{}{
 		account,
@@ -2837,6 +2842,15 @@ func (r Account_Contact) Limit(limit int) Account_Contact {
 func (r Account_Contact) Offset(offset int) Account_Contact {
 	r.Options.Offset = &offset
 	return r
+}
+
+// <<EOT
+func (r Account_Contact) CreateComplianceReportRequestorContact(requestorTemplate *datatypes.Account_Contact) (resp datatypes.Account_Contact, err error) {
+	params := []interface{}{
+		requestorTemplate,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account_Contact", "createComplianceReportRequestorContact", params, &r.Options, &resp)
+	return
 }
 
 // This method creates an account contact. The accountId is fixed, other properties can be set during creation. The typeId indicates the SoftLayer_Account_Contact_Type for the contact. This method returns the SoftLayer_Account_Contact object that is created.
@@ -3818,91 +3832,9 @@ func (r Account_Note) GetNoteHistory() (resp []datatypes.Account_Note_History, e
 	return
 }
 
-// Retrieve
-func (r Account_Note) GetNoteType() (resp datatypes.Account_Note_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Note", "getNoteType", nil, &r.Options, &resp)
-	return
-}
-
 // no documentation yet
 func (r Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Note", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-type Account_Note_Type struct {
-	Session *session.Session
-	Options sl.Options
-}
-
-// GetAccountNoteTypeService returns an instance of the Account_Note_Type SoftLayer service
-func GetAccountNoteTypeService(sess *session.Session) Account_Note_Type {
-	return Account_Note_Type{Session: sess}
-}
-
-func (r Account_Note_Type) Id(id int) Account_Note_Type {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Note_Type) Mask(mask string) Account_Note_Type {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Note_Type) Filter(filter string) Account_Note_Type {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Note_Type) Limit(limit int) Account_Note_Type {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Note_Type) Offset(offset int) Account_Note_Type {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-func (r Account_Note_Type) CreateObject(templateObject *datatypes.Account_Note_Type) (resp datatypes.Account_Note_Type, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Note_Type", "createObject", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Note_Type) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Note_Type", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Note_Type) EditObject(templateObject *datatypes.Account_Note_Type) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Note_Type", "editObject", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Note_Type) GetAllObjects() (resp []datatypes.Account_Note_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Note_Type", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Note_Type) GetObject() (resp datatypes.Account_Note_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Note_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -4941,11 +4873,12 @@ func (r Account_Reports_Request) Offset(offset int) Account_Reports_Request {
 }
 
 // no documentation yet
-func (r Account_Reports_Request) CreateRequest(contact *datatypes.Account_Contact, reason *string, reportType *string) (resp datatypes.Account_Reports_Request, err error) {
+func (r Account_Reports_Request) CreateRequest(recipientContact *datatypes.Account_Contact, reason *string, reportType *string, requestorContact *datatypes.Account_Contact) (resp datatypes.Account_Reports_Request, err error) {
 	params := []interface{}{
-		contact,
+		recipientContact,
 		reason,
 		reportType,
+		requestorContact,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Reports_Request", "createRequest", params, &r.Options, &resp)
 	return
@@ -4987,6 +4920,12 @@ func (r Account_Reports_Request) GetRequestByRequestKey(requestKey *string) (res
 		requestKey,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Reports_Request", "getRequestByRequestKey", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve A request's corresponding requestor contact, if one exists.
+func (r Account_Reports_Request) GetRequestorContact() (resp datatypes.Account_Contact, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_Reports_Request", "getRequestorContact", nil, &r.Options, &resp)
 	return
 }
 
@@ -5120,9 +5059,21 @@ func (r Account_Shipment) GetCreateUser() (resp datatypes.User_Customer, err err
 	return
 }
 
+// Retrieve
+func (r Account_Shipment) GetCurrency() (resp datatypes.Billing_Currency, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getCurrency", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The address at which the shipment is received.
 func (r Account_Shipment) GetDestinationAddress() (resp datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getDestinationAddress", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The one master tracking data for the shipment.
+func (r Account_Shipment) GetMasterTrackingData() (resp datatypes.Account_Shipment_Tracking_Data, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getMasterTrackingData", nil, &r.Options, &resp)
 	return
 }
 
@@ -5162,7 +5113,7 @@ func (r Account_Shipment) GetStatus() (resp datatypes.Account_Shipment_Status, e
 	return
 }
 
-// Retrieve The tracking data for the shipment.
+// Retrieve All tracking data for the shipment and packages.
 func (r Account_Shipment) GetTrackingData() (resp []datatypes.Account_Shipment_Tracking_Data, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getTrackingData", nil, &r.Options, &resp)
 	return
