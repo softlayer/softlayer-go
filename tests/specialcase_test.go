@@ -17,11 +17,10 @@
 package tests
 
 import (
-	"testing"
-
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/services"
 	"reflect"
+	"testing"
 )
 
 // Tests for each service/method that follows special case logic during code
@@ -67,17 +66,20 @@ func TestPlaceOrder(t *testing.T) {
 		services.Product_Order{},
 	}
 
+	methods := []string{"PlaceOrder", "VerifyOrder", "PlaceQuote"}
 	for _, service := range services {
 		serviceType := reflect.TypeOf(service)
-		method, _ := serviceType.MethodByName("PlaceOrder")
-		argType := method.Type.In(1).String()
-
-		if argType != "interface {}" {
-			t.Errorf(
-				"Expect %s.PlaceOrder() to accept interface {} as parameter, but %s found instead",
-				serviceType.String(),
-				argType,
-			)
+		for _, methodName := range methods {
+			method, _ := serviceType.MethodByName(methodName)
+			argType := method.Type.In(1).String()
+			if argType != "interface {}" {
+				t.Errorf(
+					"Expect %s.%s() to accept interface {} as parameter, but %s found instead",
+					serviceType.String(),
+					methodName,
+					argType,
+				)
+			}
 		}
 	}
 }

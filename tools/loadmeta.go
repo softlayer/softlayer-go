@@ -413,7 +413,7 @@ func phraseMethodArg(methodName string, argName string, isArray bool, argType st
 	argName = RemoveReservedWords(argName)
 
 	// Handle special case - placeOrder/verifyOrder should take any kind of order type.
-	if (methodName == "placeOrder" || methodName == "verifyOrder") &&
+	if (methodName == "placeOrder" || methodName == "verifyOrder" || methodName == "placeQuote") &&
 		strings.HasPrefix(argType, "SoftLayer_Container_Product_Order") {
 		return fmt.Sprintf("%s interface{}, ", argName)
 	}
