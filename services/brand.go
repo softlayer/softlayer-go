@@ -31,7 +31,7 @@ import (
 
 // The SoftLayer_Brand data type contains brand information relating to the single SoftLayer customer account.
 //
-// SoftLayer customers are unable to change their brand information in the portal or the API.
+// IBM Cloud Infrastructure customers are unable to change their brand information in the portal or the API.
 type Brand struct {
 	Session *session.Session
 	Options sl.Options
@@ -71,7 +71,7 @@ func (r Brand) Offset(offset int) Brand {
 	return r
 }
 
-// Create a new customer account record.
+// Create a new customer account record. By default, the newly created account will be associated to a platform (PaaS) account. To skip the automatic creation and linking to a new platform account, set the <em>bluemixLinkedFlag</em> to <strong>false</strong> on the account template.
 func (r Brand) CreateCustomerAccount(account *datatypes.Account, bypassDuplicateAccountCheck *bool) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		account,
@@ -184,6 +184,12 @@ func (r Brand) GetDistributorFlag() (resp string, err error) {
 // Retrieve An account's associated hardware objects.
 func (r Brand) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getHardware", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Brand) GetHasAgentAdvancedSupportFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Brand", "getHasAgentAdvancedSupportFlag", nil, &r.Options, &resp)
 	return
 }
 

@@ -771,6 +771,9 @@ type Hardware_Chassis struct {
 	// no documentation yet
 	PowerCapacity *string `json:"powerCapacity,omitempty" xmlrpc:"powerCapacity,omitempty"`
 
+	// no documentation yet
+	U2Capacity *string `json:"u2Capacity,omitempty" xmlrpc:"u2Capacity,omitempty"`
+
 	// The physical size of a hardware chassis.  Currently this relates to the 'U' size of a chassis buy default.
 	UnitSize *int `json:"unitSize,omitempty" xmlrpc:"unitSize,omitempty"`
 

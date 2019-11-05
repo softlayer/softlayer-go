@@ -1255,7 +1255,7 @@ func (r Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Pr
 	return
 }
 
-// This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
+// [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
 func (r Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
 	return

@@ -171,24 +171,6 @@ type Software_Component_AntivirusSpyware_Mcafee_Epo_Version45 struct {
 	// The version of ePolicy Orchestrator that the anti-virus/spyware client communicates with.
 	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion,omitempty"`
 
-	// A count of the latest access protection events.
-	LatestAccessProtectionEventCount *uint `json:"latestAccessProtectionEventCount,omitempty" xmlrpc:"latestAccessProtectionEventCount,omitempty"`
-
-	// The latest access protection events.
-	LatestAccessProtectionEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAccessProtectionEvents,omitempty" xmlrpc:"latestAccessProtectionEvents,omitempty"`
-
-	// A count of the latest anti-virus events.
-	LatestAntivirusEventCount *uint `json:"latestAntivirusEventCount,omitempty" xmlrpc:"latestAntivirusEventCount,omitempty"`
-
-	// The latest anti-virus events.
-	LatestAntivirusEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestAntivirusEvents,omitempty" xmlrpc:"latestAntivirusEvents,omitempty"`
-
-	// A count of the latest spyware events
-	LatestSpywareEventCount *uint `json:"latestSpywareEventCount,omitempty" xmlrpc:"latestSpywareEventCount,omitempty"`
-
-	// The latest spyware events
-	LatestSpywareEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"latestSpywareEvents,omitempty" xmlrpc:"latestSpywareEvents,omitempty"`
-
 	// The current transaction status of a server.
 	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus,omitempty"`
 }
@@ -377,12 +359,6 @@ type Software_Component_HostIps_Mcafee_Epo_Version45_Hips struct {
 	// The names of the possible policy options for the application rule set setting.
 	ApplicationRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"applicationRuleSetPolicyNames,omitempty" xmlrpc:"applicationRuleSetPolicyNames,omitempty"`
 
-	// A count of the blocked application events for this software component.
-	BlockedApplicationEventCount *uint `json:"blockedApplicationEventCount,omitempty" xmlrpc:"blockedApplicationEventCount,omitempty"`
-
-	// The blocked application events for this software component.
-	BlockedApplicationEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"blockedApplicationEvents,omitempty" xmlrpc:"blockedApplicationEvents,omitempty"`
-
 	// A count of the names of the possible options for the enforcement policy setting.
 	EnforcementPolicyNameCount *uint `json:"enforcementPolicyNameCount,omitempty" xmlrpc:"enforcementPolicyNameCount,omitempty"`
 
@@ -403,12 +379,6 @@ type Software_Component_HostIps_Mcafee_Epo_Version45_Hips struct {
 
 	// The names of the possible policy options for the firewall rule set setting.
 	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version45_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty" xmlrpc:"firewallRuleSetPolicyNames,omitempty"`
-
-	// A count of the host IPS events for this software component.
-	IpsEventCount *uint `json:"ipsEventCount,omitempty" xmlrpc:"ipsEventCount,omitempty"`
-
-	// The host IPS events for this software component.
-	IpsEvents []McAfee_Epolicy_Orchestrator_Version45_Event `json:"ipsEvents,omitempty" xmlrpc:"ipsEvents,omitempty"`
 
 	// A count of the names of the possible policy options for the host IPS mode setting.
 	IpsModePolicyNameCount *uint `json:"ipsModePolicyNameCount,omitempty" xmlrpc:"ipsModePolicyNameCount,omitempty"`

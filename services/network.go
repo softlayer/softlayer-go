@@ -2510,6 +2510,18 @@ func (r Network_CdnMarketplace_Metrics) Offset(offset int) Network_CdnMarketplac
 }
 
 // no documentation yet
+func (r Network_CdnMarketplace_Metrics) GetCustomerInvoicingMetrics(vendorName *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		vendorName,
+		startDate,
+		endDate,
+		frequency,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerInvoicingMetrics", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetCustomerUsageMetrics(vendorName *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
 		vendorName,
@@ -3757,9 +3769,10 @@ func (r Network_Gateway) GetInsideVlans() (resp []datatypes.Network_Gateway_Vlan
 // Returns manufacturer name for a given gateway object.
 //
 //
-func (r Network_Gateway) GetManufacturer(checkSameOs *bool) (resp string, err error) {
+func (r Network_Gateway) GetManufacturer(checkSameOs *bool, checkOsReloadMember *bool) (resp string, err error) {
 	params := []interface{}{
 		checkSameOs,
+		checkOsReloadMember,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getManufacturer", params, &r.Options, &resp)
 	return
@@ -7446,6 +7459,12 @@ func (r Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Sche
 	return
 }
 
+// Retrieve Whether or not a network storage volume is a dependent duplicate.
+func (r Network_Storage) GetDependentDuplicate() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &r.Options, &resp)
@@ -7549,6 +7568,12 @@ func (r Network_Storage) GetIntervalSchedule() (resp datatypes.Network_Storage_S
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage) GetIops() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIops", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether dependent volume provision is completed on background.
+func (r Network_Storage) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
 	return
 }
 
@@ -8240,42 +8265,12 @@ func (r Network_Storage_Allowed_Host) Offset(offset int) Network_Storage_Allowed
 	return r
 }
 
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Hardware object's id.
-func (r Network_Storage_Allowed_Host) CreateFromHardware(hardwareId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+// no documentation yet
+func (r Network_Storage_Allowed_Host) AssignSubnetsToAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
-		hardwareId,
-		iqn,
+		subnetIds,
 	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "createFromHardware", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet_IpAddress object's id.
-func (r Network_Storage_Allowed_Host) CreateFromIpAddress(ipAddressId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		ipAddressId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "createFromIpAddress", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet object's id. Allowed_Host objects created for SoftLayer_Network_Subnet objects do not support IQNs.
-func (r Network_Storage_Allowed_Host) CreateFromSubnet(subnetId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		subnetId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "createFromSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Virtual_Guest object's id.
-func (r Network_Storage_Allowed_Host) CreateFromVirtualGuest(virtualGuestId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		virtualGuestId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "createFromVirtualGuest", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "assignSubnetsToAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -8342,6 +8337,21 @@ func (r Network_Storage_Allowed_Host) GetSourceSubnet() (resp string, err error)
 	return
 }
 
+// Retrieve The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+func (r Network_Storage_Allowed_Host) GetSubnetsInAcl() (resp []datatypes.Network_Subnet, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getSubnetsInAcl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Allowed_Host) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
 // Use this method to modify the credential password for a SoftLayer_Network_Storage_Allowed_Host object.
 func (r Network_Storage_Allowed_Host) SetCredentialPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -8391,42 +8401,12 @@ func (r Network_Storage_Allowed_Host_Hardware) Offset(offset int) Network_Storag
 	return r
 }
 
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Hardware object's id.
-func (r Network_Storage_Allowed_Host_Hardware) CreateFromHardware(hardwareId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+// no documentation yet
+func (r Network_Storage_Allowed_Host_Hardware) AssignSubnetsToAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
-		hardwareId,
-		iqn,
+		subnetIds,
 	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "createFromHardware", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet_IpAddress object's id.
-func (r Network_Storage_Allowed_Host_Hardware) CreateFromIpAddress(ipAddressId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		ipAddressId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "createFromIpAddress", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet object's id. Allowed_Host objects created for SoftLayer_Network_Subnet objects do not support IQNs.
-func (r Network_Storage_Allowed_Host_Hardware) CreateFromSubnet(subnetId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		subnetId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "createFromSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Virtual_Guest object's id.
-func (r Network_Storage_Allowed_Host_Hardware) CreateFromVirtualGuest(virtualGuestId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		virtualGuestId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "createFromVirtualGuest", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "assignSubnetsToAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -8505,6 +8485,21 @@ func (r Network_Storage_Allowed_Host_Hardware) GetSourceSubnet() (resp string, e
 	return
 }
 
+// Retrieve The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+func (r Network_Storage_Allowed_Host_Hardware) GetSubnetsInAcl() (resp []datatypes.Network_Subnet, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getSubnetsInAcl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Allowed_Host_Hardware) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
 // Use this method to modify the credential password for a SoftLayer_Network_Storage_Allowed_Host object.
 func (r Network_Storage_Allowed_Host_Hardware) SetCredentialPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -8554,42 +8549,12 @@ func (r Network_Storage_Allowed_Host_IpAddress) Offset(offset int) Network_Stora
 	return r
 }
 
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Hardware object's id.
-func (r Network_Storage_Allowed_Host_IpAddress) CreateFromHardware(hardwareId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+// no documentation yet
+func (r Network_Storage_Allowed_Host_IpAddress) AssignSubnetsToAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
-		hardwareId,
-		iqn,
+		subnetIds,
 	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "createFromHardware", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet_IpAddress object's id.
-func (r Network_Storage_Allowed_Host_IpAddress) CreateFromIpAddress(ipAddressId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		ipAddressId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "createFromIpAddress", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet object's id. Allowed_Host objects created for SoftLayer_Network_Subnet objects do not support IQNs.
-func (r Network_Storage_Allowed_Host_IpAddress) CreateFromSubnet(subnetId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		subnetId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "createFromSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Virtual_Guest object's id.
-func (r Network_Storage_Allowed_Host_IpAddress) CreateFromVirtualGuest(virtualGuestId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		virtualGuestId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "createFromVirtualGuest", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "assignSubnetsToAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -8668,6 +8633,21 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetSourceSubnet() (resp string, 
 	return
 }
 
+// Retrieve The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+func (r Network_Storage_Allowed_Host_IpAddress) GetSubnetsInAcl() (resp []datatypes.Network_Subnet, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getSubnetsInAcl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Allowed_Host_IpAddress) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
 // Use this method to modify the credential password for a SoftLayer_Network_Storage_Allowed_Host object.
 func (r Network_Storage_Allowed_Host_IpAddress) SetCredentialPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -8717,42 +8697,12 @@ func (r Network_Storage_Allowed_Host_Subnet) Offset(offset int) Network_Storage_
 	return r
 }
 
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Hardware object's id.
-func (r Network_Storage_Allowed_Host_Subnet) CreateFromHardware(hardwareId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+// no documentation yet
+func (r Network_Storage_Allowed_Host_Subnet) AssignSubnetsToAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
-		hardwareId,
-		iqn,
+		subnetIds,
 	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "createFromHardware", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet_IpAddress object's id.
-func (r Network_Storage_Allowed_Host_Subnet) CreateFromIpAddress(ipAddressId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		ipAddressId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "createFromIpAddress", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet object's id. Allowed_Host objects created for SoftLayer_Network_Subnet objects do not support IQNs.
-func (r Network_Storage_Allowed_Host_Subnet) CreateFromSubnet(subnetId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		subnetId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "createFromSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Virtual_Guest object's id.
-func (r Network_Storage_Allowed_Host_Subnet) CreateFromVirtualGuest(virtualGuestId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		virtualGuestId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "createFromVirtualGuest", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "assignSubnetsToAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -8831,6 +8781,21 @@ func (r Network_Storage_Allowed_Host_Subnet) GetSourceSubnet() (resp string, err
 	return
 }
 
+// Retrieve The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+func (r Network_Storage_Allowed_Host_Subnet) GetSubnetsInAcl() (resp []datatypes.Network_Subnet, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getSubnetsInAcl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Allowed_Host_Subnet) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
 // Use this method to modify the credential password for a SoftLayer_Network_Storage_Allowed_Host object.
 func (r Network_Storage_Allowed_Host_Subnet) SetCredentialPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -8880,42 +8845,12 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) Offset(offset int) Network_St
 	return r
 }
 
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Hardware object's id.
-func (r Network_Storage_Allowed_Host_VirtualGuest) CreateFromHardware(hardwareId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
+// no documentation yet
+func (r Network_Storage_Allowed_Host_VirtualGuest) AssignSubnetsToAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
-		hardwareId,
-		iqn,
+		subnetIds,
 	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "createFromHardware", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet_IpAddress object's id.
-func (r Network_Storage_Allowed_Host_VirtualGuest) CreateFromIpAddress(ipAddressId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		ipAddressId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "createFromIpAddress", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Network_Subnet object's id. Allowed_Host objects created for SoftLayer_Network_Subnet objects do not support IQNs.
-func (r Network_Storage_Allowed_Host_VirtualGuest) CreateFromSubnet(subnetId *int) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		subnetId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "createFromSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method is used to create a new SoftLayer_Network_Storage_Allowed_Host using an existing SoftLayer_Virtual_Guest object's id.
-func (r Network_Storage_Allowed_Host_VirtualGuest) CreateFromVirtualGuest(virtualGuestId *int, iqn *string) (resp datatypes.Network_Storage_Allowed_Host, err error) {
-	params := []interface{}{
-		virtualGuestId,
-		iqn,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "createFromVirtualGuest", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "assignSubnetsToAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -8991,6 +8926,21 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetResource() (resp datatypes
 // Retrieve Connections to a target with a source IP in this subnet prefix are allowed.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetSourceSubnet() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getSourceSubnet", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetSubnetsInAcl() (resp []datatypes.Network_Subnet, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getSubnetsInAcl", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Allowed_Host_VirtualGuest) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "removeSubnetsFromAcl", params, &r.Options, &resp)
 	return
 }
 
@@ -9600,6 +9550,12 @@ func (r Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Networ
 	return
 }
 
+// Retrieve Whether or not a network storage volume is a dependent duplicate.
+func (r Network_Storage_Backup_Evault) GetDependentDuplicate() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
@@ -9723,6 +9679,12 @@ func (r Network_Storage_Backup_Evault) GetIntervalSchedule() (resp datatypes.Net
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIops", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether dependent volume provision is completed on background.
+func (r Network_Storage_Backup_Evault) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
 	return
 }
 
@@ -11048,6 +11010,16 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetEndpoints(accountId *int) (re
 	return
 }
 
+// Returns a collection of endpoint URLs available to this IBM Cloud Object Storage account.
+func (r Network_Storage_Hub_Cleversafe_Account) GetEndpointsWithRefetch(accountId *int, refetch *bool) (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
+	params := []interface{}{
+		accountId,
+		refetch,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpointsWithRefetch", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve Provides an interface to various metrics relating to the usage of an IBM Cloud Object Storage account.
 func (r Network_Storage_Hub_Cleversafe_Account) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getMetricTrackingObject", nil, &r.Options, &resp)
@@ -11780,6 +11752,12 @@ func (r Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storag
 	return
 }
 
+// Retrieve Whether or not a network storage volume is a dependent duplicate.
+func (r Network_Storage_Iscsi) GetDependentDuplicate() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
@@ -11883,6 +11861,12 @@ func (r Network_Storage_Iscsi) GetIntervalSchedule() (resp datatypes.Network_Sto
 // Retrieve The maximum number of IOPs selected for this volume.
 func (r Network_Storage_Iscsi) GetIops() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIops", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether dependent volume provision is completed on background.
+func (r Network_Storage_Iscsi) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
 	return
 }
 
@@ -13249,7 +13233,7 @@ func (r Network_Subnet) GetActiveTransaction() (resp datatypes.Provisioning_Vers
 	return
 }
 
-// Retrieve Identifier which distinguishes whether the subnet is public or private address space.
+// Retrieve Identifier which distinguishes what classification of addresses the subnet represents.
 func (r Network_Subnet) GetAddressSpace() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAddressSpace", nil, &r.Options, &resp)
 	return

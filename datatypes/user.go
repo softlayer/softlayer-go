@@ -281,6 +281,9 @@ type User_Customer struct {
 	// Determines if this portal user is managed by IBMid federation.
 	ManagedByOpenIdConnectFlag *bool `json:"managedByOpenIdConnectFlag,omitempty" xmlrpc:"managedByOpenIdConnectFlag,omitempty"`
 
+	// The minimum number of hours that must pass between password resets.
+	MinimumPasswordLifeHours *int `json:"minimumPasswordLifeHours,omitempty" xmlrpc:"minimumPasswordLifeHours,omitempty"`
+
 	// A count of a portal user's associated mobile device profiles.
 	MobileDeviceCount *uint `json:"mobileDeviceCount,omitempty" xmlrpc:"mobileDeviceCount,omitempty"`
 
@@ -346,6 +349,9 @@ type User_Customer struct {
 
 	// no documentation yet
 	Preferences []User_Preference `json:"preferences,omitempty" xmlrpc:"preferences,omitempty"`
+
+	// no documentation yet
+	PreventPreviousPasswords *int `json:"preventPreviousPasswords,omitempty" xmlrpc:"preventPreviousPasswords,omitempty"`
 
 	// A count of
 	RoleCount *uint `json:"roleCount,omitempty" xmlrpc:"roleCount,omitempty"`
@@ -693,6 +699,9 @@ type User_Customer_Link struct {
 
 	// no documentation yet
 	DestinationUserId *int `json:"destinationUserId,omitempty" xmlrpc:"destinationUserId,omitempty"`
+
+	// no documentation yet
+	IamIdVerificationFlag *int `json:"iamIdVerificationFlag,omitempty" xmlrpc:"iamIdVerificationFlag,omitempty"`
 
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`

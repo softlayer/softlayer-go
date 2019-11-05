@@ -30,6 +30,9 @@ type Product_Catalog struct {
 	// Brands using this Catalog
 	Brands []Brand `json:"brands,omitempty" xmlrpc:"brands,omitempty"`
 
+	// The Key Name of the Catalog, used for direct references
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
 	// A count of packages available in this catalog
 	PackageCount *uint `json:"packageCount,omitempty" xmlrpc:"packageCount,omitempty"`
 
@@ -209,6 +212,12 @@ type Product_Item struct {
 
 	// Detailed product description
 	LongDescription *string `json:"longDescription,omitempty" xmlrpc:"longDescription,omitempty"`
+
+	// The minimum number of bays that support NVMe SSDs.
+	MinimumNvmeBays *int `json:"minimumNvmeBays,omitempty" xmlrpc:"minimumNvmeBays,omitempty"`
+
+	// Indicates whether an item is a NVMe SSD.
+	NvmeDiskFlag *bool `json:"nvmeDiskFlag,omitempty" xmlrpc:"nvmeDiskFlag,omitempty"`
 
 	// no documentation yet
 	ObjectStorageClusterGeolocationType *string `json:"objectStorageClusterGeolocationType,omitempty" xmlrpc:"objectStorageClusterGeolocationType,omitempty"`
@@ -1427,6 +1436,9 @@ type Product_Package_Locations struct {
 //
 type Product_Package_Order_Configuration struct {
 	Entity
+
+	// Signifies that selections associated with the configuration are automatically provided by being bundled to another configurations selection. The actual bundling is on the product.
+	BundledFlag *bool `json:"bundledFlag,omitempty" xmlrpc:"bundledFlag,omitempty"`
 
 	// The error message displayed if the submitted order does not contain this item category, if it is required.
 	ErrorMessage *string `json:"errorMessage,omitempty" xmlrpc:"errorMessage,omitempty"`

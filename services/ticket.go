@@ -443,12 +443,6 @@ func (r Ticket) GetLastUpdate() (resp datatypes.Ticket_Update, err error) {
 	return
 }
 
-// Retrieve A timestamp of the last time the Ticket was viewed by the active user.
-func (r Ticket) GetLastViewedDate() (resp datatypes.Time, err error) {
-	err = r.Session.DoRequest("SoftLayer_Ticket", "getLastViewedDate", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve A ticket's associated location within the SoftLayer location hierarchy.
 func (r Ticket) GetLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getLocation", nil, &r.Options, &resp)

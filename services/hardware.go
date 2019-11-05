@@ -423,7 +423,7 @@ func (r Hardware) ExecuteRemoteScript(uri *string) (err error) {
 	return
 }
 
-// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware - alternate means of locating the hardware must be used (see '''Associated Methods'''). If no hardware is found, no errors are generated and no data is returned.
+// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware. If no hardware is found, no errors are generated and no data is returned.
 func (r Hardware) FindByIpAddress(ipAddress *string) (resp datatypes.Hardware, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -2444,7 +2444,7 @@ func (r Hardware_Router) ExecuteRemoteScript(uri *string) (err error) {
 	return
 }
 
-// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware - alternate means of locating the hardware must be used (see '''Associated Methods'''). If no hardware is found, no errors are generated and no data is returned.
+// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware. If no hardware is found, no errors are generated and no data is returned.
 func (r Hardware_Router) FindByIpAddress(ipAddress *string) (resp datatypes.Hardware, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -4104,7 +4104,7 @@ func (r Hardware_SecurityModule) ExecuteRemoteScript(uri *string) (err error) {
 	return
 }
 
-// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware - alternate means of locating the hardware must be used (see '''Associated Methods'''). If no hardware is found, no errors are generated and no data is returned.
+// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware. If no hardware is found, no errors are generated and no data is returned.
 func (r Hardware_SecurityModule) FindByIpAddress(ipAddress *string) (resp datatypes.Hardware, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -6494,7 +6494,7 @@ func (r Hardware_SecurityModule750) ExecuteRemoteScript(uri *string) (err error)
 	return
 }
 
-// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware - alternate means of locating the hardware must be used (see '''Associated Methods'''). If no hardware is found, no errors are generated and no data is returned.
+// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware. If no hardware is found, no errors are generated and no data is returned.
 func (r Hardware_SecurityModule750) FindByIpAddress(ipAddress *string) (resp datatypes.Hardware, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -8884,7 +8884,7 @@ func (r Hardware_Server) ExecuteRemoteScript(uri *string) (err error) {
 	return
 }
 
-// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware - alternate means of locating the hardware must be used (see '''Associated Methods'''). If no hardware is found, no errors are generated and no data is returned.
+// The '''findByIpAddress''' method finds hardware using its primary public or private IP address. IP addresses that have a secondary subnet tied to the hardware will not return the hardware. If no hardware is found, no errors are generated and no data is returned.
 func (r Hardware_Server) FindByIpAddress(ipAddress *string) (resp datatypes.Hardware, err error) {
 	params := []interface{}{
 		ipAddress,

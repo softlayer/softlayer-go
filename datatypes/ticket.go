@@ -149,9 +149,6 @@ type Ticket struct {
 	// The last update made to a ticket.
 	LastUpdate *Ticket_Update `json:"lastUpdate,omitempty" xmlrpc:"lastUpdate,omitempty"`
 
-	// A timestamp of the last time the Ticket was viewed by the active user.
-	LastViewedDate *Time `json:"lastViewedDate,omitempty" xmlrpc:"lastViewedDate,omitempty"`
-
 	// A ticket's associated location within the SoftLayer location hierarchy.
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
@@ -666,6 +663,9 @@ type Ticket_Update struct {
 	// no documentation yet
 	ChangeOwnerActivity *string `json:"changeOwnerActivity,omitempty" xmlrpc:"changeOwnerActivity,omitempty"`
 
+	// The chat between the Customer and Agent
+	Chat *Ticket_Chat_Liveperson `json:"chat,omitempty" xmlrpc:"chat,omitempty"`
+
 	// The data a ticket update was created.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
@@ -708,9 +708,6 @@ type Ticket_Update_Agent struct {
 // A SoftLayer_Ticket_Update_Chat is a chat between a customer and a customer service representative relating to a ticket.
 type Ticket_Update_Chat struct {
 	Ticket_Update
-
-	// The chat between the Customer and Agent
-	Chat *Ticket_Chat_Liveperson `json:"chat,omitempty" xmlrpc:"chat,omitempty"`
 }
 
 // A SoftLayer_Ticket_Update_Customer is a single update made by a customer to a ticket.

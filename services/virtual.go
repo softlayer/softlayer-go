@@ -1436,6 +1436,18 @@ func (r Virtual_Guest) GetGlobalIdentifier() (resp string, err error) {
 	return
 }
 
+// Retrieve The number of GPUs attached to the guest.
+func (r Virtual_Guest) GetGpuCount() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getGpuCount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The name of the GPU type attached to the guest.
+func (r Virtual_Guest) GetGpuType() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getGpuType", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Virtual_Guest) GetGuestBootParameter() (resp datatypes.Virtual_Guest_Boot_Parameter, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getGuestBootParameter", nil, &r.Options, &resp)
@@ -1726,6 +1738,12 @@ func (r Virtual_Guest) GetOutboundPublicBandwidthUsage() (resp datatypes.Float64
 // Retrieve Whether the bandwidth usage for this computing instance for the current billing cycle exceeds the allocation.
 func (r Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getOverBandwidthAllocationFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Returns a list of all the pending maintenance actions affecting this guest.
+func (r Virtual_Guest) GetPendingMaintenanceActions() (resp []datatypes.Container_Virtual_Guest_PendingMaintenanceAction, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPendingMaintenanceActions", nil, &r.Options, &resp)
 	return
 }
 
@@ -2042,7 +2060,7 @@ func (r Virtual_Guest) MountIsoImage(diskImageId *int) (resp datatypes.Provision
 	return
 }
 
-// Pause a virtual guest
+// Pause a virtual guest. This can only be called when the specified VM is in the Running state.
 func (r Virtual_Guest) Pause() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "pause", nil, &r.Options, &resp)
 	return
@@ -2139,7 +2157,7 @@ func (r Virtual_Guest) RemoveTags(tags *string) (resp bool, err error) {
 	return
 }
 
-// Resume a virtual guest
+// Resume a virtual guest, this can only be called when a VSI is in Suspended state.
 func (r Virtual_Guest) Resume() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "resume", nil, &r.Options, &resp)
 	return
@@ -2513,6 +2531,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetImageTypeKeyName() (resp s
 	return
 }
 
+// Retrieve A flag indicating if this is a next generation image.
+func (r Virtual_Guest_Block_Device_Template_Group) GetNextGenFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getNextGenFlag", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Virtual_Guest_Block_Device_Template_Group) GetObject() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getObject", nil, &r.Options, &resp)
@@ -2570,6 +2594,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetSupportedBootModes() (resp
 // Retrieve The tags associated with this image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+// This method allows you to grab the first data center that the image(s) reside on so we can pull it from there.
+func (r Virtual_Guest_Block_Device_Template_Group) GetTemplateDataCenterName() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTemplateDataCenterName", nil, &r.Options, &resp)
 	return
 }
 

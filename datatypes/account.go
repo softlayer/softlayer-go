@@ -98,8 +98,14 @@ type Account struct {
 	// The account's active top level colocation containers.
 	ActiveColocationContainers []Billing_Item `json:"activeColocationContainers,omitempty" xmlrpc:"activeColocationContainers,omitempty"`
 
-	// Account's currently active Flexible Credit enrollment.
+	// [Deprecated] Please use SoftLayer_Account::activeFlexibleCreditEnrollments.
 	ActiveFlexibleCreditEnrollment *FlexibleCredit_Enrollment `json:"activeFlexibleCreditEnrollment,omitempty" xmlrpc:"activeFlexibleCreditEnrollment,omitempty"`
+
+	// A count of
+	ActiveFlexibleCreditEnrollmentCount *uint `json:"activeFlexibleCreditEnrollmentCount,omitempty" xmlrpc:"activeFlexibleCreditEnrollmentCount,omitempty"`
+
+	// no documentation yet
+	ActiveFlexibleCreditEnrollments []FlexibleCredit_Enrollment `json:"activeFlexibleCreditEnrollments,omitempty" xmlrpc:"activeFlexibleCreditEnrollments,omitempty"`
 
 	// A count of
 	ActiveNotificationSubscriberCount *uint `json:"activeNotificationSubscriberCount,omitempty" xmlrpc:"activeNotificationSubscriberCount,omitempty"`
@@ -581,6 +587,9 @@ type Account struct {
 	// A flag indicating if an account belongs to a reseller or not.
 	IsReseller *int `json:"isReseller,omitempty" xmlrpc:"isReseller,omitempty"`
 
+	// no documentation yet
+	IscsiIsolationDisabled *bool `json:"iscsiIsolationDisabled,omitempty" xmlrpc:"iscsiIsolationDisabled,omitempty"`
+
 	// An account's associated iSCSI storage volumes.
 	IscsiNetworkStorage []Network_Storage `json:"iscsiNetworkStorage,omitempty" xmlrpc:"iscsiNetworkStorage,omitempty"`
 
@@ -682,6 +691,9 @@ type Account struct {
 
 	// An account's media transfer service requests.
 	MediaDataTransferRequests []Account_Media_Data_Transfer_Request `json:"mediaDataTransferRequests,omitempty" xmlrpc:"mediaDataTransferRequests,omitempty"`
+
+	// Flag indicating whether this account is restricted to the IBM Cloud portal.
+	MigratedToIbmCloudPortalFlag *bool `json:"migratedToIbmCloudPortalFlag,omitempty" xmlrpc:"migratedToIbmCloudPortalFlag,omitempty"`
 
 	// The date an account was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
@@ -1004,10 +1016,10 @@ type Account struct {
 	// Boolean flag dictating whether or not this account supports PPTP VPN Access.
 	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
 
-	// A count of an account's associated portal users with PPTP VPN access.
+	// A count of an account's associated portal users with PPTP VPN access. (Deprecated)
 	PptpVpnUserCount *uint `json:"pptpVpnUserCount,omitempty" xmlrpc:"pptpVpnUserCount,omitempty"`
 
-	// An account's associated portal users with PPTP VPN access.
+	// An account's associated portal users with PPTP VPN access. (Deprecated)
 	PptpVpnUsers []User_Customer `json:"pptpVpnUsers,omitempty" xmlrpc:"pptpVpnUsers,omitempty"`
 
 	// The total recurring amount for an accounts previous revenue.
