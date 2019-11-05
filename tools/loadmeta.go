@@ -466,13 +466,25 @@ func getBaseMethods(s Type, typeMap map[string]Type) map[string]Method {
 func getSortedKeys(m map[string]Type) []string {
 	keys := make([]string, 0, len(m))
 	for key := range m {
-		keys = append(keys, key)
+		if validCheck(key) {
+			keys = append(keys, key)
+		}
 	}
 	sort.Strings(keys)
 
 	return keys
 }
 
+func validCheck(name string) bool {
+
+	if strings.HasPrefix(name, "BluePages_") {
+		return false
+	}
+	if strings.HasPrefix(name, "IntegratedOfferingTeam_") {
+		return false
+	}
+	return true
+}
 func writePackage(base string, pkg string, meta []Type, ts string) error {
 	var currPrefix string
 	var start int
@@ -514,7 +526,6 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 		fmt.Println(string(buf.String()))
 		os.Exit(0)
 	}*/
-
 	// Add the imports
 	src, err := imports.Process(filename, buf.Bytes(), &imports.Options{Comments: true})
 	if err != nil {
