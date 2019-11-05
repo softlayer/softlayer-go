@@ -1884,6 +1884,9 @@ type Network_Gateway_Member_Attribute struct {
 	// The previous vSRX version of the gateway software
 	LastvSRXVersion *string `json:"lastvSRXVersion,omitempty" xmlrpc:"lastvSRXVersion,omitempty"`
 
+	// no documentation yet
+	LicenseKey *string `json:"licenseKey,omitempty" xmlrpc:"licenseKey,omitempty"`
+
 	// The gateway member for this attribute.
 	MemberId *int `json:"memberId,omitempty" xmlrpc:"memberId,omitempty"`
 
@@ -2363,6 +2366,9 @@ type Network_LBaaS_LoadBalancer struct {
 	// The unique identifier of a load balancer.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
+	// Specifies whether the data log is enabled for the load balancer.
+	IsDataLogEnabled *int `json:"isDataLogEnabled,omitempty" xmlrpc:"isDataLogEnabled,omitempty"`
+
 	// Specifies whether the load balancer is a public or internal load balancer.
 	IsPublic *int `json:"isPublic,omitempty" xmlrpc:"isPublic,omitempty"`
 
@@ -2407,6 +2413,9 @@ type Network_LBaaS_LoadBalancer struct {
 
 	// list of preferred custom ciphers configured for the load balancer.
 	SslCiphers []Network_LBaaS_SSLCipher `json:"sslCiphers,omitempty" xmlrpc:"sslCiphers,omitempty"`
+
+	// Specifies the type of load balancer.
+	Type *int `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// Applicable for public load balancer only. It specifies whether the public IP addresses are allocated from system public IP pool (1, default) or public subnet (null | 0) from the account ordering the load balancer. For internal load balancer, useSystemPublicIpPool will be ignored, and it always defaults to 1.
 	UseSystemPublicIpPool *int `json:"useSystemPublicIpPool,omitempty" xmlrpc:"useSystemPublicIpPool,omitempty"`
@@ -2480,7 +2489,7 @@ type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
 	// Sessions cookie name
 	SessionCookieName *string `json:"sessionCookieName,omitempty" xmlrpc:"sessionCookieName,omitempty"`
 
-	// Session stickiness type. Valid values are "SOURCE_IP"
+	// Session stickiness type. Valid values are "SOURCE_IP" "HTTP_COOKIE"
 	SessionType *string `json:"sessionType,omitempty" xmlrpc:"sessionType,omitempty"`
 
 	// ssl/tls certificate id
@@ -2493,6 +2502,9 @@ type Network_LBaaS_LoadBalancerServerInstanceInfo struct {
 
 	// Servers private IP address
 	PrivateIpAddress *string `json:"privateIpAddress,omitempty" xmlrpc:"privateIpAddress,omitempty"`
+
+	// Servers public IP address
+	PublicIpAddress *string `json:"publicIpAddress,omitempty" xmlrpc:"publicIpAddress,omitempty"`
 
 	// Load balancing weight for a server
 	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
@@ -3847,6 +3859,9 @@ type Network_Storage struct {
 	// The Daily Schedule which is associated with this network storage volume.
 	DailySchedule *Network_Storage_Schedule `json:"dailySchedule,omitempty" xmlrpc:"dailySchedule,omitempty"`
 
+	// Whether or not a network storage volume is a dependent duplicate.
+	DependentDuplicate *string `json:"dependentDuplicate,omitempty" xmlrpc:"dependentDuplicate,omitempty"`
+
 	// A count of the events which have taken place on a network storage volume.
 	EventCount *uint `json:"eventCount,omitempty" xmlrpc:"eventCount,omitempty"`
 
@@ -3882,6 +3897,9 @@ type Network_Storage struct {
 
 	// The maximum number of IOPs selected for this volume.
 	Iops *string `json:"iops,omitempty" xmlrpc:"iops,omitempty"`
+
+	// Determines whether dependent volume provision is completed on background.
+	IsDependentDuplicateProvisionCompleted *bool `json:"isDependentDuplicateProvisionCompleted,omitempty" xmlrpc:"isDependentDuplicateProvisionCompleted,omitempty"`
 
 	// Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
 	IsReadyForSnapshot *bool `json:"isReadyForSnapshot,omitempty" xmlrpc:"isReadyForSnapshot,omitempty"`
@@ -4157,6 +4175,12 @@ type Network_Storage_Allowed_Host struct {
 
 	// Connections to a target with a source IP in this subnet prefix are allowed.
 	SourceSubnet *string `json:"sourceSubnet,omitempty" xmlrpc:"sourceSubnet,omitempty"`
+
+	// The SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+	SubnetsInAcl []Network_Subnet `json:"subnetsInAcl,omitempty" xmlrpc:"subnetsInAcl,omitempty"`
+
+	// A count of the SoftLayer_Network_Subnet records assigned to the ACL for this allowed host.
+	SubnetsInAclCount *uint `json:"subnetsInAclCount,omitempty" xmlrpc:"subnetsInAclCount,omitempty"`
 }
 
 // no documentation yet
@@ -5132,7 +5156,7 @@ type Network_Subnet struct {
 	// The billing item for a subnet.
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
-	// Identifier which distinguishes whether the subnet is public or private address space.
+	// Identifier which distinguishes what classification of addresses the subnet represents.
 	AddressSpace *string `json:"addressSpace,omitempty" xmlrpc:"addressSpace,omitempty"`
 
 	// The SoftLayer_Network_Storage_Allowed_Host information to connect this Subnet to Network Storage supporting access control lists.

@@ -416,6 +416,12 @@ type Virtual_Guest struct {
 	// A guest's universally unique identifier.
 	GlobalIdentifier *string `json:"globalIdentifier,omitempty" xmlrpc:"globalIdentifier,omitempty"`
 
+	// The number of GPUs attached to the guest.
+	GpuCount *int `json:"gpuCount,omitempty" xmlrpc:"gpuCount,omitempty"`
+
+	// The name of the GPU type attached to the guest.
+	GpuType *string `json:"gpuType,omitempty" xmlrpc:"gpuType,omitempty"`
+
 	// no documentation yet
 	GuestBootParameter *Virtual_Guest_Boot_Parameter `json:"guestBootParameter,omitempty" xmlrpc:"guestBootParameter,omitempty"`
 
@@ -918,6 +924,9 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 
 	// A user definable and optional name of a block device template group.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// A flag indicating if this is a next generation image.
+	NextGenFlag *bool `json:"nextGenFlag,omitempty" xmlrpc:"nextGenFlag,omitempty"`
 
 	// A block device template group's user defined note.
 	Note *string `json:"note,omitempty" xmlrpc:"note,omitempty"`

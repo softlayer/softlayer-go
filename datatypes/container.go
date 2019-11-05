@@ -91,6 +91,65 @@ type Container_Account_Discount_Program struct {
 }
 
 // no documentation yet
+type Container_Account_Discount_Program_Collection struct {
+	Entity
+
+	// The amount of credit that has been used by all account level enrollments in the billing cycle.
+	AccountLevelAppliedCredit *Float64 `json:"accountLevelAppliedCredit,omitempty" xmlrpc:"accountLevelAppliedCredit,omitempty"`
+
+	// Account level credit allowance applied over the course of entire active program enrollments. For enrollments without a lifetime restriction, this property will not be populated as credit will be tracked on a purely monthly basis.
+	AccountLevelLifetimeAppliedCredit *Float64 `json:"accountLevelLifetimeAppliedCredit,omitempty" xmlrpc:"accountLevelLifetimeAppliedCredit,omitempty"`
+
+	// The total account level credit over the course of an entire program enrollment. This value may be null, in which case the enrollment credit is applied on a monthly basis and there is no lifetime maximum.
+	AccountLevelLifetimeCredit *Float64 `json:"accountLevelLifetimeCredit,omitempty" xmlrpc:"accountLevelLifetimeCredit,omitempty"`
+
+	// Remaining account level credit allowance available over the remaining duration of the program enrollments. If null, enrollment credit is applied on a strictly monthly basis and there is no lifetime maximum. Enrollments with non-null remaining lifetime credit will receive the lesser of the remaining monthly credit or the remaining lifetime credit.
+	AccountLevelLifetimeRemainingCredit *Float64 `json:"accountLevelLifetimeRemainingCredit,omitempty" xmlrpc:"accountLevelLifetimeRemainingCredit,omitempty"`
+
+	// The total account level monthly credit allowance available at the beginning of a billing cycle.
+	AccountLevelMonthlyCredit *Float64 `json:"accountLevelMonthlyCredit,omitempty" xmlrpc:"accountLevelMonthlyCredit,omitempty"`
+
+	// The total account level credit allowance still available during the current billing cycle.
+	AccountLevelRemainingCredit *Float64 `json:"accountLevelRemainingCredit,omitempty" xmlrpc:"accountLevelRemainingCredit,omitempty"`
+
+	// The active enrollments for this account.
+	Enrollments []FlexibleCredit_Enrollment `json:"enrollments,omitempty" xmlrpc:"enrollments,omitempty"`
+
+	// Indicates whether or not the account is participating in any account level Flexible Credit programs.
+	IsAccountLevelParticipantFlag *bool `json:"isAccountLevelParticipantFlag,omitempty" xmlrpc:"isAccountLevelParticipantFlag,omitempty"`
+
+	// Indicates whether or not the account is participating in any Flexible Credit programs.
+	IsParticipantFlag *bool `json:"isParticipantFlag,omitempty" xmlrpc:"isParticipantFlag,omitempty"`
+
+	// Indicates whether or not the account is participating in any product specific level Flexible Credit programs.
+	IsProductSpecificParticipantFlag *bool `json:"isProductSpecificParticipantFlag,omitempty" xmlrpc:"isProductSpecificParticipantFlag,omitempty"`
+
+	// The amount of credit that has been used by all product specific enrollments in the billing cycle.
+	ProductSpecificAppliedCredit *Float64 `json:"productSpecificAppliedCredit,omitempty" xmlrpc:"productSpecificAppliedCredit,omitempty"`
+
+	// Product specific credit allowance applied over the course of entire active program enrollments. For enrollments without a lifetime restriction, this property will not be populated as credit will be tracked on a purely monthly basis.
+	ProductSpecificLifetimeAppliedCredit *Float64 `json:"productSpecificLifetimeAppliedCredit,omitempty" xmlrpc:"productSpecificLifetimeAppliedCredit,omitempty"`
+
+	// The total product specific credit over the course of an entire program enrollment. This value may be null, in which case the enrollment credit is applied on a monthly basis and there is no lifetime maximum.
+	ProductSpecificLifetimeCredit *Float64 `json:"productSpecificLifetimeCredit,omitempty" xmlrpc:"productSpecificLifetimeCredit,omitempty"`
+
+	// Remaining product specific level credit allowance available over the remaining duration of the program enrollments. If null, enrollment credit is applied on a strictly monthly basis and there is no lifetime maximum. Enrollments with non-null remaining lifetime credit will receive the lesser of the remaining monthly credit or the remaining lifetime credit.
+	ProductSpecificLifetimeRemainingCredit *Float64 `json:"productSpecificLifetimeRemainingCredit,omitempty" xmlrpc:"productSpecificLifetimeRemainingCredit,omitempty"`
+
+	// The total product specific monthly credit allowance available at the beginning of a billing cycle.
+	ProductSpecificMonthlyCredit *Float64 `json:"productSpecificMonthlyCredit,omitempty" xmlrpc:"productSpecificMonthlyCredit,omitempty"`
+
+	// The total product specific credit allowance still available during the current billing cycle.
+	ProductSpecificRemainingCredit *Float64 `json:"productSpecificRemainingCredit,omitempty" xmlrpc:"productSpecificRemainingCredit,omitempty"`
+
+	// The credit allowance that has already been applied during the current billing cycle from all enrollments. If the lifetime limit has been or soon will be reached, this amount may included credit applied in previous billing cycles.
+	TotalAppliedCredit *Float64 `json:"totalAppliedCredit,omitempty" xmlrpc:"totalAppliedCredit,omitempty"`
+
+	// The credit allowance that is available during the current billing cycle from all enrollments. If the lifetime limit has been or soon will be reached, this amount may be reduced by credit applied in previous billing cycles.
+	TotalRemainingCredit *Float64 `json:"totalRemainingCredit,omitempty" xmlrpc:"totalRemainingCredit,omitempty"`
+}
+
+// no documentation yet
 type Container_Account_External_Setup_ProvisioningHoldLifted struct {
 	Entity
 
@@ -2141,6 +2200,9 @@ type Container_Network_CdnMarketplace_Configuration_Input struct {
 	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// no documentation yet
+	DynamicContentAcceleration *Container_Network_CdnMarketplace_Configuration_Performance_DynamicContentAcceleration `json:"dynamicContentAcceleration,omitempty" xmlrpc:"dynamicContentAcceleration,omitempty"`
+
+	// no documentation yet
 	FileExtension *string `json:"fileExtension,omitempty" xmlrpc:"fileExtension,omitempty"`
 
 	// no documentation yet
@@ -2212,6 +2274,9 @@ type Container_Network_CdnMarketplace_Configuration_Mapping struct {
 	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// no documentation yet
+	DynamicContentAcceleration *Container_Network_CdnMarketplace_Configuration_Performance_DynamicContentAcceleration `json:"dynamicContentAcceleration,omitempty" xmlrpc:"dynamicContentAcceleration,omitempty"`
+
+	// no documentation yet
 	FileExtension *string `json:"fileExtension,omitempty" xmlrpc:"fileExtension,omitempty"`
 
 	// no documentation yet
@@ -2274,6 +2339,9 @@ type Container_Network_CdnMarketplace_Configuration_Mapping_Path struct {
 	CacheKeyQueryRule *string `json:"cacheKeyQueryRule,omitempty" xmlrpc:"cacheKeyQueryRule,omitempty"`
 
 	// no documentation yet
+	DynamicContentAcceleration *Container_Network_CdnMarketplace_Configuration_Performance_DynamicContentAcceleration `json:"dynamicContentAcceleration,omitempty" xmlrpc:"dynamicContentAcceleration,omitempty"`
+
+	// no documentation yet
 	FileExtension *string `json:"fileExtension,omitempty" xmlrpc:"fileExtension,omitempty"`
 
 	// no documentation yet
@@ -2302,6 +2370,26 @@ type Container_Network_CdnMarketplace_Configuration_Mapping_Path struct {
 
 	// no documentation yet
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+}
+
+// no documentation yet
+type Container_Network_CdnMarketplace_Configuration_Performance_DynamicContentAcceleration struct {
+	Entity
+
+	// The detectionPath is used by CDN edge servers to find the best optimized route from edge to the origin server. The Akamai edge servers fetch the test object from the origin to know the network condition to your origin server, and then calculate the best optimized route with the network condition. The best path to origin must be known at the time a user’s request arrives at an edge server, since any in-line analysis or probing would defeat the purpose of speeding things up.
+	DetectionPath *string `json:"detectionPath,omitempty" xmlrpc:"detectionPath,omitempty"`
+
+	// Serving compressed images reduces the amount of content required to load a page. This feature helps offset less robust connections, such as those formed with mobile devices. Basically, if your site visitors have slow network speeds, MobileImageCompression technology can automatically increase compression of JPEG images to speed up loading. On the other hand, this feature results in lossy compression or irreversible compression, and may affect the quality of the images on your site.
+	//
+	// JPG supported file extensions: .jpg, .jpeg, .jpe, .jig, .jgig, .jgi The default is enabled.
+	MobileImageCompressionEnabled *bool `json:"mobileImageCompressionEnabled,omitempty" xmlrpc:"mobileImageCompressionEnabled,omitempty"`
+
+	// Inspects HTML responses and prefetches embedded objects in HTML files. Prefetching works on any page that includes <img>, <script>, or <link> tags that specify relative paths. It also works when the resource hostname matches the request domain in the HTML file, and it is part of a fully qualified URI. When set to true, edge servers prefetch objects with the following file extensions:
+	//
+	// aif, aiff, au, avi, bin, bmp, cab, carb, cct, cdf, class, css, doc, dcr, dtd, exe, flv, gcf, gff, gif, grv, hdml, hqx, ico, ini, jpeg, jpg, js, mov, mp3, nc, pct, pdf, png, ppc, pws, swa, swf, txt, vbs, w32, wav, wbmp, wml, wmlc, wmls, wmlsc, xsd, and zip.
+	//
+	// The default is enabled.
+	PrefetchEnabled *bool `json:"prefetchEnabled,omitempty" xmlrpc:"prefetchEnabled,omitempty"`
 }
 
 // no documentation yet
@@ -4013,6 +4101,9 @@ type Container_Product_Order_Network_LoadBalancer_AsAService struct {
 	// The [[SoftLayer_Network_Subnet]]s where this Load Balancer will be provisioned.
 	Subnets []Network_Subnet `json:"subnets,omitempty" xmlrpc:"subnets,omitempty"`
 
+	// Specify the type of this load balancer. If isPublic is omitted, it specifies the load balacner as private(0), public(1) or public to public(2). If isPublic is set as True, only public(1) or public to public(2) is valid. If isPublic is set as False, this value is ignored. If this value is omitted, the value will be set according to isPublic value.
+	Type *int `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
 	// Specify if this load balancer uses system IP pool (true, default) or customer's (null|false) public subnet to allocate IP addresses.
 	UseSystemPublicIpPool *bool `json:"useSystemPublicIpPool,omitempty" xmlrpc:"useSystemPublicIpPool,omitempty"`
 }
@@ -5402,30 +5493,49 @@ type Container_User_Customer_OpenIdConnect_MigrationState struct {
 }
 
 // Container for holding information necessary for the setting and resetting of customer passwords
-//
-//
 type Container_User_Customer_PasswordSet struct {
 	Entity
 
-	// id of SoftLayer_User_Security_Question
+	// Id of SoftLayer_User_Security_Question.
 	AnsweredSecurityQuestionId *int `json:"answeredSecurityQuestionId,omitempty" xmlrpc:"answeredSecurityQuestionId,omitempty"`
 
-	// the authentication methods required
+	// The authentication methods required.
 	AuthenticationMethods []int `json:"authenticationMethods,omitempty" xmlrpc:"authenticationMethods,omitempty"`
 
-	// the password key provided to user in the password set url link sent via email
+	// The number of digits required.
+	DigitCountRequirement *int `json:"digitCountRequirement,omitempty" xmlrpc:"digitCountRequirement,omitempty"`
+
+	// The password key provided to user in the password set url link sent via email.
 	Key *string `json:"key,omitempty" xmlrpc:"key,omitempty"`
 
-	// the user's new password
+	// The number of lowercase letters required.
+	LowercaseCountRequirement *int `json:"lowercaseCountRequirement,omitempty" xmlrpc:"lowercaseCountRequirement,omitempty"`
+
+	// The maximum password length requirement.
+	MaximumPasswordLengthRequirement *int `json:"maximumPasswordLengthRequirement,omitempty" xmlrpc:"maximumPasswordLengthRequirement,omitempty"`
+
+	// The minimum password length requirement.
+	MinimumPasswordLengthRequirement *int `json:"minimumPasswordLengthRequirement,omitempty" xmlrpc:"minimumPasswordLengthRequirement,omitempty"`
+
+	// The user's new password.
 	Password *string `json:"password,omitempty" xmlrpc:"password,omitempty"`
 
-	// answer to security question provided by the user
+	// Answer to security question provided by the user.
 	SecurityAnswer *string `json:"securityAnswer,omitempty" xmlrpc:"securityAnswer,omitempty"`
 
-	// array of SoftLayer_User_Security_Question
+	// Array of SoftLayer_User_Security_Question.
 	SecurityQuestions []User_Security_Question `json:"securityQuestions,omitempty" xmlrpc:"securityQuestions,omitempty"`
 
-	// the id of the user to authenticate
+	// The number of special characters required.
+	SpecialCharacterCountRequirement *int `json:"specialCharacterCountRequirement,omitempty" xmlrpc:"specialCharacterCountRequirement,omitempty"`
+
+	// List of the allowed special characters.
+	SpecialCharactersAllowed *string `json:"specialCharactersAllowed,omitempty" xmlrpc:"specialCharactersAllowed,omitempty"`
+
+	// The number of uppercase letters required.
+	UppercaseCountRequirement *int `json:"uppercaseCountRequirement,omitempty" xmlrpc:"uppercaseCountRequirement,omitempty"`
+
+	// The id of the user to authenticate.
 	UserId *int `json:"userId,omitempty" xmlrpc:"userId,omitempty"`
 }
 
@@ -5948,4 +6058,29 @@ type Container_Virtual_Guest_Configuration_Option struct {
 	//
 	// Provides a fragment of the request with the properties and values that must be sent when creating a computing instance with the option.
 	Template *Virtual_Guest `json:"template,omitempty" xmlrpc:"template,omitempty"`
+}
+
+// The SoftLayer_Container_Virtual_Guest_PendingMaintenanceAction data type contains information relating to a SoftLayer_Virtual_Guest's pending maintenance actions.
+type Container_Virtual_Guest_PendingMaintenanceAction struct {
+	Entity
+
+	// The ID of the associated action.
+	ActionId *int `json:"actionId,omitempty" xmlrpc:"actionId,omitempty"`
+
+	// The datetime at which this action will be initiated regardless of customer action (if it has not already been completed).
+	DueDate *Time `json:"dueDate,omitempty" xmlrpc:"dueDate,omitempty"`
+
+	// User-friendly status.
+	//
+	// The <code>Completed</code> status means that it is done, no further action is required. The <code>Scheduled</code> status means that the action is pending and will start on the <code>dueDate</code> if no customer action is taken before such time. The <code>In Progress</code> status means the action is currently being executed.
+	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
+	// The ticket associated with this maintenance action.
+	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket,omitempty"`
+
+	// The Title for the associated action.
+	Title *string `json:"title,omitempty" xmlrpc:"title,omitempty"`
+
+	// The Trigger Explanation for the associated action.
+	TriggerExplanation *string `json:"triggerExplanation,omitempty" xmlrpc:"triggerExplanation,omitempty"`
 }

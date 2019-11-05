@@ -274,9 +274,15 @@ func (r Account) GetActiveColocationContainers() (resp []datatypes.Billing_Item,
 	return
 }
 
-// Retrieve Account's currently active Flexible Credit enrollment.
+// Retrieve [Deprecated] Please use SoftLayer_Account::activeFlexibleCreditEnrollments.
 func (r Account) GetActiveFlexibleCreditEnrollment() (resp datatypes.FlexibleCredit_Enrollment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveFlexibleCreditEnrollment", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Account) GetActiveFlexibleCreditEnrollments() (resp []datatypes.FlexibleCredit_Enrollment, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveFlexibleCreditEnrollments", nil, &r.Options, &resp)
 	return
 }
 
@@ -311,7 +317,7 @@ func (r Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []
 	return
 }
 
-// This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
+// [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
 func (r Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
 	return
@@ -759,12 +765,23 @@ func (r Account) GetFlexibleCreditEnrollments() (resp []datatypes.FlexibleCredit
 	return
 }
 
+// [DEPRECATED] Please use SoftLayer_Account::getFlexibleCreditProgramsInfo.
+//
 // This method will return a [[SoftLayer_Container_Account_Discount_Program]] object containing the Flexible Credit Program information for this account. To be considered an active participant, the account must have an enrollment record with a monthly credit amount set and the current date must be within the range defined by the enrollment and graduation date. The forNextBillCycle parameter can be set to true to return a SoftLayer_Container_Account_Discount_Program object with information with relation to the next bill cycle. The forNextBillCycle parameter defaults to false. Please note that all discount amount entries are reported as pre-tax amounts and the legacy tax fields in the [[SoftLayer_Container_Account_Discount_Program]] are deprecated.
 func (r Account) GetFlexibleCreditProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
 	params := []interface{}{
 		forNextBillCycle,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account", "getFlexibleCreditProgramInfo", params, &r.Options, &resp)
+	return
+}
+
+// This method will return a [[SoftLayer_Container_Account_Discount_Program_Collection]] object containing information on all of the Flexible Credit Programs your account is enrolled in. To be considered an active participant, the account must have at least one enrollment record with a monthly credit amount set and the current date must be within the range defined by the enrollment and graduation date. The forNextBillCycle parameter can be set to true to return a SoftLayer_Container_Account_Discount_Program_Collection object with information with relation to the next bill cycle. The forNextBillCycle parameter defaults to false. Please note that all discount amount entries are reported as pre-tax amounts.
+func (r Account) GetFlexibleCreditProgramsInfo(nextBillingCycleFlag *bool) (resp datatypes.Container_Account_Discount_Program_Collection, err error) {
+	params := []interface{}{
+		nextBillingCycleFlag,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account", "getFlexibleCreditProgramsInfo", params, &r.Options, &resp)
 	return
 }
 
@@ -1012,6 +1029,12 @@ func (r Account) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, er
 	return
 }
 
+// Retrieve
+func (r Account) GetIscsiIsolationDisabled() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getIscsiIsolationDisabled", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An account's associated iSCSI storage volumes.
 func (r Account) GetIscsiNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getIscsiNetworkStorage", nil, &r.Options, &resp)
@@ -1139,6 +1162,12 @@ func (r Account) GetMasterUser() (resp datatypes.User_Customer, err error) {
 // Retrieve An account's media transfer service requests.
 func (r Account) GetMediaDataTransferRequests() (resp []datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getMediaDataTransferRequests", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Flag indicating whether this account is restricted to the IBM Cloud portal.
+func (r Account) GetMigratedToIbmCloudPortalFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getMigratedToIbmCloudPortalFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -1559,7 +1588,7 @@ func (r Account) GetPptpVpnAllowedFlag() (resp bool, err error) {
 	return
 }
 
-// Retrieve An account's associated portal users with PPTP VPN access.
+// Retrieve An account's associated portal users with PPTP VPN access. (Deprecated)
 func (r Account) GetPptpVpnUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnUsers", nil, &r.Options, &resp)
 	return
