@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/renier/xmlrpc"
+	"github.com/softlayer/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
 )
 
