@@ -52,7 +52,7 @@ release: build
 	git push origin $${NEW_VERSION}
 
 test: fmtcheck vet test_deps
-	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
+	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4 -coverprofile=coverage.out
 
 test_deps:
 	$(GO_DEPS) -t ./...
