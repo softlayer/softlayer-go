@@ -8,10 +8,11 @@ GO_RUN=$(GO_CMD) run
 GO_TEST=$(GO_CMD) test
 TOOLS=$(GO_RUN) tools/*.go
 VETARGS?=-all
+COVERPROFILE=coverage.out
 
 PACKAGE_LIST := $$(go list ./... | grep -v '/vendor/')
 
-.PHONY: all alpha build deps fmt fmtcheck generate install release test test_deps update_deps version vet
+.PHONY: all alpha build deps fmt fmtcheck generate install release test coverage test_deps update_deps version vet
 
 all: build
 
@@ -52,7 +53,13 @@ release: build
 	git push origin $${NEW_VERSION}
 
 test: fmtcheck vet test_deps
-	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4 -coverprofile=coverage.out
+	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
+
+coverage:
+	@echo "Running unit tests. Cover profile saved to $(COVERPROFILE) ...\n"
+	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4 -coverprofile=$(COVERPROFILE)
+	@echo "\nBuilding function coverage report...\n"
+	@$(GO_CMD) tool cover -func=$(COVERPROFILE)
 
 test_deps:
 	$(GO_DEPS) -t ./...

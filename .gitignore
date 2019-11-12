@@ -13,6 +13,9 @@ out
 # Project files
 *.iml
 
+# Output from make coverage 
+coverage.out
+
 # Architecture specific extensions/prefixes
 *.[568vq]
 [568vq].out
