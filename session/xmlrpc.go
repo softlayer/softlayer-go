@@ -25,8 +25,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/renier/xmlrpc"
 	"github.com/softlayer/softlayer-go/sl"
+	"github.com/softlayer/xmlrpc"
 )
 
 // Debugging RoundTripper
