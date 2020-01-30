@@ -175,6 +175,26 @@ type Software_Component_AntivirusSpyware_Mcafee_Epo_Version45 struct {
 	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus,omitempty"`
 }
 
+// The SoftLayer_Software_Component_AntivirusSpyware_Mcafee_Epo_Version51 data type represents a single McAfee Secure anti-virus/spyware software component that contacts the McAfee ePO Server version 5.1 backend.
+type Software_Component_AntivirusSpyware_Mcafee_Epo_Version51 struct {
+	Software_Component_AntivirusSpyware_Mcafee
+
+	// The virus scan agent details.
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version51_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails,omitempty"`
+
+	// The current anti-virus policy.
+	CurrentAntivirusPolicy *int `json:"currentAntivirusPolicy,omitempty" xmlrpc:"currentAntivirusPolicy,omitempty"`
+
+	// The virus definition file version.
+	DataFileVersion *McAfee_Epolicy_Orchestrator_Version51_Product_Properties `json:"dataFileVersion,omitempty" xmlrpc:"dataFileVersion,omitempty"`
+
+	// The version of  McAfee ePO Server that the anti-virus/spyware client communicates with.
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion,omitempty"`
+
+	// The version of ePolicy Server that the host IPS client communicates with.
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus,omitempty"`
+}
+
 // This object specifies a specific type of Software Component:  A control panel instance. Control panel installations have a specific default ports and patterns for usernames and passwords.  Defaults are initiated by this object.
 type Software_Component_ControlPanel struct {
 	Software_Component
@@ -404,6 +424,32 @@ type Software_Component_HostIps_Mcafee_Epo_Version45_Hips_Version7 struct {
 // The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version45_Hips_Version8 data type represents a single McAfee Secure Host IPS software component for version 8 of the Host IPS client and uses the ePolicy Orchestrator version 4.5 backend.
 type Software_Component_HostIps_Mcafee_Epo_Version45_Hips_Version8 struct {
 	Software_Component_HostIps_Mcafee_Epo_Version45_Hips
+}
+
+// The SoftLayer_Software_Component_HostIps_Mcafee_Epo_Version51 data type represents a single McAfee Secure Host IPS software component that uses the ePO Server.
+type Software_Component_HostIps_Mcafee_Epo_Version51 struct {
+	Software_Component_HostIps_Mcafee
+
+	// The virus scan agent details.
+	AgentDetails *McAfee_Epolicy_Orchestrator_Version51_Agent_Details `json:"agentDetails,omitempty" xmlrpc:"agentDetails,omitempty"`
+
+	// no documentation yet
+	EpoVersion *string `json:"epoVersion,omitempty" xmlrpc:"epoVersion,omitempty"`
+
+	// no documentation yet
+	FirewallModePolicyNames []McAfee_Epolicy_Orchestrator_Version51_Policy_Object `json:"firewallModePolicyNames,omitempty" xmlrpc:"firewallModePolicyNames,omitempty"`
+
+	// no documentation yet
+	FirewallRuleSetPolicyNames []McAfee_Epolicy_Orchestrator_Version51_Policy_Object `json:"firewallRuleSetPolicyNames,omitempty" xmlrpc:"firewallRuleSetPolicyNames,omitempty"`
+
+	// no documentation yet
+	IpsModePolicyNames []McAfee_Epolicy_Orchestrator_Version51_Policy_Object `json:"ipsModePolicyNames,omitempty" xmlrpc:"ipsModePolicyNames,omitempty"`
+
+	// no documentation yet
+	IpsProtectionPolicyNames []McAfee_Epolicy_Orchestrator_Version51_Policy_Object `json:"ipsProtectionPolicyNames,omitempty" xmlrpc:"ipsProtectionPolicyNames,omitempty"`
+
+	// no documentation yet
+	TransactionStatus *string `json:"transactionStatus,omitempty" xmlrpc:"transactionStatus,omitempty"`
 }
 
 // SoftLayer_Software_Component_OperatingSystem extends the [[SoftLayer_Software_Component]] data type to include operating system specific properties.

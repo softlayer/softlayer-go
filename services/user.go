@@ -575,6 +575,15 @@ func (r User_Customer) GetParent() (resp datatypes.User_Customer, err error) {
 	return
 }
 
+// no documentation yet
+func (r User_Customer) GetPasswordRequirements(isVpn *bool) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+	params := []interface{}{
+		isVpn,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPasswordRequirements", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 func (r User_Customer) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPermissions", nil, &r.Options, &resp)
@@ -631,7 +640,7 @@ func (r User_Customer) GetRoles() (resp []datatypes.User_Permission_Role, err er
 	return
 }
 
-// Retrieve
+// Retrieve [DEPRECATED]
 func (r User_Customer) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSalesforceUserLink", nil, &r.Options, &resp)
 	return
@@ -3074,6 +3083,15 @@ func (r User_Customer_OpenIdConnect) GetParent() (resp datatypes.User_Customer, 
 	return
 }
 
+// no documentation yet
+func (r User_Customer_OpenIdConnect) GetPasswordRequirements(isVpn *bool) (resp datatypes.Container_User_Customer_PasswordSet, err error) {
+	params := []interface{}{
+		isVpn,
+	}
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPasswordRequirements", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 func (r User_Customer_OpenIdConnect) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPermissions", nil, &r.Options, &resp)
@@ -3143,7 +3161,7 @@ func (r User_Customer_OpenIdConnect) GetRoles() (resp []datatypes.User_Permissio
 	return
 }
 
-// Retrieve
+// Retrieve [DEPRECATED]
 func (r User_Customer_OpenIdConnect) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSalesforceUserLink", nil, &r.Options, &resp)
 	return
