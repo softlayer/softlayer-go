@@ -3844,6 +3844,12 @@ func (r Network_Gateway) GetStatus() (resp datatypes.Network_Gateway_Status, err
 	return
 }
 
+// Retrieve a list of upgradable items available for network gateways.
+func (r Network_Gateway) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
 // Rebuild a vSRX gateway with HA cluster by destroying existing vSRX and installing new vSRX on both gateway servers, then creating HA cluster between 2 vSRX. This is a destructive process which will remove existing vSRX configuration and stop all gateway capabilities. vSRX will need to be re-configured after this operation.
 //
 //
@@ -7129,6 +7135,12 @@ func (r Network_Storage) CollectBytesUsed() (resp uint, err error) {
 }
 
 // no documentation yet
+func (r Network_Storage) ConvertCloneDependentToIndependent() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "convertCloneDependentToIndependent", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_Storage) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -7462,6 +7474,12 @@ func (r Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Sche
 // Retrieve Whether or not a network storage volume is a dependent duplicate.
 func (r Network_Storage) GetDependentDuplicate() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network storage volumes configured to be dependent duplicates of a volume.
+func (r Network_Storage) GetDependentDuplicates() (resp []datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDependentDuplicates", nil, &r.Options, &resp)
 	return
 }
 
@@ -7936,6 +7954,12 @@ func (r Network_Storage) GetVendorName() (resp string, err error) {
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVirtualGuest", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieves an array of volume count limits per location and globally.
+func (r Network_Storage) GetVolumeCountLimits() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeCountLimits", nil, &r.Options, &resp)
 	return
 }
 
@@ -9207,6 +9231,12 @@ func (r Network_Storage_Backup_Evault) CollectBytesUsed() (resp uint, err error)
 }
 
 // no documentation yet
+func (r Network_Storage_Backup_Evault) ConvertCloneDependentToIndependent() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "convertCloneDependentToIndependent", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_Storage_Backup_Evault) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -9553,6 +9583,12 @@ func (r Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Networ
 // Retrieve Whether or not a network storage volume is a dependent duplicate.
 func (r Network_Storage_Backup_Evault) GetDependentDuplicate() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network storage volumes configured to be dependent duplicates of a volume.
+func (r Network_Storage_Backup_Evault) GetDependentDuplicates() (resp []datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDependentDuplicates", nil, &r.Options, &resp)
 	return
 }
 
@@ -10045,6 +10081,12 @@ func (r Network_Storage_Backup_Evault) GetVendorName() (resp string, err error) 
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage_Backup_Evault) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVirtualGuest", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieves an array of volume count limits per location and globally.
+func (r Network_Storage_Backup_Evault) GetVolumeCountLimits() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeCountLimits", nil, &r.Options, &resp)
 	return
 }
 
@@ -11422,6 +11464,12 @@ func (r Network_Storage_Iscsi) CollectBytesUsed() (resp uint, err error) {
 }
 
 // no documentation yet
+func (r Network_Storage_Iscsi) ConvertCloneDependentToIndependent() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "convertCloneDependentToIndependent", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_Storage_Iscsi) CreateFolder(folder *string) (resp bool, err error) {
 	params := []interface{}{
 		folder,
@@ -11755,6 +11803,12 @@ func (r Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storag
 // Retrieve Whether or not a network storage volume is a dependent duplicate.
 func (r Network_Storage_Iscsi) GetDependentDuplicate() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDependentDuplicate", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network storage volumes configured to be dependent duplicates of a volume.
+func (r Network_Storage_Iscsi) GetDependentDuplicates() (resp []datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDependentDuplicates", nil, &r.Options, &resp)
 	return
 }
 
@@ -12227,6 +12281,12 @@ func (r Network_Storage_Iscsi) GetVendorName() (resp string, err error) {
 // Retrieve When applicable, the virtual guest associated with a Storage service.
 func (r Network_Storage_Iscsi) GetVirtualGuest() (resp datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVirtualGuest", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieves an array of volume count limits per location and globally.
+func (r Network_Storage_Iscsi) GetVolumeCountLimits() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeCountLimits", nil, &r.Options, &resp)
 	return
 }
 
@@ -14318,113 +14378,6 @@ func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) 
 // This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date.
 func (r Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "updateAllSubnetSwips", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-type Network_TippingPointReporting struct {
-	Session *session.Session
-	Options sl.Options
-}
-
-// GetNetworkTippingPointReportingService returns an instance of the Network_TippingPointReporting SoftLayer service
-func GetNetworkTippingPointReportingService(sess *session.Session) Network_TippingPointReporting {
-	return Network_TippingPointReporting{Session: sess}
-}
-
-func (r Network_TippingPointReporting) Id(id int) Network_TippingPointReporting {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Network_TippingPointReporting) Mask(mask string) Network_TippingPointReporting {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Network_TippingPointReporting) Filter(filter string) Network_TippingPointReporting {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Network_TippingPointReporting) Limit(limit int) Network_TippingPointReporting {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Network_TippingPointReporting) Offset(offset int) Network_TippingPointReporting {
-	r.Options.Offset = &offset
-	return r
-}
-
-// This method, when given an attack signature ID (available in the return values of getReportForIpAddressOrSubnet and  getSubnetReportForEntireAccount) and an IP Address and subnet mask, returns all attacks for that subnet in the specified time frame and direction.  Once the results have been filtered, additional data is available, including starting and ending times for the attack, originating IP address and port, and destination IP address and port.
-//
-// CVE and Bugtraq information is not available at this level.
-func (r Network_TippingPointReporting) DrillDownAttack(signatureId *string, IpAddress *string, subnetMask *int, timeFrame *int, direction *string) (resp datatypes.Container_Network_IntrusionProtection_SubnetReport, err error) {
-	params := []interface{}{
-		signatureId,
-		IpAddress,
-		subnetMask,
-		timeFrame,
-		direction,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_TippingPointReporting", "drillDownAttack", params, &r.Options, &resp)
-	return
-}
-
-// This method returns the attack statistics for the current user's account and for the entire SoftLayer network.  These attacks are recorded and monitored at the entry point to the network, and represent attacks in both directions.
-//
-// The data returned is:
-// * Top attacks (by attack name) on datacenter Dal01 in the last hour (and last 24 hours)
-// * Top attacks (by attack name) on IPs you own in the last hour (and last 24 hours)
-// * Top IPs attacking IPs you own in the last hour (and last 24 hours)
-// Each one of these lists can contain any number of items, the default is 5.  The usable limit is less than 10, but setting the limit to an abnormally high value will effectively return all records.
-//
-// The data is returned as a collection of SoftLayer_Container_Network_IntrusionProtection_Statistics objects.
-func (r Network_TippingPointReporting) GetMainStatistics(numberOfAttacks *int) (resp []datatypes.Container_Network_IntrusionProtection_Statistics, err error) {
-	params := []interface{}{
-		numberOfAttacks,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_TippingPointReporting", "getMainStatistics", params, &r.Options, &resp)
-	return
-}
-
-// This method expands on the getSubnetReportForEntireAccount method by offering the ability to filter by subnet or IP address. This method is identical to getSubnetReportForEntireAccount, but allows filtering by subnet.  Like in the getSubnetReportForEntireAccount method, CVE and BugTraq IDs are provided, if available.
-//
-// This method should be called once an attack has been identified using getSubnetReportForEntireAccount (in which case "All Subnets" is the subnet) or getReportForIpAddressOrSubnet.
-func (r Network_TippingPointReporting) GetReportForIpAddressOrSubnet(IpAddress *string, subnetMask *int, timeFrame *int, orderBy *string, orderDirection *string) (resp []datatypes.Container_Network_IntrusionProtection_SubnetReport, err error) {
-	params := []interface{}{
-		IpAddress,
-		subnetMask,
-		timeFrame,
-		orderBy,
-		orderDirection,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_TippingPointReporting", "getReportForIpAddressOrSubnet", params, &r.Options, &resp)
-	return
-}
-
-// This method returns specific attacks by name for all subnets on the current user's account.
-//
-// The data returned is stored in SoftLayer_Container_Network_IntrusionProtection_SubnetReport objects, with the "subnet" value set to "All Subnets"
-//
-// The data is separated into "Inbound" and "Outbound" traffic.  A significant amount of outbound attack traffic could indicate that your servers have been compromised.
-//
-// The data returned includes Attack Count, attack name, extended attack description, and IDs that correspond with the BugTraq or CVE databases. BugTraq can be accessed at [http://www.securityfocus.com/vulnerabilities] The CVE database is located at [http://cve.mitre.org/find/index.html]
-//
-// For more detailed information, use the getReportForIpAddressOrSubnet method
-func (r Network_TippingPointReporting) GetSubnetReportForEntireAccount(timeFrame *int, orderBy *string, orderDirection *string, returnSubnetGroups *bool) (resp []datatypes.Container_Network_IntrusionProtection_SubnetReport, err error) {
-	params := []interface{}{
-		timeFrame,
-		orderBy,
-		orderDirection,
-		returnSubnetGroups,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_TippingPointReporting", "getSubnetReportForEntireAccount", params, &r.Options, &resp)
 	return
 }
 

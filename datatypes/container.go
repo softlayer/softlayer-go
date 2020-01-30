@@ -177,7 +177,7 @@ type Container_Account_External_Setup_ProvisioningHoldLifted_Attributes struct {
 	SoftLayerBrandMoveDate *Time `json:"softLayerBrandMoveDate,omitempty" xmlrpc:"softLayerBrandMoveDate,omitempty"`
 }
 
-// SoftLayer_Container_Account_Graph_Outputs <<< EOT
+// Models a single outbound object for a graph of given data sets.
 type Container_Account_Graph_Outputs struct {
 	Entity
 
@@ -2506,114 +2506,6 @@ type Container_Network_Directory_Listing struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// The IntrusionProtection_Event object stores information about individual intrusion protection events.
-//
-// It is a data container that cannot be edited, deleted, or saved.
-//
-// It is returned by many methods in the TippingPointReporting object, but never directly, always as a child of another container object.
-type Container_Network_IntrusionProtection_Event struct {
-	Entity
-
-	// The CVE ID(s), if any, associated with this attack signature.
-	CVEId *string `json:"CVEId,omitempty" xmlrpc:"CVEId,omitempty"`
-
-	// The action that was taken when this attack was discovered.  Can be either "Block" or "Permit"
-	ActionTaken *string `json:"actionTaken,omitempty" xmlrpc:"actionTaken,omitempty"`
-
-	// The number of attacks in this block.  Attacks are grouped differently based on the query performed on the tippingPointReporting object.
-	AttackCount *int `json:"attackCount,omitempty" xmlrpc:"attackCount,omitempty"`
-
-	// Long description of the attack.  May contain links to more information
-	AttackLongDescription *string `json:"attackLongDescription,omitempty" xmlrpc:"attackLongDescription,omitempty"`
-
-	// Name of the attack
-	AttackName *string `json:"attackName,omitempty" xmlrpc:"attackName,omitempty"`
-
-	// The starting timestamp of the attack recorded, in Y-m-d H:i:s format.  May not be set, depending on the type of query performed.
-	BeginTime *string `json:"beginTime,omitempty" xmlrpc:"beginTime,omitempty"`
-
-	// The BugTraq ID(s), if any, associated with this attack signature.
-	BugtraqId *string `json:"bugtraqId,omitempty" xmlrpc:"bugtraqId,omitempty"`
-
-	// The human-readable classification of the attack
-	Classification *string `json:"classification,omitempty" xmlrpc:"classification,omitempty"`
-
-	// The IP Address (as a dotted decimal string) of the machine that was the target of the attack
-	DestinationIpAddress *string `json:"destinationIpAddress,omitempty" xmlrpc:"destinationIpAddress,omitempty"`
-
-	// The port the attack was directed at
-	DestinationPort *int `json:"destinationPort,omitempty" xmlrpc:"destinationPort,omitempty"`
-
-	// The ending timestamp of the attack recorded, in Y-m-d H:i:s format.  May not be set, depending on the type of query performed.
-	EndTime *string `json:"endTime,omitempty" xmlrpc:"endTime,omitempty"`
-
-	// The platform affected by the attack
-	Platform *string `json:"platform,omitempty" xmlrpc:"platform,omitempty"`
-
-	// The protocol used in the attack
-	Protocol *string `json:"protocol,omitempty" xmlrpc:"protocol,omitempty"`
-
-	// The human-readable severity of this attack, from "Low" to "Critical"
-	Severity *string `json:"severity,omitempty" xmlrpc:"severity,omitempty"`
-
-	// Unique ID of the "Signature" in question.  The signature determines the type of attack recorded.  SignatureId is used in the drillDown() function on the TippingPointReporting service
-	SignatureId *string `json:"signatureId,omitempty" xmlrpc:"signatureId,omitempty"`
-
-	// The IP Address (as a dotted decimal string) of the machine originating the attack
-	SourceIpAddress *string `json:"sourceIpAddress,omitempty" xmlrpc:"sourceIpAddress,omitempty"`
-
-	// The port the attack originated from
-	SourcePort *int `json:"sourcePort,omitempty" xmlrpc:"sourcePort,omitempty"`
-}
-
-// The IntrusionProtection_Statistic is used exclusively by the getMainStatistics method on the TippingPointReporting service, and serves mainly as a pair object, storing a name and an attack count.  Name is usually the name of an attack, but it can also be an attacking IP Address
-type Container_Network_IntrusionProtection_Statistic struct {
-	Entity
-
-	// The number of attacks effecting this name over the time period
-	AttackCount *int `json:"attackCount,omitempty" xmlrpc:"attackCount,omitempty"`
-
-	// Either the name of the attack in question, or the attacking IP Address
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
-// The IntrusionProtection_Statistics Type is used as a container for SoftLayer_Container_Network_IntrusionProtection_Statistic objects.  The SoftLayer_Container_Network_IntrusionProtection_Statistics class holds the "header" information, like the item being queried (either account or data center), the time frame, and the grand total of the attacks.
-type Container_Network_IntrusionProtection_Statistics struct {
-	Entity
-
-	// The actual target, either a datacenter name, an account ID, or a subnet IP
-	Target *string `json:"target,omitempty" xmlrpc:"target,omitempty"`
-
-	// The type of the target, right now either "datacenter", "account", or "subnet"
-	TargetType *string `json:"targetType,omitempty" xmlrpc:"targetType,omitempty"`
-
-	// The time frame of the attack, in string form, like "Last 24 hours"
-	TimeFrame *string `json:"timeFrame,omitempty" xmlrpc:"timeFrame,omitempty"`
-
-	// The top attacks for this target over this time frame
-	TopAttacks []Container_Network_IntrusionProtection_Statistic `json:"topAttacks,omitempty" xmlrpc:"topAttacks,omitempty"`
-
-	// Total attacks for this $target over this time frame
-	TotalAttacks *int `json:"totalAttacks,omitempty" xmlrpc:"totalAttacks,omitempty"`
-}
-
-// The IntrusionProtection_SubnetReport object is the container that holds the SoftLayer_Container_Network_IntrusionProtection_Event objects for a particular subnet, or "All Subnets", whatever the case may be.  Subnet, subnet mask, direction, and the individual events are returned by this object.
-type Container_Network_IntrusionProtection_SubnetReport struct {
-	Entity
-
-	// cidr for this report.  If the subnetIpAddress is "All Subnets", this is set to 32 and should be ignored.
-	Cidr *int `json:"cidr,omitempty" xmlrpc:"cidr,omitempty"`
-
-	// Direction of the attack, either 'Inbound' or 'Outbound'
-	Direction *string `json:"direction,omitempty" xmlrpc:"direction,omitempty"`
-
-	// The class SoftLayer_Container_Network_IntrusionProtection_Event objects on this report.
-	Events []Container_Network_IntrusionProtection_Event `json:"events,omitempty" xmlrpc:"events,omitempty"`
-
-	// The "target" of this report, could be an IP address, a subnet's network identifier, or "All Subnets"
-	SubnetIpAddress *string `json:"subnetIpAddress,omitempty" xmlrpc:"subnetIpAddress,omitempty"`
-}
-
 // The LoadBalancer_StatusEntry object stores information about the current status of a particular load balancer service.
 //
 // It is a data container that cannot be edited, deleted, or saved.
@@ -3063,6 +2955,20 @@ type Container_Network_Storage_Backup_Evault_WebCc_Authentication_Details struct
 
 	// no documentation yet
 	WebCcUserPassword *string `json:"webCcUserPassword,omitempty" xmlrpc:"webCcUserPassword,omitempty"`
+}
+
+// no documentation yet
+type Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer struct {
+	Entity
+
+	// no documentation yet
+	DatacenterName *string `json:"datacenterName,omitempty" xmlrpc:"datacenterName,omitempty"`
+
+	// no documentation yet
+	MaximumAvailableCount *int `json:"maximumAvailableCount,omitempty" xmlrpc:"maximumAvailableCount,omitempty"`
+
+	// no documentation yet
+	ProvisionedCount *int `json:"provisionedCount,omitempty" xmlrpc:"provisionedCount,omitempty"`
 }
 
 // SoftLayer's StorageLayer Evault services provides details regarding the the purchased vault.
@@ -3916,6 +3822,14 @@ type Container_Product_Order_Gateway_Appliance_Cluster struct {
 	ClusterOrderType *string `json:"clusterOrderType,omitempty" xmlrpc:"clusterOrderType,omitempty"`
 }
 
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to upgrade a [[SoftLayer_Network_Gateway (type)|network gateway]].
+type Container_Product_Order_Gateway_Appliance_Upgrade struct {
+	Container_Product_Order
+
+	// Identifier for the [[SoftLayer_Network_Gateway (type)|network gateway]] being upgraded.
+	GatewayId *int `json:"gatewayId,omitempty" xmlrpc:"gatewayId,omitempty"`
+}
+
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a hardware security module order with SoftLayer.
 type Container_Product_Order_Hardware_Security_Module struct {
 	Container_Product_Order_Hardware_Server
@@ -4193,6 +4107,9 @@ type Container_Product_Order_Network_Storage_AsAService struct {
 
 	// When ordering performance by IOPS, populate this property with how many.
 	Iops *int `json:"iops,omitempty" xmlrpc:"iops,omitempty"`
+
+	// This can be optionally populated only for duplicate volume ordering. When set, this flag denotes that the duplicate volume being ordered can refresh its data using snapshots from the specified origin volume.
+	IsDependentDuplicateFlag *bool `json:"isDependentDuplicateFlag,omitempty" xmlrpc:"isDependentDuplicateFlag,omitempty"`
 
 	// This must be populated only for replicant volume ordering. It represents the identifier of the origin [[SoftLayer_Network_Storage]].
 	OriginVolumeId *int `json:"originVolumeId,omitempty" xmlrpc:"originVolumeId,omitempty"`
@@ -5637,6 +5554,9 @@ type Container_User_Customer_Profile_Event_HyperWarp_ProfileChange_EventProperti
 
 	// no documentation yet
 	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+
+	// no documentation yet
+	Substate *string `json:"substate,omitempty" xmlrpc:"substate,omitempty"`
 
 	// no documentation yet
 	User_id *string `json:"user_id,omitempty" xmlrpc:"user_id,omitempty"`

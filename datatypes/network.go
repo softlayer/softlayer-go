@@ -3862,6 +3862,12 @@ type Network_Storage struct {
 	// Whether or not a network storage volume is a dependent duplicate.
 	DependentDuplicate *string `json:"dependentDuplicate,omitempty" xmlrpc:"dependentDuplicate,omitempty"`
 
+	// A count of the network storage volumes configured to be dependent duplicates of a volume.
+	DependentDuplicateCount *uint `json:"dependentDuplicateCount,omitempty" xmlrpc:"dependentDuplicateCount,omitempty"`
+
+	// The network storage volumes configured to be dependent duplicates of a volume.
+	DependentDuplicates []Network_Storage `json:"dependentDuplicates,omitempty" xmlrpc:"dependentDuplicates,omitempty"`
+
 	// A count of the events which have taken place on a network storage volume.
 	EventCount *uint `json:"eventCount,omitempty" xmlrpc:"eventCount,omitempty"`
 
@@ -5816,11 +5822,6 @@ type Network_Subnet_Swip_Transaction struct {
 
 	// ID Number of the Subnet for this SWIP transaction.
 	SubnetId *int `json:"subnetId,omitempty" xmlrpc:"subnetId,omitempty"`
-}
-
-// no documentation yet
-type Network_TippingPointReporting struct {
-	Entity
 }
 
 // The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.

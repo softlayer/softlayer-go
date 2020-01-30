@@ -716,7 +716,7 @@ type Account struct {
 	// A count of an account's associated NAS storage volumes.
 	NasNetworkStorageCount *uint `json:"nasNetworkStorageCount,omitempty" xmlrpc:"nasNetworkStorageCount,omitempty"`
 
-	// Whether or not this account can define their own networks.
+	// [Deprecated] Whether or not this account can define their own networks.
 	NetworkCreationFlag *bool `json:"networkCreationFlag,omitempty" xmlrpc:"networkCreationFlag,omitempty"`
 
 	// A count of all network gateway devices on this account.
