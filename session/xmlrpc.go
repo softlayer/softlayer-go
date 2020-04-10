@@ -128,10 +128,10 @@ func (x *XmlRpcTransport) DoRequest(
 	mask := options.Mask
 
 	if mask != "" {
-		if !strings.HasPrefix(mask, "mask[")  {
+		if !strings.HasPrefix(mask, "mask[") {
 			mask = fmt.Sprintf("mask[%s]", mask)
-		} 
-		headers["SoftLayer_ObjectMask"] = map[string]string{"mask":mask}
+		}
+		headers["SoftLayer_ObjectMask"] = map[string]string{"mask": mask}
 	}
 
 	if options.Filter != "" {
