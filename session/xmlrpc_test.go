@@ -20,7 +20,10 @@ import (
 	"testing"
 
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"reflect"
+	"strings"
 
 	"github.com/jarcoal/httpmock"
 	"github.com/softlayer/softlayer-go/sl"
@@ -74,6 +77,26 @@ var xmltestcases = []xmltestcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `<?xml version="1.0" encoding="utf-8"?><params><param><value><int>100</int></value></param></params>`),
 		expected:    100,
+		expectError: false,
+	},
+	{
+		description: "Test Object Mask mask[]",
+		service:     "SoftLayer_Account",
+		method:      "getVirtualGuests",
+		args:        nil,
+		options:     sl.Options{Mask: "mask[id,hostname]"},
+		responder:   responderCheckObjectMask,
+		expected:    "OK",
+		expectError: false,
+	},
+	{
+		description: "Test Object Mask no mask[]",
+		service:     "SoftLayer_Account",
+		method:      "getVirtualGuests",
+		args:        nil,
+		options:     sl.Options{Mask: "id,hostname"},
+		responder:   responderCheckObjectMask,
+		expected:    "OK",
 		expectError: false,
 	},
 }
@@ -147,6 +170,19 @@ func TestXmlRpc(t *testing.T) {
 		}
 		teardownxml()
 	}
+}
+
+func responderCheckObjectMask(req *http.Request) (*http.Response, error) {
+	body, _ := ioutil.ReadAll(req.Body)
+	string_body := string(body)
+	// fmt.Printf("Body: %v\n", string_body)
+	message := "FAILED"
+	if strings.Contains(string_body, "<name>mask</name><value><string>mask[id,hostname]</string>") {
+		message = "OK"
+	}
+
+	resp := httpmock.NewStringResponse(200, `<?xml version="1.0" encoding="utf-8"?><params><param><value>`+message+`</value></param></params>`)
+	return resp, nil
 }
 
 func setupxml(tc xmltestcase) {
