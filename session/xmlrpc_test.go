@@ -87,7 +87,7 @@ var xmltestcases = []xmltestcase{
 		options:     sl.Options{Mask: "mask[id,hostname]"},
 		responder:   responderCheckObjectMask,
 		expected:    "OK",
-		expectError: false,		
+		expectError: false,
 	},
 	{
 		description: "Test Object Mask no mask[]",
@@ -97,10 +97,9 @@ var xmltestcases = []xmltestcase{
 		options:     sl.Options{Mask: "id,hostname"},
 		responder:   responderCheckObjectMask,
 		expected:    "OK",
-		expectError: false,		
+		expectError: false,
 	},
 }
-
 
 func TestXmlRpc(t *testing.T) {
 	// The structure for this test is inspired heavily from here:
@@ -173,8 +172,6 @@ func TestXmlRpc(t *testing.T) {
 	}
 }
 
-
-
 func responderCheckObjectMask(req *http.Request) (*http.Response, error) {
 	body, _ := ioutil.ReadAll(req.Body)
 	string_body := string(body)
@@ -184,9 +181,9 @@ func responderCheckObjectMask(req *http.Request) (*http.Response, error) {
 		message = "OK"
 	}
 
-	resp := httpmock.NewStringResponse(200, `<?xml version="1.0" encoding="utf-8"?><params><param><value>` + message + `</value></param></params>`)
+	resp := httpmock.NewStringResponse(200, `<?xml version="1.0" encoding="utf-8"?><params><param><value>`+message+`</value></param></params>`)
 	return resp, nil
-}	
+}
 
 func setupxml(tc xmltestcase) {
 	httpmock.RegisterResponder(

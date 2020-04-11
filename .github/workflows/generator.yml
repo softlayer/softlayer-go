@@ -1,0 +1,24 @@
+name: Generator
+
+on:
+  schedule:
+    # Run  Monday/Wednesday 5pm
+    - cron '0 17 * * 1,3'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Generate SoftLayer classes
+      run: |
+        make generate
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Updated generated classes on `date`" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}

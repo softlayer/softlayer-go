@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/softlayer/softlayer-go.svg?branch=master)](https://travis-ci.org/softlayer/softlayer-go)
 [![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+![Go](https://github.com/softlayer/softlayer-go/workflows/Go/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/softlayer/softlayer-go/badge.svg?branch=master)](https://coveralls.io/github/softlayer/softlayer-go?branch=master)
 
 The Official and Complete SoftLayer API Client for Golang (the Go programming language).
 
