@@ -886,7 +886,7 @@ type Network_Bandwidth_Version1_Allotment_Type struct {
 	ShortDescription *string `json:"shortDescription,omitempty" xmlrpc:"shortDescription,omitempty"`
 }
 
-// The SoftLayer_Network_Bandwidth_Version1_Host type contains general information used to the route a server to its pod.
+// [DEPRECATED] The SoftLayer_Network_Bandwidth_Version1_Host type contains general information used to the route a server to its pod.
 type Network_Bandwidth_Version1_Host struct {
 	Entity
 
@@ -894,17 +894,17 @@ type Network_Bandwidth_Version1_Host struct {
 	PodId *int `json:"podId,omitempty" xmlrpc:"podId,omitempty"`
 }
 
-// All bandwidth tracking is maintained through the switch that the bandwidth is used through.  All bandwidth is stored in a "pod" repository.  An interface links the hardware switch with the pod repository identification number. This is only relevant to bandwidth data.  It is not common to use this.
+// [DEPRECATED] All bandwidth tracking is maintained through the switch that the bandwidth is used through.  All bandwidth is stored in a "pod" repository.  An interface links the hardware switch with the pod repository identification number. This is only relevant to bandwidth data.  It is not common to use this.
 type Network_Bandwidth_Version1_Interface struct {
 	Entity
 
-	// The host for an interface. This is not to be confused with a SoftLayer hardware
+	// [DEPRECATED] The host for an interface. This is not to be confused with SoftLayer Hardware
 	Host *Network_Bandwidth_Version1_Host `json:"host,omitempty" xmlrpc:"host,omitempty"`
 
 	// A interface's host.  The host stores the pod number for the bandwidth data.
 	HostId *int `json:"hostId,omitempty" xmlrpc:"hostId,omitempty"`
 
-	// The switch for an interface.
+	// [DEPRECATED] The switch for an interface.
 	NetworkComponent *Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
 
 	// The network component for this interface.
@@ -945,7 +945,7 @@ type Network_Bandwidth_Version1_Usage_Detail struct {
 	Day *Time `json:"day,omitempty" xmlrpc:"day,omitempty"`
 }
 
-// The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
+// [DEPRECATED] The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
 type Network_Bandwidth_Version1_Usage_Detail_Total struct {
 	Entity
 
@@ -1037,6 +1037,16 @@ type Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Entity
 }
 
+// This data type models a purge group event that occurs in caching server. It contains a reference to a mapping configuration and the path to execute the purge on.
+type Network_CdnMarketplace_Configuration_Cache_PurgeGroup struct {
+	Entity
+}
+
+// This data type models a purge history event that occurs in caching server. The purge group history will be deleted after 15 days. The possible purge status of each history can be 'SUCCESS', "FAILED" or "IN_PROGRESS".
+type Network_CdnMarketplace_Configuration_Cache_PurgeHistory struct {
+	Entity
+}
+
 // This data type models a purge event that occurs repetitively and automatically in caching server after a set interval of time. A time to live instance contains a reference to a mapping configuration, the path to execute the purge on, the result of the purge, and the time interval after which the purge will be executed.
 type Network_CdnMarketplace_Configuration_Cache_TimeToLive struct {
 	Entity
@@ -1110,7 +1120,7 @@ type Network_Component struct {
 	// A network component's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// A hardware switch's interface to the bandwidth pod.
+	// [DEPRECATED] A hardware switch's interface to the bandwidth pod.
 	Interface *Network_Bandwidth_Version1_Interface `json:"interface,omitempty" xmlrpc:"interface,omitempty"`
 
 	// A count of the records of all IP addresses bound to a network component.
@@ -1910,6 +1920,26 @@ type Network_Gateway_Member_Attribute struct {
 }
 
 // no documentation yet
+type Network_Gateway_Precheck struct {
+	Entity
+
+	// Category name
+	Category *string `json:"category,omitempty" xmlrpc:"category,omitempty"`
+
+	// Gateway precheck status
+	GatewayReadinessValue *string `json:"gatewayReadinessValue,omitempty" xmlrpc:"gatewayReadinessValue,omitempty"`
+
+	// The gateway member for this precheck.
+	MemberId *int `json:"memberId,omitempty" xmlrpc:"memberId,omitempty"`
+
+	// Gateway precheck status
+	MemberReadinessValue *string `json:"memberReadinessValue,omitempty" xmlrpc:"memberReadinessValue,omitempty"`
+
+	// The precheck error status of the member
+	ReturnCode *int `json:"returnCode,omitempty" xmlrpc:"returnCode,omitempty"`
+}
+
+// no documentation yet
 type Network_Gateway_Status struct {
 	Entity
 
@@ -2159,7 +2189,7 @@ type Network_LBaaS_L7Member struct {
 type Network_LBaaS_L7Policy struct {
 	Entity
 
-	// The Action to take if the rules belonging to this policy match. It can be set to any of the following values: REDIRECT_URL, REDIRECT_POOL, REJECT.
+	// The Action to take if the rules belonging to this policy match. It can be set to any of the following values: REDIRECT_URL, REDIRECT_POOL, REDIRECT_HTTPS, REJECT.
 	Action *string `json:"action,omitempty" xmlrpc:"action,omitempty"`
 
 	// Specifies when a L7 Policy was created.
@@ -2189,7 +2219,7 @@ type Network_LBaaS_L7Policy struct {
 	// The UUID of the L7 pool object referenced by the policy when the policy action is set to REDIRECT_POOL
 	RedirectL7PoolUuid *string `json:"redirectL7PoolUuid,omitempty" xmlrpc:"redirectL7PoolUuid,omitempty"`
 
-	// The URL to which traffic is redirected when the action is set to REDIRECT_URL.
+	// The URL to which traffic is redirected when the action is set to REDIRECT_URL. Or the port to which listener traffic is redirected to when the action is set to REDIRECT_HTTPS.
 	RedirectUrl *string `json:"redirectUrl,omitempty" xmlrpc:"redirectUrl,omitempty"`
 
 	// The UUID of a Policy.
@@ -2301,6 +2331,9 @@ type Network_LBaaS_L7SessionAffinity struct {
 type Network_LBaaS_Listener struct {
 	Entity
 
+	// maximum idle time in seconds(Range: 1 to 7200), after which the load balancer brings down the
+	ClientTimeout *int `json:"clientTimeout,omitempty" xmlrpc:"clientTimeout,omitempty"`
+
 	// Limit of connections a listener can accept
 	ConnectionLimit *int `json:"connectionLimit,omitempty" xmlrpc:"connectionLimit,omitempty"`
 
@@ -2330,6 +2363,9 @@ type Network_LBaaS_Listener struct {
 
 	// The provisioning status of listener.
 	ProvisioningStatus *string `json:"provisioningStatus,omitempty" xmlrpc:"provisioningStatus,omitempty"`
+
+	// maximum idle time in seconds(Range: 1 to 7200), after which the load balancer brings down the
+	ServerTimeout *int `json:"serverTimeout,omitempty" xmlrpc:"serverTimeout,omitempty"`
 
 	// This references to SSL/TLS certificate (optional) for a listener
 	TlsCertificateId *int `json:"tlsCertificateId,omitempty" xmlrpc:"tlsCertificateId,omitempty"`
@@ -2471,6 +2507,9 @@ type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
 	// <<EOT
 	BackendProtocol *string `json:"backendProtocol,omitempty" xmlrpc:"backendProtocol,omitempty"`
 
+	// maximum idle time in seconds(Range: 1 to 7200), after which the load balancer brings down the client-side connection
+	ClientTimeout *int `json:"clientTimeout,omitempty" xmlrpc:"clientTimeout,omitempty"`
+
 	// Frontends port
 	FrontendPort *int `json:"frontendPort,omitempty" xmlrpc:"frontendPort,omitempty"`
 
@@ -2485,6 +2524,9 @@ type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
 
 	// Maximum number of allowed connections
 	MaxConn *int `json:"maxConn,omitempty" xmlrpc:"maxConn,omitempty"`
+
+	// maximum idle time in seconds(Range: 1 to 7200), after which the load balancer brings down the server-side connection
+	ServerTimeout *int `json:"serverTimeout,omitempty" xmlrpc:"serverTimeout,omitempty"`
 
 	// Sessions cookie name
 	SessionCookieName *string `json:"sessionCookieName,omitempty" xmlrpc:"sessionCookieName,omitempty"`
@@ -3694,6 +3736,11 @@ type Network_Service_Resource_Attribute_Type struct {
 
 	// no documentation yet
 	Keyname *string `json:"keyname,omitempty" xmlrpc:"keyname,omitempty"`
+}
+
+// The SoftLayer_Network_Service_Resource_CosStor is used to store information related to COS service.
+type Network_Service_Resource_CosStor struct {
+	Network_Service_Resource
 }
 
 // no documentation yet

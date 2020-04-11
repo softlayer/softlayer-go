@@ -104,7 +104,7 @@ func (r User_Customer) AddBulkHardwareAccess(hardwareIds []int) (resp bool, err 
 	return
 }
 
-// Add multiple permissions to a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. addBulkPortalPermission() does not attempt to add permissions already assigned to the user.
+// Add multiple permissions to a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. addBulkPortalPermission() does not attempt to add permissions already assigned to the user.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -182,7 +182,7 @@ func (r User_Customer) AddNotificationSubscriber(notificationKeyName *string) (r
 	return
 }
 
-// Add a permission to a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. If the user already has the permission you're attempting to add then addPortalPermission() returns true.
+// Add a permission to a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. If the user already has the permission you're attempting to add then addPortalPermission() returns true.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -222,7 +222,7 @@ func (r User_Customer) AddVirtualGuestAccess(virtualGuestId *int) (resp bool, er
 //
 // The new parent must be a user on the same account, and must not be a child of this user.  A user is not allowed to change their own parent.
 //
-// If the cascadeFlag is set to false, then an exception will be thrown if the new parent does not have all of the permissions that this user possesses.  If the cascadeFlag is set to true, then permissions will be removed from this user and the descendants of this user as necessary so that no children of the parent will have permissions that the parent does not possess.
+// If the cascadeFlag is set to false, then an exception will be thrown if the new parent does not have all of the permissions that this user possesses.  If the cascadeFlag is set to true, then permissions will be removed from this user and the descendants of this user as necessary so that no children of the parent will have permissions that the parent does not possess. However, setting the cascadeFlag to true will not remove the access all device permissions from this user. The customer portal will need to be used to remove these permissions.
 func (r User_Customer) AssignNewParentId(parentId *int, cascadePermissionsFlag *bool) (resp datatypes.User_Customer, err error) {
 	params := []interface{}{
 		parentId,
@@ -428,7 +428,7 @@ func (r User_Customer) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHo
 	return
 }
 
-// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IBMid. In that case, we will set the link from the IBMid to that user as default, and return the account of which that user is a member. Invoke this only on IBMid-authenticated users.
+// This method is not applicable to legacy SoftLayer-authenticated users and can only be invoked for IBMid-authenticated users.
 func (r User_Customer) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -818,18 +818,6 @@ func (r User_Customer) IsMasterUser() (resp bool, err error) {
 	return
 }
 
-// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, any password verified will return false. In the future, this method will be completely removed.
-//
-// Determine if a string is the given user's login password to the SoftLayer community forums.
-func (r User_Customer) IsValidForumPassword(password *string) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		password,
-	}
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "isValidForumPassword", params, &r.Options, &resp)
-	return
-}
-
 // Determine if a string is the given user's login password to the SoftLayer customer portal.
 func (r User_Customer) IsValidPortalPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -928,7 +916,7 @@ func (r User_Customer) RemoveBulkHardwareAccess(hardwareIds []int) (resp bool, e
 	return
 }
 
-// Remove (revoke) multiple permissions from a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. removePortalPermission() does not attempt to remove permissions that are not assigned to the user.
+// Remove (revoke) multiple permissions from a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. removePortalPermission() does not attempt to remove permissions that are not assigned to the user.
 //
 // Users can grant or revoke permissions to their child users, but not to themselves. An account's master has all portal permissions and can grant permissions for any of the other users on their account.
 //
@@ -998,7 +986,7 @@ func (r User_Customer) RemoveHardwareAccess(hardwareId *int) (resp bool, err err
 	return
 }
 
-// Remove (revoke) a permission from a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. If the user does not have the permission you're attempting to remove then removePortalPermission() returns true.
+// Remove (revoke) a permission from a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. If the user does not have the permission you're attempting to remove then removePortalPermission() returns true.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -1108,27 +1096,6 @@ func (r User_Customer) SilentlyMigrateUserOpenIdConnect(providerType *string) (r
 	return
 }
 
-// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, this method will return false. In the future, this method will be completely removed.
-//
-// Update a user's password on the SoftLayer community forums. As with portal passwords, user forum passwords must match the following restrictions. Forum passwords must...
-// * ...be over eight characters long.
-// * ...be under twenty characters long.
-// * ...contain at least one uppercase letter
-// * ...contain at least one lowercase letter
-// * ...contain at least one number
-// * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ + =
-// * ...not match your username
-// * ...not match your portal password
-// Finally, users can only update their own password.
-func (r User_Customer) UpdateForumPassword(password *string) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		password,
-	}
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "updateForumPassword", params, &r.Options, &resp)
-	return
-}
-
 // Update the active status for a notification that the user is subscribed to. A notification along with an active flag can be supplied to update the active status for a particular notification subscription.
 func (r User_Customer) UpdateNotificationSubscriber(notificationKeyName *string, active *int) (resp bool, err error) {
 	params := []interface{}{
@@ -1168,7 +1135,6 @@ func (r User_Customer) UpdateSubscriberDeliveryMethod(notificationKeyName *strin
 // * ...contain at least one number
 // * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ =
 // * ...not match your username
-// * ...not match your forum password
 // Finally, users can only update their own VPN password. An account's master user can update any of their account users' VPN passwords.
 func (r User_Customer) UpdateVpnPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -2557,7 +2523,7 @@ func (r User_Customer_OpenIdConnect) AddBulkHardwareAccess(hardwareIds []int) (r
 	return
 }
 
-// Add multiple permissions to a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. addBulkPortalPermission() does not attempt to add permissions already assigned to the user.
+// Add multiple permissions to a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. addBulkPortalPermission() does not attempt to add permissions already assigned to the user.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -2635,7 +2601,7 @@ func (r User_Customer_OpenIdConnect) AddNotificationSubscriber(notificationKeyNa
 	return
 }
 
-// Add a permission to a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. If the user already has the permission you're attempting to add then addPortalPermission() returns true.
+// Add a permission to a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. If the user already has the permission you're attempting to add then addPortalPermission() returns true.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -2675,7 +2641,7 @@ func (r User_Customer_OpenIdConnect) AddVirtualGuestAccess(virtualGuestId *int) 
 //
 // The new parent must be a user on the same account, and must not be a child of this user.  A user is not allowed to change their own parent.
 //
-// If the cascadeFlag is set to false, then an exception will be thrown if the new parent does not have all of the permissions that this user possesses.  If the cascadeFlag is set to true, then permissions will be removed from this user and the descendants of this user as necessary so that no children of the parent will have permissions that the parent does not possess.
+// If the cascadeFlag is set to false, then an exception will be thrown if the new parent does not have all of the permissions that this user possesses.  If the cascadeFlag is set to true, then permissions will be removed from this user and the descendants of this user as necessary so that no children of the parent will have permissions that the parent does not possess. However, setting the cascadeFlag to true will not remove the access all device permissions from this user. The customer portal will need to be used to remove these permissions.
 func (r User_Customer_OpenIdConnect) AssignNewParentId(parentId *int, cascadePermissionsFlag *bool) (resp datatypes.User_Customer, err error) {
 	params := []interface{}{
 		parentId,
@@ -2916,7 +2882,7 @@ func (r User_Customer_OpenIdConnect) GetDedicatedHosts() (resp []datatypes.Virtu
 	return
 }
 
-// This API gets the default account for the OpenIdConnect identity that is linked to the current SoftLayer user identity. If there is no default present, the API returns null, except in the special case where we find one active user linked to the IAMid. In that case, we will set the link from the IAMid to that user as default, and return the account of which that user is a member. Invoke this only on IAMid-authenticated users.
+// This API gets the account associated with the default user for the OpenIdConnect identity that is linked to the current active SoftLayer user identity. When a single active user is found for that IAMid, it becomes the default user and the associated account is returned. When multiple default users are found only the first is preserved and the associated account is returned (remaining defaults see their default flag unset). If the current SoftLayer user identity isn't linked to any OpenIdConnect identity, or if none of the linked users were found as defaults, the API returns null. Invoke this only on IAMid-authenticated users.
 func (r User_Customer_OpenIdConnect) GetDefaultAccount(providerType *string) (resp datatypes.Account, err error) {
 	params := []interface{}{
 		providerType,
@@ -3350,18 +3316,6 @@ func (r User_Customer_OpenIdConnect) IsMasterUser() (resp bool, err error) {
 	return
 }
 
-// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, any password verified will return false. In the future, this method will be completely removed.
-//
-// Determine if a string is the given user's login password to the SoftLayer community forums.
-func (r User_Customer_OpenIdConnect) IsValidForumPassword(password *string) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		password,
-	}
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "isValidForumPassword", params, &r.Options, &resp)
-	return
-}
-
 // Determine if a string is the given user's login password to the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) IsValidPortalPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -3460,7 +3414,7 @@ func (r User_Customer_OpenIdConnect) RemoveBulkHardwareAccess(hardwareIds []int)
 	return
 }
 
-// Remove (revoke) multiple permissions from a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. removePortalPermission() does not attempt to remove permissions that are not assigned to the user.
+// Remove (revoke) multiple permissions from a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. removePortalPermission() does not attempt to remove permissions that are not assigned to the user.
 //
 // Users can grant or revoke permissions to their child users, but not to themselves. An account's master has all portal permissions and can grant permissions for any of the other users on their account.
 //
@@ -3530,7 +3484,7 @@ func (r User_Customer_OpenIdConnect) RemoveHardwareAccess(hardwareId *int) (resp
 	return
 }
 
-// Remove (revoke) a permission from a portal user's permission set. [[Permissions]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. If the user does not have the permission you're attempting to remove then removePortalPermission() returns true.
+// Remove (revoke) a permission from a portal user's permission set. [[SoftLayer_User_Customer_CustomerPermission_Permission]] control which features in the SoftLayer customer portal and API a user may use. Removing a user's permission will affect that user's portal and API access. If the user does not have the permission you're attempting to remove then removePortalPermission() returns true.
 //
 // Users can assign permissions to their child users, but not to themselves. An account's master has all portal permissions and can set permissions for any of the other users on their account.
 //
@@ -3640,27 +3594,6 @@ func (r User_Customer_OpenIdConnect) SilentlyMigrateUserOpenIdConnect(providerTy
 	return
 }
 
-// This method is deprecated! SoftLayer Community Forums no longer exist, therefore, this method will return false. In the future, this method will be completely removed.
-//
-// Update a user's password on the SoftLayer community forums. As with portal passwords, user forum passwords must match the following restrictions. Forum passwords must...
-// * ...be over eight characters long.
-// * ...be under twenty characters long.
-// * ...contain at least one uppercase letter
-// * ...contain at least one lowercase letter
-// * ...contain at least one number
-// * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ + =
-// * ...not match your username
-// * ...not match your portal password
-// Finally, users can only update their own password.
-func (r User_Customer_OpenIdConnect) UpdateForumPassword(password *string) (err error) {
-	var resp datatypes.Void
-	params := []interface{}{
-		password,
-	}
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "updateForumPassword", params, &r.Options, &resp)
-	return
-}
-
 // Update the active status for a notification that the user is subscribed to. A notification along with an active flag can be supplied to update the active status for a particular notification subscription.
 func (r User_Customer_OpenIdConnect) UpdateNotificationSubscriber(notificationKeyName *string, active *int) (resp bool, err error) {
 	params := []interface{}{
@@ -3700,7 +3633,6 @@ func (r User_Customer_OpenIdConnect) UpdateSubscriberDeliveryMethod(notification
 // * ...contain at least one number
 // * ...contain one of the special characters _ - | @ . , ? / ! ~ # $ % ^ & * ( ) { } [ ] \ =
 // * ...not match your username
-// * ...not match your forum password
 // Finally, users can only update their own VPN password. An account's master user can update any of their account users' VPN passwords.
 func (r User_Customer_OpenIdConnect) UpdateVpnPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
@@ -4378,7 +4310,7 @@ func (r User_Permission_Group_Type) Offset(offset int) User_Permission_Group_Typ
 	return r
 }
 
-// Retrieve
+// Retrieve The groups that are of this type.
 func (r User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group_Type", "getGroups", nil, &r.Options, &resp)
 	return

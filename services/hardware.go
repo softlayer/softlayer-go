@@ -87,7 +87,7 @@ func (r Hardware) AllowAccessToNetworkStorageList(networkStorageTemplateObjects 
 	return
 }
 
-// Captures a Flex Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
+// Captures an Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
 func (r Hardware) CaptureImage(captureTemplate *datatypes.Container_Disk_Image_Capture_Template) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		captureTemplate,
@@ -2108,7 +2108,7 @@ func (r Hardware_Router) AllowAccessToNetworkStorageList(networkStorageTemplateO
 	return
 }
 
-// Captures a Flex Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
+// Captures an Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
 func (r Hardware_Router) CaptureImage(captureTemplate *datatypes.Container_Disk_Image_Capture_Template) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		captureTemplate,
@@ -3711,7 +3711,7 @@ func (r Hardware_SecurityModule) BootToRescueLayer(noOsBootEnvironment *string) 
 	return
 }
 
-// Captures a Flex Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
+// Captures an Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
 func (r Hardware_SecurityModule) CaptureImage(captureTemplate *datatypes.Container_Disk_Image_Capture_Template) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		captureTemplate,
@@ -4406,6 +4406,12 @@ func (r Hardware_SecurityModule) GetBootModeOptions() (resp []string, err error)
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_SecurityModule) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
+func (r Hardware_SecurityModule) GetCaptureEnabledFlag() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -5986,6 +5992,12 @@ func (r Hardware_SecurityModule) SparePool(action *string, newOrder *bool) (resp
 	return
 }
 
+// Test the RAID Alert service by sending the service a request to store a test email for this server. The server must have an account ID and MAC address.  A RAID controller must also be installed.
+func (r Hardware_SecurityModule) TestRaidAlertService() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "testRaidAlertService", nil, &r.Options, &resp)
+	return
+}
+
 // Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
 func (r Hardware_SecurityModule) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
 	params := []interface{}{
@@ -6101,7 +6113,7 @@ func (r Hardware_SecurityModule750) BootToRescueLayer(noOsBootEnvironment *strin
 	return
 }
 
-// Captures a Flex Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
+// Captures an Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
 func (r Hardware_SecurityModule750) CaptureImage(captureTemplate *datatypes.Container_Disk_Image_Capture_Template) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		captureTemplate,
@@ -6796,6 +6808,12 @@ func (r Hardware_SecurityModule750) GetBootModeOptions() (resp []string, err err
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_SecurityModule750) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
+func (r Hardware_SecurityModule750) GetCaptureEnabledFlag() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -8376,6 +8394,12 @@ func (r Hardware_SecurityModule750) SparePool(action *string, newOrder *bool) (r
 	return
 }
 
+// Test the RAID Alert service by sending the service a request to store a test email for this server. The server must have an account ID and MAC address.  A RAID controller must also be installed.
+func (r Hardware_SecurityModule750) TestRaidAlertService() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "testRaidAlertService", nil, &r.Options, &resp)
+	return
+}
+
 // Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
 func (r Hardware_SecurityModule750) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
 	params := []interface{}{
@@ -8491,7 +8515,7 @@ func (r Hardware_Server) BootToRescueLayer(noOsBootEnvironment *string) (resp bo
 	return
 }
 
-// Captures a Flex Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
+// Captures an Image of the hard disk on the physical machine, based on the capture template parameter. Returns the image template group containing the disk image.
 func (r Hardware_Server) CaptureImage(captureTemplate *datatypes.Container_Disk_Image_Capture_Template) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		captureTemplate,
@@ -9186,6 +9210,12 @@ func (r Hardware_Server) GetBootModeOptions() (resp []string, err error) {
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_Server) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
+func (r Hardware_Server) GetCaptureEnabledFlag() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -10763,6 +10793,12 @@ func (r Hardware_Server) SparePool(action *string, newOrder *bool) (resp bool, e
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "sparePool", params, &r.Options, &resp)
+	return
+}
+
+// Test the RAID Alert service by sending the service a request to store a test email for this server. The server must have an account ID and MAC address.  A RAID controller must also be installed.
+func (r Hardware_Server) TestRaidAlertService() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "testRaidAlertService", nil, &r.Options, &resp)
 	return
 }
 

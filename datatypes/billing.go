@@ -2145,7 +2145,7 @@ type Billing_Order_Type struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// The SoftLayer_Billing_Payment_Card_ChangeRequest data type contains general information relating to attempted credit card information changes.
+// The SoftLayer_Billing_Payment_Card_ChangeRequest data type contains general information relating to attempted credit card information changes. This supports enablement of 3D Secure via Cardinal Cruise implementation that allows for credit card authentication and is currently limited to specified merchants.
 type Billing_Payment_Card_ChangeRequest struct {
 	Entity
 
@@ -2233,6 +2233,16 @@ type Billing_Payment_Card_ChangeRequest struct {
 	// the notes stored about a customer's payment card.
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 
+	// The purpose of this property is to allow enablement of 3D Secure (3DS). This is the Reference ID that corresponds to the device data for Payer Authentication. In order to properly enable 3DS, this will require implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "DFReferenceId / ReferenceId" to populate this property accordingly.
+	PayerAuthenticationEnrollmentReferenceId *string `json:"payerAuthenticationEnrollmentReferenceId,omitempty" xmlrpc:"payerAuthenticationEnrollmentReferenceId,omitempty"`
+
+	// "Continue with Consumer Authentication" decoded response JWT (JSON Web Token) after successful authentication. The response is part of the implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "Continue with Consumer Authentication" to populate this property accordingly based on the CCA response.
+	PayerAuthenticationWebToken *string `json:"payerAuthenticationWebToken,omitempty" xmlrpc:"payerAuthenticationWebToken,omitempty"`
+
 	// no documentation yet
 	PaymentRoleId *int `json:"paymentRoleId,omitempty" xmlrpc:"paymentRoleId,omitempty"`
 
@@ -2249,7 +2259,7 @@ type Billing_Payment_Card_ChangeRequest struct {
 	TicketId *int `json:"ticketId,omitempty" xmlrpc:"ticketId,omitempty"`
 }
 
-// The SoftLayer_Billing_Payment_Card_ManualPayment data type contains general information relating to attempted credit card information changes.
+// The SoftLayer_Billing_Payment_Card_ManualPayment data type contains general information related to requesting a manual payment. This supports enablement of 3D Secure via Cardinal Cruise implementation that allows for credit card authentication and is currently limited to specified merchants.
 type Billing_Payment_Card_ManualPayment struct {
 	Entity
 
@@ -2354,6 +2364,16 @@ type Billing_Payment_Card_ManualPayment struct {
 
 	// Notes generated as a result of the payment request.
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
+
+	// The purpose of this property is to allow enablement of 3D Secure (3DS). This is the Reference ID that corresponds to the device data for Payer Authentication. In order to properly enable 3DS, this will require implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "DFReferenceId / ReferenceId" to populate this property accordingly.
+	PayerAuthenticationEnrollmentReferenceId *string `json:"payerAuthenticationEnrollmentReferenceId,omitempty" xmlrpc:"payerAuthenticationEnrollmentReferenceId,omitempty"`
+
+	// "Continue with Consumer Authentication" decoded response JWT (JSON Web Token) after successful authentication. The response is part of the implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "Continue with Consumer Authentication" to populate this property accordingly based on the CCA response.
+	PayerAuthenticationWebToken *string `json:"payerAuthenticationWebToken,omitempty" xmlrpc:"payerAuthenticationWebToken,omitempty"`
 
 	// The description of the type of payment sent in a change transaction.
 	PaymentType *string `json:"paymentType,omitempty" xmlrpc:"paymentType,omitempty"`

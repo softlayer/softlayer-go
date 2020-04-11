@@ -1013,7 +1013,7 @@ type Account struct {
 	// The postal code of the mailing address belonging to an account.
 	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
 
-	// Boolean flag dictating whether or not this account supports PPTP VPN Access.
+	// (Deprecated) Boolean flag dictating whether or not this account supports PPTP VPN Access.
 	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
 
 	// A count of an account's associated portal users with PPTP VPN access. (Deprecated)

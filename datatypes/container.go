@@ -1147,6 +1147,32 @@ type Container_Bandwidth_Projection struct {
 }
 
 // no documentation yet
+type Container_Bandwidth_Usage struct {
+	Entity
+
+	// no documentation yet
+	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate,omitempty"`
+
+	// no documentation yet
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
+
+	// no documentation yet
+	PrivateInUsage *Float64 `json:"privateInUsage,omitempty" xmlrpc:"privateInUsage,omitempty"`
+
+	// no documentation yet
+	PrivateOutUsage *Float64 `json:"privateOutUsage,omitempty" xmlrpc:"privateOutUsage,omitempty"`
+
+	// no documentation yet
+	PublicInUsage *Float64 `json:"publicInUsage,omitempty" xmlrpc:"publicInUsage,omitempty"`
+
+	// no documentation yet
+	PublicOutUsage *Float64 `json:"publicOutUsage,omitempty" xmlrpc:"publicOutUsage,omitempty"`
+
+	// no documentation yet
+	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
+}
+
+// no documentation yet
 type Container_Billing_Currency_Country struct {
 	Entity
 
@@ -2180,6 +2206,61 @@ type Container_Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 }
 
+// The SoftLayer_Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup data type contains information for specific responses from the Purge Group API. Each of the Purge Group APIs returns a collection of this type
+type Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup struct {
+	Entity
+
+	// Date in which record is created
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// A identifier that is unique to purge group.
+	GroupUniqueId *string `json:"groupUniqueId,omitempty" xmlrpc:"groupUniqueId,omitempty"`
+
+	// The Unix timestamp of the last purge.
+	LastPurgeDate *Time `json:"lastPurgeDate,omitempty" xmlrpc:"lastPurgeDate,omitempty"`
+
+	// Purge Group name. The favorite group name must be unique, but non-favorite groups do not have this limitation
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// The following options are available to create a Purge Group: option 1: only purge the paths in the group, but don't save as favorite. option 2: only save the purge group as favorite, but don't purge paths. option 3: save the purge group as favorite and also purge paths.
+	Option *int `json:"option,omitempty" xmlrpc:"option,omitempty"`
+
+	// Total number of purge paths.
+	PathCount *int `json:"pathCount,omitempty" xmlrpc:"pathCount,omitempty"`
+
+	// A collection of purge paths.
+	Paths []string `json:"paths,omitempty" xmlrpc:"paths,omitempty"`
+
+	// The purge's status when the input option field is 1 or 3. Status can be SUCCESS, FAILED, or IN_PROGRESS.
+	PurgeStatus *string `json:"purgeStatus,omitempty" xmlrpc:"purgeStatus,omitempty"`
+
+	// Type of the Purge Group, currently SAVED or UNSAVED.
+	Saved *string `json:"saved,omitempty" xmlrpc:"saved,omitempty"`
+
+	// A identifier that is unique to domain mapping.
+	UniqueId *string `json:"uniqueId,omitempty" xmlrpc:"uniqueId,omitempty"`
+}
+
+// The SoftLayer_Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory data type contains information for specific responses from the Purge Group API and Purge History API.
+type Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory struct {
+	Entity
+
+	// Date in which record is created
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// Purge Group name. The favorite group name must be unique, but un-favorite groups do not have this limitation
+	GroupName *string `json:"groupName,omitempty" xmlrpc:"groupName,omitempty"`
+
+	// Purge group unique ID
+	GroupUniqueId *string `json:"groupUniqueId,omitempty" xmlrpc:"groupUniqueId,omitempty"`
+
+	// The purge's status. Status can be SUCCESS, FAILED, or IN_PROGRESS.
+	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
+	// Domain mapping unique ID.
+	UniqueId *string `json:"uniqueId,omitempty" xmlrpc:"uniqueId,omitempty"`
+}
+
 // no documentation yet
 type Container_Network_CdnMarketplace_Configuration_Input struct {
 	Entity
@@ -2395,6 +2476,9 @@ type Container_Network_CdnMarketplace_Configuration_Performance_DynamicContentAc
 // no documentation yet
 type Container_Network_CdnMarketplace_Metrics struct {
 	Entity
+
+	// no documentation yet
+	Descriptions []string `json:"descriptions,omitempty" xmlrpc:"descriptions,omitempty"`
 
 	// no documentation yet
 	Names []string `json:"names,omitempty" xmlrpc:"names,omitempty"`
@@ -3838,6 +3922,9 @@ type Container_Product_Order_Hardware_Security_Module struct {
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
 type Container_Product_Order_Hardware_Server struct {
 	Container_Product_Order
+
+	// Used to identify which category should be used for the boot disk.
+	BootCategoryCode *string `json:"bootCategoryCode,omitempty" xmlrpc:"bootCategoryCode,omitempty"`
 
 	// Used to identify which items on an order belong in the same cluster.
 	ClusterIdentifier *string `json:"clusterIdentifier,omitempty" xmlrpc:"clusterIdentifier,omitempty"`

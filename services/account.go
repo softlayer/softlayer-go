@@ -506,6 +506,16 @@ func (r Account) GetBandwidthAllotmentsProjectedOverAllocation() (resp []datatyp
 	return
 }
 
+// no documentation yet
+func (r Account) GetBandwidthList(networkType *string, direction *string) (resp []datatypes.Container_Bandwidth_Usage, err error) {
+	params := []interface{}{
+		networkType,
+		direction,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthList", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve An account's associated bare metal server objects.
 func (r Account) GetBareMetalInstances() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBareMetalInstances", nil, &r.Options, &resp)
@@ -1582,7 +1592,7 @@ func (r Account) GetPostProvisioningHooks() (resp []datatypes.Provisioning_Hook,
 	return
 }
 
-// Retrieve Boolean flag dictating whether or not this account supports PPTP VPN Access.
+// Retrieve (Deprecated) Boolean flag dictating whether or not this account supports PPTP VPN Access.
 func (r Account) GetPptpVpnAllowedFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnAllowedFlag", nil, &r.Options, &resp)
 	return

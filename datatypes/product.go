@@ -1114,6 +1114,9 @@ type Product_Package struct {
 	// A count of the item categories associated with a package, including information detailing which item categories are required as part of a SoftLayer product order.
 	ConfigurationCount *uint `json:"configurationCount,omitempty" xmlrpc:"configurationCount,omitempty"`
 
+	// The default boot category code for the package.
+	DefaultBootCategoryCode *string `json:"defaultBootCategoryCode,omitempty" xmlrpc:"defaultBootCategoryCode,omitempty"`
+
 	// A count of a collection of valid RAM items available for purchase in this package.
 	DefaultRamItemCount *uint `json:"defaultRamItemCount,omitempty" xmlrpc:"defaultRamItemCount,omitempty"`
 

@@ -1322,7 +1322,7 @@ type Hardware_Component_NetworkCard struct {
 type Hardware_Component_Partition struct {
 	Entity
 
-	// A hardware component partition's order in the [[SoftLayer_Hardware_Hardware|hardware]].
+	// A hardware component partition's order in the [[SoftLayer_Hardware_Server]].
 	DiskNumber *int `json:"diskNumber,omitempty" xmlrpc:"diskNumber,omitempty"`
 
 	// A flag indicating if a partition is the grow partition. The grow partition will grow to fill all remaining space on a disk.  There can only be one.
@@ -1885,6 +1885,9 @@ type Hardware_Server struct {
 
 	// Determine if BIOS password should be left as null.
 	BiosPasswordNullFlag *bool `json:"biosPasswordNullFlag,omitempty" xmlrpc:"biosPasswordNullFlag,omitempty"`
+
+	// Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
+	CaptureEnabledFlag *string `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
 
 	// no documentation yet
 	ContainsSolidStateDrivesFlag *bool `json:"containsSolidStateDrivesFlag,omitempty" xmlrpc:"containsSolidStateDrivesFlag,omitempty"`

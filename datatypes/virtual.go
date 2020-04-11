@@ -958,6 +958,9 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// A block device template group's user defined summary.
 	Summary *string `json:"summary,omitempty" xmlrpc:"summary,omitempty"`
 
+	// A flag indicating if this is a symantec image.
+	SymantecImageFlag *bool `json:"symantecImageFlag,omitempty" xmlrpc:"symantecImageFlag,omitempty"`
+
 	// A count of the tags associated with this image template group.
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty" xmlrpc:"tagReferenceCount,omitempty"`
 
@@ -970,7 +973,7 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// A block device template group's [[SoftLayer_Provisioning_Version1_Transaction|transaction]] ID.  This will only be set when there is a transaction being performed on the block device template group.
 	TransactionId *int `json:"transactionId,omitempty" xmlrpc:"transactionId,omitempty"`
 
-	// A block device template group's [[SoftLayer_User|user]] ID
+	// A block device template group's [[SoftLayer_User_Customer]] ID
 	UserRecordId *int `json:"userRecordId,omitempty" xmlrpc:"userRecordId,omitempty"`
 }
 

@@ -1341,13 +1341,10 @@ type User_Permission_Group struct {
 type User_Permission_Group_Type struct {
 	Entity
 
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// A count of
+	// A count of the groups that are of this type.
 	GroupCount *uint `json:"groupCount,omitempty" xmlrpc:"groupCount,omitempty"`
 
-	// no documentation yet
+	// The groups that are of this type.
 	Groups []User_Permission_Group `json:"groups,omitempty" xmlrpc:"groups,omitempty"`
 
 	// no documentation yet
@@ -1355,9 +1352,6 @@ type User_Permission_Group_Type struct {
 
 	// no documentation yet
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
@@ -1403,7 +1397,7 @@ type User_Permission_Role struct {
 	// A flag showing if new users should be automatically added to this role.
 	NewUserDefaultFlag *int `json:"newUserDefaultFlag,omitempty" xmlrpc:"newUserDefaultFlag,omitempty"`
 
-	// A flag showing if the permission role was created by our internal system for a single user. If this flag is set only a single user can be assigned to this permission role and it can not be deleted.
+	// A flag showing if the permission role was created by our internal system for a single user. If this flag is set, only a single user can be assigned to this permission role and it can not be deleted.
 	SystemFlag *int `json:"systemFlag,omitempty" xmlrpc:"systemFlag,omitempty"`
 
 	// A count of

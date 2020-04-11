@@ -99,6 +99,12 @@ func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
 	return
 }
 
+// Get all tags with at least one reference attached to it for the current account. The total items header for this method contains the total number of attached tags even if a result limit is applied.
+func (r Tag) GetAttachedTagsForCurrentUser() (resp []datatypes.Tag, err error) {
+	err = r.Session.DoRequest("SoftLayer_Tag", "getAttachedTagsForCurrentUser", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Tag) GetObject() (resp datatypes.Tag, err error) {
 	err = r.Session.DoRequest("SoftLayer_Tag", "getObject", nil, &r.Options, &resp)
@@ -117,6 +123,12 @@ func (r Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) 
 		tagList,
 	}
 	err = r.Session.DoRequest("SoftLayer_Tag", "getTagByTagName", params, &r.Options, &resp)
+	return
+}
+
+// Get all tags with no references attached to it for the current account. The total items header for this method contains the total number of unattached tags even if a result limit is applied.
+func (r Tag) GetUnattachedTagsForCurrentUser() (resp []datatypes.Tag, err error) {
+	err = r.Session.DoRequest("SoftLayer_Tag", "getUnattachedTagsForCurrentUser", nil, &r.Options, &resp)
 	return
 }
 

@@ -1351,7 +1351,7 @@ func (r Network_Backbone) GetBackbonesForLocationName(locationName *string) (res
 	return
 }
 
-// Retrieve a graph of a SoftLayer backbone's last 24 hours of activity. getGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// [DEPRECATED] Retrieve a graph of a SoftLayer backbone's last 24 hours of activity. getGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Network_Backbone) GetGraphImage() (resp []byte, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getGraphImage", nil, &r.Options, &resp)
 	return
@@ -2164,6 +2164,183 @@ func (r Network_CdnMarketplace_Configuration_Cache_Purge) SaveOrUnsavePurgePath(
 	return
 }
 
+// This data type models a purge group event that occurs in caching server. It contains a reference to a mapping configuration and the path to execute the purge on.
+type Network_CdnMarketplace_Configuration_Cache_PurgeGroup struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkCdnMarketplaceConfigurationCachePurgeGroupService returns an instance of the Network_CdnMarketplace_Configuration_Cache_PurgeGroup SoftLayer service
+func GetNetworkCdnMarketplaceConfigurationCachePurgeGroupService(sess *session.Session) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	return Network_CdnMarketplace_Configuration_Cache_PurgeGroup{Session: sess}
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) Id(id int) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) Mask(mask string) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) Filter(filter string) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) Limit(limit int) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) Offset(offset int) Network_CdnMarketplace_Configuration_Cache_PurgeGroup {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) CreatePurgeGroup(uniqueId *string, groupName *string, paths []string, option *int) (resp datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupName,
+		paths,
+		option,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "createPurgeGroup", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) GetPurgeGroupByGroupId(uniqueId *string, groupUniqueId *string) (resp datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupUniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "getPurgeGroupByGroupId", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) GetPurgeGroupQuota() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "getPurgeGroupQuota", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListFavoriteGroup(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listFavoriteGroup", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListUnfavoriteGroup(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listUnfavoriteGroup", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) PurgeByGroupIds(uniqueId *string, groupUniqueIds []string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupUniqueIds,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "purgeByGroupIds", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) RemovePurgeGroupFromFavorite(uniqueId *string, groupUniqueId *string) (resp datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupUniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "removePurgeGroupFromFavorite", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) SavePurgeGroupAsFavorite(uniqueId *string, groupUniqueId *string) (resp datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupUniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "savePurgeGroupAsFavorite", params, &r.Options, &resp)
+	return
+}
+
+// This data type models a purge history event that occurs in caching server. The purge group history will be deleted after 15 days. The possible purge status of each history can be 'SUCCESS', "FAILED" or "IN_PROGRESS".
+type Network_CdnMarketplace_Configuration_Cache_PurgeHistory struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkCdnMarketplaceConfigurationCachePurgeHistoryService returns an instance of the Network_CdnMarketplace_Configuration_Cache_PurgeHistory SoftLayer service
+func GetNetworkCdnMarketplaceConfigurationCachePurgeHistoryService(sess *session.Session) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	return Network_CdnMarketplace_Configuration_Cache_PurgeHistory{Session: sess}
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) Id(id int) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) Mask(mask string) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) Filter(filter string) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) Limit(limit int) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) Offset(offset int) Network_CdnMarketplace_Configuration_Cache_PurgeHistory {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Cache_PurgeHistory, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeHistory", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) ListPurgeGroupHistory(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeHistory", "listPurgeGroupHistory", params, &r.Options, &resp)
+	return
+}
+
 // This data type models a purge event that occurs repetitively and automatically in caching server after a set interval of time. A time to live instance contains a reference to a mapping configuration, the path to execute the purge on, the result of the purge, and the time interval after which the purge will be executed.
 type Network_CdnMarketplace_Configuration_Cache_TimeToLive struct {
 	Session *session.Session
@@ -2522,6 +2699,18 @@ func (r Network_CdnMarketplace_Metrics) GetCustomerInvoicingMetrics(vendorName *
 }
 
 // no documentation yet
+func (r Network_CdnMarketplace_Metrics) GetCustomerRealTimeMetrics(vendorName *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		vendorName,
+		startTime,
+		endTime,
+		timeInterval,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerRealTimeMetrics", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetCustomerUsageMetrics(vendorName *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
 		vendorName,
@@ -2578,6 +2767,18 @@ func (r Network_CdnMarketplace_Metrics) GetMappingHitsMetrics(mappingUniqueId *s
 		frequency,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsMetrics", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Metrics) GetMappingRealTimeMetrics(mappingUniqueId *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startTime,
+		endTime,
+		timeInterval,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingRealTimeMetrics", params, &r.Options, &resp)
 	return
 }
 
@@ -2743,7 +2944,7 @@ func (r Network_Component) GetHighAvailabilityFirewallFlag() (resp bool, err err
 	return
 }
 
-// Retrieve A hardware switch's interface to the bandwidth pod.
+// Retrieve [DEPRECATED] A hardware switch's interface to the bandwidth pod.
 func (r Network_Component) GetInterface() (resp datatypes.Network_Bandwidth_Version1_Interface, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getInterface", nil, &r.Options, &resp)
 	return
@@ -3728,6 +3929,16 @@ func (r Network_Gateway) ChangeGatewayVersion(versionId *int, rollbackVersion *b
 	return
 }
 
+// no documentation yet
+func (r Network_Gateway) CheckAccountWhiteList(accountId *int, category *string) (resp bool, err error) {
+	params := []interface{}{
+		accountId,
+		category,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "checkAccountWhiteList", params, &r.Options, &resp)
+	return
+}
+
 // Create and return a new gateway. This object can be created with any number of members or VLANs, but they all must be in the same pod. By creating a gateway with members and/or VLANs attached, it is the equivalent of individually calling their createObject methods except this will start a single asynchronous process to setup the gateway. The status of this process can be checked using the status field.
 func (r Network_Gateway) CreateObject(templateObject *datatypes.Network_Gateway) (resp datatypes.Network_Gateway, err error) {
 	params := []interface{}{
@@ -3775,6 +3986,14 @@ func (r Network_Gateway) GetManufacturer(checkSameOs *bool, checkOsReloadMember 
 		checkOsReloadMember,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getManufacturer", params, &r.Options, &resp)
+	return
+}
+
+// Returns true if no mismatch is found, gateway is not Juniper vSRX or SA gateway
+//
+//
+func (r Network_Gateway) GetMemberGatewayImagesMatch() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getMemberGatewayImagesMatch", nil, &r.Options, &resp)
 	return
 }
 
@@ -3850,11 +4069,31 @@ func (r Network_Gateway) GetUpgradeItemPrices() (resp []datatypes.Product_Item_P
 	return
 }
 
+// no documentation yet
+func (r Network_Gateway) IsAccountWhiteListed(category *string) (resp bool, err error) {
+	params := []interface{}{
+		category,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isAccountWhiteListed", params, &r.Options, &resp)
+	return
+}
+
 // Rebuild a vSRX gateway with HA cluster by destroying existing vSRX and installing new vSRX on both gateway servers, then creating HA cluster between 2 vSRX. This is a destructive process which will remove existing vSRX configuration and stop all gateway capabilities. vSRX will need to be re-configured after this operation.
 //
 //
 func (r Network_Gateway) RebuildvSRXHACluster() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "rebuildvSRXHACluster", nil, &r.Options, &resp)
+	return
+}
+
+// Returns true if password change is successful, false if not successful
+//
+//
+func (r Network_Gateway) SetGatewayPassword(password *string) (resp bool, err error) {
+	params := []interface{}{
+		password,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "setGatewayPassword", params, &r.Options, &resp)
 	return
 }
 
@@ -4012,6 +4251,110 @@ func (r Network_Gateway_Member_Attribute) GetObject() (resp datatypes.Network_Ga
 // Retrieve
 func (r Network_Gateway_Member_Attribute) GetSshKey() (resp datatypes.Security_Ssh_Key, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member_Attribute", "getSshKey", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Network_Gateway_Precheck struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkGatewayPrecheckService returns an instance of the Network_Gateway_Precheck SoftLayer service
+func GetNetworkGatewayPrecheckService(sess *session.Session) Network_Gateway_Precheck {
+	return Network_Gateway_Precheck{Session: sess}
+}
+
+func (r Network_Gateway_Precheck) Id(id int) Network_Gateway_Precheck {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Gateway_Precheck) Mask(mask string) Network_Gateway_Precheck {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Gateway_Precheck) Filter(filter string) Network_Gateway_Precheck {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Gateway_Precheck) Limit(limit int) Network_Gateway_Precheck {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Gateway_Precheck) Offset(offset int) Network_Gateway_Precheck {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_Gateway_Precheck) GetObject() (resp datatypes.Network_Gateway_Precheck, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Get the precheck status for all Juniper Gateway Action categories which require a readiness check before executing. Reference cloud.ibm.com documentation for more details.
+//
+// Possible precheck readiness values include:
+//
+// Ready (0): The member or Gateway category is ready. The only state that will be allowed to execute the Action. Not Ready (1): The member or Gateway category is not ready. This could occur because of several reasons. Either a precheck error occur, or the precheck has not run within the precheck timeout window. Check the returnCode for details on the specific error. Reference the cloud.ibm.com documentation for recovery details. Running (2): The precheck is currently running with no errors. Incomplete (3): The other member in the Gateway failed, therefore the current member could not complete it's precheck. Unsupported (4): The category is unsupported for the given member or Gateway. Expired (5) : The precheck record has expired so will need to be run again. Unchecked (6) : The precheck for the category has never been run. Current (7) : The gateway state is current so running precheck is not required.  This commonly relates to version upgrade if gateway is in most update version.
+//
+// Return Values: Array of objects
+//
+// Object Definition:
+//
+// category : String : The precheck category which corresponds to one or more executeable actions.
+//
+// Current categories include: upgrade_precheck : Required for major and minor upgrade version actions. license_precheck : Required for license upgrade and downgrade actions. reload_precheck : Required for OS Reload action.
+//
+// memberId : Integer : The softlayer member id. memberReadinessValue : String : The precheck readiness state for the member. See possible readiness values above. gatewayReadinessValue : String : The precheck readiness state for the gateway : See possible readiness values above. returnCode : Integer : The return code. 0 if no error. Reference cloud.ibm.com documentation for details.
+//
+//
+func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int) (resp []datatypes.Network_Gateway_Precheck, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "getPrecheckStatus", params, &r.Options, &resp)
+	return
+}
+
+// Used to create a License Management Network Gateway Precheck transaction.
+//
+//
+func (r Network_Gateway_Precheck) LicenseManagementPrecheck(gatewayId *int) (resp bool, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "licenseManagementPrecheck", params, &r.Options, &resp)
+	return
+}
+
+// Create an OS Reload Network Gateway Precheck transaction.
+//
+//
+func (r Network_Gateway_Precheck) OsReloadPrecheck(gatewayId *int) (resp bool, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "osReloadPrecheck", params, &r.Options, &resp)
+	return
+}
+
+// Create a Upgrade Network Gateway Precheck transaction.
+//
+//
+func (r Network_Gateway_Precheck) UpgradePrecheck(gatewayId *int) (resp bool, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "upgradePrecheck", params, &r.Options, &resp)
 	return
 }
 
@@ -8029,6 +8372,15 @@ func (r Network_Storage) IsVolumeActive() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Network_Storage) RefreshDependentDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "refreshDependentDuplicate", params, &r.Options, &resp)
+	return
+}
+
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
 func (r Network_Storage) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
@@ -10174,6 +10526,15 @@ func (r Network_Storage_Backup_Evault) IsDuplicateReadyToMount() (resp bool, err
 // no documentation yet
 func (r Network_Storage_Backup_Evault) IsVolumeActive() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "isVolumeActive", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Backup_Evault) RefreshDependentDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "refreshDependentDuplicate", params, &r.Options, &resp)
 	return
 }
 
@@ -12353,6 +12714,15 @@ func (r Network_Storage_Iscsi) IsDuplicateReadyToMount() (resp bool, err error) 
 // no documentation yet
 func (r Network_Storage_Iscsi) IsVolumeActive() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "isVolumeActive", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Iscsi) RefreshDependentDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "refreshDependentDuplicate", params, &r.Options, &resp)
 	return
 }
 
