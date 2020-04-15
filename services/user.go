@@ -2340,7 +2340,7 @@ func (r User_Customer_Notification_Hardware) GetUser() (resp datatypes.User_Cust
 	return
 }
 
-// The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
+// The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that Virtual Guest object to be notified on failure.
 type User_Customer_Notification_Virtual_Guest struct {
 	Session *session.Session
 	Options sl.Options
@@ -2407,7 +2407,7 @@ func (r User_Customer_Notification_Virtual_Guest) DeleteObjects(templateObjects 
 	return
 }
 
-// This method returns all SoftLayer_User_Customer_Notification_Virtual_Guest objects associated with the passed in ID as long as that hardware ID is owned by the current user's account.
+// This method returns all SoftLayer_User_Customer_Notification_Virtual_Guest objects associated with the passed in ID as long as that Virtual Guest ID is owned by the current user's account.
 //
 // This behavior can also be accomplished by simply tapping monitoringUserNotification on the Virtual_Guest object.
 func (r User_Customer_Notification_Virtual_Guest) FindByGuestId(id *int) (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
