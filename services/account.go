@@ -507,10 +507,13 @@ func (r Account) GetBandwidthAllotmentsProjectedOverAllocation() (resp []datatyp
 }
 
 // no documentation yet
-func (r Account) GetBandwidthList(networkType *string, direction *string) (resp []datatypes.Container_Bandwidth_Usage, err error) {
+func (r Account) GetBandwidthList(networkType *string, direction *string, startDate *string, endDate *string, serverIds []int) (resp []datatypes.Container_Bandwidth_Usage, err error) {
 	params := []interface{}{
 		networkType,
 		direction,
+		startDate,
+		endDate,
+		serverIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthList", params, &r.Options, &resp)
 	return

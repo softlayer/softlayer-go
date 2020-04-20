@@ -468,7 +468,7 @@ func (r Product_Item_Price) GetPresetConfigurations() (resp []datatypes.Product_
 	return
 }
 
-// Retrieve The type keyname of this price which can be STANDARD or TIERED.
+// Retrieve The type keyname of this price which can be STANDARD, TIERED, or TERM.
 func (r Product_Item_Price) GetPriceType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPriceType", nil, &r.Options, &resp)
 	return

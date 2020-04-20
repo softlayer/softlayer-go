@@ -690,7 +690,7 @@ type Product_Item_Price struct {
 	// A list of preset configurations this price is used in.'
 	PresetConfigurations []Product_Package_Preset_Configuration `json:"presetConfigurations,omitempty" xmlrpc:"presetConfigurations,omitempty"`
 
-	// The type keyname of this price which can be STANDARD or TIERED.
+	// The type keyname of this price which can be STANDARD, TIERED, or TERM.
 	PriceType *string `json:"priceType,omitempty" xmlrpc:"priceType,omitempty"`
 
 	// The pricing location group that this price is applicable for. Prices that have a pricing location group will only be available for ordering with the locations specified on the location group.
@@ -722,6 +722,9 @@ type Product_Item_Price struct {
 
 	// Used for ordering items on sales orders.
 	Sort *int `json:"sort,omitempty" xmlrpc:"sort,omitempty"`
+
+	// The number of months a term lasts for a term-based price
+	TermLength *int `json:"termLength,omitempty" xmlrpc:"termLength,omitempty"`
 
 	// The minimum threshold for which this tiered usage price begins to apply.  The unit for the price is defined by the item to which this belongs, see [[SoftLayer_Product_Item::$units]].
 	TierMinimumThreshold *int `json:"tierMinimumThreshold,omitempty" xmlrpc:"tierMinimumThreshold,omitempty"`
@@ -1472,6 +1475,9 @@ type Product_Package_Order_Configuration struct {
 
 	// The step to which this instance belongs.
 	Step *Product_Package_Order_Step `json:"step,omitempty" xmlrpc:"step,omitempty"`
+
+	// Whether or not the item category is term-based.
+	TermFlag *bool `json:"termFlag,omitempty" xmlrpc:"termFlag,omitempty"`
 }
 
 // Each package has at least 1 step to the ordering process. For server orders, there are many. Each step has certain item categories which are displayed. This type describes the steps for each package.
@@ -1785,6 +1791,9 @@ type Product_Package_Server struct {
 
 	// The monthly starting price for the server. This includes a sum of all the minimum required items, including RAM and hard drives.
 	StartingMonthlyPrice *Float64 `json:"startingMonthlyPrice,omitempty" xmlrpc:"startingMonthlyPrice,omitempty"`
+
+	// The length of a term if a server has a term-based price
+	TermLength *int `json:"termLength,omitempty" xmlrpc:"termLength,omitempty"`
 
 	// The total number of processor cores available for the server.
 	TotalCoreCount *int `json:"totalCoreCount,omitempty" xmlrpc:"totalCoreCount,omitempty"`

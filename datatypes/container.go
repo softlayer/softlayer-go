@@ -484,6 +484,9 @@ type Container_Account_ProofOfConcept_Contact_Customer struct {
 
 	// Customer's state
 	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+
+	// Customer's VAT ID
+	VatId *string `json:"vatId,omitempty" xmlrpc:"vatId,omitempty"`
 }
 
 // IBMer who is submitting a proof of concept request on behalf of a prospective customer.
@@ -534,6 +537,9 @@ type Container_Account_ProofOfConcept_Contact_Ibmer_Requester struct {
 
 	// no documentation yet
 	Uid *string `json:"uid,omitempty" xmlrpc:"uid,omitempty"`
+
+	// Customer's VAT ID
+	VatId *string `json:"vatId,omitempty" xmlrpc:"vatId,omitempty"`
 }
 
 // IBMer who will assist the requester with technical aspects of configuring the proof of concept account.
@@ -572,6 +578,9 @@ type Container_Account_ProofOfConcept_Contact_Ibmer_Technical struct {
 
 	// no documentation yet
 	Uid *string `json:"uid,omitempty" xmlrpc:"uid,omitempty"`
+
+	// Customer's VAT ID
+	VatId *string `json:"vatId,omitempty" xmlrpc:"vatId,omitempty"`
 }
 
 // Proof of concept request using the account team funding model. Note that proof of concept account request are available only to internal IBM employees.
@@ -1146,7 +1155,7 @@ type Container_Bandwidth_Projection struct {
 	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
 }
 
-// no documentation yet
+// When a customer uses SoftLayer_Account::getBandwidthUsage, this container is used to return their usage information in bytes
 type Container_Bandwidth_Usage struct {
 	Entity
 
