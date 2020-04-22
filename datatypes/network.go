@@ -645,7 +645,7 @@ type Network_Bandwidth_Usage struct {
 	Type *Network_Bandwidth_Version1_Usage_Detail_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
+// [DEPRECATED] The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
 type Network_Bandwidth_Usage_Detail struct {
 	Entity
 

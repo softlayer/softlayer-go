@@ -3051,40 +3051,44 @@ func (r Account_Historical_Report) Offset(offset int) Account_Historical_Report 
 }
 
 // no documentation yet
-func (r Account_Historical_Report) GetAccountHostUptimeGraphData(startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
+func (r Account_Historical_Report) GetAccountHostUptimeGraphData(startDate *string, endDate *string, accountId *int) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
+		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountHostUptimeGraphData", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
-func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary, err error) {
+func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
+		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountHostUptimeSummary", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
-func (r Account_Historical_Report) GetAccountUrlUptimeGraphData(startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
+func (r Account_Historical_Report) GetAccountUrlUptimeGraphData(startDate *string, endDate *string, accountId *int) (resp datatypes.Container_Graph, err error) {
 	params := []interface{}{
 		startDate,
 		endDate,
+		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountUrlUptimeGraphData", params, &r.Options, &resp)
 	return
 }
 
 // no documentation yet
-func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary, err error) {
+func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
 		endDateTime,
+		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountUrlUptimeSummary", params, &r.Options, &resp)
 	return
