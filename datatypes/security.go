@@ -58,6 +58,12 @@ type Security_Certificate struct {
 	// The size (number of bits) of the public key represented by the certificate.
 	KeySize *int `json:"keySize,omitempty" xmlrpc:"keySize,omitempty"`
 
+	// A count of cloud Load Balancer [LBaaS] listeners currently associated with the certificate.
+	LbaasListenerCount *uint `json:"lbaasListenerCount,omitempty" xmlrpc:"lbaasListenerCount,omitempty"`
+
+	// Cloud Load Balancer [LBaaS] listeners currently associated with the certificate.
+	LbaasListeners []Network_LBaaS_Listener `json:"lbaasListeners,omitempty" xmlrpc:"lbaasListeners,omitempty"`
+
 	// A count of the load balancers virtual IP addresses currently associated with the certificate.
 	LoadBalancerVirtualIpAddressCount *uint `json:"loadBalancerVirtualIpAddressCount,omitempty" xmlrpc:"loadBalancerVirtualIpAddressCount,omitempty"`
 
