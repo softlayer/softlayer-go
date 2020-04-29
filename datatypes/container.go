@@ -4105,6 +4105,9 @@ type Container_Product_Order_Network_LoadBalancer_AsAService struct {
 	// The [[SoftLayer_Network_LBaaS_LoadBalancerProtocolConfiguration]]s for this Load Balancer.
 	ProtocolConfigurations []Network_LBaaS_LoadBalancerProtocolConfiguration `json:"protocolConfigurations,omitempty" xmlrpc:"protocolConfigurations,omitempty"`
 
+	// Specify the public subnet where this load balancer will be provisioned when useSystemPublicIpPool is false. This is valid only for public(1) load balancer. The public subnet should match the private subnet.
+	PublicSubnets []Network_Subnet `json:"publicSubnets,omitempty" xmlrpc:"publicSubnets,omitempty"`
+
 	// The [[SoftLayer_Network_LBaaS_LoadBalancerServerInstanceInfo]]s for this Load Balancer.
 	ServerInstancesInformation []Network_LBaaS_LoadBalancerServerInstanceInfo `json:"serverInstancesInformation,omitempty" xmlrpc:"serverInstancesInformation,omitempty"`
 
