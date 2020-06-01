@@ -3075,7 +3075,7 @@ func (r Network_Component) GetRouter() (resp datatypes.Hardware, err error) {
 	return
 }
 
-// Retrieve Whether a network component's primary ip address is from a storage network subnet or not.
+// Retrieve Whether a network component's primary ip address is from a storage network subnet or not. [Deprecated]
 func (r Network_Component) GetStorageNetworkFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getStorageNetworkFlag", nil, &r.Options, &resp)
 	return
@@ -3963,6 +3963,14 @@ func (r Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
 	return
 }
 
+// Used to get a list of OS prices (ids) which are allowed for the Gateway.
+//
+//
+func (r Network_Gateway) GetAllowedOsPriceIds() (resp []int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAllowedOsPriceIds", nil, &r.Options, &resp)
+	return
+}
+
 // Returns the Gbps capacity of the gateway object
 //
 //
@@ -4075,6 +4083,15 @@ func (r Network_Gateway) IsAccountWhiteListed(category *string) (resp bool, err 
 		category,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isAccountWhiteListed", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Gateway) IsLicenseServerAllowed(licenseKeyName *string) (resp bool, err error) {
+	params := []interface{}{
+		licenseKeyName,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isLicenseServerAllowed", params, &r.Options, &resp)
 	return
 }
 
@@ -15391,6 +15408,8 @@ func (r Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) 
 	return
 }
 
+//
+// *** DEPRECATED ***
 // Retrieve the private network VLAN associated with an IP address.
 func (r Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{

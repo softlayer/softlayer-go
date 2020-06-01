@@ -582,10 +582,10 @@ type Hardware struct {
 	// SSH keys to be installed on the server during provisioning or an OS reload.
 	SshKeys []Security_Ssh_Key `json:"sshKeys,omitempty" xmlrpc:"sshKeys,omitempty"`
 
-	// A count of
+	// A count of a piece of hardware's private storage network components. [Deprecated]
 	StorageNetworkComponentCount *uint `json:"storageNetworkComponentCount,omitempty" xmlrpc:"storageNetworkComponentCount,omitempty"`
 
-	// no documentation yet
+	// A piece of hardware's private storage network components. [Deprecated]
 	StorageNetworkComponents []Network_Component `json:"storageNetworkComponents,omitempty" xmlrpc:"storageNetworkComponents,omitempty"`
 
 	// A count of

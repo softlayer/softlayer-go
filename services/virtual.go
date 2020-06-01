@@ -2359,6 +2359,12 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetEncryptionAttributes() (re
 	return
 }
 
+// Retrieve The first clone of the image template group
+func (r Virtual_Guest_Block_Device_Template_Group) GetFirstChild() (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getFirstChild", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag indicating if this is a flex image.
 func (r Virtual_Guest_Block_Device_Template_Group) GetFlexImageFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getFlexImageFlag", nil, &r.Options, &resp)
@@ -2413,6 +2419,18 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetPublicImages() (resp []dat
 	return
 }
 
+// Retrieve
+func (r Virtual_Guest_Block_Device_Template_Group) GetRegion() (resp datatypes.Network_Service_Resource, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegion", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Virtual_Guest_Block_Device_Template_Group) GetRegions() (resp []datatypes.Network_Service_Resource, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegions", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The ssh keys to be implemented on the server when provisioned or reloaded from an image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSshKeys", nil, &r.Options, &resp)
@@ -2440,12 +2458,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetStorageRepository() (resp 
 // This method indicates which boot modes are supported by the image.
 func (r Virtual_Guest_Block_Device_Template_Group) GetSupportedBootModes() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSupportedBootModes", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A flag indicating if this is a symantec image.
-func (r Virtual_Guest_Block_Device_Template_Group) GetSymantecImageFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSymantecImageFlag", nil, &r.Options, &resp)
 	return
 }
 

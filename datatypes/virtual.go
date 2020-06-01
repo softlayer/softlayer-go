@@ -907,6 +907,9 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// A collection of locations containing a copy of this image template group. Will only be populated for parent template group objects.
 	Datacenters []Location `json:"datacenters,omitempty" xmlrpc:"datacenters,omitempty"`
 
+	// The first clone of the image template group
+	FirstChild *Virtual_Guest_Block_Device_Template_Group `json:"firstChild,omitempty" xmlrpc:"firstChild,omitempty"`
+
 	// A flag indicating if this is a flex image.
 	FlexImageFlag *bool `json:"flexImageFlag,omitempty" xmlrpc:"flexImageFlag,omitempty"`
 
@@ -940,6 +943,15 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 	// no documentation yet
 	PublicFlag *int `json:"publicFlag,omitempty" xmlrpc:"publicFlag,omitempty"`
 
+	// no documentation yet
+	Region *Network_Service_Resource `json:"region,omitempty" xmlrpc:"region,omitempty"`
+
+	// A count of
+	RegionCount *uint `json:"regionCount,omitempty" xmlrpc:"regionCount,omitempty"`
+
+	// no documentation yet
+	Regions []Network_Service_Resource `json:"regions,omitempty" xmlrpc:"regions,omitempty"`
+
 	// A count of the ssh keys to be implemented on the server when provisioned or reloaded from an image template group.
 	SshKeyCount *uint `json:"sshKeyCount,omitempty" xmlrpc:"sshKeyCount,omitempty"`
 
@@ -957,9 +969,6 @@ type Virtual_Guest_Block_Device_Template_Group struct {
 
 	// A block device template group's user defined summary.
 	Summary *string `json:"summary,omitempty" xmlrpc:"summary,omitempty"`
-
-	// A flag indicating if this is a symantec image.
-	SymantecImageFlag *bool `json:"symantecImageFlag,omitempty" xmlrpc:"symantecImageFlag,omitempty"`
 
 	// A count of the tags associated with this image template group.
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty" xmlrpc:"tagReferenceCount,omitempty"`

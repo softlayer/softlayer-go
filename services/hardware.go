@@ -1361,7 +1361,7 @@ func (r Hardware) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	return
 }
 
-// Retrieve
+// Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
@@ -3400,7 +3400,7 @@ func (r Hardware_Router) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err er
 	return
 }
 
-// Retrieve
+// Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_Router) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
@@ -5228,6 +5228,8 @@ func (r Hardware_SecurityModule) GetPrivateVlan() (resp datatypes.Network_Vlan, 
 	return
 }
 
+//
+// *** DEPRECATED ***
 // Retrieve a backend network VLAN by searching for an IP address
 func (r Hardware_SecurityModule) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
@@ -5516,7 +5518,7 @@ func (r Hardware_SecurityModule) GetStatisticsRemoteManagement() (resp datatypes
 	return
 }
 
-// Retrieve
+// Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_SecurityModule) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
@@ -7630,6 +7632,8 @@ func (r Hardware_SecurityModule750) GetPrivateVlan() (resp datatypes.Network_Vla
 	return
 }
 
+//
+// *** DEPRECATED ***
 // Retrieve a backend network VLAN by searching for an IP address
 func (r Hardware_SecurityModule750) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
@@ -7918,7 +7922,7 @@ func (r Hardware_SecurityModule750) GetStatisticsRemoteManagement() (resp dataty
 	return
 }
 
-// Retrieve
+// Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_SecurityModule750) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
@@ -10032,6 +10036,8 @@ func (r Hardware_Server) GetPrivateVlan() (resp datatypes.Network_Vlan, err erro
 	return
 }
 
+//
+// *** DEPRECATED ***
 // Retrieve a backend network VLAN by searching for an IP address
 func (r Hardware_Server) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
@@ -10320,7 +10326,7 @@ func (r Hardware_Server) GetStatisticsRemoteManagement() (resp datatypes.Hardwar
 	return
 }
 
-// Retrieve
+// Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_Server) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return

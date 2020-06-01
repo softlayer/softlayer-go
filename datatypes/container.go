@@ -3944,6 +3944,9 @@ type Container_Product_Order_Hardware_Server struct {
 	// Used to identify which gateway is being upgraded to HA.
 	ClusterResourceId *int `json:"clusterResourceId,omitempty" xmlrpc:"clusterResourceId,omitempty"`
 
+	// Array of disk drive slot categories to destroy on reclaim. For example: ['disk0', 'disk1', 'disk2']. One drive_destruction price must be included for each slot provided. Note that once the initial order or upgrade order are approved, the destruction property <strong>is not removable</strong> and the drives will be destroyed at the end of the server's lifecycle. Not all drive slots are required, but all can be provided.
+	DriveDestructionDisks []string `json:"driveDestructionDisks,omitempty" xmlrpc:"driveDestructionDisks,omitempty"`
+
 	// Id of the [[SoftLayer_Monitoring_Agent_Configuration_Template_Group]] to be used with the monitoring package
 	MonitoringAgentConfigurationTemplateGroupId *int `json:"monitoringAgentConfigurationTemplateGroupId,omitempty" xmlrpc:"monitoringAgentConfigurationTemplateGroupId,omitempty"`
 

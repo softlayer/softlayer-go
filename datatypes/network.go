@@ -645,29 +645,6 @@ type Network_Bandwidth_Usage struct {
 	Type *Network_Bandwidth_Version1_Usage_Detail_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// [DEPRECATED] The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
-type Network_Bandwidth_Usage_Detail struct {
-	Entity
-
-	// The account tied to this tracking object
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// Incoming bandwidth utilization.
-	AmountIn *Float64 `json:"amountIn,omitempty" xmlrpc:"amountIn,omitempty"`
-
-	// Outgoing bandwidth utilization.
-	AmountOut *Float64 `json:"amountOut,omitempty" xmlrpc:"amountOut,omitempty"`
-
-	// ID of the bandwidth usage detail type for this record.
-	BandwidthUsageDetailTypeId *Float64 `json:"bandwidthUsageDetailTypeId,omitempty" xmlrpc:"bandwidthUsageDetailTypeId,omitempty"`
-
-	// The tracking object this bandwidth usage record describes.
-	TrackingObject *Metric_Tracking_Object `json:"trackingObject,omitempty" xmlrpc:"trackingObject,omitempty"`
-
-	// In and out bandwidth utilization for a specified time stamp.
-	Type *Network_Bandwidth_Version1_Usage_Detail_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
-}
-
 // The SoftLayer_Network_Bandwidth_Version1_Allocation data type contains general information relating to a single bandwidth allocation record.
 type Network_Bandwidth_Version1_Allocation struct {
 	Entity
@@ -945,29 +922,6 @@ type Network_Bandwidth_Version1_Usage_Detail struct {
 	Day *Time `json:"day,omitempty" xmlrpc:"day,omitempty"`
 }
 
-// [DEPRECATED] The SoftLayer_Network_Bandwidth_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
-type Network_Bandwidth_Version1_Usage_Detail_Total struct {
-	Entity
-
-	// The account tied to this tracking object
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// Incoming bandwidth utilization.
-	AmountIn *Float64 `json:"amountIn,omitempty" xmlrpc:"amountIn,omitempty"`
-
-	// Outgoing bandwidth utilization.
-	AmountOut *Float64 `json:"amountOut,omitempty" xmlrpc:"amountOut,omitempty"`
-
-	// ID of the bandwidth usage detail type for this record.
-	BandwidthUsageDetailTypeId *Float64 `json:"bandwidthUsageDetailTypeId,omitempty" xmlrpc:"bandwidthUsageDetailTypeId,omitempty"`
-
-	// The tracking object this bandwidth usage record describes.
-	TrackingObject *Metric_Tracking_Object `json:"trackingObject,omitempty" xmlrpc:"trackingObject,omitempty"`
-
-	// In and out bandwidth utilization for a specified time stamp.
-	Type *Network_Bandwidth_Version1_Usage_Detail_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
-}
-
 // The SoftLayer_Network_Bandwidth_Version1_Usage_Detail_Type data type contains generic information relating to the types of bandwidth records available, currently just public and private.
 type Network_Bandwidth_Version1_Usage_Detail_Type struct {
 	Entity
@@ -1225,7 +1179,7 @@ type Network_Component struct {
 	// A network component's status. This can take one of four possible values: "ACTIVE", "DISABLE", "USER_OFF", or "MACWAIT". "ACTIVE" network components are enabled and in use on a servers. "DISABLE" status components have been administratively disabled by SoftLayer accounting or abuse. "USER_OFF" components have been administratively disabled by you, the user. "MACWAIT" components only exist on network components that have not been provisioned. You should never see a network interface in MACWAIT state. If you happen to see one please contact SoftLayer support.
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
-	// Whether a network component's primary ip address is from a storage network subnet or not.
+	// Whether a network component's primary ip address is from a storage network subnet or not. [Deprecated]
 	StorageNetworkFlag *bool `json:"storageNetworkFlag,omitempty" xmlrpc:"storageNetworkFlag,omitempty"`
 
 	// A count of a network component's subnets. A subnet is a group of IP addresses
@@ -5368,7 +5322,7 @@ type Network_Subnet struct {
 	// A subnet can be one of several types. PRIMARY, ADDITIONAL_PRIMARY, SECONDARY, ROUTED_TO_VLAN, SECONDARY_ON_VLAN, and STATIC_IP_ROUTED. The type determines the order in which many subnets are sorted in the SoftLayer customer portal. This groups subnets of similar type together.
 	SortOrder *string `json:"sortOrder,omitempty" xmlrpc:"sortOrder,omitempty"`
 
-	// A subnet can be one of several types. PRIMARY, ADDITIONAL_PRIMARY, SECONDARY, ROUTED_TO_VLAN, SECONDARY_ON_VLAN, STORAGE_NETWORK, and STATIC_IP_ROUTED. A "PRIMARY" subnet is the primary network bound to a VLAN within the softlayer network. An "ADDITIONAL_PRIMARY" subnet is bound to a network VLAN to augment the pool of available primary IP addresses that may be assigned to a server. A "SECONDARY" subnet is any of the secondary subnet's bound to a VLAN interface. A "ROUTED_TO_VLAN" subnet is a portable subnet that can be routed to any server on a vlan. A "SECONDARY_ON_VLAN" subnet also doesn't exist as a VLAN interface, but is routed directly to a VLAN instead of a single IP address by SoftLayer's routers.
+	// A subnet can be one of several types. PRIMARY, ADDITIONAL_PRIMARY, SECONDARY, ROUTED_TO_VLAN, SECONDARY_ON_VLAN, and STATIC_IP_ROUTED. A "PRIMARY" subnet is the primary network bound to a VLAN within the softlayer network. An "ADDITIONAL_PRIMARY" subnet is bound to a network VLAN to augment the pool of available primary IP addresses that may be assigned to a server. A "SECONDARY" subnet is any of the secondary subnet's bound to a VLAN interface. A "ROUTED_TO_VLAN" subnet is a portable subnet that can be routed to any server on a vlan. A "SECONDARY_ON_VLAN" subnet also doesn't exist as a VLAN interface, but is routed directly to a VLAN instead of a single IP address by SoftLayer's routers.
 	SubnetType *string `json:"subnetType,omitempty" xmlrpc:"subnetType,omitempty"`
 
 	// All the swip transactions associated with a subnet.
