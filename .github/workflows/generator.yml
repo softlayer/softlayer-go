@@ -3,7 +3,7 @@ name: Generator
 on:
   schedule:
     # Run  Monday/Wednesday 5pm
-     - cron: '0 0 1 * *'
+     - cron: '0 0 * * 2,4'
     #- cron: '*/15 * * * *'
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -m "Updated generated classes on `date`" -a
+        git diff --exit-code; if [ "$?" -ne 0 ]; then git commit -m "Updated generated classes on `date`" -a; fi
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
