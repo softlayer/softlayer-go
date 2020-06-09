@@ -18,7 +18,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git diff --exit-code; if [ "$?" -ne 0 ]; then git commit -m "Updated generated classes on `date`" -a; fi
+        git diff -s --exit-code; if [ "$?" -ne 0 ]; then git commit -m "Updated generated classes on `date`" -a; fi
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
