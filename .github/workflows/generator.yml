@@ -22,13 +22,13 @@ jobs:
       # required because `git diff --exit-code` returns a 1 exit code, which github actions counts as failure.
       run: |
         git diff --exit-code; 
-    - name: Commit changes if needed
+    - name: commit
       if: ${{ failure() }}
       run: |
         git commit -m "Updated generated classes on `date`" -a; 
         echo ::set-output name=continue::yes
     - name: Push changes
-      if: steps.check.outputs.continue == 'yes'
+      if: steps.commit.outputs.continue == 'yes'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
