@@ -3,8 +3,8 @@ name: Generator
 on:
   schedule:
     # Run  Monday/Wednesday 5pm
-     - cron: '0 0 * * 2,4'
-    #- cron: '*/15 * * * *'
+    # - cron: '0 0 * * 2,4'
+    - cron: '*/15 * * * *'
 
 jobs:
   build:
@@ -14,12 +14,24 @@ jobs:
     - name: Generate SoftLayer classes
       run: |
         make generate
-    - name: Commit files
+    - name: Setup git
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git diff -s --exit-code; if [ "$?" -ne 0 ]; then git commit -m "Updated generated classes on `date`" -a; fi
+    - name: Check for changes
+      run: |
+        GIT_CHANGES=`git diff -s --exit-code`
+        echo git_changes is now $GIT_CHANGES
+    - name : Commit changes
+      if: env.GIT_CHANGES != 0
+      run: |
+        echo COMMITTING CHANGES
+        git commit -m "Updated generated classes on `date`"
     - name: Push changes
+      if: env.GIT_CHANGES != 0
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: No Changes
+      if: GIT_CHANGES == 0
+      run: echo No Changes detected
