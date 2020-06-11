@@ -19,19 +19,17 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
     - name: Check for changes
+      # required because `git diff --exit-code` returns a 1 exit code, which github actions counts as failure.
+      continue-on-error: true 
       run: |
-        GIT_CHANGES=`git diff -s --exit-code`
-        echo git_changes is now $GIT_CHANGES
-    - name : Commit changes
-      if: env.GIT_CHANGES != 0
-      run: |
-        echo COMMITTING CHANGES
-        git commit -m "Updated generated classes on `date`"
+        git diff --exit-code; 
+        if [ "$?" -ne 0 ]; then 
+          git commit -m "Updated generated classes on `date`" -a; 
+          echo ::set-output name=continue::yes
+        fi
     - name: Push changes
-      if: env.GIT_CHANGES != 0
+      if: steps.check.outputs.continue == 'yes'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: No Changes
-      if: GIT_CHANGES == 0
-      run: echo No Changes detected
+
