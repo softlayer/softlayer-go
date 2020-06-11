@@ -1,10 +1,11 @@
+
 name: Generator
 
 on:
   schedule:
     # Run  Monday/Wednesday 5pm
-    - cron: '0 0 * * 2,4'
-    # - cron: '*/15 * * * *'
+     - cron: '0 0 1 * *'
+    #- cron: '*/15 * * * *'
 
 jobs:
   build:
@@ -14,21 +15,12 @@ jobs:
     - name: Generate SoftLayer classes
       run: |
         make generate
-    - name: Setup git
+    - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-    - name: Check for changes
-      # required because `git diff --exit-code` returns a 1 exit code, which github actions counts as failure.
-      run: |
-        git diff --exit-code; 
-    - name: commit
-      if: ${{ failure() }}
-      run: |
-        git commit -m "Updated generated classes on `date`" -a; 
+        git commit -m "Updated generated classes on `date`" -a
     - name: Push changes
-      if: ${{ failure() }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-
