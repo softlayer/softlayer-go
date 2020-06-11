@@ -3,8 +3,8 @@ name: Generator
 on:
   schedule:
     # Run  Monday/Wednesday 5pm
-    # - cron: '0 0 * * 2,4'
-    - cron: '*/15 * * * *'
+    - cron: '0 0 * * 2,4'
+    # - cron: '*/15 * * * *'
 
 jobs:
   build:
@@ -26,9 +26,7 @@ jobs:
       if: ${{ failure() }}
       run: |
         git commit -m "Updated generated classes on `date`" -a; 
-        echo ::set-output name=continue::yes
     - name: Push changes
-      if: steps.commit.outputs.continue == 'yes'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
