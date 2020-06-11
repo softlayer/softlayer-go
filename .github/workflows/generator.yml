@@ -23,10 +23,11 @@ jobs:
       continue-on-error: true 
       run: |
         git diff --exit-code; 
-        if [ "$?" -ne 0 ]; then 
-          git commit -m "Updated generated classes on `date`" -a; 
-          echo ::set-output name=continue::yes
-        fi
+    - name: Commit changes if needed
+      if: failure()
+      run: |
+        git commit -m "Updated generated classes on `date`" -a; 
+        echo ::set-output name=continue::yes
     - name: Push changes
       if: steps.check.outputs.continue == 'yes'
       uses: ad-m/github-push-action@master
