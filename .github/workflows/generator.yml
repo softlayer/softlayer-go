@@ -27,6 +27,7 @@ jobs:
       run: |
         git commit -m "Updated generated classes on `date`" -a; 
     - name: Push changes
+      if: ${{ failure() }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
