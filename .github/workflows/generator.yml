@@ -20,11 +20,10 @@ jobs:
         git config --local user.name "GitHub Action"
     - name: Check for changes
       # required because `git diff --exit-code` returns a 1 exit code, which github actions counts as failure.
-      continue-on-error: true 
       run: |
         git diff --exit-code; 
     - name: Commit changes if needed
-      if: failure()
+      if: ${{ failure() }}
       run: |
         git commit -m "Updated generated classes on `date`" -a; 
         echo ::set-output name=continue::yes
