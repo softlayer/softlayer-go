@@ -453,6 +453,17 @@ func (r Virtual_Guest) ConfigureMetadataDisk() (resp datatypes.Provisioning_Vers
 }
 
 // Create a transaction to archive a computing instance's block devices
+func (r Virtual_Guest) CreateArchiveTemplate(groupName *string, blockDevices []datatypes.Virtual_Guest_Block_Device, note *string) (resp datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	params := []interface{}{
+		groupName,
+		blockDevices,
+		note,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "createArchiveTemplate", params, &r.Options, &resp)
+	return
+}
+
+// Create a transaction to archive a computing instance's block devices
 func (r Virtual_Guest) CreateArchiveTransaction(groupName *string, blockDevices []datatypes.Virtual_Guest_Block_Device, note *string) (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	params := []interface{}{
 		groupName,
@@ -1812,7 +1823,7 @@ func (r Virtual_Guest) GetType() (resp datatypes.Virtual_Guest_Type, err error) 
 	return
 }
 
-// getUpgradeItemPrices() retrieves a list of all upgrades available to a CloudLayer Computing Instance. Upgradeable items include, but are not limited to, number of cores, amount of RAM, storage configuration, and network port speed.
+// Retrieves a list of all upgrades available to a virtual server. Upgradeable items include, but are not limited to, number of cores, amount of RAM, storage configuration, and network port speed.
 //
 // This method exclude downgrade item prices by default. You can set the "includeDowngradeItemPrices" parameter to true so that it can include downgrade item prices.
 func (r Virtual_Guest) GetUpgradeItemPrices(includeDowngradeItemPrices *bool) (resp []datatypes.Product_Item_Price, err error) {

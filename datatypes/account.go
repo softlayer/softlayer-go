@@ -1163,8 +1163,11 @@ type Account struct {
 	// All Routers that an accounts VLANs reside on
 	Routers []Hardware `json:"routers,omitempty" xmlrpc:"routers,omitempty"`
 
-	// An account's reverse WHOIS data. This data is used when making SWIP requests.
-	RwhoisData *Network_Subnet_Rwhois_Data `json:"rwhoisData,omitempty" xmlrpc:"rwhoisData,omitempty"`
+	// DEPRECATED
+	RwhoisData []Network_Subnet_Rwhois_Data `json:"rwhoisData,omitempty" xmlrpc:"rwhoisData,omitempty"`
+
+	// A count of dEPRECATED
+	RwhoisDataCount *uint `json:"rwhoisDataCount,omitempty" xmlrpc:"rwhoisDataCount,omitempty"`
 
 	// The SAML configuration for this account.
 	SamlAuthentication *Account_Authentication_Saml `json:"samlAuthentication,omitempty" xmlrpc:"samlAuthentication,omitempty"`

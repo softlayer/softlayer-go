@@ -36,6 +36,9 @@ type Location struct {
 	// no documentation yet
 	BackboneDependents []Network_Backbone_Location_Dependent `json:"backboneDependents,omitempty" xmlrpc:"backboneDependents,omitempty"`
 
+	// A flag indicating whether or not the datacenter/location is BNPP compliant.
+	BnppCompliantFlag *bool `json:"bnppCompliantFlag,omitempty" xmlrpc:"bnppCompliantFlag,omitempty"`
+
 	// A flag indicating whether or not the datacenter/location is EU compliant.
 	EuCompliantFlag *bool `json:"euCompliantFlag,omitempty" xmlrpc:"euCompliantFlag,omitempty"`
 

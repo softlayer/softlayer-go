@@ -946,7 +946,7 @@ func (r Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *da
 	return
 }
 
-// This method will return a SoftLayer_Container_Account_Graph_Outputs object containing a base64 string PNG image of a line graph of bandwidth statistics given the start and end dates. The start and end dates should be valid ISO 8601 date formatted strings.
+// [DEPRECATED] This method will return a SoftLayer_Container_Account_Graph_Outputs object containing a base64 string PNG image of a line graph of bandwidth statistics given the start and end dates. The start and end dates should be valid ISO 8601 date formatted strings.
 func (r Account) GetHistoricalBandwidthGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
@@ -1775,8 +1775,8 @@ func (r Account) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
-// Retrieve An account's reverse WHOIS data. This data is used when making SWIP requests.
-func (r Account) GetRwhoisData() (resp datatypes.Network_Subnet_Rwhois_Data, err error) {
+// Retrieve DEPRECATED
+func (r Account) GetRwhoisData() (resp []datatypes.Network_Subnet_Rwhois_Data, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getRwhoisData", nil, &r.Options, &resp)
 	return
 }

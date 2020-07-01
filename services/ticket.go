@@ -383,6 +383,12 @@ func (r Ticket) GetAwaitingUserResponseFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve A ticket's associated BNPP compliant record
+func (r Ticket) GetBnppSupportedFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getBnppSupportedFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A service cancellation request.
 func (r Ticket) GetCancellationRequest() (resp datatypes.Billing_Item_Cancellation_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getCancellationRequest", nil, &r.Options, &resp)

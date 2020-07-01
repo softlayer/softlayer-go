@@ -1397,6 +1397,14 @@ type Billing_Item_Network_Interconnect struct {
 	Resource *Network_Interconnect_Tenant `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
+// A SoftLayer_Billing_Item_Network_Interconnect_Routing represents the [[SoftLayer_Billing_Item|billing item]] related to a network interconnect global routing.
+type Billing_Item_Network_Interconnect_Routing struct {
+	Billing_Item
+
+	// The interconnect tenant that the billing item is associated with.
+	Resource *Network_Interconnect_Tenant `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
 // A SoftLayer_Billing_Item_Network_LoadBalancer represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer|load balancer]] instance.
 type Billing_Item_Network_LoadBalancer struct {
 	Billing_Item

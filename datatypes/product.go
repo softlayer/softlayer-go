@@ -622,7 +622,7 @@ type Product_Item_Price struct {
 	// A count of all categories which this item is a member.
 	CategoryCount *uint `json:"categoryCount,omitempty" xmlrpc:"categoryCount,omitempty"`
 
-	// This flag is used by the [[SoftLayer_Hardware::getUpgradeItems|getUpgradeItems]] method to indicate if a product price is used for the current billing item.
+	// This flag is used by the getUpgradeItemPrices methods available on various resources to indicate if a product price is used for the current billing item.
 	CurrentPriceFlag *bool `json:"currentPriceFlag,omitempty" xmlrpc:"currentPriceFlag,omitempty"`
 
 	// Signifies pricing that is only available on a dedicated host virtual server order.

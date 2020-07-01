@@ -86,6 +86,12 @@ type Ticket struct {
 	// Whether a ticket has a one-time charge associated with it. Standard tickets are free while administrative tickets typically cost $3 USD.
 	BillableFlag *bool `json:"billableFlag,omitempty" xmlrpc:"billableFlag,omitempty"`
 
+	// A ticket's associated BNPP compliant record
+	BnppSupportedFlag *bool `json:"bnppSupportedFlag,omitempty" xmlrpc:"bnppSupportedFlag,omitempty"`
+
+	// no documentation yet
+	BnppSupportedLocationId *int `json:"bnppSupportedLocationId,omitempty" xmlrpc:"bnppSupportedLocationId,omitempty"`
+
 	// A service cancellation request.
 	CancellationRequest *Billing_Item_Cancellation_Request `json:"cancellationRequest,omitempty" xmlrpc:"cancellationRequest,omitempty"`
 
@@ -499,6 +505,9 @@ type Ticket_EuCompliance struct {
 
 	// no documentation yet
 	Datacenter *Location `json:"datacenter,omitempty" xmlrpc:"datacenter,omitempty"`
+
+	// no documentation yet
+	SecurityLevel *Security_Level `json:"securityLevel,omitempty" xmlrpc:"securityLevel,omitempty"`
 
 	// no documentation yet
 	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket,omitempty"`

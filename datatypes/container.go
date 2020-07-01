@@ -2361,6 +2361,9 @@ type Container_Network_CdnMarketplace_Configuration_Mapping struct {
 	Cname *string `json:"cname,omitempty" xmlrpc:"cname,omitempty"`
 
 	// no documentation yet
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
 	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 
 	// no documentation yet
@@ -2386,6 +2389,9 @@ type Container_Network_CdnMarketplace_Configuration_Mapping struct {
 
 	// no documentation yet
 	HttpsPort *int `json:"httpsPort,omitempty" xmlrpc:"httpsPort,omitempty"`
+
+	// no documentation yet
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
 	OriginHost *string `json:"originHost,omitempty" xmlrpc:"originHost,omitempty"`
@@ -5238,6 +5244,9 @@ type Container_Tax_Cache struct {
 
 	// The percentage of the final total that should be tax.
 	EffectiveTaxRate *Float64 `json:"effectiveTaxRate,omitempty" xmlrpc:"effectiveTaxRate,omitempty"`
+
+	// no documentation yet
+	FailureMessage *string `json:"failureMessage,omitempty" xmlrpc:"failureMessage,omitempty"`
 
 	// The container that holds the four actual tax rates, one for each fee type.
 	Items []Container_Tax_Cache_Item `json:"items,omitempty" xmlrpc:"items,omitempty"`

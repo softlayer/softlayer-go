@@ -87,6 +87,12 @@ func (r Location) GetBackboneDependents() (resp []datatypes.Network_Backbone_Loc
 	return
 }
 
+// Retrieve A flag indicating whether or not the datacenter/location is BNPP compliant.
+func (r Location) GetBnppCompliantFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Location", "getBnppCompliantFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve all datacenter locations. SoftLayer's datacenters exist in various cities and each contain one or more server rooms which house network and server infrastructure.
 func (r Location) GetDatacenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getDatacenters", nil, &r.Options, &resp)
@@ -286,6 +292,12 @@ func (r Location_Datacenter) GetBackboneDependents() (resp []datatypes.Network_B
 // Retrieve
 func (r Location_Datacenter) GetBackendHardwareRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackendHardwareRouters", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A flag indicating whether or not the datacenter/location is BNPP compliant.
+func (r Location_Datacenter) GetBnppCompliantFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBnppCompliantFlag", nil, &r.Options, &resp)
 	return
 }
 

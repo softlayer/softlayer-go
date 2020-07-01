@@ -1536,7 +1536,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsag
 	return
 }
 
-// This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the private data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
+// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the private data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
 func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
 		date,
@@ -1641,7 +1641,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Net
 	return
 }
 
-// This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the public data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
+// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the public data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
 func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
 		date,
@@ -13633,6 +13633,8 @@ func (r Network_Subnet) CreateSubnetRouteUpdateTransaction(newEndPointIpAddress 
 	return
 }
 
+//
+// ***DEPRECATED***
 // This function is used to create a new SoftLayer SWIP transaction to register your RWHOIS data with ARIN. SWIP transactions can only be initiated on subnets that contain more than 8 IP addresses.
 func (r Network_Subnet) CreateSwipTransaction() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "createSwipTransaction", nil, &r.Options, &resp)
@@ -13648,6 +13650,8 @@ func (r Network_Subnet) EditNote(note *string) (resp bool, err error) {
 	return
 }
 
+//
+// ***DEPRECATED***
 // Retrieve a list of a SoftLayer customer's subnets along with their SWIP transaction statuses. This is a shortcut method that combines the SoftLayer_Network_Subnet retrieval methods along with [[object masks]] to retrieve their subnets' associated SWIP transactions as well.
 //
 // This is a special function built for SoftLayer's use on the SWIP section of the customer portal, but may also be useful for API users looking for the same data.
@@ -13668,7 +13672,7 @@ func (r Network_Subnet) GetActiveRegistration() (resp datatypes.Network_Subnet_R
 	return
 }
 
-// Retrieve All the swip transactions associated with a subnet that are still active.
+// Retrieve DEPRECATED
 func (r Network_Subnet) GetActiveSwipTransaction() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getActiveSwipTransaction", nil, &r.Options, &resp)
 	return
@@ -13899,9 +13903,15 @@ func (r Network_Subnet) GetSubnetForIpAddress(ipAddress *string) (resp datatypes
 	return
 }
 
-// Retrieve All the swip transactions associated with a subnet.
+// Retrieve DEPRECATED
 func (r Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getSwipTransaction", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve References to all tags for this subnet.
+func (r Network_Subnet) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getTagReferences", nil, &r.Options, &resp)
 	return
 }
 
@@ -13929,6 +13939,15 @@ func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateO
 		networkStorageTemplateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "removeAccessToNetworkStorageList", params, &r.Options, &resp)
+	return
+}
+
+// Tag a subnet by passing in one or more tags separated by a comma. Any existing tags you wish to keep should be included in the set of tags, as any missing tags will be removed. To remove all tags from the subnet, send an empty string.
+func (r Network_Subnet) SetTags(tags *string) (resp bool, err error) {
+	params := []interface{}{
+		tags,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "setTags", params, &r.Options, &resp)
 	return
 }
 
@@ -14663,6 +14682,8 @@ func (r Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_R
 	return
 }
 
+//
+// **DEPRECATED**
 // The SoftLayer_Network_Subnet_Swip_Transaction data type contains basic information tracked at SoftLayer to allow automation of Swip creation, update, and removal requests.  A specific transaction is attached to an accountId and a subnetId. This also contains a "Status Name" which tells the customer what the transaction is doing:
 //
 //
@@ -14714,6 +14735,8 @@ func (r Network_Subnet_Swip_Transaction) Offset(offset int) Network_Subnet_Swip_
 	return r
 }
 
+//
+// **DEPRECATED**
 // This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
 func (r Network_Subnet_Swip_Transaction) FindMyTransactions() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, &r.Options, &resp)
@@ -14726,6 +14749,8 @@ func (r Network_Subnet_Swip_Transaction) GetAccount() (resp datatypes.Account, e
 	return
 }
 
+//
+// **DEPRECATED**
 // getObject retrieves the SoftLayer_Network_Subnet_Swip_Transaction object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet_Swip_transaction service. You can only retrieve Swip transactions tied to the account.
 func (r Network_Subnet_Swip_Transaction) GetObject() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "getObject", nil, &r.Options, &resp)
@@ -14738,30 +14763,40 @@ func (r Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Sub
 	return
 }
 
+//
+// **DEPRECATED**
 // This method finds all subnets attached to your account that are in OK status and starts "DELETE" transactions with ARIN, allowing you to remove your SWIP registration information.
 func (r Network_Subnet_Swip_Transaction) RemoveAllSubnetSwips() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "removeAllSubnetSwips", nil, &r.Options, &resp)
 	return
 }
 
+//
+// **DEPRECATED**
 // This function, when called on an instantiated SWIP transaction, will allow you to start a "DELETE" transaction with ARIN, allowing you to remove your SWIP registration information.
 func (r Network_Subnet_Swip_Transaction) RemoveSwipData() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "removeSwipData", nil, &r.Options, &resp)
 	return
 }
 
+//
+// **DEPRECATED**
 // This function will allow you to update ARIN's registration data for a subnet to your current RWHOIS data.
 func (r Network_Subnet_Swip_Transaction) ResendSwipData() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "resendSwipData", nil, &r.Options, &resp)
 	return
 }
 
+//
+// **DEPRECATED**
 // swipAllSubnets finds all subnets attached to your account and attempts to create a SWIP transaction for all subnets that do not already have a SWIP transaction in progress.
 func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "swipAllSubnets", nil, &r.Options, &resp)
 	return
 }
 
+//
+// **DEPRECATED**
 // This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date.
 func (r Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "updateAllSubnetSwips", nil, &r.Options, &resp)
