@@ -2771,6 +2771,18 @@ func (r Network_CdnMarketplace_Metrics) GetMappingHitsMetrics(mappingUniqueId *s
 }
 
 // no documentation yet
+func (r Network_CdnMarketplace_Metrics) GetMappingIntegratedMetrics(mappingUniqueId *string, startTime *int, endTime *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startTime,
+		endTime,
+		frequency,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingIntegratedMetrics", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetMappingRealTimeMetrics(mappingUniqueId *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
 		mappingUniqueId,
@@ -3966,8 +3978,11 @@ func (r Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
 // Used to get a list of OS prices (ids) which are allowed for the Gateway.
 //
 //
-func (r Network_Gateway) GetAllowedOsPriceIds() (resp []int, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAllowedOsPriceIds", nil, &r.Options, &resp)
+func (r Network_Gateway) GetAllowedOsPriceIds(memberId *int) (resp []int, err error) {
+	params := []interface{}{
+		memberId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAllowedOsPriceIds", params, &r.Options, &resp)
 	return
 }
 
@@ -4476,6 +4491,15 @@ func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlId(upgradePkgUrlId 
 		upgradePkgUrlId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByUpgradePkgUrlId", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Gateway_VersionUpgrade) GetAllUpgradesByGatewayId(gatewayId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllUpgradesByGatewayId", params, &r.Options, &resp)
 	return
 }
 
@@ -5584,7 +5608,7 @@ func (r Network_LBaaS_SSLCipher) GetObject() (resp datatypes.Network_LBaaS_SSLCi
 	return
 }
 
-// The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
+// The global load balancer service has been deprecated and is no longer available.
 type Network_LoadBalancer_Global_Account struct {
 	Session *session.Session
 	Options sl.Options
@@ -5624,38 +5648,17 @@ func (r Network_LoadBalancer_Global_Account) Offset(offset int) Network_LoadBala
 	return r
 }
 
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.  A NS resource record is required to be able to use your SoftLayer global load balancer account. Please make sure the zone file for the hostname listed on your SoftLayer global load balancer account is setup prior to using this method.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to add the required NS record.
+// The global load balancer service has been deprecated and is no longer available.
+//
+// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.
 func (r Network_LoadBalancer_Global_Account) AddNsRecord() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "addNsRecord", nil, &r.Options, &resp)
 	return
 }
 
-// Edit the properties of a global load balancer account by passing in a modified instance of the object. The global load balancer account properties you are able to edit are: fallback ip, load balance type id, and notes. Hosts that belong to your SoftLayer global load balancer account are created and modified through this method. An example templateObject that updates global load balancer account properties, updates the properties of a host, and adds a new host is shown below:
+// The global load balancer service has been deprecated and is no longer available.
 //
-//
-// * id: 2
-// * loadBalanceTypeId: 2
-// * notes: Notes updated
-// * fallbackIp: 1.1.1.1
-// * hosts:
-// ** id: 19
-// ** destinationIp: 2.2.2.2
-// ** weight: 25
-// ** healthCheck: http
-// ** destinationPort: 80
-// ** enabled: 1<br /><br />
-// ** destinationIp: 3.3.3.3
-// ** weight: 25
-// ** healthCheck: http
-// ** destinationPort: 80
-// ** enabled: 1
-//
-//
-//
-//
-// The first section contains the properties of the global load balancer account that will be updated, while the second section contains the elements of the 'hosts' property of the global load balancer account.  The first host listed will have its properties updated because the 'id' property of the host is set, meaning the global load balancer host with an id of 19 will be updated. The second host listed will be created because it lacks the 'id' property.
-//
-// There is a limit to the maximum number of hosts that you are allowed to add, and is defined by the allowedNumberOfHosts property on the global load balancer account.  The destination IP address of a host must be an IP address that belongs to your SoftLayer Account, or a local load balancer virtual IP address that belongs to your account.  The destination IP address and destination port are required and must be provided when creating a host.
+// Edit the properties of a global load balancer account by passing in a modified instance of the object.
 func (r Network_LoadBalancer_Global_Account) EditObject(templateObject *datatypes.Network_LoadBalancer_Global_Account) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -5694,23 +5697,21 @@ func (r Network_LoadBalancer_Global_Account) GetManagedResourceFlag() (resp bool
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_LoadBalancer_Global_Account object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Network_LoadBalancer_Global_Account service. You can only retrieve a global load balancer account that is assigned to your SoftLayer customer account.
+// The global load balancer service has been deprecated and is no longer available.
 func (r Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getObject", nil, &r.Options, &resp)
 	return
 }
 
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file. Removing the NS resource record will basically disable your global load balancer account since no DNS requests will be forwarded to the global load balancers. Any A records that were removed when the NS resource record was added will not be created for you.  If your globally load balanced domain is hosted on any other nameservers this method will not be able to remove the required NS record.
+// The global load balancer service has been deprecated and is no longer available.
+//
+// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file.
 func (r Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "removeNsRecord", nil, &r.Options, &resp)
 	return
 }
 
-// The SoftLayer_Network_LoadBalancer_Global_Host data type represents a single host that belongs to a global load balancer account's load balancing pool.
-//
-// The destination IP address of a host must be one that belongs to your SoftLayer customer account, or to a datacenter load balancer virtual ip that belongs to your SoftLayer customer account.  The destination IP address and port of a global load balancer host is a required field and must exist during creation and can not be removed.  The acceptable values for the health check type are 'none', 'http', and 'tcp'. The status property is updated in 5 minute intervals and the hits property is updated in 10 minute intervals.
-//
-// The order of the host is only important if you are using the 'failover' load balance method, and the weight is only important if you are using the 'weighted round robin' load balance method.
+// The global load balancer service has been deprecated and is no longer available.
 type Network_LoadBalancer_Global_Host struct {
 	Session *session.Session
 	Options sl.Options
@@ -5750,6 +5751,8 @@ func (r Network_LoadBalancer_Global_Host) Offset(offset int) Network_LoadBalance
 	return r
 }
 
+// The global load balancer service has been deprecated and is no longer available.
+//
 // Remove a host from the load balancing pool of a global load balancer account.
 func (r Network_LoadBalancer_Global_Host) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "deleteObject", nil, &r.Options, &resp)
@@ -5762,7 +5765,7 @@ func (r Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp datatyp
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_LoadBalancer_Global_Host object whose ID number corresponds to the ID number of the init paramater passed to the SoftLayer_Network_LoadBalancer_Global_Host service. You can only retrieve a global load balancer host that is assigned to your SoftLayer global load balancer account.
+// The global load balancer service has been deprecated and is no longer available.
 func (r Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_LoadBalancer_Global_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "getObject", nil, &r.Options, &resp)
 	return
@@ -13876,7 +13879,7 @@ func (r Network_Subnet) GetRoleName() (resp string, err error) {
 	return
 }
 
-// getRoutableEndpointAddresses retrieves valid routable endpoint addresses for a subnet. You may use any IP address in a portable subnet, but may not use the network identifier, gateway, or broadcast address for primary and secondary on VLAN subnets.
+// Returns IP addresses which may be used as routing endpoints for a given subnet. IP address which are currently the network, gateway, or broadcast address of a Secondary Portable subnet, are an address in a Secondary Static subnet, or if the address is not assigned to a resource when part of a Primary Subnet will not be available as a routing endpoint.
 func (r Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutableEndpointIpAddresses", nil, &r.Options, &resp)
 	return

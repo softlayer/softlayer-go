@@ -285,7 +285,7 @@ func (r Virtual_Disk_Image) GetObject() (resp datatypes.Virtual_Disk_Image, err 
 	return
 }
 
-// no documentation yet
+// Retrieves images from the public ISO repository
 func (r Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getPublicIsoImages", nil, &r.Options, &resp)
 	return
@@ -2439,6 +2439,15 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetRegion() (resp datatypes.N
 // Retrieve
 func (r Virtual_Guest_Block_Device_Template_Group) GetRegions() (resp []datatypes.Network_Service_Resource, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegions", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Virtual_Guest_Block_Device_Template_Group) GetRiasAccount(secret *string) (resp datatypes.Container_Virtual_Guest_Block_Device_Template_Group_RiasAccount, err error) {
+	params := []interface{}{
+		secret,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRiasAccount", params, &r.Options, &resp)
 	return
 }
 

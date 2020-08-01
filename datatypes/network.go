@@ -1920,6 +1920,9 @@ type Network_Gateway_VersionUpgrade struct {
 	// A gateway status's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
+	// Is OS Reload required after version upgrade?.
+	OsReloadRequired *int `json:"osReloadRequired,omitempty" xmlrpc:"osReloadRequired,omitempty"`
+
 	// Gateway version available for upgrade.
 	ToVersion *string `json:"toVersion,omitempty" xmlrpc:"toVersion,omitempty"`
 }
@@ -1992,6 +1995,9 @@ type Network_Interconnect_Tenant struct {
 
 	// Specifies the Interconnect connection name.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// Direct Link provider can request change to existing routing, Customer can approve the change. newGlobalRoutingFlag = 1 gives connectivity to all IBM data centers, and if newGlobalRoutingFlag = 0, it gives local connectivity.
+	NewGlobalRoutingFlag *bool `json:"newGlobalRoutingFlag,omitempty" xmlrpc:"newGlobalRoutingFlag,omitempty"`
 
 	// Updated Link speed of a Direct Link connection.
 	NewLinkSpeed *int `json:"newLinkSpeed,omitempty" xmlrpc:"newLinkSpeed,omitempty"`
@@ -2652,7 +2658,7 @@ type Network_LBaaS_SessionAffinity struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// The SoftLayer_Network_LoadBalancer_Global_Account data type contains the properties for a single global load balancer account.  The properties you are able to edit are fallbackIp, loadBalanceTypeId, and notes. The hosts relational property can be used for creating and editing hosts that belong to the global load balancer account.  The [[SoftLayer_Network_LoadBalancer_Global_Account::editObject|editObject]] method contains details on creating and edited hosts through the hosts relational property.
+// The global load balancer service has been deprecated and is no longer available.
 type Network_LoadBalancer_Global_Account struct {
 	Entity
 
@@ -2699,11 +2705,7 @@ type Network_LoadBalancer_Global_Account struct {
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 }
 
-// The SoftLayer_Network_LoadBalancer_Global_Host data type represents a single host that belongs to a global load balancer account's load balancing pool.
-//
-// The destination IP address of a host must be one that belongs to your SoftLayer customer account, or to a datacenter load balancer virtual ip that belongs to your SoftLayer customer account.  The destination IP address and port of a global load balancer host is a required field and must exist during creation and can not be removed.  The acceptable values for the health check type are 'none', 'http', and 'tcp'. The status property is updated in 5 minute intervals and the hits property is updated in 10 minute intervals.
-//
-// The order of the host is only important if you are using the 'failover' load balance method, and the weight is only important if you are using the 'weighted round robin' load balance method.
+// The global load balancer service has been deprecated and is no longer available.
 type Network_LoadBalancer_Global_Host struct {
 	Entity
 
@@ -2741,6 +2743,8 @@ type Network_LoadBalancer_Global_Host struct {
 	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
 }
 
+// The global load balancer service has been deprecated and is no longer available.
+//
 // The SoftLayer_Network_LoadBalancer_Global_Type data type represents a single load balance method that can be assigned to a global load balancer account. The load balance method determines how hosts in a load balancing pool are chosen by the global load balancers.
 type Network_LoadBalancer_Global_Type struct {
 	Entity
@@ -3659,6 +3663,9 @@ type Network_Service_Resource struct {
 
 	// The name associated with this resource
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	NetappVolumeName *string `json:"netappVolumeName,omitempty" xmlrpc:"netappVolumeName,omitempty"`
 
 	// The hardware information associated with this resource.
 	NetworkDevice *Hardware `json:"networkDevice,omitempty" xmlrpc:"networkDevice,omitempty"`

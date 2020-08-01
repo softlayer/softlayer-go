@@ -3976,7 +3976,7 @@ type Container_Product_Order_Hardware_Server_Gateway_Appliance struct {
 	Container_Product_Order_Hardware_Server
 }
 
-// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a hardware upgrade.
 type Container_Product_Order_Hardware_Server_Upgrade struct {
 	Container_Product_Order_Hardware_Server
 }
@@ -5965,6 +5965,20 @@ type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	//
 	// Wrapped Decryption Key provided by IBM Key Protect
 	WrappedDek *string `json:"wrappedDek,omitempty" xmlrpc:"wrappedDek,omitempty"`
+}
+
+// no documentation yet
+type Container_Virtual_Guest_Block_Device_Template_Group_RiasAccount struct {
+	Entity
+
+	// no documentation yet
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// no documentation yet
+	MasterUserId *int `json:"masterUserId,omitempty" xmlrpc:"masterUserId,omitempty"`
+
+	// no documentation yet
+	Token *string `json:"token,omitempty" xmlrpc:"token,omitempty"`
 }
 
 // The guest configuration container is used to provide configuration options for creating computing instances.

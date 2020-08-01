@@ -1482,6 +1482,12 @@ func (r Product_Package) GetMongoDbEngineeredFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve Services ordered from this package cannot have upgrades or downgrades performed.
+func (r Product_Package) GetNoUpgradesFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getNoUpgradesFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Whether the package is not in compliance with EU support.
 func (r Product_Package) GetNonEuCompliantFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getNonEuCompliantFlag", nil, &r.Options, &resp)

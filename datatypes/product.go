@@ -1222,6 +1222,9 @@ type Product_Package struct {
 	// The description of the package. For server packages, this is usually a detailed description of processor type and count.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
+	// Services ordered from this package cannot have upgrades or downgrades performed.
+	NoUpgradesFlag *bool `json:"noUpgradesFlag,omitempty" xmlrpc:"noUpgradesFlag,omitempty"`
+
 	// Whether the package is not in compliance with EU support.
 	NonEuCompliantFlag *bool `json:"nonEuCompliantFlag,omitempty" xmlrpc:"nonEuCompliantFlag,omitempty"`
 

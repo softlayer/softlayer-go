@@ -431,10 +431,10 @@ type Account struct {
 	// no documentation yet
 	GlobalIpv6Records []Network_Subnet_IpAddress_Global `json:"globalIpv6Records,omitempty" xmlrpc:"globalIpv6Records,omitempty"`
 
-	// A count of the global load balancer accounts for a softlayer customer account.
+	// A count of [Deprecated] The global load balancer accounts for a softlayer customer account.
 	GlobalLoadBalancerAccountCount *uint `json:"globalLoadBalancerAccountCount,omitempty" xmlrpc:"globalLoadBalancerAccountCount,omitempty"`
 
-	// The global load balancer accounts for a softlayer customer account.
+	// [Deprecated] The global load balancer accounts for a softlayer customer account.
 	GlobalLoadBalancerAccounts []Network_LoadBalancer_Global_Account `json:"globalLoadBalancerAccounts,omitempty" xmlrpc:"globalLoadBalancerAccounts,omitempty"`
 
 	// An account's associated hardware objects.

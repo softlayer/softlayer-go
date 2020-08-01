@@ -822,7 +822,7 @@ func (r Account) GetGlobalIpv6Records() (resp []datatypes.Network_Subnet_IpAddre
 	return
 }
 
-// Retrieve The global load balancer accounts for a softlayer customer account.
+// Retrieve [Deprecated] The global load balancer accounts for a softlayer customer account.
 func (r Account) GetGlobalLoadBalancerAccounts() (resp []datatypes.Network_LoadBalancer_Global_Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalLoadBalancerAccounts", nil, &r.Options, &resp)
 	return
@@ -2217,18 +2217,13 @@ func (r Account) SwapCreditCards() (resp bool, err error) {
 }
 
 // no documentation yet
-func (r Account) SyncCurrentUserPopulationWithPaas(skipIbmidLookupFlag *bool) (err error) {
+func (r Account) SyncCurrentUserPopulationWithPaas() (err error) {
 	var resp datatypes.Void
-	params := []interface{}{
-		skipIbmidLookupFlag,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account", "syncCurrentUserPopulationWithPaas", params, &r.Options, &resp)
+	err = r.Session.DoRequest("SoftLayer_Account", "syncCurrentUserPopulationWithPaas", nil, &r.Options, &resp)
 	return
 }
 
-// Some larger SoftLayer customer accounts may have servers and virtual servers on more subnets than SoftLayer's private network VPN devices can assign routes for. In those cases routes for individual servers and virtual servers may be assigned individually to an account's servers via this method.
-//
-// Always call this method to enable changes when manually configuring VPN subnet access.
+// [DEPRECATED] This method has been deprecated and will simply return false.
 func (r Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (resp bool, err error) {
 	params := []interface{}{
 		objectId,

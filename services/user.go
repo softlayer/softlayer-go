@@ -378,6 +378,12 @@ func (r User_Customer) GetAdditionalEmails() (resp []datatypes.User_Customer_Add
 }
 
 // no documentation yet
+func (r User_Customer) GetAgentImpersonationToken() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAgentImpersonationToken", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 func (r User_Customer) GetAllowedDedicatedHostIds() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedDedicatedHostIds", nil, &r.Options, &resp)
 	return
@@ -2828,6 +2834,12 @@ func (r User_Customer_OpenIdConnect) GetActiveExternalAuthenticationVendors() (r
 // Retrieve A portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
 func (r User_Customer_OpenIdConnect) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAdditionalEmails", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r User_Customer_OpenIdConnect) GetAgentImpersonationToken() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAgentImpersonationToken", nil, &r.Options, &resp)
 	return
 }
 
