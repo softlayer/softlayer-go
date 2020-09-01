@@ -119,7 +119,7 @@ type Metric_Tracking_Object_HardwareServer struct {
 	// The total private bandwidth for this item's resource for the current billing cycle.
 	BillingCyclePrivateUsageTotal *uint `json:"billingCyclePrivateUsageTotal,omitempty" xmlrpc:"billingCyclePrivateUsageTotal,omitempty"`
 
-	// The raw bandwidth usage data for the current billing cycle. One object is returned for each network this server is attached to.
+	// The raw public bandwidth usage data for the current billing cycle. One object is returned for each network this server is attached to.
 	BillingCyclePublicBandwidthUsage *Network_Bandwidth_Usage `json:"billingCyclePublicBandwidthUsage,omitempty" xmlrpc:"billingCyclePublicBandwidthUsage,omitempty"`
 
 	// The total public inbound bandwidth for this item's resource for the current billing cycle.

@@ -986,6 +986,11 @@ type Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection struct {
 	RefererValues *string `json:"refererValues,omitempty" xmlrpc:"refererValues,omitempty"`
 }
 
+// no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
+	Entity
+}
+
 // This data type models a purge event that occurs in caching server. It contains a reference to a mapping configuration, the path to execute the purge on, the status of the purge, and flag that enables saving the purge information for future use.
 type Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Entity

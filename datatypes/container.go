@@ -2199,6 +2199,23 @@ type Container_Network_Bandwidth_Version1_Usage struct {
 }
 
 // no documentation yet
+type Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
+	Entity
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	Path *string `json:"path,omitempty" xmlrpc:"path,omitempty"`
+
+	// no documentation yet
+	TokenKey *string `json:"tokenKey,omitempty" xmlrpc:"tokenKey,omitempty"`
+
+	// no documentation yet
+	TransitionKey *string `json:"transitionKey,omitempty" xmlrpc:"transitionKey,omitempty"`
+}
+
+// no documentation yet
 type Container_Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Entity
 
@@ -4130,6 +4147,8 @@ type Container_Product_Order_Network_LoadBalancer_AsAService struct {
 	UseSystemPublicIpPool *bool `json:"useSystemPublicIpPool,omitempty" xmlrpc:"useSystemPublicIpPool,omitempty"`
 }
 
+// The global load balancer service has been deprecated and is no longer available.
+//
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a global load balancer order with SoftLayer.
 type Container_Product_Order_Network_LoadBalancer_Global struct {
 	Container_Product_Order
@@ -5655,10 +5674,16 @@ type Container_User_Customer_Profile_Event_HyperWarp_ProfileChange_EventProperti
 	Notification_language *string `json:"notification_language,omitempty" xmlrpc:"notification_language,omitempty"`
 
 	// no documentation yet
+	Origin *string `json:"origin,omitempty" xmlrpc:"origin,omitempty"`
+
+	// no documentation yet
 	Phonenumber *string `json:"phonenumber,omitempty" xmlrpc:"phonenumber,omitempty"`
 
 	// no documentation yet
 	Photo *string `json:"photo,omitempty" xmlrpc:"photo,omitempty"`
+
+	// no documentation yet
+	Realm *string `json:"realm,omitempty" xmlrpc:"realm,omitempty"`
 
 	// no documentation yet
 	Self_manage *bool `json:"self_manage,omitempty" xmlrpc:"self_manage,omitempty"`

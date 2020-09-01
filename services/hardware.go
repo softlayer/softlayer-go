@@ -1361,6 +1361,12 @@ func (r Hardware) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	return
 }
 
+// Retrieve
+func (r Hardware) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageNetworkComponents", nil, &r.Options, &resp)
@@ -3400,6 +3406,12 @@ func (r Hardware_Router) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err er
 	return
 }
 
+// Retrieve
+func (r Hardware_Router) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_Router) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageNetworkComponents", nil, &r.Options, &resp)
@@ -4852,6 +4864,12 @@ func (r Hardware_SecurityModule) GetLockboxNetworkStorage() (resp datatypes.Netw
 	return
 }
 
+// Retrieve Returns a list of logical volumes on the physical machine.
+func (r Hardware_SecurityModule) GetLogicalVolumeStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_SecurityModule) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -5515,6 +5533,12 @@ func (r Hardware_SecurityModule) GetSshKeys() (resp []datatypes.Security_Ssh_Key
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_SecurityModule) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_SecurityModule) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageGroups", nil, &r.Options, &resp)
 	return
 }
 
@@ -7256,6 +7280,12 @@ func (r Hardware_SecurityModule750) GetLockboxNetworkStorage() (resp datatypes.N
 	return
 }
 
+// Retrieve Returns a list of logical volumes on the physical machine.
+func (r Hardware_SecurityModule750) GetLogicalVolumeStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_SecurityModule750) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -7919,6 +7949,12 @@ func (r Hardware_SecurityModule750) GetSshKeys() (resp []datatypes.Security_Ssh_
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_SecurityModule750) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_SecurityModule750) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageGroups", nil, &r.Options, &resp)
 	return
 }
 
@@ -9660,6 +9696,12 @@ func (r Hardware_Server) GetLockboxNetworkStorage() (resp datatypes.Network_Stor
 	return
 }
 
+// Retrieve Returns a list of logical volumes on the physical machine.
+func (r Hardware_Server) GetLogicalVolumeStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_Server) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -10323,6 +10365,12 @@ func (r Hardware_Server) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err er
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_Server) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_Server) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageGroups", nil, &r.Options, &resp)
 	return
 }
 

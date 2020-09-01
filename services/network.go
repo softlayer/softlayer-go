@@ -2077,6 +2077,89 @@ func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) UpdateH
 	return
 }
 
+// no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkCdnMarketplaceConfigurationBehaviorTokenAuthService returns an instance of the Network_CdnMarketplace_Configuration_Behavior_TokenAuth SoftLayer service
+func GetNetworkCdnMarketplaceConfigurationBehaviorTokenAuthService(sess *session.Session) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	return Network_CdnMarketplace_Configuration_Behavior_TokenAuth{Session: sess}
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) Id(id int) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) Mask(mask string) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) Filter(filter string) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) Limit(limit int) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) Offset(offset int) Network_CdnMarketplace_Configuration_Behavior_TokenAuth {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) CreateTokenAuthPath(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "createTokenAuthPath", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) DeleteTokenAuthPath(uniqueId *string, path *string) (resp string, err error) {
+	params := []interface{}{
+		uniqueId,
+		path,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "deleteTokenAuthPath", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) ListTokenAuthPath(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "listTokenAuthPath", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) UpdateTokenAuthPath(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "updateTokenAuthPath", params, &r.Options, &resp)
+	return
+}
+
 // This data type models a purge event that occurs in caching server. It contains a reference to a mapping configuration, the path to execute the purge on, the status of the purge, and flag that enables saving the purge information for future use.
 type Network_CdnMarketplace_Configuration_Cache_Purge struct {
 	Session *session.Session
@@ -3918,17 +4001,6 @@ func (r Network_Gateway) BypassVlans(vlans []datatypes.Network_Gateway_Vlan) (er
 	return
 }
 
-// Returns true if rollback is allowed.
-//
-//
-func (r Network_Gateway) CanRollbackVersion(activeStatus *bool) (resp bool, err error) {
-	params := []interface{}{
-		activeStatus,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "canRollbackVersion", params, &r.Options, &resp)
-	return
-}
-
 // Used to create a transaction to upgrade or rollback the vSRX version for Juniper gateway.
 //
 //
@@ -4107,6 +4179,14 @@ func (r Network_Gateway) IsLicenseServerAllowed(licenseKeyName *string) (resp bo
 		licenseKeyName,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isLicenseServerAllowed", params, &r.Options, &resp)
+	return
+}
+
+// Returns true if rollback is allowed.
+//
+//
+func (r Network_Gateway) IsRollbackAllowed() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isRollbackAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -4477,15 +4557,6 @@ func (r Network_Gateway_VersionUpgrade) Offset(offset int) Network_Gateway_Versi
 }
 
 // no documentation yet
-func (r Network_Gateway_VersionUpgrade) GetAllByFromVersion(fromVersion *string) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
-	params := []interface{}{
-		fromVersion,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByFromVersion", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
 func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlId(upgradePkgUrlId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
 	params := []interface{}{
 		upgradePkgUrlId,
@@ -4506,6 +4577,17 @@ func (r Network_Gateway_VersionUpgrade) GetAllUpgradesByGatewayId(gatewayId *int
 // no documentation yet
 func (r Network_Gateway_VersionUpgrade) GetObject() (resp datatypes.Network_Gateway_VersionUpgrade, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Used to get a list per package of prices ids for allowed vSRX OS-es for new orders
+//
+//
+func (r Network_Gateway_VersionUpgrade) GetVsrxOrdersAllowedOS(accountId *int) (resp []datatypes.Product_Package_Item_Prices, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getVsrxOrdersAllowedOS", params, &r.Options, &resp)
 	return
 }
 

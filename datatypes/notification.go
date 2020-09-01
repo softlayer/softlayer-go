@@ -657,7 +657,7 @@ type Notification_User_Subscriber_Preference struct {
 	Value *string `json:"value,omitempty" xmlrpc:"value,omitempty"`
 }
 
-// Retrieve identifier cross-reference information.  SoftLayer_Notification_User_Subscriber_Resource provides the resource table id and subscriber id relation. The resource table id is the id of the service the subscriber receives alerts for.  This resource table id could be the unique identifier for a Storage Evault service, Global Load Balancer or CDN service.
+// Retrieve identifier cross-reference information.  SoftLayer_Notification_User_Subscriber_Resource provides the resource table id and subscriber id relation. The resource table id is the id of the service the subscriber receives alerts for.  This resource table id could be the unique identifier for a Storage Evault service or CDN service.
 type Notification_User_Subscriber_Resource struct {
 	Entity
 
@@ -669,7 +669,7 @@ type Notification_User_Subscriber_Resource struct {
 
 	// Unique identifier for a SoftLayer service that is subscribed to a notification.  Currently, the SoftLayer services that can be subscribed to notifications are:
 	//
-	// Storage EVault CDN Global Load Balancer
+	// Storage EVault CDN
 	//
 	//
 	ResourceTableId *int `json:"resourceTableId,omitempty" xmlrpc:"resourceTableId,omitempty"`

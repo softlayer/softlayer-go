@@ -31,6 +31,56 @@ type Configuration_Storage_Filesystem_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// This class describes the base Storage Group for a Complex Drive Configuration
+type Configuration_Storage_Group struct {
+	Entity
+
+	// A count of this class represents a storage groups ancestors
+	AncestorGroupCount *uint `json:"ancestorGroupCount,omitempty" xmlrpc:"ancestorGroupCount,omitempty"`
+
+	// This class represents a storage groups ancestors
+	AncestorGroups []Configuration_Storage_Group `json:"ancestorGroups,omitempty" xmlrpc:"ancestorGroups,omitempty"`
+
+	// This class represents a storage group disk array type
+	ArrayType *Configuration_Storage_Group_Array_Type `json:"arrayType,omitempty" xmlrpc:"arrayType,omitempty"`
+
+	// Determine if the storage group is able to be image captured. If unable to image capture the reasons will be provided.
+	CaptureEnabledFlag *string `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
+
+	// no documentation yet
+	CreateEmployee *User_Employee `json:"createEmployee,omitempty" xmlrpc:"createEmployee,omitempty"`
+
+	// A count of this class represents a storage groups descendants
+	DescendantGroupCount *uint `json:"descendantGroupCount,omitempty" xmlrpc:"descendantGroupCount,omitempty"`
+
+	// This class represents a storage groups descendants
+	DescendantGroups []Configuration_Storage_Group `json:"descendantGroups,omitempty" xmlrpc:"descendantGroups,omitempty"`
+
+	// Storage group description
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// Storage group disk space
+	DiskSpace *Float64 `json:"diskSpace,omitempty" xmlrpc:"diskSpace,omitempty"`
+
+	// A count of the hard drives contained within this storage group.
+	HardDriveCount *uint `json:"hardDriveCount,omitempty" xmlrpc:"hardDriveCount,omitempty"`
+
+	// The hard drives contained within this storage group.
+	HardDrives []Hardware_Component `json:"hardDrives,omitempty" xmlrpc:"hardDrives,omitempty"`
+
+	// Storage group type id
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Flag to indicate if the storage group is setup for lvm
+	LvmFlag *bool `json:"lvmFlag,omitempty" xmlrpc:"lvmFlag,omitempty"`
+
+	// Storage group name
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// Storage group disk size units
+	Units *string `json:"units,omitempty" xmlrpc:"units,omitempty"`
+}
+
 // Supported hardware raid modes
 type Configuration_Storage_Group_Array_Type struct {
 	Entity

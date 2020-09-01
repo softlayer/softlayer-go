@@ -255,6 +255,12 @@ func (r Virtual_Disk_Image) GetCopyOnWriteFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve
+func (r Virtual_Disk_Image) GetDiskImageStorageGroup() (resp datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getDiskImageStorageGroup", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Return imported disk type
 func (r Virtual_Disk_Image) GetImportedDiskType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getImportedDiskType", nil, &r.Options, &resp)
@@ -300,6 +306,18 @@ func (r Virtual_Disk_Image) GetSoftwareReferences() (resp []datatypes.Virtual_Di
 // Retrieve The original disk image that the current disk image was cloned from.
 func (r Virtual_Disk_Image) GetSourceDiskImage() (resp datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getSourceDiskImage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Return storage group details for symantec disk
+func (r Virtual_Disk_Image) GetStorageGroupDetails() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroupDetails", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The storage group for a virtual disk image.
+func (r Virtual_Disk_Image) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroups", nil, &r.Options, &resp)
 	return
 }
 

@@ -133,6 +133,9 @@ type Virtual_Disk_Image struct {
 	// A brief description of a virtual disk image.
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
+	// no documentation yet
+	DiskImageStorageGroup *Configuration_Storage_Group `json:"diskImageStorageGroup,omitempty" xmlrpc:"diskImageStorageGroup,omitempty"`
+
 	// A disk image's unique ID.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
@@ -165,6 +168,15 @@ type Virtual_Disk_Image struct {
 
 	// The original disk image that the current disk image was cloned from.
 	SourceDiskImage *Virtual_Disk_Image `json:"sourceDiskImage,omitempty" xmlrpc:"sourceDiskImage,omitempty"`
+
+	// A count of the storage group for a virtual disk image.
+	StorageGroupCount *uint `json:"storageGroupCount,omitempty" xmlrpc:"storageGroupCount,omitempty"`
+
+	// Return storage group details for symantec disk
+	StorageGroupDetails *string `json:"storageGroupDetails,omitempty" xmlrpc:"storageGroupDetails,omitempty"`
+
+	// The storage group for a virtual disk image.
+	StorageGroups []Configuration_Storage_Group `json:"storageGroups,omitempty" xmlrpc:"storageGroups,omitempty"`
 
 	// The storage repository that a disk image resides in.
 	StorageRepository *Virtual_Storage_Repository `json:"storageRepository,omitempty" xmlrpc:"storageRepository,omitempty"`

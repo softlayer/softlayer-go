@@ -582,6 +582,12 @@ type Hardware struct {
 	// SSH keys to be installed on the server during provisioning or an OS reload.
 	SshKeys []Security_Ssh_Key `json:"sshKeys,omitempty" xmlrpc:"sshKeys,omitempty"`
 
+	// A count of
+	StorageGroupCount *uint `json:"storageGroupCount,omitempty" xmlrpc:"storageGroupCount,omitempty"`
+
+	// no documentation yet
+	StorageGroups []Configuration_Storage_Group `json:"storageGroups,omitempty" xmlrpc:"storageGroups,omitempty"`
+
 	// A count of a piece of hardware's private storage network components. [Deprecated]
 	StorageNetworkComponentCount *uint `json:"storageNetworkComponentCount,omitempty" xmlrpc:"storageNetworkComponentCount,omitempty"`
 
@@ -824,6 +830,12 @@ type Hardware_Component struct {
 	// no documentation yet
 	IsChildModule *bool `json:"isChildModule,omitempty" xmlrpc:"isChildModule,omitempty"`
 
+	// A count of returns the associated logic volume storage groups for the hardware component.
+	LogicalVolumeStorageGroupCount *uint `json:"logicalVolumeStorageGroupCount,omitempty" xmlrpc:"logicalVolumeStorageGroupCount,omitempty"`
+
+	// Returns the associated logic volume storage groups for the hardware component.
+	LogicalVolumeStorageGroups []Configuration_Storage_Group `json:"logicalVolumeStorageGroups,omitempty" xmlrpc:"logicalVolumeStorageGroups,omitempty"`
+
 	// A component's M.2 SATA capacity.
 	M2SataSlotCapacity *string `json:"m2SataSlotCapacity,omitempty" xmlrpc:"m2SataSlotCapacity,omitempty"`
 
@@ -1049,6 +1061,9 @@ type Hardware_Component_HardDrive struct {
 
 	// The attached component partitions.
 	Partitions []Hardware_Component_Partition `json:"partitions,omitempty" xmlrpc:"partitions,omitempty"`
+
+	// A hard drives physical security ID.
+	Psid *string `json:"psid,omitempty" xmlrpc:"psid,omitempty"`
 }
 
 // no documentation yet
@@ -1316,6 +1331,20 @@ type Hardware_Component_Motherboard_Reboot_Time struct {
 // The SoftLayer_Hardware_Component_NetworkCard data type abstracts information related to a network card.
 type Hardware_Component_NetworkCard struct {
 	Hardware_Component
+}
+
+// The SoftLayer_Hardware_Component_PSID_Xref data type holds physical security ID information for hard drives
+type Hardware_Component_PSID_Xref struct {
+	Entity
+
+	// The hardware component the PSID belongs to.
+	Component *Hardware_Component `json:"component,omitempty" xmlrpc:"component,omitempty"`
+
+	// no documentation yet
+	ComponentId *int `json:"componentId,omitempty" xmlrpc:"componentId,omitempty"`
+
+	// no documentation yet
+	Psid *string `json:"psid,omitempty" xmlrpc:"psid,omitempty"`
 }
 
 // The SoftLayer_Hardware_Component_Partition data type contains general information relating to a single hard drive partition.
@@ -1924,6 +1953,12 @@ type Hardware_Server struct {
 
 	// The last transaction that a server's operating system was loaded.
 	LastOperatingSystemReload *Provisioning_Version1_Transaction `json:"lastOperatingSystemReload,omitempty" xmlrpc:"lastOperatingSystemReload,omitempty"`
+
+	// A count of returns a list of logical volumes on the physical machine.
+	LogicalVolumeStorageGroupCount *uint `json:"logicalVolumeStorageGroupCount,omitempty" xmlrpc:"logicalVolumeStorageGroupCount,omitempty"`
+
+	// Returns a list of logical volumes on the physical machine.
+	LogicalVolumeStorageGroups []Configuration_Storage_Group `json:"logicalVolumeStorageGroups,omitempty" xmlrpc:"logicalVolumeStorageGroups,omitempty"`
 
 	// The metric tracking object id for this server.
 	MetricTrackingObjectId *int `json:"metricTrackingObjectId,omitempty" xmlrpc:"metricTrackingObjectId,omitempty"`
