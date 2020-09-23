@@ -4152,6 +4152,14 @@ func (r Network_Gateway) GetPublicVlan() (resp datatypes.Network_Vlan, err error
 	return
 }
 
+// Returns the following statuses SUPPORTED - rollback is supported and perform automatically UNSUPPORTED - rollback is not supported MANUAL - rollback can be performed but
+//
+//
+func (r Network_Gateway) GetRollbackSupport() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getRollbackSupport", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The current status of the gateway.
 func (r Network_Gateway) GetStatus() (resp datatypes.Network_Gateway_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getStatus", nil, &r.Options, &resp)
@@ -4424,14 +4432,17 @@ func (r Network_Gateway_Precheck) GetObject() (resp datatypes.Network_Gateway_Pr
 //
 // category : String : The precheck category which corresponds to one or more executeable actions.
 //
-// Current categories include: upgrade_precheck : Required for major and minor upgrade version actions. license_precheck : Required for license upgrade and downgrade actions. reload_precheck : Required for OS Reload action.
+// Current categories include: upgrade_precheck : Required for major and minor upgrade version actions. license_precheck : Required for license upgrade and downgrade actions. reload_precheck : Required for OS Reload action. rollback_precheck : Optional and related to upgrade_precheck.  Only returned if getRollbackPrecheck is provided and set to True (1).
+//
+//
 //
 // memberId : Integer : The softlayer member id. memberReadinessValue : String : The precheck readiness state for the member. See possible readiness values above. gatewayReadinessValue : String : The precheck readiness state for the gateway : See possible readiness values above. returnCode : Integer : The return code. 0 if no error. Reference cloud.ibm.com documentation for details.
 //
 //
-func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int) (resp []datatypes.Network_Gateway_Precheck, err error) {
+func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int, getRollbackPrecheck *bool) (resp []datatypes.Network_Gateway_Precheck, err error) {
 	params := []interface{}{
 		gatewayId,
+		getRollbackPrecheck,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "getPrecheckStatus", params, &r.Options, &resp)
 	return
@@ -8483,6 +8494,15 @@ func (r Network_Storage) RefreshDependentDuplicate(snapshotId *int) (resp bool, 
 	return
 }
 
+// no documentation yet
+func (r Network_Storage) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "refreshDuplicate", params, &r.Options, &resp)
+	return
+}
+
 // This method is used to modify the access control list for this Storage volume.  The SoftLayer_Hardware objects which have been allowed access to this storage will be listed in the allowedHardware property of this storage volume.
 func (r Network_Storage) RemoveAccessFromHardware(hardwareObjectTemplate *datatypes.Hardware) (resp bool, err error) {
 	params := []interface{}{
@@ -10637,6 +10657,15 @@ func (r Network_Storage_Backup_Evault) RefreshDependentDuplicate(snapshotId *int
 		snapshotId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "refreshDependentDuplicate", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Backup_Evault) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "refreshDuplicate", params, &r.Options, &resp)
 	return
 }
 
@@ -12825,6 +12854,15 @@ func (r Network_Storage_Iscsi) RefreshDependentDuplicate(snapshotId *int) (resp 
 		snapshotId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "refreshDependentDuplicate", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_Iscsi) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+	params := []interface{}{
+		snapshotId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "refreshDuplicate", params, &r.Options, &resp)
 	return
 }
 

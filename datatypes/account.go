@@ -2531,6 +2531,17 @@ type Account_ProofOfConcept_Approver_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// A [SoftLayer_Account_ProofOfConcept_Campaign_Code] provides a `code` and an optional `description`.
+type Account_ProofOfConcept_Campaign_Code struct {
+	Entity
+
+	// no documentation yet
+	Code *string `json:"code,omitempty" xmlrpc:"code,omitempty"`
+
+	// no documentation yet
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+}
+
 // no documentation yet
 type Account_ProofOfConcept_Funding_Type struct {
 	Entity

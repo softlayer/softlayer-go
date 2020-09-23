@@ -640,17 +640,20 @@ type Container_Account_ProofOfConcept_Request_GlobalFunded struct {
 	TechnicalContact *Container_Account_ProofOfConcept_Contact_Ibmer_Technical `json:"technicalContact,omitempty" xmlrpc:"technicalContact,omitempty"`
 }
 
-// Internal IBM opportunity codes required when applying for a proof of concept account.
+// Internal IBM opportunity codes required when applying for a Proof of Concept account.
 type Container_Account_ProofOfConcept_Request_Opportunity struct {
 	Entity
 
-	// Expected monthly revenue
+	// The campaign or promotion code for this request, provided by Sales.
+	CampaignCode *string `json:"campaignCode,omitempty" xmlrpc:"campaignCode,omitempty"`
+
+	// Expected monthly revenue.
 	MonthlyRecurringRevenue *Float64 `json:"monthlyRecurringRevenue,omitempty" xmlrpc:"monthlyRecurringRevenue,omitempty"`
 
-	// Internal system identifier
+	// Internal system identifier.
 	OpportunityNumber *string `json:"opportunityNumber,omitempty" xmlrpc:"opportunityNumber,omitempty"`
 
-	// Expected overall contract value
+	// Expected overall contract value.
 	TotalContractValue *Float64 `json:"totalContractValue,omitempty" xmlrpc:"totalContractValue,omitempty"`
 }
 
@@ -1385,11 +1388,17 @@ type Container_Disk_Image_Capture_Template struct {
 type Container_Disk_Image_Capture_Template_Volume struct {
 	Entity
 
+	// A customer provided flag to indicate that the current volume is the boot drive
+	BootVolumeFlag *bool `json:"bootVolumeFlag,omitempty" xmlrpc:"bootVolumeFlag,omitempty"`
+
 	// no documentation yet
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
 	Partitions []Container_Disk_Image_Capture_Template_Volume_Partition `json:"partitions,omitempty" xmlrpc:"partitions,omitempty"`
+
+	// The storage group to capture
+	StorageGroupId *int `json:"storageGroupId,omitempty" xmlrpc:"storageGroupId,omitempty"`
 }
 
 // no documentation yet
@@ -2198,21 +2207,39 @@ type Container_Network_Bandwidth_Version1_Usage struct {
 	RecordedDate *Time `json:"recordedDate,omitempty" xmlrpc:"recordedDate,omitempty"`
 }
 
-// no documentation yet
+// The SoftLayer_Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth data type contains information for specific responses from the Token Authentication API.
 type Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
 	Entity
 
-	// no documentation yet
+	// Specifies a single character to separate access control list (ACL) fields. The default value is '!'.
+	AclDelimiter *string `json:"aclDelimiter,omitempty" xmlrpc:"aclDelimiter,omitempty"`
+
+	// Possible values '0' and '1'. If set to '1', input values are escaped before adding them to the token. Default value is '1'.
+	EscapeTokenInputs *string `json:"escapeTokenInputs,omitempty" xmlrpc:"escapeTokenInputs,omitempty"`
+
+	// Specifies the algorithm to use for the token's hash-based message authentication code (HMAC) field. Valid entries are 'SHA256', 'SHA1', or 'MD5'. The default value is 'SHA256'.
+	HmacAlgorithm *string `json:"hmacAlgorithm,omitempty" xmlrpc:"hmacAlgorithm,omitempty"`
+
+	// Possible values '0' and '1'. If set to '1', query strings are removed from a URL when computing the token's HMAC algorithm. Default value is '0'.
+	IgnoreQueryString *string `json:"ignoreQueryString,omitempty" xmlrpc:"ignoreQueryString,omitempty"`
+
+	// The token name. If this value is empty, then it is set to the default value '__token__'.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
-	// no documentation yet
+	// The path, relative to the domain that is accessed via token authentication.
 	Path *string `json:"path,omitempty" xmlrpc:"path,omitempty"`
 
-	// no documentation yet
+	// Specifies a single character to separate the individual token fields. The default value is '~'.
+	TokenDelimiter *string `json:"tokenDelimiter,omitempty" xmlrpc:"tokenDelimiter,omitempty"`
+
+	// The token encryption key, which specifies an even number of hex digits for the token key. An entry can be up to 64 characters in length.
 	TokenKey *string `json:"tokenKey,omitempty" xmlrpc:"tokenKey,omitempty"`
 
-	// no documentation yet
+	// The token transition key, which specifies an even number of hex digits for the token transition key. An entry can be up to 64 characters in length.
 	TransitionKey *string `json:"transitionKey,omitempty" xmlrpc:"transitionKey,omitempty"`
+
+	// The uniqueId of the mapping to which the existing behavior belongs.
+	UniqueId *string `json:"uniqueId,omitempty" xmlrpc:"uniqueId,omitempty"`
 }
 
 // no documentation yet
@@ -2364,6 +2391,9 @@ type Container_Network_CdnMarketplace_Configuration_Input struct {
 // no documentation yet
 type Container_Network_CdnMarketplace_Configuration_Mapping struct {
 	Entity
+
+	// no documentation yet
+	AkamaiCname *string `json:"akamaiCname,omitempty" xmlrpc:"akamaiCname,omitempty"`
 
 	// no documentation yet
 	BucketName *string `json:"bucketName,omitempty" xmlrpc:"bucketName,omitempty"`

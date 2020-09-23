@@ -200,12 +200,6 @@ type Configuration_Template struct {
 	// no documentation yet
 	ConfigurationSections []Configuration_Template_Section `json:"configurationSections,omitempty" xmlrpc:"configurationSections,omitempty"`
 
-	// no documentation yet
-	ConfigurationTemplateReference []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReference,omitempty" xmlrpc:"configurationTemplateReference,omitempty"`
-
-	// A count of
-	ConfigurationTemplateReferenceCount *uint `json:"configurationTemplateReferenceCount,omitempty" xmlrpc:"configurationTemplateReferenceCount,omitempty"`
-
 	// Created date
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
@@ -352,9 +346,9 @@ type Configuration_Template_Section_Attribute struct {
 
 // Configuration definition gives you details of the value that you're setting.
 //
-// Some monitoring agents requires values unique to your system. If value type is defined as "Resource Specific Values", you will have to make an additional API call to retrieve your system specific values.
+// If value type is defined as "Resource Specific Values", you will have to make an additional API call to retrieve your system specific values.
 //
-// See [[SoftLayer_Monitoring_Agent::getAvailableConfigurationValues|Monitoring Agent]] service to retrieve your system specific values.
+//
 type Configuration_Template_Section_Definition struct {
 	Entity
 
@@ -532,9 +526,6 @@ type Configuration_Template_Section_Profile struct {
 
 	// Internal identifier of a configuration profile.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	MonitoringAgent *Monitoring_Agent `json:"monitoringAgent,omitempty" xmlrpc:"monitoringAgent,omitempty"`
 
 	// Name of a configuration profile
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`

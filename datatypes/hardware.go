@@ -315,12 +315,6 @@ type Hardware struct {
 	// no documentation yet
 	Modules []Hardware_Component `json:"modules,omitempty" xmlrpc:"modules,omitempty"`
 
-	// A count of information regarding the monitoring agents associated with a piece of hardware.
-	MonitoringAgentCount *uint `json:"monitoringAgentCount,omitempty" xmlrpc:"monitoringAgentCount,omitempty"`
-
-	// Information regarding the monitoring agents associated with a piece of hardware.
-	MonitoringAgents []Monitoring_Agent `json:"monitoringAgents,omitempty" xmlrpc:"monitoringAgents,omitempty"`
-
 	// Information regarding the hardware's monitoring robot.
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty" xmlrpc:"monitoringRobot,omitempty"`
 
@@ -329,9 +323,6 @@ type Hardware struct {
 
 	// The monitoring service flag eligibility status for a piece of hardware.
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty" xmlrpc:"monitoringServiceEligibilityFlag,omitempty"`
-
-	// The service flag status for a piece of hardware.
-	MonitoringServiceFlag *bool `json:"monitoringServiceFlag,omitempty" xmlrpc:"monitoringServiceFlag,omitempty"`
 
 	// Information regarding a piece of hardware's motherboard.
 	Motherboard *Hardware_Component `json:"motherboard,omitempty" xmlrpc:"motherboard,omitempty"`
