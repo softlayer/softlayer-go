@@ -344,18 +344,6 @@ func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationGroups(pa
 }
 
 // Retrieve
-func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplateReferences() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group_Reference, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getConfigurationTemplateReferences", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Monitoring_Agent_Configuration_Template_Group) GetConfigurationTemplates() (resp []datatypes.Configuration_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getConfigurationTemplates", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
 func (r Monitoring_Agent_Configuration_Template_Group) GetItem() (resp datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Monitoring_Agent_Configuration_Template_Group", "getItem", nil, &r.Options, &resp)
 	return
@@ -631,30 +619,9 @@ func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
 	return
 }
 
-// no documentation yet
-func (r Monitoring_Robot) DeployMonitoringAgents(configurationTemplateGroup *datatypes.Monitoring_Agent_Configuration_Template_Group) (resp datatypes.Provisioning_Version1_Transaction, err error) {
-	params := []interface{}{
-		configurationTemplateGroup,
-	}
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "deployMonitoringAgents", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The account associated with the corresponding robot.
 func (r Monitoring_Robot) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
-// Returns available configuration template groups for this monitoring agent.
-func (r Monitoring_Robot) GetAvailableConfigurationGroups() (resp []datatypes.Monitoring_Agent_Configuration_Template_Group, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getAvailableConfigurationGroups", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
-func (r Monitoring_Robot) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getMonitoringAgents", nil, &r.Options, &resp)
 	return
 }
 
@@ -673,13 +640,5 @@ func (r Monitoring_Robot) GetRobotStatus() (resp datatypes.Monitoring_Robot_Stat
 // Retrieve The SoftLayer_Software_Component that corresponds to the robot installation on the server.
 func (r Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getSoftwareComponent", nil, &r.Options, &resp)
-	return
-}
-
-// If our monitoring management system is not able to connect to your monitoring robot, it sets the robot status to "Limited Connectivity". Robots in this status will not be process by our monitoring management system. You cannot manage monitoring agents either.
-//
-// Use this method to resets monitoring robot status to "Active" to indicate the connection issue is resolved.
-func (r Monitoring_Robot) ResetStatus() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "resetStatus", nil, &r.Options, &resp)
 	return
 }

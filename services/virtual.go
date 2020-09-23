@@ -243,6 +243,12 @@ func (r Virtual_Disk_Image) GetBootableVolumeFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve Check if cloud-init is enabled.
+func (r Virtual_Disk_Image) GetCloudInitFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCloudInitFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Virtual_Disk_Image) GetCoalescedDiskImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCoalescedDiskImages", nil, &r.Options, &resp)
@@ -252,6 +258,12 @@ func (r Virtual_Disk_Image) GetCoalescedDiskImages() (resp []datatypes.Virtual_D
 // Retrieve
 func (r Virtual_Disk_Image) GetCopyOnWriteFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCopyOnWriteFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Return disk file extension
+func (r Virtual_Disk_Image) GetDiskFileExtension() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getDiskFileExtension", nil, &r.Options, &resp)
 	return
 }
 
@@ -330,6 +342,12 @@ func (r Virtual_Disk_Image) GetStorageRepository() (resp datatypes.Virtual_Stora
 // Retrieve The type of storage repository that a disk image resides in.
 func (r Virtual_Disk_Image) GetStorageRepositoryType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageRepositoryType", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Return supported hardware component IDs for symantec disk
+func (r Virtual_Disk_Image) GetSupportedHardware() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getSupportedHardware", nil, &r.Options, &resp)
 	return
 }
 
@@ -450,15 +468,6 @@ func (r Virtual_Guest) CheckHostDiskAvailability(diskCapacity *int) (resp bool, 
 		diskCapacity,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "checkHostDiskAvailability", params, &r.Options, &resp)
-	return
-}
-
-// Returns monitoring alarm detailed history
-func (r Virtual_Guest) CloseAlarm(alarmId *string) (resp bool, err error) {
-	params := []interface{}{
-		alarmId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "closeAlarm", params, &r.Options, &resp)
 	return
 }
 
@@ -917,17 +926,6 @@ func (r Virtual_Guest) GetAdditionalRequiredPricesForOsReload(config *datatypes.
 		config,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAdditionalRequiredPricesForOsReload", params, &r.Options, &resp)
-	return
-}
-
-// Returns monitoring alarm detailed history
-func (r Virtual_Guest) GetAlarmHistory(startDate *datatypes.Time, endDate *datatypes.Time, alarmId *string) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-		alarmId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAlarmHistory", params, &r.Options, &resp)
 	return
 }
 
@@ -1472,32 +1470,6 @@ func (r Virtual_Guest) GetMetricTrackingObjectId() (resp int, err error) {
 	return
 }
 
-// Returns open monitoring alarms for a given time period
-func (r Virtual_Guest) GetMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringActiveAlarms", params, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Virtual_Guest) GetMonitoringAgents() (resp []datatypes.Monitoring_Agent, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringAgents", nil, &r.Options, &resp)
-	return
-}
-
-// Returns closed monitoring alarms for a given time period
-func (r Virtual_Guest) GetMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringClosedAlarms", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve
 func (r Virtual_Guest) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringRobot", nil, &r.Options, &resp)
@@ -1513,12 +1485,6 @@ func (r Virtual_Guest) GetMonitoringServiceComponent() (resp datatypes.Network_M
 // Retrieve
 func (r Virtual_Guest) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Virtual_Guest) GetMonitoringServiceFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringServiceFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -1721,30 +1687,6 @@ func (r Virtual_Guest) GetRegionalInternetRegistry() (resp datatypes.Network_Reg
 	return
 }
 
-// Returns open monitoring alarms generated by monitoring agents that reside in the SoftLayer monitoring cluster.
-//
-// A monitoring agent with "remoteMonitoringAgentFlag" indicates that it work from SoftLayer monitoring cluster. If a monitoring agent does not have the flag, it resides in your cloud instance.
-func (r Virtual_Guest) GetRemoteMonitoringActiveAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRemoteMonitoringActiveAlarms", params, &r.Options, &resp)
-	return
-}
-
-// Returns closed monitoring alarms generated by monitoring agents that reside in the SoftLayer monitoring cluster.
-//
-// A monitoring agent with "remoteMonitoringAgentFlag" indicates that it work from SoftLayer monitoring cluster. If a monitoring agent does not have the flag, it resides in your cloud instance.
-func (r Virtual_Guest) GetRemoteMonitoringClosedAlarms(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRemoteMonitoringClosedAlarms", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The reserved capacity group the guest is associated with.
 func (r Virtual_Guest) GetReservedCapacityGroup() (resp datatypes.Virtual_ReservedCapacityGroup, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getReservedCapacityGroup", nil, &r.Options, &resp)
@@ -1900,6 +1842,12 @@ func (r Virtual_Guest) GetVirtualRackName() (resp string, err error) {
 // Issues a ping command and returns the success (true) or failure (false) of the ping command.
 func (r Virtual_Guest) IsBackendPingable() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "isBackendPingable", nil, &r.Options, &resp)
+	return
+}
+
+// Determines if the virtual guest was provisioned from a cloud-init enabled image.
+func (r Virtual_Guest) IsCloudInit() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "isCloudInit", nil, &r.Options, &resp)
 	return
 }
 

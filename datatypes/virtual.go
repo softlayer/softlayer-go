@@ -118,6 +118,9 @@ type Virtual_Disk_Image struct {
 	// A disk image's unique md5 checksum.
 	Checksum *string `json:"checksum,omitempty" xmlrpc:"checksum,omitempty"`
 
+	// Check if cloud-init is enabled.
+	CloudInitFlag *bool `json:"cloudInitFlag,omitempty" xmlrpc:"cloudInitFlag,omitempty"`
+
 	// A count of
 	CoalescedDiskImageCount *uint `json:"coalescedDiskImageCount,omitempty" xmlrpc:"coalescedDiskImageCount,omitempty"`
 
@@ -132,6 +135,9 @@ type Virtual_Disk_Image struct {
 
 	// A brief description of a virtual disk image.
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// Return disk file extension
+	DiskFileExtension *string `json:"diskFileExtension,omitempty" xmlrpc:"diskFileExtension,omitempty"`
 
 	// no documentation yet
 	DiskImageStorageGroup *Configuration_Storage_Group `json:"diskImageStorageGroup,omitempty" xmlrpc:"diskImageStorageGroup,omitempty"`
@@ -186,6 +192,9 @@ type Virtual_Disk_Image struct {
 
 	// The type of storage repository that a disk image resides in.
 	StorageRepositoryType *Virtual_Storage_Repository_Type `json:"storageRepositoryType,omitempty" xmlrpc:"storageRepositoryType,omitempty"`
+
+	// Return supported hardware component IDs for symantec disk
+	SupportedHardware *string `json:"supportedHardware,omitempty" xmlrpc:"supportedHardware,omitempty"`
 
 	// The template that attaches a disk image to a [[SoftLayer_Virtual_Guest_Block_Device_Template_Group|archive]].
 	TemplateBlockDevice *Virtual_Guest_Block_Device_Template `json:"templateBlockDevice,omitempty" xmlrpc:"templateBlockDevice,omitempty"`
@@ -512,12 +521,6 @@ type Virtual_Guest struct {
 	// The date a virtual computing instance was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// A count of
-	MonitoringAgentCount *uint `json:"monitoringAgentCount,omitempty" xmlrpc:"monitoringAgentCount,omitempty"`
-
-	// no documentation yet
-	MonitoringAgents []Monitoring_Agent `json:"monitoringAgents,omitempty" xmlrpc:"monitoringAgents,omitempty"`
-
 	// no documentation yet
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty" xmlrpc:"monitoringRobot,omitempty"`
 
@@ -526,9 +529,6 @@ type Virtual_Guest struct {
 
 	// no documentation yet
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty" xmlrpc:"monitoringServiceEligibilityFlag,omitempty"`
-
-	// no documentation yet
-	MonitoringServiceFlag *bool `json:"monitoringServiceFlag,omitempty" xmlrpc:"monitoringServiceFlag,omitempty"`
 
 	// The monitoring notification objects for this guest. Each object links this guest instance to a user account that will be notified if monitoring on this guest object fails
 	MonitoringUserNotification []User_Customer_Notification_Virtual_Guest `json:"monitoringUserNotification,omitempty" xmlrpc:"monitoringUserNotification,omitempty"`

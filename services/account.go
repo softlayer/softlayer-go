@@ -250,12 +250,6 @@ func (r Account) GetActiveAgreements() (resp []datatypes.Account_Agreement, err 
 	return
 }
 
-// Return all currently active alarms on this account.  Only alarms on hardware and virtual servers accessible to the current user will be returned.
-func (r Account) GetActiveAlarms() (resp []datatypes.Container_Monitoring_Alarm_History, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getActiveAlarms", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve All billing agreements for an account
 func (r Account) GetActiveBillingAgreements() (resp []datatypes.Account_Agreement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveBillingAgreements", nil, &r.Options, &resp)
@@ -4492,6 +4486,58 @@ func (r Account_ProofOfConcept_Approver_Type) GetApprovers() (resp []datatypes.A
 // no documentation yet
 func (r Account_ProofOfConcept_Approver_Type) GetObject() (resp datatypes.Account_ProofOfConcept_Approver_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver_Type", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// A [SoftLayer_Account_ProofOfConcept_Campaign_Code] provides a `code` and an optional `description`.
+type Account_ProofOfConcept_Campaign_Code struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetAccountProofOfConceptCampaignCodeService returns an instance of the Account_ProofOfConcept_Campaign_Code SoftLayer service
+func GetAccountProofOfConceptCampaignCodeService(sess *session.Session) Account_ProofOfConcept_Campaign_Code {
+	return Account_ProofOfConcept_Campaign_Code{Session: sess}
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) Id(id int) Account_ProofOfConcept_Campaign_Code {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) Mask(mask string) Account_ProofOfConcept_Campaign_Code {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) Filter(filter string) Account_ProofOfConcept_Campaign_Code {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) Limit(limit int) Account_ProofOfConcept_Campaign_Code {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) Offset(offset int) Account_ProofOfConcept_Campaign_Code {
+	r.Options.Offset = &offset
+	return r
+}
+
+// This method will retrieve all SoftLayer_Account_ProofOfConcept_Campaign_Code objects. Use the `code` field when submitting a request on the [[SoftLayer_Container_Account_ProofOfConcept_Request_Opportunity]] container.
+func (r Account_ProofOfConcept_Campaign_Code) GetAllObjects() (resp []datatypes.Account_ProofOfConcept_Campaign_Code, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Campaign_Code", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Account_ProofOfConcept_Campaign_Code) GetObject() (resp datatypes.Account_ProofOfConcept_Campaign_Code, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Campaign_Code", "getObject", nil, &r.Options, &resp)
 	return
 }
 

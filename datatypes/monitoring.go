@@ -92,18 +92,6 @@ type Monitoring_Agent_Configuration_Template_Group struct {
 	// Internal identifier of a SoftLayer account that this configuration template belongs to
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
-	// A count of
-	ConfigurationTemplateCount *uint `json:"configurationTemplateCount,omitempty" xmlrpc:"configurationTemplateCount,omitempty"`
-
-	// A count of
-	ConfigurationTemplateReferenceCount *uint `json:"configurationTemplateReferenceCount,omitempty" xmlrpc:"configurationTemplateReferenceCount,omitempty"`
-
-	// no documentation yet
-	ConfigurationTemplateReferences []Monitoring_Agent_Configuration_Template_Group_Reference `json:"configurationTemplateReferences,omitempty" xmlrpc:"configurationTemplateReferences,omitempty"`
-
-	// no documentation yet
-	ConfigurationTemplates []Configuration_Template `json:"configurationTemplates,omitempty" xmlrpc:"configurationTemplates,omitempty"`
-
 	// Created date
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
@@ -209,12 +197,6 @@ type Monitoring_Robot struct {
 
 	// Internal identifier of a monitoring robot
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// A count of the program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
-	MonitoringAgentCount *uint `json:"monitoringAgentCount,omitempty" xmlrpc:"monitoringAgentCount,omitempty"`
-
-	// The program (monitoring agent) that gets details of a system or application and reporting of the metric data and triggers alarms for predefined events.
-	MonitoringAgents []Monitoring_Agent `json:"monitoringAgents,omitempty" xmlrpc:"monitoringAgents,omitempty"`
 
 	// Robot name
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
