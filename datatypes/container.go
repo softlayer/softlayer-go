@@ -259,9 +259,6 @@ type Container_Account_Historical_Summary_Detail_Uptime struct {
 	// The hardware for uptime details.
 	CloudComputingInstance *Virtual_Guest `json:"cloudComputingInstance,omitempty" xmlrpc:"cloudComputingInstance,omitempty"`
 
-	// The configuration value for the detail's resource.
-	ConfigurationValue *Monitoring_Agent_Configuration_Value `json:"configurationValue,omitempty" xmlrpc:"configurationValue,omitempty"`
-
 	// The data associated with a host uptime details.
 	Data []Metric_Tracking_Object_Data `json:"data,omitempty" xmlrpc:"data,omitempty"`
 
@@ -1731,6 +1728,17 @@ type Container_Graph_Plot_Coordinate struct {
 
 	// no documentation yet
 	ZValue *Float64 `json:"zValue,omitempty" xmlrpc:"zValue,omitempty"`
+}
+
+// no documentation yet
+type Container_Hardware_CaptureEnabled struct {
+	Entity
+
+	// no documentation yet
+	Enabled *bool `json:"enabled,omitempty" xmlrpc:"enabled,omitempty"`
+
+	// no documentation yet
+	Reasons []string `json:"reasons,omitempty" xmlrpc:"reasons,omitempty"`
 }
 
 // The hardware configuration container is used to provide configuration options for servers.
@@ -4000,7 +4008,7 @@ type Container_Product_Order_Hardware_Server struct {
 	// Array of disk drive slot categories to destroy on reclaim. For example: ['disk0', 'disk1', 'disk2']. One drive_destruction price must be included for each slot provided. Note that once the initial order or upgrade order are approved, the destruction property <strong>is not removable</strong> and the drives will be destroyed at the end of the server's lifecycle. Not all drive slots are required, but all can be provided.
 	DriveDestructionDisks []string `json:"driveDestructionDisks,omitempty" xmlrpc:"driveDestructionDisks,omitempty"`
 
-	// Id of the [[SoftLayer_Monitoring_Agent_Configuration_Template_Group]] to be used with the monitoring package
+	// Id used with the monitoring package. (Deprecated)
 	MonitoringAgentConfigurationTemplateGroupId *int `json:"monitoringAgentConfigurationTemplateGroupId,omitempty" xmlrpc:"monitoringAgentConfigurationTemplateGroupId,omitempty"`
 
 	// When ordering Virtual Server (Private Node), this variable specifies the role of the server configuration. (Deprecated)
@@ -4063,12 +4071,9 @@ type Container_Product_Order_Hardware_Server_Vpc struct {
 	Zone *string `json:"zone,omitempty" xmlrpc:"zone,omitempty"`
 }
 
-// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a Monitoring Package order with SoftLayer.
+// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a Monitoring Package order with SoftLayer. This class is no longer available.
 type Container_Product_Order_Monitoring_Package struct {
 	Container_Product_Order
-
-	// no documentation yet
-	ConfigurationTemplateGroups []Monitoring_Agent_Configuration_Template_Group `json:"configurationTemplateGroups,omitempty" xmlrpc:"configurationTemplateGroups,omitempty"`
 
 	// no documentation yet
 	ServerType *string `json:"serverType,omitempty" xmlrpc:"serverType,omitempty"`
@@ -4638,7 +4643,7 @@ type Container_Product_Order_Security_Certificate struct {
 	// Indicates if it is an renewal order of an existing SSL certificate.
 	RenewalFlag *bool `json:"renewalFlag,omitempty" xmlrpc:"renewalFlag,omitempty"`
 
-	// The number of servers.
+	// (DEPRECATED) Do not set this property, as it will always be set to 1.
 	ServerCount *int `json:"serverCount,omitempty" xmlrpc:"serverCount,omitempty"`
 
 	// The server type. This is the name from a [[SoftLayer_Security_Certificate_Request_ServerType]] object.
@@ -4647,7 +4652,7 @@ type Container_Product_Order_Security_Certificate struct {
 	// The technical contact associated with a SSL certificate. If the address is not provided the organization information address will be used.
 	TechnicalContact *Container_Product_Order_Attribute_Contact `json:"technicalContact,omitempty" xmlrpc:"technicalContact,omitempty"`
 
-	// The period that a SSL certificate is valid for.  For example, 12, 24, 36
+	// (DEPRECATED) The period that a SSL certificate is valid for.  For example, 12, 24, 36. This property will be set automatically based on the certificate product ordered when verifying or placing orders.
 	ValidityMonths *int `json:"validityMonths,omitempty" xmlrpc:"validityMonths,omitempty"`
 }
 

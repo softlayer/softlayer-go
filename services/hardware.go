@@ -4298,7 +4298,7 @@ func (r Hardware_SecurityModule) GetBusinessContinuanceInsuranceFlag() (resp boo
 }
 
 // Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
-func (r Hardware_SecurityModule) GetCaptureEnabledFlag() (resp string, err error) {
+func (r Hardware_SecurityModule) GetCaptureEnabledFlag() (resp datatypes.Container_Hardware_CaptureEnabled, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }
@@ -6662,7 +6662,7 @@ func (r Hardware_SecurityModule750) GetBusinessContinuanceInsuranceFlag() (resp 
 }
 
 // Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
-func (r Hardware_SecurityModule750) GetCaptureEnabledFlag() (resp string, err error) {
+func (r Hardware_SecurityModule750) GetCaptureEnabledFlag() (resp datatypes.Container_Hardware_CaptureEnabled, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }
@@ -9026,7 +9026,7 @@ func (r Hardware_Server) GetBusinessContinuanceInsuranceFlag() (resp bool, err e
 }
 
 // Retrieve Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
-func (r Hardware_Server) GetCaptureEnabledFlag() (resp string, err error) {
+func (r Hardware_Server) GetCaptureEnabledFlag() (resp datatypes.Container_Hardware_CaptureEnabled, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCaptureEnabledFlag", nil, &r.Options, &resp)
 	return
 }

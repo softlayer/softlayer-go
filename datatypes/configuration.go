@@ -45,7 +45,7 @@ type Configuration_Storage_Group struct {
 	ArrayType *Configuration_Storage_Group_Array_Type `json:"arrayType,omitempty" xmlrpc:"arrayType,omitempty"`
 
 	// Determine if the storage group is able to be image captured. If unable to image capture the reasons will be provided.
-	CaptureEnabledFlag *string `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
+	CaptureEnabledFlag *Container_Hardware_CaptureEnabled `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
 
 	// no documentation yet
 	CreateEmployee *User_Employee `json:"createEmployee,omitempty" xmlrpc:"createEmployee,omitempty"`

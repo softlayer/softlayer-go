@@ -1907,7 +1907,7 @@ type Hardware_Server struct {
 	BiosPasswordNullFlag *bool `json:"biosPasswordNullFlag,omitempty" xmlrpc:"biosPasswordNullFlag,omitempty"`
 
 	// Determine if the server is able to be image captured. If unable to image capture a reason will be provided.
-	CaptureEnabledFlag *string `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
+	CaptureEnabledFlag *Container_Hardware_CaptureEnabled `json:"captureEnabledFlag,omitempty" xmlrpc:"captureEnabledFlag,omitempty"`
 
 	// no documentation yet
 	ContainsSolidStateDrivesFlag *bool `json:"containsSolidStateDrivesFlag,omitempty" xmlrpc:"containsSolidStateDrivesFlag,omitempty"`

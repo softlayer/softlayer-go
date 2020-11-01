@@ -130,7 +130,7 @@ type Security_Certificate_Entry struct {
 	ValidityEnd *Time `json:"validityEnd,omitempty" xmlrpc:"validityEnd,omitempty"`
 }
 
-// SoftLayer_Security_Certificate_Request data type is used to harness your SSL certificate order to a Certificate Authority. This contains data that is required by a Certificate Authority to place an SSL certificate order.
+// The SoftLayer_Security_Certificate_Request data type is used to view details about your SSL certificate order. This contains data that is required by a Certificate Authority to place an SSL certificate order.
 type Security_Certificate_Request struct {
 	Entity
 

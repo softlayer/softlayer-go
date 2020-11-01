@@ -118,6 +118,9 @@ type Virtual_Disk_Image struct {
 	// A disk image's unique md5 checksum.
 	Checksum *string `json:"checksum,omitempty" xmlrpc:"checksum,omitempty"`
 
+	// A column to save the Algorithm being used to store the checksum.
+	ChecksumAlgorithm *string `json:"checksumAlgorithm,omitempty" xmlrpc:"checksumAlgorithm,omitempty"`
+
 	// Check if cloud-init is enabled.
 	CloudInitFlag *bool `json:"cloudInitFlag,omitempty" xmlrpc:"cloudInitFlag,omitempty"`
 
