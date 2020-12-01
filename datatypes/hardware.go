@@ -315,13 +315,13 @@ type Hardware struct {
 	// no documentation yet
 	Modules []Hardware_Component `json:"modules,omitempty" xmlrpc:"modules,omitempty"`
 
-	// Information regarding the hardware's monitoring robot.
+	// no documentation yet
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty" xmlrpc:"monitoringRobot,omitempty"`
 
 	// Information regarding a piece of hardware's network monitoring services.
 	MonitoringServiceComponent *Network_Monitor_Version1_Query_Host_Stratum `json:"monitoringServiceComponent,omitempty" xmlrpc:"monitoringServiceComponent,omitempty"`
 
-	// The monitoring service flag eligibility status for a piece of hardware.
+	// no documentation yet
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty" xmlrpc:"monitoringServiceEligibilityFlag,omitempty"`
 
 	// Information regarding a piece of hardware's motherboard.

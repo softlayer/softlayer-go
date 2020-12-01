@@ -322,7 +322,7 @@ func (r Virtual_Disk_Image) GetSourceDiskImage() (resp datatypes.Virtual_Disk_Im
 }
 
 // Retrieve Return storage group details for symantec disk
-func (r Virtual_Disk_Image) GetStorageGroupDetails() (resp string, err error) {
+func (r Virtual_Disk_Image) GetStorageGroupDetails() (resp datatypes.Container_Image_StorageGroupDetails, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroupDetails", nil, &r.Options, &resp)
 	return
 }

@@ -29,7 +29,7 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-// The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
+// DEPRECATED. The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
 type Monitoring_Robot struct {
 	Session *session.Session
 	Options sl.Options
@@ -69,7 +69,7 @@ func (r Monitoring_Robot) Offset(offset int) Monitoring_Robot {
 	return r
 }
 
-// Checks if a monitoring robot can communicate with SoftLayer monitoring management system via the private network.
+// DEPRECATED. Checks if a monitoring robot can communicate with SoftLayer monitoring management system via the private network.
 //
 // TCP port 48000 - 48002 must be open on your server or your virtual server in order for this test to succeed.
 func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
@@ -77,26 +77,8 @@ func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
 	return
 }
 
-// Retrieve The account associated with the corresponding robot.
-func (r Monitoring_Robot) GetAccount() (resp datatypes.Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
 // no documentation yet
 func (r Monitoring_Robot) GetObject() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The current status of the robot.
-func (r Monitoring_Robot) GetRobotStatus() (resp datatypes.Monitoring_Robot_Status, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getRobotStatus", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The SoftLayer_Software_Component that corresponds to the robot installation on the server.
-func (r Monitoring_Robot) GetSoftwareComponent() (resp datatypes.Software_Component, err error) {
-	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "getSoftwareComponent", nil, &r.Options, &resp)
 	return
 }

@@ -3726,31 +3726,6 @@ type Network_Service_Resource_Hub_Swift struct {
 }
 
 // no documentation yet
-type Network_Service_Resource_MonitoringHub struct {
-	Network_Service_Resource
-
-	// no documentation yet
-	AdnServicesIp *string `json:"adnServicesIp,omitempty" xmlrpc:"adnServicesIp,omitempty"`
-
-	// no documentation yet
-	HubAddress *string `json:"hubAddress,omitempty" xmlrpc:"hubAddress,omitempty"`
-
-	// no documentation yet
-	HubConnectionTimeout *string `json:"hubConnectionTimeout,omitempty" xmlrpc:"hubConnectionTimeout,omitempty"`
-
-	// no documentation yet
-	RobotsCount *string `json:"robotsCount,omitempty" xmlrpc:"robotsCount,omitempty"`
-
-	// no documentation yet
-	RobotsMax *string `json:"robotsMax,omitempty" xmlrpc:"robotsMax,omitempty"`
-}
-
-// no documentation yet
-type Network_Service_Resource_NimsoftLandingHub struct {
-	Network_Service_Resource_MonitoringHub
-}
-
-// no documentation yet
 type Network_Service_Resource_Type struct {
 	Entity
 
@@ -4887,17 +4862,6 @@ type Network_Storage_Nas struct {
 
 	// no documentation yet
 	RecentBytesUsed *Network_Storage_Daily_Usage `json:"recentBytesUsed,omitempty" xmlrpc:"recentBytesUsed,omitempty"`
-}
-
-// The SoftLayer_Network_Storage_OpenStack_Object data type models OpenStack specific object storage objects. These storages authenticate through Keystone to access Swift.
-type Network_Storage_OpenStack_Object struct {
-	Network_Storage
-
-	// A count of the billing item tied to an OpenStack Object Storage's bandwidth service.
-	BandwidthBillingItemCount *uint `json:"bandwidthBillingItemCount,omitempty" xmlrpc:"bandwidthBillingItemCount,omitempty"`
-
-	// The billing item tied to an OpenStack Object Storage's bandwidth service.
-	BandwidthBillingItems []Billing_Item `json:"bandwidthBillingItems,omitempty" xmlrpc:"bandwidthBillingItems,omitempty"`
 }
 
 // A network storage partnership is used to link multiple volumes to each other. These partnerships describe replication hierarchies or link volume snapshots to their associated storage volume.

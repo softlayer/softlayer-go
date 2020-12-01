@@ -923,7 +923,7 @@ func (r Hardware) GetModules() (resp []datatypes.Hardware_Component, err error) 
 	return
 }
 
-// Retrieve Information regarding the hardware's monitoring robot.
+// Retrieve
 func (r Hardware) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getMonitoringRobot", nil, &r.Options, &resp)
 	return
@@ -935,7 +935,7 @@ func (r Hardware) GetMonitoringServiceComponent() (resp datatypes.Network_Monito
 	return
 }
 
-// Retrieve The monitoring service flag eligibility status for a piece of hardware.
+// Retrieve
 func (r Hardware) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
 	return
@@ -2910,7 +2910,7 @@ func (r Hardware_Router) GetModules() (resp []datatypes.Hardware_Component, err 
 	return
 }
 
-// Retrieve Information regarding the hardware's monitoring robot.
+// Retrieve
 func (r Hardware_Router) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMonitoringRobot", nil, &r.Options, &resp)
 	return
@@ -2922,7 +2922,7 @@ func (r Hardware_Router) GetMonitoringServiceComponent() (resp datatypes.Network
 	return
 }
 
-// Retrieve The monitoring service flag eligibility status for a piece of hardware.
+// Retrieve
 func (r Hardware_Router) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
 	return
@@ -4788,7 +4788,7 @@ func (r Hardware_SecurityModule) GetModules() (resp []datatypes.Hardware_Compone
 	return
 }
 
-// Retrieve Information regarding the hardware's monitoring robot.
+// Retrieve
 func (r Hardware_SecurityModule) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMonitoringRobot", nil, &r.Options, &resp)
 	return
@@ -4800,7 +4800,7 @@ func (r Hardware_SecurityModule) GetMonitoringServiceComponent() (resp datatypes
 	return
 }
 
-// Retrieve The monitoring service flag eligibility status for a piece of hardware.
+// Retrieve
 func (r Hardware_SecurityModule) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
 	return
@@ -7152,7 +7152,7 @@ func (r Hardware_SecurityModule750) GetModules() (resp []datatypes.Hardware_Comp
 	return
 }
 
-// Retrieve Information regarding the hardware's monitoring robot.
+// Retrieve
 func (r Hardware_SecurityModule750) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMonitoringRobot", nil, &r.Options, &resp)
 	return
@@ -7164,7 +7164,7 @@ func (r Hardware_SecurityModule750) GetMonitoringServiceComponent() (resp dataty
 	return
 }
 
-// Retrieve The monitoring service flag eligibility status for a piece of hardware.
+// Retrieve
 func (r Hardware_SecurityModule750) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
 	return
@@ -9516,7 +9516,7 @@ func (r Hardware_Server) GetModules() (resp []datatypes.Hardware_Component, err 
 	return
 }
 
-// Retrieve Information regarding the hardware's monitoring robot.
+// Retrieve
 func (r Hardware_Server) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMonitoringRobot", nil, &r.Options, &resp)
 	return
@@ -9528,7 +9528,7 @@ func (r Hardware_Server) GetMonitoringServiceComponent() (resp datatypes.Network
 	return
 }
 
-// Retrieve The monitoring service flag eligibility status for a piece of hardware.
+// Retrieve
 func (r Hardware_Server) GetMonitoringServiceEligibilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMonitoringServiceEligibilityFlag", nil, &r.Options, &resp)
 	return

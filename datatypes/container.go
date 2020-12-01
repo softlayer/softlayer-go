@@ -1999,6 +1999,34 @@ type Container_Hardware_Server_Request struct {
 	SuccessFlag *bool `json:"successFlag,omitempty" xmlrpc:"successFlag,omitempty"`
 }
 
+// no documentation yet
+type Container_Image_StorageGroupDetails struct {
+	Entity
+
+	// no documentation yet
+	Drives []Container_Image_StorageGroupDetails_Drives `json:"drives,omitempty" xmlrpc:"drives,omitempty"`
+
+	// no documentation yet
+	StorageGroupName *string `json:"storageGroupName,omitempty" xmlrpc:"storageGroupName,omitempty"`
+
+	// no documentation yet
+	StorageGroupType *string `json:"storageGroupType,omitempty" xmlrpc:"storageGroupType,omitempty"`
+}
+
+// no documentation yet
+type Container_Image_StorageGroupDetails_Drives struct {
+	Entity
+
+	// no documentation yet
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// no documentation yet
+	DiskSpace *string `json:"diskSpace,omitempty" xmlrpc:"diskSpace,omitempty"`
+
+	// no documentation yet
+	Units *string `json:"units,omitempty" xmlrpc:"units,omitempty"`
+}
+
 // SoftLayer_Container_KnowledgeLayer_QuestionAnswer models a single question and answer pair from SoftLayer's KnowledgeLayer knowledge base. SoftLayer's backend network interfaces with the KnowledgeLayer to recommend helpful articles when support tickets are created.
 type Container_KnowledgeLayer_QuestionAnswer struct {
 	Entity
@@ -2125,7 +2153,7 @@ type Container_Monitoring_Alarm_History struct {
 	// Account ID that this alarm belongs to
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
-	// ID of the monitoring agent that triggered this alarm
+	// DEPRECATED. ID of the monitoring agent that triggered this alarm
 	AgentId *int `json:"agentId,omitempty" xmlrpc:"agentId,omitempty"`
 
 	// Alarm ID
@@ -2140,28 +2168,11 @@ type Container_Monitoring_Alarm_History struct {
 	// Alarm message
 	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
 
-	// Robot ID
+	// DEPRECATED. Robot ID
 	RobotId *int `json:"robotId,omitempty" xmlrpc:"robotId,omitempty"`
 
 	// Severity of an alarm
 	Severity *string `json:"severity,omitempty" xmlrpc:"severity,omitempty"`
-}
-
-// SoftLayer_Container_Monitoring_Graph_Outputs models a single outbound object for a graph of given data sets.
-type Container_Monitoring_Graph_Outputs struct {
-	Entity
-
-	// The maximum date included in this graph.
-	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate,omitempty"`
-
-	// Error message encountered during graphing
-	GraphError *string `json:"graphError,omitempty" xmlrpc:"graphError,omitempty"`
-
-	// The raw PNG binary data to be displayed once the graph is drawn.
-	GraphImage *[]byte `json:"graphImage,omitempty" xmlrpc:"graphImage,omitempty"`
-
-	// The minimum date included in this graph.
-	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
 }
 
 // This object holds authentication data to a server.

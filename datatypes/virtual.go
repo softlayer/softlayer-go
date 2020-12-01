@@ -182,7 +182,7 @@ type Virtual_Disk_Image struct {
 	StorageGroupCount *uint `json:"storageGroupCount,omitempty" xmlrpc:"storageGroupCount,omitempty"`
 
 	// Return storage group details for symantec disk
-	StorageGroupDetails *string `json:"storageGroupDetails,omitempty" xmlrpc:"storageGroupDetails,omitempty"`
+	StorageGroupDetails *Container_Image_StorageGroupDetails `json:"storageGroupDetails,omitempty" xmlrpc:"storageGroupDetails,omitempty"`
 
 	// The storage group for a virtual disk image.
 	StorageGroups []Configuration_Storage_Group `json:"storageGroups,omitempty" xmlrpc:"storageGroups,omitempty"`
