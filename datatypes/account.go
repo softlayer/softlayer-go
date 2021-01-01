@@ -2089,11 +2089,6 @@ type Account_Link_OpenStack_ProjectDetails struct {
 }
 
 // no documentation yet
-type Account_Link_ThePlanet struct {
-	Account_Link
-}
-
-// no documentation yet
 type Account_Link_Vendor struct {
 	Entity
 

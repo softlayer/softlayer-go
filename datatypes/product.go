@@ -541,17 +541,6 @@ type Product_Item_Category_Question_Xref struct {
 }
 
 // no documentation yet
-type Product_Item_Link_ThePlanet struct {
-	Entity
-
-	// no documentation yet
-	Item *Product_Item `json:"item,omitempty" xmlrpc:"item,omitempty"`
-
-	// no documentation yet
-	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider,omitempty"`
-}
-
-// no documentation yet
 type Product_Item_Overage_Price struct {
 	Entity
 

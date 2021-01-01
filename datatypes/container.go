@@ -1847,6 +1847,17 @@ type Container_Hardware_Configuration_Option struct {
 }
 
 // no documentation yet
+type Container_Hardware_DiskImageDeployMap struct {
+	Entity
+
+	// no documentation yet
+	SourceSerialNumber *string `json:"sourceSerialNumber,omitempty" xmlrpc:"sourceSerialNumber,omitempty"`
+
+	// no documentation yet
+	TargetSerialNumber *string `json:"targetSerialNumber,omitempty" xmlrpc:"targetSerialNumber,omitempty"`
+}
+
+// no documentation yet
 type Container_Hardware_MassUpdate struct {
 	Entity
 
@@ -3937,6 +3948,16 @@ type Container_Product_Order_Billing_Information struct {
 
 	// If true, order is being placed by a business.
 	IsBusinessFlag *bool `json:"isBusinessFlag,omitempty" xmlrpc:"isBusinessFlag,omitempty"`
+
+	// The purpose of this property is to allow enablement of 3D Secure (3DS). This is the Reference ID that corresponds to the device data for Payer Authentication. In order to properly enable 3DS, this will require implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "DFReferenceId / ReferenceId" to populate this property accordingly.
+	PayerAuthenticationEnrollmentReferenceId *string `json:"payerAuthenticationEnrollmentReferenceId,omitempty" xmlrpc:"payerAuthenticationEnrollmentReferenceId,omitempty"`
+
+	// "Continue with Consumer Authentication" decoded response JWT (JSON Web Token) after successful authentication. The response is part of the implementation of Cardinal Cruise Hybrid.
+	//
+	// Please refer to https://cardinaldocs.atlassian.net/wiki/spaces/CC/pages/360668/Cardinal+Cruise+Hybrid and view section under "Continue with Consumer Authentication" to populate this property accordingly based on the CCA response.
+	PayerAuthenticationWebToken *string `json:"payerAuthenticationWebToken,omitempty" xmlrpc:"payerAuthenticationWebToken,omitempty"`
 
 	// Tax exempt status. 1 = exempt (not taxable),  0 = not exempt (taxable)
 	TaxExempt *int `json:"taxExempt,omitempty" xmlrpc:"taxExempt,omitempty"`

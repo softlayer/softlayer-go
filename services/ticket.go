@@ -419,6 +419,12 @@ func (r Ticket) GetFirstUpdate() (resp datatypes.Ticket_Update, err error) {
 	return
 }
 
+// Retrieve A ticket's associated FSBOA compliant record
+func (r Ticket) GetFsboaSupportedFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getFsboaSupportedFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The SoftLayer department that a ticket is assigned to.
 func (r Ticket) GetGroup() (resp datatypes.Ticket_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getGroup", nil, &r.Options, &resp)

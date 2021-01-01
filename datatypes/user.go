@@ -726,11 +726,6 @@ type User_Customer_Link struct {
 }
 
 // no documentation yet
-type User_Customer_Link_ThePlanet struct {
-	User_Customer_Link
-}
-
-// no documentation yet
 type User_Customer_Link_VerifiedIamIdLinkCollection struct {
 	Entity
 
@@ -1264,7 +1259,9 @@ type User_Interface struct {
 	Entity
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Action data type contains local attributes to identify and describe the valid actions a customer user can perform within IMS.  This includes a name, key name, and description.  This data can not be modified by users of IMS.
+//
+// It also contains relational attributes that indicate which SoftLayer_User_Permission_Group's include the action.
 type User_Permission_Action struct {
 	Entity
 
@@ -1290,7 +1287,9 @@ type User_Permission_Action struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Group data type contains local attributes to identify and describe the permission groups that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].
+//
+// It also contains relational attributes that indicate what SoftLayer_User_Permission_Action objects belong to a particular group, and what SoftLayer_User_Permission_Role objects the group is linked.
 type User_Permission_Group struct {
 	Entity
 
@@ -1312,7 +1311,7 @@ type User_Permission_Group struct {
 	// The description of the permission group.
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
-	// The date the temporary group will be destroyed.
+	// The date the group will be destroyed.
 	ExpirationDate *Time `json:"expirationDate,omitempty" xmlrpc:"expirationDate,omitempty"`
 
 	// A permission groups internal identifying number.
@@ -1337,7 +1336,11 @@ type User_Permission_Group struct {
 	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Group_Type class is one of several classes that make up the customer permission system.  This class defines the valid group types.  The SYSTEM group type is reserved for internal use.
+//
+// It is a role-based system that includes defined actions which can be "grouped" together using a SoftLayer_User_Permission_Group class. These groups of actions are then used to define roles, and the roles are assigned to users.
+//
+// When a [[SoftLayer_User_Customer]] is created, a SoftLayer_User_Permission_Group and SoftLayer_User_Permission_Role is created specifically for the user with a group type of SYSTEM.  When the UI is used to alter the permissions of a customer user, the actions are added or removed from this group.  The api can not be used to alter the permissions in this group.  If an account wants to create their own unique permission groups and roles, the UI can not be used to manage them.
 type User_Permission_Group_Type struct {
 	Entity
 
@@ -1357,14 +1360,16 @@ type User_Permission_Group_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Role data type contains local attributes to identify and describe the permission roles that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].
+//
+// It also contains relational attributes that indicate what SoftLayer_User_Permission_Group objects are linked to a particular role, and the SoftLayer_User_Customer objects assigned to the role.
 type User_Permission_Role struct {
 	Entity
 
 	// no documentation yet
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
-	// A permission roles associated [[SoftLayer_Account|customer account]] id.
+	// Id of a [[SoftLayer_Account]] to which this role belongs.
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// A count of

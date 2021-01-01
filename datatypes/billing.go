@@ -1338,17 +1338,6 @@ type Billing_Item_Hardware_Server struct {
 	Billing_Item_Hardware
 }
 
-// no documentation yet
-type Billing_Item_Link_ThePlanet struct {
-	Entity
-
-	// no documentation yet
-	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
-
-	// no documentation yet
-	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider,omitempty"`
-}
-
 // The SoftLayer_Billing_Item_Network_Application_Delivery_Controller data type describes the billing item related to a NetScaler VPX
 type Billing_Item_Network_Application_Delivery_Controller struct {
 	Billing_Item

@@ -122,6 +122,9 @@ type Ticket struct {
 	// The first update made to a ticket. This is typically the contents of a ticket when it's created.
 	FirstUpdate *Ticket_Update `json:"firstUpdate,omitempty" xmlrpc:"firstUpdate,omitempty"`
 
+	// A ticket's associated FSBOA compliant record
+	FsboaSupportedFlag *bool `json:"fsboaSupportedFlag,omitempty" xmlrpc:"fsboaSupportedFlag,omitempty"`
+
 	// The SoftLayer department that a ticket is assigned to.
 	Group *Ticket_Group `json:"group,omitempty" xmlrpc:"group,omitempty"`
 

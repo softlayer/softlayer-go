@@ -4036,7 +4036,9 @@ func (r User_External_Binding_Vendor) GetObject() (resp datatypes.User_External_
 	return
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Action data type contains local attributes to identify and describe the valid actions a customer user can perform within IMS.  This includes a name, key name, and description.  This data can not be modified by users of IMS.
+//
+// It also contains relational attributes that indicate which SoftLayer_User_Permission_Group's include the action.
 type User_Permission_Action struct {
 	Session *session.Session
 	Options sl.Options
@@ -4076,7 +4078,7 @@ func (r User_Permission_Action) Offset(offset int) User_Permission_Action {
 	return r
 }
 
-// no documentation yet
+// Object filters and result limits are enabled on this method.
 func (r User_Permission_Action) GetAllObjects() (resp []datatypes.User_Permission_Action, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getAllObjects", nil, &r.Options, &resp)
 	return
@@ -4088,7 +4090,9 @@ func (r User_Permission_Action) GetObject() (resp datatypes.User_Permission_Acti
 	return
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Group data type contains local attributes to identify and describe the permission groups that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].
+//
+// It also contains relational attributes that indicate what SoftLayer_User_Permission_Action objects belong to a particular group, and what SoftLayer_User_Permission_Role objects the group is linked.
 type User_Permission_Group struct {
 	Session *session.Session
 	Options sl.Options
@@ -4128,7 +4132,7 @@ func (r User_Permission_Group) Offset(offset int) User_Permission_Group {
 	return r
 }
 
-// no documentation yet
+// Assigns a SoftLayer_User_Permission_Action object to the group.
 func (r User_Permission_Group) AddAction(action *datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4138,7 +4142,7 @@ func (r User_Permission_Group) AddAction(action *datatypes.User_Permission_Actio
 	return
 }
 
-// no documentation yet
+// Assigns multiple SoftLayer_User_Permission_Action objects to the group.
 func (r User_Permission_Group) AddBulkActions(actions []datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4148,7 +4152,7 @@ func (r User_Permission_Group) AddBulkActions(actions []datatypes.User_Permissio
 	return
 }
 
-// no documentation yet
+// Links multiple SoftLayer_Hardware_Server, SoftLayer_Virtual_Guest, or SoftLayer_Virtual_DedicatedHost objects to the group. All objects must be of the same type.
 func (r User_Permission_Group) AddBulkResourceObjects(resourceObjects []datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObjects,
@@ -4158,7 +4162,7 @@ func (r User_Permission_Group) AddBulkResourceObjects(resourceObjects []datatype
 	return
 }
 
-// no documentation yet
+// Links a SoftLayer_Hardware_Server, SoftLayer_Virtual_Guest, or SoftLayer_Virtual_DedicatedHost object to the group.
 func (r User_Permission_Group) AddResourceObject(resourceObject *datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObject,
@@ -4168,7 +4172,7 @@ func (r User_Permission_Group) AddResourceObject(resourceObject *datatypes.Entit
 	return
 }
 
-// no documentation yet
+// Customer created permission groups must be of type NORMAL.  The SYSTEM type is reserved for internal use. The account id supplied in the template permission group must match account id of the user who is creating the permission group.  The user who is creating the permission group must have the permission to manage users.
 func (r User_Permission_Group) CreateObject(templateObject *datatypes.User_Permission_Group) (resp datatypes.User_Permission_Group, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4177,13 +4181,13 @@ func (r User_Permission_Group) CreateObject(templateObject *datatypes.User_Permi
 	return
 }
 
-// no documentation yet
+// Customer users can only delete permission groups of type NORMAL.  The SYSTEM type is reserved for internal use. The user who is creating the permission group must have the permission to manage users.
 func (r User_Permission_Group) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
-// no documentation yet
+// Allows a user to modify the name and description of an existing customer permission group. Customer permission groups must be of type NORMAL.  The SYSTEM type is reserved for internal use. The account id supplied in the template permission group must match account id of the user who is creating the permission group.  The user who is creating the permission group must have the permission to manage users.
 func (r User_Permission_Group) EditObject(templateObject *datatypes.User_Permission_Group) (resp datatypes.User_Permission_Group, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4222,7 +4226,7 @@ func (r User_Permission_Group) GetType() (resp datatypes.User_Permission_Group_T
 	return
 }
 
-// no documentation yet
+// Links a SoftLayer_User_Permission_Role object to the group.
 func (r User_Permission_Group) LinkRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4232,7 +4236,7 @@ func (r User_Permission_Group) LinkRole(role *datatypes.User_Permission_Role) (e
 	return
 }
 
-// no documentation yet
+// Unassigns a SoftLayer_User_Permission_Action object from the group.
 func (r User_Permission_Group) RemoveAction(action *datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4242,7 +4246,7 @@ func (r User_Permission_Group) RemoveAction(action *datatypes.User_Permission_Ac
 	return
 }
 
-// no documentation yet
+// Unassigns multiple SoftLayer_User_Permission_Action objects from the group.
 func (r User_Permission_Group) RemoveBulkActions(actions []datatypes.User_Permission_Action) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4252,7 +4256,7 @@ func (r User_Permission_Group) RemoveBulkActions(actions []datatypes.User_Permis
 	return
 }
 
-// no documentation yet
+// Unlinks multiple SoftLayer_Hardware_Server, SoftLayer_Virtual_Guest, or SoftLayer_Virtual_DedicatedHost objects from the group. All objects must be of the same type.
 func (r User_Permission_Group) RemoveBulkResourceObjects(resourceObjects []datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObjects,
@@ -4262,7 +4266,7 @@ func (r User_Permission_Group) RemoveBulkResourceObjects(resourceObjects []datat
 	return
 }
 
-// no documentation yet
+// Unlinks a SoftLayer_Hardware_Server, SoftLayer_Virtual_Guest, or SoftLayer_Virtual_DedicatedHost object from the group.
 func (r User_Permission_Group) RemoveResourceObject(resourceObject *datatypes.Entity, resourceTypeKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		resourceObject,
@@ -4272,7 +4276,7 @@ func (r User_Permission_Group) RemoveResourceObject(resourceObject *datatypes.En
 	return
 }
 
-// no documentation yet
+// Removes a link from SoftLayer_User_Permission_Role object to the group.
 func (r User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4282,7 +4286,11 @@ func (r User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role) 
 	return
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Group_Type class is one of several classes that make up the customer permission system.  This class defines the valid group types.  The SYSTEM group type is reserved for internal use.
+//
+// It is a role-based system that includes defined actions which can be "grouped" together using a SoftLayer_User_Permission_Group class. These groups of actions are then used to define roles, and the roles are assigned to users.
+//
+// When a [[SoftLayer_User_Customer]] is created, a SoftLayer_User_Permission_Group and SoftLayer_User_Permission_Role is created specifically for the user with a group type of SYSTEM.  When the UI is used to alter the permissions of a customer user, the actions are added or removed from this group.  The api can not be used to alter the permissions in this group.  If an account wants to create their own unique permission groups and roles, the UI can not be used to manage them.
 type User_Permission_Group_Type struct {
 	Session *session.Session
 	Options sl.Options
@@ -4334,7 +4342,9 @@ func (r User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_
 	return
 }
 
-// no documentation yet
+// The SoftLayer_User_Permission_Role data type contains local attributes to identify and describe the permission roles that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].
+//
+// It also contains relational attributes that indicate what SoftLayer_User_Permission_Group objects are linked to a particular role, and the SoftLayer_User_Customer objects assigned to the role.
 type User_Permission_Role struct {
 	Session *session.Session
 	Options sl.Options
@@ -4374,7 +4384,7 @@ func (r User_Permission_Role) Offset(offset int) User_Permission_Role {
 	return r
 }
 
-// no documentation yet
+// Assigns a SoftLayer_User_Customer object to the role.
 func (r User_Permission_Role) AddUser(user *datatypes.User_Customer) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4384,7 +4394,7 @@ func (r User_Permission_Role) AddUser(user *datatypes.User_Customer) (err error)
 	return
 }
 
-// no documentation yet
+// Customer created permission roles must set the systemFlag attribute to false.  The SYSTEM type is reserved for internal use. The account id supplied in the template permission group must match account id of the user who is creating the permission group.  The user who is creating the permission group must have the permission to manage users.
 func (r User_Permission_Role) CreateObject(templateObject *datatypes.User_Permission_Role) (resp datatypes.User_Permission_Role, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4393,13 +4403,13 @@ func (r User_Permission_Role) CreateObject(templateObject *datatypes.User_Permis
 	return
 }
 
-// no documentation yet
+// Customer users can only delete permission roles with systemFlag set to false.  The SYSTEM type is reserved for internal use. The user who is creating the permission role must have the permission to manage users.
 func (r User_Permission_Role) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
-// no documentation yet
+// Allows a user to modify the name and description of an existing customer permission role. Customer permission roles must set the systemFlag attribute to false.  The SYSTEM type is reserved for internal use. The account id supplied in the template permission role must match account id of the user who is creating the permission role.  The user who is creating the permission role must have the permission to manage users.
 func (r User_Permission_Role) EditObject(templateObject *datatypes.User_Permission_Role) (resp datatypes.User_Permission_Role, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4438,7 +4448,7 @@ func (r User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err er
 	return
 }
 
-// no documentation yet
+// Links a SoftLayer_User_Permission_Group object to the role.
 func (r User_Permission_Role) LinkGroup(group *datatypes.User_Permission_Group) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4448,7 +4458,7 @@ func (r User_Permission_Role) LinkGroup(group *datatypes.User_Permission_Group) 
 	return
 }
 
-// no documentation yet
+// Unassigns a SoftLayer_User_Customer object from the role.
 func (r User_Permission_Role) RemoveUser(user *datatypes.User_Customer) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -4458,7 +4468,7 @@ func (r User_Permission_Role) RemoveUser(user *datatypes.User_Customer) (err err
 	return
 }
 
-// no documentation yet
+// Unlinks a SoftLayer_User_Permission_Group object to the role.
 func (r User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Group) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{

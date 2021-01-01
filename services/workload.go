@@ -136,6 +136,32 @@ func (r Workload_Citrix_Workspace_Order) Offset(offset int) Workload_Citrix_Work
 	return r
 }
 
+// This method will cancel the resources associated with the provided VLAN and have a 'cvad' tag reference.
+func (r Workload_Citrix_Workspace_Order) CancelWorkspaceResources(vlanIdentifier *string, cancelImmediately *bool, customerNote *string) (resp datatypes.Workload_Citrix_Workspace_Response_Result, err error) {
+	params := []interface{}{
+		vlanIdentifier,
+		cancelImmediately,
+		customerNote,
+	}
+	err = r.Session.DoRequest("SoftLayer_Workload_Citrix_Workspace_Order", "cancelWorkspaceResources", params, &r.Options, &resp)
+	return
+}
+
+// This method will return the list of names of VLANs which have a 'cvad' tag reference.  This name can be used with the cancelWorkspaceOrders method.
+func (r Workload_Citrix_Workspace_Order) GetWorkspaceNames() (resp datatypes.Workload_Citrix_Workspace_Response_Result, err error) {
+	err = r.Session.DoRequest("SoftLayer_Workload_Citrix_Workspace_Order", "getWorkspaceNames", nil, &r.Options, &resp)
+	return
+}
+
+// This method will return the list of resources which could be cancelled using cancelWorkspaceResources
+func (r Workload_Citrix_Workspace_Order) GetWorkspaceResources(vlanIdentifier *string) (resp datatypes.Workload_Citrix_Workspace_Response_Result, err error) {
+	params := []interface{}{
+		vlanIdentifier,
+	}
+	err = r.Session.DoRequest("SoftLayer_Workload_Citrix_Workspace_Order", "getWorkspaceResources", params, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Workload_Citrix_Workspace_Order) PlaceWorkspaceOrder(orderContainer *datatypes.Workload_Citrix_Workspace_Order_Container) (resp datatypes.Workload_Citrix_Workspace_Response, err error) {
 	params := []interface{}{

@@ -157,6 +157,12 @@ func (r Locale_Country) GetObject() (resp datatypes.Locale_Country, err error) {
 	return
 }
 
+// This method will return an array of country codes that require postal code
+func (r Locale_Country) GetPostalCodeRequiredCountryCodes() (resp []string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getPostalCodeRequiredCountryCodes", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve States that belong to this country.
 func (r Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err error) {
 	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getStates", nil, &r.Options, &resp)
