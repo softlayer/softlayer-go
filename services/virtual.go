@@ -859,6 +859,15 @@ func (r Virtual_Guest) ExecuteRescueLayer() (resp bool, err error) {
 	return
 }
 
+// Find VSIs by hostname.
+func (r Virtual_Guest) FindByHostname(hostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		hostname,
+	}
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "findByHostname", params, &r.Options, &resp)
+	return
+}
+
 // Find CCI by only its primary public or private IP address. IP addresses within secondary subnets tied to the CCI will not return the CCI. If no CCI is found, no errors are generated and no data is returned.
 func (r Virtual_Guest) FindByIpAddress(ipAddress *string) (resp datatypes.Virtual_Guest, err error) {
 	params := []interface{}{

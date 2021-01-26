@@ -2078,6 +2078,89 @@ func (r Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection) UpdateH
 }
 
 // no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkCdnMarketplaceConfigurationBehaviorModifyResponseHeaderService returns an instance of the Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader SoftLayer service
+func GetNetworkCdnMarketplaceConfigurationBehaviorModifyResponseHeaderService(sess *session.Session) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	return Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader{Session: sess}
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) Id(id int) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) Mask(mask string) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) Filter(filter string) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) Limit(limit int) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) Offset(offset int) Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) CreateModifyResponseHeader(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) (resp datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "createModifyResponseHeader", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) DeleteModifyResponseHeader(uniqueId *string, modResHeaderUniqueId *string) (resp string, err error) {
+	params := []interface{}{
+		uniqueId,
+		modResHeaderUniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "deleteModifyResponseHeader", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) ListModifyResponseHeader(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "listModifyResponseHeader", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) UpdateModifyResponseHeader(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	params := []interface{}{
+		input,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "updateModifyResponseHeader", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
 	Session *session.Session
 	Options sl.Options
@@ -4591,12 +4674,13 @@ func (r Network_Gateway_VersionUpgrade) GetObject() (resp datatypes.Network_Gate
 	return
 }
 
-// Used to get a list per package of prices ids for allowed vSRX OS-es for new orders
+// Used to get a list per package of prices ids for allowed vSRX OS-es for new orders.
 //
 //
-func (r Network_Gateway_VersionUpgrade) GetVsrxOrdersAllowedOS(accountId *int) (resp []datatypes.Product_Package_Item_Prices, err error) {
+func (r Network_Gateway_VersionUpgrade) GetVsrxOrdersAllowedOS(accountId *int, validate *bool) (resp []datatypes.Product_Package_Item_Prices, err error) {
 	params := []interface{}{
 		accountId,
+		validate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getVsrxOrdersAllowedOS", params, &r.Options, &resp)
 	return
@@ -8051,6 +8135,12 @@ func (r Network_Storage) GetIsDependentDuplicateProvisionCompleted() (resp bool,
 	return
 }
 
+// Retrieve
+func (r Network_Storage) GetIsInDedicatedServiceResource() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
 func (r Network_Storage) GetIsReadyForSnapshot() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsReadyForSnapshot", nil, &r.Options, &resp)
@@ -10195,6 +10285,12 @@ func (r Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
 // Retrieve Determines whether dependent volume provision is completed on background.
 func (r Network_Storage_Backup_Evault) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Backup_Evault) GetIsInDedicatedServiceResource() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
 	return
 }
 
@@ -12413,6 +12509,12 @@ func (r Network_Storage_Iscsi) GetIops() (resp string, err error) {
 // Retrieve Determines whether dependent volume provision is completed on background.
 func (r Network_Storage_Iscsi) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Iscsi) GetIsInDedicatedServiceResource() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
 	return
 }
 
@@ -15053,7 +15155,7 @@ func (r Network_Tunnel_Module_Context) AddServiceSubnetToNetworkTunnel(subnetId 
 	return
 }
 
-// A transaction will be created to apply the IPSec network tunnel's configuration to SoftLayer network devices.  During this time, an IPSec network tunnel cannot be modified in anyway.  Only one network tunnel configuration transaction can be created.  If a transaction has been created or is running, a new transaction cannot be created until the previous transaction completes.
+// An asynchronous task will be created to apply the IPSec network tunnel's configuration to network devices. During this time, an IPSec network tunnel cannot be modified in anyway. Only one network tunnel configuration task can be created at a time. If a task has already been created and has not completed, a new task cannot be created.
 func (r Network_Tunnel_Module_Context) ApplyConfigurationsToDevice() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "applyConfigurationsToDevice", nil, &r.Options, &resp)
 	return
