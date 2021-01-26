@@ -2237,6 +2237,32 @@ type Container_Network_Bandwidth_Version1_Usage struct {
 	RecordedDate *Time `json:"recordedDate,omitempty" xmlrpc:"recordedDate,omitempty"`
 }
 
+// The SoftLayer_Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader data type contains information for specific responses from the modify response header API.
+type Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader struct {
+	Entity
+
+	// Specifies the delimiter to be used when indicating multiple values for a header. Valid delimiter is, a <space>, , (comma), ; (semicolon), ,<space> (comma and space), or ;<space> (semicolon and space).
+	Delimiter *string `json:"delimiter,omitempty" xmlrpc:"delimiter,omitempty"`
+
+	// The description of modify response header.
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// A collection of key value pairs that specify the headers and associated values to be modified. The header name and header value must be separated by colon (:). Example: ['header1:value1','header2:Value2']
+	Headers []string `json:"headers,omitempty" xmlrpc:"headers,omitempty"`
+
+	// The uniqueId of the modify response header to which the existing behavior belongs.
+	ModResHeaderUniqueId *string `json:"modResHeaderUniqueId,omitempty" xmlrpc:"modResHeaderUniqueId,omitempty"`
+
+	// The path, relative to the domain that is accessed via modify response header.
+	Path *string `json:"path,omitempty" xmlrpc:"path,omitempty"`
+
+	// The type of the modify response header, could be append/modify/delete. Set this to append to add a given header value to a header name set in the headerList. Set this to delete to remove a given header value from a header name set in the headerList. Set this to overwrite to match on a specified header name and replace its existing header value with a new one you specify.
+	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
+
+	// The uniqueId of the mapping to which the existing behavior belongs.
+	UniqueId *string `json:"uniqueId,omitempty" xmlrpc:"uniqueId,omitempty"`
+}
+
 // The SoftLayer_Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth data type contains information for specific responses from the Token Authentication API.
 type Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
 	Entity
@@ -3621,7 +3647,7 @@ type Container_Product_Order struct {
 	// Device Fingerprint Identifier - Optional.
 	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty" xmlrpc:"deviceFingerprintId,omitempty"`
 
-	// This is the configuration identifier for tracking orders on the HTML order forms.
+	// This has been deprecated. It is the identifier used to track configurations in legacy order forms.
 	DisplayLayerSessionId *string `json:"displayLayerSessionId,omitempty" xmlrpc:"displayLayerSessionId,omitempty"`
 
 	// no documentation yet

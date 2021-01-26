@@ -987,6 +987,11 @@ type Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection struct {
 }
 
 // no documentation yet
+type Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader struct {
+	Entity
+}
+
+// no documentation yet
 type Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
 	Entity
 }
@@ -3900,6 +3905,9 @@ type Network_Storage struct {
 
 	// Determines whether dependent volume provision is completed on background.
 	IsDependentDuplicateProvisionCompleted *bool `json:"isDependentDuplicateProvisionCompleted,omitempty" xmlrpc:"isDependentDuplicateProvisionCompleted,omitempty"`
+
+	// no documentation yet
+	IsInDedicatedServiceResource *bool `json:"isInDedicatedServiceResource,omitempty" xmlrpc:"isInDedicatedServiceResource,omitempty"`
 
 	// Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
 	IsReadyForSnapshot *bool `json:"isReadyForSnapshot,omitempty" xmlrpc:"isReadyForSnapshot,omitempty"`
