@@ -1969,6 +1969,12 @@ type Hardware_Server struct {
 	// Whether the bandwidth usage for this hardware for the current billing cycle exceeds the allocation.
 	OverBandwidthAllocationFlag *int `json:"overBandwidthAllocationFlag,omitempty" xmlrpc:"overBandwidthAllocationFlag,omitempty"`
 
+	// A count of
+	PartitionCount *uint `json:"partitionCount,omitempty" xmlrpc:"partitionCount,omitempty"`
+
+	// no documentation yet
+	Partitions []Hardware_Server_Partition `json:"partitions,omitempty" xmlrpc:"partitions,omitempty"`
+
 	// A server's primary private IP address.
 	PrivateIpAddress *string `json:"privateIpAddress,omitempty" xmlrpc:"privateIpAddress,omitempty"`
 
@@ -2019,6 +2025,52 @@ type Hardware_Server struct {
 
 	// A hardware server's virtual servers.
 	VirtualGuests []Virtual_Guest `json:"virtualGuests,omitempty" xmlrpc:"virtualGuests,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Server_Partition struct {
+	Entity
+
+	// no documentation yet
+	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware,omitempty"`
+
+	// no documentation yet
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
+
+	// no documentation yet
+	Hostname *string `json:"hostname,omitempty" xmlrpc:"hostname,omitempty"`
+
+	// no documentation yet
+	MacAddress *string `json:"macAddress,omitempty" xmlrpc:"macAddress,omitempty"`
+
+	// A count of
+	NetworkComponentAttributeCount *uint `json:"networkComponentAttributeCount,omitempty" xmlrpc:"networkComponentAttributeCount,omitempty"`
+
+	// no documentation yet
+	NetworkComponentAttributes []Hardware_Server_Partition_Network_Attribute `json:"networkComponentAttributes,omitempty" xmlrpc:"networkComponentAttributes,omitempty"`
+
+	// A count of
+	NetworkComponentCount *uint `json:"networkComponentCount,omitempty" xmlrpc:"networkComponentCount,omitempty"`
+
+	// no documentation yet
+	NetworkComponents []Network_Component `json:"networkComponents,omitempty" xmlrpc:"networkComponents,omitempty"`
+}
+
+// no documentation yet
+type Hardware_Server_Partition_Network_Attribute struct {
+	Entity
+
+	// no documentation yet
+	IpAddress *string `json:"ipAddress,omitempty" xmlrpc:"ipAddress,omitempty"`
+
+	// no documentation yet
+	MacAddress *string `json:"macAddress,omitempty" xmlrpc:"macAddress,omitempty"`
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	PartitionId *int `json:"partitionId,omitempty" xmlrpc:"partitionId,omitempty"`
 }
 
 // SoftLayer_Hardware_Status models the inventory state of any piece of hardware in SoftLayer's inventory. Most of these statuses are used by SoftLayer while a server is not provisioned or undergoing provisioning. SoftLayer uses the following status codes:

@@ -4992,6 +4992,12 @@ func (r Hardware_SecurityModule) GetParentHardware() (resp datatypes.Hardware, e
 	return
 }
 
+// Retrieve
+func (r Hardware_SecurityModule) GetPartitions() (resp []datatypes.Hardware_Server_Partition, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPartitions", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 func (r Hardware_SecurityModule) GetPointOfPresenceLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPointOfPresenceLocation", nil, &r.Options, &resp)
@@ -7356,6 +7362,12 @@ func (r Hardware_SecurityModule750) GetParentHardware() (resp datatypes.Hardware
 	return
 }
 
+// Retrieve
+func (r Hardware_SecurityModule750) GetPartitions() (resp []datatypes.Hardware_Server_Partition, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPartitions", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 func (r Hardware_SecurityModule750) GetPointOfPresenceLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPointOfPresenceLocation", nil, &r.Options, &resp)
@@ -9717,6 +9729,12 @@ func (r Hardware_Server) GetParentBay() (resp datatypes.Hardware_Blade, err erro
 // Retrieve Parent Hardware.
 func (r Hardware_Server) GetParentHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getParentHardware", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_Server) GetPartitions() (resp []datatypes.Hardware_Server_Partition, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPartitions", nil, &r.Options, &resp)
 	return
 }
 

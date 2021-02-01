@@ -2145,7 +2145,7 @@ type Network_LBaaS_L7Member struct {
 	// The ID of a L7 pool member.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// <<<EOT Specifies when a L7 Pool
+	// <<< EOT Specifies when a L7 Pool
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// Backends protocol port
@@ -2443,16 +2443,16 @@ type Network_LBaaS_LoadBalancerHealthMonitorConfiguration struct {
 	// Backends port
 	BackendPort *int `json:"backendPort,omitempty" xmlrpc:"backendPort,omitempty"`
 
-	// <<EOT
+	// Backends protocol. Valid values are "TCP", "HTTP"
 	BackendProtocol *string `json:"backendProtocol,omitempty" xmlrpc:"backendProtocol,omitempty"`
 
 	// Health Monitor UUID, required for update only
 	HealthMonitorUuid *string `json:"healthMonitorUuid,omitempty" xmlrpc:"healthMonitorUuid,omitempty"`
 
-	// Interval in seconds to perform
+	// <<< EOT Interval in seconds to perform
 	Interval *int `json:"interval,omitempty" xmlrpc:"interval,omitempty"`
 
-	// <<EOT
+	// Max number of retries until the member is considered as DOWN
 	MaxRetries *int `json:"maxRetries,omitempty" xmlrpc:"maxRetries,omitempty"`
 
 	// Health check methods timeout in
@@ -2480,7 +2480,7 @@ type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
 	// Backends port
 	BackendPort *int `json:"backendPort,omitempty" xmlrpc:"backendPort,omitempty"`
 
-	// <<EOT
+	// Backends protocol. Valid values are "TCP", "HTTP"
 	BackendProtocol *string `json:"backendProtocol,omitempty" xmlrpc:"backendProtocol,omitempty"`
 
 	// maximum idle time in seconds(Range: 1 to 7200), after which the load balancer brings down the client-side connection
@@ -2489,13 +2489,13 @@ type Network_LBaaS_LoadBalancerProtocolConfiguration struct {
 	// Frontends port
 	FrontendPort *int `json:"frontendPort,omitempty" xmlrpc:"frontendPort,omitempty"`
 
-	// <<EOT
+	// Frontends protocol. Valid values are "TCP", "HTTP" and "HTTPS"
 	FrontendProtocol *string `json:"frontendProtocol,omitempty" xmlrpc:"frontendProtocol,omitempty"`
 
 	// Listeners UUID, required for update only
 	ListenerUuid *string `json:"listenerUuid,omitempty" xmlrpc:"listenerUuid,omitempty"`
 
-	// <<EOT
+	// Load balancing method. Valid values are "ROUNDROBIN", "WEIGHTED_RR" and "LEASTCONNECTION"
 	LoadBalancingMethod *string `json:"loadBalancingMethod,omitempty" xmlrpc:"loadBalancingMethod,omitempty"`
 
 	// Maximum number of allowed connections
