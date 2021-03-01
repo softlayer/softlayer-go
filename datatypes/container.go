@@ -1847,14 +1847,17 @@ type Container_Hardware_Configuration_Option struct {
 }
 
 // no documentation yet
-type Container_Hardware_DiskImageDeployMap struct {
+type Container_Hardware_DiskImageMap struct {
 	Entity
 
 	// no documentation yet
-	SourceSerialNumber *string `json:"sourceSerialNumber,omitempty" xmlrpc:"sourceSerialNumber,omitempty"`
+	BootFlag *int `json:"bootFlag,omitempty" xmlrpc:"bootFlag,omitempty"`
 
 	// no documentation yet
-	TargetSerialNumber *string `json:"targetSerialNumber,omitempty" xmlrpc:"targetSerialNumber,omitempty"`
+	DiskImageUUID *string `json:"diskImageUUID,omitempty" xmlrpc:"diskImageUUID,omitempty"`
+
+	// no documentation yet
+	DiskSerialNumber *string `json:"diskSerialNumber,omitempty" xmlrpc:"diskSerialNumber,omitempty"`
 }
 
 // no documentation yet

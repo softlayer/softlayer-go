@@ -3360,7 +3360,7 @@ type Network_Protection_Address struct {
 	// no documentation yet
 	PrimaryRouter *Hardware_Router `json:"primaryRouter,omitempty" xmlrpc:"primaryRouter,omitempty"`
 
-	// no documentation yet
+	// DEPRECATED
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider,omitempty"`
 
 	// no documentation yet

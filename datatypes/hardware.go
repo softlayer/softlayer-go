@@ -2048,12 +2048,6 @@ type Hardware_Server_Partition struct {
 
 	// no documentation yet
 	NetworkComponentAttributes []Hardware_Server_Partition_Network_Attribute `json:"networkComponentAttributes,omitempty" xmlrpc:"networkComponentAttributes,omitempty"`
-
-	// A count of
-	NetworkComponentCount *uint `json:"networkComponentCount,omitempty" xmlrpc:"networkComponentCount,omitempty"`
-
-	// no documentation yet
-	NetworkComponents []Network_Component `json:"networkComponents,omitempty" xmlrpc:"networkComponents,omitempty"`
 }
 
 // no documentation yet

@@ -2746,7 +2746,8 @@ func (r User_Customer_OpenIdConnect) CreateObject(templateObject *datatypes.User
 }
 
 // no documentation yet
-func (r User_Customer_OpenIdConnect) CreateOpenIdConnectUserAndCompleteInvitation(providerType *string, user *datatypes.User_Customer, password *string, registrationCode *string) (resp string, err error) {
+func (r User_Customer_OpenIdConnect) CreateOpenIdConnectUserAndCompleteInvitation(providerType *string, user *datatypes.User_Customer, password *string, registrationCode *string) (err error) {
+	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
 		user,
@@ -4343,6 +4344,58 @@ func (r User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permissio
 // no documentation yet
 func (r User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_Group_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group_Type", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// These are the variables relating to SoftLayer_User_Permission_Resource_Type. Collectively they describe the types of resources which can be linked to [[SoftLayer_User_Permission_Group]].
+type User_Permission_Resource_Type struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetUserPermissionResourceTypeService returns an instance of the User_Permission_Resource_Type SoftLayer service
+func GetUserPermissionResourceTypeService(sess *session.Session) User_Permission_Resource_Type {
+	return User_Permission_Resource_Type{Session: sess}
+}
+
+func (r User_Permission_Resource_Type) Id(id int) User_Permission_Resource_Type {
+	r.Options.Id = &id
+	return r
+}
+
+func (r User_Permission_Resource_Type) Mask(mask string) User_Permission_Resource_Type {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r User_Permission_Resource_Type) Filter(filter string) User_Permission_Resource_Type {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r User_Permission_Resource_Type) Limit(limit int) User_Permission_Resource_Type {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r User_Permission_Resource_Type) Offset(offset int) User_Permission_Resource_Type {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieve an array of SoftLayer_User_Permission_Resource_Type objects.
+func (r User_Permission_Resource_Type) GetAllObjects() (resp []datatypes.User_Permission_Resource_Type, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Resource_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r User_Permission_Resource_Type) GetObject() (resp datatypes.User_Permission_Resource_Type, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Resource_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 

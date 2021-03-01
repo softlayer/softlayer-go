@@ -1360,6 +1360,23 @@ type User_Permission_Group_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// These are the variables relating to SoftLayer_User_Permission_Resource_Type. Collectively they describe the types of resources which can be linked to [[SoftLayer_User_Permission_Group]].
+type User_Permission_Resource_Type struct {
+	Entity
+
+	// The associated IMS class name for a resource type.
+	ClassName *string `json:"className,omitempty" xmlrpc:"className,omitempty"`
+
+	// Resource Type record ID.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Descriptive Identifier for a Resource Type. A key name contains no spaces, but may use underscores.
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// A name for the resource type. It is the most descriptive variable of the resource type and can include spaces.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
 // The SoftLayer_User_Permission_Role data type contains local attributes to identify and describe the permission roles that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].
 //
 // It also contains relational attributes that indicate what SoftLayer_User_Permission_Group objects are linked to a particular role, and the SoftLayer_User_Customer objects assigned to the role.
