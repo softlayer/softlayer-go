@@ -7771,6 +7771,15 @@ func (r Network_Storage) DisableSnapshots(scheduleType *string) (resp bool, err 
 	return
 }
 
+// If a volume (with replication) becomes inaccessible due to a disaster event, this method can be used to immediately failover to an available replica in another location. This method does not allow for fail back via the API. To fail back to the original volume after using this method, open a support ticket. To test failover, use [[SoftLayer_Network_Storage::failoverToReplicant]] instead.
+func (r Network_Storage) DisasterRecoveryFailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "disasterRecoveryFailoverToReplicant", params, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Download a file from a Storage account. This method returns a file's details including the file's raw content.
 func (r Network_Storage) DownloadFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
@@ -8026,6 +8035,12 @@ func (r Network_Storage) GetDependentDuplicates() (resp []datatypes.Network_Stor
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failback
+func (r Network_Storage) GetFailbackNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFailbackNotAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -9904,6 +9919,15 @@ func (r Network_Storage_Backup_Evault) DisableSnapshots(scheduleType *string) (r
 	return
 }
 
+// If a volume (with replication) becomes inaccessible due to a disaster event, this method can be used to immediately failover to an available replica in another location. This method does not allow for fail back via the API. To fail back to the original volume after using this method, open a support ticket. To test failover, use [[SoftLayer_Network_Storage::failoverToReplicant]] instead.
+func (r Network_Storage_Backup_Evault) DisasterRecoveryFailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "disasterRecoveryFailoverToReplicant", params, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Download a file from a Storage account. This method returns a file's details including the file's raw content.
 func (r Network_Storage_Backup_Evault) DownloadFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
@@ -10159,6 +10183,12 @@ func (r Network_Storage_Backup_Evault) GetDependentDuplicates() (resp []datatype
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failback
+func (r Network_Storage_Backup_Evault) GetFailbackNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFailbackNotAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -10982,6 +11012,70 @@ func (r Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Util
 		file,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "uploadFile", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Network_Storage_DedicatedCluster struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetNetworkStorageDedicatedClusterService returns an instance of the Network_Storage_DedicatedCluster SoftLayer service
+func GetNetworkStorageDedicatedClusterService(sess *session.Session) Network_Storage_DedicatedCluster {
+	return Network_Storage_DedicatedCluster{Session: sess}
+}
+
+func (r Network_Storage_DedicatedCluster) Id(id int) Network_Storage_DedicatedCluster {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Storage_DedicatedCluster) Mask(mask string) Network_Storage_DedicatedCluster {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Storage_DedicatedCluster) Filter(filter string) Network_Storage_DedicatedCluster {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Storage_DedicatedCluster) Limit(limit int) Network_Storage_DedicatedCluster {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Storage_DedicatedCluster) Offset(offset int) Network_Storage_DedicatedCluster {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieve
+func (r Network_Storage_DedicatedCluster) GetAccount() (resp datatypes.Account, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getAccount", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_DedicatedCluster) GetDedicatedClusterList() (resp []int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getDedicatedClusterList", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Storage_DedicatedCluster) GetObject() (resp datatypes.Network_Storage_DedicatedCluster, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_DedicatedCluster) GetServiceResource() (resp datatypes.Network_Service_Resource, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getServiceResource", nil, &r.Options, &resp)
 	return
 }
 
@@ -12148,6 +12242,15 @@ func (r Network_Storage_Iscsi) DisableSnapshots(scheduleType *string) (resp bool
 	return
 }
 
+// If a volume (with replication) becomes inaccessible due to a disaster event, this method can be used to immediately failover to an available replica in another location. This method does not allow for fail back via the API. To fail back to the original volume after using this method, open a support ticket. To test failover, use [[SoftLayer_Network_Storage::failoverToReplicant]] instead.
+func (r Network_Storage_Iscsi) DisasterRecoveryFailoverToReplicant(replicantId *int) (resp bool, err error) {
+	params := []interface{}{
+		replicantId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "disasterRecoveryFailoverToReplicant", params, &r.Options, &resp)
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Download a file from a Storage account. This method returns a file's details including the file's raw content.
 func (r Network_Storage_Iscsi) DownloadFile(fileId *string) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
@@ -12403,6 +12506,12 @@ func (r Network_Storage_Iscsi) GetDependentDuplicates() (resp []datatypes.Networ
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failback
+func (r Network_Storage_Iscsi) GetFailbackNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFailbackNotAllowed", nil, &r.Options, &resp)
 	return
 }
 

@@ -3873,6 +3873,9 @@ type Network_Storage struct {
 	// The events which have taken place on a network storage volume.
 	Events []Network_Storage_Event `json:"events,omitempty" xmlrpc:"events,omitempty"`
 
+	// Determines whether the volume is allowed to failback
+	FailbackNotAllowed *string `json:"failbackNotAllowed,omitempty" xmlrpc:"failbackNotAllowed,omitempty"`
+
 	// Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 	FileNetworkMountAddress *string `json:"fileNetworkMountAddress,omitempty" xmlrpc:"fileNetworkMountAddress,omitempty"`
 
@@ -4371,6 +4374,29 @@ type Network_Storage_Daily_Usage struct {
 
 	// no documentation yet
 	PublicBandwidthOut *uint `json:"publicBandwidthOut,omitempty" xmlrpc:"publicBandwidthOut,omitempty"`
+}
+
+// no documentation yet
+type Network_Storage_DedicatedCluster struct {
+	Entity
+
+	// no documentation yet
+	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
+
+	// The SoftLayer_Account->id of the customer account
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// The date when Dedicated service resource entry was created.
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// The unique identifier for Dedicated service resource record.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	ServiceResource *Network_Service_Resource `json:"serviceResource,omitempty" xmlrpc:"serviceResource,omitempty"`
+
+	// The cluster Id that is setup as dedicated for the customer.
+	ServiceResourceId *int `json:"serviceResourceId,omitempty" xmlrpc:"serviceResourceId,omitempty"`
 }
 
 // Storage volumes can create various events to keep track of what has occurred to the volume. Events provide an audit trail that can be used to verify that various tasks have occurred, such as snapshots to be created by a schedule or remote replication synchronization.
