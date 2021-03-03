@@ -4322,6 +4322,9 @@ type Container_Product_Order_Network_Protection_Firewall_Dedicated_Upgrade struc
 type Container_Product_Order_Network_Storage_AsAService struct {
 	Container_Product_Order
 
+	// Optional property to specify provisioning to a dedicated cluster at order time. The `id` property of the [[SoftLayer_Network_Storage_DedicatedCluster]] should be provided to dictate where to provision storage to. Note your account must be enabled to order into the desired location(s) prior to placing the order.
+	DedicatedCluster *Network_Storage_DedicatedCluster `json:"dedicatedCluster,omitempty" xmlrpc:"dedicatedCluster,omitempty"`
+
 	// This must be populated only for duplicating a specific snapshot for volume duplicating. It represents the identifier of the origin [[SoftLayer_Network_Storage_Snapshot]]
 	DuplicateOriginSnapshotId *int `json:"duplicateOriginSnapshotId,omitempty" xmlrpc:"duplicateOriginSnapshotId,omitempty"`
 
