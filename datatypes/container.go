@@ -2882,7 +2882,7 @@ type Container_Network_Media_Transcode_Preset_Element_Option struct {
 	Value *string `json:"value,omitempty" xmlrpc:"value,omitempty"`
 }
 
-// no documentation yet
+// This datatype is deprecated and will be removed in API version 3.2.
 type Container_Network_Message_Delivery_Email struct {
 	Entity
 

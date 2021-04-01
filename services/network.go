@@ -16054,6 +16054,12 @@ func (r Network_Vlan_Firewall) GetDatacenter() (resp datatypes.Location, err err
 	return
 }
 
+// Retrieve the firewall device firmware version from database.
+func (r Network_Vlan_Firewall) GetFirewallFirmwareVersion() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getFirewallFirmwareVersion", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The firewall device type.
 func (r Network_Vlan_Firewall) GetFirewallType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getFirewallType", nil, &r.Options, &resp)
