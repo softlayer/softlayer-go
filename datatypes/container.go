@@ -6229,6 +6229,20 @@ type Container_Virtual_Guest_Configuration_Option struct {
 	Template *Virtual_Guest `json:"template,omitempty" xmlrpc:"template,omitempty"`
 }
 
+// The SoftLayer_Container_Virtual_Guest_ConsoleData data type contains information used to access a VSIs console
+type Container_Virtual_Guest_ConsoleData struct {
+	Entity
+
+	// The websocket host address used to access the console
+	WebsocketHost *string `json:"websocketHost,omitempty" xmlrpc:"websocketHost,omitempty"`
+
+	// The websocket port used to access the console
+	WebsocketPort *string `json:"websocketPort,omitempty" xmlrpc:"websocketPort,omitempty"`
+
+	// The token used to authenticate with the console websocket
+	WebsocketToken *string `json:"websocketToken,omitempty" xmlrpc:"websocketToken,omitempty"`
+}
+
 // The SoftLayer_Container_Virtual_Guest_PendingMaintenanceAction data type contains information relating to a SoftLayer_Virtual_Guest's pending maintenance actions.
 type Container_Virtual_Guest_PendingMaintenanceAction struct {
 	Entity
