@@ -1151,7 +1151,7 @@ func (r Virtual_Guest) GetBootOrder() (resp string, err error) {
 }
 
 // Retrieve A virtual guest's browser access logs.
-func (r Virtual_Guest) GetBrowserConsoleAccessLogs() (resp []datatypes.Virtual_Guest_BrowserConsoleAccessLog, err error) {
+func (r Virtual_Guest) GetBrowserConsoleAccessLogs() (resp []datatypes.Virtual_BrowserConsoleAccessLog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBrowserConsoleAccessLogs", nil, &r.Options, &resp)
 	return
 }
@@ -1163,7 +1163,7 @@ func (r Virtual_Guest) GetConsoleAccessLog() (resp []datatypes.Network_Logging_S
 }
 
 // Retrieve A container for a guest's console data
-func (r Virtual_Guest) GetConsoleData() (resp datatypes.Container_Virtual_Guest_ConsoleData, err error) {
+func (r Virtual_Guest) GetConsoleData() (resp datatypes.Container_Virtual_ConsoleData, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleData", nil, &r.Options, &resp)
 	return
 }

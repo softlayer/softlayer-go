@@ -5965,6 +5965,23 @@ type Container_Utility_Network_Subnet_Mask_Generic_Detail struct {
 	Mask *string `json:"mask,omitempty" xmlrpc:"mask,omitempty"`
 }
 
+// The SoftLayer_Container_Virtual_ConsoleData data type contains information used to access a VSIs console
+type Container_Virtual_ConsoleData struct {
+	Entity
+
+	// The websocket host address used to access the console
+	WebsocketHost *string `json:"websocketHost,omitempty" xmlrpc:"websocketHost,omitempty"`
+
+	// The path to the websocket
+	WebsocketPath *string `json:"websocketPath,omitempty" xmlrpc:"websocketPath,omitempty"`
+
+	// The websocket port used to access the console
+	WebsocketPort *string `json:"websocketPort,omitempty" xmlrpc:"websocketPort,omitempty"`
+
+	// The token used to authenticate with the console websocket
+	WebsocketToken *string `json:"websocketToken,omitempty" xmlrpc:"websocketToken,omitempty"`
+}
+
 // This data type represents the structure to hold the allocation properties of a [[SoftLayer_Virtual_DedicatedHost]].
 type Container_Virtual_DedicatedHost_AllocationStatus struct {
 	Entity
@@ -6227,20 +6244,6 @@ type Container_Virtual_Guest_Configuration_Option struct {
 	//
 	// Provides a fragment of the request with the properties and values that must be sent when creating a computing instance with the option.
 	Template *Virtual_Guest `json:"template,omitempty" xmlrpc:"template,omitempty"`
-}
-
-// The SoftLayer_Container_Virtual_Guest_ConsoleData data type contains information used to access a VSIs console
-type Container_Virtual_Guest_ConsoleData struct {
-	Entity
-
-	// The websocket host address used to access the console
-	WebsocketHost *string `json:"websocketHost,omitempty" xmlrpc:"websocketHost,omitempty"`
-
-	// The websocket port used to access the console
-	WebsocketPort *string `json:"websocketPort,omitempty" xmlrpc:"websocketPort,omitempty"`
-
-	// The token used to authenticate with the console websocket
-	WebsocketToken *string `json:"websocketToken,omitempty" xmlrpc:"websocketToken,omitempty"`
 }
 
 // The SoftLayer_Container_Virtual_Guest_PendingMaintenanceAction data type contains information relating to a SoftLayer_Virtual_Guest's pending maintenance actions.
