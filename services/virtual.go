@@ -1354,6 +1354,12 @@ func (r Virtual_Guest) GetGuestBootParameter() (resp datatypes.Virtual_Guest_Boo
 	return
 }
 
+// Retrieve The object's function.
+func (r Virtual_Guest) GetHardwareFunctionDescription() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getHardwareFunctionDescription", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The virtual host on which a virtual guest resides (available only on private clouds).
 func (r Virtual_Guest) GetHost() (resp datatypes.Virtual_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getHost", nil, &r.Options, &resp)

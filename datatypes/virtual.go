@@ -493,6 +493,9 @@ type Virtual_Guest struct {
 	// no documentation yet
 	GuestBootParameter *Virtual_Guest_Boot_Parameter `json:"guestBootParameter,omitempty" xmlrpc:"guestBootParameter,omitempty"`
 
+	// The object's function.
+	HardwareFunctionDescription *string `json:"hardwareFunctionDescription,omitempty" xmlrpc:"hardwareFunctionDescription,omitempty"`
+
 	// The virtual host on which a virtual guest resides (available only on private clouds).
 	Host *Virtual_Host `json:"host,omitempty" xmlrpc:"host,omitempty"`
 

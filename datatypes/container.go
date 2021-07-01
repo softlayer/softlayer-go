@@ -4150,7 +4150,7 @@ type Container_Product_Order_MultiConfiguration_Tornado struct {
 	Container_Product_Order_MultiConfiguration
 }
 
-// This type contains the structure of network-related objects that may be specified when ordering services.
+// (DEPRECATED) This type contains the structure of network-related objects that may be specified when ordering services.
 type Container_Product_Order_Network struct {
 	Entity
 
