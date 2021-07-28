@@ -3786,6 +3786,9 @@ type Network_Storage struct {
 	// The currently active transactions on a network storage volume.
 	ActiveTransactions []Provisioning_Version1_Transaction `json:"activeTransactions,omitempty" xmlrpc:"activeTransactions,omitempty"`
 
+	// no documentation yet
+	AllowDisasterRecoveryFailover *string `json:"allowDisasterRecoveryFailover,omitempty" xmlrpc:"allowDisasterRecoveryFailover,omitempty"`
+
 	// The SoftLayer_Hardware objects which are allowed access to this storage volume.
 	AllowedHardware []Hardware `json:"allowedHardware,omitempty" xmlrpc:"allowedHardware,omitempty"`
 
@@ -3914,6 +3917,9 @@ type Network_Storage struct {
 
 	// no documentation yet
 	IsInDedicatedServiceResource *bool `json:"isInDedicatedServiceResource,omitempty" xmlrpc:"isInDedicatedServiceResource,omitempty"`
+
+	// no documentation yet
+	IsMagneticStorage *string `json:"isMagneticStorage,omitempty" xmlrpc:"isMagneticStorage,omitempty"`
 
 	// Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
 	IsReadyForSnapshot *bool `json:"isReadyForSnapshot,omitempty" xmlrpc:"isReadyForSnapshot,omitempty"`
