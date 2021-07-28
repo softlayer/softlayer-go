@@ -42,12 +42,12 @@ jobs:
         # Required because the coverage.out file on github actions has a path that breaks gcov2lcov
         sed -i "s/$(pwd|sed 's/\//\\\//g')/./g" coverage.out
     - name: Convert coverage to lcov
-      uses: jandelgado/gcov2lcov-action@v1.0.5
+      uses: jandelgado/gcov2lcov-action@v1.0.8
       with:
           infile: coverage.out
           outfile: coverage.lcov
     - name: Coveralls
-      uses: coverallsapp/github-action@v1.1.2
+      uses: coverallsapp/github-action@master
       with:
           github-token: ${{ secrets.github_token }}
           path-to-lcov: coverage.lcov
