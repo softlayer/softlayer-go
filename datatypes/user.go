@@ -1155,7 +1155,7 @@ type User_Employee struct {
 	// no documentation yet
 	TicketAttachmentReferences []Ticket_Attachment `json:"ticketAttachmentReferences,omitempty" xmlrpc:"ticketAttachmentReferences,omitempty"`
 
-	// A representation of a SoftLayer employee's username. In all cases this should simply state "Employee".
+	// A representation of a SoftLayer employee's username.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 }
 

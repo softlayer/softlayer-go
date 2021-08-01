@@ -4124,6 +4124,17 @@ func (r Network_Gateway) EditObject(templateObject *datatypes.Network_Gateway) (
 	return
 }
 
+// Purpose is to rebuild the target Gateway cluster with the specified OS price id. Method will remove the current OS and apply the default vSRX configuration settings. This will result in an extended OUTAGE!! Any custom configuration settings must be re-applied after the forced rebuild is completed. This is a DESTRUCTIVE action, use with caution.
+//
+//
+func (r Network_Gateway) ForceRebuildvSRXCluster(osPriceId *int) (resp bool, err error) {
+	params := []interface{}{
+		osPriceId,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "forceRebuildvSRXCluster", params, &r.Options, &resp)
+	return
+}
+
 // Retrieve The account for this gateway.
 func (r Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAccount", nil, &r.Options, &resp)
@@ -7879,6 +7890,12 @@ func (r Network_Storage) GetAllFilesByFilter(filter *datatypes.Container_Utility
 	return
 }
 
+// Retrieve
+func (r Network_Storage) GetAllowDisasterRecoveryFailover() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
+	return
+}
+
 // This method retrieves a list of SoftLayer_Hardware that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage) GetAllowableHardware(filterHostname *string) (resp []datatypes.Hardware, err error) {
 	params := []interface{}{
@@ -8161,6 +8178,12 @@ func (r Network_Storage) GetIsDependentDuplicateProvisionCompleted() (resp bool,
 // Retrieve
 func (r Network_Storage) GetIsInDedicatedServiceResource() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage) GetIsMagneticStorage() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsMagneticStorage", nil, &r.Options, &resp)
 	return
 }
 
@@ -10057,6 +10080,12 @@ func (r Network_Storage_Backup_Evault) GetAllFilesByFilter(filter *datatypes.Con
 	return
 }
 
+// Retrieve
+func (r Network_Storage_Backup_Evault) GetAllowDisasterRecoveryFailover() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
+	return
+}
+
 // This method retrieves a list of SoftLayer_Hardware that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Backup_Evault) GetAllowableHardware(filterHostname *string) (resp []datatypes.Hardware, err error) {
 	params := []interface{}{
@@ -10359,6 +10388,12 @@ func (r Network_Storage_Backup_Evault) GetIsDependentDuplicateProvisionCompleted
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetIsInDedicatedServiceResource() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Backup_Evault) GetIsMagneticStorage() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsMagneticStorage", nil, &r.Options, &resp)
 	return
 }
 
@@ -12410,6 +12445,12 @@ func (r Network_Storage_Iscsi) GetAllFilesByFilter(filter *datatypes.Container_U
 	return
 }
 
+// Retrieve
+func (r Network_Storage_Iscsi) GetAllowDisasterRecoveryFailover() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
+	return
+}
+
 // This method retrieves a list of SoftLayer_Hardware that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Iscsi) GetAllowableHardware(filterHostname *string) (resp []datatypes.Hardware, err error) {
 	params := []interface{}{
@@ -12692,6 +12733,12 @@ func (r Network_Storage_Iscsi) GetIsDependentDuplicateProvisionCompleted() (resp
 // Retrieve
 func (r Network_Storage_Iscsi) GetIsInDedicatedServiceResource() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsInDedicatedServiceResource", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Iscsi) GetIsMagneticStorage() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsMagneticStorage", nil, &r.Options, &resp)
 	return
 }
 
