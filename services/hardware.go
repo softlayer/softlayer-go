@@ -502,6 +502,12 @@ func (r Hardware) GetAttributes() (resp []datatypes.Hardware_Attribute, err erro
 	return
 }
 
+// Retrieves a list of available term prices to this hardware. Currently, price terms are only available for increasing term length to monthly billed servers.
+func (r Hardware) GetAvailableBillingTermChangePrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Hardware.
 func (r Hardware) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
@@ -781,6 +787,12 @@ func (r Hardware) GetFrontendRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+// Retrieve Information regarding the future billing item for a server.
+func (r Hardware) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getFutureBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's universally unique identifier.
 func (r Hardware) GetGlobalIdentifier() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getGlobalIdentifier", nil, &r.Options, &resp)
@@ -860,6 +872,12 @@ func (r Hardware) GetInboundBandwidthUsage() (resp datatypes.Float64, err error)
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Whether or not this hardware object is eligible to change to term billing.
+func (r Hardware) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getIsBillingTermChangeAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -2477,6 +2495,12 @@ func (r Hardware_Router) GetAttributes() (resp []datatypes.Hardware_Attribute, e
 	return
 }
 
+// Retrieves a list of available term prices to this hardware. Currently, price terms are only available for increasing term length to monthly billed servers.
+func (r Hardware_Router) GetAvailableBillingTermChangePrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Hardware.
 func (r Hardware_Router) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
@@ -2762,6 +2786,12 @@ func (r Hardware_Router) GetFrontendRouters() (resp []datatypes.Hardware, err er
 	return
 }
 
+// Retrieve Information regarding the future billing item for a server.
+func (r Hardware_Router) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFutureBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's universally unique identifier.
 func (r Hardware_Router) GetGlobalIdentifier() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getGlobalIdentifier", nil, &r.Options, &resp)
@@ -2841,6 +2871,12 @@ func (r Hardware_Router) GetInboundBandwidthUsage() (resp datatypes.Float64, err
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware_Router) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Whether or not this hardware object is eligible to change to term billing.
+func (r Hardware_Router) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getIsBillingTermChangeAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -4115,6 +4151,12 @@ func (r Hardware_SecurityModule) GetAttributes() (resp []datatypes.Hardware_Attr
 	return
 }
 
+// Retrieves a list of available term prices to this hardware. Currently, price terms are only available for increasing term length to monthly billed servers.
+func (r Hardware_SecurityModule) GetAvailableBillingTermChangePrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_SecurityModule) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableMonitoring", nil, &r.Options, &resp)
@@ -4572,6 +4614,12 @@ func (r Hardware_SecurityModule) GetFrontendRouters() (resp []datatypes.Hardware
 	return
 }
 
+// Retrieve Information regarding the future billing item for a server.
+func (r Hardware_SecurityModule) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFutureBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's universally unique identifier.
 func (r Hardware_SecurityModule) GetGlobalIdentifier() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getGlobalIdentifier", nil, &r.Options, &resp)
@@ -4672,6 +4720,12 @@ func (r Hardware_SecurityModule) GetInboundPrivateBandwidthUsage() (resp datatyp
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware_SecurityModule) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Whether or not this hardware object is eligible to change to term billing.
+func (r Hardware_SecurityModule) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getIsBillingTermChangeAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -6485,6 +6539,12 @@ func (r Hardware_SecurityModule750) GetAttributes() (resp []datatypes.Hardware_A
 	return
 }
 
+// Retrieves a list of available term prices to this hardware. Currently, price terms are only available for increasing term length to monthly billed servers.
+func (r Hardware_SecurityModule750) GetAvailableBillingTermChangePrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_SecurityModule750) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableMonitoring", nil, &r.Options, &resp)
@@ -6942,6 +7002,12 @@ func (r Hardware_SecurityModule750) GetFrontendRouters() (resp []datatypes.Hardw
 	return
 }
 
+// Retrieve Information regarding the future billing item for a server.
+func (r Hardware_SecurityModule750) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFutureBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's universally unique identifier.
 func (r Hardware_SecurityModule750) GetGlobalIdentifier() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getGlobalIdentifier", nil, &r.Options, &resp)
@@ -7042,6 +7108,12 @@ func (r Hardware_SecurityModule750) GetInboundPrivateBandwidthUsage() (resp data
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware_SecurityModule750) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Whether or not this hardware object is eligible to change to term billing.
+func (r Hardware_SecurityModule750) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getIsBillingTermChangeAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -8855,6 +8927,12 @@ func (r Hardware_Server) GetAttributes() (resp []datatypes.Hardware_Attribute, e
 	return
 }
 
+// Retrieves a list of available term prices to this hardware. Currently, price terms are only available for increasing term length to monthly billed servers.
+func (r Hardware_Server) GetAvailableBillingTermChangePrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_Server) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableMonitoring", nil, &r.Options, &resp)
@@ -9312,6 +9390,12 @@ func (r Hardware_Server) GetFrontendRouters() (resp []datatypes.Hardware, err er
 	return
 }
 
+// Retrieve Information regarding the future billing item for a server.
+func (r Hardware_Server) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFutureBillingItem", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's universally unique identifier.
 func (r Hardware_Server) GetGlobalIdentifier() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getGlobalIdentifier", nil, &r.Options, &resp)
@@ -9412,6 +9496,12 @@ func (r Hardware_Server) GetInboundPrivateBandwidthUsage() (resp datatypes.Float
 // Retrieve The total public inbound bandwidth for this hardware for the current billing cycle.
 func (r Hardware_Server) GetInboundPublicBandwidthUsage() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getInboundPublicBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Whether or not this hardware object is eligible to change to term billing.
+func (r Hardware_Server) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getIsBillingTermChangeAvailableFlag", nil, &r.Options, &resp)
 	return
 }
 

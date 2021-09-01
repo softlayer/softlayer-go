@@ -4097,6 +4097,17 @@ type Container_Product_Order_Hardware_Server_Upgrade struct {
 	Container_Product_Order_Hardware_Server
 }
 
+// Use this datatype to upgrade your existing monthly-billed server to term based pricing. Only monthly to 1 year, and 1 year to 3 year migrations are available. A new billing agreement contract will be created upon order approval, starting at the next billing cycle. A price is required for each existing billing item and all term-based prices must match in length. Hourly billed servers are not eligible for this upgrade. Downgrading to a shorter term is not available. Multiple term upgrades per billing cycle are not allowed.
+type Container_Product_Order_Hardware_Server_Upgrade_MigrateToReserved struct {
+	Container_Product_Order_Hardware_Server_Upgrade
+
+	// no documentation yet
+	TermLength *int `json:"termLength,omitempty" xmlrpc:"termLength,omitempty"`
+
+	// no documentation yet
+	TermStartDate *Time `json:"termStartDate,omitempty" xmlrpc:"termStartDate,omitempty"`
+}
+
 // no documentation yet
 type Container_Product_Order_Hardware_Server_Vpc struct {
 	Container_Product_Order_Hardware_Server

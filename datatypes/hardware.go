@@ -231,6 +231,9 @@ type Hardware struct {
 	// A name reflecting the hostname and domain of the hardware. This is created from the combined values of the hardware's hostname and domain name automatically, and thus should not be edited directly.
 	FullyQualifiedDomainName *string `json:"fullyQualifiedDomainName,omitempty" xmlrpc:"fullyQualifiedDomainName,omitempty"`
 
+	// Information regarding the future billing item for a server.
+	FutureBillingItem *Billing_Item_Hardware `json:"futureBillingItem,omitempty" xmlrpc:"futureBillingItem,omitempty"`
+
 	// A hardware's universally unique identifier.
 	GlobalIdentifier *string `json:"globalIdentifier,omitempty" xmlrpc:"globalIdentifier,omitempty"`
 
@@ -275,6 +278,9 @@ type Hardware struct {
 
 	// The total public inbound bandwidth for this hardware for the current billing cycle.
 	InboundPublicBandwidthUsage *Float64 `json:"inboundPublicBandwidthUsage,omitempty" xmlrpc:"inboundPublicBandwidthUsage,omitempty"`
+
+	// Whether or not this hardware object is eligible to change to term billing.
+	IsBillingTermChangeAvailableFlag *bool `json:"isBillingTermChangeAvailableFlag,omitempty" xmlrpc:"isBillingTermChangeAvailableFlag,omitempty"`
 
 	// Information regarding the last transaction a server performed.
 	LastTransaction *Provisioning_Version1_Transaction `json:"lastTransaction,omitempty" xmlrpc:"lastTransaction,omitempty"`

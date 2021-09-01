@@ -653,12 +653,6 @@ type Billing_Invoice_Receivable_Payment struct {
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
-	CreditCardLastFourDigits *int `json:"creditCardLastFourDigits,omitempty" xmlrpc:"creditCardLastFourDigits,omitempty"`
-
-	// no documentation yet
-	CreditCardRequestId *string `json:"creditCardRequestId,omitempty" xmlrpc:"creditCardRequestId,omitempty"`
-
-	// no documentation yet
 	CreditCardTransaction *Billing_Payment_Card_Transaction `json:"creditCardTransaction,omitempty" xmlrpc:"creditCardTransaction,omitempty"`
 
 	// no documentation yet

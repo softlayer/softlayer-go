@@ -5188,7 +5188,7 @@ type Network_Subnet struct {
 	// DEPRECATED
 	ActiveSwipTransaction *Network_Subnet_Swip_Transaction `json:"activeSwipTransaction,omitempty" xmlrpc:"activeSwipTransaction,omitempty"`
 
-	// The billing item for a subnet.
+	// DEPRECATED
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// Identifier which distinguishes what classification of addresses the subnet represents.
@@ -5564,7 +5564,7 @@ type Network_Subnet_IpAddress_Global struct {
 	// no documentation yet
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
-	// The active transaction associated with this Global IP.
+	// DEPRECATED
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// The billing item for this Global IP.

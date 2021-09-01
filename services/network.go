@@ -14171,7 +14171,7 @@ func (r Network_Subnet) GetActiveSwipTransaction() (resp datatypes.Network_Subne
 	return
 }
 
-// Retrieve The billing item for a subnet.
+// Retrieve DEPRECATED
 func (r Network_Subnet) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getActiveTransaction", nil, &r.Options, &resp)
 	return
@@ -14819,7 +14819,7 @@ func (r Network_Subnet_IpAddress_Global) GetAccount() (resp datatypes.Account, e
 	return
 }
 
-// Retrieve The active transaction associated with this Global IP.
+// Retrieve DEPRECATED
 func (r Network_Subnet_IpAddress_Global) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress_Global", "getActiveTransaction", nil, &r.Options, &resp)
 	return
@@ -16289,6 +16289,12 @@ func (r Network_Vlan_Firewall) GetUpgradeRequest() (resp datatypes.Product_Upgra
 	return
 }
 
+// Checks if the account is allowed to use some features of FSA1G and Hardware firewall (Dedicated)
+func (r Network_Vlan_Firewall) IsAccountAllowed() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "isAccountAllowed", nil, &r.Options, &resp)
+	return
+}
+
 // Whether this firewall qualifies for High Availability upgrade.
 func (r Network_Vlan_Firewall) IsHighAvailabilityUpgradeAvailable() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "isHighAvailabilityUpgradeAvailable", nil, &r.Options, &resp)
@@ -16302,7 +16308,7 @@ func (r Network_Vlan_Firewall) RejectBypassRequest() (err error) {
 	return
 }
 
-// This will completely reset the firewall to factory settings. If the firewall is not a dedicated appliance an error will occur. Note, this process is performed asynchronously. During the process all traffic will not be routed through the firewall.
+// This will completely reset the firewall to factory settings. If the firewall is not a FSA 10G appliance an error will occur. Note, this process is performed asynchronously. During the process all traffic will not be routed through the firewall.
 func (r Network_Vlan_Firewall) RestoreDefaults() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "restoreDefaults", nil, &r.Options, &resp)
 	return
