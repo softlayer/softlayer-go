@@ -307,3 +307,10 @@ func (f Filter) DateBetween(start string, end string) Filter {
 	f.Val = nil
 	return f.Opt("startDate", []string{start}).Opt("endDate", []string{end})
 }
+
+// Support for orderBy filters, only 1 orderBy is supported per filter.
+func (f Filter) OrderBy(direction string) Filter {
+	f.Op = "orderBy"
+	f.Val = nil 
+	return f.Opt("sort", []string{direction})
+}
