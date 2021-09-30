@@ -27,7 +27,7 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-func main() {
+func example_main() {
 	sess := session.New() // default endpoint
 
 	sess.Debug = true
