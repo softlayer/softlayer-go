@@ -3378,6 +3378,12 @@ func (r Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subne
 	return
 }
 
+// Check for active transactions for the shared Firewall.
+func (r Network_Component_Firewall) HasActiveTransactions() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "hasActiveTransactions", nil, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Network_Customer_Subnet data type contains general information relating to a single customer subnet (remote).
 type Network_Customer_Subnet struct {
 	Session *session.Session
@@ -16286,6 +16292,12 @@ func (r Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Referenc
 // Retrieve A firewall's associated upgrade request object, if any.
 func (r Network_Vlan_Firewall) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getUpgradeRequest", nil, &r.Options, &resp)
+	return
+}
+
+// Check for active transactions for the Firewall.
+func (r Network_Vlan_Firewall) HasActiveTransactions() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "hasActiveTransactions", nil, &r.Options, &resp)
 	return
 }
 

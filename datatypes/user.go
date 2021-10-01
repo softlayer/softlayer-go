@@ -726,6 +726,11 @@ type User_Customer_Link struct {
 }
 
 // no documentation yet
+type User_Customer_Link_TrustedProfile struct {
+	User_Customer_Link
+}
+
+// no documentation yet
 type User_Customer_Link_VerifiedIamIdLinkCollection struct {
 	Entity
 
@@ -893,6 +898,11 @@ type User_Customer_Notification_Virtual_Guest struct {
 // no documentation yet
 type User_Customer_OpenIdConnect struct {
 	User_Customer
+}
+
+// no documentation yet
+type User_Customer_OpenIdConnect_TrustedProfile struct {
+	User_Customer_OpenIdConnect
 }
 
 // no documentation yet
