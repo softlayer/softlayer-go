@@ -91,4 +91,3 @@ func TestFilterOrderBy(t *testing.T) {
 		t.Errorf("\nExpected: %s\nActual:   %s", expected, actual)
 	}
 }
-

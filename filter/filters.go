@@ -311,6 +311,6 @@ func (f Filter) DateBetween(start string, end string) Filter {
 // Support for orderBy filters, only 1 orderBy is supported per filter.
 func (f Filter) OrderBy(direction string) Filter {
 	f.Op = "orderBy"
-	f.Val = nil 
+	f.Val = nil
 	return f.Opt("sort", []string{direction})
 }
