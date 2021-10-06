@@ -25,8 +25,6 @@ var listVlanCmd = &cobra.Command{
 	},
 }
 
-
-
 func VlanListCommand(cmd *cobra.Command, args []string) error {
 	resultLimit := 50
 	resultOffset := 0
@@ -61,7 +59,7 @@ func VlanListCommand(cmd *cobra.Command, args []string) error {
 
 		for _, s := range vlans {
 			name := "-"
-			// The Name property doesn't get returned if the vlan hasn't been named, which will cause a 
+			// The Name property doesn't get returned if the vlan hasn't been named, which will cause a
 			// 'panic: runtime error: invalid memory address' error if we dont check first.
 			if s.Name != nil {
 				name = *s.Name
@@ -74,7 +72,7 @@ func VlanListCommand(cmd *cobra.Command, args []string) error {
 		}
 		// Increment the offset to get next set of results
 		resultOffset = resultOffset + resultLimit
-		
+
 		vlans, err = service.Mask(objectMask).Filter(objectFilter).
 			Offset(resultOffset).Limit(resultLimit).GetNetworkVlans()
 		if err != nil {

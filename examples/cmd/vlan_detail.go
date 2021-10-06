@@ -5,8 +5,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/spf13/cobra"
 	"github.com/jedib0t/go-pretty/v6/table"
+	"github.com/spf13/cobra"
 
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
@@ -53,7 +53,7 @@ subnets[id,networkIdentifier,note, subnetType]]`
 	if err != nil {
 		return err
 	}
-	
+
 	// https://github.com/jedib0t/go-pretty/tree/main/table
 	// A fancy table builder so our output can look nice.
 	t := table.NewWriter()
@@ -66,7 +66,7 @@ subnets[id,networkIdentifier,note, subnetType]]`
 	t.AppendRow([]interface{}{"Datacenter", *vlan.PrimaryRouter.DatacenterName})
 	t.AppendRow([]interface{}{"Primary Router", *vlan.PrimaryRouter.Hostname})
 
-	if len(vlan.Subnets) > 0  {
+	if len(vlan.Subnets) > 0 {
 		subnetTable := table.NewWriter()
 		subnetTable.AppendHeader(table.Row{"Id", "Network", "Type", "Note"})
 		for _, subnet := range vlan.Subnets {

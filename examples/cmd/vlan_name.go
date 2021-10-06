@@ -1,14 +1,14 @@
 package cmd
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 	"strconv"
 
 	"github.com/spf13/cobra"
 
-	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/datatypes"
+	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 )
 
