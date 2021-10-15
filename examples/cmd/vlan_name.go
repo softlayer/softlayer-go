@@ -14,15 +14,17 @@ import (
 
 func init() {
 	vlanNameCmd.Flags().StringVarP(&VlanName, "name", "n", "", "New VLAN name")
+	vlanNameCmd.Flags().StringVarP(&VlanNote, "note", "t", "", "Vlan Note")
 	vlanNameCmd.MarkFlagRequired("name")
 	rootCmd.AddCommand(vlanNameCmd)
 }
 
 var VlanName string
+var VlanNote string
 var vlanNameCmd = &cobra.Command{
 	Use:   "vlan-name [vlanId]",
-	Short: "Set a VLAN's name",
-	Long:  `Set a VLAN's name.`,
+	Short: "Set a VLAN's name and note",
+	Long:  `Set a VLAN's name and note.`,
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("a VLAN ID is required")
@@ -50,12 +52,13 @@ func VlanNameCommand(cmd *cobra.Command, args []string) error {
 	// only Name and Note are editable on a Vlan object.
 	vlanSkel := datatypes.Network_Vlan{
 		Name: &VlanName,
+		Note: &VlanNote,
 	}
 	// https://sldn.softlayer.com/reference/services/SoftLayer_Network_Vlan/editObject/
 	_, err = service.Id(vlanId).EditObject(&vlanSkel)
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Set name of VLan %v to %v\n", vlanId, VlanName)
+	fmt.Printf("Set name of VLan %v to %v with note %v\n", vlanId, VlanName, VlanNote)
 	return nil
 }

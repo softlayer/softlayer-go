@@ -29,7 +29,9 @@ func Run(cmd *cobra.Command, args []string) error {
 	// When using a result Limit to break up your API request, its important to include an orderBy objectFilter
 	// to enforce an order on the query, as the database might not always return results in the same order between
 	// queries otherwise
-	objectFilter := `{"hardware":{"id":{"operation":"orderBy","options":[{"name":"sort","value":["ASC"]}]}}}`
+	filters := filter.New()
+	filters = append(filters, filter.Path("hardware.id").OrderBy("ASC"))
+	objectFilter := filters.Build()
 	// Sets up the session with authentication headers.
 	sess := session.New()
 	// uncomment to output API calls as they are made.
@@ -46,12 +48,12 @@ func Run(cmd *cobra.Command, args []string) error {
 	}
 	fmt.Printf("Id, Hostname, Domain, IP Address\n")
 	for {
-		for _, s := range servers {
+		for _, server := range servers {
 			ipAddress := "-"
-			if *s.PrimaryIpAddress != "" {
-				ipAddress = *s.PrimaryIpAddress
+			if *server.PrimaryIpAddress != "" {
+				ipAddress = *server.PrimaryIpAddress
 			}
-			fmt.Printf("%v, %v, %v, %v\n", *s.Id, *s.Hostname, *s.Domain, ipAddress)
+			fmt.Printf("%v, %v, %v, %v\n", *server.Id, *server.Hostname, *server.Domain, ipAddress)
 		}
 		// If we get less than the number of results we asked for, we are at the end of our server list
 		if len(servers) < resultLimit {

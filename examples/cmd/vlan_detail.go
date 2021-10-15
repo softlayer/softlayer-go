@@ -32,8 +32,6 @@ var detailVlanCmd = &cobra.Command{
 }
 
 func VlanDetailCommand(cmd *cobra.Command, args []string) error {
-	// resultLimit := 50
-	// resultOffset := 0
 	objectMask := `mask[id,name,vlanNumber,primaryRouter[id,hostname,datacenterName,datacenter[name]],
 subnets[id,networkIdentifier,note, subnetType]]`
 

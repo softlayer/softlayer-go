@@ -38,7 +38,6 @@ func VlanListCommand(cmd *cobra.Command, args []string) error {
 		filters = append(filters, filter.Path("networkVlans.primaryRouter.datacenter.name").Eq(Datacenter))
 	}
 	objectFilter := filters.Build()
-	// fmt.Println("FILTER: ", objectFilter)
 
 	// Sets up the session with authentication headers.
 	sess := session.New()
@@ -48,7 +47,7 @@ func VlanListCommand(cmd *cobra.Command, args []string) error {
 	// creates a reference to the service object (SoftLayer_Account)
 	service := services.GetAccountService(sess)
 
-	// Sets the mask, filter, result limit, and then makes the API call SoftLayer_Account::getHardware()
+	// Sets the mask, filter, result limit, and then makes the API call SoftLayer_Account::getNetworkVlans()
 	vlans, err := service.Mask(objectMask).Filter(objectFilter).
 		Offset(resultOffset).Limit(resultLimit).GetNetworkVlans()
 	if err != nil {
@@ -56,15 +55,14 @@ func VlanListCommand(cmd *cobra.Command, args []string) error {
 	}
 	fmt.Printf("Id, VLAN, Name, Datacenter\n")
 	for {
-
-		for _, s := range vlans {
+		for _, vlan := range vlans {
 			name := "-"
 			// The Name property doesn't get returned if the vlan hasn't been named, which will cause a
 			// 'panic: runtime error: invalid memory address' error if we dont check first.
-			if s.Name != nil {
-				name = *s.Name
+			if vlan.Name != nil {
+				name = *vlan.Name
 			}
-			fmt.Printf("%v, %v, %v, %v\n", *s.Id, name, *s.VlanNumber, *s.PrimaryRouter.Datacenter.Name)
+			fmt.Printf("%v, %v, %v, %v\n", *vlan.Id, name, *vlan.VlanNumber, *vlan.PrimaryRouter.Datacenter.Name)
 		}
 		// If we get less than the number of results we asked for, we are at the end of our server list
 		if len(vlans) < resultLimit {
