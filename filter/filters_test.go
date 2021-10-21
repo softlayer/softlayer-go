@@ -79,3 +79,15 @@ func TestFilterOpts(t *testing.T) {
 		t.Errorf("\nExpected: %s\nActual:   %s", expected, actual)
 	}
 }
+
+func TestFilterOrderBy(t *testing.T) {
+	var actual, expected string
+
+	expected = `{"createDate":{"operation":"orderBy","options":[{"name":"sort","value":["DESC"]}]}}`
+
+	filters := Path("createDate").OrderBy("DESC")
+	actual = filters.Build()
+	if actual != expected {
+		t.Errorf("\nExpected: %s\nActual:   %s", expected, actual)
+	}
+}
