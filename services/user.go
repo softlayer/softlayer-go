@@ -493,7 +493,7 @@ func (r User_Customer) GetHasFullVirtualGuestAccessFlag() (resp bool, err error)
 	return
 }
 
-// Retrieve
+// Retrieve Specifically relating the Customer instance to an IBMid. A Customer instance may or may not have an IBMid link.
 func (r User_Customer) GetIbmIdLink() (resp datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getIbmIdLink", nil, &r.Options, &resp)
 	return
@@ -505,7 +505,7 @@ func (r User_Customer) GetImpersonationToken() (resp string, err error) {
 	return
 }
 
-// Retrieve
+// Retrieve Contains the definition of the layout profile.
 func (r User_Customer) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLayoutProfiles", nil, &r.Options, &resp)
 	return
@@ -625,7 +625,7 @@ func (r User_Customer) GetPreferenceTypes() (resp []datatypes.User_Preference_Ty
 	return
 }
 
-// Retrieve
+// Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferences", nil, &r.Options, &resp)
 	return
@@ -737,7 +737,7 @@ func (r User_Customer) GetUserIdForPasswordSet(key *string) (resp int, err error
 	return
 }
 
-// Retrieve
+// Retrieve User customer link with IBMid and IAMid.
 func (r User_Customer) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserLinks", nil, &r.Options, &resp)
 	return
@@ -1040,11 +1040,11 @@ func (r User_Customer) RemoveVirtualGuestAccess(virtualGuestId *int) (resp bool,
 }
 
 // This method will change the IBMid that a SoftLayer user is linked to, if we need to do that for some reason. It will do this by modifying the link to the desired new IBMid. NOTE:  This method cannot be used to "un-link" a SoftLayer user.  Once linked, a SoftLayer user can never be un-linked. Also, this method cannot be used to reset the link if the user account is already Bluemix linked. To reset a link for the Bluemix-linked user account, use resetOpenIdConnectLinkUnifiedUserManagementMode.
-func (r User_Customer) ResetOpenIdConnectLink(providerType *string, newIbmId *string, removeSecuritySettings *bool) (err error) {
+func (r User_Customer) ResetOpenIdConnectLink(providerType *string, newIbmIdUsername *string, removeSecuritySettings *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
-		newIbmId,
+		newIbmIdUsername,
 		removeSecuritySettings,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "resetOpenIdConnectLink", params, &r.Options, &resp)
@@ -2326,7 +2326,7 @@ func (r User_Customer_Notification_Hardware) CreateObject(templateObject *dataty
 }
 
 // Passing in a collection of unsaved instances of Customer_Notification_Hardware objects into this function will create all objects and return the results to the user.
-func (r User_Customer_Notification_Hardware) CreateObjects(templateObjects []datatypes.User_Customer_Notification_Hardware) (resp []datatypes.Dns_Domain, err error) {
+func (r User_Customer_Notification_Hardware) CreateObjects(templateObjects []datatypes.User_Customer_Notification_Hardware) (resp []datatypes.User_Customer_Notification_Hardware, err error) {
 	params := []interface{}{
 		templateObjects,
 	}
@@ -2980,7 +2980,7 @@ func (r User_Customer_OpenIdConnect) GetHasFullVirtualGuestAccessFlag() (resp bo
 	return
 }
 
-// Retrieve
+// Retrieve Specifically relating the Customer instance to an IBMid. A Customer instance may or may not have an IBMid link.
 func (r User_Customer_OpenIdConnect) GetIbmIdLink() (resp datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getIbmIdLink", nil, &r.Options, &resp)
 	return
@@ -2992,7 +2992,7 @@ func (r User_Customer_OpenIdConnect) GetImpersonationToken() (resp string, err e
 	return
 }
 
-// Retrieve
+// Retrieve Contains the definition of the layout profile.
 func (r User_Customer_OpenIdConnect) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLayoutProfiles", nil, &r.Options, &resp)
 	return
@@ -3145,7 +3145,7 @@ func (r User_Customer_OpenIdConnect) GetPreferenceTypes() (resp []datatypes.User
 	return
 }
 
-// Retrieve
+// Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer_OpenIdConnect) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferences", nil, &r.Options, &resp)
 	return
@@ -3268,7 +3268,7 @@ func (r User_Customer_OpenIdConnect) GetUserIdForPasswordSet(key *string) (resp 
 	return
 }
 
-// Retrieve
+// Retrieve User customer link with IBMid and IAMid.
 func (r User_Customer_OpenIdConnect) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserLinks", nil, &r.Options, &resp)
 	return
@@ -3571,11 +3571,11 @@ func (r User_Customer_OpenIdConnect) RemoveVirtualGuestAccess(virtualGuestId *in
 }
 
 // This method will change the IBMid that a SoftLayer user is linked to, if we need to do that for some reason. It will do this by modifying the link to the desired new IBMid. NOTE:  This method cannot be used to "un-link" a SoftLayer user.  Once linked, a SoftLayer user can never be un-linked. Also, this method cannot be used to reset the link if the user account is already Bluemix linked. To reset a link for the Bluemix-linked user account, use resetOpenIdConnectLinkUnifiedUserManagementMode.
-func (r User_Customer_OpenIdConnect) ResetOpenIdConnectLink(providerType *string, newIbmId *string, removeSecuritySettings *bool) (err error) {
+func (r User_Customer_OpenIdConnect) ResetOpenIdConnectLink(providerType *string, newIbmIdUsername *string, removeSecuritySettings *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
-		newIbmId,
+		newIbmIdUsername,
 		removeSecuritySettings,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "resetOpenIdConnectLink", params, &r.Options, &resp)
@@ -4212,7 +4212,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetHasFullVirtualGuestAccess
 	return
 }
 
-// Retrieve
+// Retrieve Specifically relating the Customer instance to an IBMid. A Customer instance may or may not have an IBMid link.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetIbmIdLink() (resp datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getIbmIdLink", nil, &r.Options, &resp)
 	return
@@ -4224,7 +4224,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetImpersonationToken() (res
 	return
 }
 
-// Retrieve
+// Retrieve Contains the definition of the layout profile.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLayoutProfiles", nil, &r.Options, &resp)
 	return
@@ -4377,7 +4377,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferenceTypes() (resp [
 	return
 }
 
-// Retrieve
+// Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferences", nil, &r.Options, &resp)
 	return
@@ -4500,7 +4500,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserIdForPasswordSet(key 
 	return
 }
 
-// Retrieve
+// Retrieve User customer link with IBMid and IAMid.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserLinks() (resp []datatypes.User_Customer_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserLinks", nil, &r.Options, &resp)
 	return
@@ -4803,11 +4803,11 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) RemoveVirtualGuestAccess(vir
 }
 
 // This method will change the IBMid that a SoftLayer user is linked to, if we need to do that for some reason. It will do this by modifying the link to the desired new IBMid. NOTE:  This method cannot be used to "un-link" a SoftLayer user.  Once linked, a SoftLayer user can never be un-linked. Also, this method cannot be used to reset the link if the user account is already Bluemix linked. To reset a link for the Bluemix-linked user account, use resetOpenIdConnectLinkUnifiedUserManagementMode.
-func (r User_Customer_OpenIdConnect_TrustedProfile) ResetOpenIdConnectLink(providerType *string, newIbmId *string, removeSecuritySettings *bool) (err error) {
+func (r User_Customer_OpenIdConnect_TrustedProfile) ResetOpenIdConnectLink(providerType *string, newIbmIdUsername *string, removeSecuritySettings *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		providerType,
-		newIbmId,
+		newIbmIdUsername,
 		removeSecuritySettings,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "resetOpenIdConnectLink", params, &r.Options, &resp)

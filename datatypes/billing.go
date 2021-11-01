@@ -153,7 +153,7 @@ type Billing_Info struct {
 	// The total recurring fee amount for servers that are in the spare pool status.
 	SparePoolAmount *int `json:"sparePoolAmount,omitempty" xmlrpc:"sparePoolAmount,omitempty"`
 
-	// no documentation yet
+	// This property has been deprecated.
 	TaxCertificateId *string `json:"taxCertificateId,omitempty" xmlrpc:"taxCertificateId,omitempty"`
 
 	// no documentation yet

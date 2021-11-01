@@ -2076,6 +2076,20 @@ type Hardware_Server_Partition_Network_Attribute struct {
 	PartitionId *int `json:"partitionId,omitempty" xmlrpc:"partitionId,omitempty"`
 }
 
+// The SoftLayer_Hardware_State type contains general information about the current state of it's associated hardware, including the current power state (i.e. Running or Stopped), and it's current transitioning state (e.g. Provisioning, Reloading).
+type Hardware_State struct {
+	Entity
+
+	// The hardware this state is assigned to.
+	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
+
+	// A hardware state's unique identifier.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Represents the current state of the assigned hardware.
+	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+}
+
 // SoftLayer_Hardware_Status models the inventory state of any piece of hardware in SoftLayer's inventory. Most of these statuses are used by SoftLayer while a server is not provisioned or undergoing provisioning. SoftLayer uses the following status codes:
 //
 //

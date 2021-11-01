@@ -1346,6 +1346,9 @@ type Network_Component_Group struct {
 	// no documentation yet
 	GroupTypeId *int `json:"groupTypeId,omitempty" xmlrpc:"groupTypeId,omitempty"`
 
+	// A succinct label describing the members of this grouping.
+	MembersDescription *string `json:"membersDescription,omitempty" xmlrpc:"membersDescription,omitempty"`
+
 	// A count of a network component group's associated network components.
 	NetworkComponentCount *uint `json:"networkComponentCount,omitempty" xmlrpc:"networkComponentCount,omitempty"`
 
@@ -4077,6 +4080,9 @@ type Network_Storage struct {
 	// The percentage of used snapshot space after which to delete automated snapshots.
 	SnapshotDeletionThresholdPercentage *string `json:"snapshotDeletionThresholdPercentage,omitempty" xmlrpc:"snapshotDeletionThresholdPercentage,omitempty"`
 
+	// Whether or not a network storage volume may be mounted.
+	SnapshotNotificationStatus *string `json:"snapshotNotificationStatus,omitempty" xmlrpc:"snapshotNotificationStatus,omitempty"`
+
 	// The snapshot size in bytes.
 	SnapshotSizeBytes *string `json:"snapshotSizeBytes,omitempty" xmlrpc:"snapshotSizeBytes,omitempty"`
 
@@ -4991,8 +4997,14 @@ type Network_Storage_Property_Type struct {
 type Network_Storage_Replicant struct {
 	Network_Storage
 
+	// no documentation yet
+	AllowDisasterRecoveryFailback *string `json:"allowDisasterRecoveryFailback,omitempty" xmlrpc:"allowDisasterRecoveryFailback,omitempty"`
+
 	// When a replicant is in the process of synchronizing with the parent volume this flag will be true.
 	FailbackInProgressFlag *string `json:"failbackInProgressFlag,omitempty" xmlrpc:"failbackInProgressFlag,omitempty"`
+
+	// Determines whether the volume is allowed to failover
+	FailoverNotAllowed *string `json:"failoverNotAllowed,omitempty" xmlrpc:"failoverNotAllowed,omitempty"`
 
 	// The volume name for a replicant.
 	VolumeName *string `json:"volumeName,omitempty" xmlrpc:"volumeName,omitempty"`
@@ -5880,7 +5892,7 @@ type Network_Tunnel_Module_Context struct {
 	// A network tunnel's account identifier.
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
-	// The transaction that is currently applying configurations for the network tunnel.
+	// DEPRECATED
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// A count of a network tunnel's address translations.
@@ -5981,10 +5993,10 @@ type Network_Tunnel_Module_Context struct {
 	// Subnets used for a network tunnel's address translations.
 	StaticRouteSubnets []Network_Subnet `json:"staticRouteSubnets,omitempty" xmlrpc:"staticRouteSubnets,omitempty"`
 
-	// The transaction history for this network tunnel.
+	// DEPRECATED
 	TransactionHistory []Provisioning_Version1_Transaction `json:"transactionHistory,omitempty" xmlrpc:"transactionHistory,omitempty"`
 
-	// A count of the transaction history for this network tunnel.
+	// A count of dEPRECATED
 	TransactionHistoryCount *uint `json:"transactionHistoryCount,omitempty" xmlrpc:"transactionHistoryCount,omitempty"`
 }
 
@@ -6081,6 +6093,9 @@ type Network_Vlan struct {
 	// The currently running rule set of a firewalled VLAN.
 	FirewallRules []Network_Vlan_Firewall_Rule `json:"firewallRules,omitempty" xmlrpc:"firewallRules,omitempty"`
 
+	// A human readable, unique identifier for a VLAN.
+	FullyQualifiedName *string `json:"fullyQualifiedName,omitempty" xmlrpc:"fullyQualifiedName,omitempty"`
+
 	// A count of the networking components that are connected to a VLAN.
 	GuestNetworkComponentCount *uint `json:"guestNetworkComponentCount,omitempty" xmlrpc:"guestNetworkComponentCount,omitempty"`
 
@@ -6122,6 +6137,9 @@ type Network_Vlan struct {
 
 	// The networking components that are connected to a VLAN.
 	NetworkComponents []Network_Component `json:"networkComponents,omitempty" xmlrpc:"networkComponents,omitempty"`
+
+	// The viable trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already natively attached nor trunked.
+	NetworkComponentsTrunkable []Network_Component `json:"networkComponentsTrunkable,omitempty" xmlrpc:"networkComponentsTrunkable,omitempty"`
 
 	// Identifier to denote whether a VLAN is used for public or private connectivity.
 	NetworkSpace *string `json:"networkSpace,omitempty" xmlrpc:"networkSpace,omitempty"`

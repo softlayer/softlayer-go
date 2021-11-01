@@ -236,7 +236,7 @@ type User_Customer struct {
 	// The IAMid (realm-identifier) of the user being created by PaaS
 	IamId *string `json:"iamId,omitempty" xmlrpc:"iamId,omitempty"`
 
-	// no documentation yet
+	// Specifically relating the Customer instance to an IBMid. A Customer instance may or may not have an IBMid link.
 	IbmIdLink *User_Customer_Link `json:"ibmIdLink,omitempty" xmlrpc:"ibmIdLink,omitempty"`
 
 	// A portal user's ICQ UIN.
@@ -254,10 +254,10 @@ type User_Customer struct {
 	// A portal user's last name.
 	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName,omitempty"`
 
-	// A count of
+	// A count of contains the definition of the layout profile.
 	LayoutProfileCount *uint `json:"layoutProfileCount,omitempty" xmlrpc:"layoutProfileCount,omitempty"`
 
-	// no documentation yet
+	// Contains the definition of the layout profile.
 	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty" xmlrpc:"layoutProfiles,omitempty"`
 
 	// The linked account integration mode
@@ -344,10 +344,10 @@ type User_Customer struct {
 	// Whether a portal user may connect to the SoftLayer private network via PPTP VPN or not.
 	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
 
-	// A count of
+	// A count of data type contains a single user preference to a specific preference type.
 	PreferenceCount *uint `json:"preferenceCount,omitempty" xmlrpc:"preferenceCount,omitempty"`
 
-	// no documentation yet
+	// Data type contains a single user preference to a specific preference type.
 	Preferences []User_Preference `json:"preferences,omitempty" xmlrpc:"preferences,omitempty"`
 
 	// no documentation yet
@@ -437,10 +437,10 @@ type User_Customer struct {
 	// A user's unsuccessful attempts to log into the SoftLayer customer portal.
 	UnsuccessfulLogins []User_Customer_Access_Authentication `json:"unsuccessfulLogins,omitempty" xmlrpc:"unsuccessfulLogins,omitempty"`
 
-	// A count of
+	// A count of user customer link with IBMid and IAMid.
 	UserLinkCount *uint `json:"userLinkCount,omitempty" xmlrpc:"userLinkCount,omitempty"`
 
-	// no documentation yet
+	// User customer link with IBMid and IAMid.
 	UserLinks []User_Customer_Link `json:"userLinks,omitempty" xmlrpc:"userLinks,omitempty"`
 
 	// A portal user's status, which controls overall access to the SoftLayer customer portal and VPN access to the private network.
@@ -1143,9 +1143,6 @@ type User_Employee struct {
 
 	// no documentation yet
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
-
-	// no documentation yet
-	OfficePhone *string `json:"officePhone,omitempty" xmlrpc:"officePhone,omitempty"`
 
 	// A count of
 	SecurityLevelCount *uint `json:"securityLevelCount,omitempty" xmlrpc:"securityLevelCount,omitempty"`

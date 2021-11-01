@@ -8477,6 +8477,12 @@ func (r Network_Storage) GetSnapshotDeletionThresholdPercentage() (resp string, 
 	return
 }
 
+// Retrieve Whether or not a network storage volume may be mounted.
+func (r Network_Storage) GetSnapshotNotificationStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshotNotificationStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage) GetSnapshotSizeBytes() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshotSizeBytes", nil, &r.Options, &resp)
@@ -8869,6 +8875,16 @@ func (r Network_Storage) SetSnapshotAllocation(capacityGb *int) (err error) {
 		capacityGb,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "setSnapshotAllocation", params, &r.Options, &resp)
+	return
+}
+
+// Function to enable/disable snapshot warning notification.
+func (r Network_Storage) SetSnapshotNotification(notificationFlag *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		notificationFlag,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "setSnapshotNotification", params, &r.Options, &resp)
 	return
 }
 
@@ -10685,6 +10701,12 @@ func (r Network_Storage_Backup_Evault) GetSnapshotDeletionThresholdPercentage() 
 	return
 }
 
+// Retrieve Whether or not a network storage volume may be mounted.
+func (r Network_Storage_Backup_Evault) GetSnapshotNotificationStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotNotificationStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage_Backup_Evault) GetSnapshotSizeBytes() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotSizeBytes", nil, &r.Options, &resp)
@@ -11098,6 +11120,16 @@ func (r Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (e
 		capacityGb,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "setSnapshotAllocation", params, &r.Options, &resp)
+	return
+}
+
+// Function to enable/disable snapshot warning notification.
+func (r Network_Storage_Backup_Evault) SetSnapshotNotification(notificationFlag *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		notificationFlag,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "setSnapshotNotification", params, &r.Options, &resp)
 	return
 }
 
@@ -13030,6 +13062,12 @@ func (r Network_Storage_Iscsi) GetSnapshotDeletionThresholdPercentage() (resp st
 	return
 }
 
+// Retrieve Whether or not a network storage volume may be mounted.
+func (r Network_Storage_Iscsi) GetSnapshotNotificationStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshotNotificationStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The snapshot size in bytes.
 func (r Network_Storage_Iscsi) GetSnapshotSizeBytes() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshotSizeBytes", nil, &r.Options, &resp)
@@ -13422,6 +13460,16 @@ func (r Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error
 		capacityGb,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "setSnapshotAllocation", params, &r.Options, &resp)
+	return
+}
+
+// Function to enable/disable snapshot warning notification.
+func (r Network_Storage_Iscsi) SetSnapshotNotification(notificationFlag *string) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		notificationFlag,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "setSnapshotNotification", params, &r.Options, &resp)
 	return
 }
 
@@ -15566,7 +15614,7 @@ func (r Network_Tunnel_Module_Context) GetAccount() (resp datatypes.Account, err
 	return
 }
 
-// Retrieve The transaction that is currently applying configurations for the network tunnel.
+// Retrieve DEPRECATED
 func (r Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getActiveTransaction", nil, &r.Options, &resp)
 	return
@@ -15714,7 +15762,7 @@ func (r Network_Tunnel_Module_Context) GetStaticRouteSubnets() (resp []datatypes
 	return
 }
 
-// Retrieve The transaction history for this network tunnel.
+// Retrieve DEPRECATED
 func (r Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getTransactionHistory", nil, &r.Options, &resp)
 	return
@@ -15931,6 +15979,12 @@ func (r Network_Vlan) GetNetworkComponentTrunks() (resp []datatypes.Network_Comp
 // Retrieve The networking components that are connected to a VLAN.
 func (r Network_Vlan) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The viable trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already natively attached nor trunked.
+func (r Network_Vlan) GetNetworkComponentsTrunkable() (resp []datatypes.Network_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentsTrunkable", nil, &r.Options, &resp)
 	return
 }
 
