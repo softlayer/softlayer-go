@@ -7897,6 +7897,12 @@ func (r Network_Storage) GetAllFilesByFilter(filter *datatypes.Container_Utility
 }
 
 // Retrieve
+func (r Network_Storage) GetAllowDisasterRecoveryFailback() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowDisasterRecoveryFailback", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Network_Storage) GetAllowDisasterRecoveryFailover() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
 	return
@@ -8072,6 +8078,12 @@ func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, er
 // Retrieve Determines whether the volume is allowed to failback
 func (r Network_Storage) GetFailbackNotAllowed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFailbackNotAllowed", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failover
+func (r Network_Storage) GetFailoverNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFailoverNotAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -10103,6 +10115,12 @@ func (r Network_Storage_Backup_Evault) GetAllFilesByFilter(filter *datatypes.Con
 }
 
 // Retrieve
+func (r Network_Storage_Backup_Evault) GetAllowDisasterRecoveryFailback() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowDisasterRecoveryFailback", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Network_Storage_Backup_Evault) GetAllowDisasterRecoveryFailover() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
 	return
@@ -10278,6 +10296,12 @@ func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Sto
 // Retrieve Determines whether the volume is allowed to failback
 func (r Network_Storage_Backup_Evault) GetFailbackNotAllowed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFailbackNotAllowed", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failover
+func (r Network_Storage_Backup_Evault) GetFailoverNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFailoverNotAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -12484,6 +12508,12 @@ func (r Network_Storage_Iscsi) GetAllFilesByFilter(filter *datatypes.Container_U
 }
 
 // Retrieve
+func (r Network_Storage_Iscsi) GetAllowDisasterRecoveryFailback() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowDisasterRecoveryFailback", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
 func (r Network_Storage_Iscsi) GetAllowDisasterRecoveryFailover() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowDisasterRecoveryFailover", nil, &r.Options, &resp)
 	return
@@ -12659,6 +12689,12 @@ func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Eve
 // Retrieve Determines whether the volume is allowed to failback
 func (r Network_Storage_Iscsi) GetFailbackNotAllowed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFailbackNotAllowed", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether the volume is allowed to failover
+func (r Network_Storage_Iscsi) GetFailoverNotAllowed() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFailoverNotAllowed", nil, &r.Options, &resp)
 	return
 }
 

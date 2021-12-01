@@ -346,7 +346,7 @@ type Product_Item_Billing_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
-// The SoftLayer_Product_Item_Bundles contains item to price cross references Relates a category, price and item to a bundle.  Match bundle ids to see all items and prices in a particular bundle.
+// The SoftLayer_Product_Item_Bundles contains item to price cross references. Relates a category, price and item to a bundle.  Match bundle ids to see all items and prices in a particular bundle.
 type Product_Item_Bundles struct {
 	Entity
 

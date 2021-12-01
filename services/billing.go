@@ -1078,13 +1078,13 @@ func (r Billing_Item) GetBillableChildren() (resp []datatypes.Billing_Item, err 
 	return
 }
 
-// Retrieve A Billing Item's bundled billing items
+// Retrieve (DEPRECATED) Do not use.
 func (r Billing_Item) GetBundleItems() (resp []datatypes.Product_Item_Bundles, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundleItems", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A Billing Item's bundled billing items'
+// Retrieve A Billing Item's bundled billing items.
 func (r Billing_Item) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundledItems", nil, &r.Options, &resp)
 	return
@@ -1755,13 +1755,13 @@ func (r Billing_Item_Virtual_DedicatedHost) GetBillableChildren() (resp []dataty
 	return
 }
 
-// Retrieve A Billing Item's bundled billing items
+// Retrieve (DEPRECATED) Do not use.
 func (r Billing_Item_Virtual_DedicatedHost) GetBundleItems() (resp []datatypes.Product_Item_Bundles, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundleItems", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A Billing Item's bundled billing items'
+// Retrieve A Billing Item's bundled billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundledItems", nil, &r.Options, &resp)
 	return

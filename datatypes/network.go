@@ -1510,6 +1510,11 @@ type Network_DirectLink_ServiceType struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
+// no documentation yet
+type Network_FbDbChangeRequestHistory struct {
+	Entity
+}
+
 // The SoftLayer_Network_Firewall_AccessControlList data type contains general information relating to a single SoftLayer firewall access to controll list. This is the object which ties the running rules to a specific context. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
 type Network_Firewall_AccessControlList struct {
 	Entity
@@ -3790,6 +3795,9 @@ type Network_Storage struct {
 	ActiveTransactions []Provisioning_Version1_Transaction `json:"activeTransactions,omitempty" xmlrpc:"activeTransactions,omitempty"`
 
 	// no documentation yet
+	AllowDisasterRecoveryFailback *string `json:"allowDisasterRecoveryFailback,omitempty" xmlrpc:"allowDisasterRecoveryFailback,omitempty"`
+
+	// no documentation yet
 	AllowDisasterRecoveryFailover *string `json:"allowDisasterRecoveryFailover,omitempty" xmlrpc:"allowDisasterRecoveryFailover,omitempty"`
 
 	// The SoftLayer_Hardware objects which are allowed access to this storage volume.
@@ -3884,6 +3892,9 @@ type Network_Storage struct {
 
 	// Determines whether the volume is allowed to failback
 	FailbackNotAllowed *string `json:"failbackNotAllowed,omitempty" xmlrpc:"failbackNotAllowed,omitempty"`
+
+	// Determines whether the volume is allowed to failover
+	FailoverNotAllowed *string `json:"failoverNotAllowed,omitempty" xmlrpc:"failoverNotAllowed,omitempty"`
 
 	// Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 	FileNetworkMountAddress *string `json:"fileNetworkMountAddress,omitempty" xmlrpc:"fileNetworkMountAddress,omitempty"`
@@ -4997,14 +5008,8 @@ type Network_Storage_Property_Type struct {
 type Network_Storage_Replicant struct {
 	Network_Storage
 
-	// no documentation yet
-	AllowDisasterRecoveryFailback *string `json:"allowDisasterRecoveryFailback,omitempty" xmlrpc:"allowDisasterRecoveryFailback,omitempty"`
-
 	// When a replicant is in the process of synchronizing with the parent volume this flag will be true.
 	FailbackInProgressFlag *string `json:"failbackInProgressFlag,omitempty" xmlrpc:"failbackInProgressFlag,omitempty"`
-
-	// Determines whether the volume is allowed to failover
-	FailoverNotAllowed *string `json:"failoverNotAllowed,omitempty" xmlrpc:"failoverNotAllowed,omitempty"`
 
 	// The volume name for a replicant.
 	VolumeName *string `json:"volumeName,omitempty" xmlrpc:"volumeName,omitempty"`
