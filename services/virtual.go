@@ -1288,6 +1288,12 @@ func (r Virtual_Guest) GetDedicatedHost() (resp datatypes.Virtual_DedicatedHost,
 	return
 }
 
+// Retrieve The device status of this virtual guest.
+func (r Virtual_Guest) GetDeviceStatus() (resp datatypes.Device_Status, err error) {
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getDeviceStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Return a drive retention SoftLayer_Item_Price object for a guest.
 func (r Virtual_Guest) GetDriveRetentionItemPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getDriveRetentionItemPrice", nil, &r.Options, &resp)

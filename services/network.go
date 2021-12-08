@@ -8891,7 +8891,7 @@ func (r Network_Storage) SetSnapshotAllocation(capacityGb *int) (err error) {
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,
@@ -11148,7 +11148,7 @@ func (r Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (e
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage_Backup_Evault) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage_Backup_Evault) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,
@@ -13500,7 +13500,7 @@ func (r Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage_Iscsi) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage_Iscsi) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,

@@ -457,6 +457,12 @@ type Virtual_Guest struct {
 	// The dedicated host associated with this guest.
 	DedicatedHost *Virtual_DedicatedHost `json:"dedicatedHost,omitempty" xmlrpc:"dedicatedHost,omitempty"`
 
+	// The device status of this virtual guest.
+	DeviceStatus *Device_Status `json:"deviceStatus,omitempty" xmlrpc:"deviceStatus,omitempty"`
+
+	// The device status ID of the virtual guest.
+	DeviceStatusId *int `json:"deviceStatusId,omitempty" xmlrpc:"deviceStatusId,omitempty"`
+
 	// A computing instance's domain name
 	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
 

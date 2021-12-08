@@ -252,6 +252,9 @@ type Hardware struct {
 	// A hardware's function.
 	HardwareFunctionDescription *string `json:"hardwareFunctionDescription,omitempty" xmlrpc:"hardwareFunctionDescription,omitempty"`
 
+	// A hardware's power/transaction state.
+	HardwareState *Hardware_State `json:"hardwareState,omitempty" xmlrpc:"hardwareState,omitempty"`
+
 	// A hardware's status.
 	HardwareStatus *Hardware_Status `json:"hardwareStatus,omitempty" xmlrpc:"hardwareStatus,omitempty"`
 

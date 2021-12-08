@@ -1259,7 +1259,7 @@ type Network_Component_Firewall struct {
 	// The currently running rule set of this network component firewall.
 	Rules []Network_Component_Firewall_Rule `json:"rules,omitempty" xmlrpc:"rules,omitempty"`
 
-	// Current status of the network component firewall.
+	// Current status of the network component firewall. Status "no_edit" means this host is not protected by a hardware firewall. Status "allow_edit" means this host is protected by a hardware firewall and processing firewall rules. Status "bypass" means this host is provisioned behind a hardware firewall, but bypassing the firewall rules.
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// A count of the additional subnets linked to this network component firewall.
@@ -1508,11 +1508,6 @@ type Network_DirectLink_ServiceType struct {
 
 	// no documentation yet
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
-}
-
-// no documentation yet
-type Network_FbDbChangeRequestHistory struct {
-	Entity
 }
 
 // The SoftLayer_Network_Firewall_AccessControlList data type contains general information relating to a single SoftLayer firewall access to controll list. This is the object which ties the running rules to a specific context. Use the [[SoftLayer Network Firewall Template]] service to pull SoftLayer recommended rule set templates. Use the [[SoftLayer Network Firewall Update Request]] service to submit a firewall update request.
