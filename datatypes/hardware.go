@@ -2083,14 +2083,20 @@ type Hardware_Server_Partition_Network_Attribute struct {
 type Hardware_State struct {
 	Entity
 
+	// no documentation yet
+	DeviceStatus *Device_Status `json:"deviceStatus,omitempty" xmlrpc:"deviceStatus,omitempty"`
+
+	// The id of the device status of the assigned hardware.
+	DeviceStatusId *int `json:"deviceStatusId,omitempty" xmlrpc:"deviceStatusId,omitempty"`
+
 	// The hardware this state is assigned to.
 	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
 
 	// A hardware state's unique identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// Represents the current state of the assigned hardware.
-	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+	// no documentation yet
+	TransitioningStatus *Device_Status `json:"transitioningStatus,omitempty" xmlrpc:"transitioningStatus,omitempty"`
 }
 
 // SoftLayer_Hardware_Status models the inventory state of any piece of hardware in SoftLayer's inventory. Most of these statuses are used by SoftLayer while a server is not provisioned or undergoing provisioning. SoftLayer uses the following status codes:
