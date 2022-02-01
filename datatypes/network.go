@@ -3894,6 +3894,9 @@ type Network_Storage struct {
 	// Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 	FileNetworkMountAddress *string `json:"fileNetworkMountAddress,omitempty" xmlrpc:"fileNetworkMountAddress,omitempty"`
 
+	// no documentation yet
+	FixReplicationCurrentStatus *string `json:"fixReplicationCurrentStatus,omitempty" xmlrpc:"fixReplicationCurrentStatus,omitempty"`
+
 	// The unique identification number of the guest associated with a Storage volume.
 	GuestId *int `json:"guestId,omitempty" xmlrpc:"guestId,omitempty"`
 

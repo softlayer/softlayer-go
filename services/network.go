@@ -8138,6 +8138,12 @@ func (r Network_Storage) GetFilesPendingDelete() (resp []datatypes.Container_Uti
 	return
 }
 
+// Retrieve
+func (r Network_Storage) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Network_Storage) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFolderList", nil, &r.Options, &resp)
@@ -10353,6 +10359,12 @@ func (r Network_Storage_Backup_Evault) GetFilePendingDeleteCount() (resp int, er
 // {{CloudLayerOnlyMethod}} Retrieve a list of files that are pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted. This method does not download file content.
 func (r Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFilesPendingDelete", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Backup_Evault) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -12746,6 +12758,12 @@ func (r Network_Storage_Iscsi) GetFilePendingDeleteCount() (resp int, err error)
 // {{CloudLayerOnlyMethod}} Retrieve a list of files that are pending deletion in a Storage account's recycle bin. Files in an account's recycle bin may either be restored to the account's root directory or permanently deleted. This method does not download file content.
 func (r Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFilesPendingDelete", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Network_Storage_Iscsi) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
 	return
 }
 
