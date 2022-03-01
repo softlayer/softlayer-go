@@ -1078,12 +1078,6 @@ func (r Billing_Item) GetBillableChildren() (resp []datatypes.Billing_Item, err 
 	return
 }
 
-// Retrieve (DEPRECATED) Do not use.
-func (r Billing_Item) GetBundleItems() (resp []datatypes.Product_Item_Bundles, err error) {
-	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundleItems", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve A Billing Item's bundled billing items.
 func (r Billing_Item) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundledItems", nil, &r.Options, &resp)
@@ -1752,12 +1746,6 @@ func (r Billing_Item_Virtual_DedicatedHost) GetBandwidthAllocation() (resp datat
 // Retrieve A billing item's recurring child items that have once been billed and are scheduled to be billed in the future.
 func (r Billing_Item_Virtual_DedicatedHost) GetBillableChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBillableChildren", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve (DEPRECATED) Do not use.
-func (r Billing_Item_Virtual_DedicatedHost) GetBundleItems() (resp []datatypes.Product_Item_Bundles, err error) {
-	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundleItems", nil, &r.Options, &resp)
 	return
 }
 
