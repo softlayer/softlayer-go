@@ -1610,6 +1610,9 @@ type Hardware_Component_Type struct {
 type Hardware_Firewall struct {
 	Hardware_Switch
 
+	// The firewall's primary public IP address.
+	PrimaryIpAddress *string `json:"primaryIpAddress,omitempty" xmlrpc:"primaryIpAddress,omitempty"`
+
 	// A count of a list of users that have access to this hardware firewall.
 	UserCount *uint `json:"userCount,omitempty" xmlrpc:"userCount,omitempty"`
 

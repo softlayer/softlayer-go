@@ -1893,6 +1893,9 @@ type Network_Gateway_Member_Attribute struct {
 
 	// The vSRX version of the gateway software
 	VSRXVersion *string `json:"vSRXVersion,omitempty" xmlrpc:"vSRXVersion,omitempty"`
+
+	// Precheck Warning code for Version / License Unsupported for member.
+	WarningCode *int `json:"warningCode,omitempty" xmlrpc:"warningCode,omitempty"`
 }
 
 // no documentation yet
