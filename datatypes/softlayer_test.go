@@ -1,8 +1,8 @@
 package datatypes
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestSearchUnmarshal(t *testing.T) {

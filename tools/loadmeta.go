@@ -47,13 +47,13 @@ type Type struct {
 }
 
 type Property struct {
-	Name      string `json:"name"`
-	Type      string `json:"type"`
-	TypeArray bool   `json:"typeArray"`
-	Form      string `json:"form"`
-	Doc       string `json:"doc"`
-	Overview  string `json:"docOverview"`
-	Deprecated bool  `json:"deprecated"`
+	Name       string `json:"name"`
+	Type       string `json:"type"`
+	TypeArray  bool   `json:"typeArray"`
+	Form       string `json:"form"`
+	Doc        string `json:"doc"`
+	Overview   string `json:"docOverview"`
+	Deprecated bool   `json:"deprecated"`
 }
 
 type Method struct {
@@ -67,7 +67,7 @@ type Method struct {
 	Filterable bool        `json:"filterable"`
 	Maskable   bool        `json:"maskable"`
 	Parameters []Parameter `json:"parameters"`
-	Overview  string       `json:"docOverview"`
+	Overview   string      `json:"docOverview"`
 	Deprecated bool        `json:"deprecated"`
 }
 
@@ -89,7 +89,7 @@ var fMap = template.FuncMap{
 	"goDoc":           GoDoc,               // Format a go doc string
 	"tags":            Tags,                // Remove omitempty tags if required
 	"phraseMethodArg": phraseMethodArg,     // Get proper phrase for method argument
-	"getTypePrefix":   getTypePrefix,		// resturns [], * or nothing.
+	"getTypePrefix":   getTypePrefix,       // resturns [], * or nothing.
 	"deprecatedDoc":   deprecatedDoc,       // Marks things as deprecated if needed.
 }
 

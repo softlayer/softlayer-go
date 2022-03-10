@@ -4,7 +4,6 @@ import (
 	"testing"
 )
 
-
 func TestRemovePrefix(t *testing.T) {
 	result := RemovePrefix("SoftLayer_Test")
 	if result != "Test" {
@@ -17,19 +16,18 @@ func TestRemovePrefix(t *testing.T) {
 	}
 }
 
-
 func TestConvertType(t *testing.T) {
 	typeMap := map[string]string{
-		"unsignedLong": "uint",
-		"boolean": "bool",
-		"dateTime": "Time",
-		"decimal": "Float64",
-		"base64Binary": "[]byte",
-		"json": "string",
+		"unsignedLong":       "uint",
+		"boolean":            "bool",
+		"dateTime":           "Time",
+		"decimal":            "Float64",
+		"base64Binary":       "[]byte",
+		"json":               "string",
 		"SoftLayer_Hardware": "Hardware",
-		"SoftLayer_Entity": "Entity",
-		"McAfee_Something": "McAfee_Something",
-		"test": "test",
+		"SoftLayer_Entity":   "Entity",
+		"McAfee_Something":   "McAfee_Something",
+		"test":               "test",
 	}
 	var result string
 	for input, expected := range typeMap {
