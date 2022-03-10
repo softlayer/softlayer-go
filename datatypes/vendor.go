@@ -25,14 +25,11 @@ type Vendor_Type struct {
 	Entity
 
 	// no documentation yet
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }

@@ -25,115 +25,87 @@ type Location struct {
 	Entity
 
 	// A count of
-
 	ActivePresaleEventCount *uint `json:"activePresaleEventCount,omitempty" xmlrpc:"activePresaleEventCount,omitempty"`
 
 	// no documentation yet
-
 	ActivePresaleEvents []Sales_Presale_Event `json:"activePresaleEvents,omitempty" xmlrpc:"activePresaleEvents,omitempty"`
 
 	// A count of
-
 	BackboneDependentCount *uint `json:"backboneDependentCount,omitempty" xmlrpc:"backboneDependentCount,omitempty"`
 
 	// no documentation yet
-
 	BackboneDependents []Network_Backbone_Location_Dependent `json:"backboneDependents,omitempty" xmlrpc:"backboneDependents,omitempty"`
 
 	// A flag indicating whether or not the datacenter/location is BNPP compliant.
-
 	BnppCompliantFlag *bool `json:"bnppCompliantFlag,omitempty" xmlrpc:"bnppCompliantFlag,omitempty"`
 
 	// A flag indicating whether or not the datacenter/location is EU compliant.
-
 	EuCompliantFlag *bool `json:"euCompliantFlag,omitempty" xmlrpc:"euCompliantFlag,omitempty"`
 
 	// A count of a location can be a member of 1 or more groups. This will show which groups to which a location belongs.
-
 	GroupCount *uint `json:"groupCount,omitempty" xmlrpc:"groupCount,omitempty"`
 
 	// A location can be a member of 1 or more groups. This will show which groups to which a location belongs.
-
 	Groups []Location_Group `json:"groups,omitempty" xmlrpc:"groups,omitempty"`
 
 	// A count of
-
 	HardwareFirewallCount *uint `json:"hardwareFirewallCount,omitempty" xmlrpc:"hardwareFirewallCount,omitempty"`
 
 	// no documentation yet
-
 	HardwareFirewalls []Hardware `json:"hardwareFirewalls,omitempty" xmlrpc:"hardwareFirewalls,omitempty"`
 
 	// The unique identifier of a specific location.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// A location's physical address.
-
 	LocationAddress *Account_Address `json:"locationAddress,omitempty" xmlrpc:"locationAddress,omitempty"`
 
 	// A count of a location's physical addresses.
-
 	LocationAddressCount *uint `json:"locationAddressCount,omitempty" xmlrpc:"locationAddressCount,omitempty"`
 
 	// A location's physical addresses.
-
 	LocationAddresses []Account_Address `json:"locationAddresses,omitempty" xmlrpc:"locationAddresses,omitempty"`
 
 	// A location's Dedicated Rack member
-
 	LocationReservationMember *Location_Reservation_Rack_Member `json:"locationReservationMember,omitempty" xmlrpc:"locationReservationMember,omitempty"`
 
 	// The current locations status.
-
 	LocationStatus *Location_Status `json:"locationStatus,omitempty" xmlrpc:"locationStatus,omitempty"`
 
 	// A longer location description.
-
 	LongName *string `json:"longName,omitempty" xmlrpc:"longName,omitempty"`
 
 	// A short location description.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
-
 	NetworkConfigurationAttribute *Hardware_Attribute `json:"networkConfigurationAttribute,omitempty" xmlrpc:"networkConfigurationAttribute,omitempty"`
 
 	// The total number of users online using SoftLayer's SSL VPN service for a location.
-
 	OnlineSslVpnUserCount *int `json:"onlineSslVpnUserCount,omitempty" xmlrpc:"onlineSslVpnUserCount,omitempty"`
 
 	// no documentation yet
-
 	PathString *string `json:"pathString,omitempty" xmlrpc:"pathString,omitempty"`
 
 	// A count of a location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
-
 	PriceGroupCount *uint `json:"priceGroupCount,omitempty" xmlrpc:"priceGroupCount,omitempty"`
 
 	// A location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
-
 	PriceGroups []Location_Group `json:"priceGroups,omitempty" xmlrpc:"priceGroups,omitempty"`
 
 	// A count of a location can be a member of 1 or more regions. This will show which regions to which a location belongs.
-
 	RegionCount *uint `json:"regionCount,omitempty" xmlrpc:"regionCount,omitempty"`
 
 	// A location can be a member of 1 or more regions. This will show which regions to which a location belongs.
-
 	Regions []Location_Region `json:"regions,omitempty" xmlrpc:"regions,omitempty"`
 
 	// no documentation yet
-
 	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 
 	// no documentation yet
-
 	Timezone *Locale_Timezone `json:"timezone,omitempty" xmlrpc:"timezone,omitempty"`
 
 	// A location can be a member of 1 Bandwidth Pooling Group. This will show which group to which a location belongs.
-
 	VdrGroup *Location_Group_Location_CrossReference `json:"vdrGroup,omitempty" xmlrpc:"vdrGroup,omitempty"`
 }
 
@@ -142,75 +114,57 @@ type Location_Datacenter struct {
 	Location
 
 	// A count of
-
 	ActiveItemPresaleEventCount *uint `json:"activeItemPresaleEventCount,omitempty" xmlrpc:"activeItemPresaleEventCount,omitempty"`
 
 	// no documentation yet
-
 	ActiveItemPresaleEvents []Sales_Presale_Event `json:"activeItemPresaleEvents,omitempty" xmlrpc:"activeItemPresaleEvents,omitempty"`
 
 	// A count of
-
 	BackendHardwareRouterCount *uint `json:"backendHardwareRouterCount,omitempty" xmlrpc:"backendHardwareRouterCount,omitempty"`
 
 	// no documentation yet
-
 	BackendHardwareRouters []Hardware `json:"backendHardwareRouters,omitempty" xmlrpc:"backendHardwareRouters,omitempty"`
 
 	// A count of subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
-
 	BoundSubnetCount *uint `json:"boundSubnetCount,omitempty" xmlrpc:"boundSubnetCount,omitempty"`
 
 	// Subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
-
 	BoundSubnets []Network_Subnet `json:"boundSubnets,omitempty" xmlrpc:"boundSubnets,omitempty"`
 
 	// A count of this references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
-
 	BrandCountryRestrictionCount *uint `json:"brandCountryRestrictionCount,omitempty" xmlrpc:"brandCountryRestrictionCount,omitempty"`
 
 	// This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
-
 	BrandCountryRestrictions []Brand_Restriction_Location_CustomerCountry `json:"brandCountryRestrictions,omitempty" xmlrpc:"brandCountryRestrictions,omitempty"`
 
 	// A count of
-
 	FrontendHardwareRouterCount *uint `json:"frontendHardwareRouterCount,omitempty" xmlrpc:"frontendHardwareRouterCount,omitempty"`
 
 	// no documentation yet
-
 	FrontendHardwareRouters []Hardware `json:"frontendHardwareRouters,omitempty" xmlrpc:"frontendHardwareRouters,omitempty"`
 
 	// A count of
-
 	HardwareRouterCount *uint `json:"hardwareRouterCount,omitempty" xmlrpc:"hardwareRouterCount,omitempty"`
 
 	// no documentation yet
-
 	HardwareRouters []Hardware `json:"hardwareRouters,omitempty" xmlrpc:"hardwareRouters,omitempty"`
 
 	// A count of
-
 	PresaleEventCount *uint `json:"presaleEventCount,omitempty" xmlrpc:"presaleEventCount,omitempty"`
 
 	// no documentation yet
-
 	PresaleEvents []Sales_Presale_Event `json:"presaleEvents,omitempty" xmlrpc:"presaleEvents,omitempty"`
 
 	// The regional group this datacenter belongs to.
-
 	RegionalGroup *Location_Group_Regional `json:"regionalGroup,omitempty" xmlrpc:"regionalGroup,omitempty"`
 
 	// no documentation yet
-
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty" xmlrpc:"regionalInternetRegistry,omitempty"`
 
 	// A count of retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
-
 	RoutableBoundSubnetCount *uint `json:"routableBoundSubnetCount,omitempty" xmlrpc:"routableBoundSubnetCount,omitempty"`
 
 	// Retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
-
 	RoutableBoundSubnets []Network_Subnet `json:"routableBoundSubnets,omitempty" xmlrpc:"routableBoundSubnets,omitempty"`
 }
 
@@ -219,35 +173,27 @@ type Location_Group struct {
 	Entity
 
 	// no documentation yet
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// A count of the locations in a group.
-
 	LocationCount *uint `json:"locationCount,omitempty" xmlrpc:"locationCount,omitempty"`
 
 	// The type for this location group.
-
 	LocationGroupType *Location_Group_Type `json:"locationGroupType,omitempty" xmlrpc:"locationGroupType,omitempty"`
 
 	// no documentation yet
-
 	LocationGroupTypeId *int `json:"locationGroupTypeId,omitempty" xmlrpc:"locationGroupTypeId,omitempty"`
 
 	// The locations in a group.
-
 	Locations []Location `json:"locations,omitempty" xmlrpc:"locations,omitempty"`
 
 	// no documentation yet
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
-
 	SecurityLevelId *int `json:"securityLevelId,omitempty" xmlrpc:"securityLevelId,omitempty"`
 }
 
@@ -256,27 +202,21 @@ type Location_Group_Location_CrossReference struct {
 	Entity
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// no documentation yet
-
 	LocationGroup *Location_Group `json:"locationGroup,omitempty" xmlrpc:"locationGroup,omitempty"`
 
 	// no documentation yet
-
 	LocationGroupId *int `json:"locationGroupId,omitempty" xmlrpc:"locationGroupId,omitempty"`
 
 	// no documentation yet
-
 	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
 
 	// If set, this is the priority of this cross reference record in the group.
-
 	Priority *int `json:"priority,omitempty" xmlrpc:"priority,omitempty"`
 }
 
@@ -285,11 +225,9 @@ type Location_Group_Pricing struct {
 	Location_Group
 
 	// A count of the prices that this pricing location group limits. All of these prices will only be available in the locations defined by this pricing location group.
-
 	PriceCount *uint `json:"priceCount,omitempty" xmlrpc:"priceCount,omitempty"`
 
 	// The prices that this pricing location group limits. All of these prices will only be available in the locations defined by this pricing location group.
-
 	Prices []Product_Item_Price `json:"prices,omitempty" xmlrpc:"prices,omitempty"`
 }
 
@@ -298,15 +236,12 @@ type Location_Group_Regional struct {
 	Location_Group
 
 	// A count of the datacenters in a group.
-
 	DatacenterCount *uint `json:"datacenterCount,omitempty" xmlrpc:"datacenterCount,omitempty"`
 
 	// The datacenters in a group.
-
 	Datacenters []Location `json:"datacenters,omitempty" xmlrpc:"datacenters,omitempty"`
 
 	// The preferred datacenters of a group.
-
 	PreferredDatacenter *Location_Datacenter `json:"preferredDatacenter,omitempty" xmlrpc:"preferredDatacenter,omitempty"`
 }
 
@@ -315,7 +250,6 @@ type Location_Group_Type struct {
 	Entity
 
 	// no documentation yet
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
@@ -344,27 +278,21 @@ type Location_Region struct {
 	Entity
 
 	// A short description of a region's name. This description is seen on the order forms.
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// A unique key name for a region. Provided for easy debugging. This is to be sent in with an order.
-
 	Keyname *string `json:"keyname,omitempty" xmlrpc:"keyname,omitempty"`
 
 	// Each region can have many locations tied to it. However, this is the location we currently provision to for a region. This location is the current valid location for a region. (Deprecated, use 'locations')
-
 	Location *Location_Region_Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// A count of the locations (like datacenters or PoPs) in this region.
-
 	LocationCount *uint `json:"locationCount,omitempty" xmlrpc:"locationCount,omitempty"`
 
 	// The locations (like datacenters or PoPs) in this region.
-
 	Locations []Location_Region_Location `json:"locations,omitempty" xmlrpc:"locations,omitempty"`
 
 	// An integer representing the order in which this element is displayed.
-
 	SortOrder *int `json:"sortOrder,omitempty" xmlrpc:"sortOrder,omitempty"`
 }
 
@@ -373,23 +301,18 @@ type Location_Region_Location struct {
 	Entity
 
 	// The SoftLayer_Location tied to a region's location. This provides more information about the location, including specific datacenter information.
-
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// no documentation yet
-
 	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
 
 	// A count of a region's location also has delivery information as well as other information to be determined. For now, availability is provided and could weigh into the decision as to where to decide to have a server provisioned.'
-
 	LocationPackageDetailCount *uint `json:"locationPackageDetailCount,omitempty" xmlrpc:"locationPackageDetailCount,omitempty"`
 
 	// A region's location also has delivery information as well as other information to be determined. For now, availability is provided and could weigh into the decision as to where to decide to have a server provisioned.'
-
 	LocationPackageDetails []Product_Package_Locations `json:"locationPackageDetails,omitempty" xmlrpc:"locationPackageDetails,omitempty"`
 
 	// The region to which this location belongs.
-
 	Region *Location_Region `json:"region,omitempty" xmlrpc:"region,omitempty"`
 }
 
@@ -398,43 +321,33 @@ type Location_Reservation struct {
 	Entity
 
 	// The account that a billing item belongs to.
-
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The bandwidth allotment that the reservation belongs to.
-
 	Allotment *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty" xmlrpc:"allotment,omitempty"`
 
 	// no documentation yet
-
 	AllotmentId *int `json:"allotmentId,omitempty" xmlrpc:"allotmentId,omitempty"`
 
 	// The bandwidth allotment that the reservation belongs to.
-
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The datacenter location that the reservation belongs to.
-
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// no documentation yet
-
 	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
 
 	// Rack information for the reservation
-
 	LocationReservationRack *Location_Reservation_Rack `json:"locationReservationRack,omitempty" xmlrpc:"locationReservationRack,omitempty"`
 
 	// no documentation yet
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
-
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 }
 
@@ -443,55 +356,42 @@ type Location_Reservation_Rack struct {
 	Entity
 
 	// The bandwidth allotment that the reservation belongs to.
-
 	Allotment *Network_Bandwidth_Version1_Allotment `json:"allotment,omitempty" xmlrpc:"allotment,omitempty"`
 
 	// Members of the rack.
-
 	Children []Location_Reservation_Rack_Member `json:"children,omitempty" xmlrpc:"children,omitempty"`
 
 	// A count of members of the rack.
-
 	ChildrenCount *uint `json:"childrenCount,omitempty" xmlrpc:"childrenCount,omitempty"`
 
 	// no documentation yet
-
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// no documentation yet
-
 	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
 
 	// no documentation yet
-
 	LocationReservation *Location_Reservation `json:"locationReservation,omitempty" xmlrpc:"locationReservation,omitempty"`
 
 	// no documentation yet
-
 	LocationReservationId *int `json:"locationReservationId,omitempty" xmlrpc:"locationReservationId,omitempty"`
 
 	// no documentation yet
-
 	NetworkConnectionCapacity *int `json:"networkConnectionCapacity,omitempty" xmlrpc:"networkConnectionCapacity,omitempty"`
 
 	// no documentation yet
-
 	NetworkConnectionReservation *int `json:"networkConnectionReservation,omitempty" xmlrpc:"networkConnectionReservation,omitempty"`
 
 	// no documentation yet
-
 	PowerConnectionCapacity *int `json:"powerConnectionCapacity,omitempty" xmlrpc:"powerConnectionCapacity,omitempty"`
 
 	// no documentation yet
-
 	PowerConnectionReservation *int `json:"powerConnectionReservation,omitempty" xmlrpc:"powerConnectionReservation,omitempty"`
 
 	// no documentation yet
-
 	SlotCapacity *int `json:"slotCapacity,omitempty" xmlrpc:"slotCapacity,omitempty"`
 
 	// no documentation yet
-
 	SlotReservation *int `json:"slotReservation,omitempty" xmlrpc:"slotReservation,omitempty"`
 }
 
@@ -500,19 +400,15 @@ type Location_Reservation_Rack_Member struct {
 	Entity
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Location relation for the rack member
-
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// no documentation yet
-
 	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
 
 	// no documentation yet
-
 	LocationReservationRack *Location_Reservation_Rack `json:"locationReservationRack,omitempty" xmlrpc:"locationReservationRack,omitempty"`
 }
 
@@ -544,11 +440,9 @@ type Location_Status struct {
 	Entity
 
 	// A locations status's internal identifier.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// A Location's status code. See the SoftLayer_Locaiton_Status Overview for ''status''' possible values.
-
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 }
 

@@ -25,14 +25,11 @@ type Device_Status struct {
 	Entity
 
 	// The device status's associated unique ID.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The device status's unique string identifier.
-
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// The name of the status.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }

@@ -25,11 +25,9 @@ type Exception_Brand_Creation struct {
 	Entity
 
 	// no documentation yet
-
 	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
 
 	// no documentation yet
-
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 

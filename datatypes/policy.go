@@ -25,6 +25,5 @@ type Policy_Document_Acceptance_Quote struct {
 	Entity
 
 	// no documentation yet
-
 	Resource *Billing_Order_Quote `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }

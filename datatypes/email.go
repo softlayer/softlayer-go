@@ -25,19 +25,15 @@ type Email_Subscription struct {
 	Entity
 
 	// Brief description of the purpose of the email.
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
-
 	Enabled *bool `json:"enabled,omitempty" xmlrpc:"enabled,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Email template name.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
@@ -46,19 +42,15 @@ type Email_Subscription_Group struct {
 	Entity
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// Email subscription group name.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// A count of all email subscriptions associated with this group.
-
 	SubscriptionCount *uint `json:"subscriptionCount,omitempty" xmlrpc:"subscriptionCount,omitempty"`
 
 	// All email subscriptions associated with this group.
-
 	Subscriptions []Email_Subscription `json:"subscriptions,omitempty" xmlrpc:"subscriptions,omitempty"`
 }
 
@@ -67,6 +59,5 @@ type Email_Subscription_Suppression_User struct {
 	Entity
 
 	// no documentation yet
-
 	Subscription *Email_Subscription `json:"subscription,omitempty" xmlrpc:"subscription,omitempty"`
 }

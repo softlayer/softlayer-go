@@ -25,19 +25,15 @@ type Service_External_Resource struct {
 	Entity
 
 	// The customer account that is consuming the service.
-
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The customer account that is consuming the related service.
-
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// The unique identifier in the service provider's system.
-
 	ExternalIdentifier *string `json:"externalIdentifier,omitempty" xmlrpc:"externalIdentifier,omitempty"`
 
 	// An external resource's unique identifier in the SoftLayer system.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 }
 
@@ -46,18 +42,14 @@ type Service_Provider struct {
 	Entity
 
 	// no documentation yet
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }

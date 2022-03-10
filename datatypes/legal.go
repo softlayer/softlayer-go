@@ -25,27 +25,21 @@ type Legal_RegulatedWorkload struct {
 	Entity
 
 	// no documentation yet
-
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// no documentation yet
-
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// no documentation yet
-
 	EnabledFlag *bool `json:"enabledFlag,omitempty" xmlrpc:"enabledFlag,omitempty"`
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-
 	Type *Legal_RegulatedWorkload_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// no documentation yet
-
 	WorkloadTypeId *int `json:"workloadTypeId,omitempty" xmlrpc:"workloadTypeId,omitempty"`
 }
 
@@ -54,14 +48,11 @@ type Legal_RegulatedWorkload_Type struct {
 	Entity
 
 	// no documentation yet
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
