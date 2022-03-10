@@ -1284,14 +1284,16 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetV
 	return
 }
 
-// Start SSL acceleration on all SSL virtual services (those with a type of HTTPS). This action should be taken only after configuring an SSL certificate for the virtual IP. // Deprecated: This function has been marked as deprecated.
+// Start SSL acceleration on all SSL virtual services (those with a type of HTTPS). This action should be taken only after configuring an SSL certificate for the virtual IP.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StartSsl() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "startSsl", nil, &r.Options, &resp)
 	return
 }
 
-// Stop SSL acceleration on all SSL virtual services (those with a type of HTTPS). // Deprecated: This function has been marked as deprecated.
+// Stop SSL acceleration on all SSL virtual services (those with a type of HTTPS).
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) StopSsl() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "stopSsl", nil, &r.Options, &resp)
@@ -1353,7 +1355,8 @@ func (r Network_Backbone) GetBackbonesForLocationName(locationName *string) (res
 	return
 }
 
-// [DEPRECATED] Retrieve a graph of a SoftLayer backbone's last 24 hours of activity. getGraphImage returns a PNG image measuring 827 pixels by 293 pixels.// Deprecated: This function has been marked as deprecated.
+// [DEPRECATED] Retrieve a graph of a SoftLayer backbone's last 24 hours of activity. getGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Backbone) GetGraphImage() (resp []byte, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getGraphImage", nil, &r.Options, &resp)
@@ -1539,7 +1542,8 @@ func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsag
 	return
 }
 
-// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the private data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times. // Deprecated: This function has been marked as deprecated.
+// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the private data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
@@ -1645,7 +1649,8 @@ func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Net
 	return
 }
 
-// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the public data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times. // Deprecated: This function has been marked as deprecated.
+// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the public data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
 	params := []interface{}{
@@ -3204,7 +3209,8 @@ func (r Network_Component) GetObject() (resp datatypes.Network_Component, err er
 // * In Unicast Packets
 // * Out Unicast Packets
 // * In Multicast Packets
-// * Out Multicast Packets// Deprecated: This function has been marked as deprecated.
+// * Out Multicast Packets
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Component) GetPortStatistics() (resp datatypes.Container_Network_Port_Statistic, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getPortStatistics", nil, &r.Options, &resp)
@@ -5816,7 +5822,8 @@ func (r Network_LBaaS_SSLCipher) GetObject() (resp datatypes.Network_LBaaS_SSLCi
 	return
 }
 
-// The global load balancer service has been deprecated and is no longer available. // Deprecated: This function has been marked as deprecated.
+// The global load balancer service has been deprecated and is no longer available.
+// Deprecated: This function has been marked as deprecated.
 
 type Network_LoadBalancer_Global_Account struct {
 	Session *session.Session
@@ -5859,7 +5866,8 @@ func (r Network_LoadBalancer_Global_Account) Offset(offset int) Network_LoadBala
 
 // The global load balancer service has been deprecated and is no longer available.
 //
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname. // Deprecated: This function has been marked as deprecated.
+// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_LoadBalancer_Global_Account) AddNsRecord() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "addNsRecord", nil, &r.Options, &resp)
@@ -5868,7 +5876,8 @@ func (r Network_LoadBalancer_Global_Account) AddNsRecord() (resp bool, err error
 
 // The global load balancer service has been deprecated and is no longer available.
 //
-// Edit the properties of a global load balancer account by passing in a modified instance of the object. // Deprecated: This function has been marked as deprecated.
+// Edit the properties of a global load balancer account by passing in a modified instance of the object.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_LoadBalancer_Global_Account) EditObject(templateObject *datatypes.Network_LoadBalancer_Global_Account) (resp bool, err error) {
 	params := []interface{}{
@@ -5916,14 +5925,16 @@ func (r Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network
 
 // The global load balancer service has been deprecated and is no longer available.
 //
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file. // Deprecated: This function has been marked as deprecated.
+// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "removeNsRecord", nil, &r.Options, &resp)
 	return
 }
 
-// The global load balancer service has been deprecated and is no longer available. // Deprecated: This function has been marked as deprecated.
+// The global load balancer service has been deprecated and is no longer available.
+// Deprecated: This function has been marked as deprecated.
 
 type Network_LoadBalancer_Global_Host struct {
 	Session *session.Session
@@ -5966,7 +5977,8 @@ func (r Network_LoadBalancer_Global_Host) Offset(offset int) Network_LoadBalance
 
 // The global load balancer service has been deprecated and is no longer available.
 //
-// Remove a host from the load balancing pool of a global load balancer account. // Deprecated: This function has been marked as deprecated.
+// Remove a host from the load balancing pool of a global load balancer account.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_LoadBalancer_Global_Host) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "deleteObject", nil, &r.Options, &resp)
@@ -14237,7 +14249,8 @@ func (r Network_Subnet) CreateReverseDomainRecords() (resp datatypes.Dns_Domain_
 // ***DEPRECATED***
 // This endpoint is deprecated in favor of the more expressive and capable SoftLayer_Network_Subnet::route, to which this endpoint now proxies. Refer to it for more information.
 //
-// Similarly, unroute requests are proxied to SoftLayer_Network_Subnet::clearRoute. // Deprecated: This function has been marked as deprecated.
+// Similarly, unroute requests are proxied to SoftLayer_Network_Subnet::clearRoute.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet) CreateSubnetRouteUpdateTransaction(newEndPointIpAddress *string) (resp bool, err error) {
 	params := []interface{}{
@@ -14249,7 +14262,8 @@ func (r Network_Subnet) CreateSubnetRouteUpdateTransaction(newEndPointIpAddress 
 
 //
 // ***DEPRECATED***
-// This function is used to create a new SoftLayer SWIP transaction to register your RWHOIS data with ARIN. SWIP transactions can only be initiated on subnets that contain more than 8 IP addresses. // Deprecated: This function has been marked as deprecated.
+// This function is used to create a new SoftLayer SWIP transaction to register your RWHOIS data with ARIN. SWIP transactions can only be initiated on subnets that contain more than 8 IP addresses.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet) CreateSwipTransaction() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "createSwipTransaction", nil, &r.Options, &resp)
@@ -14269,7 +14283,8 @@ func (r Network_Subnet) EditNote(note *string) (resp bool, err error) {
 // ***DEPRECATED***
 // Retrieve a list of a SoftLayer customer's subnets along with their SWIP transaction statuses. This is a shortcut method that combines the SoftLayer_Network_Subnet retrieval methods along with [[object masks]] to retrieve their subnets' associated SWIP transactions as well.
 //
-// This is a special function built for SoftLayer's use on the SWIP section of the customer portal, but may also be useful for API users looking for the same data. // Deprecated: This function has been marked as deprecated.
+// This is a special function built for SoftLayer's use on the SWIP section of the customer portal, but may also be useful for API users looking for the same data.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet) FindAllSubnetsAndActiveSwipTransactionStatus() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "findAllSubnetsAndActiveSwipTransactionStatus", nil, &r.Options, &resp)
@@ -14976,7 +14991,8 @@ func (r Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Sub
 // ***DEPRECATED***
 // This endpoint is deprecated in favor of the more expressive and capable SoftLayer_Network_Subnet::route, to which this endpoint now proxies. Refer to it for more information.
 //
-// Similarly, unroute requests are proxied to SoftLayer_Network_Subnet::clearRoute. // Deprecated: This function has been marked as deprecated.
+// Similarly, unroute requests are proxied to SoftLayer_Network_Subnet::clearRoute.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (resp bool, err error) {
 	params := []interface{}{
@@ -14988,7 +15004,8 @@ func (r Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (re
 
 //
 // ***DEPRECATED***
-// This endpoint is deprecated in favor of SoftLayer_Network_Subnet::clearRoute, to which this endpoint now proxies. Refer to it for more information. // Deprecated: This function has been marked as deprecated.
+// This endpoint is deprecated in favor of SoftLayer_Network_Subnet::clearRoute, to which this endpoint now proxies. Refer to it for more information.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_IpAddress_Global) Unroute() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress_Global", "unroute", nil, &r.Options, &resp)
@@ -15283,7 +15300,8 @@ func (r Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network_
 
 // Every SoftLayer customer account has contact information associated with it for reverse WHOIS purposes. An account's RWHOIS data, modeled by the SoftLayer_Network_Subnet_Rwhois_Data data type, is used by SoftLayer's reverse WHOIS server as well as for SWIP transactions. SoftLayer's reverse WHOIS servers respond to WHOIS queries for IP addresses belonging to a customer's servers, returning this RWHOIS data.
 //
-// A SoftLayer customer's RWHOIS data may not necessarily match their account or portal users' contact information. // Deprecated: This function has been marked as deprecated.
+// A SoftLayer customer's RWHOIS data may not necessarily match their account or portal users' contact information.
+// Deprecated: This function has been marked as deprecated.
 
 type Network_Subnet_Rwhois_Data struct {
 	Session *session.Session
@@ -15324,7 +15342,8 @@ func (r Network_Subnet_Rwhois_Data) Offset(offset int) Network_Subnet_Rwhois_Dat
 	return r
 }
 
-// Edit the RWHOIS record by passing in a modified version of the record object.  All fields are editable.// Deprecated: This function has been marked as deprecated.
+// Edit the RWHOIS record by passing in a modified version of the record object.  All fields are editable.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Rwhois_Data) EditObject(templateObject *datatypes.Network_Subnet_Rwhois_Data) (resp bool, err error) {
 	params := []interface{}{
@@ -15361,7 +15380,8 @@ func (r Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_R
 // * REMOVE SENT:  The removal email request has been sent to ARIN
 // * REMOVE CONFIRMED:  ARIN has confirmed that the removal request is good, and the subnet should be clear in WHOIS in 24 hours
 // * DELETED:  This specific SWIP Transaction has been removed from ARIN and is no longer in effect
-// * SOFTLAYER MANUALLY PROCESSING:  Sometimes a request doesn't go through correctly and has to be manually processed by SoftLayer.  This may take some time.// Deprecated: This function has been marked as deprecated.
+// * SOFTLAYER MANUALLY PROCESSING:  Sometimes a request doesn't go through correctly and has to be manually processed by SoftLayer.  This may take some time.
+// Deprecated: This function has been marked as deprecated.
 
 type Network_Subnet_Swip_Transaction struct {
 	Session *session.Session
@@ -15404,7 +15424,8 @@ func (r Network_Subnet_Swip_Transaction) Offset(offset int) Network_Subnet_Swip_
 
 //
 // **DEPRECATED**
-// This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK. // Deprecated: This function has been marked as deprecated.
+// This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) FindMyTransactions() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, &r.Options, &resp)
@@ -15433,7 +15454,8 @@ func (r Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Sub
 
 //
 // **DEPRECATED**
-// This method finds all subnets attached to your account that are in OK status and starts "DELETE" transactions with ARIN, allowing you to remove your SWIP registration information. // Deprecated: This function has been marked as deprecated.
+// This method finds all subnets attached to your account that are in OK status and starts "DELETE" transactions with ARIN, allowing you to remove your SWIP registration information.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) RemoveAllSubnetSwips() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "removeAllSubnetSwips", nil, &r.Options, &resp)
@@ -15442,7 +15464,8 @@ func (r Network_Subnet_Swip_Transaction) RemoveAllSubnetSwips() (resp int, err e
 
 //
 // **DEPRECATED**
-// This function, when called on an instantiated SWIP transaction, will allow you to start a "DELETE" transaction with ARIN, allowing you to remove your SWIP registration information. // Deprecated: This function has been marked as deprecated.
+// This function, when called on an instantiated SWIP transaction, will allow you to start a "DELETE" transaction with ARIN, allowing you to remove your SWIP registration information.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) RemoveSwipData() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "removeSwipData", nil, &r.Options, &resp)
@@ -15451,7 +15474,8 @@ func (r Network_Subnet_Swip_Transaction) RemoveSwipData() (resp bool, err error)
 
 //
 // **DEPRECATED**
-// This function will allow you to update ARIN's registration data for a subnet to your current RWHOIS data. // Deprecated: This function has been marked as deprecated.
+// This function will allow you to update ARIN's registration data for a subnet to your current RWHOIS data.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) ResendSwipData() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "resendSwipData", nil, &r.Options, &resp)
@@ -15460,7 +15484,8 @@ func (r Network_Subnet_Swip_Transaction) ResendSwipData() (resp bool, err error)
 
 //
 // **DEPRECATED**
-// swipAllSubnets finds all subnets attached to your account and attempts to create a SWIP transaction for all subnets that do not already have a SWIP transaction in progress. // Deprecated: This function has been marked as deprecated.
+// swipAllSubnets finds all subnets attached to your account and attempts to create a SWIP transaction for all subnets that do not already have a SWIP transaction in progress.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "swipAllSubnets", nil, &r.Options, &resp)
@@ -15469,7 +15494,8 @@ func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) 
 
 //
 // **DEPRECATED**
-// This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date. // Deprecated: This function has been marked as deprecated.
+// This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Subnet_Swip_Transaction) UpdateAllSubnetSwips() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "updateAllSubnetSwips", nil, &r.Options, &resp)
@@ -16124,7 +16150,8 @@ func (r Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) 
 
 //
 // *** DEPRECATED ***
-// Retrieve the private network VLAN associated with an IP address. // Deprecated: This function has been marked as deprecated.
+// Retrieve the private network VLAN associated with an IP address.
+// Deprecated: This function has been marked as deprecated.
 
 func (r Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
