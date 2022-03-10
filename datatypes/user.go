@@ -500,6 +500,13 @@ type User_Customer_Access_Authentication struct {
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 }
 
+// SoftLayer_User_Customer_Access_Authentication_TokenValidation is for logging token validations from IAM, as something distinct from a traditional "login".  A single login to IBM Cloud/IAM as perceived by the end user, may result in many token validation calls to IMS.
+//
+// This is a very shallow subclass of SoftLayer_User_Customer_Access_Authentication
+type User_Customer_Access_Authentication_TokenValidation struct {
+	User_Customer_Access_Authentication
+}
+
 // The SoftLayer_User_Customer_AdditionalEmail data type contains the additional email for use in ticket update notifications.
 type User_Customer_AdditionalEmail struct {
 	Entity

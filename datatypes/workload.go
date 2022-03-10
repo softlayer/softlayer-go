@@ -75,6 +75,12 @@ type Workload_Citrix_Deployment struct {
 	// It contains a collection of items under the CVAD deployment.
 	Resources []Workload_Citrix_Deployment_Resource `json:"resources,omitempty" xmlrpc:"resources,omitempty"`
 
+	// Current Status of the CVAD deployment.
+	Status *Workload_Citrix_Deployment_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
+	// The [[SoftLayer_Workload_Citrix_Deployment_Status]] of the deployment.
+	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
+
 	// It shows if the deployment is for Citrix Hypervisor or VMware.
 	Type *Workload_Citrix_Deployment_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
@@ -206,6 +212,9 @@ type Workload_Citrix_Deployment_Response struct {
 	// It is a collection of objects representing deployment resources such as VLAN, subnet, bare metal, proxy, DHCP, cloud connectors.
 	Resources []Workload_Citrix_Deployment_Resource_Response `json:"resources,omitempty" xmlrpc:"resources,omitempty"`
 
+	// Status of the deployment.
+	Status *Workload_Citrix_Deployment_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
+
 	// Represents if the deployment is for Citrix Hypervisor or VMware
 	Type *Workload_Citrix_Deployment_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
@@ -217,6 +226,23 @@ type Workload_Citrix_Deployment_Response struct {
 
 	// It is an internal identifier for the VMware solution. It gets set if the CVAD order is for VMware.
 	VmwareOrderId *string `json:"vmwareOrderId,omitempty" xmlrpc:"vmwareOrderId,omitempty"`
+}
+
+// The SoftLayer_Workload_Citrix_Deployment_Status shows the status of Citrix Virtual Apps and Desktop deployment. The deployment can be in one of the following statuses at a given point in time: - PROVISIONING: The resources are being provisioned for the deployment. - ACTIVE: All the resources for the deployment are ready. - CANCELLING: Resources of the deployment are being cancelled. - CANCELLED: All the resources of the deployment are cancelled.
+type Workload_Citrix_Deployment_Status struct {
+	Entity
+
+	// The description of the deployment status.
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// The ID of the deployment status.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The keyName of the deployment status.
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// The title of the deployment status.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
 // no documentation yet
@@ -371,6 +397,9 @@ type Workload_Citrix_Workspace_Order_VMwareContainer struct {
 
 	// The subdomain for the ordered hosts (e.g. corp).
 	Subdomain *string `json:"subdomain,omitempty" xmlrpc:"subdomain,omitempty"`
+
+	// The vSphere version. Valid values are: "6.7" and "7.0"
+	VSphereVersion *string `json:"vSphereVersion,omitempty" xmlrpc:"vSphereVersion,omitempty"`
 
 	// The bare metal vsan cache disks (optional)
 	VsanCacheDisks []string `json:"vsanCacheDisks,omitempty" xmlrpc:"vsanCacheDisks,omitempty"`

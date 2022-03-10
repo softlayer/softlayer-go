@@ -107,4 +107,7 @@ type FlexibleCredit_Program struct {
 
 	// Name of the Flexible Credit Program.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// no documentation yet
+	PlatformPromotionCode *string `json:"platformPromotionCode,omitempty" xmlrpc:"platformPromotionCode,omitempty"`
 }

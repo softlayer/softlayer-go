@@ -823,6 +823,12 @@ func (r Hardware) GetHardwareFunctionDescription() (resp string, err error) {
 	return
 }
 
+// Retrieve A hardware's power/transaction state.
+func (r Hardware) GetHardwareState() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getHardwareState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's status.
 func (r Hardware) GetHardwareStatus() (resp datatypes.Hardware_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getHardwareStatus", nil, &r.Options, &resp)
@@ -2822,6 +2828,12 @@ func (r Hardware_Router) GetHardwareFunctionDescription() (resp string, err erro
 	return
 }
 
+// Retrieve A hardware's power/transaction state.
+func (r Hardware_Router) GetHardwareState() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHardwareState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's status.
 func (r Hardware_Router) GetHardwareStatus() (resp datatypes.Hardware_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHardwareStatus", nil, &r.Options, &resp)
@@ -4656,6 +4668,12 @@ func (r Hardware_SecurityModule) GetHardwareFunction() (resp datatypes.Hardware_
 // Retrieve A hardware's function.
 func (r Hardware_SecurityModule) GetHardwareFunctionDescription() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHardwareFunctionDescription", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A hardware's power/transaction state.
+func (r Hardware_SecurityModule) GetHardwareState() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHardwareState", nil, &r.Options, &resp)
 	return
 }
 
@@ -7047,6 +7065,12 @@ func (r Hardware_SecurityModule750) GetHardwareFunctionDescription() (resp strin
 	return
 }
 
+// Retrieve A hardware's power/transaction state.
+func (r Hardware_SecurityModule750) GetHardwareState() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHardwareState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A hardware's status.
 func (r Hardware_SecurityModule750) GetHardwareStatus() (resp datatypes.Hardware_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHardwareStatus", nil, &r.Options, &resp)
@@ -9432,6 +9456,12 @@ func (r Hardware_Server) GetHardwareFunction() (resp datatypes.Hardware_Function
 // Retrieve A hardware's function.
 func (r Hardware_Server) GetHardwareFunctionDescription() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHardwareFunctionDescription", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A hardware's power/transaction state.
+func (r Hardware_Server) GetHardwareState() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHardwareState", nil, &r.Options, &resp)
 	return
 }
 

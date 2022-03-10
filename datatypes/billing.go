@@ -848,12 +848,6 @@ type Billing_Item struct {
 	// A count of a billing item's recurring child items that have once been billed and are scheduled to be billed in the future.
 	BillableChildrenCount *uint `json:"billableChildrenCount,omitempty" xmlrpc:"billableChildrenCount,omitempty"`
 
-	// A count of (DEPRECATED) Do not use.
-	BundleItemCount *uint `json:"bundleItemCount,omitempty" xmlrpc:"bundleItemCount,omitempty"`
-
-	// (DEPRECATED) Do not use.
-	BundleItems []Product_Item_Bundles `json:"bundleItems,omitempty" xmlrpc:"bundleItems,omitempty"`
-
 	// A count of a Billing Item's bundled billing items.
 	BundledItemCount *uint `json:"bundledItemCount,omitempty" xmlrpc:"bundledItemCount,omitempty"`
 

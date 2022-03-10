@@ -180,6 +180,12 @@ func (r Workload_Citrix_Deployment) GetResources() (resp []datatypes.Workload_Ci
 	return
 }
 
+// Retrieve Current Status of the CVAD deployment.
+func (r Workload_Citrix_Deployment) GetStatus() (resp datatypes.Workload_Citrix_Deployment_Status, err error) {
+	err = r.Session.DoRequest("SoftLayer_Workload_Citrix_Deployment", "getStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve It shows if the deployment is for Citrix Hypervisor or VMware.
 func (r Workload_Citrix_Deployment) GetType() (resp datatypes.Workload_Citrix_Deployment_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Workload_Citrix_Deployment", "getType", nil, &r.Options, &resp)

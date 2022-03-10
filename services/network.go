@@ -8138,6 +8138,12 @@ func (r Network_Storage) GetFilesPendingDelete() (resp []datatypes.Container_Uti
 	return
 }
 
+// Retrieve
+func (r Network_Storage) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Network_Storage) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFolderList", nil, &r.Options, &resp)
@@ -8891,7 +8897,7 @@ func (r Network_Storage) SetSnapshotAllocation(capacityGb *int) (err error) {
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,
@@ -10356,6 +10362,12 @@ func (r Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes
 	return
 }
 
+// Retrieve
+func (r Network_Storage_Backup_Evault) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFolderList", nil, &r.Options, &resp)
@@ -11148,7 +11160,7 @@ func (r Network_Storage_Backup_Evault) SetSnapshotAllocation(capacityGb *int) (e
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage_Backup_Evault) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage_Backup_Evault) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,
@@ -12749,6 +12761,12 @@ func (r Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Contain
 	return
 }
 
+// Retrieve
+func (r Network_Storage_Iscsi) GetFixReplicationCurrentStatus() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Iscsi) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFolderList", nil, &r.Options, &resp)
@@ -13500,7 +13518,7 @@ func (r Network_Storage_Iscsi) SetSnapshotAllocation(capacityGb *int) (err error
 }
 
 // Function to enable/disable snapshot warning notification.
-func (r Network_Storage_Iscsi) SetSnapshotNotification(notificationFlag *string) (err error) {
+func (r Network_Storage_Iscsi) SetSnapshotNotification(notificationFlag *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
 		notificationFlag,

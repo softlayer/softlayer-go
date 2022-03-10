@@ -252,6 +252,9 @@ type Hardware struct {
 	// A hardware's function.
 	HardwareFunctionDescription *string `json:"hardwareFunctionDescription,omitempty" xmlrpc:"hardwareFunctionDescription,omitempty"`
 
+	// A hardware's power/transaction state.
+	HardwareState *Hardware_State `json:"hardwareState,omitempty" xmlrpc:"hardwareState,omitempty"`
+
 	// A hardware's status.
 	HardwareStatus *Hardware_Status `json:"hardwareStatus,omitempty" xmlrpc:"hardwareStatus,omitempty"`
 
@@ -1607,6 +1610,9 @@ type Hardware_Component_Type struct {
 type Hardware_Firewall struct {
 	Hardware_Switch
 
+	// The firewall's primary public IP address.
+	PrimaryIpAddress *string `json:"primaryIpAddress,omitempty" xmlrpc:"primaryIpAddress,omitempty"`
+
 	// A count of a list of users that have access to this hardware firewall.
 	UserCount *uint `json:"userCount,omitempty" xmlrpc:"userCount,omitempty"`
 
@@ -2080,14 +2086,20 @@ type Hardware_Server_Partition_Network_Attribute struct {
 type Hardware_State struct {
 	Entity
 
+	// no documentation yet
+	DeviceStatus *Device_Status `json:"deviceStatus,omitempty" xmlrpc:"deviceStatus,omitempty"`
+
+	// The id of the device status of the assigned hardware.
+	DeviceStatusId *int `json:"deviceStatusId,omitempty" xmlrpc:"deviceStatusId,omitempty"`
+
 	// The hardware this state is assigned to.
 	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
 
 	// A hardware state's unique identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// Represents the current state of the assigned hardware.
-	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
+	// no documentation yet
+	TransitioningStatus *Device_Status `json:"transitioningStatus,omitempty" xmlrpc:"transitioningStatus,omitempty"`
 }
 
 // SoftLayer_Hardware_Status models the inventory state of any piece of hardware in SoftLayer's inventory. Most of these statuses are used by SoftLayer while a server is not provisioned or undergoing provisioning. SoftLayer uses the following status codes:
