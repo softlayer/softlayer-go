@@ -4214,7 +4214,8 @@ func (r Hardware_SecurityModule) GetBackendBandwidthUsage(startDate *datatypes.T
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
+// Use this method to return an array of private bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -4584,7 +4585,8 @@ func (r Hardware_SecurityModule) GetFrontendBandwidthUsage(startDate *datatypes.
 	return
 }
 
-// Use this method to return an array of public bandwidth utilization records between a given date range.
+// Use this method to return an array of public bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -5170,7 +5172,8 @@ func (r Hardware_SecurityModule) GetPrivateVlan() (resp datatypes.Network_Vlan, 
 
 //
 // *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
+// Retrieve a backend network VLAN by searching for an IP address // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -6608,7 +6611,8 @@ func (r Hardware_SecurityModule750) GetBackendBandwidthUsage(startDate *datatype
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
+// Use this method to return an array of private bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule750) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -6978,7 +6982,8 @@ func (r Hardware_SecurityModule750) GetFrontendBandwidthUsage(startDate *datatyp
 	return
 }
 
-// Use this method to return an array of public bandwidth utilization records between a given date range.
+// Use this method to return an array of public bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule750) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -7564,7 +7569,8 @@ func (r Hardware_SecurityModule750) GetPrivateVlan() (resp datatypes.Network_Vla
 
 //
 // *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
+// Retrieve a backend network VLAN by searching for an IP address // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_SecurityModule750) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -9002,7 +9008,8 @@ func (r Hardware_Server) GetBackendBandwidthUsage(startDate *datatypes.Time, end
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
+// Use this method to return an array of private bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_Server) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -9372,7 +9379,8 @@ func (r Hardware_Server) GetFrontendBandwidthUsage(startDate *datatypes.Time, en
 	return
 }
 
-// Use this method to return an array of public bandwidth utilization records between a given date range.
+// Use this method to return an array of public bandwidth utilization records between a given date range. // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_Server) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
 		startDate,
@@ -9958,7 +9966,8 @@ func (r Hardware_Server) GetPrivateVlan() (resp datatypes.Network_Vlan, err erro
 
 //
 // *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
+// Retrieve a backend network VLAN by searching for an IP address // Deprecated: This function has been marked as deprecated.
+
 func (r Hardware_Server) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		ipAddress,

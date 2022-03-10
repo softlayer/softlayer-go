@@ -611,7 +611,8 @@ func (r Ticket) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
-// (DEPRECATED) Use [[SoftLayer_Ticket_Survey::getPreference]] method.
+// (DEPRECATED) Use [[SoftLayer_Ticket_Survey::getPreference]] method. // Deprecated: This function has been marked as deprecated.
+
 func (r Ticket) SurveyEligible() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "surveyEligible", nil, &r.Options, &resp)
 	return
@@ -980,21 +981,24 @@ func (r Ticket_Survey) Offset(offset int) Ticket_Survey {
 	return r
 }
 
-// (DEPRECATED) To opt in or out of future surveys, please follow the link found in the email survey.
+// (DEPRECATED) To opt in or out of future surveys, please follow the link found in the email survey. // Deprecated: This function has been marked as deprecated.
+
 func (r Ticket_Survey) GetPreference() (err error) {
 	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Ticket_Survey", "getPreference", nil, &r.Options, &resp)
 	return
 }
 
-// (DEPRECATED) To opt in of future surveys, please follow the link found in the email survey.
+// (DEPRECATED) To opt in of future surveys, please follow the link found in the email survey. // Deprecated: This function has been marked as deprecated.
+
 func (r Ticket_Survey) OptIn() (err error) {
 	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Ticket_Survey", "optIn", nil, &r.Options, &resp)
 	return
 }
 
-// (DEPRECATED) To opt out of future surveys, please follow the link found in the email survey.
+// (DEPRECATED) To opt out of future surveys, please follow the link found in the email survey. // Deprecated: This function has been marked as deprecated.
+
 func (r Ticket_Survey) OptOut() (err error) {
 	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Ticket_Survey", "optOut", nil, &r.Options, &resp)

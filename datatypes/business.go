@@ -25,9 +25,11 @@ type Business_Partner_Channel struct {
 	Entity
 
 	// Business partner channel description
+
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// Business partner channel name
+
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }
 
@@ -36,8 +38,10 @@ type Business_Partner_Segment struct {
 	Entity
 
 	// Business partner segment description
+
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// Business partner segment name
+
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }

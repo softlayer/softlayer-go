@@ -300,7 +300,8 @@ func (r Account) GetActiveNotificationSubscribers() (resp []datatypes.Notificati
 	return
 }
 
-// This is deprecated and will not return any results.
+// This is deprecated and will not return any results. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetActiveOutletPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveOutletPackages", nil, &r.Options, &resp)
 	return
@@ -316,7 +317,8 @@ func (r Account) GetActivePackages() (resp []datatypes.Product_Package, err erro
 
 // <strong>This method is deprecated and should not be used in production code.</strong>
 //
-// This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software filtered by an attribute type associated with the package. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information.
+// This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software filtered by an attribute type associated with the package. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		attributeKeyName,
@@ -325,7 +327,8 @@ func (r Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []
 	return
 }
 
-// [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
+// [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
 	return
@@ -611,7 +614,8 @@ func (r Account) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
-// This method returns a SoftLayer_Container_Account_Graph_Outputs containing a base64 string PNG image. The optional parameter, detailedGraph, can be passed to get a more detailed graph.
+// This method returns a SoftLayer_Container_Account_Graph_Outputs containing a base64 string PNG image. The optional parameter, detailedGraph, can be passed to get a more detailed graph. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetCurrentBackupStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		detailedGraph,
@@ -620,7 +624,8 @@ func (r Account) GetCurrentBackupStatisticsGraph(detailedGraph *bool) (resp data
 	return
 }
 
-// no documentation yet
+// no documentation yet// Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetCurrentTicketStatisticsGraph(detailedGraph *bool) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		detailedGraph,
@@ -692,7 +697,8 @@ func (r Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(star
 	return
 }
 
-// [DEPRECATED] JpGraph has been removed, so this method is no longer functional.
+// [DEPRECATED] JpGraph has been removed, so this method is no longer functional. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetDiskUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -788,7 +794,8 @@ func (r Account) GetFlexibleCreditEnrollments() (resp []datatypes.FlexibleCredit
 
 // [DEPRECATED] Please use SoftLayer_Account::getFlexibleCreditProgramsInfo.
 //
-// This method will return a [[SoftLayer_Container_Account_Discount_Program]] object containing the Flexible Credit Program information for this account. To be considered an active participant, the account must have an enrollment record with a monthly credit amount set and the current date must be within the range defined by the enrollment and graduation date. The forNextBillCycle parameter can be set to true to return a SoftLayer_Container_Account_Discount_Program object with information with relation to the next bill cycle. The forNextBillCycle parameter defaults to false. Please note that all discount amount entries are reported as pre-tax amounts and the legacy tax fields in the [[SoftLayer_Container_Account_Discount_Program]] are deprecated.
+// This method will return a [[SoftLayer_Container_Account_Discount_Program]] object containing the Flexible Credit Program information for this account. To be considered an active participant, the account must have an enrollment record with a monthly credit amount set and the current date must be within the range defined by the enrollment and graduation date. The forNextBillCycle parameter can be set to true to return a SoftLayer_Container_Account_Discount_Program object with information with relation to the next bill cycle. The forNextBillCycle parameter defaults to false. Please note that all discount amount entries are reported as pre-tax amounts and the legacy tax fields in the [[SoftLayer_Container_Account_Discount_Program]] are deprecated. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetFlexibleCreditProgramInfo(forNextBillCycle *bool) (resp datatypes.Container_Account_Discount_Program, err error) {
 	params := []interface{}{
 		forNextBillCycle,
@@ -954,7 +961,8 @@ func (r Account) GetHistoricalBackupGraph(startDate *datatypes.Time, endDate *da
 	return
 }
 
-// [DEPRECATED] This method will return a SoftLayer_Container_Account_Graph_Outputs object containing a base64 string PNG image of a line graph of bandwidth statistics given the start and end dates. The start and end dates should be valid ISO 8601 date formatted strings.
+// [DEPRECATED] This method will return a SoftLayer_Container_Account_Graph_Outputs object containing a base64 string PNG image of a line graph of bandwidth statistics given the start and end dates. The start and end dates should be valid ISO 8601 date formatted strings. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) GetHistoricalBandwidthGraph(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Container_Account_Graph_Outputs, err error) {
 	params := []interface{}{
 		startDate,
@@ -2237,7 +2245,8 @@ func (r Account) SyncCurrentUserPopulationWithPaas() (err error) {
 	return
 }
 
-// [DEPRECATED] This method has been deprecated and will simply return false.
+// [DEPRECATED] This method has been deprecated and will simply return false. // Deprecated: This function has been marked as deprecated.
+
 func (r Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (resp bool, err error) {
 	params := []interface{}{
 		objectId,
@@ -3070,7 +3079,8 @@ func (r Account_Historical_Report) GetAccountHostUptimeGraphData(startDate *stri
 	return
 }
 
-// no documentation yet
+// no documentation yet// Deprecated: This function has been marked as deprecated.
+
 func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -3092,7 +3102,8 @@ func (r Account_Historical_Report) GetAccountUrlUptimeGraphData(startDate *strin
 	return
 }
 
-// no documentation yet
+// no documentation yet// Deprecated: This function has been marked as deprecated.
+
 func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -3103,7 +3114,8 @@ func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *str
 	return
 }
 
-// no documentation yet
+// no documentation yet// Deprecated: This function has been marked as deprecated.
+
 func (r Account_Historical_Report) GetHostUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
 	params := []interface{}{
 		configurationValueId,
@@ -3125,7 +3137,8 @@ func (r Account_Historical_Report) GetHostUptimeGraphData(configurationValueId *
 	return
 }
 
-// no documentation yet
+// no documentation yet// Deprecated: This function has been marked as deprecated.
+
 func (r Account_Historical_Report) GetUrlUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
 	params := []interface{}{
 		configurationValueId,
