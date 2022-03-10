@@ -103,7 +103,7 @@ package datatypes
 type {{.Name|removePrefix}} struct {
 	{{.Base|removePrefix}}
 
-{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}{{deprecatedDoc .Deprecated}}` +
+{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}{{deprecatedDoc .Deprecated}}`+
 	`{{$thisType := convertType .Type "datatypes" $base .Name}}
 	{{.Name|titleCase}} {{getTypePrefix .TypeArray $thisType}}{{$thisType}}`+
 	"`json:\"{{.Name|tags}}\" xmlrpc:\"{{.Name|tags}}\"`"+`
