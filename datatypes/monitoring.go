@@ -26,22 +26,18 @@ type Monitoring_Robot struct {
 
 	// DEPRECATED. Internal identifier of a SoftLayer account that this robot belongs to
 	// Deprecated: This function has been marked as deprecated.
-
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// DEPRECATED. Internal identifier of a monitoring robot
 	// Deprecated: This function has been marked as deprecated.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// DEPRECATED. Robot name
 	// Deprecated: This function has been marked as deprecated.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// DEPRECATED. Internal identifier of a monitoring robot status
 	// Deprecated: This function has been marked as deprecated.
-
 	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 }
 
@@ -55,16 +51,13 @@ type Monitoring_Robot_Status struct {
 
 	// DEPRECATED. Monitoring robot status description
 	// Deprecated: This function has been marked as deprecated.
-
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// DEPRECATED. Internal identifier of a monitoring robot status
 	// Deprecated: This function has been marked as deprecated.
-
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// DEPRECATED. Monitoring robot status name
 	// Deprecated: This function has been marked as deprecated.
-
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }

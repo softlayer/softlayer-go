@@ -650,7 +650,6 @@ func (r Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, pay
 
 // This method is deprecated and always returns nothing.
 // Deprecated: This function has been marked as deprecated.
-
 func (r Product_Order) GetNetworks(locationId *int, packageId *int, accountId *int) (resp []datatypes.Container_Product_Order_Network, err error) {
 	params := []interface{}{
 		locationId,
@@ -1195,7 +1194,6 @@ func (r Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err er
 //
 // This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software filtered by an attribute type associated with the package. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information.
 // Deprecated: This function has been marked as deprecated.
-
 func (r Product_Package) GetActivePackagesByAttribute(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		attributeKeyName,
@@ -1212,7 +1210,6 @@ func (r Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Pr
 
 // [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
 // Deprecated: This function has been marked as deprecated.
-
 func (r Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
 	return

@@ -597,7 +597,7 @@ func getTypePrefix(isArray bool, theType string) string {
 
 func deprecatedDoc(isDeprecated bool) string {
 	if isDeprecated {
-		return "\n// Deprecated: This function has been marked as deprecated.\n"
+		return "\n// Deprecated: This function has been marked as deprecated."
 	}
 	return ""
 }

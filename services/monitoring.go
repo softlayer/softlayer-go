@@ -73,7 +73,6 @@ func (r Monitoring_Robot) Offset(offset int) Monitoring_Robot {
 //
 // TCP port 48000 - 48002 must be open on your server or your virtual server in order for this test to succeed.
 // Deprecated: This function has been marked as deprecated.
-
 func (r Monitoring_Robot) CheckConnection() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Monitoring_Robot", "checkConnection", nil, &r.Options, &resp)
 	return

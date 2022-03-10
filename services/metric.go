@@ -71,7 +71,6 @@ func (r Metric_Tracking_Object) Offset(offset int) Metric_Tracking_Object {
 
 // [DEPRECATED] Retrieve a PNG image of the last 24 hours of bandwidth usage of one of SoftLayer's network backbones.
 // Deprecated: This function has been marked as deprecated.
-
 func (r Metric_Tracking_Object) GetBackboneBandwidthGraph(graphTitle *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		graphTitle,

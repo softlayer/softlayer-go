@@ -593,7 +593,6 @@ type Hardware struct {
 
 	// A piece of hardware's private storage network components. [Deprecated]
 	// Deprecated: This function has been marked as deprecated.
-
 	StorageNetworkComponents []Network_Component `json:"storageNetworkComponents,omitempty" xmlrpc:"storageNetworkComponents,omitempty"`
 
 	// A count of

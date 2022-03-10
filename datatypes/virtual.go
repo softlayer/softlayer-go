@@ -657,7 +657,6 @@ type Virtual_Guest struct {
 
 	// URI of the script to be downloaded and executed after installation is complete. This is deprecated in favor of supplementalCreateObjectOptions' postInstallScriptUri.
 	// Deprecated: This function has been marked as deprecated.
-
 	PostInstallScriptUri *string `json:"postInstallScriptUri,omitempty" xmlrpc:"postInstallScriptUri,omitempty"`
 
 	// The current power state of a virtual guest.

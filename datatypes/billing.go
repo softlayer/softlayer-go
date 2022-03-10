@@ -155,7 +155,6 @@ type Billing_Info struct {
 
 	// This property has been deprecated.
 	// Deprecated: This function has been marked as deprecated.
-
 	TaxCertificateId *string `json:"taxCertificateId,omitempty" xmlrpc:"taxCertificateId,omitempty"`
 
 	// no documentation yet
