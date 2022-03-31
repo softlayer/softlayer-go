@@ -491,6 +491,7 @@ func (r Virtual_Guest) CreateArchiveTemplate(groupName *string, blockDevices []d
 }
 
 // Create a transaction to archive a computing instance's block devices
+// Deprecated: This function has been marked as deprecated.
 func (r Virtual_Guest) CreateArchiveTransaction(groupName *string, blockDevices []datatypes.Virtual_Guest_Block_Device, note *string) (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	params := []interface{}{
 		groupName,

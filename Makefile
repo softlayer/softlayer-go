@@ -6,7 +6,7 @@ GO_FMT=gofmt
 GO_INSTALL=$(GO_CMD) install
 GO_RUN=$(GO_CMD) run
 GO_TEST=$(GO_CMD) test
-TOOLS=$(GO_RUN) tools/*.go
+TOOLS=$(GO_RUN) tools/main.go tools/loadmeta.go tools/common.go tools/version.go
 VETARGS?=-all
 COVERPROFILE=coverage.out
 

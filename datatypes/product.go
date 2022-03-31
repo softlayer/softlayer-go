@@ -1722,6 +1722,7 @@ type Product_Package_Server struct {
 	NetworkGatewayApplianceRoleFlag *bool `json:"networkGatewayApplianceRoleFlag,omitempty" xmlrpc:"networkGatewayApplianceRoleFlag,omitempty"`
 
 	// DEPRECATED. Indicates whether or not the server is being sold as part of an outlet package.
+	// Deprecated: This function has been marked as deprecated.
 	OutletFlag *bool `json:"outletFlag,omitempty" xmlrpc:"outletFlag,omitempty"`
 
 	// no documentation yet

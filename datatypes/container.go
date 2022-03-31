@@ -2168,6 +2168,7 @@ type Container_Monitoring_Alarm_History struct {
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// DEPRECATED. ID of the monitoring agent that triggered this alarm
+	// Deprecated: This function has been marked as deprecated.
 	AgentId *int `json:"agentId,omitempty" xmlrpc:"agentId,omitempty"`
 
 	// Alarm ID
@@ -2183,6 +2184,7 @@ type Container_Monitoring_Alarm_History struct {
 	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
 
 	// DEPRECATED. Robot ID
+	// Deprecated: This function has been marked as deprecated.
 	RobotId *int `json:"robotId,omitempty" xmlrpc:"robotId,omitempty"`
 
 	// Severity of an alarm
@@ -3651,6 +3653,7 @@ type Container_Product_Order struct {
 	DeviceFingerprintId *string `json:"deviceFingerprintId,omitempty" xmlrpc:"deviceFingerprintId,omitempty"`
 
 	// This has been deprecated. It is the identifier used to track configurations in legacy order forms.
+	// Deprecated: This function has been marked as deprecated.
 	DisplayLayerSessionId *string `json:"displayLayerSessionId,omitempty" xmlrpc:"displayLayerSessionId,omitempty"`
 
 	// no documentation yet
@@ -4070,6 +4073,7 @@ type Container_Product_Order_Hardware_Server struct {
 	DriveDestructionDisks []string `json:"driveDestructionDisks,omitempty" xmlrpc:"driveDestructionDisks,omitempty"`
 
 	// Id used with the monitoring package. (Deprecated)
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringAgentConfigurationTemplateGroupId *int `json:"monitoringAgentConfigurationTemplateGroupId,omitempty" xmlrpc:"monitoringAgentConfigurationTemplateGroupId,omitempty"`
 
 	// When ordering Virtual Server (Private Node), this variable specifies the role of the server configuration. (Deprecated)
@@ -4148,6 +4152,7 @@ type Container_Product_Order_Monitoring_Package struct {
 	Container_Product_Order
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ServerType *string `json:"serverType,omitempty" xmlrpc:"serverType,omitempty"`
 }
 
@@ -4623,6 +4628,7 @@ type Container_Product_Order_NewCustomerSetup struct {
 	Container_Product_Order
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	AuthorizationToken *string `json:"authorizationToken,omitempty" xmlrpc:"authorizationToken,omitempty"`
 
 	// no documentation yet
@@ -4719,6 +4725,7 @@ type Container_Product_Order_Security_Certificate struct {
 	RenewalFlag *bool `json:"renewalFlag,omitempty" xmlrpc:"renewalFlag,omitempty"`
 
 	// (DEPRECATED) Do not set this property, as it will always be set to 1.
+	// Deprecated: This function has been marked as deprecated.
 	ServerCount *int `json:"serverCount,omitempty" xmlrpc:"serverCount,omitempty"`
 
 	// The server type. This is the name from a [[SoftLayer_Security_Certificate_Request_ServerType]] object.
@@ -5350,7 +5357,7 @@ type Container_Search_Result struct {
 	RelevanceScore *Float64 `json:"relevanceScore,omitempty" xmlrpc:"relevanceScore,omitempty"`
 
 	// A search results resource object that matched search criteria.
-	Resource *Entity `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+	Resource interface{} `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 
 	// The type of the resource object that matched search criteria.
 	ResourceType *string `json:"resourceType,omitempty" xmlrpc:"resourceType,omitempty"`

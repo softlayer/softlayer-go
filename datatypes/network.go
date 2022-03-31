@@ -1190,6 +1190,7 @@ type Network_Component struct {
 	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// Whether a network component's primary ip address is from a storage network subnet or not. [Deprecated]
+	// Deprecated: This function has been marked as deprecated.
 	StorageNetworkFlag *bool `json:"storageNetworkFlag,omitempty" xmlrpc:"storageNetworkFlag,omitempty"`
 
 	// A count of a network component's subnets. A subnet is a group of IP addresses
@@ -3370,6 +3371,7 @@ type Network_Protection_Address struct {
 	PrimaryRouter *Hardware_Router `json:"primaryRouter,omitempty" xmlrpc:"primaryRouter,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	ServiceProvider *Service_Provider `json:"serviceProvider,omitempty" xmlrpc:"serviceProvider,omitempty"`
 
 	// no documentation yet
@@ -5204,9 +5206,11 @@ type Network_Subnet struct {
 	ActiveRegistration *Network_Subnet_Registration `json:"activeRegistration,omitempty" xmlrpc:"activeRegistration,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	ActiveSwipTransaction *Network_Subnet_Swip_Transaction `json:"activeSwipTransaction,omitempty" xmlrpc:"activeSwipTransaction,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// Identifier which distinguishes what classification of addresses the subnet represents.
@@ -5381,6 +5385,7 @@ type Network_Subnet struct {
 	SubnetType *string `json:"subnetType,omitempty" xmlrpc:"subnetType,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	SwipTransaction []Network_Subnet_Swip_Transaction `json:"swipTransaction,omitempty" xmlrpc:"swipTransaction,omitempty"`
 
 	// A count of dEPRECATED
@@ -5583,6 +5588,7 @@ type Network_Subnet_IpAddress_Global struct {
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// The billing item for this Global IP.
@@ -5758,6 +5764,7 @@ type Network_Subnet_Registration_Event_Type struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// Unique numeric ID of the event type object
@@ -5767,6 +5774,7 @@ type Network_Subnet_Registration_Event_Type struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// Human-readable name of the event type
@@ -5785,6 +5793,7 @@ type Network_Subnet_Registration_Status struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// Unique numeric ID of the status object
@@ -5794,6 +5803,7 @@ type Network_Subnet_Registration_Status struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// Human-readable name of the status
@@ -5899,6 +5909,7 @@ type Network_Tunnel_Module_Context struct {
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
 
 	// A count of a network tunnel's address translations.
@@ -6000,6 +6011,7 @@ type Network_Tunnel_Module_Context struct {
 	StaticRouteSubnets []Network_Subnet `json:"staticRouteSubnets,omitempty" xmlrpc:"staticRouteSubnets,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	TransactionHistory []Provisioning_Version1_Transaction `json:"transactionHistory,omitempty" xmlrpc:"transactionHistory,omitempty"`
 
 	// A count of dEPRECATED
