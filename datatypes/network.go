@@ -863,31 +863,6 @@ type Network_Bandwidth_Version1_Allotment_Type struct {
 	ShortDescription *string `json:"shortDescription,omitempty" xmlrpc:"shortDescription,omitempty"`
 }
 
-// [DEPRECATED] The SoftLayer_Network_Bandwidth_Version1_Host type contains general information used to the route a server to its pod.
-type Network_Bandwidth_Version1_Host struct {
-	Entity
-
-	// Pod ID for this host device.
-	PodId *int `json:"podId,omitempty" xmlrpc:"podId,omitempty"`
-}
-
-// [DEPRECATED] All bandwidth tracking is maintained through the switch that the bandwidth is used through.  All bandwidth is stored in a "pod" repository.  An interface links the hardware switch with the pod repository identification number. This is only relevant to bandwidth data.  It is not common to use this.
-type Network_Bandwidth_Version1_Interface struct {
-	Entity
-
-	// [DEPRECATED] The host for an interface. This is not to be confused with SoftLayer Hardware
-	Host *Network_Bandwidth_Version1_Host `json:"host,omitempty" xmlrpc:"host,omitempty"`
-
-	// A interface's host.  The host stores the pod number for the bandwidth data.
-	HostId *int `json:"hostId,omitempty" xmlrpc:"hostId,omitempty"`
-
-	// [DEPRECATED] The switch for an interface.
-	NetworkComponent *Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
-
-	// The network component for this interface.
-	NetworkComponentId *int `json:"networkComponentId,omitempty" xmlrpc:"networkComponentId,omitempty"`
-}
-
 // The SoftLayer_Network_Bandwidth_Version1_Usage data type contains general information relating to a single bandwidth usage record.
 type Network_Bandwidth_Version1_Usage struct {
 	Entity
@@ -1083,9 +1058,6 @@ type Network_Component struct {
 
 	// A network component's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// [DEPRECATED] A hardware switch's interface to the bandwidth pod.
-	Interface *Network_Bandwidth_Version1_Interface `json:"interface,omitempty" xmlrpc:"interface,omitempty"`
 
 	// A count of the records of all IP addresses bound to a network component.
 	IpAddressBindingCount *uint `json:"ipAddressBindingCount,omitempty" xmlrpc:"ipAddressBindingCount,omitempty"`
@@ -3947,6 +3919,9 @@ type Network_Storage struct {
 
 	// Relationship between a container volume and iSCSI LUNs.
 	IscsiLuns []Network_Storage `json:"iscsiLuns,omitempty" xmlrpc:"iscsiLuns,omitempty"`
+
+	// The network storage volumes configured to be replicants of this volume.
+	IscsiReplicatingVolume *Network_Storage `json:"iscsiReplicatingVolume,omitempty" xmlrpc:"iscsiReplicatingVolume,omitempty"`
 
 	// A count of returns the target IP addresses of an iSCSI volume.
 	IscsiTargetIpAddressCount *uint `json:"iscsiTargetIpAddressCount,omitempty" xmlrpc:"iscsiTargetIpAddressCount,omitempty"`
