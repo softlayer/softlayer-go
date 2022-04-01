@@ -1539,16 +1539,6 @@ func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsag
 	return
 }
 
-// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the private data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
-	params := []interface{}{
-		date,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBackendBandwidthByHour", params, &r.Options, &resp)
-	return
-}
-
 // This method recurses through all servers on a Bandwidth Pool between the given start and end dates to retrieve public bandwidth data.
 func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
 	params := []interface{}{
@@ -1642,16 +1632,6 @@ func (r Network_Bandwidth_Version1_Allotment) GetCustomBandwidthDataByDate(graph
 // Retrieve The bandwidth allotment detail records associated with this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getDetails", nil, &r.Options, &resp)
-	return
-}
-
-// [DEPRECATED] This method recurses through all servers on a Bandwidth Pool for 24 hour time span starting at a given date/time. To get the public data set for all servers on a Bandwidth Pool from midnight Feb 1st, 2008 to 23:59 on Feb 1st, you would pass a parameter of '02/01/2008 0:00'.  The ending date / time is calculated for you to prevent requesting data from the server for periods larger than 24 hours as this method requires processing a lot of data records and can get slow at times.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthByHour(date *datatypes.Time) (resp []datatypes.Container_Network_Bandwidth_Version1_Usage, err error) {
-	params := []interface{}{
-		date,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getFrontendBandwidthByHour", params, &r.Options, &resp)
 	return
 }
 
@@ -3124,12 +3104,6 @@ func (r Network_Component) GetHardware() (resp datatypes.Hardware, err error) {
 // Retrieve
 func (r Network_Component) GetHighAvailabilityFirewallFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getHighAvailabilityFirewallFlag", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [DEPRECATED] A hardware switch's interface to the bandwidth pod.
-func (r Network_Component) GetInterface() (resp datatypes.Network_Bandwidth_Version1_Interface, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Component", "getInterface", nil, &r.Options, &resp)
 	return
 }
 
@@ -8241,6 +8215,12 @@ func (r Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err e
 	return
 }
 
+// Retrieve The network storage volumes configured to be replicants of this volume.
+func (r Network_Storage) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Returns the target IP addresses of an iSCSI volume.
 func (r Network_Storage) GetIscsiTargetIpAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiTargetIpAddresses", nil, &r.Options, &resp)
@@ -10482,6 +10462,12 @@ func (r Network_Storage_Backup_Evault) GetIsReadyToMount() (resp bool, err error
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Backup_Evault) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiLuns", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network storage volumes configured to be replicants of this volume.
+func (r Network_Storage_Backup_Evault) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
 	return
 }
 
@@ -12861,6 +12847,12 @@ func (r Network_Storage_Iscsi) GetIsReadyToMount() (resp bool, err error) {
 // Retrieve Relationship between a container volume and iSCSI LUNs.
 func (r Network_Storage_Iscsi) GetIscsiLuns() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiLuns", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The network storage volumes configured to be replicants of this volume.
+func (r Network_Storage_Iscsi) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
 	return
 }
 
