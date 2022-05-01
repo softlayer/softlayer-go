@@ -441,7 +441,7 @@ func (r Provisioning_Maintenance_Window) AddCustomerUpgradeWindow(customerUpgrad
 	return
 }
 
-// getMaintenanceClassifications() returns an object of maintenance classifications
+// Returns all the maintenance classifications.
 func (r Provisioning_Maintenance_Window) GetMaintenanceClassifications() (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceClassifications", nil, &r.Options, &resp)
 	return
@@ -456,8 +456,8 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceStartEndTime(ticketId *in
 	return
 }
 
-// getMaintenceWindowForTicket() returns a specific maintenance window
-func (r Provisioning_Maintenance_Window) GetMaintenanceWindowForTicket(maintenanceWindowId *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
+// Returns a specific maintenance window.
+func (r Provisioning_Maintenance_Window) GetMaintenanceWindowForTicket(maintenanceWindowId *int) (resp datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
 		maintenanceWindowId,
 	}
@@ -495,17 +495,6 @@ func (r Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatype
 		slotsNeeded,
 	}
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, &r.Options, &resp)
-	return
-}
-
-// getMaintenceWindowForTicket() returns a boolean
-func (r Provisioning_Maintenance_Window) UpdateCustomerUpgradeWindow(maintenanceStartTime *datatypes.Time, newMaintenanceWindowId *int, ticketId *int) (resp bool, err error) {
-	params := []interface{}{
-		maintenanceStartTime,
-		newMaintenanceWindowId,
-		ticketId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "updateCustomerUpgradeWindow", params, &r.Options, &resp)
 	return
 }
 

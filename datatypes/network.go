@@ -1816,6 +1816,12 @@ type Network_Gateway_Member struct {
 	// The internal identifier of the gateway this member belongs to.
 	NetworkGatewayId *int `json:"networkGatewayId,omitempty" xmlrpc:"networkGatewayId,omitempty"`
 
+	// A count of the gateway passwords for this member.
+	PasswordCount *uint `json:"passwordCount,omitempty" xmlrpc:"passwordCount,omitempty"`
+
+	// The gateway passwords for this member.
+	Passwords []Network_Gateway_Member_Passwords `json:"passwords,omitempty" xmlrpc:"passwords,omitempty"`
+
 	// The priority for this gateway member. This is set internally and cannot be provided on create.
 	Priority *int `json:"priority,omitempty" xmlrpc:"priority,omitempty"`
 }
@@ -1868,6 +1874,26 @@ type Network_Gateway_Member_Attribute struct {
 
 	// Precheck Warning code for Version / License Unsupported for member.
 	WarningCode *int `json:"warningCode,omitempty" xmlrpc:"warningCode,omitempty"`
+}
+
+// no documentation yet
+type Network_Gateway_Member_Passwords struct {
+	Entity
+
+	// The gateway member has these password.
+	GatewayMember *Network_Gateway_Member `json:"gatewayMember,omitempty" xmlrpc:"gatewayMember,omitempty"`
+
+	// A gateway member passlw internal identifier.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// The gateway member if for this record.
+	MemberId *int `json:"memberId,omitempty" xmlrpc:"memberId,omitempty"`
+
+	// Password of the user name.
+	Password *string `json:"password,omitempty" xmlrpc:"password,omitempty"`
+
+	// Username associated with the gateway.
+	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 }
 
 // no documentation yet
@@ -6047,7 +6073,7 @@ type Network_Vlan struct {
 	// A flag indicating that a network vlan is on a Hardware Firewall (Dedicated).
 	DedicatedFirewallFlag *int `json:"dedicatedFirewallFlag,omitempty" xmlrpc:"dedicatedFirewallFlag,omitempty"`
 
-	// The extension router that a VLAN is associated with.
+	// [DEPRECATED] The extension router that a VLAN is associated with.
 	ExtensionRouter *Hardware_Router `json:"extensionRouter,omitempty" xmlrpc:"extensionRouter,omitempty"`
 
 	// A count of a firewalled Vlan's network components.

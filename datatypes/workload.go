@@ -63,11 +63,17 @@ type Workload_Citrix_Deployment struct {
 	// The date when this record was created.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
+	// DataCenter of the deployment.
+	DataCenter *string `json:"dataCenter,omitempty" xmlrpc:"dataCenter,omitempty"`
+
 	// It is the unique identifier for the deployment.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The date when this record was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// Name of the deployment.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// A count of it contains a collection of items under the CVAD deployment.
 	ResourceCount *uint `json:"resourceCount,omitempty" xmlrpc:"resourceCount,omitempty"`
@@ -203,11 +209,17 @@ type Workload_Citrix_Deployment_Response struct {
 	// The date when this deployment was created.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
+	// Location name of the deployment.
+	DataCenter *string `json:"dataCenter,omitempty" xmlrpc:"dataCenter,omitempty"`
+
 	// ID of the CVAD deployment.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The date when this deployment was modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// Name of the deployment.
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// It is a collection of objects representing deployment resources such as VLAN, subnet, bare metal, proxy, DHCP, cloud connectors.
 	Resources []Workload_Citrix_Deployment_Resource_Response `json:"resources,omitempty" xmlrpc:"resources,omitempty"`
