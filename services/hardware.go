@@ -1518,6 +1518,12 @@ func (r Hardware) RebootSoft() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Hardware) RefreshDeviceStatus() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "refreshDeviceStatus", nil, &r.Options, &resp)
+	return
+}
+
 // This method is used to remove access to s SoftLayer_Network_Storage volumes that supports host- or network-level access control.
 func (r Hardware) RemoveAccessToNetworkStorage(networkStorageTemplateObject *datatypes.Network_Storage) (resp bool, err error) {
 	params := []interface{}{
@@ -3532,6 +3538,12 @@ func (r Hardware_Router) RebootHard() (resp bool, err error) {
 //
 func (r Hardware_Router) RebootSoft() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "rebootSoft", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_Router) RefreshDeviceStatus() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "refreshDeviceStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -5769,6 +5781,12 @@ func (r Hardware_SecurityModule) RebootHard() (resp bool, err error) {
 // Reboot the server by issuing a reset command to the server's remote management card.  This is a graceful reboot. The servers will allow all process to shutdown gracefully before rebooting.  If a reboot command has been issued successfully in the past 20 minutes, another remote management command (rebootSoft, rebootHard, powerOn, powerOff and powerCycle) will not be allowed.  This is to avoid any type of server failures.
 func (r Hardware_SecurityModule) RebootSoft() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "rebootSoft", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_SecurityModule) RefreshDeviceStatus() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "refreshDeviceStatus", nil, &r.Options, &resp)
 	return
 }
 
@@ -8169,6 +8187,12 @@ func (r Hardware_SecurityModule750) RebootSoft() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Hardware_SecurityModule750) RefreshDeviceStatus() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "refreshDeviceStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Reloads current operating system configuration.
 //
 // This service has a confirmation protocol for proceeding with the reload. To proceed with the reload without confirmation, simply pass in 'FORCE' as the token parameter. To proceed with the reload with confirmation, simply call the service with no parameter. A token string will be returned by this service. The token will remain active for 10 minutes. Use this token as the parameter to confirm that a reload is to be performed for the server.
@@ -10563,6 +10587,12 @@ func (r Hardware_Server) RebootHard() (resp bool, err error) {
 // Reboot the server by issuing a reset command to the server's remote management card.  This is a graceful reboot. The servers will allow all process to shutdown gracefully before rebooting.  If a reboot command has been issued successfully in the past 20 minutes, another remote management command (rebootSoft, rebootHard, powerOn, powerOff and powerCycle) will not be allowed.  This is to avoid any type of server failures.
 func (r Hardware_Server) RebootSoft() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "rebootSoft", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_Server) RefreshDeviceStatus() (resp datatypes.Hardware_State, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "refreshDeviceStatus", nil, &r.Options, &resp)
 	return
 }
 

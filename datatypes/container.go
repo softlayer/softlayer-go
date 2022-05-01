@@ -1963,6 +1963,9 @@ type Container_Hardware_Server_Configuration struct {
 	// An Image Template ID [[SoftLayer_Virtual_Guest_Block_Device_Template_Group]] that will be deployed to the host.  If provided no item prices are required.
 	ImageTemplateId *int `json:"imageTemplateId,omitempty" xmlrpc:"imageTemplateId,omitempty"`
 
+	// Whether the OS reload will be in-place for accounts that support it.
+	InPlaceFlag *bool `json:"inPlaceFlag,omitempty" xmlrpc:"inPlaceFlag,omitempty"`
+
 	// The item prices that a server can be configured with.
 	ItemPrices []Product_Item_Price `json:"itemPrices,omitempty" xmlrpc:"itemPrices,omitempty"`
 
@@ -3265,6 +3268,20 @@ type Container_Network_Storage_Host struct {
 
 	// Reference id field for object associated with host.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Type for the object associated with host
+	ObjectType *string `json:"objectType,omitempty" xmlrpc:"objectType,omitempty"`
+}
+
+// The SoftLayer_Container_Network_Storage_HostsGatewayInformation will contain the reference id field for the object associated with the host. The host object type will also be returned.
+type Container_Network_Storage_HostsGatewayInformation struct {
+	Entity
+
+	// Reference id field for object associated with host.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	IsBehindGatewayDevice *bool `json:"isBehindGatewayDevice,omitempty" xmlrpc:"isBehindGatewayDevice,omitempty"`
 
 	// Type for the object associated with host
 	ObjectType *string `json:"objectType,omitempty" xmlrpc:"objectType,omitempty"`

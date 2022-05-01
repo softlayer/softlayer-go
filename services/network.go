@@ -4322,6 +4322,21 @@ func (r Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (
 	return
 }
 
+// The method updates the Gateway password for the provided username.  It does not perform any synchronization with the Gateway to update the credentials.  The method only updates the IMS db with the username / password record for the Gateway.
+//
+// The 'username' and 'password' in the record template are required. 'username' must not be blank and must exist in the Gateway password records 'password' must not be blank
+//
+// Returns true if password change is successful, false if not successful
+//
+//
+func (r Network_Gateway) UpdateGatewayUserPassword(record *datatypes.Network_Gateway_Member_Passwords) (resp bool, err error) {
+	params := []interface{}{
+		record,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "updateGatewayUserPassword", params, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 type Network_Gateway_Member struct {
 	Session *session.Session
@@ -4401,6 +4416,12 @@ func (r Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gate
 // no documentation yet
 func (r Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The gateway passwords for this member.
+func (r Network_Gateway_Member) GetPasswords() (resp []datatypes.Network_Gateway_Member_Passwords, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getPasswords", nil, &r.Options, &resp)
 	return
 }
 
@@ -8921,6 +8942,15 @@ func (r Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Entit
 	return
 }
 
+// This method is used to validate if the hosts are behind gateway or not from [SoftLayer_Network_Subnet|SoftLayer_Network_Subnet_IpAddress] objects. This returns [SoftLayer_Container_Network_Storage_HostsGatewayInformation] object containing the host details along with a boolean attribute which indicates if it's behind the gateway or not.
+func (r Network_Storage) ValidateHostsAccess(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "validateHostsAccess", params, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 type Network_Storage_Allowed_Host struct {
 	Session *session.Session
@@ -11187,6 +11217,15 @@ func (r Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Util
 		file,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "uploadFile", params, &r.Options, &resp)
+	return
+}
+
+// This method is used to validate if the hosts are behind gateway or not from [SoftLayer_Network_Subnet|SoftLayer_Network_Subnet_IpAddress] objects. This returns [SoftLayer_Container_Network_Storage_HostsGatewayInformation] object containing the host details along with a boolean attribute which indicates if it's behind the gateway or not.
+func (r Network_Storage_Backup_Evault) ValidateHostsAccess(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "validateHostsAccess", params, &r.Options, &resp)
 	return
 }
 
@@ -13551,6 +13590,15 @@ func (r Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_File
 		file,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "uploadFile", params, &r.Options, &resp)
+	return
+}
+
+// This method is used to validate if the hosts are behind gateway or not from [SoftLayer_Network_Subnet|SoftLayer_Network_Subnet_IpAddress] objects. This returns [SoftLayer_Container_Network_Storage_HostsGatewayInformation] object containing the host details along with a boolean attribute which indicates if it's behind the gateway or not.
+func (r Network_Storage_Iscsi) ValidateHostsAccess(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "validateHostsAccess", params, &r.Options, &resp)
 	return
 }
 
@@ -15970,7 +16018,7 @@ func (r Network_Vlan) GetDedicatedFirewallFlag() (resp int, err error) {
 	return
 }
 
-// Retrieve The extension router that a VLAN is associated with.
+// Retrieve [DEPRECATED] The extension router that a VLAN is associated with.
 func (r Network_Vlan) GetExtensionRouter() (resp datatypes.Hardware_Router, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getExtensionRouter", nil, &r.Options, &resp)
 	return

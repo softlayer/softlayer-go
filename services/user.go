@@ -648,12 +648,6 @@ func (r User_Customer) GetRoles() (resp []datatypes.User_Permission_Role, err er
 	return
 }
 
-// Retrieve [DEPRECATED]
-func (r User_Customer) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSalesforceUserLink", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
 func (r User_Customer) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSecurityAnswers", nil, &r.Options, &resp)
@@ -3171,12 +3165,6 @@ func (r User_Customer_OpenIdConnect) GetRoles() (resp []datatypes.User_Permissio
 	return
 }
 
-// Retrieve [DEPRECATED]
-func (r User_Customer_OpenIdConnect) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSalesforceUserLink", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
 func (r User_Customer_OpenIdConnect) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSecurityAnswers", nil, &r.Options, &resp)
@@ -4402,12 +4390,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetRequirementsForPasswordSe
 // Retrieve
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getRoles", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [DEPRECATED]
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSalesforceUserLink() (resp datatypes.User_Customer_Link, err error) {
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSalesforceUserLink", nil, &r.Options, &resp)
 	return
 }
 

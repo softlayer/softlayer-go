@@ -361,9 +361,6 @@ type User_Customer struct {
 	// no documentation yet
 	Roles []User_Permission_Role `json:"roles,omitempty" xmlrpc:"roles,omitempty"`
 
-	// [DEPRECATED]
-	SalesforceUserLink *User_Customer_Link `json:"salesforceUserLink,omitempty" xmlrpc:"salesforceUserLink,omitempty"`
-
 	// no documentation yet
 	SavedId *string `json:"savedId,omitempty" xmlrpc:"savedId,omitempty"`
 
