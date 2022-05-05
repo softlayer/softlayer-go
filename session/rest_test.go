@@ -17,6 +17,7 @@
 package session
 
 import (
+	"errors"
 	"testing"
 
 	"fmt"
@@ -41,7 +42,7 @@ type testcase struct {
 	options     sl.Options
 	responder   httpmock.Responder
 	expected    interface{}
-	expectError bool
+	expectError error
 }
 
 var testcases = []testcase{
@@ -54,7 +55,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `[]`),
 		expected:    make([]struct{}, 0),
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "empty struct return",
@@ -64,7 +65,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `{}`),
 		expected:    struct{}{},
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "struct return",
@@ -80,7 +81,7 @@ var testcases = []testcase{
 			Id:       1,
 			Username: "foo",
 		},
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		//special case for when SL response omits [] from a list with 1 item
@@ -94,7 +95,7 @@ var testcases = []testcase{
 			Id       int    `json:"id,omitempty"`
 			Username string `json:"username,omitempty"`
 		}{{Id: 1, Username: "foo"}},
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "array of struct return",
@@ -107,7 +108,7 @@ var testcases = []testcase{
 			Id       int    `json:"id,omitempty"`
 			Username string `json:"username,omitempty"`
 		}{{Id: 1, Username: "foo"}, {Id: 2, Username: "bar"}},
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "boolean return",
@@ -117,7 +118,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(12345)},
 		responder:   httpmock.NewStringResponder(200, `true`),
 		expected:    true,
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "string return",
@@ -127,7 +128,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `admin@example.com`),
 		expected:    "admin@example.com",
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "string return with quotes",
@@ -137,7 +138,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `"admin@example.com"`),
 		expected:    "admin@example.com",
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "JSON encoded string with escapes",
@@ -147,7 +148,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(123456)},
 		responder:   httpmock.NewStringResponder(200, `"fsf-dal0901b-fz.service.softlayer.com:\/IBM02SV123456_1\/data01"`),
 		expected:    "fsf-dal0901b-fz.service.softlayer.com:/IBM02SV123456_1/data01",
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "uint return",
@@ -157,7 +158,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `256`),
 		expected:    uint(256),
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "int return",
@@ -167,7 +168,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `16384`),
 		expected:    int(16384),
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "negative int return",
@@ -177,7 +178,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(123456)},
 		responder:   httpmock.NewStringResponder(200, `-345`),
 		expected:    int(-345),
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "[]byte return",
@@ -187,7 +188,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewBytesResponder(200, []byte{0xDE, 0xAD, 0xBE, 0xEF}),
 		expected:    []uint8{0xDE, 0xAD, 0xBE, 0xEF},
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "void return",
@@ -197,7 +198,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(12345)},
 		responder:   httpmock.NewStringResponder(200, "null"),
 		expected:    datatypes.Void(0),
-		expectError: false,
+		expectError: nil,
 	},
 	{
 		description: "method arguments",
@@ -209,7 +210,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(12345)},
 		responder:   tests.NewEchoResponder(200),
 		expected:    `{"parameters":["https://example.com"]}`,
-		expectError: false,
+		expectError: nil,
 	},
 
 	// Negative tests
@@ -221,7 +222,7 @@ var testcases = []testcase{
 		options:     sl.Options{Id: sl.Int(12345)},
 		responder:   httpmock.NewStringResponder(200, `null`),
 		expected:    true,
-		expectError: true,
+		expectError: errors.New(`strconv.ParseBool: parsing "null": invalid syntax`),
 	},
 	{
 		description: "Error when uint expected but null received",
@@ -231,7 +232,7 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(200, `null`),
 		expected:    uint(0),
-		expectError: true,
+		expectError: errors.New(`strconv.ParseUint: parsing "null": invalid syntax`),
 	},
 	{
 		description: "HTTP !2xx",
@@ -241,7 +242,27 @@ var testcases = []testcase{
 		options:     sl.Options{},
 		responder:   httpmock.NewStringResponder(400, `1`),
 		expected:    uint(1),
-		expectError: true,
+		expectError: errors.New("json: cannot unmarshal number into Go value of type sl.Error"),
+	},
+	{
+		description: "HTTP 200, But Error",
+		service:     "SoftLayer_Virtual_Guest",
+		method:      "powerOn",
+		args:        nil,
+		options:     sl.Options{},
+		responder:   httpmock.NewStringResponder(200, `{"error":"Internal Error","code":"SoftLayer_Exception_Public"}`),
+		expected:    uint(1),
+		expectError: sl.Error{StatusCode: 200, Exception: "SoftLayer_Exception_Public", Message: "Internal Error"},
+	},
+	{
+		description: "Empty Response",
+		service:     "SoftLayer_Virtual_Guest",
+		method:      "powerOn",
+		args:        nil,
+		options:     sl.Options{},
+		responder:   httpmock.NewStringResponder(200, ``),
+		expected:    uint(1),
+		expectError: sl.Error{StatusCode: 200, Exception: "SoftLayer_Exception_Public", Message: "Empty Response"},
 	},
 }
 
@@ -272,10 +293,10 @@ func TestRest(t *testing.T) {
 		switch {
 
 		// Positive tests - no error expected
-		case !tc.expectError && err != nil:
+		case tc.expectError == nil && err != nil:
 			fmt.Println("Unexpected error:", err.Error())
 			t.Fail()
-		case !tc.expectError && err == nil:
+		case tc.expectError == nil && err == nil:
 			result := reflect.Indirect(reflect.ValueOf(pResult)).Interface()
 			if !reflect.DeepEqual(tc.expected, result) {
 				fmt.Println("FAIL")
@@ -285,11 +306,14 @@ func TestRest(t *testing.T) {
 			}
 
 		// Negative tests - error expected
-		case tc.expectError && err == nil:
+		case tc.expectError != nil && err == nil:
 			fmt.Println("FAIL")
 			t.Errorf("Expected error not received")
-		case tc.expectError && err != nil:
+		case tc.expectError != nil && err != nil:
 			fmt.Println("OK")
+			if err.Error() != tc.expectError.Error() {
+				t.Errorf("ERROR MISMATCH!\n%v != %v\n", err.Error(), tc.expectError.Error())
+			}
 		}
 
 		teardown()
