@@ -4799,6 +4799,11 @@ type Container_Product_Order_Storage_Group struct {
 	// This must match a disk controller price on the order. The disk controller index is 0-indexed. 'disk_controller' = 0 'disk_controller1' = 1 'disk_controller2' = 2
 	DiskControllerIndex *int `json:"diskControllerIndex,omitempty" xmlrpc:"diskControllerIndex,omitempty"`
 
+	// String array of category codes for drives to use in the storage group as an alternative to their index positions.
+	//
+	// This must be specified if ordering a storage group with PCIe drives.
+	HardDriveCategoryCodes []string `json:"hardDriveCategoryCodes,omitempty" xmlrpc:"hardDriveCategoryCodes,omitempty"`
+
 	// Integer array of drive indexes to use in the storage group.
 	HardDrives []int `json:"hardDrives,omitempty" xmlrpc:"hardDrives,omitempty"`
 
