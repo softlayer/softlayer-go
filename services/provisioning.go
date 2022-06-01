@@ -552,3 +552,113 @@ func (r Provisioning_Version1_Transaction_Group) GetObject() (resp datatypes.Pro
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getObject", nil, &r.Options, &resp)
 	return
 }
+
+// no documentation yet
+type Provisioning_Version1_Transaction_OrderTracking struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetProvisioningVersion1TransactionOrderTrackingService returns an instance of the Provisioning_Version1_Transaction_OrderTracking SoftLayer service
+func GetProvisioningVersion1TransactionOrderTrackingService(sess *session.Session) Provisioning_Version1_Transaction_OrderTracking {
+	return Provisioning_Version1_Transaction_OrderTracking{Session: sess}
+}
+
+func (r Provisioning_Version1_Transaction_OrderTracking) Id(id int) Provisioning_Version1_Transaction_OrderTracking {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTracking) Mask(mask string) Provisioning_Version1_Transaction_OrderTracking {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTracking) Filter(filter string) Provisioning_Version1_Transaction_OrderTracking {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTracking) Limit(limit int) Provisioning_Version1_Transaction_OrderTracking {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTracking) Offset(offset int) Provisioning_Version1_Transaction_OrderTracking {
+	r.Options.Offset = &offset
+	return r
+}
+
+// Retrieve Invoice ID
+func (r Provisioning_Version1_Transaction_OrderTracking) GetInvoiceId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_OrderTracking", "getInvoiceId", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Provisioning_Version1_Transaction_OrderTracking) GetObject() (resp datatypes.Provisioning_Version1_Transaction_OrderTracking, err error) {
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_OrderTracking", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Provisioning_Version1_Transaction_OrderTracking) GetOrderTrackingState() (resp datatypes.Provisioning_Version1_Transaction_OrderTrackingState, err error) {
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_OrderTracking", "getOrderTrackingState", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Provisioning_Version1_Transaction_OrderTracking) GetTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_OrderTracking", "getTransaction", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Provisioning_Version1_Transaction_OrderTrackingState struct {
+	Session *session.Session
+	Options sl.Options
+}
+
+// GetProvisioningVersion1TransactionOrderTrackingStateService returns an instance of the Provisioning_Version1_Transaction_OrderTrackingState SoftLayer service
+func GetProvisioningVersion1TransactionOrderTrackingStateService(sess *session.Session) Provisioning_Version1_Transaction_OrderTrackingState {
+	return Provisioning_Version1_Transaction_OrderTrackingState{Session: sess}
+}
+
+func (r Provisioning_Version1_Transaction_OrderTrackingState) Id(id int) Provisioning_Version1_Transaction_OrderTrackingState {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTrackingState) Mask(mask string) Provisioning_Version1_Transaction_OrderTrackingState {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTrackingState) Filter(filter string) Provisioning_Version1_Transaction_OrderTrackingState {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTrackingState) Limit(limit int) Provisioning_Version1_Transaction_OrderTrackingState {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Provisioning_Version1_Transaction_OrderTrackingState) Offset(offset int) Provisioning_Version1_Transaction_OrderTrackingState {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Provisioning_Version1_Transaction_OrderTrackingState) GetObject() (resp datatypes.Provisioning_Version1_Transaction_OrderTrackingState, err error) {
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_OrderTrackingState", "getObject", nil, &r.Options, &resp)
+	return
+}

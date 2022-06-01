@@ -3871,7 +3871,7 @@ func (r Network_Firewall_Update_Request) Offset(offset int) Network_Firewall_Upd
 	return r
 }
 
-// Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
+// Create a new firewall update request. If the SoftLayer_Network_Firewall_Update_Request object passed to this function has no rule, the firewall be set to bypass state and all the existing firewall rule(s) will be deleted.
 //
 // ''createObject'' returns a Boolean ''true'' on successful object creation or ''false'' if your firewall update request was unable to be created.
 func (r Network_Firewall_Update_Request) CreateObject(templateObject *datatypes.Network_Firewall_Update_Request) (resp datatypes.Network_Firewall_Update_Request, err error) {
@@ -14197,7 +14197,15 @@ func (r Network_Storage_Schedule_Property_Type) GetObject() (resp datatypes.Netw
 	return
 }
 
-// The SoftLayer_Network_Subnet data type contains general information relating to a single SoftLayer subnet. Personal information in this type such as names, addresses, and phone numbers are assigned to the account only and not to users belonging to the account.
+// A subnet represents a continguous range of IP addresses. The range is represented by the networkIdentifer and cidr/netmask properties. The version of a subnet, whether IPv4 or IPv6, is represented by the version property.
+//
+// When routed, a subnet is associated to a VLAN on your account, which defines its scope on the network. Depending on a subnet's route type, IP addresses may be reserved for network and internal functions, the most common of which is the allocation of network, gateway and broadcast IP addresses.
+//
+// An unrouted subnet is not active on the network and may generally be routed within the datacenter in which it resides.
+//
+// [Subnetwork at Wikipedia](http://en.wikipedia.org/wiki/Subnetwork)
+//
+// [RFC950:Internet Standard Subnetting Procedure](http://datatracker.ietf.org/doc/html/rfc950)
 type Network_Subnet struct {
 	Session *session.Session
 	Options sl.Options
@@ -14255,7 +14263,7 @@ func (r Network_Subnet) AllowAccessToNetworkStorageList(networkStorageTemplateOb
 	return
 }
 
-// This interface allows you to remove the route of your Account Owned subnets. The result will be a subnet that is no longer routed on the network. Remove the route of subnets you are not actively using, as it will make it easier to identify available subnets later.
+// This interface allows you to remove the route of your secondary subnets. The result will be a subnet that is no longer routed on the network. Remove the route of subnets you are not actively using, as it will make it easier to identify available subnets later.
 //
 // '''Important:''' When removing the route of ''Portable'' subnets, know that any subnet depending on an IP address provided by the Portable subnet will also have their routes removed!
 //
@@ -14322,7 +14330,7 @@ func (r Network_Subnet) GetAccount() (resp datatypes.Account, err error) {
 	return
 }
 
-// Retrieve If present, the active registration for this subnet.
+// Retrieve The active regional internet registration for this subnet.
 func (r Network_Subnet) GetActiveRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getActiveRegistration", nil, &r.Options, &resp)
 	return
@@ -14340,31 +14348,31 @@ func (r Network_Subnet) GetActiveTransaction() (resp datatypes.Provisioning_Vers
 	return
 }
 
-// Retrieve Identifier which distinguishes what classification of addresses the subnet represents.
+// Retrieve The classifier of IP addresses this subnet represents, generally PUBLIC or PRIVATE. This does not necessarily correlate with the network on which the subnet is used.
 func (r Network_Subnet) GetAddressSpace() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAddressSpace", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The SoftLayer_Network_Storage_Allowed_Host information to connect this Subnet to Network Storage supporting access control lists.
+// Retrieve The link from this subnet to network storage devices supporting access control lists.
 func (r Network_Subnet) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedHost", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The SoftLayer_Network_Storage objects that this SoftLayer_Hardware has access to.
+// Retrieve The network storage devices this subnet has been granted access to.
 func (r Network_Subnet) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorage", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
+// Retrieve The network storage device replicas this subnet has been granted access to.
 func (r Network_Subnet) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
 	return
 }
 
-// This method is retrieve a list of SoftLayer_Network_Storage volumes that are authorized access to this SoftLayer_Network_Subnet.
+// Retrieves the combination of network storage devices and replicas this subnet has been granted access to. Allows for filtering based on storage device type.
 func (r Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
@@ -14373,7 +14381,7 @@ func (r Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []data
 	return
 }
 
-// This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Network_Subnet.
+// Retrieves the combination of network storage devices and replicas this subnet has NOT been granted access to. Allows for filtering based on storage device type.
 func (r Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
@@ -14382,7 +14390,7 @@ func (r Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []dat
 	return
 }
 
-// Retrieve The billing item for a subnet.
+// Retrieve The active billing item for this subnet.
 func (r Network_Subnet) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBillingItem", nil, &r.Options, &resp)
 	return
@@ -14394,43 +14402,43 @@ func (r Network_Subnet) GetBoundDescendants() (resp []datatypes.Network_Subnet, 
 	return
 }
 
-// Retrieve Whether or not this subnet is associated with a router. Subnets that are not associated with a router cannot be routed.
+// Retrieve Indicates whether this subnet is associated to a network router and is routable on the network.
 func (r Network_Subnet) GetBoundRouterFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundRouterFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve The list of network routers that this subnet is directly associated with, defining where this subnet may be routed on the network.
 func (r Network_Subnet) GetBoundRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundRouters", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve The immediate descendants of this subnet.
 func (r Network_Subnet) GetChildren() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getChildren", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The data center this subnet may be routed within.
+// Retrieve The datacenter this subnet is primarily associated with.
 func (r Network_Subnet) GetDatacenter() (resp datatypes.Location_Datacenter, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDatacenter", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve The descendants of this subnet, including all parents and children.
 func (r Network_Subnet) GetDescendants() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDescendants", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve [DEPRECATED] The description of this subnet.
 func (r Network_Subnet) GetDisplayLabel() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDisplayLabel", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A static routed ip address
+// Retrieve The IP address target of this statically routed subnet.
 func (r Network_Subnet) GetEndPointIpAddress() (resp datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getEndPointIpAddress", nil, &r.Options, &resp)
 	return
@@ -14442,19 +14450,19 @@ func (r Network_Subnet) GetGlobalIpRecord() (resp datatypes.Network_Subnet_IpAdd
 	return
 }
 
-// Retrieve The hardware using IP addresses on this subnet.
+// Retrieve The Bare Metal devices which have been assigned a primary IP address from this subnet.
 func (r Network_Subnet) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getHardware", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve All the ip addresses associated with a subnet.
+// Retrieve The IP address records belonging to this subnet.
 func (r Network_Subnet) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The upstream network component firewall.
+// Retrieve The hardware firewall associated to this subnet via access control list.
 func (r Network_Subnet) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkComponentFirewall", nil, &r.Options, &resp)
 	return
@@ -14466,25 +14474,25 @@ func (r Network_Subnet) GetNetworkProtectionAddresses() (resp []datatypes.Networ
 	return
 }
 
-// Retrieve IPSec network tunnels that have access to a private subnet.
+// Retrieve The IPSec VPN tunnels associated to this subnet.
 func (r Network_Subnet) GetNetworkTunnelContexts() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkTunnelContexts", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The VLAN object that a subnet is associated with.
+// Retrieve The VLAN this subnet is associated with.
 func (r Network_Subnet) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkVlan", nil, &r.Options, &resp)
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_Subnet object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet service. You can only retrieve the subnet whose vlan is associated with the account that you portal user is assigned to.
+// Retrieves a subnet by its id value. Only subnets assigned to your account are accessible.
 func (r Network_Subnet) GetObject() (resp datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getObject", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The pod in which this subnet resides.
+// Retrieve The pod in which this subnet is currently routed.
 func (r Network_Subnet) GetPodName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getPodName", nil, &r.Options, &resp)
 	return
@@ -14496,13 +14504,13 @@ func (r Network_Subnet) GetProtectedIpAddresses() (resp []datatypes.Network_Subn
 	return
 }
 
-// Retrieve
+// Retrieve The RIR which is authoritative over the network in which this subnet resides.
 func (r Network_Subnet) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRegionalInternetRegistry", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve All registrations that have been created for this subnet.
+// Retrieve The regional internet registrations that have been created for this subnet.
 func (r Network_Subnet) GetRegistrations() (resp []datatypes.Network_Subnet_Registration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRegistrations", nil, &r.Options, &resp)
 	return
@@ -14520,7 +14528,7 @@ func (r Network_Subnet) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, 
 	return
 }
 
-// Retrieve An identifier of the role the subnet is within. Roles dictate how a subnet may be used.
+// Retrieve The role identifier that this subnet is participating in. Roles dictate how a subnet may be used.
 func (r Network_Subnet) GetRoleKeyName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoleKeyName", nil, &r.Options, &resp)
 	return
@@ -14538,13 +14546,13 @@ func (r Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Netwo
 	return
 }
 
-// Retrieve The identifier for the type of route then subnet is currently configured for.
+// Retrieve The product and route classifier for this routed subnet, with the following values: PRIMARY, SECONDARY, STATIC_TO_IP, GLOBAL_IP, IPSEC_STATIC_NAT.
 func (r Network_Subnet) GetRoutingTypeKeyName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutingTypeKeyName", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The name for the type of route then subnet is currently configured for.
+// Retrieve The description of the product and route classifier for this routed subnet, with the following values: Primary, Portable, Static, Global, IPSec Static NAT.
 func (r Network_Subnet) GetRoutingTypeName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutingTypeName", nil, &r.Options, &resp)
 	return
@@ -14565,7 +14573,7 @@ func (r Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Sw
 	return
 }
 
-// Retrieve References to all tags for this subnet.
+// Retrieve The tags associated to this subnet.
 func (r Network_Subnet) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getTagReferences", nil, &r.Options, &resp)
 	return
@@ -14577,19 +14585,19 @@ func (r Network_Subnet) GetUnboundDescendants() (resp []datatypes.Network_Subnet
 	return
 }
 
-// Retrieve Provides the total number of utilized IP addresses on this subnet. The primary consumer of IP addresses are compute resources, which can consume more than one address. This value is only supported for primary subnet types.
+// Retrieve The total number of utilized IP addresses on this subnet. The primary consumer of IP addresses are compute resources, which can consume more than one address. This value is only supported for primary subnets.
 func (r Network_Subnet) GetUtilizedIpAddressCount() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUtilizedIpAddressCount", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The Virtual Servers using IP addresses on this subnet.
+// Retrieve The Virtual Server devices which have been assigned a primary IP address from this subnet.
 func (r Network_Subnet) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getVirtualGuests", nil, &r.Options, &resp)
 	return
 }
 
-// This method is used to remove access to multiple SoftLayer_Network_Storage volumes
+// no documentation yet
 func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateObjects []datatypes.Network_Storage) (resp bool, err error) {
 	params := []interface{}{
 		networkStorageTemplateObjects,
@@ -14598,7 +14606,7 @@ func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateO
 	return
 }
 
-// This interface allows you to change the route of your Account Owned subnets. It accommodates a number of ways to identify your desired routing destination through the use of a 'type' and 'identifier'. Subnets may be routed as either Static or Portable, and that designation is dictated by the routing destination specified.
+// This interface allows you to change the route of your secondary subnets. It accommodates a number of ways to identify your desired routing destination through the use of a 'type' and 'identifier'. Subnets may be routed as either Static or Portable, and that designation is dictated by the routing destination specified.
 //
 // Static subnets have an ultimate routing destination of a single IP address but may not be routed to an existing subnet's IP address whose subnet is routed as a Static. Portable subnets have an ultimate routing destination of a VLAN.
 //
@@ -14612,11 +14620,11 @@ func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateO
 //
 // ''SoftLayer_Network_Subnet_IpAddress'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Subnet_IpAddress.id value of the desired IP address object.</li> <li>A dotted-quad IPv4 address.</li> <li>A full or compressed IPv6 address.</li> </ul>
 //
-// ''SoftLayer_Network_Vlan'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Vlan.id value of the desired VLAN object.</li> <li>A semantic VLAN identifier of the form <data center short name>.<router>.<vlan number>, eg. dal13.fcr01.1234 - the router name may optionally contain the 'a' or 'b' redundancy qualifier (which has no meaning in this context).</li> </ul>
+// ''SoftLayer_Network_Vlan'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Vlan.id value of the desired VLAN object.</li> <li>A semantic VLAN identifier of the form &lt;data center short name&gt;.&lt;router&gt;.&lt;vlan number&gt;, where &lt; and &gt; are literal, eg. dal13.fcr01.1234 - the router name may optionally contain the 'a' or 'b' redundancy qualifier (which has no meaning in this context).</li> </ul>
 //
-// ''SoftLayer_Hardware_Server'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Hardware_Server.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Hardware_Server.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Hardware_Server.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, hostname refers to SoftLayer_Hardware_Server.hostname and domain to SoftLayer_Hardware_Server.domain, respectively.</li> </ul>
+// ''SoftLayer_Hardware_Server'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Hardware_Server.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Hardware_Server.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Hardware_Server.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Hardware_Server.hostname and domain to SoftLayer_Hardware_Server.domain, respectively.</li> </ul>
 //
-// ''SoftLayer_Virtual_Guest'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Virtual_Guest.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Virtual_Guest.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Virtual_Guest.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, hostname refers to SoftLayer_Virtual_Guest.hostname and domain to SoftLayer_Virtual_Guest.domain, respectively.</li> </ul>
+// ''SoftLayer_Virtual_Guest'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Virtual_Guest.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Virtual_Guest.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Virtual_Guest.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Virtual_Guest.hostname and domain to SoftLayer_Virtual_Guest.domain, respectively.</li> </ul>
 //
 // The routing destination result of specifying a SoftLayer_Hardware_Server or SoftLayer_Virtual_Guest type will be the primary IP address of the server for the same network segment the subnet is on. Thus, a public subnet will be routed to the server's public, primary IP address. Additionally, this IP address resolution will match the subnet's IP version; routing a IPv6 subnet to a server will result in selection of the primary IPv6 address of the respective network segment, if available.
 //
