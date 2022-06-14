@@ -3181,6 +3181,20 @@ type Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer struct
 	ProvisionedCount *int `json:"provisionedCount,omitempty" xmlrpc:"provisionedCount,omitempty"`
 }
 
+// no documentation yet
+type Container_Network_Storage_DuplicateConversionStatusInformation struct {
+	Entity
+
+	// This represents the timestamp when current conversion process started.
+	ActiveConversionStartTime *string `json:"activeConversionStartTime,omitempty" xmlrpc:"activeConversionStartTime,omitempty"`
+
+	// This represents the percentage progress of conversion of a dependent
+	DeDuplicateConversionPercentage *int `json:"deDuplicateConversionPercentage,omitempty" xmlrpc:"deDuplicateConversionPercentage,omitempty"`
+
+	// This represents the volume username.
+	VolumeUsername *string `json:"volumeUsername,omitempty" xmlrpc:"volumeUsername,omitempty"`
+}
+
 // SoftLayer's StorageLayer Evault services provides details regarding the the purchased vault.
 //
 // When a job is created using the Webcc Console, the job created is identified as a task on the vault. Using this service, information regarding the task can be retrieved.

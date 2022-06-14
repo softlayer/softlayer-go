@@ -1811,6 +1811,12 @@ type Network_Gateway_Member struct {
 	// A gateway member's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
+	// A count of the gateway licenses for this member.
+	LicenseCount *uint `json:"licenseCount,omitempty" xmlrpc:"licenseCount,omitempty"`
+
+	// The gateway licenses for this member.
+	Licenses []Network_Gateway_Member_Licenses `json:"licenses,omitempty" xmlrpc:"licenses,omitempty"`
+
 	// The gateway this member belongs to.
 	NetworkGateway *Network_Gateway `json:"networkGateway,omitempty" xmlrpc:"networkGateway,omitempty"`
 
@@ -1875,6 +1881,20 @@ type Network_Gateway_Member_Attribute struct {
 
 	// Precheck Warning code for Version / License Unsupported for member.
 	WarningCode *int `json:"warningCode,omitempty" xmlrpc:"warningCode,omitempty"`
+}
+
+// no documentation yet
+type Network_Gateway_Member_Licenses struct {
+	Entity
+
+	// no documentation yet
+	ExpirationDate *Time `json:"expirationDate,omitempty" xmlrpc:"expirationDate,omitempty"`
+
+	// The gateway member has these licenses.
+	GatewayMember *Network_Gateway_Member `json:"gatewayMember,omitempty" xmlrpc:"gatewayMember,omitempty"`
+
+	// no documentation yet
+	LicenseKey *string `json:"licenseKey,omitempty" xmlrpc:"licenseKey,omitempty"`
 }
 
 // no documentation yet
@@ -3927,6 +3947,9 @@ type Network_Storage struct {
 	// The maximum number of IOPs selected for this volume.
 	Iops *string `json:"iops,omitempty" xmlrpc:"iops,omitempty"`
 
+	// Determines whether network storage volume has an active convert dependent clone to Independent transaction.
+	IsConvertToIndependentTransactionInProgress *bool `json:"isConvertToIndependentTransactionInProgress,omitempty" xmlrpc:"isConvertToIndependentTransactionInProgress,omitempty"`
+
 	// Determines whether dependent volume provision is completed on background.
 	IsDependentDuplicateProvisionCompleted *bool `json:"isDependentDuplicateProvisionCompleted,omitempty" xmlrpc:"isDependentDuplicateProvisionCompleted,omitempty"`
 
@@ -3935,6 +3958,9 @@ type Network_Storage struct {
 
 	// no documentation yet
 	IsMagneticStorage *string `json:"isMagneticStorage,omitempty" xmlrpc:"isMagneticStorage,omitempty"`
+
+	// Determines whether network storage volume has an active provision transaction.
+	IsProvisionInProgress *bool `json:"isProvisionInProgress,omitempty" xmlrpc:"isProvisionInProgress,omitempty"`
 
 	// Determines whether a volume is ready to order snapshot space, or, if snapshot space is already available, to assign a snapshot schedule, or to take a manual snapshot.
 	IsReadyForSnapshot *bool `json:"isReadyForSnapshot,omitempty" xmlrpc:"isReadyForSnapshot,omitempty"`

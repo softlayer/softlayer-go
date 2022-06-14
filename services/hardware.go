@@ -5132,6 +5132,12 @@ func (r Hardware_SecurityModule) GetPrimaryNetworkComponent() (resp datatypes.Ne
 	return
 }
 
+// Retrieve A collection of backendNetwork components
+func (r Hardware_SecurityModule) GetPrivateBackendNetworkComponents() (resp []datatypes.Network_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_SecurityModule) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -7535,6 +7541,12 @@ func (r Hardware_SecurityModule750) GetPrimaryNetworkComponent() (resp datatypes
 	return
 }
 
+// Retrieve A collection of backendNetwork components
+func (r Hardware_SecurityModule750) GetPrivateBackendNetworkComponents() (resp []datatypes.Network_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_SecurityModule750) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -9935,6 +9947,12 @@ func (r Hardware_Server) GetPrimaryIpAddress() (resp string, err error) {
 // Retrieve Information regarding the hardware's primary public network component.
 func (r Hardware_Server) GetPrimaryNetworkComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrimaryNetworkComponent", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A collection of backendNetwork components
+func (r Hardware_Server) GetPrivateBackendNetworkComponents() (resp []datatypes.Network_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
