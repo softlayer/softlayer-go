@@ -815,6 +815,7 @@ func (r User_Customer) InviteUserToLinkOpenIdConnect(providerType *string) (err 
 }
 
 // Portal users are considered master users if they don't have an associated parent user. The only users who don't have parent users are users whose username matches their SoftLayer account name. Master users have special permissions throughout the SoftLayer customer portal.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer) IsMasterUser() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "isMasterUser", nil, &r.Options, &resp)
 	return
@@ -1287,6 +1288,7 @@ func (r User_Customer_CustomerPermission_Permission) Offset(offset int) User_Cus
 }
 
 // Retrieve all available permissions.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer_CustomerPermission_Permission) GetAllObjects() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_CustomerPermission_Permission", "getAllObjects", nil, &r.Options, &resp)
 	return
@@ -3112,6 +3114,7 @@ func (r User_Customer_OpenIdConnect) GetPortalLoginToken(username *string, passw
 }
 
 // Attempt to authenticate a supplied OpenIdConnect access token to the SoftLayer customer portal. If authentication is successful then the API returns a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer_OpenIdConnect) GetPortalLoginTokenOpenIdConnect(providerType *string, accessToken *string, accountId *int, securityQuestionId *int, securityQuestionAnswer *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		providerType,
@@ -3340,6 +3343,7 @@ func (r User_Customer_OpenIdConnect) InviteUserToLinkOpenIdConnect(providerType 
 }
 
 // Portal users are considered master users if they don't have an associated parent user. The only users who don't have parent users are users whose username matches their SoftLayer account name. Master users have special permissions throughout the SoftLayer customer portal.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer_OpenIdConnect) IsMasterUser() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "isMasterUser", nil, &r.Options, &resp)
 	return
@@ -4338,6 +4342,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetPortalLoginToken(username
 }
 
 // Attempt to authenticate a supplied OpenIdConnect access token to the SoftLayer customer portal. If authentication is successful then the API returns a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetPortalLoginTokenOpenIdConnect(providerType *string, accessToken *string, accountId *int, securityQuestionId *int, securityQuestionAnswer *string) (resp datatypes.Container_User_Customer_Portal_Token, err error) {
 	params := []interface{}{
 		providerType,
@@ -4566,6 +4571,7 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) InviteUserToLinkOpenIdConnec
 }
 
 // Portal users are considered master users if they don't have an associated parent user. The only users who don't have parent users are users whose username matches their SoftLayer account name. Master users have special permissions throughout the SoftLayer customer portal.
+// Deprecated: This function has been marked as deprecated.
 func (r User_Customer_OpenIdConnect_TrustedProfile) IsMasterUser() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "isMasterUser", nil, &r.Options, &resp)
 	return

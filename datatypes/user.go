@@ -204,6 +204,7 @@ type User_Customer struct {
 	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName,omitempty"`
 
 	// A user's password for the SoftLayer forums, hashed for auto-login capability from the SoftLayer customer portal
+	// Deprecated: This function has been marked as deprecated.
 	ForumPasswordHash *string `json:"forumPasswordHash,omitempty" xmlrpc:"forumPasswordHash,omitempty"`
 
 	// A portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
@@ -342,6 +343,7 @@ type User_Customer struct {
 	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
 
 	// Whether a portal user may connect to the SoftLayer private network via PPTP VPN or not.
+	// Deprecated: This function has been marked as deprecated.
 	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
 
 	// A count of data type contains a single user preference to a specific preference type.
@@ -702,6 +704,7 @@ type User_Customer_Link struct {
 	DestinationUserAlphanumericId *string `json:"destinationUserAlphanumericId,omitempty" xmlrpc:"destinationUserAlphanumericId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	DestinationUserId *int `json:"destinationUserId,omitempty" xmlrpc:"destinationUserId,omitempty"`
 
 	// no documentation yet
@@ -1286,6 +1289,7 @@ type User_Permission_Action struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Key *string `json:"key,omitempty" xmlrpc:"key,omitempty"`
 
 	// no documentation yet

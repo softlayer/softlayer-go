@@ -487,6 +487,7 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *dataty
 }
 
 // (DEPRECATED) Use [[SoftLayer_Provisioning_Maintenance_Window::getMaintenanceWindows|getMaintenanceWindows]] method.
+// Deprecated: This function has been marked as deprecated.
 func (r Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
 		beginDate,

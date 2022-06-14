@@ -154,6 +154,7 @@ type Billing_Info struct {
 	SparePoolAmount *int `json:"sparePoolAmount,omitempty" xmlrpc:"sparePoolAmount,omitempty"`
 
 	// This property has been deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	TaxCertificateId *string `json:"taxCertificateId,omitempty" xmlrpc:"taxCertificateId,omitempty"`
 
 	// no documentation yet

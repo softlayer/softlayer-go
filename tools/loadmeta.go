@@ -42,14 +42,18 @@ type Type struct {
 	ServiceDoc string              `json:"serviceDoc"`
 	Methods    map[string]Method   `json:"methods"`
 	NoService  bool                `json:"noservice"`
+	Overview   string              `json:"docOverview"`
+	Deprecated bool                `json:"deprecated"`
 }
 
 type Property struct {
-	Name      string `json:"name"`
-	Type      string `json:"type"`
-	TypeArray bool   `json:"typeArray"`
-	Form      string `json:"form"`
-	Doc       string `json:"doc"`
+	Name       string `json:"name"`
+	Type       string `json:"type"`
+	TypeArray  bool   `json:"typeArray"`
+	Form       string `json:"form"`
+	Doc        string `json:"doc"`
+	Overview   string `json:"docOverview"`
+	Deprecated bool   `json:"deprecated"`
 }
 
 type Method struct {
@@ -63,6 +67,8 @@ type Method struct {
 	Filterable bool        `json:"filterable"`
 	Maskable   bool        `json:"maskable"`
 	Parameters []Parameter `json:"parameters"`
+	Overview   string      `json:"docOverview"`
+	Deprecated bool        `json:"deprecated"`
 }
 
 type Parameter struct {
@@ -83,6 +89,8 @@ var fMap = template.FuncMap{
 	"goDoc":           GoDoc,               // Format a go doc string
 	"tags":            Tags,                // Remove omitempty tags if required
 	"phraseMethodArg": phraseMethodArg,     // Get proper phrase for method argument
+	"getTypePrefix":   getTypePrefix,       // resturns [], * or nothing.
+	"deprecatedDoc":   deprecatedDoc,       // Marks things as deprecated if needed.
 }
 
 var datatype = fmt.Sprintf(`%s
@@ -95,11 +103,12 @@ package datatypes
 type {{.Name|removePrefix}} struct {
 	{{.Base|removePrefix}}
 
-	{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}
-	{{.Name|titleCase}} {{if .TypeArray}}[]{{else}}*{{end}}{{convertType .Type "datatypes" $base .Name}}`+
+{{$base := .Name}}{{range .Properties}}{{.Doc|goDoc}}{{deprecatedDoc .Deprecated}}`+
+	`{{$thisType := convertType .Type "datatypes" $base .Name}}
+	{{.Name|titleCase}} {{getTypePrefix .TypeArray $thisType}}{{$thisType}}`+
 	"`json:\"{{.Name|tags}}\" xmlrpc:\"{{.Name|tags}}\"`"+`
 
-	{{end}}
+{{end}}
 }
 
 {{end}}
@@ -116,7 +125,7 @@ import (
 	"strings"
 )
 
-{{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}
+{{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}{{deprecatedDoc .Deprecated}}
 	type {{$base}} struct {
 		Session *session.Session
 		Options sl.Options
@@ -156,7 +165,7 @@ import (
 		return r
 	}
 
-	{{$rawBase := .Name}}{{range .Methods}}{{$methodName := .Name}}{{.Doc|goDoc}}
+	{{$rawBase := .Name}}{{range .Methods}}{{$methodName := .Name}}{{.Doc|goDoc}}{{deprecatedDoc .Deprecated}}
 	func (r {{$base}}) {{.Name|titleCase}}({{range .Parameters}}{{phraseMethodArg $methodName .Name .TypeArray .Type}}{{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
 		{{if .Type|eq "void"}}var resp datatypes.Void
 		{{end}}{{if or (eq .Name "placeOrder") (eq .Name "verifyOrder")}}err = datatypes.SetComplexType(orderData)
@@ -284,6 +293,11 @@ func ConvertType(args ...interface{}) string {
 		t = RemovePrefix(t)
 		if p != "datatypes" {
 			return "datatypes." + t
+		}
+		// A Property called Resource that is an 'Entity' can be multiple types in reality
+		// Specifically this is for Container_Search_Result
+		if len(args) >= 4 && args[3] == "resource" && t == "Entity" {
+			return "interface{}"
 		}
 		return t
 	}
@@ -569,4 +583,21 @@ func makeHttpRequest(url string, requestType string, requestBody *bytes.Buffer) 
 	}
 
 	return responseBody, resp.StatusCode, nil
+}
+
+func getTypePrefix(isArray bool, theType string) string {
+	if isArray {
+		return "[]"
+	}
+	if theType != "interface{}" {
+		return "*"
+	}
+	return ""
+}
+
+func deprecatedDoc(isDeprecated bool) string {
+	if isDeprecated {
+		return "\n// Deprecated: This function has been marked as deprecated."
+	}
+	return ""
 }

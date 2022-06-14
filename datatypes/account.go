@@ -195,6 +195,7 @@ type Account struct {
 	AllowIbmIdSilentMigrationFlag *bool `json:"allowIbmIdSilentMigrationFlag,omitempty" xmlrpc:"allowIbmIdSilentMigrationFlag,omitempty"`
 
 	// The number of PPTP VPN users allowed on an account.
+	// Deprecated: This function has been marked as deprecated.
 	AllowedPptpVpnQuantity *int `json:"allowedPptpVpnQuantity,omitempty" xmlrpc:"allowedPptpVpnQuantity,omitempty"`
 
 	// Flag indicating if this account can be linked with Bluemix.
@@ -285,6 +286,7 @@ type Account struct {
 	BusinessPartner *Account_Business_Partner `json:"businessPartner,omitempty" xmlrpc:"businessPartner,omitempty"`
 
 	// [DEPRECATED] All accounts may order VLANs.
+	// Deprecated: This function has been marked as deprecated.
 	CanOrderAdditionalVlansFlag *bool `json:"canOrderAdditionalVlansFlag,omitempty" xmlrpc:"canOrderAdditionalVlansFlag,omitempty"`
 
 	// A count of an account's active carts.
@@ -435,6 +437,7 @@ type Account struct {
 	GlobalLoadBalancerAccountCount *uint `json:"globalLoadBalancerAccountCount,omitempty" xmlrpc:"globalLoadBalancerAccountCount,omitempty"`
 
 	// [Deprecated] The global load balancer accounts for a softlayer customer account.
+	// Deprecated: This function has been marked as deprecated.
 	GlobalLoadBalancerAccounts []Network_LoadBalancer_Global_Account `json:"globalLoadBalancerAccounts,omitempty" xmlrpc:"globalLoadBalancerAccounts,omitempty"`
 
 	// An account's associated hardware objects.
@@ -1164,6 +1167,7 @@ type Account struct {
 	Routers []Hardware `json:"routers,omitempty" xmlrpc:"routers,omitempty"`
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	RwhoisData []Network_Subnet_Rwhois_Data `json:"rwhoisData,omitempty" xmlrpc:"rwhoisData,omitempty"`
 
 	// A count of dEPRECATED
@@ -1506,6 +1510,7 @@ type Account_Address_Type struct {
 	Entity
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
@@ -1633,6 +1638,7 @@ type Account_Attachment_Employee struct {
 	EmployeeRole *Account_Attachment_Employee_Role `json:"employeeRole,omitempty" xmlrpc:"employeeRole,omitempty"`
 
 	// Role identifier.
+	// Deprecated: This function has been marked as deprecated.
 	RoleId *int `json:"roleId,omitempty" xmlrpc:"roleId,omitempty"`
 }
 
@@ -2916,6 +2922,7 @@ type Account_Shipment_Item_Type struct {
 	Entity
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
@@ -2938,6 +2945,7 @@ type Account_Shipment_Status struct {
 	Entity
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
@@ -2996,6 +3004,7 @@ type Account_Shipment_Type struct {
 	Entity
 
 	// DEPRECATED
+	// Deprecated: This function has been marked as deprecated.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
