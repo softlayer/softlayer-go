@@ -1229,6 +1229,110 @@ type Billing_Item_Cancellation_Request_Status struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// no documentation yet
+type Billing_Item_Chronicle struct {
+	Entity
+
+	// no documentation yet
+	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
+
+	// no documentation yet
+	AssociatedBillingItemId *int `json:"associatedBillingItemId,omitempty" xmlrpc:"associatedBillingItemId,omitempty"`
+
+	// A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
+	AssociatedChildren []Billing_Item_Chronicle `json:"associatedChildren,omitempty" xmlrpc:"associatedChildren,omitempty"`
+
+	// no documentation yet
+	AssociatedChildrenCount *int `json:"associatedChildrenCount,omitempty" xmlrpc:"associatedChildrenCount,omitempty"`
+
+	// no documentation yet
+	CancellationDate *Time `json:"cancellationDate,omitempty" xmlrpc:"cancellationDate,omitempty"`
+
+	// no documentation yet
+	CategoryCode *string `json:"categoryCode,omitempty" xmlrpc:"categoryCode,omitempty"`
+
+	// no documentation yet
+	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
+
+	// no documentation yet
+	CurrentHourlyCharge *Float64 `json:"currentHourlyCharge,omitempty" xmlrpc:"currentHourlyCharge,omitempty"`
+
+	// no documentation yet
+	CycleStartDate *Time `json:"cycleStartDate,omitempty" xmlrpc:"cycleStartDate,omitempty"`
+
+	// no documentation yet
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// no documentation yet
+	DomainName *string `json:"domainName,omitempty" xmlrpc:"domainName,omitempty"`
+
+	// no documentation yet
+	ExternalAccountId *string `json:"externalAccountId,omitempty" xmlrpc:"externalAccountId,omitempty"`
+
+	// no documentation yet
+	HostName *string `json:"hostName,omitempty" xmlrpc:"hostName,omitempty"`
+
+	// no documentation yet
+	HourlyFlag *bool `json:"hourlyFlag,omitempty" xmlrpc:"hourlyFlag,omitempty"`
+
+	// no documentation yet
+	HourlyRecurringFee *Float64 `json:"hourlyRecurringFee,omitempty" xmlrpc:"hourlyRecurringFee,omitempty"`
+
+	// no documentation yet
+	HoursUsed *int `json:"hoursUsed,omitempty" xmlrpc:"hoursUsed,omitempty"`
+
+	// The id for the chronicle record will match one to one the id for the corresponding billing item.
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	ItemId *int `json:"itemId,omitempty" xmlrpc:"itemId,omitempty"`
+
+	// no documentation yet
+	LaborFee *Float64 `json:"laborFee,omitempty" xmlrpc:"laborFee,omitempty"`
+
+	// no documentation yet
+	LastBillDate *Time `json:"lastBillDate,omitempty" xmlrpc:"lastBillDate,omitempty"`
+
+	// no documentation yet
+	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
+
+	// no documentation yet
+	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
+
+	// no documentation yet
+	NextBillDate *Time `json:"nextBillDate,omitempty" xmlrpc:"nextBillDate,omitempty"`
+
+	// no documentation yet
+	OneTimeFee *Float64 `json:"oneTimeFee,omitempty" xmlrpc:"oneTimeFee,omitempty"`
+
+	// no documentation yet
+	ParentId *int `json:"parentId,omitempty" xmlrpc:"parentId,omitempty"`
+
+	// The entry in the product catalog that the underlying billing item is based on.
+	Product *Product_Item `json:"product,omitempty" xmlrpc:"product,omitempty"`
+
+	// no documentation yet
+	RecurringFee *Float64 `json:"recurringFee,omitempty" xmlrpc:"recurringFee,omitempty"`
+
+	// no documentation yet
+	RecurringMonths *int `json:"recurringMonths,omitempty" xmlrpc:"recurringMonths,omitempty"`
+
+	// no documentation yet
+	ResourceTableId *int `json:"resourceTableId,omitempty" xmlrpc:"resourceTableId,omitempty"`
+
+	// no documentation yet
+	ResourceTableName *string `json:"resourceTableName,omitempty" xmlrpc:"resourceTableName,omitempty"`
+
+	// no documentation yet
+	SetupFee *Float64 `json:"setupFee,omitempty" xmlrpc:"setupFee,omitempty"`
+
+	// no documentation yet
+	TopLevelProductGroupName *string `json:"topLevelProductGroupName,omitempty" xmlrpc:"topLevelProductGroupName,omitempty"`
+
+	// no documentation yet
+	UsageChargeFlag *bool `json:"usageChargeFlag,omitempty" xmlrpc:"usageChargeFlag,omitempty"`
+}
+
 // The SoftLayer_Billing_Item_Ctc_Account data type contains general information relating to a single SoftLayer billing item for a CTC client account creation
 type Billing_Item_Ctc_Account struct {
 	Billing_Item

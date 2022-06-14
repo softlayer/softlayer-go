@@ -4407,6 +4407,12 @@ func (r Network_Gateway_Member) GetHardware() (resp datatypes.Hardware, err erro
 	return
 }
 
+// Retrieve The gateway licenses for this member.
+func (r Network_Gateway_Member) GetLicenses() (resp []datatypes.Network_Gateway_Member_Licenses, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getLicenses", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The gateway this member belongs to.
 func (r Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getNetworkGateway", nil, &r.Options, &resp)
@@ -6696,6 +6702,12 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Net
 	return
 }
 
+// no documentation yet
+func (r Network_Message_Delivery_Email_Sendgrid) GetOfferingsList() (resp []string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getOfferingsList", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve A flag that determines if a SendGrid e-mail delivery account has access to send mail through the SendGrid SMTP server.
 func (r Network_Message_Delivery_Email_Sendgrid) GetSmtpAccess() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getSmtpAccess", nil, &r.Options, &resp)
@@ -8076,6 +8088,12 @@ func (r Network_Storage) GetDependentDuplicates() (resp []datatypes.Network_Stor
 	return
 }
 
+// This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
+func (r Network_Storage) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDuplicateConversionStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &r.Options, &resp)
@@ -8200,6 +8218,12 @@ func (r Network_Storage) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether network storage volume has an active convert dependent clone to Independent transaction.
+func (r Network_Storage) GetIsConvertToIndependentTransactionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsConvertToIndependentTransactionInProgress", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Determines whether dependent volume provision is completed on background.
 func (r Network_Storage) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
@@ -8215,6 +8239,12 @@ func (r Network_Storage) GetIsInDedicatedServiceResource() (resp bool, err error
 // Retrieve
 func (r Network_Storage) GetIsMagneticStorage() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsMagneticStorage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether network storage volume has an active provision transaction.
+func (r Network_Storage) GetIsProvisionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIsProvisionInProgress", nil, &r.Options, &resp)
 	return
 }
 
@@ -10315,6 +10345,12 @@ func (r Network_Storage_Backup_Evault) GetDependentDuplicates() (resp []datatype
 	return
 }
 
+// This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
+func (r Network_Storage_Backup_Evault) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDuplicateConversionStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
@@ -10459,6 +10495,12 @@ func (r Network_Storage_Backup_Evault) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether network storage volume has an active convert dependent clone to Independent transaction.
+func (r Network_Storage_Backup_Evault) GetIsConvertToIndependentTransactionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsConvertToIndependentTransactionInProgress", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Determines whether dependent volume provision is completed on background.
 func (r Network_Storage_Backup_Evault) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
@@ -10474,6 +10516,12 @@ func (r Network_Storage_Backup_Evault) GetIsInDedicatedServiceResource() (resp b
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetIsMagneticStorage() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsMagneticStorage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether network storage volume has an active provision transaction.
+func (r Network_Storage_Backup_Evault) GetIsProvisionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIsProvisionInProgress", nil, &r.Options, &resp)
 	return
 }
 
@@ -12729,6 +12777,12 @@ func (r Network_Storage_Iscsi) GetDependentDuplicates() (resp []datatypes.Networ
 	return
 }
 
+// This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
+func (r Network_Storage_Iscsi) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDuplicateConversionStatus", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
@@ -12853,6 +12907,12 @@ func (r Network_Storage_Iscsi) GetIops() (resp string, err error) {
 	return
 }
 
+// Retrieve Determines whether network storage volume has an active convert dependent clone to Independent transaction.
+func (r Network_Storage_Iscsi) GetIsConvertToIndependentTransactionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsConvertToIndependentTransactionInProgress", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Determines whether dependent volume provision is completed on background.
 func (r Network_Storage_Iscsi) GetIsDependentDuplicateProvisionCompleted() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsDependentDuplicateProvisionCompleted", nil, &r.Options, &resp)
@@ -12868,6 +12928,12 @@ func (r Network_Storage_Iscsi) GetIsInDedicatedServiceResource() (resp bool, err
 // Retrieve
 func (r Network_Storage_Iscsi) GetIsMagneticStorage() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsMagneticStorage", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Determines whether network storage volume has an active provision transaction.
+func (r Network_Storage_Iscsi) GetIsProvisionInProgress() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIsProvisionInProgress", nil, &r.Options, &resp)
 	return
 }
 

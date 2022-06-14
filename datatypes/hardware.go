@@ -1991,6 +1991,12 @@ type Hardware_Server struct {
 	// no documentation yet
 	Partitions []Hardware_Server_Partition `json:"partitions,omitempty" xmlrpc:"partitions,omitempty"`
 
+	// A count of a collection of backendNetwork components
+	PrivateBackendNetworkComponentCount *uint `json:"privateBackendNetworkComponentCount,omitempty" xmlrpc:"privateBackendNetworkComponentCount,omitempty"`
+
+	// A collection of backendNetwork components
+	PrivateBackendNetworkComponents []Network_Component `json:"privateBackendNetworkComponents,omitempty" xmlrpc:"privateBackendNetworkComponents,omitempty"`
+
 	// A server's primary private IP address.
 	PrivateIpAddress *string `json:"privateIpAddress,omitempty" xmlrpc:"privateIpAddress,omitempty"`
 
