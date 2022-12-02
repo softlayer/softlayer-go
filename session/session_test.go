@@ -69,7 +69,7 @@ func TestSetTimeout(t *testing.T) {
 	s = s.SetTimeout(newTimeout)
 
 	if s.Timeout != newTimeout {
-		t.Errorf("Session.Timeout (%v) != newTimeout (%v)",s.Timeout, newTimeout)
+		t.Errorf("Session.Timeout (%v) != newTimeout (%v)", s.Timeout, newTimeout)
 	}
 }
 
@@ -82,7 +82,7 @@ func TestSetRetryWait(t *testing.T) {
 	s = s.SetRetryWait(newTimeout)
 
 	if s.RetryWait != newTimeout {
-		t.Errorf("Session.RetryWait (%v) != newTimeout (%v)",s.RetryWait, newTimeout)
+		t.Errorf("Session.RetryWait (%v) != newTimeout (%v)", s.RetryWait, newTimeout)
 	}
 }
 

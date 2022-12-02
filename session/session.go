@@ -355,7 +355,7 @@ func isRetryable(err error) bool {
 	return isTimeout(err) || hasRetryableCode(err)
 }
 
-//Set ENV Variable SL_USERAGENT to append that to the useragent string
+// Set ENV Variable SL_USERAGENT to append that to the useragent string
 func getDefaultUserAgent() string {
 	envAgent := os.Getenv("SL_USERAGENT")
 	if envAgent != "" {
