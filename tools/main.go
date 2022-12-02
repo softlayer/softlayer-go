@@ -27,8 +27,7 @@ Commands:
 
 	generate: Generate the SDK from the API metadata
 
-	version: library version management
-`
+	version: library version management`
 
 func main() {
 	if len(os.Args) < 2 {
