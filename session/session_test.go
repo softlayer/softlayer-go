@@ -3,6 +3,7 @@ package session
 import (
 	"strings"
 	"testing"
+	"os"
 )
 
 func TestSession_WithDefaultUserAgent(t *testing.T) {
@@ -11,6 +12,22 @@ func TestSession_WithDefaultUserAgent(t *testing.T) {
 	actual := s.userAgent
 	if actual != expected {
 		t.Errorf("UserAgent expected %s, actual %s", expected, actual)
+	}
+}
+
+func TestSession_WithOSENV(t *testing.T) {
+	
+	old, exists := os.LookupEnv("SL_USERAGENT")
+	os.Setenv("SL_USERAGENT", "session_test")
+	expected := getDefaultUserAgent()
+
+	if !strings.Contains(expected, "session_test") {
+		t.Errorf("UserAgent '%s' does not contain %s", expected, "session_test")
+	}
+	if exists {
+		os.Setenv("SL_USERAGENT", old)
+	} else {
+		os.Unsetenv("SL_USERAGENT")
 	}
 }
 
