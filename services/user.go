@@ -252,8 +252,6 @@ func (r User_Customer) CheckExternalAuthenticationStatus(authenticationContainer
 }
 
 // Add a description here
-//
-//
 func (r User_Customer) CheckPhoneFactorAuthenticationForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		passwordSet,
@@ -1616,7 +1614,6 @@ func (r User_Customer_External_Binding_Phone) UpdateNote(text *string) (resp boo
 
 // Phone external binding supports a primary and a backup phone number. You can use this method to update your phone number used for the phone authentication. You can provide an array of [[SoftLayer_Container_User_Data_Phone|User Phone]] objects. You have to mark one as the primary phone number by setting "phoneType" to "PRIMARY".
 //
-//
 // *countryCode: Country code number for the phone number. Default: 1 (United States & Canada +1)
 // *phone: Phone number that 2 Form Factor system will call or text for user authentication.
 // The phone number format must match the format selected in the Country Code.
@@ -1624,8 +1621,6 @@ func (r User_Customer_External_Binding_Phone) UpdateNote(text *string) (resp boo
 // are allowed.  Commas can be used for a one second pause to navigate phone system menus.
 // *phoneType: Specify the primary and backup phone number by setting this value to "PRIMARY" or "BACKUP".
 // If omitted, it will be considered to be the primary phone number. If you are passing two Phone objects, you must specify the phone type of each phone number.
-//
-//
 func (r User_Customer_External_Binding_Phone) UpdatePhone(phoneData []datatypes.Container_User_Data_Phone) (resp bool, err error) {
 	params := []interface{}{
 		phoneData,
@@ -1641,7 +1636,6 @@ func (r User_Customer_External_Binding_Phone) UpdatePhone(phoneData []datatypes.
 // * The current state of the credential
 // ** Active
 // ** Inactive
-//
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Totp struct {
@@ -1843,7 +1837,6 @@ func (r User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User_
 // ** Locked
 // * The credential's expiration date
 // * The last time the credential was updated
-//
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Verisign struct {
@@ -2699,8 +2692,6 @@ func (r User_Customer_OpenIdConnect) CheckExternalAuthenticationStatus(authentic
 }
 
 // Add a description here
-//
-//
 func (r User_Customer_OpenIdConnect) CheckPhoneFactorAuthenticationForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		passwordSet,
@@ -3949,8 +3940,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) CheckExternalAuthenticationS
 }
 
 // Add a description here
-//
-//
 func (r User_Customer_OpenIdConnect_TrustedProfile) CheckPhoneFactorAuthenticationForPasswordSet(passwordSet *datatypes.Container_User_Customer_PasswordSet, authenticationContainer *datatypes.Container_User_Customer_External_Binding) (resp bool, err error) {
 	params := []interface{}{
 		passwordSet,
@@ -5113,8 +5102,6 @@ func (r User_Customer_Security_Answer) GetUser() (resp datatypes.User_Customer, 
 // Each SoftLayer User Customer instance is assigned a status code that determines how it's treated in the customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Status differs from user permissions in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 //
 // Note that a status of "PENDING" also has been added. This status is specific to users that are configured to use IBMid authentication. This would include some (not all) users on accounts that are linked to Platform Services (PaaS, formerly Bluemix) accounts, but is not limited to users in such accounts. Using IBMid authentication is optional for active users even if it is not required by the account type. PENDING status indicates that a relationship between an IBMid and a user is being set up but is not complete. To be complete, PENDING users need to perform an action ("accepting the invitation") before becoming an active user within IBM Cloud and/or IMS. PENDING is a system state, and can not be administered by users (including the account master user). SoftLayer Commercial is the only environment where IBMid and/or account linking are used.
-//
-//
 type User_Customer_Status struct {
 	Session *session.Session
 	Options sl.Options

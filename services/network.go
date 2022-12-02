@@ -71,23 +71,15 @@ func (r Network) Offset(offset int) Network {
 
 // Initiate the automated process to establish connectivity granting the account private back-end network access to the services available through IBM Cloud Service Endpoint. Once initiated, the configuration process occurs asynchronously in the background.
 //
-//
-//
 // <h2>Responses</h2>
 //
 // <code>True</code> The request to connect was successfully initiated.
 //
 // <code>False</code> The account and Service Endpoint networks are already connected.
 //
-//
-//
 // <h2>Exceptions</h2>
 //
 // <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
-//
-//
-//
-//
 func (r Network) ConnectPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "connectPrivateEndpointService", nil, &r.Options, &resp)
 	return
@@ -95,23 +87,15 @@ func (r Network) ConnectPrivateEndpointService() (resp bool, err error) {
 
 // Initiate the automated process to revoke mutual connectivity from the account network and IBM Cloud Service Endpoint network. Once initiated, the configuration process occurs asynchronously in the background.
 //
-//
-//
 // <h2>Responses</h2>
 //
 // <code>True</code> The request to disconnect was successfully initiated.
 //
 // <code>False</code> The account and Service Endpoint networks are already disconnected.
 //
-//
-//
 // <h2>Exceptions</h2>
 //
 // <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
-//
-//
-//
-//
 func (r Network) DisconnectPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "disconnectPrivateEndpointService", nil, &r.Options, &resp)
 	return
@@ -125,29 +109,21 @@ func (r Network) GetObject() (resp datatypes.Network, err error) {
 
 // Accessing select IBM Cloud services attached to the private back-end network is made possible by establishing a network relationship between an account's private network and the Service Endpoint network.
 //
-//
-//
 // <h2>Responses</h2>
 //
 // <code>True</code> The account and Service Endpoint networks are currently connected.
 //
 // <code>False</code> The account and Service Endpoint networks are not connected; both networks are properly configured to connect.
 //
-//
-//
 // <h2>Exceptions</h2>
 //
 // <code>SoftLayer_Exception_NotReady</code> Thrown when the current network configuration will not support connection alteration.
-//
-//
-//
-//
 func (r Network) IsConnectedToPrivateEndpointService() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network", "isConnectedToPrivateEndpointService", nil, &r.Options, &resp)
 	return
 }
 
-// The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ''notes'' property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
+// The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ”notes” property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
 type Network_Application_Delivery_Controller struct {
 	Session *session.Session
 	Options sl.Options
@@ -187,7 +163,7 @@ func (r Network_Application_Delivery_Controller) Offset(offset int) Network_Appl
 	return r
 }
 
-// Create or add to an application delivery controller based load balancer service. The loadBalancer parameter must have its ''name'', ''type'', ''sourcePort'', and ''virtualIpAddress'' properties populated. Changes are reflected immediately in the application delivery controller.
+// Create or add to an application delivery controller based load balancer service. The loadBalancer parameter must have its ”name”, ”type”, ”sourcePort”, and ”virtualIpAddress” properties populated. Changes are reflected immediately in the application delivery controller.
 func (r Network_Application_Delivery_Controller) CreateLiveLoadBalancer(loadBalancer *datatypes.Network_LoadBalancer_VirtualIpAddress) (resp bool, err error) {
 	params := []interface{}{
 		loadBalancer,
@@ -196,7 +172,7 @@ func (r Network_Application_Delivery_Controller) CreateLiveLoadBalancer(loadBala
 	return
 }
 
-// Remove a virtual IP address from an application delivery controller based load balancer. Only the ''name'' property in the loadBalancer parameter must be populated. Changes are reflected immediately in the application delivery controller.
+// Remove a virtual IP address from an application delivery controller based load balancer. Only the ”name” property in the loadBalancer parameter must be populated. Changes are reflected immediately in the application delivery controller.
 func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancer(loadBalancer *datatypes.Network_LoadBalancer_VirtualIpAddress) (resp bool, err error) {
 	params := []interface{}{
 		loadBalancer,
@@ -205,7 +181,7 @@ func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancer(loadBala
 	return
 }
 
-// Remove an entire load balancer service, including all virtual IP addresses, from and application delivery controller based load balancer. The ''name'' property the and ''name'' property within the ''vip'' property of the service parameter must be provided. Changes are reflected immediately in the application delivery controller.
+// Remove an entire load balancer service, including all virtual IP addresses, from and application delivery controller based load balancer. The ”name” property the and ”name” property within the ”vip” property of the service parameter must be provided. Changes are reflected immediately in the application delivery controller.
 func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancerService(service *datatypes.Network_LoadBalancer_Service) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -418,7 +394,7 @@ func (r Network_Application_Delivery_Controller) SaveCurrentConfiguration(notes 
 	return
 }
 
-// Update the the virtual IP address interface within an application delivery controller based load balancer identified by the ''name'' property in the loadBalancer parameter. You only need to set the properties in the loadBalancer parameter that you wish to change. Any virtual IP properties omitted or left empty are ignored. Changes are reflected immediately in the application delivery controller.
+// Update the the virtual IP address interface within an application delivery controller based load balancer identified by the ”name” property in the loadBalancer parameter. You only need to set the properties in the loadBalancer parameter that you wish to change. Any virtual IP properties omitted or left empty are ignored. Changes are reflected immediately in the application delivery controller.
 func (r Network_Application_Delivery_Controller) UpdateLiveLoadBalancer(loadBalancer *datatypes.Network_LoadBalancer_VirtualIpAddress) (resp bool, err error) {
 	params := []interface{}{
 		loadBalancer,
@@ -3167,7 +3143,6 @@ func (r Network_Component) GetObject() (resp datatypes.Network_Component, err er
 	return
 }
 
-//
 // **DEPRECATED - This operation will cease to function after April 4th, 2016 and will be removed from v3.2**
 // Retrieve various network statistics.  The network statistics are retrieved from the network device using snmpget. Below is a list of statistics retrieved:
 // * Administrative Status
@@ -3811,7 +3786,7 @@ func (r Network_Firewall_Template) Offset(offset int) Network_Firewall_Template 
 
 // Get all available firewall template objects.
 //
-// ''getAllObjects'' returns an array of SoftLayer_Network_Firewall_Template objects upon success.
+// ”getAllObjects” returns an array of SoftLayer_Network_Firewall_Template objects upon success.
 func (r Network_Firewall_Template) GetAllObjects() (resp []datatypes.Network_Firewall_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getAllObjects", nil, &r.Options, &resp)
 	return
@@ -3873,7 +3848,7 @@ func (r Network_Firewall_Update_Request) Offset(offset int) Network_Firewall_Upd
 
 // Create a new firewall update request. If the SoftLayer_Network_Firewall_Update_Request object passed to this function has no rule, the firewall be set to bypass state and all the existing firewall rule(s) will be deleted.
 //
-// ''createObject'' returns a Boolean ''true'' on successful object creation or ''false'' if your firewall update request was unable to be created.
+// ”createObject” returns a Boolean ”true” on successful object creation or ”false” if your firewall update request was unable to be created.
 func (r Network_Firewall_Update_Request) CreateObject(templateObject *datatypes.Network_Firewall_Update_Request) (resp datatypes.Network_Firewall_Update_Request, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3890,7 +3865,7 @@ func (r Network_Firewall_Update_Request) GetAuthorizingUser() (resp datatypes.Us
 
 // Get the possible attribute values for a firewall update request rule.  These are the valid values which may be submitted as rule parameters for a firewall update request.
 //
-// ''getFirewallUpdateRequestRuleAttributes'' returns a SoftLayer_Container_Utility_Network_Firewall_Rule_Attribute object upon success.
+// ”getFirewallUpdateRequestRuleAttributes” returns a SoftLayer_Container_Utility_Network_Firewall_Rule_Attribute object upon success.
 func (r Network_Firewall_Update_Request) GetFirewallUpdateRequestRuleAttributes() (resp datatypes.Container_Utility_Network_Firewall_Rule_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Update_Request", "getFirewallUpdateRequestRuleAttributes", nil, &r.Options, &resp)
 	return
@@ -3914,7 +3889,7 @@ func (r Network_Firewall_Update_Request) GetNetworkComponentFirewall() (resp dat
 	return
 }
 
-// ''getObject'' returns a SoftLayer_Network_Firewall_Update_Request object. You can only get historical objects for servers attached to your account that have a network firewall enabled. ''createObject'' inserts a new SoftLayer_Network_Firewall_Update_Request object. You can only insert requests for servers attached to your account that have a network firewall enabled. ''getFirewallUpdateRequestRuleAttributes'' Get the possible attribute values for a firewall update request rule.
+// ”getObject” returns a SoftLayer_Network_Firewall_Update_Request object. You can only get historical objects for servers attached to your account that have a network firewall enabled. ”createObject” inserts a new SoftLayer_Network_Firewall_Update_Request object. You can only insert requests for servers attached to your account that have a network firewall enabled. ”getFirewallUpdateRequestRuleAttributes” Get the possible attribute values for a firewall update request rule.
 func (r Network_Firewall_Update_Request) GetObject() (resp datatypes.Network_Firewall_Update_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Update_Request", "getObject", nil, &r.Options, &resp)
 	return
@@ -3978,7 +3953,7 @@ func (r Network_Firewall_Update_Request_Rule) Offset(offset int) Network_Firewal
 
 // Create a new firewall update request. The SoftLayer_Network_Firewall_Update_Request object passed to this function must have at least one rule.
 //
-// ''createObject'' returns a Boolean ''true'' on successful object creation or ''false'' if your firewall update request was unable to be created..
+// ”createObject” returns a Boolean ”true” on successful object creation or ”false” if your firewall update request was unable to be created..
 func (r Network_Firewall_Update_Request_Rule) CreateObject(templateObject *datatypes.Network_Firewall_Update_Request_Rule) (resp datatypes.Network_Firewall_Update_Request_Rule, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4071,8 +4046,6 @@ func (r Network_Gateway) BypassVlans(vlans []datatypes.Network_Gateway_Vlan) (er
 }
 
 // Used to create a transaction to upgrade or rollback the vSRX version for Juniper gateway.
-//
-//
 func (r Network_Gateway) ChangeGatewayVersion(versionId *int, rollbackVersion *bool) (resp bool, err error) {
 	params := []interface{}{
 		versionId,
@@ -4111,8 +4084,6 @@ func (r Network_Gateway) EditObject(templateObject *datatypes.Network_Gateway) (
 }
 
 // Purpose is to rebuild the target Gateway cluster with the specified OS price id. Method will remove the current OS and apply the default vSRX configuration settings. This will result in an extended OUTAGE!! Any custom configuration settings must be re-applied after the forced rebuild is completed. This is a DESTRUCTIVE action, use with caution.
-//
-//
 func (r Network_Gateway) ForceRebuildvSRXCluster(osPriceId *int) (resp bool, err error) {
 	params := []interface{}{
 		osPriceId,
@@ -4128,8 +4099,6 @@ func (r Network_Gateway) GetAccount() (resp datatypes.Account, err error) {
 }
 
 // Used to get a list of OS prices (ids) which are allowed for the Gateway.
-//
-//
 func (r Network_Gateway) GetAllowedOsPriceIds(memberId *int) (resp []int, err error) {
 	params := []interface{}{
 		memberId,
@@ -4139,8 +4108,6 @@ func (r Network_Gateway) GetAllowedOsPriceIds(memberId *int) (resp []int, err er
 }
 
 // Returns the Gbps capacity of the gateway object
-//
-//
 func (r Network_Gateway) GetCapacity() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getCapacity", nil, &r.Options, &resp)
 	return
@@ -4153,8 +4120,6 @@ func (r Network_Gateway) GetInsideVlans() (resp []datatypes.Network_Gateway_Vlan
 }
 
 // Returns manufacturer name for a given gateway object.
-//
-//
 func (r Network_Gateway) GetManufacturer(checkSameOs *bool, checkOsReloadMember *bool) (resp string, err error) {
 	params := []interface{}{
 		checkSameOs,
@@ -4165,8 +4130,6 @@ func (r Network_Gateway) GetManufacturer(checkSameOs *bool, checkOsReloadMember 
 }
 
 // Returns true if no mismatch is found, gateway is not Juniper vSRX or SA gateway
-//
-//
 func (r Network_Gateway) GetMemberGatewayImagesMatch() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getMemberGatewayImagesMatch", nil, &r.Options, &resp)
 	return
@@ -4233,8 +4196,6 @@ func (r Network_Gateway) GetPublicVlan() (resp datatypes.Network_Vlan, err error
 }
 
 // Returns the following statuses SUPPORTED - rollback is supported and perform automatically UNSUPPORTED - rollback is not supported MANUAL - rollback can be performed but
-//
-//
 func (r Network_Gateway) GetRollbackSupport() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getRollbackSupport", nil, &r.Options, &resp)
 	return
@@ -4271,32 +4232,24 @@ func (r Network_Gateway) IsLicenseServerAllowed(licenseKeyName *string) (resp bo
 }
 
 // Returns true if rollback is allowed.
-//
-//
 func (r Network_Gateway) IsRollbackAllowed() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isRollbackAllowed", nil, &r.Options, &resp)
 	return
 }
 
 // Rebuild a vSRX gateway with HA cluster by destroying existing vSRX and installing new vSRX on both gateway servers, then creating HA cluster between 2 vSRX. This is a destructive process which will remove existing vSRX configuration and stop all gateway capabilities. vSRX will need to be re-configured after this operation.
-//
-//
 func (r Network_Gateway) RebuildvSRXHACluster() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "rebuildvSRXHACluster", nil, &r.Options, &resp)
 	return
 }
 
 // Used to refresh the license for the Juniper Gateway, requires License readiness check has passed.
-//
-//
 func (r Network_Gateway) RefreshGatewayLicense() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "refreshGatewayLicense", nil, &r.Options, &resp)
 	return
 }
 
 // Returns true if password change is successful, false if not successful
-//
-//
 func (r Network_Gateway) SetGatewayPassword(password *string) (resp bool, err error) {
 	params := []interface{}{
 		password,
@@ -4327,8 +4280,6 @@ func (r Network_Gateway) UnbypassVlans(vlans []datatypes.Network_Gateway_Vlan) (
 // The 'username' and 'password' in the record template are required. 'username' must not be blank and must exist in the Gateway password records 'password' must not be blank
 //
 // Returns true if password change is successful, false if not successful
-//
-//
 func (r Network_Gateway) UpdateGatewayUserPassword(record *datatypes.Network_Gateway_Member_Passwords) (resp bool, err error) {
 	params := []interface{}{
 		record,
@@ -4549,11 +4500,7 @@ func (r Network_Gateway_Precheck) GetObject() (resp datatypes.Network_Gateway_Pr
 //
 // Current categories include: upgrade_precheck : Required for major and minor upgrade version actions. license_precheck : Required for license upgrade and downgrade actions. reload_precheck : Required for OS Reload action. rollback_precheck : Optional and related to upgrade_precheck.  Only returned if getRollbackPrecheck is provided and set to True (1).
 //
-//
-//
 // memberId : Integer : The softlayer member id. memberReadinessValue : String : The precheck readiness state for the member. See possible readiness values above. gatewayReadinessValue : String : The precheck readiness state for the gateway : See possible readiness values above. returnCode : Integer : The return code. 0 if no error. Reference cloud.ibm.com documentation for details.
-//
-//
 func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int, getRollbackPrecheck *bool) (resp []datatypes.Network_Gateway_Precheck, err error) {
 	params := []interface{}{
 		gatewayId,
@@ -4564,8 +4511,6 @@ func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int, getRollbackP
 }
 
 // Used to create a License Management Network Gateway Precheck transaction.
-//
-//
 func (r Network_Gateway_Precheck) LicenseManagementPrecheck(gatewayId *int) (resp bool, err error) {
 	params := []interface{}{
 		gatewayId,
@@ -4575,8 +4520,6 @@ func (r Network_Gateway_Precheck) LicenseManagementPrecheck(gatewayId *int) (res
 }
 
 // Create an OS Reload Network Gateway Precheck transaction.
-//
-//
 func (r Network_Gateway_Precheck) OsReloadPrecheck(gatewayId *int) (resp bool, err error) {
 	params := []interface{}{
 		gatewayId,
@@ -4586,8 +4529,6 @@ func (r Network_Gateway_Precheck) OsReloadPrecheck(gatewayId *int) (resp bool, e
 }
 
 // Create a Upgrade Network Gateway Precheck transaction.
-//
-//
 func (r Network_Gateway_Precheck) UpgradePrecheck(gatewayId *int) (resp bool, err error) {
 	params := []interface{}{
 		gatewayId,
@@ -4707,8 +4648,6 @@ func (r Network_Gateway_VersionUpgrade) GetObject() (resp datatypes.Network_Gate
 }
 
 // Used to get a list per package of prices ids for allowed vSRX OS-es for new orders.
-//
-//
 func (r Network_Gateway_VersionUpgrade) GetVsrxOrdersAllowedOS(accountId *int, validate *bool) (resp []datatypes.Product_Package_Item_Prices, err error) {
 	params := []interface{}{
 		accountId,
@@ -5594,8 +5533,6 @@ func (r Network_LBaaS_LoadBalancer) GetL7Pools() (resp []datatypes.Network_LBaaS
 }
 
 // Return listener time series datapoints. The time series data is available for Throughput, ConnectionRate and ActiveConnections. Throughput is in bits per second. The values are an average over the time range. The time series data is available for 1hour, 6hours, 12hours, 1day, 1week or 2weeks.
-//
-//
 func (r Network_LBaaS_LoadBalancer) GetListenerTimeSeriesData(loadBalancerUuid *string, metricName *string, timeRange *string, listenerUuid *string) (resp []datatypes.Network_LBaaS_LoadBalancerMonitoringMetricDataPoint, err error) {
 	params := []interface{}{
 		loadBalancerUuid,
@@ -5764,8 +5701,6 @@ func (r Network_LBaaS_Member) UpdateLoadBalancerMembers(loadBalancerUuid *string
 }
 
 // The SoftLayer_Network_LBaaS_SSLCipher type presents a structure that contains attributes of load balancer cipher suites.
-//
-//
 type Network_LBaaS_SSLCipher struct {
 	Session *session.Session
 	Options sl.Options
@@ -6058,14 +5993,12 @@ func (r Network_LoadBalancer_Service) GetObject() (resp datatypes.Network_LoadBa
 //
 // Possible values for "Label" are:
 //
-//
 // * IP Address
 // * Port
 // * Server Status
 // * Load Status
 // * Current Connections
 // * Total Hits
-//
 //
 // Not all labels are guaranteed to be returned.
 func (r Network_LoadBalancer_Service) GetStatus() (resp []datatypes.Container_Network_LoadBalancer_StatusEntry, err error) {
@@ -6242,7 +6175,7 @@ func (r Network_Media_Transcode_Account) CreateTranscodeAccount() (resp bool, er
 	return
 }
 
-// '''Note'''. This method is obsolete. Please use the [[SoftLayer_Network_Media_Transcode_Job::createObject|createObject]] method on SoftLayer_Network_Media_Transcode_Job object instead. SoftLayer_Network_Media_Transcode_Job::createObject returns an object of a newly created Transcode Job.
+// ”'Note”'. This method is obsolete. Please use the [[SoftLayer_Network_Media_Transcode_Job::createObject|createObject]] method on SoftLayer_Network_Media_Transcode_Job object instead. SoftLayer_Network_Media_Transcode_Job::createObject returns an object of a newly created Transcode Job.
 //
 // With this method, you can create a transcode job.
 //
@@ -6254,21 +6187,17 @@ func (r Network_Media_Transcode_Account) CreateTranscodeAccount() (resp bool, er
 //
 // An example SoftLayer_Network_Media_Transcode_Job parameter looks like this:
 //
-//
 // * name: My transcoding
 // * transcodePresetName: F4V 896kbps 640x352 16x9 29.97fps
 // * transcodePresetGuid: {87E01268-C3E3-4A85-9701-052C9AC42BD4}
 // * inputFile: /in/my_birthday.wmv
 // * outputFile: /out/my_birthday_flash
 //
-//
 // Notice that an output file does not have a file extension.  The Transcode server will append a file extension based on an output format. A newly created transcode job will be in "Pending" status and it will be added to the Transcoding queue. You will receive a notification email whenever there is a status change on your transcode job.  For example, the Transcode server starts to process your transcode job, you will be notified via an email.
 //
 // You can add up to 3 pending jobs at a time. Transcode jobs with any other status such as "Complete" or "Error" will not be counted toward your pending jobs.
 //
 // Once a job is complete, the Transcode server will place the output file into the /out directory along with a notification email. The files in the /out directory will be removed 3 days after they were created.  You will need to use an FTP client to download transcoded files.
-//
-//
 func (r Network_Media_Transcode_Account) CreateTranscodeJob(newJob *datatypes.Network_Media_Transcode_Job) (resp bool, err error) {
 	params := []interface{}{
 		newJob,
@@ -6387,21 +6316,17 @@ func (r Network_Media_Transcode_Job) Offset(offset int) Network_Media_Transcode_
 //
 // An example SoftLayer_Network_Media_Transcode_Job parameter looks like this:
 //
-//
 // * name: My transcoding
 // * transcodePresetName: F4V 896kbps 640x352 16x9 29.97fps
 // * transcodePresetGuid: {87E01268-C3E3-4A85-9701-052C9AC42BD4}
 // * inputFile: /in/my_birthday.wmv
 // * outputFile: /out/my_birthday_flash
 //
-//
 // Notice that an output file does not have a file extension.  The Transcode server will append a file extension based on an output format. A newly created transcode job will be in "Pending" status and it will be added to the Transcoding queue. You will receive a notification email whenever there is a status change on your transcode job.  For example, the Transcode server starts to process your transcode job, you will be notified via an email.
 //
 // You can add up to 3 pending jobs at a time. Transcode jobs with any other status such as "Complete" or "Error" will not be counted toward your pending jobs.
 //
 // Once a job is complete, the Transcode server will place the output file into the /out directory along with a notification email. The files in the /out directory will be removed 3 days after they were created.  You will need to use an FTP client to download transcoded files.
-//
-//
 func (r Network_Media_Transcode_Job) CreateObject(templateObject *datatypes.Network_Media_Transcode_Job) (resp datatypes.Network_Media_Transcode_Job, err error) {
 	params := []interface{}{
 		templateObject,
@@ -6966,7 +6891,6 @@ func (r Network_Monitor_Version1_Query_Host) GetResponseAction() (resp datatypes
 // # monitorLevel determines the highest level of SoftLayer_Network_Monitor_Version1_Query_Type object that can be placed in a monitoring instance on this server
 // # responseLevel determines the highest level of SoftLayer_Network_Monitor_Version1_Query_ResponseType object that can be placed in a monitoring instance on this server
 //
-//
 // Also note that the query type and response types are available through getAllQueryTypes and getAllResponseTypes, respectively.
 type Network_Monitor_Version1_Query_Host_Stratum struct {
 	Session *session.Session
@@ -7071,7 +6995,7 @@ func (r Network_Pod) Offset(offset int) Network_Pod {
 	return r
 }
 
-// Filtering is supported for ``datacenterName`` and ``capabilities``. When filtering on capabilities, use the ``in`` operation. Pods fulfilling all capabilities provided will be returned. ``datacenterName`` represents an operation against ``SoftLayer_Location_Datacenter.name`, such as dal05 when referring to Dallas 5.
+// Filtering is supported for “datacenterName“ and “capabilities“. When filtering on capabilities, use the “in“ operation. Pods fulfilling all capabilities provided will be returned. “datacenterName“ represents an operation against “SoftLayer_Location_Datacenter.name`, such as dal05 when referring to Dallas 5.
 //
 // ```Examples:```
 //
@@ -7091,7 +7015,7 @@ func (r Network_Pod) GetCapabilities() (resp []string, err error) {
 	return
 }
 
-// Set the initialization parameter to the ``name`` of the Pod to retrieve.
+// Set the initialization parameter to the “name“ of the Pod to retrieve.
 func (r Network_Pod) GetObject() (resp datatypes.Network_Pod, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Pod", "getObject", nil, &r.Options, &resp)
 	return
@@ -7796,9 +7720,9 @@ func (r Network_Storage) DeleteFolder(folder *string) (resp bool, err error) {
 	return
 }
 
-// Delete a network storage volume. '''This cannot be undone.''' At this time only network storage snapshots may be deleted with this method.
+// Delete a network storage volume. ”'This cannot be undone.”' At this time only network storage snapshots may be deleted with this method.
 //
-// ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
+// ”deleteObject” returns Boolean ”true” on successful deletion or ”false” if it was unable to remove a volume;
 func (r Network_Storage) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "deleteObject", nil, &r.Options, &resp)
 	return
@@ -8030,7 +7954,7 @@ func (r Network_Storage) GetBillingItemCategory() (resp datatypes.Product_Item_C
 	return
 }
 
-// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ''type'' parameter must correspond to one of the available ''nasType'' values in the SoftLayer_Network_Storage data type.
+// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ”type” parameter must correspond to one of the available ”nasType” values in the SoftLayer_Network_Storage data type.
 func (r Network_Storage) GetByUsername(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		username,
@@ -8112,9 +8036,6 @@ func (r Network_Storage) GetFailoverNotAllowed() (resp string, err error) {
 	return
 }
 
-//
-//
-//
 func (r Network_Storage) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
 	return
@@ -8960,10 +8881,10 @@ func (r Network_Storage) UpgradeVolumeCapacity(itemId *int) (resp bool, err erro
 
 // {{CloudLayerOnlyMethod}} Upload a file to a Storage account's root directory. Once uploaded, this method returns new file entity identifier for the upload file.
 //
-// The following properties are required in the ''file'' parameter.
-// *'''name''': The name of the file you wish to upload
-// *'''content''': The raw contents of the file you wish to upload.
-// *'''contentType''': The MIME-type of content that you wish to upload.
+// The following properties are required in the ”file” parameter.
+// *”'name”': The name of the file you wish to upload
+// *”'content”': The raw contents of the file you wish to upload.
+// *”'contentType”': The MIME-type of content that you wish to upload.
 func (r Network_Storage) UploadFile(file *datatypes.Container_Utility_File_Entity) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		file,
@@ -10040,9 +9961,9 @@ func (r Network_Storage_Backup_Evault) DeleteFolder(folder *string) (resp bool, 
 	return
 }
 
-// Delete a network storage volume. '''This cannot be undone.''' At this time only network storage snapshots may be deleted with this method.
+// Delete a network storage volume. ”'This cannot be undone.”' At this time only network storage snapshots may be deleted with this method.
 //
-// ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
+// ”deleteObject” returns Boolean ”true” on successful deletion or ”false” if it was unable to remove a volume;
 func (r Network_Storage_Backup_Evault) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "deleteObject", nil, &r.Options, &resp)
 	return
@@ -10051,8 +9972,6 @@ func (r Network_Storage_Backup_Evault) DeleteObject() (resp bool, err error) {
 // This method can be used to help maintain the storage space on a vault.  When a job is removed from the Webcc, the task and stored usage still exists on the vault. This method can be used to delete the associated task and its usage.
 //
 // All that is required for the use of the method is to pass in an integer array of task(s).
-//
-//
 func (r Network_Storage_Backup_Evault) DeleteTasks(tasks []int) (resp bool, err error) {
 	params := []interface{}{
 		tasks,
@@ -10287,7 +10206,7 @@ func (r Network_Storage_Backup_Evault) GetBillingItemCategory() (resp datatypes.
 	return
 }
 
-// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ''type'' parameter must correspond to one of the available ''nasType'' values in the SoftLayer_Network_Storage data type.
+// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ”type” parameter must correspond to one of the available ”nasType” values in the SoftLayer_Network_Storage data type.
 func (r Network_Storage_Backup_Evault) GetByUsername(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		username,
@@ -10369,9 +10288,6 @@ func (r Network_Storage_Backup_Evault) GetFailoverNotAllowed() (resp string, err
 	return
 }
 
-//
-//
-//
 func (r Network_Storage_Backup_Evault) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
 	return
@@ -10451,11 +10367,7 @@ func (r Network_Storage_Backup_Evault) GetHardware() (resp datatypes.Hardware, e
 	return
 }
 
-// Retrieve a list of hardware associated with a SoftLayer customer account, placing all hardware with associated EVault storage accounts at the beginning of the list. The return type is SoftLayer_Hardware_Server[] contains the results; the number of items returned in the result will be returned in the soap header (totalItems). ''getHardwareWithEvaultFirst'' is useful in situations where you wish to search for hardware and provide paginated output.
-//
-//
-//
-//
+// Retrieve a list of hardware associated with a SoftLayer customer account, placing all hardware with associated EVault storage accounts at the beginning of the list. The return type is SoftLayer_Hardware_Server[] contains the results; the number of items returned in the result will be returned in the soap header (totalItems). ”getHardwareWithEvaultFirst” is useful in situations where you wish to search for hardware and provide paginated output.
 //
 // Results are only returned for hardware belonging to the account of the user making the API call.
 //
@@ -11256,10 +11168,10 @@ func (r Network_Storage_Backup_Evault) UpgradeVolumeCapacity(itemId *int) (resp 
 
 // {{CloudLayerOnlyMethod}} Upload a file to a Storage account's root directory. Once uploaded, this method returns new file entity identifier for the upload file.
 //
-// The following properties are required in the ''file'' parameter.
-// *'''name''': The name of the file you wish to upload
-// *'''content''': The raw contents of the file you wish to upload.
-// *'''contentType''': The MIME-type of content that you wish to upload.
+// The following properties are required in the ”file” parameter.
+// *”'name”': The name of the file you wish to upload
+// *”'content”': The raw contents of the file you wish to upload.
+// *”'contentType”': The MIME-type of content that you wish to upload.
 func (r Network_Storage_Backup_Evault) UploadFile(file *datatypes.Container_Utility_File_Entity) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		file,
@@ -11956,13 +11868,9 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCapacityUsage() (resp int, er
 //
 // [ <response Status Code String>, <response body as String> ]
 //
-//
-//
 // { "start": "<timeInMilliseconds>", "errors": [], "end": "<timeInMilliseconds>", "resource_type": "account", "warnings": [], "resources": [{"metrics" : [{"name": "retrieval", "value": "<number>"}]}] }
 //
 // Notes: 1) When no data is found for a particular triplet (resource_id, storage_location, storage_class) a JSON element is inserted to the warnings Array. 2) If all queried triplets find data, only the resources Array will be populated, errors and warnings will remain empty.
-//
-//
 func (r Network_Storage_Hub_Cleversafe_Account) GetCloudObjectStorageMetrics(start *string, end *string, storageLocation *string, storageClass *string, metrics *string) (resp []string, err error) {
 	params := []interface{}{
 		start,
@@ -12485,9 +12393,9 @@ func (r Network_Storage_Iscsi) DeleteFolder(folder *string) (resp bool, err erro
 	return
 }
 
-// Delete a network storage volume. '''This cannot be undone.''' At this time only network storage snapshots may be deleted with this method.
+// Delete a network storage volume. ”'This cannot be undone.”' At this time only network storage snapshots may be deleted with this method.
 //
-// ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a volume;
+// ”deleteObject” returns Boolean ”true” on successful deletion or ”false” if it was unable to remove a volume;
 func (r Network_Storage_Iscsi) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "deleteObject", nil, &r.Options, &resp)
 	return
@@ -12719,7 +12627,7 @@ func (r Network_Storage_Iscsi) GetBillingItemCategory() (resp datatypes.Product_
 	return
 }
 
-// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ''type'' parameter must correspond to one of the available ''nasType'' values in the SoftLayer_Network_Storage data type.
+// Retrieve network storage accounts by username and storage account type. Use this method if you wish to retrieve a storage record by username rather than by id. The ”type” parameter must correspond to one of the available ”nasType” values in the SoftLayer_Network_Storage data type.
 func (r Network_Storage_Iscsi) GetByUsername(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		username,
@@ -12801,9 +12709,6 @@ func (r Network_Storage_Iscsi) GetFailoverNotAllowed() (resp string, err error) 
 	return
 }
 
-//
-//
-//
 func (r Network_Storage_Iscsi) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
 	return
@@ -13647,10 +13552,10 @@ func (r Network_Storage_Iscsi) UpgradeVolumeCapacity(itemId *int) (resp bool, er
 
 // {{CloudLayerOnlyMethod}} Upload a file to a Storage account's root directory. Once uploaded, this method returns new file entity identifier for the upload file.
 //
-// The following properties are required in the ''file'' parameter.
-// *'''name''': The name of the file you wish to upload
-// *'''content''': The raw contents of the file you wish to upload.
-// *'''contentType''': The MIME-type of content that you wish to upload.
+// The following properties are required in the ”file” parameter.
+// *”'name”': The name of the file you wish to upload
+// *”'content”': The raw contents of the file you wish to upload.
+// *”'contentType”': The MIME-type of content that you wish to upload.
 func (r Network_Storage_Iscsi) UploadFile(file *datatypes.Container_Utility_File_Entity) (resp datatypes.Container_Utility_File_Entity, err error) {
 	params := []interface{}{
 		file,
@@ -14100,7 +14005,7 @@ func (r Network_Storage_Schedule) CreateObject(templateObject *datatypes.Network
 	return
 }
 
-// Delete a network storage schedule. '''This cannot be undone.''' ''deleteObject'' returns Boolean ''true'' on successful deletion or ''false'' if it was unable to remove a schedule;
+// Delete a network storage schedule. ”'This cannot be undone.”' ”deleteObject” returns Boolean ”true” on successful deletion or ”false” if it was unable to remove a schedule;
 func (r Network_Storage_Schedule) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "deleteObject", nil, &r.Options, &resp)
 	return
@@ -14331,9 +14236,9 @@ func (r Network_Subnet) AllowAccessToNetworkStorageList(networkStorageTemplateOb
 
 // This interface allows you to remove the route of your secondary subnets. The result will be a subnet that is no longer routed on the network. Remove the route of subnets you are not actively using, as it will make it easier to identify available subnets later.
 //
-// '''Important:''' When removing the route of ''Portable'' subnets, know that any subnet depending on an IP address provided by the Portable subnet will also have their routes removed!
+// ”'Important:”' When removing the route of ”Portable” subnets, know that any subnet depending on an IP address provided by the Portable subnet will also have their routes removed!
 //
-// To review what subnets are routed to IP addresses provided by a ''Portable'' subnet, you can utilize the following object mask: 'mask[ipAddresses[endpointSubnets]]'. Any subnet present in conjunction with ''endpointSubnets'' is a subnet which depends on the respective IP address.
+// To review what subnets are routed to IP addresses provided by a ”Portable” subnet, you can utilize the following object mask: 'mask[ipAddresses[endpointSubnets]]'. Any subnet present in conjunction with ”endpointSubnets” is a subnet which depends on the respective IP address.
 //
 // The behavior of this interface is such that either true or false is returned. A result of false can be interpreted as the clear route request having already been completed. In contrast, a result of true means the subnet is currently routed and will be transitioned. This route change is asynchronous to the request. A response of true does not mean the subnet's route has changed, but simply that it will change. In order to monitor for the completion of the change, you may either attempt a clear route again until the result is false, or monitor one or more SoftLayer_Network_Subnet properties: subnetType, networkVlanId, and or endPointIpAddress to determine if routing of the subnet has been removed.
 func (r Network_Subnet) ClearRoute() (resp bool, err error) {
@@ -14347,7 +14252,6 @@ func (r Network_Subnet) CreateReverseDomainRecords() (resp datatypes.Dns_Domain_
 	return
 }
 
-//
 // ***DEPRECATED***
 // This endpoint is deprecated in favor of the more expressive and capable SoftLayer_Network_Subnet::route, to which this endpoint now proxies. Refer to it for more information.
 //
@@ -14361,7 +14265,6 @@ func (r Network_Subnet) CreateSubnetRouteUpdateTransaction(newEndPointIpAddress 
 	return
 }
 
-//
 // ***DEPRECATED***
 // This function is used to create a new SoftLayer SWIP transaction to register your RWHOIS data with ARIN. SWIP transactions can only be initiated on subnets that contain more than 8 IP addresses.
 // Deprecated: This function has been marked as deprecated.
@@ -14379,7 +14282,6 @@ func (r Network_Subnet) EditNote(note *string) (resp bool, err error) {
 	return
 }
 
-//
 // ***DEPRECATED***
 // Retrieve a list of a SoftLayer customer's subnets along with their SWIP transaction statuses. This is a shortcut method that combines the SoftLayer_Network_Subnet retrieval methods along with [[object masks]] to retrieve their subnets' associated SWIP transactions as well.
 //
@@ -14684,13 +14586,13 @@ func (r Network_Subnet) RemoveAccessToNetworkStorageList(networkStorageTemplateO
 //
 // For each identifier type, one or more 'identifier' formats are possible.
 //
-// ''SoftLayer_Network_Subnet_IpAddress'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Subnet_IpAddress.id value of the desired IP address object.</li> <li>A dotted-quad IPv4 address.</li> <li>A full or compressed IPv6 address.</li> </ul>
+// ”SoftLayer_Network_Subnet_IpAddress” will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Subnet_IpAddress.id value of the desired IP address object.</li> <li>A dotted-quad IPv4 address.</li> <li>A full or compressed IPv6 address.</li> </ul>
 //
-// ''SoftLayer_Network_Vlan'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Vlan.id value of the desired VLAN object.</li> <li>A semantic VLAN identifier of the form &lt;data center short name&gt;.&lt;router&gt;.&lt;vlan number&gt;, where &lt; and &gt; are literal, eg. dal13.fcr01.1234 - the router name may optionally contain the 'a' or 'b' redundancy qualifier (which has no meaning in this context).</li> </ul>
+// ”SoftLayer_Network_Vlan” will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Network_Vlan.id value of the desired VLAN object.</li> <li>A semantic VLAN identifier of the form &lt;data center short name&gt;.&lt;router&gt;.&lt;vlan number&gt;, where &lt; and &gt; are literal, eg. dal13.fcr01.1234 - the router name may optionally contain the 'a' or 'b' redundancy qualifier (which has no meaning in this context).</li> </ul>
 //
-// ''SoftLayer_Hardware_Server'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Hardware_Server.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Hardware_Server.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Hardware_Server.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Hardware_Server.hostname and domain to SoftLayer_Hardware_Server.domain, respectively.</li> </ul>
+// ”SoftLayer_Hardware_Server” will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Hardware_Server.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Hardware_Server.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Hardware_Server.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Hardware_Server.hostname and domain to SoftLayer_Hardware_Server.domain, respectively.</li> </ul>
 //
-// ''SoftLayer_Virtual_Guest'' will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Virtual_Guest.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Virtual_Guest.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Virtual_Guest.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Virtual_Guest.hostname and domain to SoftLayer_Virtual_Guest.domain, respectively.</li> </ul>
+// ”SoftLayer_Virtual_Guest” will accept the following identifier formats: <ul> <li>An entirely numeric value will be treated as a SoftLayer_Virtual_Guest.id value of the desired server.</li> <li>A UUID corresponding to a server's SoftLayer_Virtual_Guest.globalIdentifier.</li> <li>A value corresponding to a unique SoftLayer_Virtual_Guest.hostname.</li> <li>A value corresponding to a unique fully-qualified domain name in the format 'hostname&lt;domain&gt;' where &lt; and &gt; are literal, e.g. myhost&lt;mydomain.com&gt;, hostname refers to SoftLayer_Virtual_Guest.hostname and domain to SoftLayer_Virtual_Guest.domain, respectively.</li> </ul>
 //
 // The routing destination result of specifying a SoftLayer_Hardware_Server or SoftLayer_Virtual_Guest type will be the primary IP address of the server for the same network segment the subnet is on. Thus, a public subnet will be routed to the server's public, primary IP address. Additionally, this IP address resolution will match the subnet's IP version; routing a IPv6 subnet to a server will result in selection of the primary IPv6 address of the respective network segment, if available.
 //
@@ -15086,7 +14988,6 @@ func (r Network_Subnet_IpAddress_Global) GetObject() (resp datatypes.Network_Sub
 	return
 }
 
-//
 // ***DEPRECATED***
 // This endpoint is deprecated in favor of the more expressive and capable SoftLayer_Network_Subnet::route, to which this endpoint now proxies. Refer to it for more information.
 //
@@ -15100,7 +15001,6 @@ func (r Network_Subnet_IpAddress_Global) Route(newEndPointIpAddress *string) (re
 	return
 }
 
-//
 // ***DEPRECATED***
 // This endpoint is deprecated in favor of SoftLayer_Network_Subnet::clearRoute, to which this endpoint now proxies. Refer to it for more information.
 // Deprecated: This function has been marked as deprecated.
@@ -15157,19 +15057,17 @@ func (r Network_Subnet_Registration) ClearRegistration() (resp bool, err error) 
 
 // Create registration with a global registrar to associate an assigned subnet with the provided contact details.
 //
-// Contact information is provided in the form of a [[SoftLayer_Account_Regional_Registry_Detail|person detail record]], which reference can be provided when the registration is created or afterwards. Registrations without an associated person detail will remain in the ``OPEN`` status. To specify a person detail when creating a registration, the ``detailReferences`` property should be populated with a list item providing a ``detailId`` value referencing the [[SoftLayer_Account_Regional_Registry_Detail|person detail record]].
+// Contact information is provided in the form of a [[SoftLayer_Account_Regional_Registry_Detail|person detail record]], which reference can be provided when the registration is created or afterwards. Registrations without an associated person detail will remain in the “OPEN“ status. To specify a person detail when creating a registration, the “detailReferences“ property should be populated with a list item providing a “detailId“ value referencing the [[SoftLayer_Account_Regional_Registry_Detail|person detail record]].
 //
 // The same applies to [[SoftLayer_Account_Regional_Registry_Detail|network detail records]], though these references need not be provided. The system will create a reference to the network described by the registration's subnet in the absence of a provided network detail reference. However, if a specific detail is referenced, it must describe the same subnet as the registration.
 //
 // A template containing the following properties will create a subnet registration:
 //
-//
 // * networkIdentifier
 // * cidr
 // * detailReferences
 //
-//
-// ``networkIdentifier`` is the base address of the public, SoftLayer owned subnet which is being registered. ``cidr`` must be an integer representing the CIDR of the subnet to be registered. The ``networkIdentifier``/``cidr`` must represent an assigned subnet. ``detailReferences`` tie the registration to SoftLayer_Account_Regional_Registry_Detail objects.
+// “networkIdentifier“ is the base address of the public, SoftLayer owned subnet which is being registered. “cidr“ must be an integer representing the CIDR of the subnet to be registered. The “networkIdentifier“/“cidr“ must represent an assigned subnet. “detailReferences“ tie the registration to SoftLayer_Account_Regional_Registry_Detail objects.
 func (r Network_Subnet_Registration) CreateObject(templateObject *datatypes.Network_Subnet_Registration) (resp datatypes.Network_Subnet_Registration, err error) {
 	params := []interface{}{
 		templateObject,
@@ -15462,10 +15360,8 @@ func (r Network_Subnet_Rwhois_Data) GetObject() (resp datatypes.Network_Subnet_R
 	return
 }
 
-//
 // **DEPRECATED**
 // The SoftLayer_Network_Subnet_Swip_Transaction data type contains basic information tracked at SoftLayer to allow automation of Swip creation, update, and removal requests.  A specific transaction is attached to an accountId and a subnetId. This also contains a "Status Name" which tells the customer what the transaction is doing:
-//
 //
 // * REQUEST QUEUED:  Request is queued up to be sent to ARIN
 // * REQUEST SENT:  The email request has been sent to ARIN
@@ -15516,7 +15412,6 @@ func (r Network_Subnet_Swip_Transaction) Offset(offset int) Network_Subnet_Swip_
 	return r
 }
 
-//
 // **DEPRECATED**
 // This function will return an array of SoftLayer_Network_Subnet_Swip_Transaction objects, one for each SWIP that is currently in transaction with ARIN.  This includes all swip registrations, swip removal requests, and SWIP objects that are currently OK.
 // Deprecated: This function has been marked as deprecated.
@@ -15531,7 +15426,6 @@ func (r Network_Subnet_Swip_Transaction) GetAccount() (resp datatypes.Account, e
 	return
 }
 
-//
 // **DEPRECATED**
 // getObject retrieves the SoftLayer_Network_Subnet_Swip_Transaction object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Subnet_Swip_transaction service. You can only retrieve Swip transactions tied to the account.
 func (r Network_Subnet_Swip_Transaction) GetObject() (resp datatypes.Network_Subnet_Swip_Transaction, err error) {
@@ -15545,7 +15439,6 @@ func (r Network_Subnet_Swip_Transaction) GetSubnet() (resp datatypes.Network_Sub
 	return
 }
 
-//
 // **DEPRECATED**
 // This method finds all subnets attached to your account that are in OK status and starts "DELETE" transactions with ARIN, allowing you to remove your SWIP registration information.
 // Deprecated: This function has been marked as deprecated.
@@ -15554,7 +15447,6 @@ func (r Network_Subnet_Swip_Transaction) RemoveAllSubnetSwips() (resp int, err e
 	return
 }
 
-//
 // **DEPRECATED**
 // This function, when called on an instantiated SWIP transaction, will allow you to start a "DELETE" transaction with ARIN, allowing you to remove your SWIP registration information.
 // Deprecated: This function has been marked as deprecated.
@@ -15563,7 +15455,6 @@ func (r Network_Subnet_Swip_Transaction) RemoveSwipData() (resp bool, err error)
 	return
 }
 
-//
 // **DEPRECATED**
 // This function will allow you to update ARIN's registration data for a subnet to your current RWHOIS data.
 // Deprecated: This function has been marked as deprecated.
@@ -15572,7 +15463,6 @@ func (r Network_Subnet_Swip_Transaction) ResendSwipData() (resp bool, err error)
 	return
 }
 
-//
 // **DEPRECATED**
 // swipAllSubnets finds all subnets attached to your account and attempts to create a SWIP transaction for all subnets that do not already have a SWIP transaction in progress.
 // Deprecated: This function has been marked as deprecated.
@@ -15581,7 +15471,6 @@ func (r Network_Subnet_Swip_Transaction) SwipAllSubnets() (resp int, err error) 
 	return
 }
 
-//
 // **DEPRECATED**
 // This method finds all subnets attached to your account that are in "OK" status and updates their data with ARIN.  Use this function after you have updated your RWHOIS data if you want to keep SWIP up to date.
 // Deprecated: This function has been marked as deprecated.
@@ -15746,7 +15635,6 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 
 // Negotiation parameters for both phases one and two are editable. Here are the phase one and two parameters that can modified:
 //
-//
 // *Phase One
 // **Authentication
 // ***Default value is set to MD5.
@@ -15778,7 +15666,6 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 // ***Valid Options are: Off = 0, On = 1.
 // ***NOTE:  If perfect forward secrecy is turned On (set to 1), then a phase 2 diffie-hellman group is required.
 //
-//
 // The remote peer address for the network tunnel may also be modified if needed.  Invalid options will not be accepted and will cause an exception to be thrown.  There are properties that provide valid options and limits for each negotiation parameter.  Those properties are as follows:
 // * encryptionDefault
 // * encryptionOptions
@@ -15789,7 +15676,6 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 // * phaseOneKeylifeDefault
 // * phaseTwoKeylifeDefault
 // * keylifeLimits
-//
 //
 // Configurations cannot be modified if a network tunnel's requires complex manual setups/configuration modifications by the SoftLayer Network department.  If the former is required, the configurations for the network tunnel will be locked until the manual configurations are complete. A network tunnel's configurations are applied via a transaction.  If a network tunnel configuration change transaction is currently running, the network tunnel's setting cannot be modified until the running transaction completes.
 //
@@ -16236,7 +16122,6 @@ func (r Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) 
 	return
 }
 
-//
 // *** DEPRECATED ***
 // Retrieve the private network VLAN associated with an IP address.
 // Deprecated: This function has been marked as deprecated.
@@ -16260,7 +16145,7 @@ func (r Network_Vlan) GetPublicNetworkGateways() (resp []datatypes.Network_Gatew
 	return
 }
 
-// Retrieve the VLAN that belongs to a server's public network interface, as described by a server's fully-qualified domain name. A server's ''FQDN'' is it's hostname, followed by a period then it's domain name.
+// Retrieve the VLAN that belongs to a server's public network interface, as described by a server's fully-qualified domain name. A server's ”FQDN” is it's hostname, followed by a period then it's domain name.
 func (r Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		fqdn,
@@ -16347,7 +16232,7 @@ func (r Network_Vlan) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
-// The '''getSensorData''' method updates a VLAN's firewall to allow or disallow intra-VLAN communication.
+// The ”'getSensorData”' method updates a VLAN's firewall to allow or disallow intra-VLAN communication.
 func (r Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
