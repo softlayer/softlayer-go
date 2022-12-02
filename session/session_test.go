@@ -1,9 +1,9 @@
 package session
 
 import (
+	"os"
 	"strings"
 	"testing"
-	"os"
 )
 
 func TestSession_WithDefaultUserAgent(t *testing.T) {
@@ -16,7 +16,7 @@ func TestSession_WithDefaultUserAgent(t *testing.T) {
 }
 
 func TestSession_WithOSENV(t *testing.T) {
-	
+
 	old, exists := os.LookupEnv("SL_USERAGENT")
 	os.Setenv("SL_USERAGENT", "session_test")
 	expected := getDefaultUserAgent()
