@@ -1554,7 +1554,6 @@ type Billing_Item_Network_Storage_Hub_Bandwidth struct {
 // * sov_sec_ip_addresses_priv (sov_sec_ip_addresses private only)
 // * sec_ip_addresses (old style, secondary ip addresses)
 //
-//
 // These item categories denote that the billing item has subnet information attached.
 type Billing_Item_Network_Subnet struct {
 	Billing_Item
@@ -1573,7 +1572,6 @@ type Billing_Item_Network_Subnet struct {
 // * global_ipv4
 // * global_ipv6
 //
-//
 // These item categories denote that the billing item has subnet information attached.
 type Billing_Item_Network_Subnet_IpAddress_Global struct {
 	Billing_Item_Network_Subnet
@@ -1589,7 +1587,6 @@ type Billing_Item_Network_Tunnel struct {
 
 // The SoftLayer_Billing_Item_Network_Vlan data type contains general information relating to a single SoftLayer billing item whose item category code is one of the following:
 // * network_vlan
-//
 //
 // These item categories denote that the billing item has network vlan information attached.
 type Billing_Item_Network_Vlan struct {

@@ -2566,11 +2566,6 @@ type Account_ProofOfConcept_Funding_Type struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }
 
-//
-//
-//
-//
-//
 type Account_Regional_Registry_Detail struct {
 	Entity
 

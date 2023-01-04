@@ -15,6 +15,7 @@ jobs:
     - name: Generate SoftLayer classes
       run: |
         make generate
+        make fmt
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"

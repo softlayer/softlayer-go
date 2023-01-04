@@ -667,7 +667,7 @@ func (r Account) GetDisablePaymentProcessingFlag() (resp bool, err error) {
 	return
 }
 
-// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Metric Tracking Object System and Legacy Data Warehouse. Each data entry objects contain ''dateTime'' and ''counter'' properties. ''dateTime'' property indicates the time that the disk usage data was measured and ''counter'' property holds the disk usage in bytes.
+// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Metric Tracking Object System and Legacy Data Warehouse. Each data entry objects contain ”dateTime” and ”counter” properties. ”dateTime” property indicates the time that the disk usage data was measured and ”counter” property holds the disk usage in bytes.
 func (r Account) GetDiskUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -677,7 +677,7 @@ func (r Account) GetDiskUsageMetricDataByDate(startDateTime *datatypes.Time, end
 	return
 }
 
-// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Legacy Data Warehouse.  Each data entry objects contain ''dateTime'' and ''counter'' properties. ''dateTime'' property indicates the time that the disk usage data was measured and ''counter'' property holds the disk usage in bytes.
+// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Legacy Data Warehouse.  Each data entry objects contain ”dateTime” and ”counter” properties. ”dateTime” property indicates the time that the disk usage data was measured and ”counter” property holds the disk usage in bytes.
 func (r Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -687,7 +687,7 @@ func (r Account) GetDiskUsageMetricDataFromLegacyByDate(startDateTime *datatypes
 	return
 }
 
-// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Metric Tracking Object System.  Each data entry object contains ''dateTime'' and ''counter'' properties.  ''dateTime'' property indicates the time that the disk usage data was measured and ''counter'' property holds the disk usage in bytes.
+// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide from the Metric Tracking Object System.  Each data entry object contains ”dateTime” and ”counter” properties.  ”dateTime” property indicates the time that the disk usage data was measured and ”counter” property holds the disk usage in bytes.
 func (r Account) GetDiskUsageMetricDataFromMetricTrackingObjectSystemByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -2314,7 +2314,7 @@ func (r Account_Address) Offset(offset int) Account_Address {
 	return r
 }
 
-// Create a new address record. The ''typeId'', ''accountId'', ''description'', ''address1'', ''city'', ''state'', ''country'', and ''postalCode'' properties in the templateObject parameter are required properties and may not be null or empty. Users will be restricted to creating addresses for their account.
+// Create a new address record. The ”typeId”, ”accountId”, ”description”, ”address1”, ”city”, ”state”, ”country”, and ”postalCode” properties in the templateObject parameter are required properties and may not be null or empty. Users will be restricted to creating addresses for their account.
 func (r Account_Address) CreateObject(templateObject *datatypes.Account_Address) (resp datatypes.Account_Address, err error) {
 	params := []interface{}{
 		templateObject,
@@ -3410,7 +3410,7 @@ func (r Account_Link_OpenStack) DeleteOSProject(projectId *string) (resp bool, e
 	return
 }
 
-// deleteObject permanently removes an account link and all of it's associated keystone data (including users for the associated project). '''This cannot be undone.''' Be wary of running this method. If you remove an account link in error you will need to re-create it by creating a new SoftLayer_Account_Link_OpenStack object.
+// deleteObject permanently removes an account link and all of it's associated keystone data (including users for the associated project). ”'This cannot be undone.”' Be wary of running this method. If you remove an account link in error you will need to re-create it by creating a new SoftLayer_Account_Link_OpenStack object.
 func (r Account_Link_OpenStack) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "deleteObject", nil, &r.Options, &resp)
 	return
@@ -4638,11 +4638,6 @@ func (r Account_ProofOfConcept_Funding_Type) GetObject() (resp datatypes.Account
 	return
 }
 
-//
-//
-//
-//
-//
 type Account_Regional_Registry_Detail struct {
 	Session *session.Session
 	Options sl.Options
@@ -4752,7 +4747,7 @@ func (r Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp 
 
 // Validates this person detail against all supported external registrars (APNIC/ARIN/RIPE). The validation uses the most restrictive rules ensuring that any person detail passing this validation would be acceptable to any supported registrar.
 //
-// The person detail properties are validated against - Non-emptiness - Minimum length - Maximum length - Maximum words - Supported characters - Format of data
+// # The person detail properties are validated against - Non-emptiness - Minimum length - Maximum length - Maximum words - Supported characters - Format of data
 //
 // If the person detail validation succeeds, then an empty list is returned indicating no errors were found and that this person detail would work against all three registrars during a subnet registration.
 //
@@ -5514,7 +5509,7 @@ func (r Account_Shipment_Tracking_Data) Offset(offset int) Account_Shipment_Trac
 	return r
 }
 
-// Create a new shipment tracking data. The ''shipmentId'', ''sequence'', and ''trackingData'' properties in the templateObject parameter are required parameters to create a tracking data record.
+// Create a new shipment tracking data. The ”shipmentId”, ”sequence”, and ”trackingData” properties in the templateObject parameter are required parameters to create a tracking data record.
 func (r Account_Shipment_Tracking_Data) CreateObject(templateObject *datatypes.Account_Shipment_Tracking_Data) (resp datatypes.Account_Shipment_Tracking_Data, err error) {
 	params := []interface{}{
 		templateObject,
@@ -5523,7 +5518,7 @@ func (r Account_Shipment_Tracking_Data) CreateObject(templateObject *datatypes.A
 	return
 }
 
-// Create a new shipment tracking data. The ''shipmentId'', ''sequence'', and ''trackingData'' properties of each templateObject in the templateObjects array are required parameters to create a tracking data record.
+// Create a new shipment tracking data. The ”shipmentId”, ”sequence”, and ”trackingData” properties of each templateObject in the templateObjects array are required parameters to create a tracking data record.
 func (r Account_Shipment_Tracking_Data) CreateObjects(templateObjects []datatypes.Account_Shipment_Tracking_Data) (resp []datatypes.Account_Shipment_Tracking_Data, err error) {
 	params := []interface{}{
 		templateObjects,

@@ -25,7 +25,7 @@ type Network struct {
 	Entity
 }
 
-// The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ''notes'' property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
+// The SoftLayer_Network_Application_Delivery_Controller data type models a single instance of an application delivery controller. Local properties are read only, except for a ”notes” property, which can be used to describe your application delivery controller service. The type's relational properties provide more information to the service's function and login information to the controller's backend management if advanced view is enabled.
 type Network_Application_Delivery_Controller struct {
 	Entity
 
@@ -1365,8 +1365,6 @@ type Network_Component_RemoteManagement struct {
 // The SoftLayer_Network_Component_Uplink_Hardware data type abstracts information related to network connections between SoftLayer hardware and SoftLayer network components.
 //
 // It is populated via triggers on the network_connection table (SoftLayer_Network_Connection), so you shouldn't have to delete or insert records into this table, ever.
-//
-//
 type Network_Component_Uplink_Hardware struct {
 	Entity
 
@@ -2128,10 +2126,6 @@ type Network_LBaaS_HealthMonitor struct {
 }
 
 // The SoftLayer_Network_LBaaS_L7HealthMonitor type presents a structure containing attributes of a health monitor object associated with a L7 pool instance. Note that the relationship between backend (L7 pool) and health monitor is 1-to-1, pools object associated with a health monitor must have the same pair of protocol and port. Example: frontend FA: http, 80   - backend BA: http, 3456 - healthmonitor HM_http3456 frontend FB: https, 443 - backend BB: http, 3456 - healthmonitor HM_http3456
-//
-//
-//
-//
 type Network_LBaaS_L7HealthMonitor struct {
 	Entity
 
@@ -2679,8 +2673,6 @@ type Network_LBaaS_PoolMembersHealth struct {
 }
 
 // The SoftLayer_Network_LBaaS_SSLCipher type presents a structure that contains attributes of load balancer cipher suites.
-//
-//
 type Network_LBaaS_SSLCipher struct {
 	Entity
 
@@ -3259,7 +3251,6 @@ type Network_Monitor_Version1_Query_Host struct {
 // # monitorLevel determines the highest level of SoftLayer_Network_Monitor_Version1_Query_Type object that can be placed in a monitoring instance on this server
 // # responseLevel determines the highest level of SoftLayer_Network_Monitor_Version1_Query_ResponseType object that can be placed in a monitoring instance on this server
 //
-//
 // Also note that the query type and response types are available through getAllQueryTypes and getAllResponseTypes, respectively.
 type Network_Monitor_Version1_Query_Host_Stratum struct {
 	Entity
@@ -3619,7 +3610,6 @@ type Network_Security_Scanner_Request struct {
 // *Scan Complete
 // *Scan Cancelled
 // *Generating Report.
-//
 //
 // The status of a vulnerability scan will change over the course of a scan's execution.
 type Network_Security_Scanner_Request_Status struct {
@@ -5923,10 +5913,8 @@ type Network_Subnet_Rwhois_Data struct {
 	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
 }
 
-//
 // **DEPRECATED**
 // The SoftLayer_Network_Subnet_Swip_Transaction data type contains basic information tracked at SoftLayer to allow automation of Swip creation, update, and removal requests.  A specific transaction is attached to an accountId and a subnetId. This also contains a "Status Name" which tells the customer what the transaction is doing:
-//
 //
 // * REQUEST QUEUED:  Request is queued up to be sent to ARIN
 // * REQUEST SENT:  The email request has been sent to ARIN
