@@ -1745,19 +1745,19 @@ func (r Virtual_Guest) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, e
 	return
 }
 
-// Retrieve Collection of scale assets this guest corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this guest corresponds to.
 func (r Virtual_Guest) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getScaleAssets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The scale member for this guest, if applicable.
+// Retrieve [DEPRECATED] The scale member for this guest, if applicable.
 func (r Virtual_Guest) GetScaleMember() (resp datatypes.Scale_Member_Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getScaleMember", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve Whether or not this guest is a member of a scale group and was automatically created as part of a scale group action.
+// Retrieve [DEPRECATED] Whether or not this guest is a member of a scale group and was automatically created as part of a scale group action.
 func (r Virtual_Guest) GetScaledFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getScaledFlag", nil, &r.Options, &resp)
 	return
@@ -2943,54 +2943,9 @@ func (r Virtual_Host) GetAccount() (resp datatypes.Account, err error) {
 	return
 }
 
-// Retrieve Boolean flag indicating whether this virtualization platform gets billed per guest rather than at a fixed rate.
-func (r Virtual_Host) GetBilledPerGuestFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getBilledPerGuestFlag", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve Boolean flag indicating whether this virtualization platform gets billed per memory usage rather than at a fixed rate.
-func (r Virtual_Host) GetBilledPerMemoryUsageFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getBilledPerMemoryUsageFlag", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The guests associated with a virtual host.
-func (r Virtual_Host) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getGuests", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve The hardware record which a virtual host resides on.
 func (r Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getHardware", nil, &r.Options, &resp)
-	return
-}
-
-// Query a virtualization platform directly to retrieve details regarding a guest.
-func (r Virtual_Host) GetLiveGuestByUuid(uuid *string) (resp datatypes.Virtual_Guest, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getLiveGuestByUuid", params, &r.Options, &resp)
-	return
-}
-
-// Query a virtualization platform directly to retrieve a list of known guests.
-func (r Virtual_Host) GetLiveGuestList() (resp []datatypes.Virtual_Guest, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getLiveGuestList", nil, &r.Options, &resp)
-	return
-}
-
-// Query a virtualization platform directly to retrieve recent metric data for a guest.
-func (r Virtual_Host) GetLiveGuestRecentMetricData(uuid *string, time *int, limit *int, interval *int) (resp []datatypes.Metric_Tracking_Object, err error) {
-	params := []interface{}{
-		uuid,
-		time,
-		limit,
-		interval,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getLiveGuestRecentMetricData", params, &r.Options, &resp)
 	return
 }
 
@@ -3009,60 +2964,6 @@ func (r Virtual_Host) GetObject() (resp datatypes.Virtual_Host, err error) {
 // Retrieve
 func (r Virtual_Host) GetPciDevices() (resp []datatypes.Virtual_Host_PciDevice, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getPciDevices", nil, &r.Options, &resp)
-	return
-}
-
-// Pause a virtual guest
-func (r Virtual_Host) PauseLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "pauseLiveGuest", params, &r.Options, &resp)
-	return
-}
-
-// Power cycle a virtual guest
-func (r Virtual_Host) PowerCycleLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "powerCycleLiveGuest", params, &r.Options, &resp)
-	return
-}
-
-// Power off a virtual guest
-func (r Virtual_Host) PowerOffLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "powerOffLiveGuest", params, &r.Options, &resp)
-	return
-}
-
-// Power on a virtual guest
-func (r Virtual_Host) PowerOnLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "powerOnLiveGuest", params, &r.Options, &resp)
-	return
-}
-
-// Attempt to complete a soft reboot of a guest by shutting down the operating system.
-func (r Virtual_Host) RebootSoftLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "rebootSoftLiveGuest", params, &r.Options, &resp)
-	return
-}
-
-// Resume a virtual guest
-func (r Virtual_Host) ResumeLiveGuest(uuid *string) (resp bool, err error) {
-	params := []interface{}{
-		uuid,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "resumeLiveGuest", params, &r.Options, &resp)
 	return
 }
 

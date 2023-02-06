@@ -554,7 +554,7 @@ func (r Account) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_
 	return
 }
 
-// Retrieve The Bluemix account link associated with this SoftLayer account, if one exists.
+// Retrieve The Platform account link associated with this SoftLayer account, if one exists.
 func (r Account) GetBluemixAccountLink() (resp datatypes.Account_Link_Bluemix, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBluemixAccountLink", nil, &r.Options, &resp)
 	return
@@ -1040,9 +1040,27 @@ func (r Account) GetInProgressExternalAccountSetup() (resp datatypes.Account_Ext
 	return
 }
 
+// Retrieve Account attribute flag indicating internal cci host account.
+func (r Account) GetInternalCciHostAccountFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getInternalCciHostAccountFlag", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Account attribute flag indicating account creates internal image templates.
+func (r Account) GetInternalImageTemplateCreationFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getInternalImageTemplateCreationFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Account) GetInternalNotes() (resp []datatypes.Account_Note, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getInternalNotes", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve Account attribute flag indicating restricted account.
+func (r Account) GetInternalRestrictionFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getInternalRestrictionFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -1737,6 +1755,12 @@ func (r Account) GetReferralPartnerCommissionPending() (resp []datatypes.Contain
 	return
 }
 
+// Retrieve Flag indicating if the account was referred.
+func (r Account) GetReferredAccountFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getReferredAccountFlag", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve If this is a account is a referral partner, the accounts this referral partner has referred
 func (r Account) GetReferredAccounts() (resp []datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getReferredAccounts", nil, &r.Options, &resp)
@@ -1779,12 +1803,6 @@ func (r Account) GetReservedCapacityGroups() (resp []datatypes.Virtual_ReservedC
 	return
 }
 
-// Retrieve An account's associated top-level resource groups.
-func (r Account) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getResourceGroups", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve All Routers that an accounts VLANs reside on
 func (r Account) GetRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getRouters", nil, &r.Options, &resp)
@@ -1803,7 +1821,7 @@ func (r Account) GetSamlAuthentication() (resp datatypes.Account_Authentication_
 	return
 }
 
-// Retrieve All scale groups on this account.
+// Retrieve [DEPRECATED] All scale groups on this account.
 func (r Account) GetScaleGroups() (resp []datatypes.Scale_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getScaleGroups", nil, &r.Options, &resp)
 	return
@@ -1929,6 +1947,12 @@ func (r Account) GetTechIncubatorProgramInfo(forNextBillCycle *bool) (resp datat
 		forNextBillCycle,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account", "getTechIncubatorProgramInfo", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve Account attribute flag indicating test account.
+func (r Account) GetTestAccountAttributeFlag() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getTestAccountAttributeFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -2133,6 +2157,15 @@ func (r Account) HourlyServerLimit() (resp int, err error) {
 	return
 }
 
+// Initiates Payer Authentication and provides data that is required for payer authentication enrollment and device data collection.
+func (r Account) InitiatePayerAuthentication(setupInformation *datatypes.Billing_Payment_Card_PayerAuthentication_Setup_Information) (resp datatypes.Billing_Payment_Card_PayerAuthentication_Setup, err error) {
+	params := []interface{}{
+		setupInformation,
+	}
+	err = r.Session.DoRequest("SoftLayer_Account", "initiatePayerAuthentication", params, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Account) IsActiveVmwareCustomer() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "isActiveVmwareCustomer", nil, &r.Options, &resp)
@@ -2256,7 +2289,7 @@ func (r Account) UpdateVpnUsersForResource(objectId *int, objectType *string) (r
 	return
 }
 
-// This method will validate the following account fields. Included are the allowed characters for each field.<br> <strong>Company Name (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parenthesis, exclamation point. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>First Name (required):</strong> alphabet, space, period, dash, comma, apostrophe. Maximum length: 30 characters.<br> <strong>Last Name (required):</strong> alphabet, space, period, dash, comma, apostrophe. Maximum length: 30 characters.<br> <strong>Email (required):</strong> Validates e-mail addresses against the syntax in RFC 822.<br> <strong>Address 1 (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parentheses. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>Address 2:</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parentheses. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>City (required):</strong> alphabet, numbers, space, period, dash, apostrophe, forward slash, comma, parenthesis. Maximum length: 100 characters.<br> <strong>State (required):</strong> Required if country is US, Brazil, Canada or India. Must be valid Alpha-2 ISO 3166-1 state code for that country.<br> <strong>Postal Code (required):</strong> alphabet, numbers, dash, space. Maximum length: 50 characters.<br> <strong>Country (required):</strong> alphabet, numbers. Must be valid Alpha-2 ISO 3166-1 country code.<br> <strong>Office Phone (required):</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 100 characters.<br> <strong>Alternate Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 100 characters.<br> <strong>Fax Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 20 characters.<br>
+// This method will validate the following account fields. Included are the allowed characters for each field.<br> <strong>Company Name (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parenthesis, exclamation point. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>First Name (required):</strong> alphabet, space, period, dash, comma, apostrophe. Maximum length: 30 characters.<br> <strong>Last Name (required):</strong> alphabet, space, period, dash, comma, apostrophe. Maximum length: 30 characters.<br> <strong>Email (required):</strong> Validates e-mail addresses against the syntax in RFC 822.<br> <strong>Address 1 (required):</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parentheses. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>Address 2:</strong> alphabet, numbers, space, period, dash, octothorpe, forward slash, comma, colon, at sign, ampersand, underscore, apostrophe, parentheses. Maximum length: 100 characters. (Note: may not contain an email address)<br> <strong>City (required):</strong> alphabet, numbers, space, period, dash, apostrophe, forward slash, comma, parenthesis. Maximum length: 100 characters.<br> <strong>State (required if country is US, Brazil, Canada or India):</strong> Must be valid Alpha-2 ISO 3166-1 state code for that country.<br> <strong>Postal Code (required if country is US or Canada):</strong> Accepted characters are alphabet, numbers, dash, space. Maximum length: 50 characters.<br> <strong>Country (required):</strong> alphabet, numbers. Must be valid Alpha-2 ISO 3166-1 country code.<br> <strong>Office Phone (required):</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 100 characters.<br> <strong>Alternate Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 100 characters.<br> <strong>Fax Phone:</strong> alphabet, numbers, space, period, dash, parenthesis, plus sign. Maximum length: 20 characters.<br>
 func (r Account) Validate(account *datatypes.Account) (resp []string, err error) {
 	params := []interface{}{
 		account,
@@ -2602,7 +2635,7 @@ func (r Account_Agreement) GetTopLevelBillingItems() (resp []datatypes.Billing_I
 	return
 }
 
-// Account authentication has many different settings that can be set. This class allows the customer or employee to set these settigns.
+// Account authentication has many different settings that can be set. This class allows the customer or employee to set these settings.
 type Account_Authentication_Attribute struct {
 	Session *session.Session
 	Options sl.Options

@@ -1558,12 +1558,6 @@ func (r Product_Package) GetRegions() (resp []datatypes.Location_Region, err err
 	return
 }
 
-// Retrieve The resource group template that describes a multi-server solution. (Deprecated)
-func (r Product_Package) GetResourceGroupTemplate() (resp datatypes.Resource_Group_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Product_Package", "getResourceGroupTemplate", nil, &r.Options, &resp)
-	return
-}
-
 // This call is similar to [[SoftLayer_Product_Package/getCategories|getCategories]], except that it does not include account-restricted pricing. Not all accounts have restricted pricing.
 func (r Product_Package) GetStandardCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getStandardCategories", nil, &r.Options, &resp)

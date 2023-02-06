@@ -1265,9 +1265,6 @@ type Product_Package struct {
 	// The regional locations that a package is available in.
 	Regions []Location_Region `json:"regions,omitempty" xmlrpc:"regions,omitempty"`
 
-	// The resource group template that describes a multi-server solution. (Deprecated)
-	ResourceGroupTemplate *Resource_Group_Template `json:"resourceGroupTemplate,omitempty" xmlrpc:"resourceGroupTemplate,omitempty"`
-
 	// This currently contains no information but is here for future use.
 	SubDescription *string `json:"subDescription,omitempty" xmlrpc:"subDescription,omitempty"`
 

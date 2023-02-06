@@ -333,6 +333,9 @@ type User_Customer struct {
 	// The expiration date for the user's password
 	PasswordExpireDate *Time `json:"passwordExpireDate,omitempty" xmlrpc:"passwordExpireDate,omitempty"`
 
+	// no documentation yet
+	PermissionCheckLikeMasterUserFlag *int `json:"permissionCheckLikeMasterUserFlag,omitempty" xmlrpc:"permissionCheckLikeMasterUserFlag,omitempty"`
+
 	// A count of a portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 	PermissionCount *uint `json:"permissionCount,omitempty" xmlrpc:"permissionCount,omitempty"`
 
@@ -572,19 +575,6 @@ type User_Customer_External_Binding struct {
 // *Credential Last Update Date
 type User_Customer_External_Binding_Attribute struct {
 	User_External_Binding_Attribute
-}
-
-// The SoftLayer_User_Customer_External_Binding_Phone data type contains information about an external binding that uses a phone call, SMS or mobile app for 2 form factor authentication. The external binding information is used when a SoftLayer customer logs into the SoftLayer customer portal or VPN to authenticate them against a trusted 3rd party, in this case using a mobile phone, mobile phone application or land-line phone.
-//
-// SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
-type User_Customer_External_Binding_Phone struct {
-	User_Customer_External_Binding
-
-	// The current external binding status. It can be "ACTIVE" or "BLOCKED".
-	BindingStatus *string `json:"bindingStatus,omitempty" xmlrpc:"bindingStatus,omitempty"`
-
-	// no documentation yet
-	PinLength *string `json:"pinLength,omitempty" xmlrpc:"pinLength,omitempty"`
 }
 
 // The SoftLayer_User_Customer_External_Binding_Totp data type contains information about a single time-based one time password external binding.  The external binding information is used when a SoftLayer customer logs into the SoftLayer customer portal to authenticate them.
@@ -1143,15 +1133,6 @@ type User_Employee struct {
 
 	// no documentation yet
 	LayoutProfiles []Layout_Profile `json:"layoutProfiles,omitempty" xmlrpc:"layoutProfiles,omitempty"`
-
-	// no documentation yet
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
-
-	// A count of
-	SecurityLevelCount *uint `json:"securityLevelCount,omitempty" xmlrpc:"securityLevelCount,omitempty"`
-
-	// no documentation yet
-	SecurityLevels []Security_Level `json:"securityLevels,omitempty" xmlrpc:"securityLevels,omitempty"`
 
 	// no documentation yet
 	TicketActivities []Ticket_Activity `json:"ticketActivities,omitempty" xmlrpc:"ticketActivities,omitempty"`
