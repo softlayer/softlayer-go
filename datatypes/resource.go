@@ -377,9 +377,6 @@ type Resource_Group_Template struct {
 
 	// no documentation yet
 	Members []Resource_Group_Template_Member `json:"members,omitempty" xmlrpc:"members,omitempty"`
-
-	// no documentation yet
-	Package *Product_Package `json:"package,omitempty" xmlrpc:"package,omitempty"`
 }
 
 // no documentation yet

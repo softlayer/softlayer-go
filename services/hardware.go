@@ -713,7 +713,7 @@ func (r Hardware) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err
 	return
 }
 
-// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware.
+// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware. [DEPRECATED]
 func (r Hardware) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
 	return
@@ -936,7 +936,7 @@ func (r Hardware) GetMemoryCapacity() (resp uint, err error) {
 }
 
 // Retrieve A piece of hardware's metric tracking object.
-func (r Hardware) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_HardwareServer, err error) {
+func (r Hardware) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -1025,13 +1025,13 @@ func (r Hardware) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version
 	return
 }
 
-// Retrieve The value of a hardware's network status attribute.
+// Retrieve The value of a hardware's network status attribute. [DEPRECATED]
 func (r Hardware) GetNetworkStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The hardware's related network status attribute.
+// Retrieve The hardware's related network status attribute. [DEPRECATED]
 func (r Hardware) GetNetworkStatusAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkStatusAttribute", nil, &r.Options, &resp)
 	return
@@ -1261,7 +1261,7 @@ func (r Hardware) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
-// Retrieve Collection of scale assets this hardware corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this hardware corresponds to.
 func (r Hardware) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getScaleAssets", nil, &r.Options, &resp)
 	return
@@ -1372,6 +1372,12 @@ func (r Hardware) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, e
 // Retrieve An account's associated upgrade request object, if any.
 func (r Hardware) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeRequest", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A piece of hardware's active upgradeable physical components.
+func (r Hardware) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
 	return
 }
 
@@ -1859,6 +1865,12 @@ func (r Hardware_Component_Model) GetIsInfinibandCompatible() (resp bool, err er
 // getObject retrieves the SoftLayer_Hardware_Component_Model object.
 func (r Hardware_Component_Model) GetObject() (resp datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r Hardware_Component_Model) GetQualifiedFirmwares() (resp []datatypes.Hardware_Component_Firmware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getQualifiedFirmwares", nil, &r.Options, &resp)
 	return
 }
 
@@ -2713,7 +2725,7 @@ func (r Hardware_Router) GetDownstreamNetworkHardware() (resp []datatypes.Hardwa
 	return
 }
 
-// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware.
+// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware. [DEPRECATED]
 func (r Hardware_Router) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
 	return
@@ -2942,7 +2954,7 @@ func (r Hardware_Router) GetMemoryCapacity() (resp uint, err error) {
 }
 
 // Retrieve A piece of hardware's metric tracking object.
-func (r Hardware_Router) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_HardwareServer, err error) {
+func (r Hardware_Router) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -3031,13 +3043,13 @@ func (r Hardware_Router) GetNetworkMonitors() (resp []datatypes.Network_Monitor_
 	return
 }
 
-// Retrieve The value of a hardware's network status attribute.
+// Retrieve The value of a hardware's network status attribute. [DEPRECATED]
 func (r Hardware_Router) GetNetworkStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The hardware's related network status attribute.
+// Retrieve The hardware's related network status attribute. [DEPRECATED]
 func (r Hardware_Router) GetNetworkStatusAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkStatusAttribute", nil, &r.Options, &resp)
 	return
@@ -3273,7 +3285,7 @@ func (r Hardware_Router) GetSanStorageCapabilityFlag() (resp bool, err error) {
 	return
 }
 
-// Retrieve Collection of scale assets this hardware corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this hardware corresponds to.
 func (r Hardware_Router) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getScaleAssets", nil, &r.Options, &resp)
 	return
@@ -3384,6 +3396,12 @@ func (r Hardware_Router) GetUpgradeItemPrices() (resp []datatypes.Product_Item_P
 // Retrieve An account's associated upgrade request object, if any.
 func (r Hardware_Router) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeRequest", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A piece of hardware's active upgradeable physical components.
+func (r Hardware_Router) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
 	return
 }
 
@@ -3682,12 +3700,13 @@ func (r Hardware_SecurityModule) CreateFirmwareReflashTransaction(ipmi *int, rai
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_SecurityModule) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int) (resp bool, err error) {
+func (r Hardware_SecurityModule) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int, networkCard *int) (resp bool, err error) {
 	params := []interface{}{
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "createFirmwareUpdateTransaction", params, &r.Options, &resp)
 	return
@@ -4206,17 +4225,6 @@ func (r Hardware_SecurityModule) GetBackendBandwidthUsage(startDate *datatypes.T
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendBandwidthUse", params, &r.Options, &resp)
-	return
-}
-
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -4515,7 +4523,7 @@ func (r Hardware_SecurityModule) GetDownstreamNetworkHardware() (resp []datatype
 	return
 }
 
-// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware.
+// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware. [DEPRECATED]
 func (r Hardware_SecurityModule) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
 	return
@@ -4572,17 +4580,6 @@ func (r Hardware_SecurityModule) GetFrontendBandwidthUsage(startDate *datatypes.
 		endDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendBandwidthUsage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method to return an array of public bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendBandwidthUse", params, &r.Options, &resp)
 	return
 }
 
@@ -4835,7 +4832,7 @@ func (r Hardware_SecurityModule) GetMemoryCapacity() (resp uint, err error) {
 }
 
 // Retrieve A piece of hardware's metric tracking object.
-func (r Hardware_SecurityModule) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_HardwareServer, err error) {
+func (r Hardware_SecurityModule) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -4942,13 +4939,13 @@ func (r Hardware_SecurityModule) GetNetworkMonitors() (resp []datatypes.Network_
 	return
 }
 
-// Retrieve The value of a hardware's network status attribute.
+// Retrieve The value of a hardware's network status attribute. [DEPRECATED]
 func (r Hardware_SecurityModule) GetNetworkStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The hardware's related network status attribute.
+// Retrieve The hardware's related network status attribute. [DEPRECATED]
 func (r Hardware_SecurityModule) GetNetworkStatusAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkStatusAttribute", nil, &r.Options, &resp)
 	return
@@ -5366,7 +5363,7 @@ func (r Hardware_SecurityModule) GetRouters() (resp []datatypes.Hardware, err er
 	return
 }
 
-// Retrieve Collection of scale assets this hardware corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this hardware corresponds to.
 func (r Hardware_SecurityModule) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getScaleAssets", nil, &r.Options, &resp)
 	return
@@ -5504,6 +5501,12 @@ func (r Hardware_SecurityModule) GetUpgradeRequest() (resp datatypes.Product_Upg
 	return
 }
 
+// Retrieve A piece of hardware's active upgradeable physical components.
+func (r Hardware_SecurityModule) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_SecurityModule) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUplinkHardware", nil, &r.Options, &resp)
@@ -5549,7 +5552,7 @@ func (r Hardware_SecurityModule) GetVirtualChassisSiblings() (resp []datatypes.H
 	return
 }
 
-// Retrieve A hardware server's virtual servers.
+// Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_SecurityModule) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualGuests", nil, &r.Options, &resp)
 	return
@@ -5662,13 +5665,14 @@ func (r Hardware_SecurityModule) MassFirmwareReflash(hardwareIds []int, ipmi *bo
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_SecurityModule) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+func (r Hardware_SecurityModule) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
 	params := []interface{}{
 		hardwareIds,
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareUpdate", params, &r.Options, &resp)
 	return
@@ -5949,7 +5953,7 @@ func (r Hardware_SecurityModule) TestRaidAlertService() (resp bool, err error) {
 	return
 }
 
-// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a job to toggle the interface.  It is not instant.
 func (r Hardware_SecurityModule) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
 	params := []interface{}{
 		enabled,
@@ -6089,12 +6093,13 @@ func (r Hardware_SecurityModule750) CreateFirmwareReflashTransaction(ipmi *int, 
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_SecurityModule750) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int) (resp bool, err error) {
+func (r Hardware_SecurityModule750) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int, networkCard *int) (resp bool, err error) {
 	params := []interface{}{
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "createFirmwareUpdateTransaction", params, &r.Options, &resp)
 	return
@@ -6613,17 +6618,6 @@ func (r Hardware_SecurityModule750) GetBackendBandwidthUsage(startDate *datatype
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule750) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendBandwidthUse", params, &r.Options, &resp)
-	return
-}
-
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule750) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -6922,7 +6916,7 @@ func (r Hardware_SecurityModule750) GetDownstreamNetworkHardware() (resp []datat
 	return
 }
 
-// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware.
+// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware. [DEPRECATED]
 func (r Hardware_SecurityModule750) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
 	return
@@ -6979,17 +6973,6 @@ func (r Hardware_SecurityModule750) GetFrontendBandwidthUsage(startDate *datatyp
 		endDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendBandwidthUsage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method to return an array of public bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule750) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendBandwidthUse", params, &r.Options, &resp)
 	return
 }
 
@@ -7242,7 +7225,7 @@ func (r Hardware_SecurityModule750) GetMemoryCapacity() (resp uint, err error) {
 }
 
 // Retrieve A piece of hardware's metric tracking object.
-func (r Hardware_SecurityModule750) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_HardwareServer, err error) {
+func (r Hardware_SecurityModule750) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -7349,13 +7332,13 @@ func (r Hardware_SecurityModule750) GetNetworkMonitors() (resp []datatypes.Netwo
 	return
 }
 
-// Retrieve The value of a hardware's network status attribute.
+// Retrieve The value of a hardware's network status attribute. [DEPRECATED]
 func (r Hardware_SecurityModule750) GetNetworkStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The hardware's related network status attribute.
+// Retrieve The hardware's related network status attribute. [DEPRECATED]
 func (r Hardware_SecurityModule750) GetNetworkStatusAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkStatusAttribute", nil, &r.Options, &resp)
 	return
@@ -7773,7 +7756,7 @@ func (r Hardware_SecurityModule750) GetRouters() (resp []datatypes.Hardware, err
 	return
 }
 
-// Retrieve Collection of scale assets this hardware corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this hardware corresponds to.
 func (r Hardware_SecurityModule750) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getScaleAssets", nil, &r.Options, &resp)
 	return
@@ -7911,6 +7894,12 @@ func (r Hardware_SecurityModule750) GetUpgradeRequest() (resp datatypes.Product_
 	return
 }
 
+// Retrieve A piece of hardware's active upgradeable physical components.
+func (r Hardware_SecurityModule750) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_SecurityModule750) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUplinkHardware", nil, &r.Options, &resp)
@@ -7956,7 +7945,7 @@ func (r Hardware_SecurityModule750) GetVirtualChassisSiblings() (resp []datatype
 	return
 }
 
-// Retrieve A hardware server's virtual servers.
+// Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_SecurityModule750) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualGuests", nil, &r.Options, &resp)
 	return
@@ -8069,13 +8058,14 @@ func (r Hardware_SecurityModule750) MassFirmwareReflash(hardwareIds []int, ipmi 
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_SecurityModule750) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+func (r Hardware_SecurityModule750) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
 	params := []interface{}{
 		hardwareIds,
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massFirmwareUpdate", params, &r.Options, &resp)
 	return
@@ -8356,7 +8346,7 @@ func (r Hardware_SecurityModule750) TestRaidAlertService() (resp bool, err error
 	return
 }
 
-// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a job to toggle the interface.  It is not instant.
 func (r Hardware_SecurityModule750) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
 	params := []interface{}{
 		enabled,
@@ -8496,12 +8486,13 @@ func (r Hardware_Server) CreateFirmwareReflashTransaction(ipmi *int, raidControl
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_Server) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int) (resp bool, err error) {
+func (r Hardware_Server) CreateFirmwareUpdateTransaction(ipmi *int, raidController *int, bios *int, harddrive *int, networkCard *int) (resp bool, err error) {
 	params := []interface{}{
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "createFirmwareUpdateTransaction", params, &r.Options, &resp)
 	return
@@ -9020,17 +9011,6 @@ func (r Hardware_Server) GetBackendBandwidthUsage(startDate *datatypes.Time, end
 	return
 }
 
-// Use this method to return an array of private bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_Server) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendBandwidthUse", params, &r.Options, &resp)
-	return
-}
-
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_Server) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -9329,7 +9309,7 @@ func (r Hardware_Server) GetDownstreamNetworkHardware() (resp []datatypes.Hardwa
 	return
 }
 
-// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware.
+// Retrieve All network hardware with monitoring warnings or errors that are downstream from the selected piece of hardware. [DEPRECATED]
 func (r Hardware_Server) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
 	return
@@ -9386,17 +9366,6 @@ func (r Hardware_Server) GetFrontendBandwidthUsage(startDate *datatypes.Time, en
 		endDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendBandwidthUsage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method to return an array of public bandwidth utilization records between a given date range.
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_Server) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendBandwidthUse", params, &r.Options, &resp)
 	return
 }
 
@@ -9649,7 +9618,7 @@ func (r Hardware_Server) GetMemoryCapacity() (resp uint, err error) {
 }
 
 // Retrieve A piece of hardware's metric tracking object.
-func (r Hardware_Server) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_HardwareServer, err error) {
+func (r Hardware_Server) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -9756,13 +9725,13 @@ func (r Hardware_Server) GetNetworkMonitors() (resp []datatypes.Network_Monitor_
 	return
 }
 
-// Retrieve The value of a hardware's network status attribute.
+// Retrieve The value of a hardware's network status attribute. [DEPRECATED]
 func (r Hardware_Server) GetNetworkStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The hardware's related network status attribute.
+// Retrieve The hardware's related network status attribute. [DEPRECATED]
 func (r Hardware_Server) GetNetworkStatusAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkStatusAttribute", nil, &r.Options, &resp)
 	return
@@ -10180,7 +10149,7 @@ func (r Hardware_Server) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
-// Retrieve Collection of scale assets this hardware corresponds to.
+// Retrieve [DEPRECATED] Collection of scale assets this hardware corresponds to.
 func (r Hardware_Server) GetScaleAssets() (resp []datatypes.Scale_Asset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getScaleAssets", nil, &r.Options, &resp)
 	return
@@ -10318,6 +10287,12 @@ func (r Hardware_Server) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Req
 	return
 }
 
+// Retrieve A piece of hardware's active upgradeable physical components.
+func (r Hardware_Server) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Component, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_Server) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUplinkHardware", nil, &r.Options, &resp)
@@ -10363,7 +10338,7 @@ func (r Hardware_Server) GetVirtualChassisSiblings() (resp []datatypes.Hardware,
 	return
 }
 
-// Retrieve A hardware server's virtual servers.
+// Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_Server) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualGuests", nil, &r.Options, &resp)
 	return
@@ -10476,13 +10451,14 @@ func (r Hardware_Server) MassFirmwareReflash(hardwareIds []int, ipmi *bool, raid
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
-func (r Hardware_Server) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+func (r Hardware_Server) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
 	params := []interface{}{
 		hardwareIds,
 		ipmi,
 		raidController,
 		bios,
 		harddrive,
+		networkCard,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareUpdate", params, &r.Options, &resp)
 	return
@@ -10763,7 +10739,7 @@ func (r Hardware_Server) TestRaidAlertService() (resp bool, err error) {
 	return
 }
 
-// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a transaction to toggle the interface.  It is not instant.
+// Attempt to toggle the IPMI interface.  If there is an active transaction on the server, it will throw an exception. This method creates a job to toggle the interface.  It is not instant.
 func (r Hardware_Server) ToggleManagementInterface(enabled *bool) (resp bool, err error) {
 	params := []interface{}{
 		enabled,

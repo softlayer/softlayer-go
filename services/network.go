@@ -633,7 +633,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetOb
 	return
 }
 
-// Retrieve Collection of scale load balancers that use this health check.
+// Retrieve [DEPRECATED] Collection of scale load balancers that use this health check.
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetScaleLoadBalancers() (resp []datatypes.Scale_LoadBalancer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getScaleLoadBalancers", nil, &r.Options, &resp)
 	return
@@ -1242,7 +1242,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetR
 	return
 }
 
-// Retrieve Collection of scale load balancers this virtual server applies to.
+// Retrieve [DEPRECATED] Collection of scale load balancers this virtual server applies to.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetScaleLoadBalancers() (resp []datatypes.Scale_LoadBalancer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getScaleLoadBalancers", nil, &r.Options, &resp)
 	return
@@ -1515,16 +1515,6 @@ func (r Network_Bandwidth_Version1_Allotment) GetAverageDailyPublicBandwidthUsag
 	return
 }
 
-// This method recurses through all servers on a Bandwidth Pool between the given start and end dates to retrieve public bandwidth data.
-func (r Network_Bandwidth_Version1_Allotment) GetBackendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBackendBandwidthUse", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The bandwidth allotment type of this virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetBandwidthAllotmentType() (resp datatypes.Network_Bandwidth_Version1_Allotment_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthAllotmentType", nil, &r.Options, &resp)
@@ -1611,16 +1601,6 @@ func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Net
 	return
 }
 
-// This method recurses through all servers on a Bandwidth Pool between the given start and end dates to retrieve private bandwidth data.
-func (r Network_Bandwidth_Version1_Allotment) GetFrontendBandwidthUse(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Network_Bandwidth_Version1_Usage_Detail, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getFrontendBandwidthUse", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getHardware", nil, &r.Options, &resp)
@@ -1658,7 +1638,7 @@ func (r Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuests() (resp []
 }
 
 // Retrieve A virtual rack's metric tracking object. This object records all periodic polled data available to this rack.
-func (r Network_Bandwidth_Version1_Allotment) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_VirtualDedicatedRack, err error) {
+func (r Network_Bandwidth_Version1_Allotment) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -3025,11 +3005,15 @@ func (r Network_Component) Offset(offset int) Network_Component {
 	return r
 }
 
-// Add VLANs as trunks to a network component. The VLANs given must be assigned to your account, and on the router to which this network component is connected. The current native VLAN (networkVlanId/networkVlan) cannot be added as a trunk. This method should be called on a network component attached directly to customer assigned hardware, though all trunking operations will occur on the uplinkComponent. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
+// Add VLANs as trunks to a network component. The VLANs given must be assigned to your account and belong to the same pod in which this network component and its hardware reside. The current native VLAN cannot be added as a trunk.
 //
-// This method returns an array of SoftLayer_Network_Vlans which were added as trunks. Any requested trunks which are already trunked will be silently ignored, and will not be returned.
+// This method should be called on a network component of assigned hardware. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
 //
-// Configuration of network hardware is done asynchronously, do not depend on the return of this call as an indication that the newly trunked VLANs will be accessible.
+// This method returns an array of SoftLayer_Network_Vlans which were added as trunks. Any requested VLANs which are already trunked will be ignored and will not be returned.
+//
+// Affected VLANs will not yet be operational as trunks on the network upon return of this call, but activation will have been scheduled and should be considered imminent. The trunking records associated with the affected VLANs will maintain an 'isUpdating' value of '1' so long as this is the case.
+//
+// Note that in the event of an "internal system error" some VLANs may still have been affected and scheduled for activation.
 func (r Network_Component) AddNetworkVlanTrunks(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		networkVlans,
@@ -3038,7 +3022,15 @@ func (r Network_Component) AddNetworkVlanTrunks(networkVlans []datatypes.Network
 	return
 }
 
-// This method will remove all VLANs trunked to this network component. The native VLAN (networkVlanId/networkVlan) will remain active, and cannot be removed via the API. Returns a list of SoftLayer_Network_Vlan objects for which the trunks were removed.
+// Remove all VLANs currently attached as trunks to this network component.
+//
+// This method should be called on a network component of assigned hardware. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
+//
+// This method returns an array of SoftLayer_Network_Vlans which will be removed as trunks.
+//
+// Affected VLANs will not yet be removed as trunks upon return of this call, but deactivation and removal will have been scheduled and should be considered imminent. The trunking records associated with the affected VLANs will maintain an 'isUpdating' value of '1' so long as this is the case.
+//
+// Note that in the event of a "pending API request" error some VLANs may still have been affected and scheduled for deactivation.
 func (r Network_Component) ClearNetworkVlanTrunks() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "clearNetworkVlanTrunks", nil, &r.Options, &resp)
 	return
@@ -3137,6 +3129,12 @@ func (r Network_Component) GetNetworkVlanTrunks() (resp []datatypes.Network_Comp
 	return
 }
 
+// Retrieve The viable trunking targets of this component. Viable targets include accessible VLANs in the same pod and network as this component, which are not already natively attached nor trunked to this component.
+func (r Network_Component) GetNetworkVlansTrunkable() (resp []datatypes.Network_Vlan, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlansTrunkable", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r Network_Component) GetObject() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getObject", nil, &r.Options, &resp)
@@ -3232,11 +3230,17 @@ func (r Network_Component) GetUplinkDuplexMode() (resp datatypes.Network_Compone
 	return
 }
 
-// Remove one or more VLANs currently attached to the uplinkComponent of this networkComponent. The VLANs given must be assigned to your account, and on the router the network component is connected to. If any VLANs not currently trunked are given, they will be silently ignored.
+// Remove one or more VLANs currently attached as trunks to this network component.
 //
-// This method should be called on a network component attached directly to customer assigned hardware, though all trunking operations will occur on the uplinkComponent. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
+// If any VLANs are given which are not attached as trunks, they will be ignored.
 //
-// Configuration of network hardware is done asynchronously, do not depend on the return of this call as an indication that the removed VLANs will be inaccessible.
+// This method should be called on a network component of assigned hardware. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
+//
+// This method returns an array of SoftLayer_Network_Vlans which will be removed as trunks. Any requested VLANs which were not trunked will be ignored and will not be returned.
+//
+// Affected VLANs will not yet be removed as trunks upon return of this call, but deactivation and removal will have been scheduled and should be considered imminent. The trunking records associated with the affected VLANs will maintain an 'isUpdating' value of '1' so long as this is the case.
+//
+// Note that in the event of a "pending API request" error some VLANs may still have been affected and scheduled for deactivation.
 func (r Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		networkVlans,
@@ -4431,12 +4435,6 @@ func (r Network_Gateway_Member_Attribute) GetGatewayMember() (resp datatypes.Net
 // no documentation yet
 func (r Network_Gateway_Member_Attribute) GetObject() (resp datatypes.Network_Gateway_Member_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member_Attribute", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Network_Gateway_Member_Attribute) GetSshKey() (resp datatypes.Security_Ssh_Key, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member_Attribute", "getSshKey", nil, &r.Options, &resp)
 	return
 }
 
@@ -6496,6 +6494,12 @@ func (r Network_Message_Delivery) GetType() (resp datatypes.Network_Message_Deli
 	return
 }
 
+// Retrieve a list of upgradable items available for network message delivery.
+func (r Network_Message_Delivery) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The vendor for a network message delivery account.
 func (r Network_Message_Delivery) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery", "getVendor", nil, &r.Options, &resp)
@@ -6562,8 +6566,11 @@ func (r Network_Message_Delivery_Email_Sendgrid) DeleteEmailListEntries(list *st
 }
 
 // no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) DisableSmtpAccess() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "disableSmtpAccess", nil, &r.Options, &resp)
+func (r Network_Message_Delivery_Email_Sendgrid) DisableSmtpAccess(disable *bool) (resp bool, err error) {
+	params := []interface{}{
+		disable,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "disableSmtpAccess", params, &r.Options, &resp)
 	return
 }
 
@@ -6577,8 +6584,11 @@ func (r Network_Message_Delivery_Email_Sendgrid) EditObject(templateObject *data
 }
 
 // no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) EnableSmtpAccess() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "enableSmtpAccess", nil, &r.Options, &resp)
+func (r Network_Message_Delivery_Email_Sendgrid) EnableSmtpAccess(enable *bool) (resp bool, err error) {
+	params := []interface{}{
+		enable,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "enableSmtpAccess", params, &r.Options, &resp)
 	return
 }
 
@@ -6589,7 +6599,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetAccount() (resp datatypes.Ac
 }
 
 // no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Account_Overview, err error) {
+func (r Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getAccountOverview", nil, &r.Options, &resp)
 	return
 }
@@ -6597,12 +6607,6 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetAccountOverview() (resp data
 // Retrieve The billing item for a network message delivery account.
 func (r Network_Message_Delivery_Email_Sendgrid) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getBillingItem", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) GetCategoryList() (resp []string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getCategoryList", nil, &r.Options, &resp)
 	return
 }
 
@@ -6628,7 +6632,7 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Net
 }
 
 // no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) GetOfferingsList() (resp []string, err error) {
+func (r Network_Message_Delivery_Email_Sendgrid) GetOfferingsList() (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Catalog_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getOfferingsList", nil, &r.Options, &resp)
 	return
 }
@@ -6663,6 +6667,12 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetType() (resp datatypes.Netwo
 	return
 }
 
+// Retrieve a list of upgradable items available for network message delivery.
+func (r Network_Message_Delivery_Email_Sendgrid) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The vendor for a network message delivery account.
 func (r Network_Message_Delivery_Email_Sendgrid) GetVendor() (resp datatypes.Network_Message_Delivery_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getVendor", nil, &r.Options, &resp)
@@ -6670,17 +6680,8 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetVendor() (resp datatypes.Net
 }
 
 // no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) GetVendorPortalUrl() (resp string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getVendorPortalUrl", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Network_Message_Delivery_Email_Sendgrid) SendEmail(emailContainer *datatypes.Container_Network_Message_Delivery_Email) (resp bool, err error) {
-	params := []interface{}{
-		emailContainer,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "sendEmail", params, &r.Options, &resp)
+func (r Network_Message_Delivery_Email_Sendgrid) SingleSignOn() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "singleSignOn", nil, &r.Options, &resp)
 	return
 }
 
@@ -7295,7 +7296,7 @@ func (r Network_Security_Scanner_Request) GetReport() (resp string, err error) {
 	return
 }
 
-// Retrieve Flag whether the requestor owns the hardware the scan was run on. This flag will  return for hardware servers only, virtual servers will result in a null return even if you have  a request out for them.
+// Retrieve Flag whether the requestor owns the hardware the scan was run on. This flag will return for hardware servers only, virtual servers will result in a null return even if you have a request out for them.
 func (r Network_Security_Scanner_Request) GetRequestorOwnedFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Security_Scanner_Request", "getRequestorOwnedFlag", nil, &r.Options, &resp)
 	return
@@ -8294,6 +8295,12 @@ func (r Network_Storage) GetOriginalSnapshotName() (resp string, err error) {
 	return
 }
 
+// Retrieve Volume id of the origin volume from which this volume is been cloned.
+func (r Network_Storage) GetOriginalVolumeId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOriginalVolumeId", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The name of the volume that this volume was duplicated from.
 func (r Network_Storage) GetOriginalVolumeName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getOriginalVolumeName", nil, &r.Options, &resp)
@@ -8655,9 +8662,10 @@ func (r Network_Storage) RefreshDependentDuplicate(snapshotId *int) (resp bool, 
 }
 
 // no documentation yet
-func (r Network_Storage) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+func (r Network_Storage) RefreshDuplicate(snapshotId *int, forceRefresh *bool) (resp bool, err error) {
 	params := []interface{}{
 		snapshotId,
+		forceRefresh,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "refreshDuplicate", params, &r.Options, &resp)
 	return
@@ -10560,6 +10568,12 @@ func (r Network_Storage_Backup_Evault) GetOriginalSnapshotName() (resp string, e
 	return
 }
 
+// Retrieve Volume id of the origin volume from which this volume is been cloned.
+func (r Network_Storage_Backup_Evault) GetOriginalVolumeId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOriginalVolumeId", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The name of the volume that this volume was duplicated from.
 func (r Network_Storage_Backup_Evault) GetOriginalVolumeName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getOriginalVolumeName", nil, &r.Options, &resp)
@@ -10942,9 +10956,10 @@ func (r Network_Storage_Backup_Evault) RefreshDependentDuplicate(snapshotId *int
 }
 
 // no documentation yet
-func (r Network_Storage_Backup_Evault) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+func (r Network_Storage_Backup_Evault) RefreshDuplicate(snapshotId *int, forceRefresh *bool) (resp bool, err error) {
 	params := []interface{}{
 		snapshotId,
+		forceRefresh,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "refreshDuplicate", params, &r.Options, &resp)
 	return
@@ -12965,6 +12980,12 @@ func (r Network_Storage_Iscsi) GetOriginalSnapshotName() (resp string, err error
 	return
 }
 
+// Retrieve Volume id of the origin volume from which this volume is been cloned.
+func (r Network_Storage_Iscsi) GetOriginalVolumeId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOriginalVolumeId", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The name of the volume that this volume was duplicated from.
 func (r Network_Storage_Iscsi) GetOriginalVolumeName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getOriginalVolumeName", nil, &r.Options, &resp)
@@ -13326,9 +13347,10 @@ func (r Network_Storage_Iscsi) RefreshDependentDuplicate(snapshotId *int) (resp 
 }
 
 // no documentation yet
-func (r Network_Storage_Iscsi) RefreshDuplicate(snapshotId *int) (resp bool, err error) {
+func (r Network_Storage_Iscsi) RefreshDuplicate(snapshotId *int, forceRefresh *bool) (resp bool, err error) {
 	params := []interface{}{
 		snapshotId,
+		forceRefresh,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "refreshDuplicate", params, &r.Options, &resp)
 	return
@@ -15881,7 +15903,13 @@ func (r Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(subn
 	return
 }
 
-// The SoftLayer_Network_Vlan data type models a single VLAN within SoftLayer's public and private networks. a Virtual LAN is a structure that associates network interfaces on routers, switches, and servers in different locations to act as if they were on the same local network broadcast domain. VLANs are a central part of the SoftLayer network. They can determine how new IP subnets are routed and how individual servers communicate to each other.
+// VLANs comprise the fundamental segmentation model on the network, isolating customer networks from one another.
+//
+// VLANs are scoped to a single network, generally public or private, and a pod. Through association to a single VLAN, assigned subnets are routed on the network to provide IP address connectivity.
+//
+// Compute devices are associated to a single VLAN per active network, to which the Primary IP Address and containing Primary Subnet belongs. Additional VLANs may be associated to bare metal devices using VLAN trunking.
+//
+// [VLAN at Wikipedia](https://en.wikipedia.org/wiki/VLAN)
 type Network_Vlan struct {
 	Session *session.Session
 	Options sl.Options
@@ -15921,7 +15949,11 @@ func (r Network_Vlan) Offset(offset int) Network_Vlan {
 	return r
 }
 
-// Edit a VLAN's properties
+// Updates this VLAN using the provided VLAN template.
+//
+// The following properties may be modified.
+//
+// - "name" - A description no more than 20 characters in length.
 func (r Network_Vlan) EditObject(templateObject *datatypes.Network_Vlan) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -15930,193 +15962,205 @@ func (r Network_Vlan) EditObject(templateObject *datatypes.Network_Vlan) (resp b
 	return
 }
 
-// Retrieve The SoftLayer customer account associated with a VLAN.
+// Retrieve The account this VLAN is associated with.
 func (r Network_Vlan) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A VLAN's additional primary subnets. These are used to extend the number of servers attached to the VLAN by adding more ip addresses to the primary IP address pool.
+// Retrieve The primary IPv4 subnets routed on this VLAN, excluding the primarySubnet.
 func (r Network_Vlan) GetAdditionalPrimarySubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAdditionalPrimarySubnets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The gateway this VLAN is inside of.
+// Retrieve The gateway device this VLAN is associated with for routing purposes.
 func (r Network_Vlan) GetAttachedNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAttachedNetworkGateway", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve Whether or not this VLAN is inside a gateway.
+// Retrieve A value of '1' indicates this VLAN is associated with a gateway device for routing purposes.
 func (r Network_Vlan) GetAttachedNetworkGatewayFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAttachedNetworkGatewayFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The inside VLAN record if this VLAN is inside a network gateway.
+// Retrieve The gateway device VLAN context this VLAN is associated with for routing purposes.
 func (r Network_Vlan) GetAttachedNetworkGatewayVlan() (resp datatypes.Network_Gateway_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAttachedNetworkGatewayVlan", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The billing item for a network vlan.
+// Retrieve The billing item for this VLAN.
 func (r Network_Vlan) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getBillingItem", nil, &r.Options, &resp)
 	return
 }
 
-// Get a set of reasons why this VLAN may not be cancelled. If the result is empty, this VLAN may be cancelled.
+// Evaluates this VLAN for cancellation and returns a list of descriptions why this VLAN may not be cancelled. If the result is empty, this VLAN may be cancelled.
 func (r Network_Vlan) GetCancelFailureReasons() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getCancelFailureReasons", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A flag indicating that a network vlan is on a Hardware Firewall (Dedicated).
+// Retrieve The datacenter this VLAN is associated with.
+func (r Network_Vlan) GetDatacenter() (resp datatypes.Location, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getDatacenter", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A value of '1' indicates this VLAN is associated with a firewall device. This does not include Hardware Firewalls.
 func (r Network_Vlan) GetDedicatedFirewallFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getDedicatedFirewallFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve [DEPRECATED] The extension router that a VLAN is associated with.
+// Retrieve [DEPRECATED] The extension router that this VLAN is associated with.
 func (r Network_Vlan) GetExtensionRouter() (resp datatypes.Hardware_Router, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getExtensionRouter", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A firewalled Vlan's network components.
+// Retrieve The VSI network interfaces connected to this VLAN and associated with a Hardware Firewall.
 func (r Network_Vlan) GetFirewallGuestNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallGuestNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A firewalled vlan's inbound/outbound interfaces.
+// Retrieve The context for the firewall device associated with this VLAN.
 func (r Network_Vlan) GetFirewallInterfaces() (resp []datatypes.Network_Firewall_Module_Context_Interface, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallInterfaces", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A firewalled Vlan's network components.
+// Retrieve The uplinks of the hardware network interfaces connected natively to this VLAN and associated with a Hardware Firewall.
 func (r Network_Vlan) GetFirewallNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
-// Get the IP addresses associated with this server that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this VLAN. Please use getFirewallProtectableSubnets to get all protectable subnets.
+// *** DEPRECATED ***
+// Retrieves the IP addresses routed on this VLAN that are protectable by a Hardware Firewall.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
-// Get the subnets associated with this server that are protectable by a network component firewall.
+// *** DEPRECATED ***
+// Retrieves the subnets routed on this VLAN that are protectable by a Hardware Firewall.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The currently running rule set of a firewalled VLAN.
+// Retrieve The access rules for the firewall device associated with this VLAN.
 func (r Network_Vlan) GetFirewallRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallRules", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The networking components that are connected to a VLAN.
+// Retrieve The VSI network interfaces connected to this VLAN.
 func (r Network_Vlan) GetGuestNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getGuestNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve All of the hardware that exists on a VLAN. Hardware is associated with a VLAN by its networking components.
+// Retrieve The hardware with network interfaces connected natively to this VLAN.
 func (r Network_Vlan) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getHardware", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve A value of '1' indicates this VLAN is associated with a firewall device in a high availability configuration.
 func (r Network_Vlan) GetHighAvailabilityFirewallFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getHighAvailabilityFirewallFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A flag indicating that a vlan can be assigned to a host that has local disk functionality.
+// Retrieve A value of '1' indicates this VLAN's pod has VSI local disk storage capability.
 func (r Network_Vlan) GetLocalDiskStorageCapabilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getLocalDiskStorageCapabilityFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The network in which this VLAN resides.
+// Retrieve [DEPRECATED] The network in which this VLAN resides.
 func (r Network_Vlan) GetNetwork() (resp datatypes.Network, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetwork", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The network components that are connected to this VLAN through a trunk.
+// Retrieve The hardware network interfaces connected via trunk to this VLAN.
 func (r Network_Vlan) GetNetworkComponentTrunks() (resp []datatypes.Network_Component_Network_Vlan_Trunk, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentTrunks", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The networking components that are connected to a VLAN.
+// Retrieve The hardware network interfaces connected natively to this VLAN.
 func (r Network_Vlan) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The viable trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already natively attached nor trunked.
+// Retrieve The viable hardware network interface trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already connected, either natively or trunked.
 func (r Network_Vlan) GetNetworkComponentsTrunkable() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentsTrunkable", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve Identifier to denote whether a VLAN is used for public or private connectivity.
+// Retrieve The network that this VLAN is on, either PUBLIC or PRIVATE, if applicable.
 func (r Network_Vlan) GetNetworkSpace() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkSpace", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The Hardware Firewall (Dedicated) for a network vlan.
+// Retrieve The firewall device associated with this VLAN.
 func (r Network_Vlan) GetNetworkVlanFirewall() (resp datatypes.Network_Vlan_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkVlanFirewall", nil, &r.Options, &resp)
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_Vlan object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Vlan service. You can only retrieve VLANs that are associated with your SoftLayer customer account.
+// Retrieves a VLAN by its id value. Only VLANs assigned to your account are accessible.
 func (r Network_Vlan) GetObject() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getObject", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The primary router that a VLAN is associated with. Every SoftLayer VLAN is connected to more than one router for greater network redundancy.
+// Retrieve The router device that this VLAN is associated with.
 func (r Network_Vlan) GetPrimaryRouter() (resp datatypes.Hardware_Router, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimaryRouter", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A VLAN's primary subnet. Each VLAN has at least one subnet, usually the subnet that is assigned to a server or new IP address block when it's purchased.
+// Retrieve A primary IPv4 subnet routed on this VLAN, if accessible.
 func (r Network_Vlan) GetPrimarySubnet() (resp datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimarySubnet", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A VLAN's primary IPv6 subnet. Some VLAN's may not have a primary IPv6 subnet.
+// Retrieve The primary IPv6 subnet routed on this VLAN, if IPv6 is enabled.
 func (r Network_Vlan) GetPrimarySubnetVersion6() (resp datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimarySubnetVersion6", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve
+// Retrieve All primary subnets routed on this VLAN.
 func (r Network_Vlan) GetPrimarySubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimarySubnets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The gateways this VLAN is the private VLAN of.
+// Retrieve The gateway devices with connectivity supported by this private VLAN.
 func (r Network_Vlan) GetPrivateNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrivateNetworkGateways", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve a VLAN's associated private network VLAN. getPrivateVlan gathers it's information by retrieving the private VLAN of a VLAN's primary hardware object.
+// *** DEPRECATED ***
+// Retrieves a private VLAN associated to one or more hosts also associated to this public VLAN.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrivateVlan", nil, &r.Options, &resp)
 	return
@@ -16133,19 +16177,21 @@ func (r Network_Vlan) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatyp
 	return
 }
 
-// Retrieve
+// Retrieve IP addresses routed on this VLAN which are actively associated with network protections.
 func (r Network_Vlan) GetProtectedIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getProtectedIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The gateways this VLAN is the public VLAN of.
+// Retrieve The gateway devices with connectivity supported by this public VLAN.
 func (r Network_Vlan) GetPublicNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPublicNetworkGateways", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve the VLAN that belongs to a server's public network interface, as described by a server's fully-qualified domain name. A server's ”FQDN” is it's hostname, followed by a period then it's domain name.
+// *** DEPRECATED ***
+// Retrieves a public VLAN associated to the host matched by the given fully-qualified domain name.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		fqdn,
@@ -16154,67 +16200,69 @@ func (r Network_Vlan) GetPublicVlanByFqdn(fqdn *string) (resp datatypes.Network_
 	return
 }
 
-// Retrieve all reverse DNS records associated with the subnets assigned to a VLAN.
+// *** DEPRECATED ***
+// Retrieves DNS PTR records associated with IP addresses routed on this VLAN. Results will be grouped by DNS domain with the "resourceRecords" property populated.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getReverseDomainRecords", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A flag indicating that a vlan can be assigned to a host that has SAN disk functionality.
+// Retrieve A value of '1' indicates this VLAN's pod has VSI SAN disk storage capability.
 func (r Network_Vlan) GetSanStorageCapabilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSanStorageCapabilityFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve Collection of scale VLANs this VLAN applies to.
+// Retrieve [DEPRECATED] The scale VLANs associated to this VLAN.
 func (r Network_Vlan) GetScaleVlans() (resp []datatypes.Scale_Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getScaleVlans", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The secondary router that a VLAN is associated with. Every SoftLayer VLAN is connected to more than one router for greater network redundancy.
+// Retrieve [DEPRECATED] The secondary router device that this VLAN is associated with.
 func (r Network_Vlan) GetSecondaryRouter() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSecondaryRouter", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The subnets that exist as secondary interfaces on a VLAN
+// Retrieve All non-primary subnets routed on this VLAN.
 func (r Network_Vlan) GetSecondarySubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSecondarySubnets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve All of the subnets that exist as VLAN interfaces.
+// Retrieve All subnets routed on this VLAN.
 func (r Network_Vlan) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSubnets", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve References to all tags for this VLAN.
+// Retrieve The tags associated to this VLAN.
 func (r Network_Vlan) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getTagReferences", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The number of primary IP addresses in a VLAN.
+// Retrieve The number of primary IPv4 addresses routed on this VLAN.
 func (r Network_Vlan) GetTotalPrimaryIpAddressCount() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getTotalPrimaryIpAddressCount", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The type of this VLAN.
+// Retrieve The type for this VLAN, with the following values: STANDARD, GATEWAY, INTERCONNECT
 func (r Network_Vlan) GetType() (resp datatypes.Network_Vlan_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getType", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve All of the Virtual Servers that are connected to a VLAN.
+// Retrieve The VSIs with network interfaces connected to this VLAN.
 func (r Network_Vlan) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getVirtualGuests", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve the VLAN associated with an IP address via the IP's associated subnet.
+// Retrieves the VLAN on which the given IP address is routed.
 func (r Network_Vlan) GetVlanForIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
 	params := []interface{}{
 		ipAddress,
@@ -16232,7 +16280,9 @@ func (r Network_Vlan) SetTags(tags *string) (resp bool, err error) {
 	return
 }
 
-// The ”'getSensorData”' method updates a VLAN's firewall to allow or disallow intra-VLAN communication.
+// *** DEPRECATED ***
+// Updates the firewall associated to this VLAN to allow or disallow intra-VLAN communication.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err error) {
 	var resp datatypes.Void
 	params := []interface{}{
@@ -16242,7 +16292,7 @@ func (r Network_Vlan) UpdateFirewallIntraVlanCommunication(enabled *bool) (err e
 	return
 }
 
-// Convert the VLAN this operation is executed against to a paid resource. This can be done for any Automatic VLAN. This operation can only be executed on an Automatic VLAN, and will transition it to being a Premium VLAN. The VLAN will then provide the benefits of a Premium VLAN. A Premium VLAN will remain on the account until cancelled. This operation cannot be undone! Once a VLAN becomes Premium, it can only be removed through cancellation, which will result in it being reclaimed.
+// Converts this VLAN to a paid resource. This can be done for any Automatic VLAN. This operation can only be executed on an Automatic VLAN, and will transition it to being a Premium VLAN. The VLAN will then provide the benefits of a Premium VLAN. A Premium VLAN will remain on the account until cancelled. This operation cannot be undone! Once a VLAN becomes Premium, it can only be removed through cancellation, which will result in it being reclaimed.
 //
 // This operation is a convenience for utilizing the SoftLayer_Product_Order.placeOrder operation. It will place an order to upgrade the VLAN it is executed against. It will take a few moments for the order to be processed and the upgrade to complete. Note that the order is placed in such a way that any account state which prevents automatic order approval will prevent the order from being placed. Thus, if no error is received, the order was placed and approved, and the VLAN will be upgraded shortly.
 func (r Network_Vlan) Upgrade() (resp datatypes.Container_Product_Order_Network_Vlan, err error) {
