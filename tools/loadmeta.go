@@ -302,11 +302,17 @@ func ConvertType(args ...interface{}) string {
 		return t
 	}
 
-	if strings.HasPrefix(t, "McAfee_") {
-		if p != "datatypes" {
-			return "datatypes." + t
+	// Need to update this if SL ever exposes classes that don't start with SoftLayer_
+	// We could proboably assume anything that doesn't get type matched above should be a datatype
+	// but I feel this is more specific.
+	validPrefix := []string{"McAfee_", "Sprint_", "BMS_"}
+	for _, prefix := range validPrefix {
+		if strings.HasPrefix(t, prefix) {
+			if p != "datatypes" {
+				return "datatypes." + t
+			}
+			return t
 		}
-		return t
 	}
 
 	return t
