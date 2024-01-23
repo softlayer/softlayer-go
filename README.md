@@ -342,6 +342,14 @@ go get github.com/softlayer/softlayer-go/...
 make
 ```
 
+```bash
+gofmt -w `find . -name '*.go' | grep -v vendor`
+go vet -all $$(go list ./... | grep -v datatypes)
+go get -d -v ./...
+go build ./...
+
+```
+
 ### Test
 
 ```
@@ -353,6 +361,20 @@ make test
 ```
 make update_deps
 ```
+
+### Generate
+This downloads the API definitions and creates go files for them.
+
+(with make)
+```bash
+make generate
+```
+
+(manually)
+```bash
+go run tools/main.go tools/loadmeta.go tools/common.go tools/version.go generate
+```
+
 
 ## Copyright
 

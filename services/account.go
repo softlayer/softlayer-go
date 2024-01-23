@@ -3183,7 +3183,7 @@ func (r Account_Internal_Ibm) GetAuthorizationUrl(requestId *int) (resp string, 
 }
 
 // no documentation yet
-func (r Account_Internal_Ibm) GetBmsCountries() (resp []BMS_Container_Country, err error) {
+func (r Account_Internal_Ibm) GetBmsCountries() (resp []datatypes.BMS_Container_Country, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountries", nil, &r.Options, &resp)
 	return
 }
@@ -3296,7 +3296,7 @@ func (r Account_Internal_Ibm_CostRecovery_Validator) Offset(offset int) Account_
 }
 
 // Will return a container with information for a PACT or WBS account ID and BMS country ID.
-func (r Account_Internal_Ibm_CostRecovery_Validator) GetSprintContainer(accountId *string, countryId *string) (resp Sprint_Container_CostRecovery, err error) {
+func (r Account_Internal_Ibm_CostRecovery_Validator) GetSprintContainer(accountId *string, countryId *string) (resp datatypes.Sprint_Container_CostRecovery, err error) {
 	params := []interface{}{
 		accountId,
 		countryId,
@@ -3306,7 +3306,7 @@ func (r Account_Internal_Ibm_CostRecovery_Validator) GetSprintContainer(accountI
 }
 
 // Will validate a PACT or WBS account ID and BMS country ID. If the record is invalid, an exception is thrown. Otherwise, a container with account information is returned.
-func (r Account_Internal_Ibm_CostRecovery_Validator) ValidateByAccountAndCountryId(accountId *string, countryId *string) (resp Sprint_Container_CostRecovery, err error) {
+func (r Account_Internal_Ibm_CostRecovery_Validator) ValidateByAccountAndCountryId(accountId *string, countryId *string) (resp datatypes.Sprint_Container_CostRecovery, err error) {
 	params := []interface{}{
 		accountId,
 		countryId,
