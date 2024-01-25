@@ -30,12 +30,12 @@ import (
 
 // no documentation yet
 type Utility_Network struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUtilityNetworkService returns an instance of the Utility_Network SoftLayer service
-func GetUtilityNetworkService(sess *session.Session) Utility_Network {
+func GetUtilityNetworkService(sess session.SLSession) Utility_Network {
 	return Utility_Network{Session: sess}
 }
 

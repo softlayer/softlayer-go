@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Survey data type contains general information relating to a single SoftLayer survey.
 type Survey struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSurveyService returns an instance of the Survey SoftLayer service
-func GetSurveyService(sess *session.Session) Survey {
+func GetSurveyService(sess session.SLSession) Survey {
 	return Survey{Session: sess}
 }
 

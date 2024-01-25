@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_User_Customer data type contains general information relating to a single SoftLayer customer portal user. Personal information in this type such as names, addresses, and phone numbers are not necessarily associated with the customer account the user is assigned to.
 type User_Customer struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerService returns an instance of the User_Customer SoftLayer service
-func GetUserCustomerService(sess *session.Session) User_Customer {
+func GetUserCustomerService(sess session.SLSession) User_Customer {
 	return User_Customer{Session: sess}
 }
 
@@ -1168,12 +1168,12 @@ func (r User_Customer) ValidateAuthenticationToken(authenticationToken *datatype
 
 // The SoftLayer_User_Customer_ApiAuthentication type contains user's authentication key(s).
 type User_Customer_ApiAuthentication struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerApiAuthenticationService returns an instance of the User_Customer_ApiAuthentication SoftLayer service
-func GetUserCustomerApiAuthenticationService(sess *session.Session) User_Customer_ApiAuthentication {
+func GetUserCustomerApiAuthenticationService(sess session.SLSession) User_Customer_ApiAuthentication {
 	return User_Customer_ApiAuthentication{Session: sess}
 }
 
@@ -1229,12 +1229,12 @@ func (r User_Customer_ApiAuthentication) GetUser() (resp datatypes.User_Customer
 
 // Each SoftLayer portal account is assigned a series of permissions that determine what access the user has to functions within the SoftLayer customer portal. This status is reflected in the SoftLayer_User_Customer_Status data type. Permissions differ from user status in that user status applies globally to the portal while user permissions are applied to specific portal functions.
 type User_Customer_CustomerPermission_Permission struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerCustomerPermissionPermissionService returns an instance of the User_Customer_CustomerPermission_Permission SoftLayer service
-func GetUserCustomerCustomerPermissionPermissionService(sess *session.Session) User_Customer_CustomerPermission_Permission {
+func GetUserCustomerCustomerPermissionPermissionService(sess session.SLSession) User_Customer_CustomerPermission_Permission {
 	return User_Customer_CustomerPermission_Permission{Session: sess}
 }
 
@@ -1282,12 +1282,12 @@ func (r User_Customer_CustomerPermission_Permission) GetObject() (resp datatypes
 
 // The SoftLayer_User_Customer_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_Customer_External_Binding struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerExternalBindingService returns an instance of the User_Customer_External_Binding SoftLayer service
-func GetUserCustomerExternalBindingService(sess *session.Session) User_Customer_External_Binding {
+func GetUserCustomerExternalBindingService(sess session.SLSession) User_Customer_External_Binding {
 	return User_Customer_External_Binding{Session: sess}
 }
 
@@ -1410,12 +1410,12 @@ func (r User_Customer_External_Binding) UpdateNote(text *string) (resp bool, err
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Totp struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerExternalBindingTotpService returns an instance of the User_Customer_External_Binding_Totp SoftLayer service
-func GetUserCustomerExternalBindingTotpService(sess *session.Session) User_Customer_External_Binding_Totp {
+func GetUserCustomerExternalBindingTotpService(sess session.SLSession) User_Customer_External_Binding_Totp {
 	return User_Customer_External_Binding_Totp{Session: sess}
 }
 
@@ -1548,12 +1548,12 @@ func (r User_Customer_External_Binding_Totp) UpdateNote(text *string) (resp bool
 
 // The SoftLayer_User_Customer_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_Customer_External_Binding_Vendor struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerExternalBindingVendorService returns an instance of the User_Customer_External_Binding_Vendor SoftLayer service
-func GetUserCustomerExternalBindingVendorService(sess *session.Session) User_Customer_External_Binding_Vendor {
+func GetUserCustomerExternalBindingVendorService(sess session.SLSession) User_Customer_External_Binding_Vendor {
 	return User_Customer_External_Binding_Vendor{Session: sess}
 }
 
@@ -1611,12 +1611,12 @@ func (r User_Customer_External_Binding_Vendor) GetObject() (resp datatypes.User_
 //
 // SoftLayer users with an active external binding will be prohibited from using the API for security reasons.
 type User_Customer_External_Binding_Verisign struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerExternalBindingVerisignService returns an instance of the User_Customer_External_Binding_Verisign SoftLayer service
-func GetUserCustomerExternalBindingVerisignService(sess *session.Session) User_Customer_External_Binding_Verisign {
+func GetUserCustomerExternalBindingVerisignService(sess session.SLSession) User_Customer_External_Binding_Verisign {
 	return User_Customer_External_Binding_Verisign{Session: sess}
 }
 
@@ -1782,12 +1782,12 @@ func (r User_Customer_External_Binding_Verisign) ValidateCredentialId(userId *in
 
 // no documentation yet
 type User_Customer_Invitation struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerInvitationService returns an instance of the User_Customer_Invitation SoftLayer service
-func GetUserCustomerInvitationService(sess *session.Session) User_Customer_Invitation {
+func GetUserCustomerInvitationService(sess session.SLSession) User_Customer_Invitation {
 	return User_Customer_Invitation{Session: sess}
 }
 
@@ -1834,12 +1834,12 @@ func (r User_Customer_Invitation) GetUser() (resp datatypes.User_Customer, err e
 
 // The Customer_Notification_Hardware object stores links between customers and the hardware devices they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that hardware object to be notified on failure.
 type User_Customer_Notification_Hardware struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerNotificationHardwareService returns an instance of the User_Customer_Notification_Hardware SoftLayer service
-func GetUserCustomerNotificationHardwareService(sess *session.Session) User_Customer_Notification_Hardware {
+func GetUserCustomerNotificationHardwareService(sess session.SLSession) User_Customer_Notification_Hardware {
 	return User_Customer_Notification_Hardware{Session: sess}
 }
 
@@ -1930,12 +1930,12 @@ func (r User_Customer_Notification_Hardware) GetUser() (resp datatypes.User_Cust
 
 // The SoftLayer_User_Customer_Notification_Virtual_Guest object stores links between customers and the virtual guests they wish to monitor.  This link is not enough, the user must be sure to also create SoftLayer_Network_Monitor_Version1_Query_Host instance with the response action set to "notify users" in order for the users linked to that Virtual Guest object to be notified on failure.
 type User_Customer_Notification_Virtual_Guest struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerNotificationVirtualGuestService returns an instance of the User_Customer_Notification_Virtual_Guest SoftLayer service
-func GetUserCustomerNotificationVirtualGuestService(sess *session.Session) User_Customer_Notification_Virtual_Guest {
+func GetUserCustomerNotificationVirtualGuestService(sess session.SLSession) User_Customer_Notification_Virtual_Guest {
 	return User_Customer_Notification_Virtual_Guest{Session: sess}
 }
 
@@ -2026,12 +2026,12 @@ func (r User_Customer_Notification_Virtual_Guest) GetUser() (resp datatypes.User
 
 // no documentation yet
 type User_Customer_OpenIdConnect struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerOpenIdConnectService returns an instance of the User_Customer_OpenIdConnect SoftLayer service
-func GetUserCustomerOpenIdConnectService(sess *session.Session) User_Customer_OpenIdConnect {
+func GetUserCustomerOpenIdConnectService(sess session.SLSession) User_Customer_OpenIdConnect {
 	return User_Customer_OpenIdConnect{Session: sess}
 }
 
@@ -3257,12 +3257,12 @@ func (r User_Customer_OpenIdConnect) ValidateAuthenticationToken(authenticationT
 
 // no documentation yet
 type User_Customer_OpenIdConnect_TrustedProfile struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerOpenIdConnectTrustedProfileService returns an instance of the User_Customer_OpenIdConnect_TrustedProfile SoftLayer service
-func GetUserCustomerOpenIdConnectTrustedProfileService(sess *session.Session) User_Customer_OpenIdConnect_TrustedProfile {
+func GetUserCustomerOpenIdConnectTrustedProfileService(sess session.SLSession) User_Customer_OpenIdConnect_TrustedProfile {
 	return User_Customer_OpenIdConnect_TrustedProfile{Session: sess}
 }
 
@@ -4466,12 +4466,12 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) ValidateAuthenticationToken(
 
 // no documentation yet
 type User_Customer_Profile_Event_HyperWarp struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerProfileEventHyperWarpService returns an instance of the User_Customer_Profile_Event_HyperWarp SoftLayer service
-func GetUserCustomerProfileEventHyperWarpService(sess *session.Session) User_Customer_Profile_Event_HyperWarp {
+func GetUserCustomerProfileEventHyperWarpService(sess session.SLSession) User_Customer_Profile_Event_HyperWarp {
 	return User_Customer_Profile_Event_HyperWarp{Session: sess}
 }
 
@@ -4515,12 +4515,12 @@ func (r User_Customer_Profile_Event_HyperWarp) ReceiveEventDirect(eventJson *dat
 
 // Contains user information for Service Provider Enrollment.
 type User_Customer_Prospect_ServiceProvider_EnrollRequest struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerProspectServiceProviderEnrollRequestService returns an instance of the User_Customer_Prospect_ServiceProvider_EnrollRequest SoftLayer service
-func GetUserCustomerProspectServiceProviderEnrollRequestService(sess *session.Session) User_Customer_Prospect_ServiceProvider_EnrollRequest {
+func GetUserCustomerProspectServiceProviderEnrollRequestService(sess session.SLSession) User_Customer_Prospect_ServiceProvider_EnrollRequest {
 	return User_Customer_Prospect_ServiceProvider_EnrollRequest{Session: sess}
 }
 
@@ -4576,12 +4576,12 @@ func (r User_Customer_Prospect_ServiceProvider_EnrollRequest) GetObject() (resp 
 
 // The SoftLayer_User_Customer_Security_Answer type contains user's answers to security questions.
 type User_Customer_Security_Answer struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerSecurityAnswerService returns an instance of the User_Customer_Security_Answer SoftLayer service
-func GetUserCustomerSecurityAnswerService(sess *session.Session) User_Customer_Security_Answer {
+func GetUserCustomerSecurityAnswerService(sess session.SLSession) User_Customer_Security_Answer {
 	return User_Customer_Security_Answer{Session: sess}
 }
 
@@ -4636,12 +4636,12 @@ func (r User_Customer_Security_Answer) GetUser() (resp datatypes.User_Customer, 
 //
 // Note that a status of "PENDING" also has been added. This status is specific to users that are configured to use IBMid authentication. This would include some (not all) users on accounts that are linked to Platform Services (PaaS, formerly Bluemix) accounts, but is not limited to users in such accounts. Using IBMid authentication is optional for active users even if it is not required by the account type. PENDING status indicates that a relationship between an IBMid and a user is being set up but is not complete. To be complete, PENDING users need to perform an action ("accepting the invitation") before becoming an active user within IBM Cloud and/or IMS. PENDING is a system state, and can not be administered by users (including the account master user). SoftLayer Commercial is the only environment where IBMid and/or account linking are used.
 type User_Customer_Status struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserCustomerStatusService returns an instance of the User_Customer_Status SoftLayer service
-func GetUserCustomerStatusService(sess *session.Session) User_Customer_Status {
+func GetUserCustomerStatusService(sess session.SLSession) User_Customer_Status {
 	return User_Customer_Status{Session: sess}
 }
 
@@ -4688,12 +4688,12 @@ func (r User_Customer_Status) GetObject() (resp datatypes.User_Customer_Status, 
 
 // The SoftLayer_User_External_Binding data type contains general information for a single external binding.  This includes the 3rd party vendor, type of binding, and a unique identifier and password that is used to authenticate against the 3rd party service.
 type User_External_Binding struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserExternalBindingService returns an instance of the User_External_Binding SoftLayer service
-func GetUserExternalBindingService(sess *session.Session) User_External_Binding {
+func GetUserExternalBindingService(sess session.SLSession) User_External_Binding {
 	return User_External_Binding{Session: sess}
 }
 
@@ -4779,12 +4779,12 @@ func (r User_External_Binding) UpdateNote(text *string) (resp bool, err error) {
 
 // The SoftLayer_User_External_Binding_Vendor data type contains information for a single external binding vendor.  This information includes a user friendly vendor name, a unique version of the vendor name, and a unique internal identifier that can be used when creating a new external binding.
 type User_External_Binding_Vendor struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserExternalBindingVendorService returns an instance of the User_External_Binding_Vendor SoftLayer service
-func GetUserExternalBindingVendorService(sess *session.Session) User_External_Binding_Vendor {
+func GetUserExternalBindingVendorService(sess session.SLSession) User_External_Binding_Vendor {
 	return User_External_Binding_Vendor{Session: sess}
 }
 
@@ -4833,12 +4833,12 @@ func (r User_External_Binding_Vendor) GetObject() (resp datatypes.User_External_
 //
 // It also contains relational attributes that indicate which SoftLayer_User_Permission_Group's include the action.
 type User_Permission_Action struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserPermissionActionService returns an instance of the User_Permission_Action SoftLayer service
-func GetUserPermissionActionService(sess *session.Session) User_Permission_Action {
+func GetUserPermissionActionService(sess session.SLSession) User_Permission_Action {
 	return User_Permission_Action{Session: sess}
 }
 
@@ -4887,12 +4887,12 @@ func (r User_Permission_Action) GetObject() (resp datatypes.User_Permission_Acti
 //
 // It also contains relational attributes that indicate what SoftLayer_User_Permission_Action objects belong to a particular group, and what SoftLayer_User_Permission_Role objects the group is linked.
 type User_Permission_Group struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserPermissionGroupService returns an instance of the User_Permission_Group SoftLayer service
-func GetUserPermissionGroupService(sess *session.Session) User_Permission_Group {
+func GetUserPermissionGroupService(sess session.SLSession) User_Permission_Group {
 	return User_Permission_Group{Session: sess}
 }
 
@@ -5083,12 +5083,12 @@ func (r User_Permission_Group) UnlinkRole(role *datatypes.User_Permission_Role) 
 //
 // For further information see: [[SoftLayer_User_Permission_Group]].
 type User_Permission_Group_Type struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserPermissionGroupTypeService returns an instance of the User_Permission_Group_Type SoftLayer service
-func GetUserPermissionGroupTypeService(sess *session.Session) User_Permission_Group_Type {
+func GetUserPermissionGroupTypeService(sess session.SLSession) User_Permission_Group_Type {
 	return User_Permission_Group_Type{Session: sess}
 }
 
@@ -5135,12 +5135,12 @@ func (r User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_
 
 // These are the variables relating to SoftLayer_User_Permission_Resource_Type. Collectively they describe the types of resources which can be linked to [[SoftLayer_User_Permission_Group]].
 type User_Permission_Resource_Type struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserPermissionResourceTypeService returns an instance of the User_Permission_Resource_Type SoftLayer service
-func GetUserPermissionResourceTypeService(sess *session.Session) User_Permission_Resource_Type {
+func GetUserPermissionResourceTypeService(sess session.SLSession) User_Permission_Resource_Type {
 	return User_Permission_Resource_Type{Session: sess}
 }
 
@@ -5189,12 +5189,12 @@ func (r User_Permission_Resource_Type) GetObject() (resp datatypes.User_Permissi
 //
 // It also contains relational attributes that indicate what SoftLayer_User_Permission_Group objects are linked to a particular role, and the SoftLayer_User_Customer objects assigned to the role.
 type User_Permission_Role struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserPermissionRoleService returns an instance of the User_Permission_Role SoftLayer service
-func GetUserPermissionRoleService(sess *session.Session) User_Permission_Role {
+func GetUserPermissionRoleService(sess session.SLSession) User_Permission_Role {
 	return User_Permission_Role{Session: sess}
 }
 
@@ -5323,12 +5323,12 @@ func (r User_Permission_Role) UnlinkGroup(group *datatypes.User_Permission_Group
 
 // The SoftLayer_User_Security_Question data type contains questions.
 type User_Security_Question struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetUserSecurityQuestionService returns an instance of the User_Security_Question SoftLayer service
-func GetUserSecurityQuestionService(sess *session.Session) User_Security_Question {
+func GetUserSecurityQuestionService(sess session.SLSession) User_Security_Question {
 	return User_Security_Question{Session: sess}
 }
 

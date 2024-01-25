@@ -33,12 +33,12 @@ import (
 //
 // To create a support ticket execute the [[SoftLayer_Ticket::createStandardTicket|createStandardTicket]] or [[SoftLayer_Ticket::createAdministrativeTicket|createAdministrativeTicket]] methods in the SoftLayer_Ticket service. To create an upgrade ticket for the SoftLayer sales group execute the [[SoftLayer_Ticket::createUpgradeTicket|createUpgradeTicket]].
 type Ticket struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketService returns an instance of the Ticket SoftLayer service
-func GetTicketService(sess *session.Session) Ticket {
+func GetTicketService(sess session.SLSession) Ticket {
 	return Ticket{Session: sess}
 }
 
@@ -621,12 +621,12 @@ func (r Ticket) UpdateAttachedAdditionalEmails(emails []string) (resp bool, err 
 
 // SoftLayer tickets can have have files attached to them. Attaching a file to a ticket is a good way to report issues, provide documentation, and give examples of an issue. Both SoftLayer customers and employees have the ability to attach files to a ticket. The SoftLayer_Ticket_Attachment_File data type models a single file attached to a ticket.
 type Ticket_Attachment_File struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketAttachmentFileService returns an instance of the Ticket_Attachment_File SoftLayer service
-func GetTicketAttachmentFileService(sess *session.Session) Ticket_Attachment_File {
+func GetTicketAttachmentFileService(sess session.SLSession) Ticket_Attachment_File {
 	return Ticket_Attachment_File{Session: sess}
 }
 
@@ -685,12 +685,12 @@ func (r Ticket_Attachment_File) GetUpdate() (resp datatypes.Ticket_Update, err e
 
 // no documentation yet
 type Ticket_Attachment_File_ServiceNow struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketAttachmentFileServiceNowService returns an instance of the Ticket_Attachment_File_ServiceNow SoftLayer service
-func GetTicketAttachmentFileServiceNowService(sess *session.Session) Ticket_Attachment_File_ServiceNow {
+func GetTicketAttachmentFileServiceNowService(sess session.SLSession) Ticket_Attachment_File_ServiceNow {
 	return Ticket_Attachment_File_ServiceNow{Session: sess}
 }
 
@@ -749,12 +749,12 @@ func (r Ticket_Attachment_File_ServiceNow) GetUpdate() (resp datatypes.Ticket_Up
 
 // no documentation yet
 type Ticket_Priority struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketPriorityService returns an instance of the Ticket_Priority SoftLayer service
-func GetTicketPriorityService(sess *session.Session) Ticket_Priority {
+func GetTicketPriorityService(sess session.SLSession) Ticket_Priority {
 	return Ticket_Priority{Session: sess}
 }
 
@@ -795,12 +795,12 @@ func (r Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Prio
 
 // The SoftLayer_Ticket_Subject data type models one of the possible subjects that a standard support ticket may belong to. A basic support ticket's title matches it's corresponding subject's name.
 type Ticket_Subject struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketSubjectService returns an instance of the Ticket_Subject SoftLayer service
-func GetTicketSubjectService(sess *session.Session) Ticket_Subject {
+func GetTicketSubjectService(sess session.SLSession) Ticket_Subject {
 	return Ticket_Subject{Session: sess}
 }
 
@@ -877,12 +877,12 @@ func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Co
 
 // SoftLayer_Ticket_Subject_Category groups ticket subjects into logical group.
 type Ticket_Subject_Category struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketSubjectCategoryService returns an instance of the Ticket_Subject_Category SoftLayer service
-func GetTicketSubjectCategoryService(sess *session.Session) Ticket_Subject_Category {
+func GetTicketSubjectCategoryService(sess session.SLSession) Ticket_Subject_Category {
 	return Ticket_Subject_Category{Session: sess}
 }
 
@@ -935,12 +935,12 @@ func (r Ticket_Subject_Category) GetSubjects() (resp []datatypes.Ticket_Subject,
 
 // no documentation yet
 type Ticket_Survey struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketSurveyService returns an instance of the Ticket_Survey SoftLayer service
-func GetTicketSurveyService(sess *session.Session) Ticket_Survey {
+func GetTicketSurveyService(sess session.SLSession) Ticket_Survey {
 	return Ticket_Survey{Session: sess}
 }
 
@@ -999,12 +999,12 @@ func (r Ticket_Survey) OptOut() (err error) {
 
 // The SoftLayer_Ticket_Update_Employee data type models an update to a ticket made by a SoftLayer employee.
 type Ticket_Update_Employee struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTicketUpdateEmployeeService returns an instance of the Ticket_Update_Employee SoftLayer service
-func GetTicketUpdateEmployeeService(sess *session.Session) Ticket_Update_Employee {
+func GetTicketUpdateEmployeeService(sess session.SLSession) Ticket_Update_Employee {
 	return Ticket_Update_Employee{Session: sess}
 }
 

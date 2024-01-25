@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Resource_Configuration struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetResourceConfigurationService returns an instance of the Resource_Configuration SoftLayer service
-func GetResourceConfigurationService(sess *session.Session) Resource_Configuration {
+func GetResourceConfigurationService(sess session.SLSession) Resource_Configuration {
 	return Resource_Configuration{Session: sess}
 }
 
@@ -80,12 +80,12 @@ func (r Resource_Configuration) SetOsPasswordFromEncrypted(encryptedPassword *st
 
 // no documentation yet
 type Resource_Group struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetResourceGroupService returns an instance of the Resource_Group SoftLayer service
-func GetResourceGroupService(sess *session.Session) Resource_Group {
+func GetResourceGroupService(sess session.SLSession) Resource_Group {
 	return Resource_Group{Session: sess}
 }
 
@@ -183,12 +183,12 @@ func (r Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Member
 
 // no documentation yet
 type Resource_Group_Template struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetResourceGroupTemplateService returns an instance of the Resource_Group_Template SoftLayer service
-func GetResourceGroupTemplateService(sess *session.Session) Resource_Group_Template {
+func GetResourceGroupTemplateService(sess session.SLSession) Resource_Group_Template {
 	return Resource_Group_Template{Session: sess}
 }
 
@@ -247,12 +247,12 @@ func (r Resource_Group_Template) GetObject() (resp datatypes.Resource_Group_Temp
 
 // no documentation yet
 type Resource_Metadata struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetResourceMetadataService returns an instance of the Resource_Metadata SoftLayer service
-func GetResourceMetadataService(sess *session.Session) Resource_Metadata {
+func GetResourceMetadataService(sess session.SLSession) Resource_Metadata {
 	return Resource_Metadata{Session: sess}
 }
 

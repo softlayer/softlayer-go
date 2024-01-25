@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Hardware data type contains general information relating to a single SoftLayer hardware.
 type Hardware struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareService returns an instance of the Hardware SoftLayer service
-func GetHardwareService(sess *session.Session) Hardware {
+func GetHardwareService(sess session.SLSession) Hardware {
 	return Hardware{Session: sess}
 }
 
@@ -1560,12 +1560,12 @@ func (r Hardware) UpdateIpmiPassword(password *string) (resp bool, err error) {
 
 // The SoftLayer_Hardware_Benchmark_Certification data type contains general information relating to a single SoftLayer hardware benchmark certification document.
 type Hardware_Benchmark_Certification struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareBenchmarkCertificationService returns an instance of the Hardware_Benchmark_Certification SoftLayer service
-func GetHardwareBenchmarkCertificationService(sess *session.Session) Hardware_Benchmark_Certification {
+func GetHardwareBenchmarkCertificationService(sess session.SLSession) Hardware_Benchmark_Certification {
 	return Hardware_Benchmark_Certification{Session: sess}
 }
 
@@ -1624,12 +1624,12 @@ func (r Hardware_Benchmark_Certification) GetResultFile() (resp []byte, err erro
 
 // no documentation yet
 type Hardware_Blade struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareBladeService returns an instance of the Hardware_Blade SoftLayer service
-func GetHardwareBladeService(sess *session.Session) Hardware_Blade {
+func GetHardwareBladeService(sess session.SLSession) Hardware_Blade {
 	return Hardware_Blade{Session: sess}
 }
 
@@ -1682,12 +1682,12 @@ func (r Hardware_Blade) GetObject() (resp datatypes.Hardware_Blade, err error) {
 
 // no documentation yet
 type Hardware_Component_Locator struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareComponentLocatorService returns an instance of the Hardware_Component_Locator SoftLayer service
-func GetHardwareComponentLocatorService(sess *session.Session) Hardware_Component_Locator {
+func GetHardwareComponentLocatorService(sess session.SLSession) Hardware_Component_Locator {
 	return Hardware_Component_Locator{Session: sess}
 }
 
@@ -1746,12 +1746,12 @@ func (r Hardware_Component_Locator) GetServerPackageAvailability() (resp []datat
 
 // The SoftLayer_Hardware_Component_Model data type contains general information relating to a single SoftLayer component model.  A component model represents a vendor specific representation of a hardware component.  Every piece of hardware on a server will have a specific hardware component model.
 type Hardware_Component_Model struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareComponentModelService returns an instance of the Hardware_Component_Model SoftLayer service
-func GetHardwareComponentModelService(sess *session.Session) Hardware_Component_Model {
+func GetHardwareComponentModelService(sess session.SLSession) Hardware_Component_Model {
 	return Hardware_Component_Model{Session: sess}
 }
 
@@ -1888,12 +1888,12 @@ func (r Hardware_Component_Model) GetValidAttributeTypes() (resp []datatypes.Har
 
 // The SoftLayer_Hardware_Component_Partition_OperatingSystem data type contains general information relating to a single SoftLayer Operating System Partition Template.
 type Hardware_Component_Partition_OperatingSystem struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareComponentPartitionOperatingSystemService returns an instance of the Hardware_Component_Partition_OperatingSystem SoftLayer service
-func GetHardwareComponentPartitionOperatingSystemService(sess *session.Session) Hardware_Component_Partition_OperatingSystem {
+func GetHardwareComponentPartitionOperatingSystemService(sess session.SLSession) Hardware_Component_Partition_OperatingSystem {
 	return Hardware_Component_Partition_OperatingSystem{Session: sess}
 }
 
@@ -1955,12 +1955,12 @@ func (r Hardware_Component_Partition_OperatingSystem) GetPartitionTemplates() (r
 
 // The SoftLayer_Hardware_Component_Partition_Template data type contains general information relating to a single SoftLayer partition template.  Partition templates group 1 or more partition configurations that can be used to predefine how a hard drive's partitions will be configured.
 type Hardware_Component_Partition_Template struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareComponentPartitionTemplateService returns an instance of the Hardware_Component_Partition_Template SoftLayer service
-func GetHardwareComponentPartitionTemplateService(sess *session.Session) Hardware_Component_Partition_Template {
+func GetHardwareComponentPartitionTemplateService(sess session.SLSession) Hardware_Component_Partition_Template {
 	return Hardware_Component_Partition_Template{Session: sess}
 }
 
@@ -2031,12 +2031,12 @@ func (r Hardware_Component_Partition_Template) GetPartitionTemplatePartition() (
 
 // The SoftLayer_Hardware_Router data type contains general information relating to a single SoftLayer router.
 type Hardware_Router struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareRouterService returns an instance of the Hardware_Router SoftLayer service
-func GetHardwareRouterService(sess *session.Session) Hardware_Router {
+func GetHardwareRouterService(sess session.SLSession) Hardware_Router {
 	return Hardware_Router{Session: sess}
 }
 
@@ -3578,12 +3578,12 @@ func (r Hardware_Router) UpdateIpmiPassword(password *string) (resp bool, err er
 
 // no documentation yet
 type Hardware_SecurityModule struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareSecurityModuleService returns an instance of the Hardware_SecurityModule SoftLayer service
-func GetHardwareSecurityModuleService(sess *session.Session) Hardware_SecurityModule {
+func GetHardwareSecurityModuleService(sess session.SLSession) Hardware_SecurityModule {
 	return Hardware_SecurityModule{Session: sess}
 }
 
@@ -5962,12 +5962,12 @@ func (r Hardware_SecurityModule) ValidatePartitionsForOperatingSystem(operatingS
 
 // no documentation yet
 type Hardware_SecurityModule750 struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareSecurityModule750Service returns an instance of the Hardware_SecurityModule750 SoftLayer service
-func GetHardwareSecurityModule750Service(sess *session.Session) Hardware_SecurityModule750 {
+func GetHardwareSecurityModule750Service(sess session.SLSession) Hardware_SecurityModule750 {
 	return Hardware_SecurityModule750{Session: sess}
 }
 
@@ -8346,12 +8346,12 @@ func (r Hardware_SecurityModule750) ValidatePartitionsForOperatingSystem(operati
 
 // The SoftLayer_Hardware_Server data type contains general information relating to a single SoftLayer server.
 type Hardware_Server struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetHardwareServerService returns an instance of the Hardware_Server SoftLayer service
-func GetHardwareServerService(sess *session.Session) Hardware_Server {
+func GetHardwareServerService(sess session.SLSession) Hardware_Server {
 	return Hardware_Server{Session: sess}
 }
 

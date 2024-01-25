@@ -33,12 +33,12 @@ import (
 //
 // IBM Cloud Infrastructure customers are unable to change their brand information in the portal or the API.
 type Brand struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandService returns an instance of the Brand SoftLayer service
-func GetBrandService(sess *session.Session) Brand {
+func GetBrandService(sess session.SLSession) Brand {
 	return Brand{Session: sess}
 }
 
@@ -458,12 +458,12 @@ func (r Brand) VerifyCanReactivateAccount(accountId *int) (err error) {
 
 // Contains business partner details associated with a brand. Country Enterprise Identifier (CEID), Channel ID, Segment ID and Reseller Level.
 type Brand_Business_Partner struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandBusinessPartnerService returns an instance of the Brand_Business_Partner SoftLayer service
-func GetBrandBusinessPartnerService(sess *session.Session) Brand_Business_Partner {
+func GetBrandBusinessPartnerService(sess session.SLSession) Brand_Business_Partner {
 	return Brand_Business_Partner{Session: sess}
 }
 
@@ -522,12 +522,12 @@ func (r Brand_Business_Partner) GetSegment() (resp datatypes.Business_Partner_Se
 
 // The [[SoftLayer_Brand_Restriction_Location_CustomerCountry]] data type defines the relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on the SoftLayer US brand for customers that live in Great Britain.
 type Brand_Restriction_Location_CustomerCountry struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandRestrictionLocationCustomerCountryService returns an instance of the Brand_Restriction_Location_CustomerCountry SoftLayer service
-func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) Brand_Restriction_Location_CustomerCountry {
+func GetBrandRestrictionLocationCustomerCountryService(sess session.SLSession) Brand_Restriction_Location_CustomerCountry {
 	return Brand_Restriction_Location_CustomerCountry{Session: sess}
 }
 

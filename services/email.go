@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Email_Subscription struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetEmailSubscriptionService returns an instance of the Email_Subscription SoftLayer service
-func GetEmailSubscriptionService(sess *session.Session) Email_Subscription {
+func GetEmailSubscriptionService(sess session.SLSession) Email_Subscription {
 	return Email_Subscription{Session: sess}
 }
 
@@ -101,12 +101,12 @@ func (r Email_Subscription) GetObject() (resp datatypes.Email_Subscription, err 
 
 // no documentation yet
 type Email_Subscription_Group struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetEmailSubscriptionGroupService returns an instance of the Email_Subscription_Group SoftLayer service
-func GetEmailSubscriptionGroupService(sess *session.Session) Email_Subscription_Group {
+func GetEmailSubscriptionGroupService(sess session.SLSession) Email_Subscription_Group {
 	return Email_Subscription_Group{Session: sess}
 }
 

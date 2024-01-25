@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Compliance_Report_Type struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetComplianceReportTypeService returns an instance of the Compliance_Report_Type SoftLayer service
-func GetComplianceReportTypeService(sess *session.Session) Compliance_Report_Type {
+func GetComplianceReportTypeService(sess session.SLSession) Compliance_Report_Type {
 	return Compliance_Report_Type{Session: sess}
 }
 

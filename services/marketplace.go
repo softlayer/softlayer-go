@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Marketplace_Partner struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetMarketplacePartnerService returns an instance of the Marketplace_Partner SoftLayer service
-func GetMarketplacePartnerService(sess *session.Session) Marketplace_Partner {
+func GetMarketplacePartnerService(sess session.SLSession) Marketplace_Partner {
 	return Marketplace_Partner{Session: sess}
 }
 

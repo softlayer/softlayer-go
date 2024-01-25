@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Provisioning_Hook contains all the information needed to add a hook into a server/Virtual provision and os reload.
 type Provisioning_Hook struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningHookService returns an instance of the Provisioning_Hook SoftLayer service
-func GetProvisioningHookService(sess *session.Session) Provisioning_Hook {
+func GetProvisioningHookService(sess session.SLSession) Provisioning_Hook {
 	return Provisioning_Hook{Session: sess}
 }
 
@@ -113,12 +113,12 @@ func (r Provisioning_Hook) GetObject() (resp datatypes.Provisioning_Hook, err er
 
 // no documentation yet
 type Provisioning_Hook_Type struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningHookTypeService returns an instance of the Provisioning_Hook_Type SoftLayer service
-func GetProvisioningHookTypeService(sess *session.Session) Provisioning_Hook_Type {
+func GetProvisioningHookTypeService(sess session.SLSession) Provisioning_Hook_Type {
 	return Provisioning_Hook_Type{Session: sess}
 }
 
@@ -165,12 +165,12 @@ func (r Provisioning_Hook_Type) GetObject() (resp datatypes.Provisioning_Hook_Ty
 
 // The SoftLayer_Provisioning_Maintenance_Classification represent a maintenance type for the specific hardware maintenance desired.
 type Provisioning_Maintenance_Classification struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningMaintenanceClassificationService returns an instance of the Provisioning_Maintenance_Classification SoftLayer service
-func GetProvisioningMaintenanceClassificationService(sess *session.Session) Provisioning_Maintenance_Classification {
+func GetProvisioningMaintenanceClassificationService(sess session.SLSession) Provisioning_Maintenance_Classification {
 	return Provisioning_Maintenance_Classification{Session: sess}
 }
 
@@ -232,12 +232,12 @@ func (r Provisioning_Maintenance_Classification) GetObject() (resp datatypes.Pro
 
 // no documentation yet
 type Provisioning_Maintenance_Classification_Item_Category struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningMaintenanceClassificationItemCategoryService returns an instance of the Provisioning_Maintenance_Classification_Item_Category SoftLayer service
-func GetProvisioningMaintenanceClassificationItemCategoryService(sess *session.Session) Provisioning_Maintenance_Classification_Item_Category {
+func GetProvisioningMaintenanceClassificationItemCategoryService(sess session.SLSession) Provisioning_Maintenance_Classification_Item_Category {
 	return Provisioning_Maintenance_Classification_Item_Category{Session: sess}
 }
 
@@ -284,12 +284,12 @@ func (r Provisioning_Maintenance_Classification_Item_Category) GetObject() (resp
 
 // The SoftLayer_Provisioning_Maintenance_Slots represent the available slots for a given maintenance window at a SoftLayer data center.
 type Provisioning_Maintenance_Slots struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningMaintenanceSlotsService returns an instance of the Provisioning_Maintenance_Slots SoftLayer service
-func GetProvisioningMaintenanceSlotsService(sess *session.Session) Provisioning_Maintenance_Slots {
+func GetProvisioningMaintenanceSlotsService(sess session.SLSession) Provisioning_Maintenance_Slots {
 	return Provisioning_Maintenance_Slots{Session: sess}
 }
 
@@ -330,12 +330,12 @@ func (r Provisioning_Maintenance_Slots) GetObject() (resp datatypes.Provisioning
 
 // no documentation yet
 type Provisioning_Maintenance_Ticket struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningMaintenanceTicketService returns an instance of the Provisioning_Maintenance_Ticket SoftLayer service
-func GetProvisioningMaintenanceTicketService(sess *session.Session) Provisioning_Maintenance_Ticket {
+func GetProvisioningMaintenanceTicketService(sess session.SLSession) Provisioning_Maintenance_Ticket {
 	return Provisioning_Maintenance_Ticket{Session: sess}
 }
 
@@ -394,12 +394,12 @@ func (r Provisioning_Maintenance_Ticket) GetTicket() (resp datatypes.Ticket, err
 
 // The SoftLayer_Provisioning_Maintenance_Window represent a time window that SoftLayer performs a hardware or software maintenance and upgrades.
 type Provisioning_Maintenance_Window struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningMaintenanceWindowService returns an instance of the Provisioning_Maintenance_Window SoftLayer service
-func GetProvisioningMaintenanceWindowService(sess *session.Session) Provisioning_Maintenance_Window {
+func GetProvisioningMaintenanceWindowService(sess session.SLSession) Provisioning_Maintenance_Window {
 	return Provisioning_Maintenance_Window{Session: sess}
 }
 
@@ -503,12 +503,12 @@ func (r Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatype
 //
 // SoftLayer customers are unable to change their hardware transactions or the hardware transaction group.
 type Provisioning_Version1_Transaction_Group struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningVersion1TransactionGroupService returns an instance of the Provisioning_Version1_Transaction_Group SoftLayer service
-func GetProvisioningVersion1TransactionGroupService(sess *session.Session) Provisioning_Version1_Transaction_Group {
+func GetProvisioningVersion1TransactionGroupService(sess session.SLSession) Provisioning_Version1_Transaction_Group {
 	return Provisioning_Version1_Transaction_Group{Session: sess}
 }
 
@@ -555,12 +555,12 @@ func (r Provisioning_Version1_Transaction_Group) GetObject() (resp datatypes.Pro
 
 // no documentation yet
 type Provisioning_Version1_Transaction_OrderTracking struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningVersion1TransactionOrderTrackingService returns an instance of the Provisioning_Version1_Transaction_OrderTracking SoftLayer service
-func GetProvisioningVersion1TransactionOrderTrackingService(sess *session.Session) Provisioning_Version1_Transaction_OrderTracking {
+func GetProvisioningVersion1TransactionOrderTrackingService(sess session.SLSession) Provisioning_Version1_Transaction_OrderTracking {
 	return Provisioning_Version1_Transaction_OrderTracking{Session: sess}
 }
 
@@ -619,12 +619,12 @@ func (r Provisioning_Version1_Transaction_OrderTracking) GetTransaction() (resp 
 
 // no documentation yet
 type Provisioning_Version1_Transaction_OrderTrackingState struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetProvisioningVersion1TransactionOrderTrackingStateService returns an instance of the Provisioning_Version1_Transaction_OrderTrackingState SoftLayer service
-func GetProvisioningVersion1TransactionOrderTrackingStateService(sess *session.Session) Provisioning_Version1_Transaction_OrderTrackingState {
+func GetProvisioningVersion1TransactionOrderTrackingStateService(sess session.SLSession) Provisioning_Version1_Transaction_OrderTrackingState {
 	return Provisioning_Version1_Transaction_OrderTrackingState{Session: sess}
 }
 

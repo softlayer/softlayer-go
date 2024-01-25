@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Dns_Domain data type represents a single DNS domain record hosted on the SoftLayer nameservers. Domains contain general information about the domain name such as name and serial. Individual records such as A, AAAA, CTYPE, and MX records are stored in the domain's associated [[SoftLayer_Dns_Domain_ResourceRecord (type)|SoftLayer_Dns_Domain_ResourceRecord]] records.
 type Dns_Domain struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainService returns an instance of the Dns_Domain SoftLayer service
-func GetDnsDomainService(sess *session.Session) Dns_Domain {
+func GetDnsDomainService(sess session.SLSession) Dns_Domain {
 	return Dns_Domain{Session: sess}
 }
 
@@ -251,12 +251,12 @@ func (r Dns_Domain) GetZoneFileContents() (resp string, err error) {
 // The SoftLayer_Dns_Domain_Registration data type represents a domain registration record.
 // Deprecated: This function has been marked as deprecated.
 type Dns_Domain_Registration struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainRegistrationService returns an instance of the Dns_Domain_Registration SoftLayer service
-func GetDnsDomainRegistrationService(sess *session.Session) Dns_Domain_Registration {
+func GetDnsDomainRegistrationService(sess session.SLSession) Dns_Domain_Registration {
 	return Dns_Domain_Registration{Session: sess}
 }
 
@@ -485,12 +485,12 @@ func (r Dns_Domain_Registration) UnlockDomain() (resp bool, err error) {
 //
 // Deprecated: This function has been marked as deprecated.
 type Dns_Domain_Registration_Registrant_Verification_Status struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainRegistrationRegistrantVerificationStatusService returns an instance of the Dns_Domain_Registration_Registrant_Verification_Status SoftLayer service
-func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess *session.Session) Dns_Domain_Registration_Registrant_Verification_Status {
+func GetDnsDomainRegistrationRegistrantVerificationStatusService(sess session.SLSession) Dns_Domain_Registration_Registrant_Verification_Status {
 	return Dns_Domain_Registration_Registrant_Verification_Status{Session: sess}
 }
 
@@ -545,12 +545,12 @@ func (r Dns_Domain_Registration_Registrant_Verification_Status) GetObject() (res
 //
 // Deprecated: This function has been marked as deprecated.
 type Dns_Domain_Registration_Status struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainRegistrationStatusService returns an instance of the Dns_Domain_Registration_Status SoftLayer service
-func GetDnsDomainRegistrationStatusService(sess *session.Session) Dns_Domain_Registration_Status {
+func GetDnsDomainRegistrationStatusService(sess session.SLSession) Dns_Domain_Registration_Status {
 	return Dns_Domain_Registration_Status{Session: sess}
 }
 
@@ -609,12 +609,12 @@ func (r Dns_Domain_Registration_Status) GetObject() (resp datatypes.Dns_Domain_R
 //
 // As ”SoftLayer_Dns_Domain_ResourceRecord” objects are created and loaded, the API verifies the ”type” property and casts the object as the appropriate type.
 type Dns_Domain_ResourceRecord struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainResourceRecordService returns an instance of the Dns_Domain_ResourceRecord SoftLayer service
-func GetDnsDomainResourceRecordService(sess *session.Session) Dns_Domain_ResourceRecord {
+func GetDnsDomainResourceRecordService(sess session.SLSession) Dns_Domain_ResourceRecord {
 	return Dns_Domain_ResourceRecord{Session: sess}
 }
 
@@ -728,12 +728,12 @@ func (r Dns_Domain_ResourceRecord) GetObject() (resp datatypes.Dns_Domain_Resour
 //
 // MX records must be defined for hosts with accompanying A or AAAA resource records. They may not point mail towards a host defined by a CNAME record.
 type Dns_Domain_ResourceRecord_MxType struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainResourceRecordMxTypeService returns an instance of the Dns_Domain_ResourceRecord_MxType SoftLayer service
-func GetDnsDomainResourceRecordMxTypeService(sess *session.Session) Dns_Domain_ResourceRecord_MxType {
+func GetDnsDomainResourceRecordMxTypeService(sess session.SLSession) Dns_Domain_ResourceRecord_MxType {
 	return Dns_Domain_ResourceRecord_MxType{Session: sess}
 }
 
@@ -841,12 +841,12 @@ func (r Dns_Domain_ResourceRecord_MxType) GetObject() (resp datatypes.Dns_Domain
 
 // SoftLayer_Dns_Domain_ResourceRecord_SrvType is a SoftLayer_Dns_Domain_ResourceRecord object whose ”type” property is set to "srv" and defines a DNS SRV record on a SoftLayer hosted domain.
 type Dns_Domain_ResourceRecord_SrvType struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsDomainResourceRecordSrvTypeService returns an instance of the Dns_Domain_ResourceRecord_SrvType SoftLayer service
-func GetDnsDomainResourceRecordSrvTypeService(sess *session.Session) Dns_Domain_ResourceRecord_SrvType {
+func GetDnsDomainResourceRecordSrvTypeService(sess session.SLSession) Dns_Domain_ResourceRecord_SrvType {
 	return Dns_Domain_ResourceRecord_SrvType{Session: sess}
 }
 
@@ -954,12 +954,12 @@ func (r Dns_Domain_ResourceRecord_SrvType) GetObject() (resp datatypes.Dns_Domai
 
 // The SoftLayer_Dns_Secondary data type contains information on a single secondary DNS zone which is managed through SoftLayer's zone transfer service. Domains created via zone transfer may not be modified by the SoftLayer portal or API.
 type Dns_Secondary struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetDnsSecondaryService returns an instance of the Dns_Secondary SoftLayer service
-func GetDnsSecondaryService(sess *session.Session) Dns_Secondary {
+func GetDnsSecondaryService(sess session.SLSession) Dns_Secondary {
 	return Dns_Secondary{Session: sess}
 }
 

@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Locale struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetLocaleService returns an instance of the Locale SoftLayer service
-func GetLocaleService(sess *session.Session) Locale {
+func GetLocaleService(sess session.SLSession) Locale {
 	return Locale{Session: sess}
 }
 
@@ -86,12 +86,12 @@ func (r Locale) GetObject() (resp datatypes.Locale, err error) {
 
 // no documentation yet
 type Locale_Country struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetLocaleCountryService returns an instance of the Locale_Country SoftLayer service
-func GetLocaleCountryService(sess *session.Session) Locale_Country {
+func GetLocaleCountryService(sess session.SLSession) Locale_Country {
 	return Locale_Country{Session: sess}
 }
 
@@ -192,12 +192,12 @@ func (r Locale_Country) IsEuropeanUnionCountry(iso2CountryCode *string) (resp bo
 
 // Each User is assigned a timezone allowing for a precise local timestamp.
 type Locale_Timezone struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetLocaleTimezoneService returns an instance of the Locale_Timezone SoftLayer service
-func GetLocaleTimezoneService(sess *session.Session) Locale_Timezone {
+func GetLocaleTimezoneService(sess session.SLSession) Locale_Timezone {
 	return Locale_Timezone{Session: sess}
 }
 

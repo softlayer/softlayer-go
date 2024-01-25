@@ -30,12 +30,12 @@ import (
 
 // Throw this exception if there are validation errors. The types are specified in SoftLayer_Brand_Creation_Input including: KEY_NAME, PREFIX, NAME, LONG_NAME, SUPPORT_POLICY, POLICY_ACKNOWLEDGEMENT_FLAG, etc.
 type Exception_Brand_Creation struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetExceptionBrandCreationService returns an instance of the Exception_Brand_Creation SoftLayer service
-func GetExceptionBrandCreationService(sess *session.Session) Exception_Brand_Creation {
+func GetExceptionBrandCreationService(sess session.SLSession) Exception_Brand_Creation {
 	return Exception_Brand_Creation{Session: sess}
 }
 

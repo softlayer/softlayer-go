@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Auxiliary_Network_Status struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetAuxiliaryNetworkStatusService returns an instance of the Auxiliary_Network_Status SoftLayer service
-func GetAuxiliaryNetworkStatusService(sess *session.Session) Auxiliary_Network_Status {
+func GetAuxiliaryNetworkStatusService(sess session.SLSession) Auxiliary_Network_Status {
 	return Auxiliary_Network_Status{Session: sess}
 }
 
@@ -81,12 +81,12 @@ func (r Auxiliary_Network_Status) GetNetworkStatus(target *string) (resp []datat
 
 // A SoftLayer_Auxiliary_Notification_Emergency data object represents a notification event being broadcast to the SoftLayer customer base. It is used to provide information regarding outages or current known issues.
 type Auxiliary_Notification_Emergency struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetAuxiliaryNotificationEmergencyService returns an instance of the Auxiliary_Notification_Emergency SoftLayer service
-func GetAuxiliaryNotificationEmergencyService(sess *session.Session) Auxiliary_Notification_Emergency {
+func GetAuxiliaryNotificationEmergencyService(sess session.SLSession) Auxiliary_Notification_Emergency {
 	return Auxiliary_Notification_Emergency{Session: sess}
 }
 
@@ -151,12 +151,12 @@ func (r Auxiliary_Notification_Emergency) GetStatus() (resp datatypes.Auxiliary_
 
 // no documentation yet
 type Auxiliary_Shipping_Courier_Type struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetAuxiliaryShippingCourierTypeService returns an instance of the Auxiliary_Shipping_Courier_Type SoftLayer service
-func GetAuxiliaryShippingCourierTypeService(sess *session.Session) Auxiliary_Shipping_Courier_Type {
+func GetAuxiliaryShippingCourierTypeService(sess session.SLSession) Auxiliary_Shipping_Courier_Type {
 	return Auxiliary_Shipping_Courier_Type{Session: sess}
 }
 

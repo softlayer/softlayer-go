@@ -31,12 +31,12 @@ import (
 
 // DEPRECATED. The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
 type Monitoring_Robot struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetMonitoringRobotService returns an instance of the Monitoring_Robot SoftLayer service
-func GetMonitoringRobotService(sess *session.Session) Monitoring_Robot {
+func GetMonitoringRobotService(sess session.SLSession) Monitoring_Robot {
 	return Monitoring_Robot{Session: sess}
 }
 

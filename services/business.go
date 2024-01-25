@@ -31,12 +31,12 @@ import (
 
 // Contains business partner channel information
 type Business_Partner_Channel struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBusinessPartnerChannelService returns an instance of the Business_Partner_Channel SoftLayer service
-func GetBusinessPartnerChannelService(sess *session.Session) Business_Partner_Channel {
+func GetBusinessPartnerChannelService(sess session.SLSession) Business_Partner_Channel {
 	return Business_Partner_Channel{Session: sess}
 }
 
@@ -77,12 +77,12 @@ func (r Business_Partner_Channel) GetObject() (resp datatypes.Business_Partner_C
 
 // Contains business partner segment information
 type Business_Partner_Segment struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBusinessPartnerSegmentService returns an instance of the Business_Partner_Segment SoftLayer service
-func GetBusinessPartnerSegmentService(sess *session.Session) Business_Partner_Segment {
+func GetBusinessPartnerSegmentService(sess session.SLSession) Business_Partner_Segment {
 	return Business_Partner_Segment{Session: sess}
 }
 

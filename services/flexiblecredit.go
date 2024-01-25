@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type FlexibleCredit_Program struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetFlexibleCreditProgramService returns an instance of the FlexibleCredit_Program SoftLayer service
-func GetFlexibleCreditProgramService(sess *session.Session) FlexibleCredit_Program {
+func GetFlexibleCreditProgramService(sess session.SLSession) FlexibleCredit_Program {
 	return FlexibleCredit_Program{Session: sess}
 }
 

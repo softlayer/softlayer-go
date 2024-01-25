@@ -31,12 +31,12 @@ import (
 
 // Metric tracking objects provides a common interface to all metrics provided by SoftLayer. These metrics range from network component traffic for a server to aggregated Bandwidth Pooling traffic and more. Every object within SoftLayer's range of objects that has data that can be tracked over time has an associated tracking object. Use the [[SoftLayer_Metric_Tracking_Object]] service to retrieve raw and graph data from a tracking object.
 type Metric_Tracking_Object struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetMetricTrackingObjectService returns an instance of the Metric_Tracking_Object SoftLayer service
-func GetMetricTrackingObjectService(sess *session.Session) Metric_Tracking_Object {
+func GetMetricTrackingObjectService(sess session.SLSession) Metric_Tracking_Object {
 	return Metric_Tracking_Object{Session: sess}
 }
 
@@ -171,12 +171,12 @@ func (r Metric_Tracking_Object) GetType() (resp datatypes.Metric_Tracking_Object
 
 // This data type provides commonly used bandwidth summary components for the current billing cycle.
 type Metric_Tracking_Object_Bandwidth_Summary struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetMetricTrackingObjectBandwidthSummaryService returns an instance of the Metric_Tracking_Object_Bandwidth_Summary SoftLayer service
-func GetMetricTrackingObjectBandwidthSummaryService(sess *session.Session) Metric_Tracking_Object_Bandwidth_Summary {
+func GetMetricTrackingObjectBandwidthSummaryService(sess session.SLSession) Metric_Tracking_Object_Bandwidth_Summary {
 	return Metric_Tracking_Object_Bandwidth_Summary{Session: sess}
 }
 

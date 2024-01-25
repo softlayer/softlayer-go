@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Event_Log data type contains an event detail occurred upon various SoftLayer resources.
 type Event_Log struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetEventLogService returns an instance of the Event_Log SoftLayer service
-func GetEventLogService(sess *session.Session) Event_Log {
+func GetEventLogService(sess session.SLSession) Event_Log {
 	return Event_Log{Session: sess}
 }
 

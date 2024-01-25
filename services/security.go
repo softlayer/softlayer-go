@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Security_Certificate struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSecurityCertificateService returns an instance of the Security_Certificate SoftLayer service
-func GetSecurityCertificateService(sess *session.Session) Security_Certificate {
+func GetSecurityCertificateService(sess session.SLSession) Security_Certificate {
 	return Security_Certificate{Session: sess}
 }
 
@@ -136,12 +136,12 @@ func (r Security_Certificate) GetPemFormat() (resp string, err error) {
 
 // The SoftLayer_Security_Certificate_Request data type is used to view details about your SSL certificate order. This contains data that is required by a Certificate Authority to place an SSL certificate order.
 type Security_Certificate_Request struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSecurityCertificateRequestService returns an instance of the Security_Certificate_Request SoftLayer service
-func GetSecurityCertificateRequestService(sess *session.Session) Security_Certificate_Request {
+func GetSecurityCertificateRequestService(sess session.SLSession) Security_Certificate_Request {
 	return Security_Certificate_Request{Session: sess}
 }
 
@@ -265,12 +265,12 @@ func (r Security_Certificate_Request) ValidateCsr(csr *string, validityMonths *i
 
 // Represents a server type that can be specified when ordering an SSL certificate.
 type Security_Certificate_Request_ServerType struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSecurityCertificateRequestServerTypeService returns an instance of the Security_Certificate_Request_ServerType SoftLayer service
-func GetSecurityCertificateRequestServerTypeService(sess *session.Session) Security_Certificate_Request_ServerType {
+func GetSecurityCertificateRequestServerTypeService(sess session.SLSession) Security_Certificate_Request_ServerType {
 	return Security_Certificate_Request_ServerType{Session: sess}
 }
 
@@ -317,12 +317,12 @@ func (r Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Sec
 
 // Represents the status of an SSL certificate request.
 type Security_Certificate_Request_Status struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSecurityCertificateRequestStatusService returns an instance of the Security_Certificate_Request_Status SoftLayer service
-func GetSecurityCertificateRequestStatusService(sess *session.Session) Security_Certificate_Request_Status {
+func GetSecurityCertificateRequestStatusService(sess session.SLSession) Security_Certificate_Request_Status {
 	return Security_Certificate_Request_Status{Session: sess}
 }
 
@@ -369,12 +369,12 @@ func (r Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []dat
 
 // no documentation yet
 type Security_Ssh_Key struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSecuritySshKeyService returns an instance of the Security_Ssh_Key SoftLayer service
-func GetSecuritySshKeyService(sess *session.Session) Security_Ssh_Key {
+func GetSecuritySshKeyService(sess session.SLSession) Security_Ssh_Key {
 	return Security_Ssh_Key{Session: sess}
 }
 

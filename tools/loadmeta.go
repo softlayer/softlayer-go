@@ -44,6 +44,7 @@ type Type struct {
 	NoService  bool                `json:"noservice"`
 	Overview   string              `json:"docOverview"`
 	Deprecated bool                `json:"deprecated"`
+	ServiceGroup string
 }
 
 type Property struct {
@@ -91,6 +92,7 @@ var fMap = template.FuncMap{
 	"phraseMethodArg": phraseMethodArg,     // Get proper phrase for method argument
 	"getTypePrefix":   getTypePrefix,       // resturns [], * or nothing.
 	"deprecatedDoc":   deprecatedDoc,       // Marks things as deprecated if needed.
+	"nilParam":		   NilParam,			// For unit testing fakes
 }
 
 var datatype = fmt.Sprintf(`%s
@@ -127,12 +129,12 @@ import (
 
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}{{deprecatedDoc .Deprecated}}
 	type {{$base}} struct {
-		Session *session.Session
+		Session session.SLSession
 		Options sl.Options
 	}
 
 	// Get{{$base | desnake}}Service returns an instance of the {{$base}} SoftLayer service
-	func Get{{$base | desnake}}Service(sess *session.Session) {{$base}} {
+	func Get{{$base | desnake}}Service(sess session.SLSession) {{$base}} {
 		return {{$base}}{Session: sess}
 	}
 
@@ -183,6 +185,59 @@ import (
 
 {{end}}
 `, license, codegenWarning)
+
+
+var testTemplate = `
+package services_test
+
+import (
+    . "github.com/onsi/ginkgo/v2"
+    . "github.com/onsi/gomega"
+    "github.com/softlayer/softlayer-go/session/sessionfakes"
+    "github.com/softlayer/softlayer-go/services"
+)   
+
+var _ = Describe("{{(index . 0 ).ServiceGroup}} Tests", func() {
+    var slsession *sessionfakes.FakeSLSession
+    BeforeEach(func() {
+        slsession = &sessionfakes.FakeSLSession{}
+    })
+{{range .}}
+    Context("Testing {{.Name}} service", func() {
+        var sl_service services.{{.Name | removePrefix}}
+        BeforeEach(func() {
+            sl_service = services.Get{{.Name | removePrefix | desnake}}Service(slsession)
+        })
+{{$serviceName := .Name}}
+{{range .Methods}}
+        Context("{{$serviceName}}::{{.Name}}", func() {
+            It("API Call Test", func() {
+{{if .Type|ne "void"}}
+                _, err := sl_service.{{.Name | titleCase}}({{.Parameters | nilParam}})
+{{ else }}
+				err := sl_service.{{.Name | titleCase}}({{.Parameters | nilParam}})
+{{ end }}
+                Expect(err).To(Succeed())
+                Expect(slsession.DoRequestCallCount()).To(Equal(1))
+            })
+        })
+{{end}}
+    })
+{{end}}
+})
+`
+
+func NilParam(params []Parameter) string {
+	rString := ""
+	if len(params) == 0 {
+		return rString
+	}
+	rString =  "nil"
+	for _, _ = range params[1:] {
+		rString = fmt.Sprintf("%s,%s", rString, "nil")
+	}
+	return rString
+}
 
 func generateAPI() {
 	var meta map[string]Type
@@ -245,6 +300,35 @@ func generateAPI() {
 	err = writePackage(*outputPath, "services", sortedServices, services)
 	if err != nil {
 		fmt.Printf("Error writing to file: %s", err)
+	}
+
+	
+}
+
+
+func generateTestFiles(meta []Type, groupName string) {
+	// These are technically a service... but dont have any methods to test...
+	if groupName == "exception" {
+		return
+	}
+	path := fmt.Sprintf("./services/%s_test.go", groupName)
+	template := template.New(path)
+	template.Funcs(fMap)
+	_, err := template.Parse(testTemplate)
+	if err != nil {
+		fmt.Printf("Error Parsing Template: %s\n", err)
+		return
+	}
+	outfile, err := os.Create(path)
+	if err != nil {
+		fmt.Printf("Error Creating File %s: %s\n", path, err)
+		return
+	}
+	defer outfile.Close()
+	err = template.Execute(outfile, meta)
+	if err != nil {
+		fmt.Printf("Error Executing Template: %s\n", err)
+		return
 	}
 }
 
@@ -510,8 +594,9 @@ func writePackage(base string, pkg string, meta []Type, ts string) error {
 	var start int
 
 	for i, t := range meta {
-		components := strings.Split(RemovePrefix(t.Name), "_")
 
+		components := strings.Split(RemovePrefix(t.Name), "_")
+		meta[i].ServiceGroup = components[0]
 		if i == 0 {
 			currPrefix = components[0]
 			continue
@@ -564,7 +649,10 @@ func writeGoFile(base string, pkg string, name string, meta []Type, ts string) e
 	}
 	defer f.Close()
 	fmt.Fprintf(f, "%s", pretty)
-
+	if pkg == "services" {
+		generateTestFiles(meta, strings.ToLower(name))	
+	}
+	
 	return nil
 }
 

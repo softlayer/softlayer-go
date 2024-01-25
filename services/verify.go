@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Verify_Api_HttpObj struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetVerifyApiHttpObjService returns an instance of the Verify_Api_HttpObj SoftLayer service
-func GetVerifyApiHttpObjService(sess *session.Session) Verify_Api_HttpObj {
+func GetVerifyApiHttpObjService(sess session.SLSession) Verify_Api_HttpObj {
 	return Verify_Api_HttpObj{Session: sess}
 }
 
@@ -98,12 +98,12 @@ func (r Verify_Api_HttpObj) GetObject() (resp datatypes.Verify_Api_HttpObj, err 
 
 // no documentation yet
 type Verify_Api_HttpsObj struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetVerifyApiHttpsObjService returns an instance of the Verify_Api_HttpsObj SoftLayer service
-func GetVerifyApiHttpsObjService(sess *session.Session) Verify_Api_HttpsObj {
+func GetVerifyApiHttpsObjService(sess session.SLSession) Verify_Api_HttpsObj {
 	return Verify_Api_HttpsObj{Session: sess}
 }
 

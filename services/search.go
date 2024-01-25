@@ -31,12 +31,12 @@ import (
 
 // no documentation yet
 type Search struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetSearchService returns an instance of the Search SoftLayer service
-func GetSearchService(sess *session.Session) Search {
+func GetSearchService(sess session.SLSession) Search {
 	return Search{Session: sess}
 }
 

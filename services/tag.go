@@ -31,12 +31,12 @@ import (
 
 // The SoftLayer_Tag data type is an optional type associated with hardware. The account ID that the tag is tied to, and the tag itself are stored in this data type. There is also a flag to denote whether the tag is internal or not.
 type Tag struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetTagService returns an instance of the Tag SoftLayer service
-func GetTagService(sess *session.Session) Tag {
+func GetTagService(sess session.SLSession) Tag {
 	return Tag{Session: sess}
 }
 
