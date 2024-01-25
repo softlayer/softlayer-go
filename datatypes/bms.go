@@ -18,30 +18,15 @@
  * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
  */
 
-package sl
+package datatypes
 
-import "fmt"
+// no documentation yet
+type BMS_Container_Country struct {
+	Entity
 
-type VersionInfo struct {
-	Major int
-	Minor int
-	Patch int
-	Pre   string
-}
+	// no documentation yet
+	Code *string `json:"code,omitempty" xmlrpc:"code,omitempty"`
 
-var Version = VersionInfo{
-	Major: 1,
-	Minor: 1,
-	Patch: 3,
-	Pre:   "",
-}
-
-func (v VersionInfo) String() string {
-	result := fmt.Sprintf("v%d.%d.%d", v.Major, v.Minor, v.Patch)
-
-	if v.Pre != "" {
-		result += fmt.Sprintf("-%s", v.Pre)
-	}
-
-	return result
+	// no documentation yet
+	Id *string `json:"id,omitempty" xmlrpc:"id,omitempty"`
 }

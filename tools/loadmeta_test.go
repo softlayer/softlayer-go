@@ -61,3 +61,31 @@ func TestDesnak(t *testing.T) {
 		t.Errorf("Desnake(SoftLayer_Test_This_Thing) != SoftLayerTestThisThing")
 	}
 }
+
+func TestGoDoc(t *testing.T) {
+	result := GoDoc("")
+	expected := "// no documentation yet"
+	if result != expected {
+		t.Errorf("TestGoDoc1: %s != %s", expected, result)
+	}
+
+	result = GoDoc("TEST")
+	expected = "// TEST"
+	if result != expected {
+		t.Errorf("TestGoDoc2: %s != %s", expected, result)
+
+	}
+}
+
+func TestTags(t *testing.T) {
+	result := Tags("resourceRecords")
+	expected := "resourceRecords"
+	if result != expected {
+		t.Errorf("TestTags1: %s != %s", expected, result)
+	}
+	result = Tags("SomethingElse")
+	expected = "SomethingElse,omitempty"
+	if result != expected {
+		t.Errorf("TestTags2: %s != %s", expected, result)
+	}
+}
