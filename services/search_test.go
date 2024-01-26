@@ -19,38 +19,27 @@ var _ = Describe("Search Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetSearchService(slsession)
 		})
-
-
 		Context("SoftLayer_Search::advancedSearch", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.AdvancedSearch(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Search::getObjectTypes", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetObjectTypes()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Search::search", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.Search(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

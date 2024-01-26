@@ -19,28 +19,20 @@ var _ = Describe("Utility Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUtilityNetworkService(slsession)
 		})
-
-
 		Context("SoftLayer_Utility_Network::nsLookup", func() {
 			It("API Call Test", func() {
-
-				_, err := sl_service.NsLookup(nil,nil)
-
+				_, err := sl_service.NsLookup(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Utility_Network::whois", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.Whois(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

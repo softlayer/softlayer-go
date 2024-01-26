@@ -19,28 +19,20 @@ var _ = Describe("Monitoring Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetMonitoringRobotService(slsession)
 		})
-
-
 		Context("SoftLayer_Monitoring_Robot::checkConnection", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.CheckConnection()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Monitoring_Robot::getObject", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetObject()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

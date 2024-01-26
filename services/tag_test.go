@@ -19,108 +19,76 @@ var _ = Describe("Tag Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetTagService(slsession)
 		})
-
-
 		Context("SoftLayer_Tag::autoComplete", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.AutoComplete(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::deleteTag", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.DeleteTag(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getAccount", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAccount()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getAllTagTypes", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAllTagTypes()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getAttachedTagsForCurrentUser", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAttachedTagsForCurrentUser()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getObject", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetObject()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getReferences", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetReferences()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getTagByTagName", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetTagByTagName(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::getUnattachedTagsForCurrentUser", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetUnattachedTagsForCurrentUser()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Tag::setTags", func() {
 			It("API Call Test", func() {
-
-				_, err := sl_service.SetTags(nil,nil,nil)
-
+				_, err := sl_service.SetTags(nil, nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

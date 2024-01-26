@@ -19,18 +19,13 @@ var _ = Describe("Business Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetBusinessPartnerChannelService(slsession)
 		})
-
-
 		Context("SoftLayer_Business_Partner_Channel::getObject", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetObject()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 	Context("Testing SoftLayer_Business_Partner_Segment service", func() {
@@ -38,18 +33,13 @@ var _ = Describe("Business Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetBusinessPartnerSegmentService(slsession)
 		})
-
-
 		Context("SoftLayer_Business_Partner_Segment::getObject", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetObject()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

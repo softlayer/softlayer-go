@@ -19,58 +19,41 @@ var _ = Describe("Event Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetEventLogService(slsession)
 		})
-
-
 		Context("SoftLayer_Event_Log::getAllEventNames", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAllEventNames(nil)
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Event_Log::getAllEventObjectNames", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAllEventObjectNames()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Event_Log::getAllObjects", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAllObjects()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Event_Log::getAllUserTypes", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetAllUserTypes()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 		Context("SoftLayer_Event_Log::getUser", func() {
 			It("API Call Test", func() {
-
 				_, err := sl_service.GetUser()
-
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-
 	})
 
 })

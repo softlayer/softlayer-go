@@ -208,22 +208,22 @@ var _ = Describe("{{(index . 0 ).ServiceGroup}} Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.Get{{.Name | removePrefix | desnake}}Service(slsession)
 		})
-{{$serviceName := .Name}}
-{{range .Methods}}
+{{- $serviceName := .Name }}
+{{- range .Methods }}
 		Context("{{$serviceName}}::{{.Name}}", func() {
 			It("API Call Test", func() {
-{{if .Type|ne "void"}}
+{{- if .Type|ne "void"}}
 				_, err := sl_service.{{.Name | titleCase}}({{.Parameters | nilParam}})
-{{ else }}
+{{- else }}
 				err := sl_service.{{.Name | titleCase}}({{.Parameters | nilParam}})
-{{ end }}
+{{- end }}
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-{{end}}
+{{- end }}
 	})
-{{end}}
+{{ end }}
 })
 
 `
@@ -240,7 +240,7 @@ func NilParam(params []Parameter) string {
 	}
 	for _, _ = range params[1:] {
 		// rString = fmt.Sprintf("%s,%s-%s", rString, param.Name, param.Type)
-		rString = fmt.Sprintf("%s,nil", rString)
+		rString = fmt.Sprintf("%s, nil", rString)
 	}
 	return rString
 }
