@@ -379,7 +379,10 @@ make generate
 
 (manually)
 ```bash
+# This is for SL metadata refresh
 go run tools/main.go tools/loadmeta.go tools/common.go tools/version.go generate
+# This is for test fake classes
+go generate ./session/...
 ```
 
 

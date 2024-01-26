@@ -47,6 +47,7 @@ const DefaultEndpoint = "https://api.softlayer.com/rest/v3.1"
 var retryableErrorCodes = []string{"SoftLayer_Exception_WebService_RateLimitExceeded"}
 
 // TransportHandler interface for the protocol-specific handling of API requests.
+//
 //counterfeiter:generate . TransportHandler
 type TransportHandler interface {
 	// DoRequest is the protocol-specific handler for making API requests.
@@ -143,7 +144,7 @@ type Session struct {
 
 //counterfeiter:generate . SLSession
 type SLSession interface {
-	DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error 
+	DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error
 	SetTimeout(timeout time.Duration) *Session
 	SetRetries(retries int) *Session
 	SetRetryWait(retryWait time.Duration) *Session
