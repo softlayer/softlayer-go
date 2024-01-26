@@ -6,7 +6,7 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session/sessionfakes"
-)   
+)
 
 var _ = Describe("FlexibleCredit Tests", func() {
 	var slsession *sessionfakes.FakeSLSession
@@ -50,4 +50,3 @@ var _ = Describe("FlexibleCredit Tests", func() {
 	})
 
 })
-
