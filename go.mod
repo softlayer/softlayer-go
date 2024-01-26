@@ -1,6 +1,6 @@
 module github.com/softlayer/softlayer-go
 
-go 1.19
+go 1.21
 
 require (
 	github.com/jarcoal/httpmock v1.0.5
