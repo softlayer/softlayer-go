@@ -1,6 +1,6 @@
 GO_CMD=go
 GO_BUILD=$(GO_CMD) build
-GO_DEPS=$(GO_CMD) get -d -v
+GO_DEPS=$(GO_CMD) mod vendor
 GO_DEPS_UPDATE=$(GO_DEPS) -u
 GO_FMT=gofmt
 GO_INSTALL=$(GO_CMD) install
@@ -53,19 +53,19 @@ release: build
 	git push origin $${NEW_VERSION}
 
 test: fmtcheck vet test_deps
-	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4
+	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s
 
 coverage:
 	@echo "Running unit tests. Cover profile saved to $(COVERPROFILE) ...\n"
-	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s -parallel=4 -coverprofile=$(COVERPROFILE)
+	@$(GO_TEST) $(PACKAGE_LIST) -timeout=30s  -coverprofile=$(COVERPROFILE)
 	@echo "\nBuilding function coverage report...\n"
 	@$(GO_CMD) tool cover -func=$(COVERPROFILE)
 
 test_deps:
-	$(GO_DEPS) -t ./...
+	$(GO_DEPS)
 
 update_deps:
-	$(GO_DEPS_UPDATE) ./...
+	$(GO_DEPS)
 
 version:
 	@$(TOOLS) version
