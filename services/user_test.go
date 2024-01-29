@@ -19,6 +19,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerService(slsession)
 		})
+		Context("SoftLayer_User_Customer Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer::acknowledgeSupportPolicy", func() {
 			It("API Call Test", func() {
 				err := sl_service.AcknowledgeSupportPolicy()
@@ -901,6 +924,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerApiAuthenticationService(slsession)
 		})
+		Context("SoftLayer_User_Customer_ApiAuthentication Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_ApiAuthentication Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_ApiAuthentication::editObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.EditObject(nil)
@@ -929,6 +975,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerCustomerPermissionPermissionService(slsession)
 		})
+		Context("SoftLayer_User_Customer_CustomerPermission_Permission Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_CustomerPermission_Permission Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_CustomerPermission_Permission::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -949,6 +1018,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_External_Binding
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerExternalBindingService(slsession)
+		})
+		Context("SoftLayer_User_Customer_External_Binding Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_External_Binding Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_External_Binding::deleteObject", func() {
 			It("API Call Test", func() {
@@ -1033,6 +1125,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_External_Binding_Totp
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerExternalBindingTotpService(slsession)
+		})
+		Context("SoftLayer_User_Customer_External_Binding_Totp Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_External_Binding_Totp Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_External_Binding_Totp::activate", func() {
 			It("API Call Test", func() {
@@ -1139,6 +1254,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerExternalBindingVendorService(slsession)
 		})
+		Context("SoftLayer_User_Customer_External_Binding_Vendor Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_External_Binding_Vendor Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_External_Binding_Vendor::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -1159,6 +1297,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_External_Binding_Verisign
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerExternalBindingVerisignService(slsession)
+		})
+		Context("SoftLayer_User_Customer_External_Binding_Verisign Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_External_Binding_Verisign Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_External_Binding_Verisign::deleteObject", func() {
 			It("API Call Test", func() {
@@ -1293,6 +1454,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerInvitationService(slsession)
 		})
+		Context("SoftLayer_User_Customer_Invitation Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Invitation Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_Invitation::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
@@ -1313,6 +1497,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_Notification_Hardware
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerNotificationHardwareService(slsession)
+		})
+		Context("SoftLayer_User_Customer_Notification_Hardware Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Notification_Hardware Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_Notification_Hardware::createObject", func() {
 			It("API Call Test", func() {
@@ -1370,6 +1577,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerNotificationVirtualGuestService(slsession)
 		})
+		Context("SoftLayer_User_Customer_Notification_Virtual_Guest Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Notification_Virtual_Guest Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_Notification_Virtual_Guest::createObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CreateObject(nil)
@@ -1425,6 +1655,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_OpenIdConnect
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerOpenIdConnectService(slsession)
+		})
+		Context("SoftLayer_User_Customer_OpenIdConnect Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_OpenIdConnect Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_OpenIdConnect::acknowledgeSupportPolicy", func() {
 			It("API Call Test", func() {
@@ -2364,6 +2617,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerOpenIdConnectTrustedProfileService(slsession)
 		})
+		Context("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile::acknowledgeSupportPolicy", func() {
 			It("API Call Test", func() {
 				err := sl_service.AcknowledgeSupportPolicy()
@@ -3302,6 +3578,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerProfileEventHyperWarpService(slsession)
 		})
+		Context("SoftLayer_User_Customer_Profile_Event_HyperWarp Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Profile_Event_HyperWarp Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_Profile_Event_HyperWarp::receiveEventDirect", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.ReceiveEventDirect(nil)
@@ -3315,6 +3614,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Customer_Prospect_ServiceProvider_EnrollRequest
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerProspectServiceProviderEnrollRequestService(slsession)
+		})
+		Context("SoftLayer_User_Customer_Prospect_ServiceProvider_EnrollRequest Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Prospect_ServiceProvider_EnrollRequest Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Customer_Prospect_ServiceProvider_EnrollRequest::enroll", func() {
 			It("API Call Test", func() {
@@ -3344,6 +3666,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerSecurityAnswerService(slsession)
 		})
+		Context("SoftLayer_User_Customer_Security_Answer Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Security_Answer Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_Security_Answer::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
@@ -3372,6 +3717,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserCustomerStatusService(slsession)
 		})
+		Context("SoftLayer_User_Customer_Status Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Customer_Status Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Customer_Status::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -3392,6 +3760,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_External_Binding
 		BeforeEach(func() {
 			sl_service = services.GetUserExternalBindingService(slsession)
+		})
+		Context("SoftLayer_User_External_Binding Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_External_Binding Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_External_Binding::deleteObject", func() {
 			It("API Call Test", func() {
@@ -3456,6 +3847,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserExternalBindingVendorService(slsession)
 		})
+		Context("SoftLayer_User_External_Binding_Vendor Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_External_Binding_Vendor Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_External_Binding_Vendor::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -3477,6 +3891,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserPermissionActionService(slsession)
 		})
+		Context("SoftLayer_User_Permission_Action Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Permission_Action Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Permission_Action::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -3497,6 +3934,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Permission_Group
 		BeforeEach(func() {
 			sl_service = services.GetUserPermissionGroupService(slsession)
+		})
+		Context("SoftLayer_User_Permission_Group Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Permission_Group Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Permission_Group::addAction", func() {
 			It("API Call Test", func() {
@@ -3631,6 +4091,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserPermissionGroupTypeService(slsession)
 		})
+		Context("SoftLayer_User_Permission_Group_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Permission_Group_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Permission_Group_Type::getGroups", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetGroups()
@@ -3652,6 +4135,29 @@ var _ = Describe("User Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetUserPermissionResourceTypeService(slsession)
 		})
+		Context("SoftLayer_User_Permission_Resource_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Permission_Resource_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_User_Permission_Resource_Type::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -3672,6 +4178,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Permission_Role
 		BeforeEach(func() {
 			sl_service = services.GetUserPermissionRoleService(slsession)
+		})
+		Context("SoftLayer_User_Permission_Role Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Permission_Role Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Permission_Role::addUser", func() {
 			It("API Call Test", func() {
@@ -3763,6 +4292,29 @@ var _ = Describe("User Tests", func() {
 		var sl_service services.User_Security_Question
 		BeforeEach(func() {
 			sl_service = services.GetUserSecurityQuestionService(slsession)
+		})
+		Context("SoftLayer_User_Security_Question Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_User_Security_Question Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_User_Security_Question::getAllObjects", func() {
 			It("API Call Test", func() {

@@ -1,6 +1,7 @@
-package main
+package generator_test
 
 import (
+	. "github.com/softlayer/softlayer-go/generator"
 	"testing"
 )
 

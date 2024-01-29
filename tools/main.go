@@ -18,6 +18,7 @@ package main
 
 import (
 	"fmt"
+	. "github.com/softlayer/softlayer-go/generator"
 	"os"
 )
 
@@ -37,7 +38,7 @@ func main() {
 
 	switch os.Args[1] {
 	case "generate":
-		generateAPI()
+		GenerateAPI()
 	case "version":
 		version()
 	default:

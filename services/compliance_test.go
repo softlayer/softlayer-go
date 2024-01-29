@@ -19,6 +19,29 @@ var _ = Describe("Compliance Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetComplianceReportTypeService(slsession)
 		})
+		Context("SoftLayer_Compliance_Report_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Compliance_Report_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Compliance_Report_Type::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()

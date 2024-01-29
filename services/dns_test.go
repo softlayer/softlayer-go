@@ -19,6 +19,29 @@ var _ = Describe("Dns Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainService(slsession)
 		})
+		Context("SoftLayer_Dns_Domain Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Dns_Domain::createARecord", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CreateARecord(nil, nil, nil)
@@ -158,6 +181,29 @@ var _ = Describe("Dns Tests", func() {
 		var sl_service services.Dns_Domain_Registration
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainRegistrationService(slsession)
+		})
+		Context("SoftLayer_Dns_Domain_Registration Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_Registration Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Dns_Domain_Registration::addNameserversToDomain", func() {
 			It("API Call Test", func() {
@@ -341,6 +387,29 @@ var _ = Describe("Dns Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainRegistrationRegistrantVerificationStatusService(slsession)
 		})
+		Context("SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Dns_Domain_Registration_Registrant_Verification_Status::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -362,6 +431,29 @@ var _ = Describe("Dns Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainRegistrationStatusService(slsession)
 		})
+		Context("SoftLayer_Dns_Domain_Registration_Status Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_Registration_Status Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Dns_Domain_Registration_Status::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -382,6 +474,29 @@ var _ = Describe("Dns Tests", func() {
 		var sl_service services.Dns_Domain_ResourceRecord
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainResourceRecordService(slsession)
+		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Dns_Domain_ResourceRecord::createObject", func() {
 			It("API Call Test", func() {
@@ -446,6 +561,29 @@ var _ = Describe("Dns Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainResourceRecordMxTypeService(slsession)
 		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord_MxType Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord_MxType Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Dns_Domain_ResourceRecord_MxType::createObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CreateObject(nil)
@@ -509,6 +647,29 @@ var _ = Describe("Dns Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetDnsDomainResourceRecordSrvTypeService(slsession)
 		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord_SrvType Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Domain_ResourceRecord_SrvType Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Dns_Domain_ResourceRecord_SrvType::createObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CreateObject(nil)
@@ -571,6 +732,29 @@ var _ = Describe("Dns Tests", func() {
 		var sl_service services.Dns_Secondary
 		BeforeEach(func() {
 			sl_service = services.GetDnsSecondaryService(slsession)
+		})
+		Context("SoftLayer_Dns_Secondary Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Dns_Secondary Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Dns_Secondary::convertToPrimary", func() {
 			It("API Call Test", func() {

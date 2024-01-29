@@ -19,6 +19,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationStorageGroupArrayTypeService(slsession)
 		})
+		Context("SoftLayer_Configuration_Storage_Group_Array_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Storage_Group_Array_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Storage_Group_Array_Type::getAllObjects", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllObjects()
@@ -46,6 +69,29 @@ var _ = Describe("Configuration Tests", func() {
 		var sl_service services.Configuration_Template
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateService(slsession)
+		})
+		Context("SoftLayer_Configuration_Template Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Configuration_Template::copyTemplate", func() {
 			It("API Call Test", func() {
@@ -152,6 +198,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section::getDefinitions", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetDefinitions()
@@ -236,6 +305,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionDefinitionService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section_Definition Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Definition Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section_Definition::getAttributes", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAttributes()
@@ -292,6 +384,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionDefinitionGroupService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Group Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Group Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section_Definition_Group::getAllGroups", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAllGroups()
@@ -320,6 +435,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionDefinitionTypeService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section_Definition_Type::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
@@ -333,6 +471,29 @@ var _ = Describe("Configuration Tests", func() {
 		var sl_service services.Configuration_Template_Section_Definition_Value
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionDefinitionValueService(slsession)
+		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Value Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Definition_Value Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Configuration_Template_Section_Definition_Value::getDefinition", func() {
 			It("API Call Test", func() {
@@ -362,6 +523,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionProfileService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section_Profile Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Profile Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section_Profile::getConfigurationSection", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetConfigurationSection()
@@ -382,6 +566,29 @@ var _ = Describe("Configuration Tests", func() {
 		var sl_service services.Configuration_Template_Section_Reference
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionReferenceService(slsession)
+		})
+		Context("SoftLayer_Configuration_Template_Section_Reference Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Reference Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Configuration_Template_Section_Reference::getObject", func() {
 			It("API Call Test", func() {
@@ -411,6 +618,29 @@ var _ = Describe("Configuration Tests", func() {
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateSectionTypeService(slsession)
 		})
+		Context("SoftLayer_Configuration_Template_Section_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Section_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 		Context("SoftLayer_Configuration_Template_Section_Type::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
@@ -424,6 +654,29 @@ var _ = Describe("Configuration Tests", func() {
 		var sl_service services.Configuration_Template_Type
 		BeforeEach(func() {
 			sl_service = services.GetConfigurationTemplateTypeService(slsession)
+		})
+		Context("SoftLayer_Configuration_Template_Type Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Configuration_Template_Type Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
 		})
 		Context("SoftLayer_Configuration_Template_Type::getObject", func() {
 			It("API Call Test", func() {

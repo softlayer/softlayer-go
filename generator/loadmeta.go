@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package main
+package generator
 
 import (
 	"bytes"
@@ -32,6 +32,18 @@ import (
 	"golang.org/x/tools/imports"
 )
 
+const license = `/**
+ * Copyright 2016-2024 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with 
+ * the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed 
+ * on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ */
+ `
+const codegenWarning = `// AUTOMATICALLY GENERATED CODE - DO NOT MODIFY`
 const SoftLayerMetadataAPIURL = "https://api.softlayer.com/metadata/v3.1"
 
 type Type struct {
@@ -209,6 +221,29 @@ var _ = Describe("{{(index . 0 ).ServiceGroup}} Tests", func() {
 			sl_service = services.Get{{.Name | removePrefix | desnake}}Service(slsession)
 		})
 {{- $serviceName := .Name }}
+		Context("{{$serviceName}} Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("{{$serviceName}} Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
 {{- range .Methods }}
 		Context("{{$serviceName}}::{{.Name}}", func() {
 			It("API Call Test", func() {
@@ -244,7 +279,7 @@ func NilParam(params []Parameter) string {
 	return rString
 }
 
-func generateAPI() {
+func GenerateAPI() {
 	var meta map[string]Type
 
 	flagset := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
