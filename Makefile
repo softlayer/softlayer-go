@@ -26,7 +26,7 @@ build: fmtcheck vet deps
 	$(GO_BUILD) ./...
 
 deps:
-	$(GO_DEPS) ./...
+	$(GO_DEPS)
 
 fmt:
 	@$(GO_FMT) -w `find . -name '*.go' | grep -v vendor`
