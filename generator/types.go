@@ -1,6 +1,5 @@
 package generator
 
-
 type Type struct {
 	Name         string              `json:"name"`
 	Base         string              `json:"base"`

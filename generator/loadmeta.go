@@ -19,23 +19,21 @@ package generator
 import (
 	"bytes"
 
-
 	"fmt"
+	"github.com/spf13/cobra"
 	"go/format"
+	"golang.org/x/tools/imports"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"sort"
 	"strings"
 	"text/template"
-	"golang.org/x/tools/imports"
-	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use: "tools",
+	Use:   "tools",
 	Short: "Generates the services and datatype definitions from SoftLayer API Metadata",
-
 }
 
 func Execute() error {
@@ -172,9 +170,7 @@ func Tags(args ...interface{}) string {
 	}
 }
 
-// private
-
-func createGetters(service *Type) {
+func CreateGetters(service *Type) {
 	for _, p := range service.Properties {
 		if p.Form == "relational" {
 			m := Method{
@@ -191,7 +187,7 @@ func createGetters(service *Type) {
 }
 
 // Special case for ensuring we can set a complexType on product orders.
-func addComplexType(dataType *Type) {
+func AddComplexType(dataType *Type) {
 	// Only adding this to the base product order type. All others embed this one.
 	if dataType.Name == "SoftLayer_Container_Product_Order" {
 		dataType.Properties["complexType"] = Property{
@@ -210,15 +206,15 @@ func addComplexType(dataType *Type) {
 	}
 }
 
-// Special case for fixing some datatype properties in the metadata
-func fixDatatype(t *Type, meta map[string]Type) {
+// Special case for fixing some datatype properties in the metadata so that these properties can be set in their base
+func FixDatatype(t *Type, meta map[string]Type) {
 	if strings.HasPrefix(t.Name, "SoftLayer_Dns_Domain_ResourceRecord_") {
 		baseRecordType, _ := meta["SoftLayer_Dns_Domain_ResourceRecord"]
 		for propName, prop := range t.Properties {
 			baseRecordType.Properties[propName] = prop
 		}
 		meta["SoftLayer_Dns_Domain_ResourceRecord"] = baseRecordType
-	} else if t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign" || t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign_Totp" {
+	} else if t.Name == "SoftLayer_Container_User_Customer_External_Binding_Verisign" {
 		baseType, _ := meta["SoftLayer_Container_User_Customer_External_Binding"]
 		for propName, prop := range t.Properties {
 			baseType.Properties[propName] = prop
@@ -228,7 +224,7 @@ func fixDatatype(t *Type, meta map[string]Type) {
 }
 
 // Special case for fixing some broken return types in the metadata
-func fixReturnType(service *Type) {
+func FixReturnType(service *Type) {
 	brokenServices := map[string]string{
 		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service":       "deleteObject",
 		"SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer": "deleteObject",
@@ -262,7 +258,7 @@ func phraseMethodArg(methodName string, argName string, isArray bool, argType st
 	return fmt.Sprintf("%s %s%s, ", argName, refPrefix, argType)
 }
 
-func combineMethods(baseMethods map[string]Method, subclassMethods map[string]Method) map[string]Method {
+func CombineMethods(baseMethods map[string]Method, subclassMethods map[string]Method) map[string]Method {
 	r := map[string]Method{}
 
 	// Copy all subclass methods into the result set
@@ -281,23 +277,23 @@ func combineMethods(baseMethods map[string]Method, subclassMethods map[string]Me
 	return r
 }
 
-func getBaseMethods(s Type, typeMap map[string]Type) map[string]Method {
+func GetBaseMethods(s Type, typeMap map[string]Type) map[string]Method {
 	var methods, baseMethods map[string]Method
 
 	methods = s.Methods
 
 	if s.Base != "SoftLayer_Entity" {
-		baseMethods = getBaseMethods(typeMap[s.Base], typeMap)
+		baseMethods = GetBaseMethods(typeMap[s.Base], typeMap)
 
 		// Add base methods to current service methods
-		methods = combineMethods(baseMethods, methods)
+		methods = CombineMethods(baseMethods, methods)
 	}
 
 	// return my methods
 	return methods
 }
 
-func getSortedKeys(m map[string]Type) []string {
+func GetSortedKeys(m map[string]Type) []string {
 	keys := make([]string, 0, len(m))
 	for key := range m {
 		if validCheck(key) {
@@ -319,7 +315,7 @@ func validCheck(name string) bool {
 	}
 	return true
 }
-func writePackage(base string, pkg string, meta []Type, ts string) error {
+func WritePackage(base string, pkg string, meta []Type, ts string) error {
 	var currPrefix string
 	var start int
 
@@ -333,7 +329,7 @@ func writePackage(base string, pkg string, meta []Type, ts string) error {
 		}
 
 		if components[0] != currPrefix {
-			err := writeGoFile(base, pkg, currPrefix, meta[start:i], ts)
+			err := WriteGoFile(base, pkg, currPrefix, meta[start:i], ts)
 			if err != nil {
 				return err
 			}
@@ -343,13 +339,13 @@ func writePackage(base string, pkg string, meta []Type, ts string) error {
 		}
 	}
 
-	writeGoFile(base, pkg, currPrefix, meta[start:], ts)
+	WriteGoFile(base, pkg, currPrefix, meta[start:], ts)
 
 	return nil
 }
 
 // Executes a template against the metadata structure, and generates a go source file with the result
-func writeGoFile(base string, pkg string, name string, meta []Type, ts string) error {
+func WriteGoFile(base string, pkg string, name string, meta []Type, ts string) error {
 	filename := base + "/" + pkg + "/" + strings.ToLower(name) + ".go"
 	fmt.Printf("Creating %s\n", filename)
 	// Generate the source
@@ -434,6 +430,16 @@ func GetMetaFromURL(url string) ([]byte, error) {
 	}
 
 	return responseBody, nil
+}
+
+func GetMetaFromFile(file string) ([]byte, error) {
+	jsonFile, err := os.Open(file)
+	if err != nil {
+		return nil, err
+	}
+
+	defer jsonFile.Close()
+	return ioutil.ReadAll(jsonFile)
 }
 
 func getTypePrefix(isArray bool, theType string) string {

@@ -1,11 +1,11 @@
 package generator
 
 import (
-	"fmt"
-	"strings"
-	"os"
 	"encoding/json"
+	"fmt"
 	"github.com/spf13/cobra"
+	"os"
+	"strings"
 )
 
 func init() {
@@ -25,17 +25,17 @@ func init() {
 }
 
 const SoftLayerMetadataAPIURL = "https://api.softlayer.com/metadata/v3.1"
+
 var varMetadata string
 var varOutput string
 var generateCmd = &cobra.Command{
-	Use: "generate",
+	Use:   "generate",
 	Short: "Generates the service and datatype definitions",
 	Run: func(cmd *cobra.Command, args []string) {
 		varMetadata = strings.ToLower(varMetadata)
 		GenerateAPI(varMetadata, varOutput)
 	},
 }
-
 
 func GenerateAPI(metaPath string, outputDir string) {
 	fmt.Printf("Getting metadata from %s ...\n", metaPath)
@@ -45,7 +45,8 @@ func GenerateAPI(metaPath string, outputDir string) {
 		jsonResp, err = GetMetaFromURL(metaPath)
 		errCheck(err, fmt.Sprintf("Error getting metadata from %s", metaPath))
 	} else {
-		fmt.Printf("Going to read from a file |%s|!\n", metaPath)
+		jsonResp, err = GetMetaFromFile(metaPath)
+		errCheck(err, fmt.Sprintf("Error reading file %s", metaPath))
 	}
 	var meta map[string]Type
 	err = json.Unmarshal(jsonResp, &meta)
@@ -53,7 +54,7 @@ func GenerateAPI(metaPath string, outputDir string) {
 
 	// Build an array of Types, sorted by name
 	// This will ensure consistency in the order that code is later emitted
-	keys := getSortedKeys(meta)
+	keys := GetSortedKeys(meta)
 
 	sortedTypes := make([]Type, 0, len(keys))
 	sortedServices := make([]Type, 0, len(keys))
@@ -61,12 +62,12 @@ func GenerateAPI(metaPath string, outputDir string) {
 	for _, name := range keys {
 		t := meta[name]
 		sortedTypes = append(sortedTypes, t)
-		addComplexType(&t)
-		fixDatatype(&t, meta)
+		AddComplexType(&t)
+		FixDatatype(&t, meta)
 
 		// Not every datatype is also a service
 		if !t.NoService {
-			createGetters(&t)
+			CreateGetters(&t)
 			sortedServices = append(sortedServices, t)
 		}
 	}
@@ -75,16 +76,16 @@ func GenerateAPI(metaPath string, outputDir string) {
 	// the child service, only if a same-named method does not already exist (i.e., overridden by the
 	// child service)
 	for i, service := range sortedServices {
-		sortedServices[i].Methods = getBaseMethods(service, meta)
-		fixReturnType(&sortedServices[i])
+		sortedServices[i].Methods = GetBaseMethods(service, meta)
+		FixReturnType(&sortedServices[i])
 	}
 
 	fmt.Printf("Creating Datatypes...\n")
-	err = writePackage(outputDir, "datatypes", sortedTypes, datatype)
+	err = WritePackage(outputDir, "datatypes", sortedTypes, datatype)
 	errCheck(err, "Error creating Datatypes")
 
 	fmt.Printf("Creating Servicess...\n")
-	err = writePackage(outputDir, "services", sortedServices, services)
+	err = WritePackage(outputDir, "services", sortedServices, services)
 	errCheck(err, "Error creating Services")
 }
 

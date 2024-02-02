@@ -2,10 +2,9 @@ package generator
 
 import (
 	"fmt"
-	"text/template"
 	"strings"
+	"text/template"
 )
-
 
 const license = `/**
  * Copyright 2016-2024 IBM Corp.
@@ -19,9 +18,6 @@ const license = `/**
  */
  `
 const codegenWarning = `// AUTOMATICALLY GENERATED CODE - DO NOT MODIFY`
-
-
-
 
 // Define custom template functions
 var fMap = template.FuncMap{
@@ -37,8 +33,6 @@ var fMap = template.FuncMap{
 	"deprecatedDoc":   deprecatedDoc,       // Marks things as deprecated if needed.
 	"nilParam":        NilParam,            // For unit testing fakes
 }
-
-
 
 var datatype = fmt.Sprintf(`%s
 

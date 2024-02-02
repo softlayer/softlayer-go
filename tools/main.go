@@ -17,7 +17,6 @@
 package main
 
 import (
-
 	"github.com/softlayer/softlayer-go/generator"
 )
 
