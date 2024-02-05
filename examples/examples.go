@@ -131,7 +131,6 @@ func doCreateVMTest(sess *session.Session) {
 	}
 }
 
-
 func doGetLatestBillDate(sess *session.Session) {
 	service := services.GetAccountService(sess)
 

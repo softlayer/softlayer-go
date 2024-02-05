@@ -52,7 +52,7 @@ func Run(cmd *cobra.Command, args []string) error {
 		for _, server := range servers {
 			ipAddress := "-"
 			// Servers with a private only connection will not have a primary IP
-			if  server.PrimaryIpAddress != nil {
+			if server.PrimaryIpAddress != nil {
 				ipAddress = *server.PrimaryIpAddress
 			}
 			fmt.Printf("%v, %v, %v, %v\n", *server.Id, *server.Hostname, *server.Domain, ipAddress)
