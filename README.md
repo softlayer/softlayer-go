@@ -1,6 +1,6 @@
 # softlayer-go
 
-[![Build Status](hhttps://github.com/softlayer/softlayer-go/actions/workflows/go/badge.svg?branch=master)](https://github.com/softlayer/softlayer-go/actions/workflows/go.yml)
+[![Build Status](https://github.com/softlayer/softlayer-go/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/softlayer/softlayer-go/actions/workflows/go.yml)
 [![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Coverage Status](https://coveralls.io/repos/github/softlayer/softlayer-go/badge.svg?branch=master)](https://coveralls.io/github/softlayer/softlayer-go?branch=master)
