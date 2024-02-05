@@ -5653,11 +5653,14 @@ type Network_Subnet_IpAddress_Version6 struct {
 	PublicVersion6NetworkGateway *Network_Gateway `json:"publicVersion6NetworkGateway,omitempty" xmlrpc:"publicVersion6NetworkGateway,omitempty"`
 }
 
+// The subnet registration service has been deprecated.
+//
 // The subnet registration data type contains general information relating to a single subnet registration instance. These registration instances can be updated to reflect changes, and will record the changes in the [[SoftLayer_Network_Subnet_Registration_Event|events]].
 type Network_Subnet_Registration struct {
 	Entity
 
-	// The account that this registration belongs to.
+	// [Deprecated] The account that this registration belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The registration object's associated [[SoftLayer_Account|account]] id
@@ -5669,16 +5672,18 @@ type Network_Subnet_Registration struct {
 	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// A count of the cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
+	// A count of [Deprecated] The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
 	DetailReferenceCount *uint `json:"detailReferenceCount,omitempty" xmlrpc:"detailReferenceCount,omitempty"`
 
-	// The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
+	// [Deprecated] The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
+	// Deprecated: This function has been marked as deprecated.
 	DetailReferences []Network_Subnet_Registration_Details `json:"detailReferences,omitempty" xmlrpc:"detailReferences,omitempty"`
 
-	// A count of the related registration events.
+	// A count of [Deprecated] The related registration events.
 	EventCount *uint `json:"eventCount,omitempty" xmlrpc:"eventCount,omitempty"`
 
-	// The related registration events.
+	// [Deprecated] The related registration events.
+	// Deprecated: This function has been marked as deprecated.
 	Events []Network_Subnet_Registration_Event `json:"events,omitempty" xmlrpc:"events,omitempty"`
 
 	// Unique ID of the registration object
@@ -5687,7 +5692,8 @@ type Network_Subnet_Registration struct {
 	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// The "network" detail object.
+	// [Deprecated] The "network" detail object.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkDetail *Account_Regional_Registry_Detail `json:"networkDetail,omitempty" xmlrpc:"networkDetail,omitempty"`
 
 	// The RIR-specific handle or name of the registered subnet. This field is read-only.
@@ -5696,13 +5702,16 @@ type Network_Subnet_Registration struct {
 	// The base IP address of the registered subnet
 	NetworkIdentifier *string `json:"networkIdentifier,omitempty" xmlrpc:"networkIdentifier,omitempty"`
 
-	// The "person" detail object.
+	// [Deprecated] The "person" detail object.
+	// Deprecated: This function has been marked as deprecated.
 	PersonDetail *Account_Regional_Registry_Detail `json:"personDetail,omitempty" xmlrpc:"personDetail,omitempty"`
 
-	// The related Regional Internet Registry.
+	// [Deprecated] The related Regional Internet Registry.
+	// Deprecated: This function has been marked as deprecated.
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty" xmlrpc:"regionalInternetRegistry,omitempty"`
 
-	// The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
+	// [Deprecated] The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
+	// Deprecated: This function has been marked as deprecated.
 	RegionalInternetRegistryHandle *Account_Rwhois_Handle `json:"regionalInternetRegistryHandle,omitempty" xmlrpc:"regionalInternetRegistryHandle,omitempty"`
 
 	// The registration object's associated [[SoftLayer_Account_Rwhois_Handle|RIR handle]] id
@@ -5711,26 +5720,34 @@ type Network_Subnet_Registration struct {
 	// The registration object's associated [[SoftLayer_Network_Regional_Internet_Registry|RIR]] id
 	RegionalInternetRegistryId *int `json:"regionalInternetRegistryId,omitempty" xmlrpc:"regionalInternetRegistryId,omitempty"`
 
-	// The status of this registration.
+	// [Deprecated] The status of this registration.
+	// Deprecated: This function has been marked as deprecated.
 	Status *Network_Subnet_Registration_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// The registration object's associated [[SoftLayer_Network_Subnet_Registration_Status|status]] id
 	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 
-	// The subnet that this registration pertains to.
+	// [Deprecated] The subnet that this registration pertains to.
+	// Deprecated: This function has been marked as deprecated.
 	Subnet *Network_Subnet `json:"subnet,omitempty" xmlrpc:"subnet,omitempty"`
 }
 
+// The APNIC subnet registration type has been deprecated.
+//
 // APNIC-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
 type Network_Subnet_Registration_Apnic struct {
 	Network_Subnet_Registration
 }
 
+// The ARIN subnet registration type has been deprecated.
+//
 // ARIN-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
 type Network_Subnet_Registration_Arin struct {
 	Network_Subnet_Registration
 }
 
+// The subnet registration details type has been deprecated.
+//
 // The SoftLayer_Network_Subnet_Registration_Details objects are used to relate [[SoftLayer_Account_Regional_Registry_Detail]] objects to a [[SoftLayer_Network_Subnet_Registration]] object. This allows for easy reuse of registration details. It is important to note that only one detail object per type may be associated to a registration object.
 type Network_Subnet_Registration_Details struct {
 	Entity
@@ -5738,7 +5755,8 @@ type Network_Subnet_Registration_Details struct {
 	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
+	// [Deprecated] The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
+	// Deprecated: This function has been marked as deprecated.
 	Detail *Account_Regional_Registry_Detail `json:"detail,omitempty" xmlrpc:"detail,omitempty"`
 
 	// Numeric ID of the related [[SoftLayer_Account_Regional_Registry_Detail]] object
@@ -5750,13 +5768,16 @@ type Network_Subnet_Registration_Details struct {
 	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// The related [[SoftLayer_Network_Subnet_Registration|registration object]].
+	// [Deprecated] The related [[SoftLayer_Network_Subnet_Registration|registration object]].
+	// Deprecated: This function has been marked as deprecated.
 	Registration *Network_Subnet_Registration `json:"registration,omitempty" xmlrpc:"registration,omitempty"`
 
 	// Numeric ID of the related [[SoftLayer_Network_Subnet_Registration]] object
 	RegistrationId *int `json:"registrationId,omitempty" xmlrpc:"registrationId,omitempty"`
 }
 
+// The subnet registration event type has been deprecated.
+//
 // Each time a [[SoftLayer_Network_Subnet_Registration|subnet registration]] object is created or modified, the system will generate an event for it. Additional actions that would create an event include RIR responses and error cases. *
 type Network_Subnet_Registration_Event struct {
 	Entity
@@ -5773,19 +5794,23 @@ type Network_Subnet_Registration_Event struct {
 	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// The registration this event pertains to.
+	// [Deprecated] The registration this event pertains to.
+	// Deprecated: This function has been marked as deprecated.
 	Registration *Network_Subnet_Registration `json:"registration,omitempty" xmlrpc:"registration,omitempty"`
 
 	// The numeric ID of the related [[SoftLayer_Network_Subnet_Registration]] object
 	RegistrationId *int `json:"registrationId,omitempty" xmlrpc:"registrationId,omitempty"`
 
-	// The type of this event.
+	// [Deprecated] The type of this event.
+	// Deprecated: This function has been marked as deprecated.
 	Type *Network_Subnet_Registration_Event_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// The numeric ID of the associated [[SoftLayer_Network_Subnet_Registration_Event_Type|event type]] object
 	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
 }
 
+// The subnet registration event type type has been deprecated.
+//
 // Subnet Registration Event Type objects describe the nature of a [[SoftLayer_Network_Subnet_Registration_Event]]
 //
 // The standard values for these objects are as follows: <ul> <li><strong>REGISTRATION_CREATED</strong> - Indicates that the registration has been created</li> <li><strong>REGISTRATION_UPDATED</strong> - Indicates that the registration has been updated</li> <li><strong>REGISTRATION_CANCELLED</strong> - Indicates that the registration has been cancelled</li> <li><strong>RIR_RESPONSE</strong> - Indicates that an action taken against the RIR has produced a response. More details will be provided in the event message.</li> <li><strong>ERROR</strong> - Indicates that an error has been encountered. More details will be provided in the event message.</li> <li><strong>NOTE</strong> - An employee or other system has entered a note regarding the registration. The note content will be provided in the event message.</li> </ul>
@@ -5810,11 +5835,15 @@ type Network_Subnet_Registration_Event_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// The RIPE subnet registration type has been deprecated.
+//
 // RIPE-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
 type Network_Subnet_Registration_Ripe struct {
 	Network_Subnet_Registration
 }
 
+// The subnet registration status type has been deprecated.
+//
 // Subnet Registration Status objects describe the current status of a subnet registration.
 //
 // The standard values for these objects are as follows: <ul> <li><strong>OPEN</strong> - Indicates that the registration object is new and has yet to be submitted to the RIR</li> <li><strong>PENDING</strong> - Indicates that the registration object has been submitted to the RIR and is awaiting response</li> <li><strong>COMPLETE</strong> - Indicates that the RIR action has completed</li> <li><strong>DELETED</strong> - Indicates that the registration object has been gracefully removed is no longer valid</li> <li><strong>CANCELLED</strong> - Indicates that the registration object has been abruptly removed is no longer valid</li> </ul>

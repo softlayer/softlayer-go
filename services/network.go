@@ -14831,7 +14831,10 @@ func (r Network_Subnet_IpAddress_Global) Unroute() (resp bool, err error) {
 	return
 }
 
+// The subnet registration service has been deprecated.
+//
 // The subnet registration data type contains general information relating to a single subnet registration instance. These registration instances can be updated to reflect changes, and will record the changes in the [[SoftLayer_Network_Subnet_Registration_Event|events]].
+// Deprecated: This function has been marked as deprecated.
 type Network_Subnet_Registration struct {
 	Session session.SLSession
 	Options sl.Options
@@ -14871,12 +14874,17 @@ func (r Network_Subnet_Registration) Offset(offset int) Network_Subnet_Registrat
 	return r
 }
 
+// The subnet registration service has been deprecated.
+//
 // This method will initiate the removal of a subnet registration.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration) ClearRegistration() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "clearRegistration", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration service has been deprecated.
+//
 // Create registration with a global registrar to associate an assigned subnet with the provided contact details.
 //
 // Contact information is provided in the form of a [[SoftLayer_Account_Regional_Registry_Detail|person detail record]], which reference can be provided when the registration is created or afterwards. Registrations without an associated person detail will remain in the “OPEN“ status. To specify a person detail when creating a registration, the “detailReferences“ property should be populated with a list item providing a “detailId“ value referencing the [[SoftLayer_Account_Regional_Registry_Detail|person detail record]].
@@ -14890,6 +14898,7 @@ func (r Network_Subnet_Registration) ClearRegistration() (resp bool, err error) 
 // * detailReferences
 //
 // “networkIdentifier“ is the base address of the public, SoftLayer owned subnet which is being registered. “cidr“ must be an integer representing the CIDR of the subnet to be registered. The “networkIdentifier“/“cidr“ must represent an assigned subnet. “detailReferences“ tie the registration to SoftLayer_Account_Regional_Registry_Detail objects.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration) CreateObject(templateObject *datatypes.Network_Subnet_Registration) (resp datatypes.Network_Subnet_Registration, err error) {
 	params := []interface{}{
 		templateObject,
@@ -14898,7 +14907,10 @@ func (r Network_Subnet_Registration) CreateObject(templateObject *datatypes.Netw
 	return
 }
 
+// The subnet registration service has been deprecated.
+//
 // Create registrations with respective registrars to associate multiple assigned subnets with the provided contact details.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration) CreateObjects(templateObjects []datatypes.Network_Subnet_Registration) (resp []datatypes.Network_Subnet_Registration, err error) {
 	params := []interface{}{
 		templateObjects,
@@ -14907,7 +14919,10 @@ func (r Network_Subnet_Registration) CreateObjects(templateObjects []datatypes.N
 	return
 }
 
+// The subnet registration service has been deprecated.
+//
 // This method will edit an existing SoftLayer_Network_Subnet_Registration object. For more detail, see [[SoftLayer_Network_Subnet_Registration::createObject|createObject]].
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration) EditObject(templateObject *datatypes.Network_Subnet_Registration) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -14916,7 +14931,10 @@ func (r Network_Subnet_Registration) EditObject(templateObject *datatypes.Networ
 	return
 }
 
+// The subnet registration service has been deprecated.
+//
 // This method modifies a single registration by modifying the current [[SoftLayer_Network_Subnet_Registration_Details]] objects that are linked to that registration.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration) EditRegistrationAttachedDetails(personObjectSkeleton *datatypes.Network_Subnet_Registration_Details, networkObjectSkeleton *datatypes.Network_Subnet_Registration_Details) (resp bool, err error) {
 	params := []interface{}{
 		personObjectSkeleton,
@@ -14926,25 +14944,25 @@ func (r Network_Subnet_Registration) EditRegistrationAttachedDetails(personObjec
 	return
 }
 
-// Retrieve The account that this registration belongs to.
+// Retrieve [Deprecated] The account that this registration belongs to.
 func (r Network_Subnet_Registration) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
+// Retrieve [Deprecated] The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
 func (r Network_Subnet_Registration) GetDetailReferences() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getDetailReferences", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The related registration events.
+// Retrieve [Deprecated] The related registration events.
 func (r Network_Subnet_Registration) GetEvents() (resp []datatypes.Network_Subnet_Registration_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getEvents", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The "network" detail object.
+// Retrieve [Deprecated] The "network" detail object.
 func (r Network_Subnet_Registration) GetNetworkDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getNetworkDetail", nil, &r.Options, &resp)
 	return
@@ -14956,37 +14974,40 @@ func (r Network_Subnet_Registration) GetObject() (resp datatypes.Network_Subnet_
 	return
 }
 
-// Retrieve The "person" detail object.
+// Retrieve [Deprecated] The "person" detail object.
 func (r Network_Subnet_Registration) GetPersonDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getPersonDetail", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The related Regional Internet Registry.
+// Retrieve [Deprecated] The related Regional Internet Registry.
 func (r Network_Subnet_Registration) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getRegionalInternetRegistry", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
+// Retrieve [Deprecated] The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
 func (r Network_Subnet_Registration) GetRegionalInternetRegistryHandle() (resp datatypes.Account_Rwhois_Handle, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getRegionalInternetRegistryHandle", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The status of this registration.
+// Retrieve [Deprecated] The status of this registration.
 func (r Network_Subnet_Registration) GetStatus() (resp datatypes.Network_Subnet_Registration_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getStatus", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The subnet that this registration pertains to.
+// Retrieve [Deprecated] The subnet that this registration pertains to.
 func (r Network_Subnet_Registration) GetSubnet() (resp datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getSubnet", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration details type has been deprecated.
+//
 // The SoftLayer_Network_Subnet_Registration_Details objects are used to relate [[SoftLayer_Account_Regional_Registry_Detail]] objects to a [[SoftLayer_Network_Subnet_Registration]] object. This allows for easy reuse of registration details. It is important to note that only one detail object per type may be associated to a registration object.
+// Deprecated: This function has been marked as deprecated.
 type Network_Subnet_Registration_Details struct {
 	Session session.SLSession
 	Options sl.Options
@@ -15026,9 +15047,12 @@ func (r Network_Subnet_Registration_Details) Offset(offset int) Network_Subnet_R
 	return r
 }
 
+// The subnet registration details service has been deprecated.
+//
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Network_Subnet_Registration_Details object.
 //
 // <b>Input</b> - [[SoftLayer_Network_Subnet_Registration_Details (type)|SoftLayer_Network_Subnet_Registration_Details]] <ul class="create_object"> <li><code>detailId</code> <div> The numeric ID of the [[SoftLayer_Account_Regional_Registry_Detail|detail]] object to relate. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>registrationId</code> <div> The numeric ID of the [[SoftLayer_Network_Subnet_Registration|registration]] object to relate. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> </ul>
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration_Details) CreateObject(templateObject *datatypes.Network_Subnet_Registration_Details) (resp datatypes.Network_Subnet_Registration_Details, err error) {
 	params := []interface{}{
 		templateObject,
@@ -15037,13 +15061,16 @@ func (r Network_Subnet_Registration_Details) CreateObject(templateObject *dataty
 	return
 }
 
+// The subnet registration details service has been deprecated.
+//
 // This method will delete an existing SoftLayer_Account_Regional_Registry_Detail object.
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration_Details) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Details", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
+// Retrieve [Deprecated] The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
 func (r Network_Subnet_Registration_Details) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Details", "getDetail", nil, &r.Options, &resp)
 	return
@@ -15055,15 +15082,18 @@ func (r Network_Subnet_Registration_Details) GetObject() (resp datatypes.Network
 	return
 }
 
-// Retrieve The related [[SoftLayer_Network_Subnet_Registration|registration object]].
+// Retrieve [Deprecated] The related [[SoftLayer_Network_Subnet_Registration|registration object]].
 func (r Network_Subnet_Registration_Details) GetRegistration() (resp datatypes.Network_Subnet_Registration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Details", "getRegistration", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration status type has been deprecated.
+//
 // Subnet Registration Status objects describe the current status of a subnet registration.
 //
 // The standard values for these objects are as follows: <ul> <li><strong>OPEN</strong> - Indicates that the registration object is new and has yet to be submitted to the RIR</li> <li><strong>PENDING</strong> - Indicates that the registration object has been submitted to the RIR and is awaiting response</li> <li><strong>COMPLETE</strong> - Indicates that the RIR action has completed</li> <li><strong>DELETED</strong> - Indicates that the registration object has been gracefully removed is no longer valid</li> <li><strong>CANCELLED</strong> - Indicates that the registration object has been abruptly removed is no longer valid</li> </ul>
+// Deprecated: This function has been marked as deprecated.
 type Network_Subnet_Registration_Status struct {
 	Session session.SLSession
 	Options sl.Options
@@ -15104,6 +15134,7 @@ func (r Network_Subnet_Registration_Status) Offset(offset int) Network_Subnet_Re
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Registration_Status) GetAllObjects() (resp []datatypes.Network_Subnet_Registration_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Status", "getAllObjects", nil, &r.Options, &resp)
 	return

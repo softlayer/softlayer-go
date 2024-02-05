@@ -642,12 +642,6 @@ func (r Account) GetDisplaySupportRepresentativeAssignments() (resp []datatypes.
 	return
 }
 
-// Retrieve
-func (r Account) GetDomainRegistrations() (resp []datatypes.Dns_Domain_Registration, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getDomainRegistrations", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve The DNS domains associated with an account.
 func (r Account) GetDomains() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDomains", nil, &r.Options, &resp)
@@ -4557,6 +4551,9 @@ func (r Account_ProofOfConcept_Funding_Type) GetObject() (resp datatypes.Account
 	return
 }
 
+// The subnet registration detail type has been deprecated.
+//
+// Deprecated: This function has been marked as deprecated.
 type Account_Regional_Registry_Detail struct {
 	Session session.SLSession
 	Options sl.Options
@@ -4596,9 +4593,12 @@ func (r Account_Regional_Registry_Detail) Offset(offset int) Account_Regional_Re
 	return r
 }
 
+// The subnet registration detail service has been deprecated.
+//
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail object.
 //
 // <b>Input</b> - [[SoftLayer_Account_Regional_Registry_Detail (type)|SoftLayer_Account_Regional_Registry_Detail]] <ul class="create_object"> <li><code>detailTypeId</code> <div>The [[SoftLayer_Account_Regional_Registry_Detail_Type|type id]] of this detail object</div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>regionalInternetRegistryHandleId</code> <div> The id of the [[SoftLayer_Account_Rwhois_Handle|RWhois handle]] object. This is only to be used for detailed registrations, where a subnet is registered to an organization. The associated handle will be required to be a valid organization object id at the relevant registry. In this case, the detail object will only be valid for the registry the organization belongs to. </div> <ul> <li><b>Optional</b></li> <li><b>Type</b> - integer</li> </ul> </li> </ul>
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) CreateObject(templateObject *datatypes.Account_Regional_Registry_Detail) (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4607,13 +4607,19 @@ func (r Account_Regional_Registry_Detail) CreateObject(templateObject *datatypes
 	return
 }
 
+// The subnet registration detail service has been deprecated.
+//
 // This method will delete an existing SoftLayer_Account_Regional_Registry_Detail object.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail service has been deprecated.
+//
 // This method will edit an existing SoftLayer_Account_Regional_Registry_Detail object. For more detail, see [[SoftLayer_Account_Regional_Registry_Detail::createObject|createObject]].
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) EditObject(templateObject *datatypes.Account_Regional_Registry_Detail) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4622,19 +4628,19 @@ func (r Account_Regional_Registry_Detail) EditObject(templateObject *datatypes.A
 	return
 }
 
-// Retrieve The account that this detail object belongs to.
+// Retrieve [Deprecated] The account that this detail object belongs to.
 func (r Account_Regional_Registry_Detail) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getAccount", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The associated type of this detail object.
+// Retrieve [Deprecated] The associated type of this detail object.
 func (r Account_Regional_Registry_Detail) GetDetailType() (resp datatypes.Account_Regional_Registry_Detail_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetailType", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
+// Retrieve [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
 func (r Account_Regional_Registry_Detail) GetDetails() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetails", nil, &r.Options, &resp)
 	return
@@ -4646,24 +4652,29 @@ func (r Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Re
 	return
 }
 
-// Retrieve The individual properties that define this detail object's values.
+// Retrieve [Deprecated] The individual properties that define this detail object's values.
 func (r Account_Regional_Registry_Detail) GetProperties() (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getProperties", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
+// Retrieve [Deprecated] The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
 func (r Account_Regional_Registry_Detail) GetRegionalInternetRegistryHandle() (resp datatypes.Account_Rwhois_Handle, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getRegionalInternetRegistryHandle", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail service has been deprecated.
+//
 // This method will create a bulk transaction to update any registrations that reference this detail object. It should only be called from a child class such as [[SoftLayer_Account_Regional_Registry_Detail_Person]] or [[SoftLayer_Account_Regional_Registry_Detail_Network]]. The registrations should be in the Open or Registration_Complete status.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp datatypes.Container_Network_Subnet_Registration_TransactionDetails, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "updateReferencedRegistrations", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail service has been deprecated.
+//
 // Validates this person detail against all supported external registrars (APNIC/ARIN/RIPE). The validation uses the most restrictive rules ensuring that any person detail passing this validation would be acceptable to any supported registrar.
 //
 // # The person detail properties are validated against - Non-emptiness - Minimum length - Maximum length - Maximum words - Supported characters - Format of data
@@ -4671,12 +4682,16 @@ func (r Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp 
 // If the person detail validation succeeds, then an empty list is returned indicating no errors were found and that this person detail would work against all three registrars during a subnet registration.
 //
 // If the person detail validation fails, then an array of validation errors (SoftLayer_Container_Message[]) is returned. Each message container contains error messages grouped by property type and a message type indicating the person detail property type object which failed validation. It is possible to create a subnet registration using a person detail which does not pass this validation, but at least one registrar would reject it for being invalid.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) ValidatePersonForAllRegistrars() (resp []datatypes.Container_Message, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "validatePersonForAllRegistrars", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail property type has been deprecated.
+//
 // Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
+// Deprecated: This function has been marked as deprecated.
 type Account_Regional_Registry_Detail_Property struct {
 	Session session.SLSession
 	Options sl.Options
@@ -4716,9 +4731,12 @@ func (r Account_Regional_Registry_Detail_Property) Offset(offset int) Account_Re
 	return r
 }
 
+// The subnet registration detail property service has been deprecated.
+//
 // <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail_Property object.
 //
 // <b>Input</b> - [[SoftLayer_Account_Regional_Registry_Detail_Property (type)|SoftLayer_Account_Regional_Registry_Detail_Property]] <ul class="create_object"> <li><code>registrationDetailId</code> <div>The numeric ID of the [[SoftLayer_Account_Regional_Registry_Detail|detail object]] this property belongs to</div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>propertyTypeId</code> <div> The numeric ID of the associated [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>sequencePosition</code> <div> When more than one property of the same type exists on a detail object, this value determines the position in that collection. This can be thought of more as a sort order. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>value</code> <div> The actual value of the property. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - string</li> </ul> </li> </ul>
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property) CreateObject(templateObject *datatypes.Account_Regional_Registry_Detail_Property) (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4727,7 +4745,10 @@ func (r Account_Regional_Registry_Detail_Property) CreateObject(templateObject *
 	return
 }
 
+// The subnet registration detail property service has been deprecated.
+//
 // Edit multiple [[SoftLayer_Account_Regional_Registry_Detail_Property]] objects.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property) CreateObjects(templateObjects []datatypes.Account_Regional_Registry_Detail_Property) (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	params := []interface{}{
 		templateObjects,
@@ -4736,13 +4757,19 @@ func (r Account_Regional_Registry_Detail_Property) CreateObjects(templateObjects
 	return
 }
 
+// The subnet registration detail property service has been deprecated.
+//
 // This method will delete an existing SoftLayer_Account_Regional_Registry_Detail_Property object.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "deleteObject", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail property service has been deprecated.
+//
 // This method will edit an existing SoftLayer_Account_Regional_Registry_Detail_Property object. For more detail, see [[SoftLayer_Account_Regional_Registry_Detail_Property::createObject|createObject]].
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property) EditObject(templateObject *datatypes.Account_Regional_Registry_Detail_Property) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -4751,7 +4778,10 @@ func (r Account_Regional_Registry_Detail_Property) EditObject(templateObject *da
 	return
 }
 
+// The subnet registration detail property service has been deprecated.
+//
 // Edit multiple [[SoftLayer_Account_Regional_Registry_Detail_Property]] objects.
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property) EditObjects(templateObjects []datatypes.Account_Regional_Registry_Detail_Property) (resp bool, err error) {
 	params := []interface{}{
 		templateObjects,
@@ -4760,7 +4790,7 @@ func (r Account_Regional_Registry_Detail_Property) EditObjects(templateObjects [
 	return
 }
 
-// Retrieve The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
+// Retrieve [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
 func (r Account_Regional_Registry_Detail_Property) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "getDetail", nil, &r.Options, &resp)
 	return
@@ -4772,13 +4802,16 @@ func (r Account_Regional_Registry_Detail_Property) GetObject() (resp datatypes.A
 	return
 }
 
-// Retrieve The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
+// Retrieve [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
 func (r Account_Regional_Registry_Detail_Property) GetPropertyType() (resp datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "getPropertyType", nil, &r.Options, &resp)
 	return
 }
 
+// The subnet registration detail property type type has been deprecated.
+//
 // Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
+// Deprecated: This function has been marked as deprecated.
 type Account_Regional_Registry_Detail_Property_Type struct {
 	Session session.SLSession
 	Options sl.Options
@@ -4819,6 +4852,7 @@ func (r Account_Regional_Registry_Detail_Property_Type) Offset(offset int) Accou
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Property_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getAllObjects", nil, &r.Options, &resp)
 	return
@@ -4830,9 +4864,12 @@ func (r Account_Regional_Registry_Detail_Property_Type) GetObject() (resp dataty
 	return
 }
 
+// The subnet registration detail type type has been deprecated.
+//
 // Subnet Registration Detail Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail]] object.
 //
 // The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
+// Deprecated: This function has been marked as deprecated.
 type Account_Regional_Registry_Detail_Type struct {
 	Session session.SLSession
 	Options sl.Options
@@ -4873,6 +4910,7 @@ func (r Account_Regional_Registry_Detail_Type) Offset(offset int) Account_Region
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getAllObjects", nil, &r.Options, &resp)
 	return

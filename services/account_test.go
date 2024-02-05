@@ -630,13 +630,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getDomainRegistrations", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetDomainRegistrations()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getDomains", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetDomains()
