@@ -131,26 +131,6 @@ func doCreateVMTest(sess *session.Session) {
 	}
 }
 
-func doGetDiskUsageMetricsTest(sess *session.Session) {
-	service := services.GetAccountService(sess)
-
-	tEnd := sl.Time(time.Now())
-	tStart := sl.Time(tEnd.AddDate(0, -6, 0))
-
-	data, err := service.GetDiskUsageMetricDataByDate(tStart, tEnd)
-	if err != nil {
-		fmt.Println("Error calling GetDiskUsageMetricDataByDate: ", err)
-		return
-	}
-
-	fmt.Printf("Number of elements returned: %d\n", len(data))
-
-	// Retrieve and print a DateTime (sl.Time) value
-	if len(data) > 0 {
-		fmt.Printf("item.DateTime = %s\n", data[0].DateTime)
-	}
-}
-
 func doGetLatestBillDate(sess *session.Session) {
 	service := services.GetAccountService(sess)
 

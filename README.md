@@ -1,9 +1,8 @@
 # softlayer-go
 
-[![Build Status](https://travis-ci.org/softlayer/softlayer-go.svg?branch=master)](https://travis-ci.org/softlayer/softlayer-go)
+[![Build Status](hhttps://github.com/softlayer/softlayer-go/actions/workflows/go/badge.svg?branch=master)](https://github.com/softlayer/softlayer-go/actions/workflows/go.yml)
 [![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-![Tests](https://github.com/softlayer/softlayer-go/workflows/Tests/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/softlayer/softlayer-go/badge.svg?branch=master)](https://coveralls.io/github/softlayer/softlayer-go?branch=master)
 
 The Official and Complete SoftLayer API Client for Golang (the Go programming language).
@@ -326,6 +325,23 @@ func main() {
 }
 ```
 
+## Running Examples
+
+The [Examples](https://github.com/softlayer/softlayer-go/tree/master/examples) directory has a few rough examples scripts that can help you get started developing with this library.
+
+The Examples have their own modules since there are a few dependencies here not needed in the normal softlayer-go repo.
+The following will get you started:
+
+```bash
+cd examples
+go mod vendor
+go run main.go  --help
+```
+
+The examples use [SPF13's Cobra Command](https://github.com/spf13/cobra) library to build little command examples, which should be easy enough to 
+expand upon if needed. The [SoftLayer-CLI](https://github.com/softlayer/softlayer-cli) project is also a good example of how to use the softlayer-go library.
+
+
 ## Development
 
 ### Setup
@@ -379,10 +395,10 @@ make generate
 
 (manually)
 ```bash
-go run tools/main.go tools/loadmeta.go tools/common.go tools/version.go generate
+go run ./tools generate
 ```
 
 
 ## Copyright
 
-This software is Copyright (c) 2016 IBM Corp. See the bundled LICENSE file for more information.
+This software is Copyright (c) 2016-2024 IBM Corp. See the bundled LICENSE file for more information.

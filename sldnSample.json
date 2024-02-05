@@ -1,0 +1,230 @@
+{
+    "SoftLayer_Account": {
+        "base": "SoftLayer_Entity",
+        "name": "SoftLayer_Account",
+        "methods": {
+            "activatePartner": {
+                "docOverview": "This service enables a partner account that has been created but is currently inactive. This restricted service is only available for certain accounts. Please contact support for questions. ",
+                "maskable": true,
+                "name": "activatePartner",
+                "parameters": [
+                    {
+                        "doc": "Specify the account ID that needs to be activated.",
+                        "name": "accountId",
+                        "type": "string"
+                    },
+                    {
+                        "doc": "Specify the hashcode for the partner",
+                        "name": "hashCode",
+                        "type": "string"
+                    }
+                ],
+                "static": true,
+                "type": "SoftLayer_Account"
+            },
+            "getObject": {
+                "doc": "getObject retrieves the SoftLayer_Account object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Account service. You can only retrieve the account that your portal user is assigned to. ",
+                "docErrorHandling": [
+                    {
+                        "description": "Throw the error \"Unable to find object with id of {id}.\" if the given initialization parameter has an invalid id field.",
+                        "exception": "SoftLayer_Exception_ObjectNotFound"
+                    },
+                    {
+                        "description": "Throw the error \"Access Denied.\" if the given initialization parameter id field is not the account id of the user making the API call.",
+                        "exception": "SoftLayer_Exception_AccessDenied"
+                    }
+                ],
+                "docOverview": "Retrieve a SoftLayer_Account record.",
+                "filterable": true,
+                "maskable": true,
+                "name": "getObject",
+                "static": true,
+                "type": "SoftLayer_Account"
+            }
+        },
+        "properties": {
+            "abuseEmail": {
+                "doc": "An email address that is responsible for abuse and legal inquiries on behalf of an account. For instance, new legal and abuse tickets are sent to this address.",
+                "form": "relational",
+                "name": "abuseEmail",
+                "type": "string"
+            },
+            "accountLinks": {
+                "form": "relational",
+                "name": "accountLinks",
+                "type": "SoftLayer_Account_Link",
+                "typeArray": true
+            }
+        },
+        "serviceDoc": "Every SoftLayer customer has an account which is defined in the SoftLayer_Account service. SoftLayer accounts have users, hardware, and services such as storage and domains associated with them. The SoftLayer_Account service is a convenient way to obtain general information about your SoftLayer account. Use the data returned by these methods with other API services to get more detailed information about your services and to make changes to your servers and services. \n\nSoftLayer customers are unable to change their company account information in the portal or the API. If you need to change this information please open a sales ticket in our customer portal and our account management staff will assist you. ",
+        "typeDoc": "The SoftLayer_Account data type contains general information relating to a single SoftLayer customer account. Personal information in this type such as names, addresses, and phone numbers are assigned to the account only and not to users belonging to the account. The SoftLayer_Account data type contains a number of relational properties that are used by the SoftLayer customer portal to quickly present a variety of account related services to it's users. \n\nSoftLayer customers are unable to change their company account information in the portal or the API. If you need to change this information please open a sales ticket in our customer portal and our account management staff will assist you. "
+    },
+    "SoftLayer_Virtual_Guest": {
+        "base": "SoftLayer_Entity",
+        "methods": {
+            "getObject": {
+                "docOverview": "Retrieve a SoftLayer_Virtual_Guest record.",
+                "filterable": true,
+                "maskable": true,
+                "name": "getObject",
+                "type": "SoftLayer_Virtual_Guest"
+            },
+            "getNetworkComponentFirewallProtectableIpAddresses": {
+                "doc": "Get the IP addresses associated with this CloudLayer computing instance that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this CloudLayer computing instance. Please use getFirewallProtectableSubnets to get all protectable subnets. ",
+                "docOverview": "Get the IP addresses associated with this CloudLayer computing instance that are protectable by a network component firewall.",
+                "maskable": true,
+                "name": "getNetworkComponentFirewallProtectableIpAddresses",
+                "type": "SoftLayer_Network_Subnet_IpAddress",
+                "typeArray": true
+            }
+        },
+        "name": "SoftLayer_Virtual_Guest",
+        "properties": {
+            "account": {
+                "doc": "The account that a virtual guest belongs to.",
+                "form": "relational",
+                "name": "account",
+                "type": "SoftLayer_Account"
+            },
+            "accountId": {
+                "doc": "A computing instance's associated [[SoftLayer_Account|account]] id ",
+                "form": "local",
+                "name": "accountId",
+                "type": "int"
+            },
+            "activeNetworkMonitorIncident": {
+                "doc": "A virtual guest's currently active network monitoring incidents.",
+                "form": "relational",
+                "name": "activeNetworkMonitorIncident",
+                "type": "SoftLayer_Network_Monitor_Version1_Incident",
+                "typeArray": true
+            }
+        },
+		"serviceDoc": "The virtual guest service provides a common interface to any virtualization platform supported by SoftLayer. The interaction with various third party APIs is not needed when implementing this service to administer your guests. The SoftLayer_Virtual_Guest service also controls individual CloudLayer Computing Instances purchased from SoftLayer in a way that is analogous to the [[SoftLayer_Hardware_Server]] service's control over physical hardware purchased form SoftLayer. ",
+        "typeDoc": "The virtual guest data type presents the structure in which all virtual guests will be presented. Internally, the structure supports various virtualization platforms with no change to external interaction. \n\nA guest, also known as a virtual server, represents an allocation of resources on a virtual host. "
+    },
+    "SoftLayer_Test_Service": {
+    	"base": "SoftLayer_Entity",
+    	"name": "SoftLayer_Test_Service",
+    	"serviceDoc": "This is just a test service",
+    	"typeDoc": "this is just a test datatype"
+    },
+    "SoftLayer_Inherit": {
+    	"base": "SoftLayer_Account",
+    	"name": "SoftLayer_Test_Service",
+    	"serviceDoc": "This is just a test service",
+    	"typeDoc": "this is just a test datatype",
+    	"methods": {
+    		"test1": {
+    			"docOverview": "A test Method",
+    			"name": "test1",
+    			"type": "SoftLayer_Inherit",
+    			"parameters": [
+    				{"name": "param1", "type": "string"},
+    				{"name": "param2", "type": "int"}
+    			]
+    		}
+    	},
+    	"properties": {
+    		"p_test1": {
+    			"doc": "a test property",
+    			"form": "relational",
+    			"typeArray": true,
+    			"name": "p_test1"
+    		}
+    	}
+    },
+    "SoftLayer_Container_Product_Order": {
+    	"base": "SoftLayer_Entity",
+    	"name": "SoftLayer_Container_Product_Order",
+    	"noservice": true,
+    	"properties": {
+    		"quantity": {
+                "doc": "The quantity of the item being ordered",
+                "form": "local",
+                "name": "quantity",
+                "type": "int"
+            }
+    	},
+    	"typeDoc": "A containter thingy"
+    },
+    "SoftLayer_Container_User_Customer_External_Binding": {
+    	"base": "SoftLayer_Entity",
+    	"name": "SoftLayer_Container_Product_Order",
+    	"noservice": true,
+    	"properties": {
+            "authenticationToken": {
+                "doc": "The unique token that is created by an external authentication request.",
+                "form": "local",
+                "name": "authenticationToken",
+                "type": "string"
+            }
+    	},
+    	"typeDoc": "A containter thingy"
+    },
+	"SoftLayer_Dns_Domain_ResourceRecord": {
+        "base": "SoftLayer_Entity",
+        "name": "SoftLayer_Dns_Domain_ResourceRecord",
+        "properties": {
+            "data": {
+                "doc": "The value of a domain's resource record.",
+                "form": "local",
+                "name": "data",
+                "type": "string"
+            }
+        }
+    },
+	"SoftLayer_Dns_Domain_ResourceRecord_Test": {
+        "base": "SoftLayer_Dns_Domain_ResourceRecord",
+        "name": "SoftLayer_Dns_Domain_ResourceRecord_Test",
+        "noservice": true,
+        "properties": {
+            "testProp": {
+                "doc": "TEST DATA",
+                "form": "local",
+                "name": "testProp1",
+                "type": "string"
+            }
+        },
+        "typeDoc": "test documentation string"
+    },
+    "SoftLayer_Container_User_Customer_External_Binding": {
+        "base": "SoftLayer_Entity",
+        "name": "SoftLayer_Container_User_Customer_External_Binding",
+        "noservice": true,
+        "properties": {
+            "vendor": {
+                "doc": "The name of the vendor that will be used for external authentication",
+                "form": "local",
+                "name": "vendor",
+                "type": "string"
+            }
+        }
+    },
+    "SoftLayer_Container_User_Customer_External_Binding_Verisign": {
+        "base": "SoftLayer_Container_User_Customer_External_Binding",
+        "name": "SoftLayer_Container_User_Customer_External_Binding_Verisign",
+        "noservice": true,
+        "properties": {
+            "securityCode": {
+                "doc": "The security code used to validate a VeriSign credential.",
+                "form": "local",
+                "name": "securityCode",
+                "type": "string"
+            }
+        }
+    },
+    "SoftLayer_Container_User_Customer_External_Binding_Verisign": {
+        "base": "SoftLayer_Container_User_Customer_External_Binding",
+        "name": "SoftLayer_Container_User_Customer_External_Binding_Verisign",
+        "noservice": true,
+        "properties": {
+            "securityCode": {
+                "doc": "The security code used to validate a VeriSign credential.",
+                "form": "local",
+                "name": "securityCode",
+                "type": "string"
+            }
+        }
+    }
+}

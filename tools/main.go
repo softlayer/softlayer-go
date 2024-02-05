@@ -17,32 +17,9 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"github.com/softlayer/softlayer-go/generator"
 )
 
-const usage = `Usage: tools <cmd> [options]
-
-Commands:
-
-	generate: Generate the SDK from the API metadata
-
-	version: library version management`
-
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println(usage)
-		os.Exit(1)
-	}
-
-	switch os.Args[1] {
-	case "generate":
-		generateAPI()
-	case "version":
-		version()
-	default:
-		fmt.Println("Unrecognized command")
-		os.Exit(1)
-	}
-
+	generator.Execute()
 }

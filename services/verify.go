@@ -1,22 +1,15 @@
 /**
- * Copyright 2016 IBM Corp.
+ * Copyright 2016-2024 IBM Corp.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed
+ * on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
  */
 
-/**
- * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
- */
+// AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
 
 package services
 
@@ -31,12 +24,12 @@ import (
 
 // no documentation yet
 type Verify_Api_HttpObj struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetVerifyApiHttpObjService returns an instance of the Verify_Api_HttpObj SoftLayer service
-func GetVerifyApiHttpObjService(sess *session.Session) Verify_Api_HttpObj {
+func GetVerifyApiHttpObjService(sess session.SLSession) Verify_Api_HttpObj {
 	return Verify_Api_HttpObj{Session: sess}
 }
 
@@ -98,12 +91,12 @@ func (r Verify_Api_HttpObj) GetObject() (resp datatypes.Verify_Api_HttpObj, err 
 
 // no documentation yet
 type Verify_Api_HttpsObj struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetVerifyApiHttpsObjService returns an instance of the Verify_Api_HttpsObj SoftLayer service
-func GetVerifyApiHttpsObjService(sess *session.Session) Verify_Api_HttpsObj {
+func GetVerifyApiHttpsObjService(sess session.SLSession) Verify_Api_HttpsObj {
 	return Verify_Api_HttpsObj{Session: sess}
 }
 

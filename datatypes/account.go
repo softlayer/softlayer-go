@@ -1,22 +1,15 @@
 /**
- * Copyright 2016 IBM Corp.
+ * Copyright 2016-2024 IBM Corp.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed
+ * on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
  */
 
-/**
- * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
- */
+// AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
 
 package datatypes
 
@@ -351,13 +344,6 @@ type Account struct {
 
 	// A count of the DNS domains associated with an account.
 	DomainCount *uint `json:"domainCount,omitempty" xmlrpc:"domainCount,omitempty"`
-
-	// A count of
-	DomainRegistrationCount *uint `json:"domainRegistrationCount,omitempty" xmlrpc:"domainRegistrationCount,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	DomainRegistrations []Dns_Domain_Registration `json:"domainRegistrations,omitempty" xmlrpc:"domainRegistrations,omitempty"`
 
 	// The DNS domains associated with an account.
 	Domains []Dns_Domain `json:"domains,omitempty" xmlrpc:"domains,omitempty"`
@@ -1267,9 +1253,11 @@ type Account struct {
 	SubnetRegistrationDetailCount *uint `json:"subnetRegistrationDetailCount,omitempty" xmlrpc:"subnetRegistrationDetailCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SubnetRegistrationDetails []Account_Regional_Registry_Detail `json:"subnetRegistrationDetails,omitempty" xmlrpc:"subnetRegistrationDetails,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SubnetRegistrations []Network_Subnet_Registration `json:"subnetRegistrations,omitempty" xmlrpc:"subnetRegistrations,omitempty"`
 
 	// All network subnets associated with an account.
@@ -2616,10 +2604,12 @@ type Account_ProofOfConcept_Funding_Type struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }
 
+// The subnet registration detail type has been deprecated.
 type Account_Regional_Registry_Detail struct {
 	Entity
 
-	// The account that this detail object belongs to.
+	// [Deprecated] The account that this detail object belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The detail object's associated [[SoftLayer_Account|account]] id
@@ -2628,16 +2618,18 @@ type Account_Regional_Registry_Detail struct {
 	// The date and time the detail object was created
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// A count of references to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
+	// A count of [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
 	DetailCount *uint `json:"detailCount,omitempty" xmlrpc:"detailCount,omitempty"`
 
-	// The associated type of this detail object.
+	// [Deprecated] The associated type of this detail object.
+	// Deprecated: This function has been marked as deprecated.
 	DetailType *Account_Regional_Registry_Detail_Type `json:"detailType,omitempty" xmlrpc:"detailType,omitempty"`
 
 	// The detail object's associated [[SoftLayer_Account_Regional_Registry_Detail_Type|type]] id
 	DetailTypeId *int `json:"detailTypeId,omitempty" xmlrpc:"detailTypeId,omitempty"`
 
-	// References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
+	// [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
+	// Deprecated: This function has been marked as deprecated.
 	Details []Network_Subnet_Registration_Details `json:"details,omitempty" xmlrpc:"details,omitempty"`
 
 	// Unique ID of the detail object
@@ -2646,19 +2638,23 @@ type Account_Regional_Registry_Detail struct {
 	// The date and time the detail object was last modified
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// The individual properties that define this detail object's values.
+	// [Deprecated] The individual properties that define this detail object's values.
+	// Deprecated: This function has been marked as deprecated.
 	Properties []Account_Regional_Registry_Detail_Property `json:"properties,omitempty" xmlrpc:"properties,omitempty"`
 
-	// A count of the individual properties that define this detail object's values.
+	// A count of [Deprecated] The individual properties that define this detail object's values.
 	PropertyCount *uint `json:"propertyCount,omitempty" xmlrpc:"propertyCount,omitempty"`
 
-	// The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
+	// [Deprecated] The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
+	// Deprecated: This function has been marked as deprecated.
 	RegionalInternetRegistryHandle *Account_Rwhois_Handle `json:"regionalInternetRegistryHandle,omitempty" xmlrpc:"regionalInternetRegistryHandle,omitempty"`
 
 	// The detail object's associated [[SoftLayer_Account_Rwhois_Handle|RIR handle]] id
 	RegionalInternetRegistryHandleId *int `json:"regionalInternetRegistryHandleId,omitempty" xmlrpc:"regionalInternetRegistryHandleId,omitempty"`
 }
 
+// The subnet registration detail property type has been deprecated.
+//
 // Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
 type Account_Regional_Registry_Detail_Property struct {
 	Entity
@@ -2666,7 +2662,8 @@ type Account_Regional_Registry_Detail_Property struct {
 	// no documentation yet
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
+	// [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
+	// Deprecated: This function has been marked as deprecated.
 	Detail *Account_Regional_Registry_Detail `json:"detail,omitempty" xmlrpc:"detail,omitempty"`
 
 	// Unique ID of the property object
@@ -2675,7 +2672,8 @@ type Account_Regional_Registry_Detail_Property struct {
 	// no documentation yet
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
-	// The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
+	// [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
+	// Deprecated: This function has been marked as deprecated.
 	PropertyType *Account_Regional_Registry_Detail_Property_Type `json:"propertyType,omitempty" xmlrpc:"propertyType,omitempty"`
 
 	// The numeric ID of the related [[SoftLayer_Account_Regional_Registry_Detail_Property_Type|property type object]]
@@ -2691,6 +2689,8 @@ type Account_Regional_Registry_Detail_Property struct {
 	Value *string `json:"value,omitempty" xmlrpc:"value,omitempty"`
 }
 
+// The subnet registration detail property type type has been deprecated.
+//
 // Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
 type Account_Regional_Registry_Detail_Property_Type struct {
 	Entity
@@ -2714,6 +2714,8 @@ type Account_Regional_Registry_Detail_Property_Type struct {
 	ValueExpression *string `json:"valueExpression,omitempty" xmlrpc:"valueExpression,omitempty"`
 }
 
+// The subnet registration detail type type has been deprecated.
+//
 // Subnet Registration Detail Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail]] object.
 //
 // The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
@@ -2736,6 +2738,8 @@ type Account_Regional_Registry_Detail_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
+// The subnet registration default person detail type has been deprecated.
+//
 // The SoftLayer_Account_Regional_Registry_Detail_Version4_Person_Default data type contains general information relating to a single SoftLayer RIR account. RIR account information in this type such as names, addresses, and phone numbers are assigned to the registry only and not to users belonging to the account.
 type Account_Regional_Registry_Detail_Version4_Person_Default struct {
 	Account_Regional_Registry_Detail
@@ -2809,11 +2813,14 @@ type Account_Reports_Request struct {
 	UsrRecordId *int `json:"usrRecordId,omitempty" xmlrpc:"usrRecordId,omitempty"`
 }
 
+// The subnet registration handle type has been deprecated.
+//
 // Provides a means of tracking handle identifiers at the various regional internet registries (RIRs). These objects are used by the [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]] objects to identify a customer or organization when a subnet is registered.
 type Account_Rwhois_Handle struct {
 	Entity
 
-	// The account that this handle belongs to.
+	// [Deprecated] The account that this handle belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The handle object's associated [[SoftLayer_Account|account]] id

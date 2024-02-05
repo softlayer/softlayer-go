@@ -32,3 +32,6 @@ _testmain.go
 *.test
 *.prof
 *.DS_STORE
+
+# Git vendor things
+vendor/

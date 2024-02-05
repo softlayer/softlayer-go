@@ -1,22 +1,15 @@
 /**
- * Copyright 2016 IBM Corp.
+ * Copyright 2016-2024 IBM Corp.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed
+ * on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
  */
 
-/**
- * AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
- */
+// AUTOMATICALLY GENERATED CODE - DO NOT MODIFY
 
 package services
 
@@ -33,12 +26,12 @@ import (
 //
 // IBM Cloud Infrastructure customers are unable to change their brand information in the portal or the API.
 type Brand struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandService returns an instance of the Brand SoftLayer service
-func GetBrandService(sess *session.Session) Brand {
+func GetBrandService(sess session.SLSession) Brand {
 	return Brand{Session: sess}
 }
 
@@ -458,12 +451,12 @@ func (r Brand) VerifyCanReactivateAccount(accountId *int) (err error) {
 
 // Contains business partner details associated with a brand. Country Enterprise Identifier (CEID), Channel ID, Segment ID and Reseller Level.
 type Brand_Business_Partner struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandBusinessPartnerService returns an instance of the Brand_Business_Partner SoftLayer service
-func GetBrandBusinessPartnerService(sess *session.Session) Brand_Business_Partner {
+func GetBrandBusinessPartnerService(sess session.SLSession) Brand_Business_Partner {
 	return Brand_Business_Partner{Session: sess}
 }
 
@@ -522,12 +515,12 @@ func (r Brand_Business_Partner) GetSegment() (resp datatypes.Business_Partner_Se
 
 // The [[SoftLayer_Brand_Restriction_Location_CustomerCountry]] data type defines the relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on the SoftLayer US brand for customers that live in Great Britain.
 type Brand_Restriction_Location_CustomerCountry struct {
-	Session *session.Session
+	Session session.SLSession
 	Options sl.Options
 }
 
 // GetBrandRestrictionLocationCustomerCountryService returns an instance of the Brand_Restriction_Location_CustomerCountry SoftLayer service
-func GetBrandRestrictionLocationCustomerCountryService(sess *session.Session) Brand_Restriction_Location_CustomerCountry {
+func GetBrandRestrictionLocationCustomerCountryService(sess session.SLSession) Brand_Restriction_Location_CustomerCountry {
 	return Brand_Restriction_Location_CustomerCountry{Session: sess}
 }
 

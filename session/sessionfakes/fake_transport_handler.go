@@ -45,15 +45,16 @@ func (fake *FakeTransportHandler) DoRequest(arg1 *session.Session, arg2 string, 
 		arg5 *sl.Options
 		arg6 interface{}
 	}{arg1, arg2, arg3, arg4Copy, arg5, arg6})
+	stub := fake.DoRequestStub
+	fakeReturns := fake.doRequestReturns
 	fake.recordInvocation("DoRequest", []interface{}{arg1, arg2, arg3, arg4Copy, arg5, arg6})
 	fake.doRequestMutex.Unlock()
-	if fake.DoRequestStub != nil {
-		return fake.DoRequestStub(arg1, arg2, arg3, arg4, arg5, arg6)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4, arg5, arg6)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.doRequestReturns
 	return fakeReturns.result1
 }
 
