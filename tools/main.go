@@ -20,14 +20,6 @@ import (
 	"github.com/softlayer/softlayer-go/generator"
 )
 
-const usage = `Usage: tools <cmd> [options]
-
-Commands:
-
-	generate: Generate the SDK from the API metadata
-
-	version: library version management`
-
 func main() {
 	generator.Execute()
 }

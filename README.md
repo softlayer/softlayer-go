@@ -1,9 +1,8 @@
 # softlayer-go
 
-[![Build Status](https://travis-ci.org/softlayer/softlayer-go.svg?branch=master)](https://travis-ci.org/softlayer/softlayer-go)
+[![Build Status](hhttps://github.com/softlayer/softlayer-go/actions/workflows/go/badge.svg?branch=master)](https://github.com/softlayer/softlayer-go/actions/workflows/go.yml)
 [![GoDoc](https://godoc.org/github.com/softlayer/softlayer-go?status.svg)](https://godoc.org/github.com/softlayer/softlayer-go)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-![Tests](https://github.com/softlayer/softlayer-go/workflows/Tests/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/softlayer/softlayer-go/badge.svg?branch=master)](https://coveralls.io/github/softlayer/softlayer-go?branch=master)
 
 The Official and Complete SoftLayer API Client for Golang (the Go programming language).
@@ -326,6 +325,28 @@ func main() {
 }
 ```
 
+## Running Examples
+
+The [Examples](https://github.com/softlayer/softlayer-go/tree/master/examples) directory has a few rough examples scripts that can help you get started developing with this library.
+
+First, you may need to install a few dependencies I haven't included in the go.mod since they are only used in the example.
+
+```bash
+go get github.com/jedib0t/go-pretty/v6/table
+go mod vendor
+```
+
+Then you can run the examples as is
+
+```bash
+go run ./examples --help
+go run ./examples server-list
+```
+
+The examples use [SPF13's Cobra Command](https://github.com/spf13/cobra) library to build little command examples, which should be easy enough to 
+expand upon if needed. The [SoftLayer-CLI](https://github.com/softlayer/softlayer-cli) project is also a good example of how to use the softlayer-go library.
+
+
 ## Development
 
 ### Setup
@@ -379,13 +400,10 @@ make generate
 
 (manually)
 ```bash
-# This is for SL metadata refresh
-go run tools/main.go tools/loadmeta.go tools/common.go tools/version.go generate
-# This is for test fake classes
-go generate ./session/...
+go run ./tools generate
 ```
 
 
 ## Copyright
 
-This software is Copyright (c) 2016 IBM Corp. See the bundled LICENSE file for more information.
+This software is Copyright (c) 2016-2024 IBM Corp. See the bundled LICENSE file for more information.
