@@ -329,18 +329,13 @@ func main() {
 
 The [Examples](https://github.com/softlayer/softlayer-go/tree/master/examples) directory has a few rough examples scripts that can help you get started developing with this library.
 
-First, you may need to install a few dependencies I haven't included in the go.mod since they are only used in the example.
+The Examples have their own modules since there are a few dependencies here not needed in the normal softlayer-go repo.
+The following will get you started:
 
 ```bash
-go get github.com/jedib0t/go-pretty/v6/table
+cd examples
 go mod vendor
-```
-
-Then you can run the examples as is
-
-```bash
-go run ./examples --help
-go run ./examples server-list
+go run main.go  --help
 ```
 
 The examples use [SPF13's Cobra Command](https://github.com/spf13/cobra) library to build little command examples, which should be easy enough to 
