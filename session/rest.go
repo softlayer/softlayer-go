@@ -283,8 +283,16 @@ func makeHTTPRequest(
 	defer resp.Body.Close()
 
 	responseBody, err := ioutil.ReadAll(resp.Body)
+
 	if err != nil {
 		return nil, resp.StatusCode, err
+	}
+	if resp.Header["Softlayer-Total-Items"] != nil && len(resp.Header["Softlayer-Total-Items"]) == 1 {
+		var str_err error
+		options.TotalItems, str_err = strconv.Atoi(resp.Header["Softlayer-Total-Items"][0])
+		if str_err != nil {
+			log.Println("[Error] Unable to convert Softlayer-Total-Items to int: ", str_err)
+		}
 	}
 
 	if session.Debug {

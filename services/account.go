@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -1895,6 +1896,46 @@ func (r Account) GetVirtualDiskImages() (resp []datatypes.Virtual_Disk_Image, er
 func (r Account) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &r.Options, &resp)
 	return
+}
+
+// Retrieve An account's associated virtual guest objects in pages
+func (r Account) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+
+	limit := 2
+	// r.Session.Debug = true
+	if r.Options.Limit == nil {
+		r = r.Limit(limit)
+	}
+	// Get the first result set to find out how many total results we have to get through.
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	// how many api calls we have to make still.
+	apicalls := r.Options.GetRemainingAPICalls()
+	fmt.Printf(" (%v -%v) / %v = %v \n", r.Options.TotalItems, limit, limit, apicalls)
+	// First call returned all items (or none) and we are done.
+	if apicalls < 1 {
+		return
+	}
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			// Makes a copy of the options, because doing a go routine will have &r.Optoins all be the same.
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return 
+	
 }
 
 // Retrieve An account's associated virtual guest objects currently over bandwidth allocation.

@@ -262,7 +262,11 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 		r.TransportHandler = getDefaultTransport(r.Endpoint)
 	}
 
-	return r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	err := r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	if err != nil {
+		return err
+	}
+	return err
 }
 
 // SetTimeout creates a copy of the session and sets the passed timeout into it

@@ -16,12 +16,23 @@
 
 package sl
 
-// Options contains the individual query parameters that can be applied to
-// a request.
+import (
+	"math"
+)
+
+// Options contains the individual query parameters that can be applied to a request.
 type Options struct {
 	Id     *int
 	Mask   string
 	Filter string
 	Limit  *int
 	Offset *int
+	TotalItems int
+}
+
+// returns Math.Ciel((TotalItems - Limit) / Limit)
+func (opt Options) GetRemainingAPICalls() int {
+	Total := float64(opt.TotalItems)
+	Limit := float64(*opt.Limit)
+	return int(math.Ceil((Total - Limit) / Limit ))
 }
