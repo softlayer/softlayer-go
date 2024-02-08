@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -68,9 +69,57 @@ func (r Configuration_Storage_Group_Array_Type) GetAllObjects() (resp []datatype
 	return
 }
 
+func (r Configuration_Storage_Group_Array_Type) GetAllObjectsIter() (resp []datatypes.Configuration_Storage_Group_Array_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Storage_Group_Array_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group_Array_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Storage_Group_Array_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Configuration_Storage_Group_Array_Type) GetHardwareComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Storage_Group_Array_Type", "getHardwareComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Storage_Group_Array_Type) GetHardwareComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Storage_Group_Array_Type", "getHardwareComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Storage_Group_Array_Type", "getHardwareComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -156,9 +205,57 @@ func (r Configuration_Template) GetAllObjects() (resp []datatypes.Configuration_
 	return
 }
 
+func (r Configuration_Template) GetAllObjectsIter() (resp []datatypes.Configuration_Template, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Configuration_Template) GetConfigurationSections() (resp []datatypes.Configuration_Template_Section, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getConfigurationSections", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Template) GetConfigurationSectionsIter() (resp []datatypes.Configuration_Template_Section, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getConfigurationSections", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getConfigurationSections", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -168,9 +265,57 @@ func (r Configuration_Template) GetDefaultValues() (resp []datatypes.Configurati
 	return
 }
 
+func (r Configuration_Template) GetDefaultValuesIter() (resp []datatypes.Configuration_Template_Section_Definition_Value, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getDefaultValues", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Definition_Value{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getDefaultValues", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Configuration_Template) GetDefinitions() (resp []datatypes.Configuration_Template_Section_Definition, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getDefinitions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Template) GetDefinitionsIter() (resp []datatypes.Configuration_Template_Section_Definition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getDefinitions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Definition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template", "getDefinitions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -261,6 +406,30 @@ func (r Configuration_Template_Section) GetDefinitions() (resp []datatypes.Confi
 	return
 }
 
+func (r Configuration_Template_Section) GetDefinitionsIter() (resp []datatypes.Configuration_Template_Section_Definition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getDefinitions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Definition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getDefinitions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Configuration_Template_Section) GetDisallowedDeletionFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getDisallowedDeletionFlag", nil, &r.Options, &resp)
@@ -291,6 +460,30 @@ func (r Configuration_Template_Section) GetProfiles() (resp []datatypes.Configur
 	return
 }
 
+func (r Configuration_Template_Section) GetProfilesIter() (resp []datatypes.Configuration_Template_Section_Profile, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getProfiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Profile{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getProfiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Configuration_Template_Section) GetSectionType() (resp datatypes.Configuration_Template_Section_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getSectionType", nil, &r.Options, &resp)
@@ -306,6 +499,30 @@ func (r Configuration_Template_Section) GetSectionTypeName() (resp string, err e
 // Retrieve
 func (r Configuration_Template_Section) GetSubSections() (resp []datatypes.Configuration_Template_Section, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getSubSections", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Template_Section) GetSubSectionsIter() (resp []datatypes.Configuration_Template_Section, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getSubSections", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section", "getSubSections", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -366,6 +583,30 @@ func (r Configuration_Template_Section_Definition) Offset(offset int) Configurat
 // Retrieve
 func (r Configuration_Template_Section_Definition) GetAttributes() (resp []datatypes.Configuration_Template_Section_Definition_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Template_Section_Definition) GetAttributesIter() (resp []datatypes.Configuration_Template_Section_Definition_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Definition_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -450,6 +691,30 @@ func (r Configuration_Template_Section_Definition_Group) Offset(offset int) Conf
 // ”getAllGroups” returns an array of SoftLayer_Configuration_Template_Section_Definition_Group objects upon success.
 func (r Configuration_Template_Section_Definition_Group) GetAllGroups() (resp []datatypes.Configuration_Template_Section_Definition_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition_Group", "getAllGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Configuration_Template_Section_Definition_Group) GetAllGroupsIter() (resp []datatypes.Configuration_Template_Section_Definition_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition_Group", "getAllGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template_Section_Definition_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Configuration_Template_Section_Definition_Group", "getAllGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

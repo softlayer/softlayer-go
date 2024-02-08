@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -210,6 +211,30 @@ func (r Brand) GetAllOwnedAccounts() (resp []datatypes.Account, err error) {
 	return
 }
 
+func (r Brand) GetAllOwnedAccountsIter() (resp []datatypes.Account, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getAllOwnedAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getAllOwnedAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // (DEPRECATED) Use [[SoftLayer_Ticket_Subject::getAllObjects]] method.
 // Deprecated: This function has been marked as deprecated.
 func (r Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
@@ -217,6 +242,33 @@ func (r Brand) GetAllTicketSubjects(account *datatypes.Account) (resp []datatype
 		account,
 	}
 	err = r.Session.DoRequest("SoftLayer_Brand", "getAllTicketSubjects", params, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetAllTicketSubjectsIter(account *datatypes.Account) (resp []datatypes.Ticket_Subject, err error) {
+	params := []interface{}{
+		account,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getAllTicketSubjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Subject{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getAllTicketSubjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -232,6 +284,30 @@ func (r Brand) GetBillingItemSnapshots() (resp []datatypes.Billing_Item_Chronicl
 	return
 }
 
+func (r Brand) GetBillingItemSnapshotsIter() (resp []datatypes.Billing_Item_Chronicle, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Chronicle{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This service returns the snapshots of billing items recorded periodically given an account ID. The provided account ID must be owned by the brand that calls this service. In this context, it can be interpreted that the billing items snapshots belong to both the account and that accounts brand. Retrieving billing item snapshots is more performant than retrieving billing items directly and performs less relational joins improving retrieval efficiency.
 //
 // The downside is, they are not real time, and do not share relational parity with the original billing item.
@@ -243,6 +319,33 @@ func (r Brand) GetBillingItemSnapshotsForSingleOwnedAccount(accountId *int) (res
 	return
 }
 
+func (r Brand) GetBillingItemSnapshotsForSingleOwnedAccountIter(accountId *int) (resp []datatypes.Billing_Item_Chronicle, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshotsForSingleOwnedAccount", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Chronicle{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshotsForSingleOwnedAccount", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This service returns the snapshots of billing items recorded periodically given an account ID owned by the brand those billing items belong to. Retrieving billing item snapshots is more performant than retrieving billing items directly and performs less relational joins improving retrieval efficiency.
 //
 // The downside is, they are not real time, and do not share relational parity with the original billing item.
@@ -251,6 +354,33 @@ func (r Brand) GetBillingItemSnapshotsWithExternalAccountId(externalAccountId *s
 		externalAccountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshotsWithExternalAccountId", params, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetBillingItemSnapshotsWithExternalAccountIdIter(externalAccountId *string) (resp []datatypes.Billing_Item_Chronicle, err error) {
+	params := []interface{}{
+		externalAccountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshotsWithExternalAccountId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Chronicle{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getBillingItemSnapshotsWithExternalAccountId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -278,15 +408,87 @@ func (r Brand) GetContactInformation() (resp []datatypes.Brand_Contact, err erro
 	return
 }
 
+func (r Brand) GetContactInformationIter() (resp []datatypes.Brand_Contact, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getContactInformation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Brand_Contact{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getContactInformation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The contacts for the brand.
 func (r Brand) GetContacts() (resp []datatypes.Brand_Contact, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getContacts", nil, &r.Options, &resp)
 	return
 }
 
+func (r Brand) GetContactsIter() (resp []datatypes.Brand_Contact, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getContacts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Brand_Contact{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getContacts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
 func (r Brand) GetCustomerCountryLocationRestrictions() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getCustomerCountryLocationRestrictions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetCustomerCountryLocationRestrictionsIter() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getCustomerCountryLocationRestrictions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Brand_Restriction_Location_CustomerCountry{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getCustomerCountryLocationRestrictions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -311,6 +513,30 @@ func (r Brand) GetDistributorFlag() (resp string, err error) {
 // Retrieve An account's associated hardware objects.
 func (r Brand) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -344,9 +570,57 @@ func (r Brand) GetOpenTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Brand) GetOpenTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getOpenTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getOpenTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Active accounts owned by the brand.
 func (r Brand) GetOwnedAccounts() (resp []datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getOwnedAccounts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetOwnedAccountsIter() (resp []datatypes.Account, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getOwnedAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getOwnedAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -362,9 +636,57 @@ func (r Brand) GetTicketGroups() (resp []datatypes.Ticket_Group, err error) {
 	return
 }
 
+func (r Brand) GetTicketGroupsIter() (resp []datatypes.Ticket_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getTicketGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getTicketGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Brand) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -383,9 +705,57 @@ func (r Brand) GetUsers() (resp []datatypes.User_Customer, err error) {
 	return
 }
 
+func (r Brand) GetUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated virtual guest objects.
 func (r Brand) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -556,6 +926,30 @@ func (r Brand_Restriction_Location_CustomerCountry) Offset(offset int) Brand_Res
 // no documentation yet
 func (r Brand_Restriction_Location_CustomerCountry) GetAllObjects() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Brand_Restriction_Location_CustomerCountry", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Brand_Restriction_Location_CustomerCountry) GetAllObjectsIter() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Brand_Restriction_Location_CustomerCountry", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Brand_Restriction_Location_CustomerCountry{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Brand_Restriction_Location_CustomerCountry", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

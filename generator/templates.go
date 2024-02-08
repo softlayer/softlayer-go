@@ -120,7 +120,36 @@ import (
 		{{end}}err = r.Session.DoRequest("{{$rawBase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
 	return
 	}
-	{{end}}
+	{{if .TypeArray}}
+	func (r {{$base}}) {{.Name|titleCase}}Iter({{range .Parameters}}{{phraseMethodArg $methodName .Name .TypeArray .Type}}{{end}}) ({{if .Type|ne "void"}}resp {{if .TypeArray}}[]{{end}}{{convertType .Type "services"}}, {{end}}err error) {
+		{{if len .Parameters | lt 0}}params := []interface{}{
+			{{range .Parameters}}{{.Name|removeReserved}},
+			{{end}}
+		}
+		{{end}}limit := r.Options.ValidateLimit()
+		err = r.Session.DoRequest("{{$rawBase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &r.Options, &resp)
+		if err != nil {
+			return
+		}
+		apicalls := r.Options.GetRemainingAPICalls()
+		var wg sync.WaitGroup
+		for x := 1; x <= apicalls; x++ {
+			wg.Add(1)
+			go func(i int) {
+				defer wg.Done()
+				offset := i * limit
+				this_resp := []{{convertType .Type "services"}}{}
+				options := r.Options
+				options.Offset = &offset
+				err = r.Session.DoRequest("{{$rawBase}}", "{{.Name}}", {{if len .Parameters | lt 0}}params{{else}}nil{{end}}, &options, &this_resp)
+				resp = append(resp, this_resp...)
+			}(x)
+		}
+		wg.Wait()
+	return
+	}
+	{{end }}
+	{{end }}
 
 {{end}}
 `, license, codegenWarning)

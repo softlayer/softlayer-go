@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -71,6 +72,30 @@ func (r Software_AccountLicense) GetAccount() (resp datatypes.Account, err error
 // no documentation yet
 func (r Software_AccountLicense) GetAllObjects() (resp []datatypes.Software_AccountLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_AccountLicense) GetAllObjectsIter() (resp []datatypes.Software_AccountLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_AccountLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_AccountLicense", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -174,9 +199,57 @@ func (r Software_Component) GetPasswordHistory() (resp []datatypes.Software_Comp
 	return
 }
 
+func (r Software_Component) GetPasswordHistoryIter() (resp []datatypes.Software_Component_Password_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswordHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswordHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Component) GetPasswordsIter() (resp []datatypes.Software_Component_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component", "getPasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -280,9 +353,57 @@ func (r Software_Component_AntivirusSpyware) GetPasswordHistory() (resp []dataty
 	return
 }
 
+func (r Software_Component_AntivirusSpyware) GetPasswordHistoryIter() (resp []datatypes.Software_Component_Password_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswordHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswordHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component_AntivirusSpyware) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Component_AntivirusSpyware) GetPasswordsIter() (resp []datatypes.Software_Component_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_AntivirusSpyware", "getPasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -383,6 +504,30 @@ func (r Software_Component_HostIps) GetCurrentHostIpsPolicies() (resp []datatype
 	return
 }
 
+func (r Software_Component_HostIps) GetCurrentHostIpsPoliciesIter() (resp []datatypes.Container_Software_Component_HostIps_Policy, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getCurrentHostIpsPolicies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Software_Component_HostIps_Policy{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getCurrentHostIpsPolicies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware this Software Component is installed upon.
 func (r Software_Component_HostIps) GetHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getHardware", nil, &r.Options, &resp)
@@ -407,9 +552,57 @@ func (r Software_Component_HostIps) GetPasswordHistory() (resp []datatypes.Softw
 	return
 }
 
+func (r Software_Component_HostIps) GetPasswordHistoryIter() (resp []datatypes.Software_Component_Password_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswordHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswordHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component_HostIps) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Component_HostIps) GetPasswordsIter() (resp []datatypes.Software_Component_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_HostIps", "getPasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -561,6 +754,30 @@ func (r Software_Component_Password) GetSshKeys() (resp []datatypes.Security_Ssh
 	return
 }
 
+func (r Software_Component_Password) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_Password", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This object specifies a specific type of Software Component:  An Trellix instance. Trellix installations have specific properties and methods such as SoftLayer_Software_Component_Trellix::updateTrellixPolicy. Defaults are initiated by this object.
 type Software_Component_Trellix struct {
 	Session session.SLSession
@@ -619,6 +836,30 @@ func (r Software_Component_Trellix) GetCurrentHostIpsPolicies() (resp []datatype
 	return
 }
 
+func (r Software_Component_Trellix) GetCurrentHostIpsPoliciesIter() (resp []datatypes.Container_Software_Component_HostIps_Policy, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getCurrentHostIpsPolicies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Software_Component_HostIps_Policy{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getCurrentHostIpsPolicies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware this Software Component is installed upon.
 func (r Software_Component_Trellix) GetHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getHardware", nil, &r.Options, &resp)
@@ -643,9 +884,57 @@ func (r Software_Component_Trellix) GetPasswordHistory() (resp []datatypes.Softw
 	return
 }
 
+func (r Software_Component_Trellix) GetPasswordHistoryIter() (resp []datatypes.Software_Component_Password_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getPasswordHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getPasswordHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Username/Password pairs used for access to this Software Installation.
 func (r Software_Component_Trellix) GetPasswords() (resp []datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getPasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Component_Trellix) GetPasswordsIter() (resp []datatypes.Software_Component_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getPasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Component_Trellix", "getPasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -753,9 +1042,57 @@ func (r Software_Description) GetAllObjects() (resp []datatypes.Software_Descrip
 	return
 }
 
+func (r Software_Description) GetAllObjectsIter() (resp []datatypes.Software_Description, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Software_Description) GetAttributes() (resp []datatypes.Software_Description_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Description) GetAttributesIter() (resp []datatypes.Software_Description_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -771,9 +1108,57 @@ func (r Software_Description) GetCompatibleSoftwareDescriptions() (resp []dataty
 	return
 }
 
+func (r Software_Description) GetCompatibleSoftwareDescriptionsIter() (resp []datatypes.Software_Description, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getCompatibleSoftwareDescriptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getCompatibleSoftwareDescriptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Software_Description) GetCustomerOwnedLicenseDescriptions() (resp []datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getCustomerOwnedLicenseDescriptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Description) GetCustomerOwnedLicenseDescriptionsIter() (resp []datatypes.Software_Description, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getCustomerOwnedLicenseDescriptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getCustomerOwnedLicenseDescriptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -783,9 +1168,57 @@ func (r Software_Description) GetFeatures() (resp []datatypes.Software_Descripti
 	return
 }
 
+func (r Software_Description) GetFeaturesIter() (resp []datatypes.Software_Description_Feature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getFeatures", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description_Feature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getFeatures", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The latest version of a software description.
 func (r Software_Description) GetLatestVersion() (resp []datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getLatestVersion", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Description) GetLatestVersionIter() (resp []datatypes.Software_Description, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getLatestVersion", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Description{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getLatestVersion", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -798,6 +1231,30 @@ func (r Software_Description) GetObject() (resp datatypes.Software_Description, 
 // Retrieve The various product items to which this software description is linked.
 func (r Software_Description) GetProductItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getProductItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Description) GetProductItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getProductItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getProductItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -825,6 +1282,30 @@ func (r Software_Description) GetSoftwareLicenses() (resp []datatypes.Software_L
 	return
 }
 
+func (r Software_Description) GetSoftwareLicensesIter() (resp []datatypes.Software_License, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getSoftwareLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_License{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getSoftwareLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A suggestion for an upgrade path from this Software Description
 func (r Software_Description) GetUpgradeSoftwareDescription() (resp datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getUpgradeSoftwareDescription", nil, &r.Options, &resp)
@@ -840,6 +1321,30 @@ func (r Software_Description) GetUpgradeSwDesc() (resp datatypes.Software_Descri
 // Retrieve
 func (r Software_Description) GetValidFilesystemTypes() (resp []datatypes.Configuration_Storage_Filesystem_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Software_Description", "getValidFilesystemTypes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Software_Description) GetValidFilesystemTypesIter() (resp []datatypes.Configuration_Storage_Filesystem_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Software_Description", "getValidFilesystemTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Filesystem_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Software_Description", "getValidFilesystemTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

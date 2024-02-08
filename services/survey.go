@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -80,6 +81,30 @@ func (r Survey) GetObject() (resp datatypes.Survey, err error) {
 // Retrieve The questions for a survey.
 func (r Survey) GetQuestions() (resp []datatypes.Survey_Question, err error) {
 	err = r.Session.DoRequest("SoftLayer_Survey", "getQuestions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Survey) GetQuestionsIter() (resp []datatypes.Survey_Question, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Survey", "getQuestions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Survey_Question{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Survey", "getQuestions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

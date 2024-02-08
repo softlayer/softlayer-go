@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -71,6 +72,33 @@ func (r Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
 	return
 }
 
+func (r Tag) AutoCompleteIter(tag *string) (resp []datatypes.Tag, err error) {
+	params := []interface{}{
+		tag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "autoComplete", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "autoComplete", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Delete a tag for an object.
 func (r Tag) DeleteTag(tagName *string) (resp bool, err error) {
 	params := []interface{}{
@@ -92,9 +120,57 @@ func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
 	return
 }
 
+func (r Tag) GetAllTagTypesIter() (resp []datatypes.Tag_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "getAllTagTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "getAllTagTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get all tags with at least one reference attached to it for the current account. The total items header for this method contains the total number of attached tags even if a result limit is applied.
 func (r Tag) GetAttachedTagsForCurrentUser() (resp []datatypes.Tag, err error) {
 	err = r.Session.DoRequest("SoftLayer_Tag", "getAttachedTagsForCurrentUser", nil, &r.Options, &resp)
+	return
+}
+
+func (r Tag) GetAttachedTagsForCurrentUserIter() (resp []datatypes.Tag, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "getAttachedTagsForCurrentUser", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "getAttachedTagsForCurrentUser", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -110,6 +186,30 @@ func (r Tag) GetReferences() (resp []datatypes.Tag_Reference, err error) {
 	return
 }
 
+func (r Tag) GetReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "getReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "getReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Returns the Tag object with a given name. The user types in the tag name and this method returns the tag with that name.
 func (r Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) {
 	params := []interface{}{
@@ -119,9 +219,60 @@ func (r Tag) GetTagByTagName(tagList *string) (resp []datatypes.Tag, err error) 
 	return
 }
 
+func (r Tag) GetTagByTagNameIter(tagList *string) (resp []datatypes.Tag, err error) {
+	params := []interface{}{
+		tagList,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "getTagByTagName", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "getTagByTagName", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get all tags with no references attached to it for the current account. The total items header for this method contains the total number of unattached tags even if a result limit is applied.
 func (r Tag) GetUnattachedTagsForCurrentUser() (resp []datatypes.Tag, err error) {
 	err = r.Session.DoRequest("SoftLayer_Tag", "getUnattachedTagsForCurrentUser", nil, &r.Options, &resp)
+	return
+}
+
+func (r Tag) GetUnattachedTagsForCurrentUserIter() (resp []datatypes.Tag, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Tag", "getUnattachedTagsForCurrentUser", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Tag", "getUnattachedTagsForCurrentUser", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

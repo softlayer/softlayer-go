@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -80,6 +81,30 @@ func (r Email_Subscription) GetAllObjects() (resp []datatypes.Email_Subscription
 	return
 }
 
+func (r Email_Subscription) GetAllObjectsIter() (resp []datatypes.Email_Subscription, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Email_Subscription", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Email_Subscription{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Email_Subscription", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Email_Subscription) GetEnabled() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Email_Subscription", "getEnabled", nil, &r.Options, &resp)
@@ -138,6 +163,30 @@ func (r Email_Subscription_Group) GetAllObjects() (resp []datatypes.Email_Subscr
 	return
 }
 
+func (r Email_Subscription_Group) GetAllObjectsIter() (resp []datatypes.Email_Subscription_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Email_Subscription_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Email_Subscription_Group) GetObject() (resp datatypes.Email_Subscription_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getObject", nil, &r.Options, &resp)
@@ -147,5 +196,29 @@ func (r Email_Subscription_Group) GetObject() (resp datatypes.Email_Subscription
 // Retrieve All email subscriptions associated with this group.
 func (r Email_Subscription_Group) GetSubscriptions() (resp []datatypes.Email_Subscription, err error) {
 	err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getSubscriptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Email_Subscription_Group) GetSubscriptionsIter() (resp []datatypes.Email_Subscription, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getSubscriptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Email_Subscription{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Email_Subscription_Group", "getSubscriptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }

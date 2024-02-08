@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -68,9 +69,57 @@ func (r Product_Item) GetActivePresaleEvents() (resp []datatypes.Sales_Presale_E
 	return
 }
 
+func (r Product_Item) GetActivePresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getActivePresaleEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Sales_Presale_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getActivePresaleEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Active usage based prices.
 func (r Product_Item) GetActiveUsagePrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getActiveUsagePrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetActiveUsagePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getActiveUsagePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getActiveUsagePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -80,9 +129,57 @@ func (r Product_Item) GetAttributes() (resp []datatypes.Product_Item_Attribute, 
 	return
 }
 
+func (r Product_Item) GetAttributesIter() (resp []datatypes.Product_Item_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Attributes that govern when an item may no longer be available.
 func (r Product_Item) GetAvailabilityAttributes() (resp []datatypes.Product_Item_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getAvailabilityAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetAvailabilityAttributesIter() (resp []datatypes.Product_Item_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getAvailabilityAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getAvailabilityAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -98,9 +195,57 @@ func (r Product_Item) GetBundle() (resp []datatypes.Product_Item_Bundles, err er
 	return
 }
 
+func (r Product_Item) GetBundleIter() (resp []datatypes.Product_Item_Bundles, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getBundle", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Bundles{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getBundle", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An item's included products. Some items have other items included in them that we specifically detail. They are here called Bundled Items. An example is Plesk unlimited. It as a bundled item labeled 'SiteBuilder'. These are the SoftLayer_Product_Item objects.
 func (r Product_Item) GetBundleItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getBundleItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetBundleItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getBundleItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getBundleItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -128,15 +273,87 @@ func (r Product_Item) GetCategories() (resp []datatypes.Product_Item_Category, e
 	return
 }
 
+func (r Product_Item) GetCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Some product items have configuration templates which can be used to during provisioning of that product.
 func (r Product_Item) GetConfigurationTemplates() (resp []datatypes.Configuration_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getConfigurationTemplates", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Item) GetConfigurationTemplatesIter() (resp []datatypes.Configuration_Template, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getConfigurationTemplates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Template{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getConfigurationTemplates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An item's conflicts. For example, McAfee LinuxShield cannot be ordered with Windows. It was not meant for that operating system and as such is a conflict.
 func (r Product_Item) GetConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getConflicts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetConflictsIter() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getConflicts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Resource_Conflict{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getConflicts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -158,9 +375,57 @@ func (r Product_Item) GetDowngradeItems() (resp []datatypes.Product_Item, err er
 	return
 }
 
+func (r Product_Item) GetDowngradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getDowngradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getDowngradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An item's category conflicts. For example, 10 Gbps redundant network functionality cannot be ordered with a secondary GPU and as such is a conflict.
 func (r Product_Item) GetGlobalCategoryConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getGlobalCategoryConflicts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetGlobalCategoryConflictsIter() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getGlobalCategoryConflicts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Resource_Conflict{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getGlobalCategoryConflicts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -188,6 +453,30 @@ func (r Product_Item) GetInventory() (resp []datatypes.Product_Package_Inventory
 	return
 }
 
+func (r Product_Item) GetInventoryIter() (resp []datatypes.Product_Package_Inventory, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getInventory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Inventory{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getInventory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Flag to indicate the server product is engineered for a multi-server solution. (Deprecated)
 func (r Product_Item) GetIsEngineeredServerProduct() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getIsEngineeredServerProduct", nil, &r.Options, &resp)
@@ -209,6 +498,30 @@ func (r Product_Item) GetLocalDiskFlag() (resp bool, err error) {
 // Retrieve An item's location conflicts. For example, Dual Path network functionality cannot be ordered in WDC and as such is a conflict.
 func (r Product_Item) GetLocationConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getLocationConflicts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetLocationConflictsIter() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getLocationConflicts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Resource_Conflict{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getLocationConflicts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -266,6 +579,30 @@ func (r Product_Item) GetPackages() (resp []datatypes.Product_Package, err error
 	return
 }
 
+func (r Product_Item) GetPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Indicates whether an item is a PCIe drive.
 func (r Product_Item) GetPcieDriveFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPcieDriveFlag", nil, &r.Options, &resp)
@@ -284,9 +621,57 @@ func (r Product_Item) GetPresaleEvents() (resp []datatypes.Sales_Presale_Event, 
 	return
 }
 
+func (r Product_Item) GetPresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPresaleEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Sales_Presale_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getPresaleEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A product item's prices.
 func (r Product_Item) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -296,9 +681,57 @@ func (r Product_Item) GetRequirements() (resp []datatypes.Product_Item_Requireme
 	return
 }
 
+func (r Product_Item) GetRequirementsIter() (resp []datatypes.Product_Item_Requirement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getRequirements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Requirement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getRequirements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An item's rules. This includes the requirements and conflicts to resources that an item has.
 func (r Product_Item) GetRules() (resp []datatypes.Product_Item_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getRules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetRulesIter() (resp []datatypes.Product_Item_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -329,6 +762,30 @@ func (r Product_Item) GetTaxCategory() (resp datatypes.Product_Item_Tax_Category
 // Retrieve Third-party policy assignments for this product.
 func (r Product_Item) GetThirdPartyPolicyAssignments() (resp []datatypes.Product_Item_Policy_Assignment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getThirdPartyPolicyAssignments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetThirdPartyPolicyAssignmentsIter() (resp []datatypes.Product_Item_Policy_Assignment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getThirdPartyPolicyAssignments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Policy_Assignment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getThirdPartyPolicyAssignments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -365,6 +822,30 @@ func (r Product_Item) GetUpgradeItem() (resp datatypes.Product_Item, err error) 
 // Retrieve Some product items have an upgrade path. These are those upgrade product items.
 func (r Product_Item) GetUpgradeItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getUpgradeItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item) GetUpgradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getUpgradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item", "getUpgradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -414,15 +895,87 @@ func (r Product_Item_Category) GetAdditionalProductsForCategory() (resp []dataty
 	return
 }
 
+func (r Product_Item_Category) GetAdditionalProductsForCategoryIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getAdditionalProductsForCategory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getAdditionalProductsForCategory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Item_Category) GetBandwidthCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBandwidthCategories", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Item_Category) GetBandwidthCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBandwidthCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBandwidthCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items associated with an account that share a category code with an item category's category code.
 func (r Product_Item_Category) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -435,6 +988,33 @@ func (r Product_Item_Category) GetComputingCategories(resetCache *bool) (resp []
 	return
 }
 
+func (r Product_Item_Category) GetComputingCategoriesIter(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getComputingCategories", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getComputingCategories", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Item_Category) GetCustomUsageRatesCategories(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
 	params := []interface{}{
@@ -444,9 +1024,60 @@ func (r Product_Item_Category) GetCustomUsageRatesCategories(resetCache *bool) (
 	return
 }
 
+func (r Product_Item_Category) GetCustomUsageRatesCategoriesIter(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getCustomUsageRatesCategories", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getCustomUsageRatesCategories", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Item_Category) GetExternalResourceCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getExternalResourceCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetExternalResourceCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getExternalResourceCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getExternalResourceCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -459,6 +1090,30 @@ func (r Product_Item_Category) GetGroup() (resp datatypes.Product_Item_Category_
 // Retrieve A collection of service offering category groups. Each group contains a collection of items associated with this category.
 func (r Product_Item_Category) GetGroups() (resp []datatypes.Product_Package_Item_Category_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetGroupsIter() (resp []datatypes.Product_Package_Item_Category_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Item_Category_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -477,9 +1132,60 @@ func (r Product_Item_Category) GetObjectStorageCategories(resetCache *bool) (res
 	return
 }
 
+func (r Product_Item_Category) GetObjectStorageCategoriesIter(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getObjectStorageCategories", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getObjectStorageCategories", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Any unique options associated with an item category.
 func (r Product_Item_Category) GetOrderOptions() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetOrderOptionsIter() (resp []datatypes.Product_Item_Category_Order_Option_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category_Order_Option_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getOrderOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -489,9 +1195,57 @@ func (r Product_Item_Category) GetPackageConfigurations() (resp []datatypes.Prod
 	return
 }
 
+func (r Product_Item_Category) GetPackageConfigurationsIter() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPackageConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Order_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPackageConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A list of preset configurations this category is used in.'
 func (r Product_Item_Category) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPresetConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetPresetConfigurationsIter() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPresetConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getPresetConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -501,9 +1255,57 @@ func (r Product_Item_Category) GetQuestionReferences() (resp []datatypes.Product
 	return
 }
 
+func (r Product_Item_Category) GetQuestionReferencesIter() (resp []datatypes.Product_Item_Category_Question_Xref, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestionReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category_Question_Xref{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestionReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The questions that are associated with an item category.
 func (r Product_Item_Category) GetQuestions() (resp []datatypes.Product_Item_Category_Question, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetQuestionsIter() (resp []datatypes.Product_Item_Category_Question, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category_Question{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getQuestions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -513,9 +1315,57 @@ func (r Product_Item_Category) GetSoftwareCategories() (resp []datatypes.Product
 	return
 }
 
+func (r Product_Item_Category) GetSoftwareCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSoftwareCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSoftwareCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns a list of subnet categories.
 func (r Product_Item_Category) GetSubnetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSubnetCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetSubnetCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSubnetCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getSubnetCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -528,15 +1378,90 @@ func (r Product_Item_Category) GetTopLevelCategories(resetCache *bool) (resp []d
 	return
 }
 
+func (r Product_Item_Category) GetTopLevelCategoriesIter(resetCache *bool) (resp []datatypes.Product_Item_Category, err error) {
+	params := []interface{}{
+		resetCache,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getTopLevelCategories", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getTopLevelCategories", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns service product categories that can be canceled via API.  You can use these categories to find the billing items you wish to cancel.
 func (r Product_Item_Category) GetValidCancelableServiceItemCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getValidCancelableServiceItemCategories", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Item_Category) GetValidCancelableServiceItemCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getValidCancelableServiceItemCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getValidCancelableServiceItemCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Item_Category) GetVlanCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getVlanCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Category) GetVlanCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getVlanCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Category", "getVlanCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -705,9 +1630,57 @@ func (r Product_Item_Price) GetAccountRestrictions() (resp []datatypes.Product_I
 	return
 }
 
+func (r Product_Item_Price) GetAccountRestrictionsIter() (resp []datatypes.Product_Item_Price_Account_Restriction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAccountRestrictions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price_Account_Restriction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAccountRestrictions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Product_Item_Price) GetAttributes() (resp []datatypes.Product_Item_Price_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetAttributesIter() (resp []datatypes.Product_Item_Price_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -726,6 +1699,30 @@ func (r Product_Item_Price) GetBigDataOsJournalDiskFlag() (resp bool, err error)
 // Retrieve cross reference for bundles
 func (r Product_Item_Price) GetBundleReferences() (resp []datatypes.Product_Item_Bundles, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBundleReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetBundleReferencesIter() (resp []datatypes.Product_Item_Bundles, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBundleReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Bundles{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getBundleReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -750,6 +1747,30 @@ func (r Product_Item_Price) GetCapacityRestrictionType() (resp string, err error
 // Retrieve All categories which this item is a member.
 func (r Product_Item_Price) GetCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -789,9 +1810,57 @@ func (r Product_Item_Price) GetOrderPremiums() (resp []datatypes.Product_Item_Pr
 	return
 }
 
+func (r Product_Item_Price) GetOrderPremiumsIter() (resp []datatypes.Product_Item_Price_Premium, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getOrderPremiums", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price_Premium{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getOrderPremiums", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve cross reference for packages
 func (r Product_Item_Price) GetPackageReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackageReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetPackageReferencesIter() (resp []datatypes.Product_Package_Item_Prices, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackageReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Item_Prices{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackageReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -801,9 +1870,57 @@ func (r Product_Item_Price) GetPackages() (resp []datatypes.Product_Package, err
 	return
 }
 
+func (r Product_Item_Price) GetPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A list of preset configurations this price is used in.'
 func (r Product_Item_Price) GetPresetConfigurations() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPresetConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetPresetConfigurationsIter() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPresetConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getPresetConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -838,6 +1955,34 @@ func (r Product_Item_Price) GetUsageRatePrices(location *datatypes.Location, ite
 		items,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getUsageRatePrices", params, &r.Options, &resp)
+	return
+}
+
+func (r Product_Item_Price) GetUsageRatePricesIter(location *datatypes.Location, items []datatypes.Product_Item) (resp []datatypes.Product_Item_Price, err error) {
+	params := []interface{}{
+		location,
+		items,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getUsageRatePrices", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Item_Price", "getUsageRatePrices", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -996,6 +2141,35 @@ func (r Product_Order) GetNetworks(locationId *int, packageId *int, accountId *i
 		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Order", "getNetworks", params, &r.Options, &resp)
+	return
+}
+
+func (r Product_Order) GetNetworksIter(locationId *int, packageId *int, accountId *int) (resp []datatypes.Container_Product_Order_Network, err error) {
+	params := []interface{}{
+		locationId,
+		packageId,
+		accountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "getNetworks", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Product_Order_Network{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Order", "getNetworks", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1424,6 +2598,33 @@ func (r Product_Order) RequiredItems(itemPrices []datatypes.Product_Item_Price) 
 	return
 }
 
+func (r Product_Order) RequiredItemsIter(itemPrices []datatypes.Product_Item_Price) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		itemPrices,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Order", "requiredItems", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Order", "requiredItems", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This service is used to verify that an order meets all the necessary requirements to purchase a server, virtual server or service from SoftLayer. It will verify that the products requested do not conflict. For example, you cannot order a Windows firewall with a Linux operating system. It will also check to make sure you have provided all the products that are required for the [[SoftLayer_Product_Package_Order_Configuration]] associated with the [[SoftLayer_Product_Package]] on each of the [[SoftLayer_Container_Product_Order]] specified.<br/><br/>
 //
 // This service returns the same container that was provided, but with additional information that can be used for debugging or validation. It will also contain pricing information (prorated if applicable) for each of the products on the order. If an exception occurs during verification, a container with the <code>SoftLayer_Exception_Order</code> exception type will be specified in the result.<br/><br/>
@@ -1487,9 +2688,57 @@ func (r Product_Package) GetAccountRestrictedActivePresets() (resp []datatypes.P
 	return
 }
 
+func (r Product_Package) GetAccountRestrictedActivePresetsIter() (resp []datatypes.Product_Package_Preset, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedActivePresets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedActivePresets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The results from this call are similar to [[SoftLayer_Product_Package/getCategories|getCategories]], but these ONLY include account-restricted prices. Not all accounts have restricted pricing.
 func (r Product_Package) GetAccountRestrictedCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetAccountRestrictedCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAccountRestrictedCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1505,6 +2754,30 @@ func (r Product_Package) GetActiveItems() (resp []datatypes.Product_Item, err er
 	return
 }
 
+func (r Product_Package) GetActiveItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // <strong>This method is deprecated and should not be used in production code.</strong>
 //
 // This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software filtered by an attribute type associated with the package. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information.
@@ -1517,9 +2790,60 @@ func (r Product_Package) GetActivePackagesByAttribute(attributeKeyName *string) 
 	return
 }
 
+func (r Product_Package) GetActivePackagesByAttributeIter(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
+	params := []interface{}{
+		attributeKeyName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePackagesByAttribute", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePackagesByAttribute", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The available preset configurations for this package.
 func (r Product_Package) GetActivePresets() (resp []datatypes.Product_Package_Preset, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePresets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetActivePresetsIter() (resp []datatypes.Product_Package_Preset, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePresets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePresets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1530,9 +2854,57 @@ func (r Product_Package) GetActivePrivateHostedCloudPackages() (resp []datatypes
 	return
 }
 
+func (r Product_Package) GetActivePrivateHostedCloudPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActivePrivateHostedCloudPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of valid RAM items available for purchase in this package.
 func (r Product_Package) GetActiveRamItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveRamItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetActiveRamItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveRamItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveRamItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1542,15 +2914,87 @@ func (r Product_Package) GetActiveServerItems() (resp []datatypes.Product_Item, 
 	return
 }
 
+func (r Product_Package) GetActiveServerItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveServerItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveServerItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of valid software items available for purchase in this package.
 func (r Product_Package) GetActiveSoftwareItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveSoftwareItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Package) GetActiveSoftwareItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveSoftwareItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveSoftwareItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of [[SoftLayer_Product_Item_Price]] objects for pay-as-you-go usage.
 func (r Product_Package) GetActiveUsagePrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsagePrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetActiveUsagePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsagePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsagePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1561,6 +3005,34 @@ func (r Product_Package) GetActiveUsageRatePrices(locationId *int, categoryCode 
 		categoryCode,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsageRatePrices", params, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetActiveUsageRatePricesIter(locationId *int, categoryCode *string) (resp []datatypes.Product_Item_Price, err error) {
+	params := []interface{}{
+		locationId,
+		categoryCode,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsageRatePrices", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getActiveUsageRatePrices", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1576,9 +3048,57 @@ func (r Product_Package) GetAllObjects() (resp []datatypes.Product_Package, err 
 	return
 }
 
+func (r Product_Package) GetAllObjectsIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Product_Package) GetAttributes() (resp []datatypes.Product_Package_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetAttributesIter() (resp []datatypes.Product_Package_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1588,12 +3108,63 @@ func (r Product_Package) GetAvailableLocations() (resp []datatypes.Product_Packa
 	return
 }
 
+func (r Product_Package) GetAvailableLocationsIter() (resp []datatypes.Product_Package_Locations, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailableLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Locations{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailableLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Package) GetAvailablePackagesForImageTemplate(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Package, err error) {
 	params := []interface{}{
 		imageTemplate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailablePackagesForImageTemplate", params, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetAvailablePackagesForImageTemplateIter(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Package, err error) {
+	params := []interface{}{
+		imageTemplate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailablePackagesForImageTemplate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getAvailablePackagesForImageTemplate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1609,9 +3180,57 @@ func (r Product_Package) GetCategories() (resp []datatypes.Product_Item_Category
 	return
 }
 
+func (r Product_Package) GetCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Package) GetCdnItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCdnItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetCdnItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCdnItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getCdnItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1624,9 +3243,60 @@ func (r Product_Package) GetCloudStorageItems(provider *int) (resp []datatypes.P
 	return
 }
 
+func (r Product_Package) GetCloudStorageItemsIter(provider *int) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		provider,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getCloudStorageItems", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getCloudStorageItems", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item categories associated with a package, including information detailing which item categories are required as part of a SoftLayer product order.
 func (r Product_Package) GetConfiguration() (resp []datatypes.Product_Package_Order_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getConfiguration", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetConfigurationIter() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getConfiguration", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Order_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getConfiguration", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1642,6 +3312,30 @@ func (r Product_Package) GetDefaultRamItems() (resp []datatypes.Product_Item, er
 	return
 }
 
+func (r Product_Package) GetDefaultRamItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDefaultRamItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getDefaultRamItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The node type for a package in a solution deployment.
 func (r Product_Package) GetDeploymentNodeType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentNodeType", nil, &r.Options, &resp)
@@ -1654,6 +3348,30 @@ func (r Product_Package) GetDeploymentPackages() (resp []datatypes.Product_Packa
 	return
 }
 
+func (r Product_Package) GetDeploymentPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The solution deployment type.
 func (r Product_Package) GetDeploymentType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeploymentType", nil, &r.Options, &resp)
@@ -1663,6 +3381,30 @@ func (r Product_Package) GetDeploymentType() (resp string, err error) {
 // Retrieve The package that represents a multi-server solution. (Deprecated)
 func (r Product_Package) GetDeployments() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeployments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetDeploymentsIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeployments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getDeployments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1708,9 +3450,57 @@ func (r Product_Package) GetItemAvailabilityTypes() (resp []datatypes.Product_It
 	return
 }
 
+func (r Product_Package) GetItemAvailabilityTypesIter() (resp []datatypes.Product_Item_Attribute_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemAvailabilityTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Attribute_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemAvailabilityTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item-item conflicts associated with a package.
 func (r Product_Package) GetItemConflicts() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemConflicts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetItemConflictsIter() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemConflicts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Resource_Conflict{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemConflicts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1720,15 +3510,87 @@ func (r Product_Package) GetItemLocationConflicts() (resp []datatypes.Product_It
 	return
 }
 
+func (r Product_Package) GetItemLocationConflictsIter() (resp []datatypes.Product_Item_Resource_Conflict, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemLocationConflicts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Resource_Conflict{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemLocationConflicts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve cross reference for item prices
 func (r Product_Package) GetItemPriceReferences() (resp []datatypes.Product_Package_Item_Prices, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPriceReferences", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Package) GetItemPriceReferencesIter() (resp []datatypes.Product_Package_Item_Prices, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPriceReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Item_Prices{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPriceReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of SoftLayer_Product_Item_Prices that are valid for this package.
 func (r Product_Package) GetItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1743,9 +3605,62 @@ func (r Product_Package) GetItemPricesFromSoftwareDescriptions(softwareDescripti
 	return
 }
 
+func (r Product_Package) GetItemPricesFromSoftwareDescriptionsIter(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item_Price, err error) {
+	params := []interface{}{
+		softwareDescriptions,
+		includeTranslationsFlag,
+		returnAllPricesFlag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemPricesFromSoftwareDescriptions", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of valid items available for purchase in this package.
 func (r Product_Package) GetItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1758,9 +3673,60 @@ func (r Product_Package) GetItemsFromImageTemplate(imageTemplate *datatypes.Virt
 	return
 }
 
+func (r Product_Package) GetItemsFromImageTemplateIter(imageTemplate *datatypes.Virtual_Guest_Block_Device_Template_Group) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		imageTemplate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemsFromImageTemplate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getItemsFromImageTemplate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A collection of valid locations for this package. (Deprecated - Use [[SoftLayer_Product_Package/getRegions|getRegions]])
 func (r Product_Package) GetLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getLocations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1779,6 +3745,30 @@ func (r Product_Package) GetMaximumPortSpeed() (resp uint, err error) {
 // no documentation yet
 func (r Product_Package) GetMessageQueueItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMessageQueueItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetMessageQueueItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getMessageQueueItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getMessageQueueItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1818,15 +3808,87 @@ func (r Product_Package) GetObjectStorageDatacenters() (resp []datatypes.Contain
 	return
 }
 
+func (r Product_Package) GetObjectStorageDatacentersIter() (resp []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageDatacenters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Product_Order_Network_Storage_Hub_Datacenter{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageDatacenters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return a collection of [[SoftLayer_Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup]] objects which contain a location group and all the associated active usage rate prices where object storage is available. This method is really only applicable to the object storage additional service package which has a [[SoftLayer_Product_Package_Type]] of ”'ADDITIONAL_SERVICES_OBJECT_STORAGE”'. This information is useful so that you can see the "pay as you go" rates per location group.
 func (r Product_Package) GetObjectStorageLocationGroups() (resp []datatypes.Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageLocationGroups", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Package) GetObjectStorageLocationGroupsIter() (resp []datatypes.Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageLocationGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Product_Order_Network_Storage_ObjectStorage_LocationGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getObjectStorageLocationGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The premium price modifiers associated with the [[SoftLayer_Product_Item_Price]] and [[SoftLayer_Location]] objects in a package.
 func (r Product_Package) GetOrderPremiums() (resp []datatypes.Product_Item_Price_Premium, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getOrderPremiums", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetOrderPremiumsIter() (resp []datatypes.Product_Item_Price_Premium, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getOrderPremiums", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price_Premium{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getOrderPremiums", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1896,9 +3958,57 @@ func (r Product_Package) GetRegions() (resp []datatypes.Location_Region, err err
 	return
 }
 
+func (r Product_Package) GetRegionsIter() (resp []datatypes.Location_Region, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getRegions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location_Region{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getRegions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This call is similar to [[SoftLayer_Product_Package/getCategories|getCategories]], except that it does not include account-restricted pricing. Not all accounts have restricted pricing.
 func (r Product_Package) GetStandardCategories() (resp []datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package", "getStandardCategories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package) GetStandardCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package", "getStandardCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package", "getStandardCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1962,6 +4072,30 @@ func (r Product_Package_Preset) GetAllObjects() (resp []datatypes.Product_Packag
 	return
 }
 
+func (r Product_Package_Preset) GetAllObjectsIter() (resp []datatypes.Product_Package_Preset, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Product_Package_Preset) GetAvailableStorageUnits() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getAvailableStorageUnits", nil, &r.Options, &resp)
@@ -1980,6 +4114,30 @@ func (r Product_Package_Preset) GetCategories() (resp []datatypes.Product_Item_C
 	return
 }
 
+func (r Product_Package_Preset) GetCategoriesIter() (resp []datatypes.Product_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The compute family this configuration belongs to.
 func (r Product_Package_Preset) GetComputeGroup() (resp datatypes.Product_Item_Server_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getComputeGroup", nil, &r.Options, &resp)
@@ -1989,6 +4147,30 @@ func (r Product_Package_Preset) GetComputeGroup() (resp datatypes.Product_Item_S
 // Retrieve The preset configuration (category and price).
 func (r Product_Package_Preset) GetConfiguration() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getConfiguration", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Preset) GetConfigurationIter() (resp []datatypes.Product_Package_Preset_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getConfiguration", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Preset_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getConfiguration", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2007,6 +4189,30 @@ func (r Product_Package_Preset) GetFixedConfigurationFlag() (resp bool, err erro
 // Retrieve The locations this preset configuration is available in. If empty the preset is available in all locations the package is available in.
 func (r Product_Package_Preset) GetLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getLocations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Preset) GetLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2034,15 +4240,87 @@ func (r Product_Package_Preset) GetPackageConfiguration() (resp []datatypes.Prod
 	return
 }
 
+func (r Product_Package_Preset) GetPackageConfigurationIter() (resp []datatypes.Product_Package_Order_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPackageConfiguration", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Order_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPackageConfiguration", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item prices that are included in this package preset configuration.
 func (r Product_Package_Preset) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPrices", nil, &r.Options, &resp)
 	return
 }
 
+func (r Product_Package_Preset) GetPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Describes how all disks in this preset will be configured.
 func (r Product_Package_Preset) GetStorageGroupTemplateArrays() (resp []datatypes.Configuration_Storage_Group_Template_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getStorageGroupTemplateArrays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Preset) GetStorageGroupTemplateArraysIter() (resp []datatypes.Configuration_Storage_Group_Template_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getStorageGroupTemplateArrays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Preset", "getStorageGroupTemplateArrays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2101,6 +4379,30 @@ func (r Product_Package_Server) Offset(offset int) Product_Package_Server {
 // This method will grab all the package servers.
 func (r Product_Package_Server) GetAllObjects() (resp []datatypes.Product_Package_Server, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Server) GetAllObjectsIter() (resp []datatypes.Product_Package_Server, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Server{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Server", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2186,6 +4488,30 @@ func (r Product_Package_Server_Option) GetAllOptions() (resp []datatypes.Product
 	return
 }
 
+func (r Product_Package_Server_Option) GetAllOptionsIter() (resp []datatypes.Product_Package_Server_Option, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getAllOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Server_Option{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getAllOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Package_Server_Option) GetObject() (resp datatypes.Product_Package_Server_Option, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getObject", nil, &r.Options, &resp)
@@ -2198,6 +4524,33 @@ func (r Product_Package_Server_Option) GetOptions(typ *string) (resp []datatypes
 		typ,
 	}
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getOptions", params, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Server_Option) GetOptionsIter(typ *string) (resp []datatypes.Product_Package_Server_Option, err error) {
+	params := []interface{}{
+		typ,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getOptions", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Server_Option{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Server_Option", "getOptions", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2247,6 +4600,30 @@ func (r Product_Package_Type) GetAllObjects() (resp []datatypes.Product_Package_
 	return
 }
 
+func (r Product_Package_Type) GetAllObjectsIter() (resp []datatypes.Product_Package_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getObject", nil, &r.Options, &resp)
@@ -2256,6 +4633,30 @@ func (r Product_Package_Type) GetObject() (resp datatypes.Product_Package_Type, 
 // Retrieve All the packages associated with the given package type.
 func (r Product_Package_Type) GetPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getPackages", nil, &r.Options, &resp)
+	return
+}
+
+func (r Product_Package_Type) GetPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Product_Package_Type", "getPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

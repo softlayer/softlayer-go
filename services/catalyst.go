@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -65,6 +66,30 @@ func (r Catalyst_Company_Type) Offset(offset int) Catalyst_Company_Type {
 // <<<EOT
 func (r Catalyst_Company_Type) GetAllObjects() (resp []datatypes.Catalyst_Company_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Catalyst_Company_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Catalyst_Company_Type) GetAllObjectsIter() (resp []datatypes.Catalyst_Company_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Company_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Company_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Company_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -132,6 +157,30 @@ func (r Catalyst_Enrollment) GetAffiliates() (resp []datatypes.Catalyst_Affiliat
 	return
 }
 
+func (r Catalyst_Enrollment) GetAffiliatesIter() (resp []datatypes.Catalyst_Affiliate, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getAffiliates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Affiliate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getAffiliates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Catalyst_Enrollment) GetCompanyType() (resp datatypes.Catalyst_Company_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getCompanyType", nil, &r.Options, &resp)
@@ -144,9 +193,57 @@ func (r Catalyst_Enrollment) GetCompanyTypes() (resp []datatypes.Catalyst_Compan
 	return
 }
 
+func (r Catalyst_Enrollment) GetCompanyTypesIter() (resp []datatypes.Catalyst_Company_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getCompanyTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Company_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getCompanyTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestAnnualRevenueOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
 	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestAnnualRevenueOptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Catalyst_Enrollment) GetEnrollmentRequestAnnualRevenueOptionsIter() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestAnnualRevenueOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestAnnualRevenueOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -156,9 +253,57 @@ func (r Catalyst_Enrollment) GetEnrollmentRequestUserCountOptions() (resp []data
 	return
 }
 
+func (r Catalyst_Enrollment) GetEnrollmentRequestUserCountOptionsIter() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestUserCountOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestUserCountOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Catalyst_Enrollment) GetEnrollmentRequestYearsInOperationOptions() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
 	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestYearsInOperationOptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Catalyst_Enrollment) GetEnrollmentRequestYearsInOperationOptionsIter() (resp []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestYearsInOperationOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Enrollment_Request_Container_AnswerOption{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Catalyst_Enrollment", "getEnrollmentRequestYearsInOperationOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

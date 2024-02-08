@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -123,9 +124,57 @@ func (r Locale_Country) GetAllVatCountryCodesAndVatIdRegexes() (resp []datatypes
 	return
 }
 
+func (r Locale_Country) GetAllVatCountryCodesAndVatIdRegexesIter() (resp []datatypes.Container_Collection_Locale_VatCountryCodeAndFormat, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getAllVatCountryCodesAndVatIdRegexes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Collection_Locale_VatCountryCodeAndFormat{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getAllVatCountryCodesAndVatIdRegexes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Use this method to retrieve a list of countries and locale information available to the current user.
 func (r Locale_Country) GetAvailableCountries() (resp []datatypes.Locale_Country, err error) {
 	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getAvailableCountries", nil, &r.Options, &resp)
+	return
+}
+
+func (r Locale_Country) GetAvailableCountriesIter() (resp []datatypes.Locale_Country, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getAvailableCountries", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Locale_Country{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getAvailableCountries", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -135,12 +184,63 @@ func (r Locale_Country) GetCountries() (resp []datatypes.Locale_Country, err err
 	return
 }
 
+func (r Locale_Country) GetCountriesIter() (resp []datatypes.Locale_Country, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getCountries", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Locale_Country{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getCountries", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return a collection of [[SoftLayer_Container_Collection_Locale_CountryCode]] objects. If the country has states, a [[SoftLayer_Container_Collection_Locale_StateCode]] collection will be provided with the country.
 func (r Locale_Country) GetCountriesAndStates(usFirstFlag *bool) (resp []datatypes.Container_Collection_Locale_CountryCode, err error) {
 	params := []interface{}{
 		usFirstFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getCountriesAndStates", params, &r.Options, &resp)
+	return
+}
+
+func (r Locale_Country) GetCountriesAndStatesIter(usFirstFlag *bool) (resp []datatypes.Container_Collection_Locale_CountryCode, err error) {
+	params := []interface{}{
+		usFirstFlag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getCountriesAndStates", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Collection_Locale_CountryCode{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getCountriesAndStates", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -156,9 +256,57 @@ func (r Locale_Country) GetPostalCodeRequiredCountryCodes() (resp []string, err 
 	return
 }
 
+func (r Locale_Country) GetPostalCodeRequiredCountryCodesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getPostalCodeRequiredCountryCodes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getPostalCodeRequiredCountryCodes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve States that belong to this country.
 func (r Locale_Country) GetStates() (resp []datatypes.Locale_StateProvince, err error) {
 	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getStates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Locale_Country) GetStatesIter() (resp []datatypes.Locale_StateProvince, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getStates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Locale_StateProvince{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getStates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -168,9 +316,57 @@ func (r Locale_Country) GetVatCountries() (resp []string, err error) {
 	return
 }
 
+func (r Locale_Country) GetVatCountriesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getVatCountries", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getVatCountries", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return an array of ISO 3166 Alpha-2 country codes that use a Value-Added Tax (VAT) ID. Note the difference between [[SoftLayer_Locale_Country/getVatCountries]] - this method will provide country codes where a VAT ID is required for onboarding to IBM Cloud.
 func (r Locale_Country) GetVatRequiredCountryCodes() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getVatRequiredCountryCodes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Locale_Country) GetVatRequiredCountryCodesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Country", "getVatRequiredCountryCodes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Country", "getVatRequiredCountryCodes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -226,6 +422,30 @@ func (r Locale_Timezone) Offset(offset int) Locale_Timezone {
 // Retrieve all timezone objects.
 func (r Locale_Timezone) GetAllObjects() (resp []datatypes.Locale_Timezone, err error) {
 	err = r.Session.DoRequest("SoftLayer_Locale_Timezone", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Locale_Timezone) GetAllObjectsIter() (resp []datatypes.Locale_Timezone, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Locale_Timezone", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Locale_Timezone{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Locale_Timezone", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -158,6 +159,34 @@ func (r Ticket) AddUpdate(templateObject *datatypes.Ticket_Update, attachedFiles
 	return
 }
 
+func (r Ticket) AddUpdateIter(templateObject *datatypes.Ticket_Update, attachedFiles []datatypes.Container_Utility_File_Attachment) (resp []datatypes.Ticket_Update, err error) {
+	params := []interface{}{
+		templateObject,
+		attachedFiles,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "addUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Update{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "addUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Create an administrative support ticket. Use an administrative ticket if you require SoftLayer's assistance managing your server or content. If you are experiencing an issue with SoftLayer's hardware, network, or services then please open a standard support ticket.
 //
 // Support tickets may only be created in the open state. The SoftLayer API defaults new ticket properties ”userEditableFlag” to true, ”accountId” to the id of the account that your API user belongs to, and ”statusId” to 1001 (or "open"). You may not assign your new to ticket to users that your API user does not have access to.
@@ -294,6 +323,30 @@ func (r Ticket) GetAllTicketGroups() (resp []datatypes.Ticket_Group, err error) 
 	return
 }
 
+func (r Ticket) GetAllTicketGroupsIter() (resp []datatypes.Ticket_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAllTicketGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAllTicketGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getAllTicketStatuses() retrieves a list of all statuses that a ticket may exist in. Ticket status represent the current state of a ticket, usually "open", "assigned", and "closed".
 //
 // Every SoftLayer ticket has statusId and status properties that correspond to one of the statuses returned by getAllTicketStatuses().
@@ -302,9 +355,57 @@ func (r Ticket) GetAllTicketStatuses() (resp []datatypes.Ticket_Status, err erro
 	return
 }
 
+func (r Ticket) GetAllTicketStatusesIter() (resp []datatypes.Ticket_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAllTicketStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAllTicketStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Ticket) GetAssignedAgents() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getAssignedAgents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetAssignedAgentsIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAssignedAgents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAssignedAgents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -320,9 +421,57 @@ func (r Ticket) GetAttachedAdditionalEmails() (resp []datatypes.User_Customer_Ad
 	return
 }
 
+func (r Ticket) GetAttachedAdditionalEmailsIter() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedAdditionalEmails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer_AdditionalEmail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedAdditionalEmails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Dedicated Hosts associated with a ticket. This is used in cases where a ticket is directly associated with one or more Dedicated Hosts.
 func (r Ticket) GetAttachedDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedDedicatedHosts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetAttachedDedicatedHostsIter() (resp []datatypes.Virtual_DedicatedHost, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedDedicatedHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_DedicatedHost{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedDedicatedHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -341,9 +490,57 @@ func (r Ticket) GetAttachedFiles() (resp []datatypes.Ticket_Attachment_File, err
 	return
 }
 
+func (r Ticket) GetAttachedFilesIter() (resp []datatypes.Ticket_Attachment_File, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedFiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Attachment_File{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedFiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware associated with a ticket. This is used in cases where a ticket is directly associated with one or more pieces of hardware.
 func (r Ticket) GetAttachedHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetAttachedHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -359,9 +556,57 @@ func (r Ticket) GetAttachedResources() (resp []datatypes.Ticket_Attachment, err 
 	return
 }
 
+func (r Ticket) GetAttachedResourcesIter() (resp []datatypes.Ticket_Attachment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedResources", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Attachment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedResources", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The virtual guests associated with a ticket. This is used in cases where a ticket is directly associated with one or more virtualized guests installations or Virtual Servers.
 func (r Ticket) GetAttachedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetAttachedVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getAttachedVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -386,6 +631,30 @@ func (r Ticket) GetCancellationRequest() (resp datatypes.Billing_Item_Cancellati
 // Retrieve
 func (r Ticket) GetEmployeeAttachments() (resp []datatypes.User_Employee, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getEmployeeAttachments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetEmployeeAttachmentsIter() (resp []datatypes.User_Employee, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getEmployeeAttachments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Employee{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getEmployeeAttachments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -422,6 +691,30 @@ func (r Ticket) GetGroup() (resp datatypes.Ticket_Group, err error) {
 // Retrieve The invoice items associated with a ticket. Ticket based invoice items only exist when a ticket incurs a fee that has been invoiced.
 func (r Ticket) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getInvoiceItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetInvoiceItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getInvoiceItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getInvoiceItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -467,6 +760,30 @@ func (r Ticket) GetScheduledActions() (resp []datatypes.Provisioning_Version1_Tr
 	return
 }
 
+func (r Ticket) GetScheduledActionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getScheduledActions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getScheduledActions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The invoice associated with a ticket. Only tickets with an associated administrative charge have an invoice.
 func (r Ticket) GetServerAdministrationBillingInvoice() (resp datatypes.Billing_Invoice, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getServerAdministrationBillingInvoice", nil, &r.Options, &resp)
@@ -491,6 +808,30 @@ func (r Ticket) GetState() (resp []datatypes.Ticket_State, err error) {
 	return
 }
 
+func (r Ticket) GetStateIter() (resp []datatypes.Ticket_State, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getState", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_State{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getState", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A ticket's status.
 func (r Ticket) GetStatus() (resp datatypes.Ticket_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getStatus", nil, &r.Options, &resp)
@@ -509,12 +850,63 @@ func (r Ticket) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	return
 }
 
+func (r Ticket) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve all tickets closed since a given date.
 func (r Ticket) GetTicketsClosedSinceDate(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
 	params := []interface{}{
 		closeDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getTicketsClosedSinceDate", params, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetTicketsClosedSinceDateIter(closeDate *datatypes.Time) (resp []datatypes.Ticket, err error) {
+	params := []interface{}{
+		closeDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getTicketsClosedSinceDate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getTicketsClosedSinceDate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -527,6 +919,30 @@ func (r Ticket) GetUpdateRatingFlag() (resp bool, err error) {
 // Retrieve A ticket's updates.
 func (r Ticket) GetUpdates() (resp []datatypes.Ticket_Update, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket", "getUpdates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket) GetUpdatesIter() (resp []datatypes.Ticket_Update, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket", "getUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Update{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket", "getUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -658,6 +1074,30 @@ func (r Ticket_Attachment_File) GetExtensionWhitelist() (resp []string, err erro
 	return
 }
 
+func (r Ticket_Attachment_File) GetExtensionWhitelistIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File", "getExtensionWhitelist", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File", "getExtensionWhitelist", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Ticket_Attachment_File) GetObject() (resp datatypes.Ticket_Attachment_File, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File", "getObject", nil, &r.Options, &resp)
@@ -719,6 +1159,30 @@ func (r Ticket_Attachment_File_ServiceNow) Offset(offset int) Ticket_Attachment_
 // no documentation yet
 func (r Ticket_Attachment_File_ServiceNow) GetExtensionWhitelist() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File_ServiceNow", "getExtensionWhitelist", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket_Attachment_File_ServiceNow) GetExtensionWhitelistIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File_ServiceNow", "getExtensionWhitelist", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Attachment_File_ServiceNow", "getExtensionWhitelist", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -786,6 +1250,30 @@ func (r Ticket_Priority) GetPriorities() (resp []datatypes.Container_Ticket_Prio
 	return
 }
 
+func (r Ticket_Priority) GetPrioritiesIter() (resp []datatypes.Container_Ticket_Priority, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Priority", "getPriorities", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Ticket_Priority{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Priority", "getPriorities", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The SoftLayer_Ticket_Subject data type models one of the possible subjects that a standard support ticket may belong to. A basic support ticket's title matches it's corresponding subject's name.
 type Ticket_Subject struct {
 	Session session.SLSession
@@ -832,6 +1320,30 @@ func (r Ticket_Subject) GetAllObjects() (resp []datatypes.Ticket_Subject, err er
 	return
 }
 
+func (r Ticket_Subject) GetAllObjectsIter() (resp []datatypes.Ticket_Subject, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Subject{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Ticket_Subject) GetCategory() (resp datatypes.Ticket_Subject_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getCategory", nil, &r.Options, &resp)
@@ -841,6 +1353,30 @@ func (r Ticket_Subject) GetCategory() (resp datatypes.Ticket_Subject_Category, e
 // Retrieve A child subject
 func (r Ticket_Subject) GetChildren() (resp []datatypes.Ticket_Subject, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket_Subject) GetChildrenIter() (resp []datatypes.Ticket_Subject, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Subject{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -865,6 +1401,30 @@ func (r Ticket_Subject) GetParent() (resp datatypes.Ticket_Subject, err error) {
 // SoftLayer maintains relationships between the generic subjects for standard administration and the top five commonly asked questions about these subjects. getTopFileKnowledgeLayerQuestions() retrieves the top five questions and answers from the SoftLayer KnowledgeLayer related to the given ticket subject.
 func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestions() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getTopFiveKnowledgeLayerQuestions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket_Subject) GetTopFiveKnowledgeLayerQuestionsIter() (resp []datatypes.Container_KnowledgeLayer_QuestionAnswer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getTopFiveKnowledgeLayerQuestions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_KnowledgeLayer_QuestionAnswer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Subject", "getTopFiveKnowledgeLayerQuestions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -914,6 +1474,30 @@ func (r Ticket_Subject_Category) GetAllObjects() (resp []datatypes.Ticket_Subjec
 	return
 }
 
+func (r Ticket_Subject_Category) GetAllObjectsIter() (resp []datatypes.Ticket_Subject_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Subject_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Ticket_Subject_Category) GetObject() (resp datatypes.Ticket_Subject_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getObject", nil, &r.Options, &resp)
@@ -923,6 +1507,30 @@ func (r Ticket_Subject_Category) GetObject() (resp datatypes.Ticket_Subject_Cate
 // Retrieve
 func (r Ticket_Subject_Category) GetSubjects() (resp []datatypes.Ticket_Subject, err error) {
 	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getSubjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Ticket_Subject_Category) GetSubjectsIter() (resp []datatypes.Ticket_Subject, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getSubjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket_Subject{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Ticket_Subject_Category", "getSubjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

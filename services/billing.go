@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -65,6 +66,30 @@ func (r Billing_Currency) Offset(offset int) Billing_Currency {
 // no documentation yet
 func (r Billing_Currency) GetAllObjects() (resp []datatypes.Billing_Currency, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Currency", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Currency) GetAllObjectsIter() (resp []datatypes.Billing_Currency, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Currency{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Currency", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -136,6 +161,30 @@ func (r Billing_Currency_Country) GetCountriesWithListOfEligibleCurrencies() (re
 	return
 }
 
+func (r Billing_Currency_Country) GetCountriesWithListOfEligibleCurrenciesIter() (resp []datatypes.Container_Billing_Currency_Country, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency_Country", "getCountriesWithListOfEligibleCurrencies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Billing_Currency_Country{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Currency_Country", "getCountriesWithListOfEligibleCurrencies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Billing_Currency_Country) GetObject() (resp datatypes.Billing_Currency_Country, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Currency_Country", "getObject", nil, &r.Options, &resp)
@@ -191,9 +240,60 @@ func (r Billing_Currency_ExchangeRate) GetAllCurrencyExchangeRates(stringDate *s
 	return
 }
 
+func (r Billing_Currency_ExchangeRate) GetAllCurrencyExchangeRatesIter(stringDate *string) (resp []datatypes.Billing_Currency_ExchangeRate, err error) {
+	params := []interface{}{
+		stringDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency_ExchangeRate", "getAllCurrencyExchangeRates", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Currency_ExchangeRate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Currency_ExchangeRate", "getAllCurrencyExchangeRates", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Billing_Currency_ExchangeRate) GetCurrencies() (resp []datatypes.Billing_Currency, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Currency_ExchangeRate", "getCurrencies", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Currency_ExchangeRate) GetCurrenciesIter() (resp []datatypes.Billing_Currency, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Currency_ExchangeRate", "getCurrencies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Currency{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Currency_ExchangeRate", "getCurrencies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -285,6 +385,30 @@ func (r Billing_Info) GetAccount() (resp datatypes.Account, err error) {
 // Retrieve
 func (r Billing_Info) GetAchInformation() (resp []datatypes.Billing_Info_Ach, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Info", "getAchInformation", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Info) GetAchInformationIter() (resp []datatypes.Billing_Info_Ach, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Info", "getAchInformation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Info_Ach{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Info", "getAchInformation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -410,6 +534,30 @@ func (r Billing_Invoice) GetInvoiceTopLevelItems() (resp []datatypes.Billing_Inv
 	return
 }
 
+func (r Billing_Invoice) GetInvoiceTopLevelItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTopLevelItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTopLevelItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The total amount of this invoice.
 func (r Billing_Invoice) GetInvoiceTotalAmount() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getInvoiceTotalAmount", nil, &r.Options, &resp)
@@ -452,6 +600,30 @@ func (r Billing_Invoice) GetItems() (resp []datatypes.Billing_Invoice_Item, err 
 	return
 }
 
+func (r Billing_Invoice) GetItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Exchange rate used for billing this invoice.
 func (r Billing_Invoice) GetLocalCurrencyExchangeRate() (resp datatypes.Billing_Currency_ExchangeRate, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getLocalCurrencyExchangeRate", nil, &r.Options, &resp)
@@ -473,6 +645,30 @@ func (r Billing_Invoice) GetPayment() (resp datatypes.Float64, err error) {
 // Retrieve The payments for the invoice.
 func (r Billing_Invoice) GetPayments() (resp []datatypes.Billing_Invoice_Receivable_Payment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getPayments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Invoice) GetPaymentsIter() (resp []datatypes.Billing_Invoice_Receivable_Payment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getPayments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Receivable_Payment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getPayments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -542,6 +738,30 @@ func (r Billing_Invoice) GetTaxInfoHistory() (resp []datatypes.Billing_Invoice_T
 	return
 }
 
+func (r Billing_Invoice) GetTaxInfoHistoryIter() (resp []datatypes.Billing_Invoice_Tax_Info, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getTaxInfoHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Tax_Info{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getTaxInfoHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve This is a message explaining the tax treatment for this invoice.
 func (r Billing_Invoice) GetTaxMessage() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getTaxMessage", nil, &r.Options, &resp)
@@ -563,6 +783,30 @@ func (r Billing_Invoice) GetXlsFilename() (resp string, err error) {
 // no documentation yet
 func (r Billing_Invoice) GetZeroFeeItemCounts() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getZeroFeeItemCounts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Invoice) GetZeroFeeItemCountsIter() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getZeroFeeItemCounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Product_Item_Category_ZeroFee_Count{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice", "getZeroFeeItemCounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -612,6 +856,30 @@ func (r Billing_Invoice_Item) GetAssociatedChildren() (resp []datatypes.Billing_
 	return
 }
 
+func (r Billing_Invoice_Item) GetAssociatedChildrenIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An Invoice Item's associated invoice item. If this is populated, it means this is an orphaned invoice item, but logically belongs to the associated invoice item.
 func (r Billing_Invoice_Item) GetAssociatedInvoiceItem() (resp datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getAssociatedInvoiceItem", nil, &r.Options, &resp)
@@ -636,6 +904,30 @@ func (r Billing_Invoice_Item) GetChildren() (resp []datatypes.Billing_Invoice_It
 	return
 }
 
+func (r Billing_Invoice_Item) GetChildrenIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve This is the DPart for invoice item.
 func (r Billing_Invoice_Item) GetDPart() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getDPart", nil, &r.Options, &resp)
@@ -645,6 +937,30 @@ func (r Billing_Invoice_Item) GetDPart() (resp string, err error) {
 // Retrieve An Invoice Item's associated child invoice items, excluding some items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
 func (r Billing_Invoice_Item) GetFilteredAssociatedChildren() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getFilteredAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Invoice_Item) GetFilteredAssociatedChildrenIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getFilteredAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getFilteredAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -669,6 +985,30 @@ func (r Billing_Invoice_Item) GetLocation() (resp datatypes.Location, err error)
 // Retrieve An Invoice Item's associated child invoice items, excluding ALL items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
 func (r Billing_Invoice_Item) GetNonZeroAssociatedChildren() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getNonZeroAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Invoice_Item) GetNonZeroAssociatedChildrenIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getNonZeroAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getNonZeroAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -839,6 +1179,30 @@ func (r Billing_Invoice_Tax_Status) GetAllObjects() (resp []datatypes.Billing_In
 	return
 }
 
+func (r Billing_Invoice_Tax_Status) GetAllObjectsIter() (resp []datatypes.Billing_Invoice_Tax_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Status", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Tax_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Status", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Billing_Invoice_Tax_Status) GetObject() (resp datatypes.Billing_Invoice_Tax_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Status", "getObject", nil, &r.Options, &resp)
@@ -888,6 +1252,30 @@ func (r Billing_Invoice_Tax_Type) Offset(offset int) Billing_Invoice_Tax_Type {
 // no documentation yet
 func (r Billing_Invoice_Tax_Type) GetAllObjects() (resp []datatypes.Billing_Invoice_Tax_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Invoice_Tax_Type) GetAllObjectsIter() (resp []datatypes.Billing_Invoice_Tax_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Tax_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Tax_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -999,15 +1387,87 @@ func (r Billing_Item) GetActiveAssociatedChildren() (resp []datatypes.Billing_It
 	return
 }
 
+func (r Billing_Item) GetActiveAssociatedChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item) GetActiveAssociatedGuestDiskBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Billing_Item) GetActiveAssociatedGuestDiskBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveAssociatedGuestDiskBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active bundled billing items.
 func (r Billing_Item) GetActiveBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetActiveBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1023,6 +1483,30 @@ func (r Billing_Item) GetActiveChildren() (resp []datatypes.Billing_Item, err er
 	return
 }
 
+func (r Billing_Item) GetActiveChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item) GetActiveFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveFlag", nil, &r.Options, &resp)
@@ -1035,9 +1519,57 @@ func (r Billing_Item) GetActiveSparePoolAssociatedGuestDiskBillingItems() (resp 
 	return
 }
 
+func (r Billing_Item) GetActiveSparePoolAssociatedGuestDiskBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveSparePoolAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveSparePoolAssociatedGuestDiskBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's spare pool bundled billing items.
 func (r Billing_Item) GetActiveSparePoolBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveSparePoolBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetActiveSparePoolBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveSparePoolBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getActiveSparePoolBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1053,9 +1585,57 @@ func (r Billing_Item) GetAssociatedBillingItemHistory() (resp []datatypes.Billin
 	return
 }
 
+func (r Billing_Item) GetAssociatedBillingItemHistoryIter() (resp []datatypes.Billing_Item_Association_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedBillingItemHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Association_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedBillingItemHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
 func (r Billing_Item) GetAssociatedChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetAssociatedChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1065,9 +1645,57 @@ func (r Billing_Item) GetAssociatedParent() (resp []datatypes.Billing_Item, err 
 	return
 }
 
+func (r Billing_Item) GetAssociatedParentIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedParent", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAssociatedParent", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item) GetAvailableMatchingVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAvailableMatchingVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetAvailableMatchingVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAvailableMatchingVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getAvailableMatchingVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1083,15 +1711,87 @@ func (r Billing_Item) GetBillableChildren() (resp []datatypes.Billing_Item, err 
 	return
 }
 
+func (r Billing_Item) GetBillableChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBillableChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBillableChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's bundled billing items.
 func (r Billing_Item) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundledItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Billing_Item) GetBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active child billing items.
 func (r Billing_Item) GetCanceledChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCanceledChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetCanceledChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCanceledChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCanceledChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1107,6 +1807,30 @@ func (r Billing_Item) GetCancellationRequests() (resp []datatypes.Billing_Item_C
 	return
 }
 
+func (r Billing_Item) GetCancellationRequestsIter() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCancellationRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCancellationRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item category to which the billing item's item belongs.
 func (r Billing_Item) GetCategory() (resp datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getCategory", nil, &r.Options, &resp)
@@ -1119,9 +1843,57 @@ func (r Billing_Item) GetChildren() (resp []datatypes.Billing_Item, err error) {
 	return
 }
 
+func (r Billing_Item) GetChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active child billing items.
 func (r Billing_Item) GetChildrenWithActiveAgreement() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getChildrenWithActiveAgreement", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetChildrenWithActiveAgreementIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getChildrenWithActiveAgreement", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getChildrenWithActiveAgreement", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1131,9 +1903,57 @@ func (r Billing_Item) GetDowngradeItems() (resp []datatypes.Product_Item, err er
 	return
 }
 
+func (r Billing_Item) GetDowngradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getDowngradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getDowngradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's associated child billing items, excluding some items with a $0.00 recurring fee.
 func (r Billing_Item) GetFilteredNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getFilteredNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetFilteredNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getFilteredNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getFilteredNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1155,6 +1975,30 @@ func (r Billing_Item) GetInvoiceItems() (resp []datatypes.Billing_Invoice_Item, 
 	return
 }
 
+func (r Billing_Item) GetInvoiceItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getInvoiceItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getInvoiceItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The entry in the SoftLayer product catalog that a billing item is based upon.
 func (r Billing_Item) GetItem() (resp datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getItem", nil, &r.Options, &resp)
@@ -1170,6 +2014,30 @@ func (r Billing_Item) GetLocation() (resp datatypes.Location, err error) {
 // Retrieve A Billing Item's child billing items and associated items'
 func (r Billing_Item) GetNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1200,6 +2068,30 @@ func (r Billing_Item) GetNextInvoiceTotalRecurringTaxAmount() (resp datatypes.Fl
 // Retrieve A Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
 func (r Billing_Item) GetNonZeroNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNonZeroNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetNonZeroNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNonZeroNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getNonZeroNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1269,6 +2161,34 @@ func (r Billing_Item) GetServiceBillingItemsByCategory(categoryCode *string, inc
 	return
 }
 
+func (r Billing_Item) GetServiceBillingItemsByCategoryIter(categoryCode *string, includeZeroRecurringFee *bool) (resp []datatypes.Billing_Item, err error) {
+	params := []interface{}{
+		categoryCode,
+		includeZeroRecurringFee,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getServiceBillingItemsByCategory", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getServiceBillingItemsByCategory", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A friendly description of software component
 func (r Billing_Item) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getSoftwareDescription", nil, &r.Options, &resp)
@@ -1284,6 +2204,30 @@ func (r Billing_Item) GetUpgradeItem() (resp datatypes.Product_Item, err error) 
 // Retrieve Billing items whose product item has an upgrade path defined in our system will return all the product items in the upgrade path.
 func (r Billing_Item) GetUpgradeItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getUpgradeItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item) GetUpgradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item", "getUpgradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item", "getUpgradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1354,6 +2298,30 @@ func (r Billing_Item_Cancellation_Reason) GetAllCancellationReasons() (resp []da
 	return
 }
 
+func (r Billing_Item_Cancellation_Reason) GetAllCancellationReasonsIter() (resp []datatypes.Billing_Item_Cancellation_Reason, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getAllCancellationReasons", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Reason{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getAllCancellationReasons", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An billing cancellation reason category.
 func (r Billing_Item_Cancellation_Reason) GetBillingCancellationReasonCategory() (resp datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getBillingCancellationReasonCategory", nil, &r.Options, &resp)
@@ -1363,6 +2331,30 @@ func (r Billing_Item_Cancellation_Reason) GetBillingCancellationReasonCategory()
 // Retrieve The corresponding billing items having the specific cancellation reason.
 func (r Billing_Item_Cancellation_Reason) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Cancellation_Reason) GetBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason", "getBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1424,9 +2416,57 @@ func (r Billing_Item_Cancellation_Reason_Category) GetAllCancellationReasonCateg
 	return
 }
 
+func (r Billing_Item_Cancellation_Reason_Category) GetAllCancellationReasonCategoriesIter() (resp []datatypes.Billing_Item_Cancellation_Reason_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason_Category", "getAllCancellationReasonCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Reason_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason_Category", "getAllCancellationReasonCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The corresponding billing cancellation reasons having the specific billing cancellation reason category.
 func (r Billing_Item_Cancellation_Reason_Category) GetBillingCancellationReasons() (resp []datatypes.Billing_Item_Cancellation_Reason, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason_Category", "getBillingCancellationReasons", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Cancellation_Reason_Category) GetBillingCancellationReasonsIter() (resp []datatypes.Billing_Item_Cancellation_Reason, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason_Category", "getBillingCancellationReasons", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Reason{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Reason_Category", "getBillingCancellationReasons", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1501,6 +2541,30 @@ func (r Billing_Item_Cancellation_Request) GetAllCancellationRequests() (resp []
 	return
 }
 
+func (r Billing_Item_Cancellation_Request) GetAllCancellationRequestsIter() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "getAllCancellationRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "getAllCancellationRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Services can be canceled 2 or 3 days prior to your next bill date. This service returns the time by which a cancellation request submission is permitted in the current billing cycle. If the current time falls into the cut off date, this will return next earliest cancellation cut off date.
 //
 // Available category codes are: service, server
@@ -1516,6 +2580,30 @@ func (r Billing_Item_Cancellation_Request) GetCancellationCutoffDate(accountId *
 // Retrieve A collection of service cancellation items.
 func (r Billing_Item_Cancellation_Request) GetItems() (resp []datatypes.Billing_Item_Cancellation_Request_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "getItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Cancellation_Request) GetItemsIter() (resp []datatypes.Billing_Item_Cancellation_Request_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "getItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Request_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Cancellation_Request", "getItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1613,6 +2701,30 @@ func (r Billing_Item_Chronicle) Offset(offset int) Billing_Item_Chronicle {
 // Retrieve A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
 func (r Billing_Item_Chronicle) GetAssociatedChildren() (resp []datatypes.Billing_Item_Chronicle, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Chronicle", "getAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Chronicle) GetAssociatedChildrenIter() (resp []datatypes.Billing_Item_Chronicle, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Chronicle", "getAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Chronicle{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Chronicle", "getAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1728,15 +2840,87 @@ func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedChildren() (resp 
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedGuestDiskBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveAssociatedGuestDiskBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveAssociatedGuestDiskBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active bundled billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetActiveBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1752,6 +2936,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetActiveChildren() (resp []datatype
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item_Virtual_DedicatedHost) GetActiveFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveFlag", nil, &r.Options, &resp)
@@ -1764,9 +2972,57 @@ func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolAssociatedGuestDis
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolAssociatedGuestDiskBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolAssociatedGuestDiskBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolAssociatedGuestDiskBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's spare pool bundled billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolBundledItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetActiveSparePoolBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getActiveSparePoolBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1782,9 +3038,57 @@ func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedBillingItemHistory() (r
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedBillingItemHistoryIter() (resp []datatypes.Billing_Item_Association_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedBillingItemHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Association_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedBillingItemHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's associated child billing items. This includes "floating" items that are not necessarily child billing items of this billing item.
 func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1794,9 +3098,57 @@ func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedParent() (resp []dataty
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetAssociatedParentIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedParent", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAssociatedParent", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Item_Virtual_DedicatedHost) GetAvailableMatchingVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAvailableMatchingVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetAvailableMatchingVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAvailableMatchingVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getAvailableMatchingVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1812,15 +3164,87 @@ func (r Billing_Item_Virtual_DedicatedHost) GetBillableChildren() (resp []dataty
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetBillableChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBillableChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBillableChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's bundled billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetBundledItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundledItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetBundledItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active child billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetCanceledChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCanceledChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetCanceledChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCanceledChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCanceledChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1836,6 +3260,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetCancellationRequests() (resp []da
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetCancellationRequestsIter() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCancellationRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCancellationRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item category to which the billing item's item belongs.
 func (r Billing_Item_Virtual_DedicatedHost) GetCategory() (resp datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getCategory", nil, &r.Options, &resp)
@@ -1848,9 +3296,57 @@ func (r Billing_Item_Virtual_DedicatedHost) GetChildren() (resp []datatypes.Bill
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's active child billing items.
 func (r Billing_Item_Virtual_DedicatedHost) GetChildrenWithActiveAgreement() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildrenWithActiveAgreement", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetChildrenWithActiveAgreementIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildrenWithActiveAgreement", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getChildrenWithActiveAgreement", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1860,9 +3356,57 @@ func (r Billing_Item_Virtual_DedicatedHost) GetDowngradeItems() (resp []datatype
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetDowngradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getDowngradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getDowngradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A Billing Item's associated child billing items, excluding some items with a $0.00 recurring fee.
 func (r Billing_Item_Virtual_DedicatedHost) GetFilteredNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getFilteredNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetFilteredNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getFilteredNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getFilteredNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1884,6 +3428,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetInvoiceItems() (resp []datatypes.
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetInvoiceItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getInvoiceItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getInvoiceItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The entry in the SoftLayer product catalog that a billing item is based upon.
 func (r Billing_Item_Virtual_DedicatedHost) GetItem() (resp datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getItem", nil, &r.Options, &resp)
@@ -1899,6 +3467,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetLocation() (resp datatypes.Locati
 // Retrieve A Billing Item's child billing items and associated items'
 func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1929,6 +3521,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetNextInvoiceTotalRecurringTaxAmoun
 // Retrieve A Billing Item's associated child billing items, excluding ALL items with a $0.00 recurring fee.
 func (r Billing_Item_Virtual_DedicatedHost) GetNonZeroNextInvoiceChildren() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNonZeroNextInvoiceChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetNonZeroNextInvoiceChildrenIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNonZeroNextInvoiceChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getNonZeroNextInvoiceChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2004,6 +3620,34 @@ func (r Billing_Item_Virtual_DedicatedHost) GetServiceBillingItemsByCategory(cat
 	return
 }
 
+func (r Billing_Item_Virtual_DedicatedHost) GetServiceBillingItemsByCategoryIter(categoryCode *string, includeZeroRecurringFee *bool) (resp []datatypes.Billing_Item, err error) {
+	params := []interface{}{
+		categoryCode,
+		includeZeroRecurringFee,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getServiceBillingItemsByCategory", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getServiceBillingItemsByCategory", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A friendly description of software component
 func (r Billing_Item_Virtual_DedicatedHost) GetSoftwareDescription() (resp datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getSoftwareDescription", nil, &r.Options, &resp)
@@ -2019,6 +3663,30 @@ func (r Billing_Item_Virtual_DedicatedHost) GetUpgradeItem() (resp datatypes.Pro
 // Retrieve Billing items whose product item has an upgrade path defined in our system will return all the product items in the upgrade path.
 func (r Billing_Item_Virtual_DedicatedHost) GetUpgradeItems() (resp []datatypes.Product_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getUpgradeItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Item_Virtual_DedicatedHost) GetUpgradeItemsIter() (resp []datatypes.Product_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getUpgradeItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Item_Virtual_DedicatedHost", "getUpgradeItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2101,6 +3769,30 @@ func (r Billing_Order) GetAllObjects() (resp []datatypes.Billing_Order, err erro
 	return
 }
 
+func (r Billing_Order) GetAllObjectsIter() (resp []datatypes.Billing_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Billing_Order) GetBrand() (resp datatypes.Brand, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getBrand", nil, &r.Options, &resp)
@@ -2119,9 +3811,57 @@ func (r Billing_Order) GetCoreRestrictedItems() (resp []datatypes.Billing_Order_
 	return
 }
 
+func (r Billing_Order) GetCoreRestrictedItemsIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getCoreRestrictedItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getCoreRestrictedItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All credit card transactions associated with this order. If this order was not placed with a credit card, this will be empty.
 func (r Billing_Order) GetCreditCardTransactions() (resp []datatypes.Billing_Payment_Card_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getCreditCardTransactions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order) GetCreditCardTransactionsIter() (resp []datatypes.Billing_Payment_Card_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getCreditCardTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Payment_Card_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getCreditCardTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2140,6 +3880,30 @@ func (r Billing_Order) GetInitialInvoice() (resp datatypes.Billing_Invoice, err 
 // Retrieve The SoftLayer_Billing_Order_items included in an order.
 func (r Billing_Order) GetItems() (resp []datatypes.Billing_Order_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order) GetItemsIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2173,9 +3937,57 @@ func (r Billing_Order) GetOrderStatuses() (resp []datatypes.Container_Billing_Or
 	return
 }
 
+func (r Billing_Order) GetOrderStatusesIter() (resp []datatypes.Container_Billing_Order_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Billing_Order_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An order's top level items. This normally includes the server line item and any non-server additional services such as NAS or ISCSI.
 func (r Billing_Order) GetOrderTopLevelItems() (resp []datatypes.Billing_Order_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTopLevelItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order) GetOrderTopLevelItemsIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTopLevelItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getOrderTopLevelItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2236,6 +4048,30 @@ func (r Billing_Order) GetOrderType() (resp datatypes.Billing_Order_Type, err er
 // Retrieve All PayPal transactions associated with this order. If this order was not placed with PayPal, this will be empty.
 func (r Billing_Order) GetPaypalTransactions() (resp []datatypes.Billing_Payment_PayPal_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getPaypalTransactions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order) GetPaypalTransactionsIter() (resp []datatypes.Billing_Payment_PayPal_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order", "getPaypalTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Payment_PayPal_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order", "getPaypalTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2417,6 +4253,30 @@ func (r Billing_Order_Cart) GetOrdersFromQuote() (resp []datatypes.Billing_Order
 	return
 }
 
+func (r Billing_Order_Cart) GetOrdersFromQuoteIter() (resp []datatypes.Billing_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Cart", "getOrdersFromQuote", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Cart", "getOrdersFromQuote", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a PDF copy of the cart.
 func (r Billing_Order_Cart) GetPdf() (resp []byte, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Cart", "getPdf", nil, &r.Options, &resp)
@@ -2555,6 +4415,30 @@ func (r Billing_Order_Item) GetBundledItems() (resp []datatypes.Billing_Order_It
 	return
 }
 
+func (r Billing_Order_Item) GetBundledItemsIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getBundledItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getBundledItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The item category tied to an order item.
 func (r Billing_Order_Item) GetCategory() (resp datatypes.Product_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getCategory", nil, &r.Options, &resp)
@@ -2564,6 +4448,30 @@ func (r Billing_Order_Item) GetCategory() (resp datatypes.Product_Item_Category,
 // Retrieve The child order items for an order item. All server order items should have children. These children are considered a part of the server.
 func (r Billing_Order_Item) GetChildren() (resp []datatypes.Billing_Order_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order_Item) GetChildrenIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2591,6 +4499,30 @@ func (r Billing_Order_Item) GetItemCategoryAnswers() (resp []datatypes.Billing_O
 	return
 }
 
+func (r Billing_Order_Item) GetItemCategoryAnswersIter() (resp []datatypes.Billing_Order_Item_Category_Answer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getItemCategoryAnswers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item_Category_Answer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getItemCategoryAnswers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Product_Item_Price tied to an order item. The item price object describes the cost of an item.
 func (r Billing_Order_Item) GetItemPrice() (resp datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getItemPrice", nil, &r.Options, &resp)
@@ -2606,6 +4538,30 @@ func (r Billing_Order_Item) GetLocation() (resp datatypes.Location, err error) {
 // Retrieve
 func (r Billing_Order_Item) GetNextOrderChildren() (resp []datatypes.Billing_Order_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getNextOrderChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order_Item) GetNextOrderChildrenIter() (resp []datatypes.Billing_Order_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getNextOrderChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getNextOrderChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2672,6 +4628,30 @@ func (r Billing_Order_Item) GetSoftwareDescription() (resp datatypes.Software_De
 // Retrieve The drive storage groups that are attached to this billing order item.
 func (r Billing_Order_Item) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group_Order, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order_Item) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2772,6 +4752,30 @@ func (r Billing_Order_Quote) GetOrder() (resp datatypes.Billing_Order, err error
 // Retrieve These are all the orders that were created from this quote.
 func (r Billing_Order_Quote) GetOrdersFromQuote() (resp []datatypes.Billing_Order, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "getOrdersFromQuote", nil, &r.Options, &resp)
+	return
+}
+
+func (r Billing_Order_Quote) GetOrdersFromQuoteIter() (resp []datatypes.Billing_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "getOrdersFromQuote", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "getOrdersFromQuote", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

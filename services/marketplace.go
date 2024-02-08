@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -68,6 +69,30 @@ func (r Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partn
 	return
 }
 
+func (r Marketplace_Partner) GetAllObjectsIter() (resp []datatypes.Marketplace_Partner, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Marketplace_Partner{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
@@ -77,9 +102,60 @@ func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp [
 	return
 }
 
+func (r Marketplace_Partner) GetAllPublishedPartnersIter(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
+	params := []interface{}{
+		searchTerm,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllPublishedPartners", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Marketplace_Partner{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAllPublishedPartners", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAttachments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Marketplace_Partner) GetAttachmentsIter() (resp []datatypes.Marketplace_Partner_Attachment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAttachments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Marketplace_Partner_Attachment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getAttachments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -89,6 +165,33 @@ func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Ma
 		non,
 	}
 	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getFeaturedPartners", params, &r.Options, &resp)
+	return
+}
+
+func (r Marketplace_Partner) GetFeaturedPartnersIter(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
+	params := []interface{}{
+		non,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getFeaturedPartners", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Marketplace_Partner{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Marketplace_Partner", "getFeaturedPartners", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

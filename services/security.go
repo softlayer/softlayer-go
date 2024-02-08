@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -97,6 +98,33 @@ func (r Security_Certificate) FindByCommonName(commonName *string) (resp []datat
 	return
 }
 
+func (r Security_Certificate) FindByCommonNameIter(commonName *string) (resp []datatypes.Security_Certificate, err error) {
+	params := []interface{}{
+		commonName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "findByCommonName", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate", "findByCommonName", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The number of services currently associated with the certificate.
 func (r Security_Certificate) GetAssociatedServiceCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getAssociatedServiceCount", nil, &r.Options, &resp)
@@ -109,9 +137,57 @@ func (r Security_Certificate) GetLbaasListeners() (resp []datatypes.Network_LBaa
 	return
 }
 
+func (r Security_Certificate) GetLbaasListenersIter() (resp []datatypes.Network_LBaaS_Listener, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLbaasListeners", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_Listener{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLbaasListeners", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The load balancers virtual IP addresses currently associated with the certificate.
 func (r Security_Certificate) GetLoadBalancerVirtualIpAddresses() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLoadBalancerVirtualIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Security_Certificate) GetLoadBalancerVirtualIpAddressesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLoadBalancerVirtualIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate", "getLoadBalancerVirtualIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -188,9 +264,60 @@ func (r Security_Certificate_Request) GetAdministratorEmailDomains(commonName *s
 	return
 }
 
+func (r Security_Certificate_Request) GetAdministratorEmailDomainsIter(commonName *string) (resp []string, err error) {
+	params := []interface{}{
+		commonName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailDomains", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailDomains", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Gets the email accounts that can be used to validate a certificate to a domain.
 func (r Security_Certificate_Request) GetAdministratorEmailPrefixes() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailPrefixes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Security_Certificate_Request) GetAdministratorEmailPrefixesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailPrefixes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getAdministratorEmailPrefixes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -224,6 +351,33 @@ func (r Security_Certificate_Request) GetSslCertificateRequests(accountId *int) 
 		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getSslCertificateRequests", params, &r.Options, &resp)
+	return
+}
+
+func (r Security_Certificate_Request) GetSslCertificateRequestsIter(accountId *int) (resp []datatypes.Security_Certificate_Request, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getSslCertificateRequests", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request", "getSslCertificateRequests", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -302,6 +456,30 @@ func (r Security_Certificate_Request_ServerType) GetAllObjects() (resp []datatyp
 	return
 }
 
+func (r Security_Certificate_Request_ServerType) GetAllObjectsIter() (resp []datatypes.Security_Certificate_Request_ServerType, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate_Request_ServerType{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Security_Certificate_Request_ServerType) GetObject() (resp datatypes.Security_Certificate_Request_ServerType, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_ServerType", "getObject", nil, &r.Options, &resp)
@@ -357,6 +535,30 @@ func (r Security_Certificate_Request_Status) GetObject() (resp datatypes.Securit
 // Returns all SSL certificate request status objects
 func (r Security_Certificate_Request_Status) GetSslRequestStatuses() (resp []datatypes.Security_Certificate_Request_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_Status", "getSslRequestStatuses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Security_Certificate_Request_Status) GetSslRequestStatusesIter() (resp []datatypes.Security_Certificate_Request_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_Status", "getSslRequestStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate_Request_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Certificate_Request_Status", "getSslRequestStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -436,6 +638,30 @@ func (r Security_Ssh_Key) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtu
 	return
 }
 
+func (r Security_Ssh_Key) GetBlockDeviceTemplateGroupsIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getBlockDeviceTemplateGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getObject", nil, &r.Options, &resp)
@@ -445,5 +671,29 @@ func (r Security_Ssh_Key) GetObject() (resp datatypes.Security_Ssh_Key, err erro
 // Retrieve The OS root users that are linked to an SSH key.
 func (r Security_Ssh_Key) GetSoftwarePasswords() (resp []datatypes.Software_Component_Password, err error) {
 	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getSoftwarePasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Security_Ssh_Key) GetSoftwarePasswordsIter() (resp []datatypes.Software_Component_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getSoftwarePasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Security_Ssh_Key", "getSoftwarePasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }

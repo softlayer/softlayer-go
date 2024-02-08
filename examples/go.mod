@@ -2,6 +2,8 @@ module github.com/softlayer/softlayer-go/examples
 
 go 1.21
 
+replace github.com/softlayer/softlayer-go => ../
+
 require (
 	github.com/jarcoal/httpmock v1.0.5
 	github.com/jedib0t/go-pretty/v6 v6.5.4
@@ -26,6 +28,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.20.0 // indirect
+	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

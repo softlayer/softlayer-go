@@ -190,6 +190,30 @@ func (r Account) GetAbuseEmails() (resp []datatypes.Account_AbuseEmail, err erro
 	return
 }
 
+func (r Account) GetAbuseEmailsIter() (resp []datatypes.Account_AbuseEmail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAbuseEmails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_AbuseEmail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAbuseEmails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns an array of SoftLayer_Container_Network_Storage_Evault_WebCc_JobDetails objects for the given start and end dates. Start and end dates should be be valid ISO 8601 dates. The backupStatus can be one of null, 'success', 'failed', or 'conflict'. The 'success' backupStatus returns jobs with a status of 'COMPLETED', the 'failed' backupStatus returns jobs with a status of 'FAILED', while the 'conflict' backupStatus will return jobs that are not 'COMPLETED' or 'FAILED'.
 func (r Account) GetAccountBackupHistory(startDate *datatypes.Time, endDate *datatypes.Time, backupStatus *string) (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
 	params := []interface{}{
@@ -201,9 +225,62 @@ func (r Account) GetAccountBackupHistory(startDate *datatypes.Time, endDate *dat
 	return
 }
 
+func (r Account) GetAccountBackupHistoryIter(startDate *datatypes.Time, endDate *datatypes.Time, backupStatus *string) (resp []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+		backupStatus,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAccountBackupHistory", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Evault_WebCc_JobDetails{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAccountBackupHistory", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The account contacts on an account.
 func (r Account) GetAccountContacts() (resp []datatypes.Account_Contact, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAccountContacts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAccountContactsIter() (resp []datatypes.Account_Contact, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAccountContacts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Contact{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAccountContacts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -213,9 +290,57 @@ func (r Account) GetAccountLicenses() (resp []datatypes.Software_AccountLicense,
 	return
 }
 
+func (r Account) GetAccountLicensesIter() (resp []datatypes.Software_AccountLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAccountLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_AccountLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAccountLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetAccountLinks() (resp []datatypes.Account_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAccountLinks", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAccountLinksIter() (resp []datatypes.Account_Link, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAccountLinks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Link{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAccountLinks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -246,9 +371,57 @@ func (r Account) GetActiveAccountLicenses() (resp []datatypes.Software_AccountLi
 	return
 }
 
+func (r Account) GetActiveAccountLicensesIter() (resp []datatypes.Software_AccountLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveAccountLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_AccountLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveAccountLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The active address(es) that belong to an account.
 func (r Account) GetActiveAddresses() (resp []datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActiveAddressesIter() (resp []datatypes.Account_Address, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -258,9 +431,57 @@ func (r Account) GetActiveAgreements() (resp []datatypes.Account_Agreement, err 
 	return
 }
 
+func (r Account) GetActiveAgreementsIter() (resp []datatypes.Account_Agreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveAgreements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Agreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveAgreements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All billing agreements for an account
 func (r Account) GetActiveBillingAgreements() (resp []datatypes.Account_Agreement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveBillingAgreements", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActiveBillingAgreementsIter() (resp []datatypes.Account_Agreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveBillingAgreements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Agreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveBillingAgreements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -276,6 +497,30 @@ func (r Account) GetActiveColocationContainers() (resp []datatypes.Billing_Item,
 	return
 }
 
+func (r Account) GetActiveColocationContainersIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveColocationContainers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveColocationContainers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [Deprecated] Please use SoftLayer_Account::activeFlexibleCreditEnrollments.
 func (r Account) GetActiveFlexibleCreditEnrollment() (resp datatypes.FlexibleCredit_Enrollment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveFlexibleCreditEnrollment", nil, &r.Options, &resp)
@@ -288,9 +533,57 @@ func (r Account) GetActiveFlexibleCreditEnrollments() (resp []datatypes.Flexible
 	return
 }
 
+func (r Account) GetActiveFlexibleCreditEnrollmentsIter() (resp []datatypes.FlexibleCredit_Enrollment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveFlexibleCreditEnrollments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.FlexibleCredit_Enrollment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveFlexibleCreditEnrollments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetActiveNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveNotificationSubscribers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActiveNotificationSubscribersIter() (resp []datatypes.Notification_Subscriber, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveNotificationSubscribers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Subscriber{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveNotificationSubscribers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -301,11 +594,59 @@ func (r Account) GetActiveOutletPackages() (resp []datatypes.Product_Package, er
 	return
 }
 
+func (r Account) GetActiveOutletPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveOutletPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveOutletPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return the [[SoftLayer_Product_Package]] objects from which you can order a bare metal server, virtual server, service (such as CDN or Object Storage) or other software. Once you have the package you want to order from, you may query one of various endpoints from that package to get specific information about its products and pricing. See [[SoftLayer_Product_Package/getCategories|getCategories]] or [[SoftLayer_Product_Package/getItems|getItems]] for more information.
 //
 // Packages that have been retired will not appear in this result set.
 func (r Account) GetActivePackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActivePackages", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActivePackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActivePackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActivePackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -321,10 +662,61 @@ func (r Account) GetActivePackagesByAttribute(attributeKeyName *string) (resp []
 	return
 }
 
+func (r Account) GetActivePackagesByAttributeIter(attributeKeyName *string) (resp []datatypes.Product_Package, err error) {
+	params := []interface{}{
+		attributeKeyName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActivePackagesByAttribute", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActivePackagesByAttribute", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // [DEPRECATED] This method pulls all the active private hosted cloud packages. This will give you a basic description of the packages that are currently active and from which you can order private hosted cloud configurations.
 // Deprecated: This function has been marked as deprecated.
 func (r Account) GetActivePrivateHostedCloudPackages() (resp []datatypes.Product_Package, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActivePrivateHostedCloudPackagesIter() (resp []datatypes.Product_Package, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActivePrivateHostedCloudPackages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActivePrivateHostedCloudPackages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -334,9 +726,57 @@ func (r Account) GetActiveQuotes() (resp []datatypes.Billing_Order_Quote, err er
 	return
 }
 
+func (r Account) GetActiveQuotesIter() (resp []datatypes.Billing_Order_Quote, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveQuotes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Quote{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveQuotes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Active reserved capacity agreements for an account
 func (r Account) GetActiveReservedCapacityAgreements() (resp []datatypes.Account_Agreement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveReservedCapacityAgreements", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetActiveReservedCapacityAgreementsIter() (resp []datatypes.Account_Agreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveReservedCapacityAgreements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Agreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveReservedCapacityAgreements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -346,15 +786,87 @@ func (r Account) GetActiveVirtualLicenses() (resp []datatypes.Software_VirtualLi
 	return
 }
 
+func (r Account) GetActiveVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getActiveVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getActiveVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated load balancers.
 func (r Account) GetAdcLoadBalancers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAdcLoadBalancers", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetAdcLoadBalancersIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAdcLoadBalancers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAdcLoadBalancers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All the address(es) that belong to an account.
 func (r Account) GetAddresses() (resp []datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAddressesIter() (resp []datatypes.Account_Address, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -370,9 +882,57 @@ func (r Account) GetAllBillingItems() (resp []datatypes.Billing_Item, err error)
 	return
 }
 
+func (r Account) GetAllBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items that will be on an account's next invoice.
 func (r Account) GetAllCommissionBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAllCommissionBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAllCommissionBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllCommissionBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllCommissionBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -382,9 +942,57 @@ func (r Account) GetAllRecurringTopLevelBillingItems() (resp []datatypes.Billing
 	return
 }
 
+func (r Account) GetAllRecurringTopLevelBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllRecurringTopLevelBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllRecurringTopLevelBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items that will be on an account's next invoice. Does not consider associated items.
 func (r Account) GetAllRecurringTopLevelBillingItemsUnfiltered() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAllRecurringTopLevelBillingItemsUnfiltered", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAllRecurringTopLevelBillingItemsUnfilteredIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllRecurringTopLevelBillingItemsUnfiltered", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllRecurringTopLevelBillingItemsUnfiltered", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -394,15 +1002,87 @@ func (r Account) GetAllSubnetBillingItems() (resp []datatypes.Billing_Item, err 
 	return
 }
 
+func (r Account) GetAllSubnetBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllSubnetBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllSubnetBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All billing items of an account.
 func (r Account) GetAllTopLevelBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItems", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetAllTopLevelBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items that will be on an account's next invoice. Does not consider associated items.
 func (r Account) GetAllTopLevelBillingItemsUnfiltered() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItemsUnfiltered", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAllTopLevelBillingItemsUnfilteredIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItemsUnfiltered", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAllTopLevelBillingItemsUnfiltered", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -430,6 +1110,30 @@ func (r Account) GetApplicationDeliveryControllers() (resp []datatypes.Network_A
 	return
 }
 
+func (r Account) GetApplicationDeliveryControllersIter() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getApplicationDeliveryControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getApplicationDeliveryControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a single [[SoftLayer_Account_Attribute]] record by its [[SoftLayer_Account_Attribute_Type|types's]] key name.
 func (r Account) GetAttributeByType(attributeType *string) (resp datatypes.Account_Attribute, err error) {
 	params := []interface{}{
@@ -445,15 +1149,87 @@ func (r Account) GetAttributes() (resp []datatypes.Account_Attribute, err error)
 	return
 }
 
+func (r Account) GetAttributesIter() (resp []datatypes.Account_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account) GetAuxiliaryNotifications() (resp []datatypes.Container_Utility_Message, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAuxiliaryNotifications", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetAuxiliaryNotificationsIter() (resp []datatypes.Container_Utility_Message, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAuxiliaryNotifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Message{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAuxiliaryNotifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The public network VLANs assigned to an account.
 func (r Account) GetAvailablePublicNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getAvailablePublicNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetAvailablePublicNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getAvailablePublicNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getAvailablePublicNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -489,15 +1265,87 @@ func (r Account) GetBandwidthAllotments() (resp []datatypes.Network_Bandwidth_Ve
 	return
 }
 
+func (r Account) GetBandwidthAllotmentsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The bandwidth allotments for an account currently over allocation.
 func (r Account) GetBandwidthAllotmentsOverAllocation() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsOverAllocation", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetBandwidthAllotmentsOverAllocationIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsOverAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsOverAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The bandwidth allotments for an account projected to go over allocation.
 func (r Account) GetBandwidthAllotmentsProjectedOverAllocation() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsProjectedOverAllocation", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetBandwidthAllotmentsProjectedOverAllocationIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsProjectedOverAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthAllotmentsProjectedOverAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -514,15 +1362,94 @@ func (r Account) GetBandwidthList(networkType *string, direction *string, startD
 	return
 }
 
+func (r Account) GetBandwidthListIter(networkType *string, direction *string, startDate *string, endDate *string, serverIds []int) (resp []datatypes.Container_Bandwidth_Usage, err error) {
+	params := []interface{}{
+		networkType,
+		direction,
+		startDate,
+		endDate,
+		serverIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBandwidthList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated bare metal server objects.
 func (r Account) GetBareMetalInstances() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBareMetalInstances", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetBareMetalInstancesIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBareMetalInstances", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBareMetalInstances", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All billing agreements for an account
 func (r Account) GetBillingAgreements() (resp []datatypes.Account_Agreement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBillingAgreements", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetBillingAgreementsIter() (resp []datatypes.Account_Agreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBillingAgreements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Agreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBillingAgreements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -535,6 +1462,30 @@ func (r Account) GetBillingInfo() (resp datatypes.Billing_Info, err error) {
 // Retrieve Private template group objects (parent and children) and the shared template group objects (parent only) for an account.
 func (r Account) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetBlockDeviceTemplateGroupsIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getBlockDeviceTemplateGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -592,15 +1543,87 @@ func (r Account) GetCarts() (resp []datatypes.Billing_Order_Quote, err error) {
 	return
 }
 
+func (r Account) GetCartsIter() (resp []datatypes.Billing_Order_Quote, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getCarts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Quote{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getCarts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetCatalystEnrollments() (resp []datatypes.Catalyst_Enrollment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getCatalystEnrollments", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetCatalystEnrollmentsIter() (resp []datatypes.Catalyst_Enrollment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getCatalystEnrollments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Catalyst_Enrollment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getCatalystEnrollments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All closed tickets associated with an account.
 func (r Account) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getClosedTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetClosedTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getClosedTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getClosedTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -616,9 +1639,57 @@ func (r Account) GetDatacentersWithSubnetAllocations() (resp []datatypes.Locatio
 	return
 }
 
+func (r Account) GetDatacentersWithSubnetAllocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDatacentersWithSubnetAllocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDatacentersWithSubnetAllocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated virtual dedicated host objects.
 func (r Account) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHosts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetDedicatedHostsIter() (resp []datatypes.Virtual_DedicatedHost, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_DedicatedHost{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -628,6 +1699,33 @@ func (r Account) GetDedicatedHostsForImageTemplate(imageTemplateId *int) (resp [
 		imageTemplateId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHostsForImageTemplate", params, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetDedicatedHostsForImageTemplateIter(imageTemplateId *int) (resp []datatypes.Virtual_DedicatedHost, err error) {
+	params := []interface{}{
+		imageTemplateId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHostsForImageTemplate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_DedicatedHost{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDedicatedHostsForImageTemplate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -643,15 +1741,87 @@ func (r Account) GetDisplaySupportRepresentativeAssignments() (resp []datatypes.
 	return
 }
 
+func (r Account) GetDisplaySupportRepresentativeAssignmentsIter() (resp []datatypes.Account_Attachment_Employee, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDisplaySupportRepresentativeAssignments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Attachment_Employee{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDisplaySupportRepresentativeAssignments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The DNS domains associated with an account.
 func (r Account) GetDomains() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDomains", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetDomainsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDomains", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDomains", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The DNS domains associated with an account that were not created as a result of a secondary DNS zone transfer.
 func (r Account) GetDomainsWithoutSecondaryDnsRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDomainsWithoutSecondaryDnsRecords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetDomainsWithoutSecondaryDnsRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getDomainsWithoutSecondaryDnsRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getDomainsWithoutSecondaryDnsRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -673,9 +1843,57 @@ func (r Account) GetEvaultMasterUsers() (resp []datatypes.Account_Password, err 
 	return
 }
 
+func (r Account) GetEvaultMasterUsersIter() (resp []datatypes.Account_Password, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getEvaultMasterUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Password{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getEvaultMasterUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated EVault storage volumes.
 func (r Account) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -685,9 +1903,57 @@ func (r Account) GetExpiredSecurityCertificates() (resp []datatypes.Security_Cer
 	return
 }
 
+func (r Account) GetExpiredSecurityCertificatesIter() (resp []datatypes.Security_Certificate, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getExpiredSecurityCertificates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getExpiredSecurityCertificates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Logs of who entered a colocation area which is assigned to this account, or when a user under this account enters a datacenter.
 func (r Account) GetFacilityLogs() (resp []datatypes.User_Access_Facility_Log, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getFacilityLogs", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetFacilityLogsIter() (resp []datatypes.User_Access_Facility_Log, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getFacilityLogs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Access_Facility_Log{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getFacilityLogs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -700,6 +1966,30 @@ func (r Account) GetFileBlockBetaAccessFlag() (resp bool, err error) {
 // Retrieve All of the account's current and former Flexible Credit enrollments.
 func (r Account) GetFlexibleCreditEnrollments() (resp []datatypes.FlexibleCredit_Enrollment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getFlexibleCreditEnrollments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetFlexibleCreditEnrollmentsIter() (resp []datatypes.FlexibleCredit_Enrollment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getFlexibleCreditEnrollments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.FlexibleCredit_Enrollment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getFlexibleCreditEnrollments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -736,9 +2026,57 @@ func (r Account) GetGlobalIpRecords() (resp []datatypes.Network_Subnet_IpAddress
 	return
 }
 
+func (r Account) GetGlobalIpRecordsIter() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_Global{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetGlobalIpv4Records() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv4Records", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetGlobalIpv4RecordsIter() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv4Records", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_Global{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv4Records", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -748,9 +2086,57 @@ func (r Account) GetGlobalIpv6Records() (resp []datatypes.Network_Subnet_IpAddre
 	return
 }
 
+func (r Account) GetGlobalIpv6RecordsIter() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv6Records", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_Global{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv6Records", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [Deprecated] The global load balancer accounts for a softlayer customer account.
 func (r Account) GetGlobalLoadBalancerAccounts() (resp []datatypes.Network_LoadBalancer_Global_Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalLoadBalancerAccounts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetGlobalLoadBalancerAccountsIter() (resp []datatypes.Network_LoadBalancer_Global_Account, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalLoadBalancerAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LoadBalancer_Global_Account{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getGlobalLoadBalancerAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -760,9 +2146,57 @@ func (r Account) GetHardware() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Account) GetHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated hardware objects currently over bandwidth allocation.
 func (r Account) GetHardwareOverBandwidthAllocation() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareOverBandwidthAllocation", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareOverBandwidthAllocationIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareOverBandwidthAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareOverBandwidthAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -772,9 +2206,57 @@ func (r Account) GetHardwarePools() (resp []datatypes.Container_Hardware_Pool_De
 	return
 }
 
+func (r Account) GetHardwarePoolsIter() (resp []datatypes.Container_Hardware_Pool_Details, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwarePools", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Pool_Details{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwarePools", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated hardware objects projected to go over bandwidth allocation.
 func (r Account) GetHardwareProjectedOverBandwidthAllocation() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareProjectedOverBandwidthAllocation", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareProjectedOverBandwidthAllocationIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareProjectedOverBandwidthAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareProjectedOverBandwidthAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -784,9 +2266,57 @@ func (r Account) GetHardwareWithCpanel() (resp []datatypes.Hardware, err error) 
 	return
 }
 
+func (r Account) GetHardwareWithCpanelIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithCpanel", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithCpanel", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware associated with an account that has the Helm web hosting control panel installed.
 func (r Account) GetHardwareWithHelm() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithHelm", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareWithHelmIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithHelm", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithHelm", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -796,9 +2326,57 @@ func (r Account) GetHardwareWithMcafee() (resp []datatypes.Hardware, err error) 
 	return
 }
 
+func (r Account) GetHardwareWithMcafeeIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafee", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafee", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware associated with an account that has McAfee Secure AntiVirus for Redhat software components.
 func (r Account) GetHardwareWithMcafeeAntivirusRedhat() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeAntivirusRedhat", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareWithMcafeeAntivirusRedhatIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeAntivirusRedhat", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeAntivirusRedhat", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -808,9 +2386,57 @@ func (r Account) GetHardwareWithMcafeeAntivirusWindows() (resp []datatypes.Hardw
 	return
 }
 
+func (r Account) GetHardwareWithMcafeeAntivirusWindowsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeAntivirusWindows", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeAntivirusWindows", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware associated with an account that has McAfee Secure Intrusion Detection System software components.
 func (r Account) GetHardwareWithMcafeeIntrusionDetectionSystem() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeIntrusionDetectionSystem", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareWithMcafeeIntrusionDetectionSystemIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeIntrusionDetectionSystem", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithMcafeeIntrusionDetectionSystem", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -820,9 +2446,57 @@ func (r Account) GetHardwareWithPlesk() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Account) GetHardwareWithPleskIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithPlesk", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithPlesk", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware associated with an account that has the QuantaStor storage system installed.
 func (r Account) GetHardwareWithQuantastor() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithQuantastor", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareWithQuantastorIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithQuantastor", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithQuantastor", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -832,9 +2506,57 @@ func (r Account) GetHardwareWithUrchin() (resp []datatypes.Hardware, err error) 
 	return
 }
 
+func (r Account) GetHardwareWithUrchinIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithUrchin", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithUrchin", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware associated with an account that is running a version of the Microsoft Windows operating system.
 func (r Account) GetHardwareWithWindows() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithWindows", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHardwareWithWindowsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithWindows", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHardwareWithWindows", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -868,9 +2590,57 @@ func (r Account) GetHourlyBareMetalInstances() (resp []datatypes.Hardware, err e
 	return
 }
 
+func (r Account) GetHourlyBareMetalInstancesIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHourlyBareMetalInstances", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHourlyBareMetalInstances", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Hourly service billing items that will be on an account's next invoice.
 func (r Account) GetHourlyServiceBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHourlyServiceBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHourlyServiceBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHourlyServiceBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHourlyServiceBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -880,9 +2650,57 @@ func (r Account) GetHourlyVirtualGuests() (resp []datatypes.Virtual_Guest, err e
 	return
 }
 
+func (r Account) GetHourlyVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHourlyVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHourlyVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated Virtual Storage volumes.
 func (r Account) GetHubNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getHubNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetHubNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getHubNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getHubNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -928,6 +2746,30 @@ func (r Account) GetInternalNotes() (resp []datatypes.Account_Note, err error) {
 	return
 }
 
+func (r Account) GetInternalNotesIter() (resp []datatypes.Account_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getInternalNotes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getInternalNotes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Account attribute flag indicating restricted account.
 func (r Account) GetInternalRestrictionFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getInternalRestrictionFlag", nil, &r.Options, &resp)
@@ -940,9 +2782,57 @@ func (r Account) GetInvoices() (resp []datatypes.Billing_Invoice, err error) {
 	return
 }
 
+func (r Account) GetInvoicesIter() (resp []datatypes.Billing_Invoice, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getInvoices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getInvoices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -955,6 +2845,30 @@ func (r Account) GetIscsiIsolationDisabled() (resp bool, err error) {
 // Retrieve An account's associated iSCSI storage volumes.
 func (r Account) GetIscsiNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getIscsiNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetIscsiNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getIscsiNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getIscsiNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -986,9 +2900,57 @@ func (r Account) GetLastFiveClosedAbuseTickets() (resp []datatypes.Ticket, err e
 	return
 }
 
+func (r Account) GetLastFiveClosedAbuseTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedAbuseTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedAbuseTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The five most recently closed accounting tickets associated with an account.
 func (r Account) GetLastFiveClosedAccountingTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedAccountingTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetLastFiveClosedAccountingTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedAccountingTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedAccountingTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -998,9 +2960,57 @@ func (r Account) GetLastFiveClosedOtherTickets() (resp []datatypes.Ticket, err e
 	return
 }
 
+func (r Account) GetLastFiveClosedOtherTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedOtherTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedOtherTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The five most recently closed sales tickets associated with an account.
 func (r Account) GetLastFiveClosedSalesTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedSalesTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetLastFiveClosedSalesTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedSalesTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedSalesTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1010,9 +3020,57 @@ func (r Account) GetLastFiveClosedSupportTickets() (resp []datatypes.Ticket, err
 	return
 }
 
+func (r Account) GetLastFiveClosedSupportTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedSupportTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedSupportTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The five most recently closed tickets associated with an account.
 func (r Account) GetLastFiveClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetLastFiveClosedTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLastFiveClosedTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1040,6 +3098,30 @@ func (r Account) GetLegacyBandwidthAllotments() (resp []datatypes.Network_Bandwi
 	return
 }
 
+func (r Account) GetLegacyBandwidthAllotmentsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLegacyBandwidthAllotments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLegacyBandwidthAllotments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The total capacity of Legacy iSCSI Volumes on an account, in GB.
 func (r Account) GetLegacyIscsiCapacityGB() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLegacyIscsiCapacityGB", nil, &r.Options, &resp)
@@ -1049,6 +3131,30 @@ func (r Account) GetLegacyIscsiCapacityGB() (resp uint, err error) {
 // Retrieve An account's associated load balancers.
 func (r Account) GetLoadBalancers() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLoadBalancers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetLoadBalancersIter() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLoadBalancers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LoadBalancer_VirtualIpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLoadBalancers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1064,9 +3170,57 @@ func (r Account) GetLockboxNetworkStorage() (resp []datatypes.Network_Storage, e
 	return
 }
 
+func (r Account) GetLockboxNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getLockboxNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getLockboxNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetManualPaymentsUnderReview() (resp []datatypes.Billing_Payment_Card_ManualPayment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getManualPaymentsUnderReview", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetManualPaymentsUnderReviewIter() (resp []datatypes.Billing_Payment_Card_ManualPayment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getManualPaymentsUnderReview", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Payment_Card_ManualPayment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getManualPaymentsUnderReview", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1079,6 +3233,30 @@ func (r Account) GetMasterUser() (resp datatypes.User_Customer, err error) {
 // Retrieve An account's media transfer service requests.
 func (r Account) GetMediaDataTransferRequests() (resp []datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getMediaDataTransferRequests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetMediaDataTransferRequestsIter() (resp []datatypes.Account_Media_Data_Transfer_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getMediaDataTransferRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Media_Data_Transfer_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getMediaDataTransferRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1100,9 +3278,57 @@ func (r Account) GetMonthlyBareMetalInstances() (resp []datatypes.Hardware, err 
 	return
 }
 
+func (r Account) GetMonthlyBareMetalInstancesIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getMonthlyBareMetalInstances", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getMonthlyBareMetalInstances", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated monthly virtual guest objects.
 func (r Account) GetMonthlyVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getMonthlyVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetMonthlyVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getMonthlyVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getMonthlyVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1112,9 +3338,57 @@ func (r Account) GetNasNetworkStorage() (resp []datatypes.Network_Storage, err e
 	return
 }
 
+func (r Account) GetNasNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNasNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNasNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This returns a collection of active NetApp software account license keys.
 func (r Account) GetNetAppActiveAccountLicenseKeys() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetAppActiveAccountLicenseKeys", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetAppActiveAccountLicenseKeysIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetAppActiveAccountLicenseKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetAppActiveAccountLicenseKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1130,9 +3404,57 @@ func (r Account) GetNetworkGateways() (resp []datatypes.Network_Gateway, err err
 	return
 }
 
+func (r Account) GetNetworkGatewaysIter() (resp []datatypes.Network_Gateway, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkGateways", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkGateways", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated network hardware.
 func (r Account) GetNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1142,9 +3464,57 @@ func (r Account) GetNetworkMessageDeliveryAccounts() (resp []datatypes.Network_M
 	return
 }
 
+func (r Account) GetNetworkMessageDeliveryAccountsIter() (resp []datatypes.Network_Message_Delivery, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMessageDeliveryAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Message_Delivery{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMessageDeliveryAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Hardware which is currently experiencing a service failure.
 func (r Account) GetNetworkMonitorDownHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorDownHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkMonitorDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1154,9 +3524,57 @@ func (r Account) GetNetworkMonitorDownVirtualGuests() (resp []datatypes.Virtual_
 	return
 }
 
+func (r Account) GetNetworkMonitorDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Hardware which is currently recovering from a service failure.
 func (r Account) GetNetworkMonitorRecoveringHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorRecoveringHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkMonitorRecoveringHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorRecoveringHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorRecoveringHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1166,9 +3584,57 @@ func (r Account) GetNetworkMonitorRecoveringVirtualGuests() (resp []datatypes.Vi
 	return
 }
 
+func (r Account) GetNetworkMonitorRecoveringVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorRecoveringVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorRecoveringVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Hardware which is currently online.
 func (r Account) GetNetworkMonitorUpHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorUpHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkMonitorUpHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorUpHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorUpHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1178,9 +3644,57 @@ func (r Account) GetNetworkMonitorUpVirtualGuests() (resp []datatypes.Virtual_Gu
 	return
 }
 
+func (r Account) GetNetworkMonitorUpVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorUpVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkMonitorUpVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated storage volumes. This includes Lockbox, NAS, EVault, and iSCSI volumes.
 func (r Account) GetNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1190,9 +3704,57 @@ func (r Account) GetNetworkStorageGroups() (resp []datatypes.Network_Storage_Gro
 	return
 }
 
+func (r Account) GetNetworkStorageGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve IPSec network tunnels for an account.
 func (r Account) GetNetworkTunnelContexts() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkTunnelContexts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNetworkTunnelContextsIter() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkTunnelContexts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkTunnelContexts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1208,9 +3770,57 @@ func (r Account) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	return
 }
 
+func (r Account) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers for the next billing cycle. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
 func (r Account) GetNextBillingPublicAllotmentHardwareBandwidthDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextBillingPublicAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNextBillingPublicAllotmentHardwareBandwidthDetailsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNextBillingPublicAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNextBillingPublicAllotmentHardwareBandwidthDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1256,6 +3866,30 @@ func (r Account) GetNextInvoiceRecurringAmountEligibleForAccountDiscount() (resp
 // Retrieve The billing items that will be on an account's next invoice.
 func (r Account) GetNextInvoiceTopLevelBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTopLevelBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNextInvoiceTopLevelBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTopLevelBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceTopLevelBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1307,9 +3941,57 @@ func (r Account) GetNextInvoiceZeroFeeItemCounts() (resp []datatypes.Container_P
 	return
 }
 
+func (r Account) GetNextInvoiceZeroFeeItemCountsIter() (resp []datatypes.Container_Product_Item_Category_ZeroFee_Count, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceZeroFeeItemCounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Product_Item_Category_ZeroFee_Count{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoiceZeroFeeItemCounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getNotificationSubscribers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetNotificationSubscribersIter() (resp []datatypes.Notification_Subscriber, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getNotificationSubscribers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Subscriber{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getNotificationSubscribers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1325,9 +4007,57 @@ func (r Account) GetOpenAbuseTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Account) GetOpenAbuseTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenAbuseTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenAbuseTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The open accounting tickets associated with an account.
 func (r Account) GetOpenAccountingTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenAccountingTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenAccountingTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenAccountingTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenAccountingTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1337,9 +4067,57 @@ func (r Account) GetOpenBillingTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Account) GetOpenBillingTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenBillingTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenBillingTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An open ticket requesting cancellation of this server, if one exists.
 func (r Account) GetOpenCancellationRequests() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenCancellationRequests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenCancellationRequestsIter() (resp []datatypes.Billing_Item_Cancellation_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenCancellationRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item_Cancellation_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenCancellationRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1349,9 +4127,57 @@ func (r Account) GetOpenOtherTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Account) GetOpenOtherTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenOtherTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenOtherTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's recurring invoices.
 func (r Account) GetOpenRecurringInvoices() (resp []datatypes.Billing_Invoice, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenRecurringInvoices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenRecurringInvoicesIter() (resp []datatypes.Billing_Invoice, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenRecurringInvoices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenRecurringInvoices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1361,9 +4187,57 @@ func (r Account) GetOpenSalesTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Account) GetOpenSalesTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenSalesTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenSalesTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetOpenStackAccountLinks() (resp []datatypes.Account_Link, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackAccountLinks", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenStackAccountLinksIter() (resp []datatypes.Account_Link, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackAccountLinks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Link{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackAccountLinks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1373,9 +4247,57 @@ func (r Account) GetOpenStackObjectStorage() (resp []datatypes.Network_Storage, 
 	return
 }
 
+func (r Account) GetOpenStackObjectStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackObjectStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackObjectStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The open support tickets associated with an account.
 func (r Account) GetOpenSupportTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenSupportTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenSupportTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenSupportTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenSupportTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1385,9 +4307,57 @@ func (r Account) GetOpenTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
+func (r Account) GetOpenTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All open tickets associated with an account last edited by an employee.
 func (r Account) GetOpenTicketsWaitingOnCustomer() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenTicketsWaitingOnCustomer", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOpenTicketsWaitingOnCustomerIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOpenTicketsWaitingOnCustomer", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOpenTicketsWaitingOnCustomer", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1397,9 +4367,57 @@ func (r Account) GetOrders() (resp []datatypes.Billing_Order, err error) {
 	return
 }
 
+func (r Account) GetOrdersIter() (resp []datatypes.Billing_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOrders", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOrders", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items that have no parent billing item. These are items that don't necessarily belong to a single server.
 func (r Account) GetOrphanBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOrphanBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOrphanBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOrphanBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOrphanBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1409,9 +4427,57 @@ func (r Account) GetOwnedBrands() (resp []datatypes.Brand, err error) {
 	return
 }
 
+func (r Account) GetOwnedBrandsIter() (resp []datatypes.Brand, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOwnedBrands", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Brand{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOwnedBrands", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetOwnedHardwareGenericComponentModels() (resp []datatypes.Hardware_Component_Model_Generic, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOwnedHardwareGenericComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetOwnedHardwareGenericComponentModelsIter() (resp []datatypes.Hardware_Component_Model_Generic, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getOwnedHardwareGenericComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model_Generic{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getOwnedHardwareGenericComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1421,15 +4487,87 @@ func (r Account) GetPaymentProcessors() (resp []datatypes.Billing_Payment_Proces
 	return
 }
 
+func (r Account) GetPaymentProcessorsIter() (resp []datatypes.Billing_Payment_Processor, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPaymentProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Payment_Processor{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPaymentProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Before being approved for general use, a credit card must be approved by a SoftLayer agent. Once a credit card change request has been either approved or denied, the change request will no longer appear in the list of pending change requests. This method will return a list of all pending change requests as well as a portion of the data from the original request.
 func (r Account) GetPendingCreditCardChangeRequestData() (resp []datatypes.Container_Account_Payment_Method_CreditCard, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingCreditCardChangeRequestData", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetPendingCreditCardChangeRequestDataIter() (resp []datatypes.Container_Account_Payment_Method_CreditCard, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPendingCreditCardChangeRequestData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Account_Payment_Method_CreditCard{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPendingCreditCardChangeRequestData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetPendingEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPendingEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPendingEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPendingEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1442,6 +4580,30 @@ func (r Account) GetPendingInvoice() (resp datatypes.Billing_Invoice, err error)
 // Retrieve A list of top-level invoice items that are on an account's currently pending invoice.
 func (r Account) GetPendingInvoiceTopLevelItems() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTopLevelItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPendingInvoiceTopLevelItemsIter() (resp []datatypes.Billing_Invoice_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTopLevelItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Invoice_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPendingInvoiceTopLevelItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1481,9 +4643,57 @@ func (r Account) GetPermissionGroups() (resp []datatypes.User_Permission_Group, 
 	return
 }
 
+func (r Account) GetPermissionGroupsIter() (resp []datatypes.User_Permission_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPermissionGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Permission_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPermissionGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's user roles.
 func (r Account) GetPermissionRoles() (resp []datatypes.User_Permission_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPermissionRoles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPermissionRolesIter() (resp []datatypes.User_Permission_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPermissionRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Permission_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPermissionRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1493,15 +4703,87 @@ func (r Account) GetPlacementGroups() (resp []datatypes.Virtual_PlacementGroup, 
 	return
 }
 
+func (r Account) GetPlacementGroupsIter() (resp []datatypes.Virtual_PlacementGroup, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPlacementGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_PlacementGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPlacementGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetPortableStorageVolumes() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPortableStorageVolumes", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetPortableStorageVolumesIter() (resp []datatypes.Virtual_Disk_Image, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPortableStorageVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Disk_Image{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPortableStorageVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Customer specified URIs that are downloaded onto a newly provisioned or reloaded server. If the URI is sent over https it will be executed directly on the server.
 func (r Account) GetPostProvisioningHooks() (resp []datatypes.Provisioning_Hook, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPostProvisioningHooks", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPostProvisioningHooksIter() (resp []datatypes.Provisioning_Hook, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPostProvisioningHooks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Hook{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPostProvisioningHooks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1517,6 +4799,30 @@ func (r Account) GetPptpVpnUsers() (resp []datatypes.User_Customer, err error) {
 	return
 }
 
+func (r Account) GetPptpVpnUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPptpVpnUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The total recurring amount for an accounts previous revenue.
 func (r Account) GetPreviousRecurringRevenue() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPreviousRecurringRevenue", nil, &r.Options, &resp)
@@ -1529,9 +4835,57 @@ func (r Account) GetPriceRestrictions() (resp []datatypes.Product_Item_Price_Acc
 	return
 }
 
+func (r Account) GetPriceRestrictionsIter() (resp []datatypes.Product_Item_Price_Account_Restriction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPriceRestrictions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price_Account_Restriction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPriceRestrictions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All priority one tickets associated with an account.
 func (r Account) GetPriorityOneTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPriorityOneTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPriorityOneTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPriorityOneTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPriorityOneTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1541,9 +4895,57 @@ func (r Account) GetPrivateAllotmentHardwareBandwidthDetails() (resp []datatypes
 	return
 }
 
+func (r Account) GetPrivateAllotmentHardwareBandwidthDetailsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPrivateAllotmentHardwareBandwidthDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Private and shared template group objects (parent only) for an account.
 func (r Account) GetPrivateBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPrivateBlockDeviceTemplateGroupsIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPrivateBlockDeviceTemplateGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1553,15 +4955,87 @@ func (r Account) GetPrivateIpAddresses() (resp []datatypes.Network_Subnet_IpAddr
 	return
 }
 
+func (r Account) GetPrivateIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPrivateIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The private network VLANs assigned to an account.
 func (r Account) GetPrivateNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateNetworkVlans", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetPrivateNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPrivateNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All private subnets associated with an account.
 func (r Account) GetPrivateSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPrivateSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPrivateSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1577,9 +5051,57 @@ func (r Account) GetPublicAllotmentHardwareBandwidthDetails() (resp []datatypes.
 	return
 }
 
+func (r Account) GetPublicAllotmentHardwareBandwidthDetailsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPublicAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPublicAllotmentHardwareBandwidthDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetPublicIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPublicIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPublicIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPublicIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPublicIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1589,9 +5111,57 @@ func (r Account) GetPublicNetworkVlans() (resp []datatypes.Network_Vlan, err err
 	return
 }
 
+func (r Account) GetPublicNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPublicNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPublicNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All public network subnets associated with an account.
 func (r Account) GetPublicSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPublicSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetPublicSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getPublicSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getPublicSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1601,9 +5171,57 @@ func (r Account) GetQuotes() (resp []datatypes.Billing_Order_Quote, err error) {
 	return
 }
 
+func (r Account) GetQuotesIter() (resp []datatypes.Billing_Order_Quote, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getQuotes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order_Quote{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getQuotes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getRecentEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1619,15 +5237,87 @@ func (r Account) GetReferralPartnerCommissionForecast() (resp []datatypes.Contai
 	return
 }
 
+func (r Account) GetReferralPartnerCommissionForecastIter() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionForecast", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Referral_Partner_Commission{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionForecast", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account) GetReferralPartnerCommissionHistory() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionHistory", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetReferralPartnerCommissionHistoryIter() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Referral_Partner_Commission{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account) GetReferralPartnerCommissionPending() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionPending", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetReferralPartnerCommissionPendingIter() (resp []datatypes.Container_Referral_Partner_Commission, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionPending", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Referral_Partner_Commission{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReferralPartnerCommissionPending", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1643,9 +5333,57 @@ func (r Account) GetReferredAccounts() (resp []datatypes.Account, err error) {
 	return
 }
 
+func (r Account) GetReferredAccountsIter() (resp []datatypes.Account, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReferredAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReferredAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetRegulatedWorkloads() (resp []datatypes.Legal_RegulatedWorkload, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getRegulatedWorkloads", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetRegulatedWorkloadsIter() (resp []datatypes.Legal_RegulatedWorkload, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getRegulatedWorkloads", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Legal_RegulatedWorkload{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getRegulatedWorkloads", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1655,9 +5393,57 @@ func (r Account) GetRemoteManagementCommandRequests() (resp []datatypes.Hardware
 	return
 }
 
+func (r Account) GetRemoteManagementCommandRequestsIter() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getRemoteManagementCommandRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_Command_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getRemoteManagementCommandRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Replication events for all Network Storage volumes on an account.
 func (r Account) GetReplicationEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getReplicationEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetReplicationEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReplicationEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReplicationEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1673,9 +5459,57 @@ func (r Account) GetReservedCapacityAgreements() (resp []datatypes.Account_Agree
 	return
 }
 
+func (r Account) GetReservedCapacityAgreementsIter() (resp []datatypes.Account_Agreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReservedCapacityAgreements", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Agreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReservedCapacityAgreements", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The reserved capacity groups owned by this account.
 func (r Account) GetReservedCapacityGroups() (resp []datatypes.Virtual_ReservedCapacityGroup, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getReservedCapacityGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetReservedCapacityGroupsIter() (resp []datatypes.Virtual_ReservedCapacityGroup, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getReservedCapacityGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_ReservedCapacityGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getReservedCapacityGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1685,9 +5519,57 @@ func (r Account) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Account) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve DEPRECATED
 func (r Account) GetRwhoisData() (resp []datatypes.Network_Subnet_Rwhois_Data, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getRwhoisData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetRwhoisDataIter() (resp []datatypes.Network_Subnet_Rwhois_Data, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getRwhoisData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Rwhois_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getRwhoisData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1703,15 +5585,87 @@ func (r Account) GetSecondaryDomains() (resp []datatypes.Dns_Secondary, err erro
 	return
 }
 
+func (r Account) GetSecondaryDomainsIter() (resp []datatypes.Dns_Secondary, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSecondaryDomains", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Secondary{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSecondaryDomains", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Stored security certificates (ie. SSL)
 func (r Account) GetSecurityCertificates() (resp []datatypes.Security_Certificate, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityCertificates", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetSecurityCertificatesIter() (resp []datatypes.Security_Certificate, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityCertificates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSecurityCertificates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The security groups belonging to this account.
 func (r Account) GetSecurityGroups() (resp []datatypes.Network_SecurityGroup, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetSecurityGroupsIter() (resp []datatypes.Network_SecurityGroup, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_SecurityGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSecurityGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1727,9 +5681,57 @@ func (r Account) GetSecurityScanRequests() (resp []datatypes.Network_Security_Sc
 	return
 }
 
+func (r Account) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The service billing items that will be on an account's next invoice.
 func (r Account) GetServiceBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getServiceBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetServiceBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getServiceBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getServiceBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1739,9 +5741,57 @@ func (r Account) GetSharedBlockDeviceTemplateGroups() (resp []datatypes.Virtual_
 	return
 }
 
+func (r Account) GetSharedBlockDeviceTemplateGroupsIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSharedBlockDeviceTemplateGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSharedBlockDeviceTemplateGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Shipments that belong to the customer's account.
 func (r Account) GetShipments() (resp []datatypes.Account_Shipment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getShipments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetShipmentsIter() (resp []datatypes.Account_Shipment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getShipments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getShipments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1751,9 +5801,57 @@ func (r Account) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	return
 }
 
+func (r Account) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated portal users with SSL VPN access.
 func (r Account) GetSslVpnUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSslVpnUsers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetSslVpnUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSslVpnUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSslVpnUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1763,9 +5861,57 @@ func (r Account) GetStandardPoolVirtualGuests() (resp []datatypes.Virtual_Guest,
 	return
 }
 
+func (r Account) GetStandardPoolVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getStandardPoolVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getStandardPoolVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account) GetSubnetRegistrationDetails() (resp []datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrationDetails", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetSubnetRegistrationDetailsIter() (resp []datatypes.Account_Regional_Registry_Detail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrationDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Regional_Registry_Detail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrationDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1775,9 +5921,57 @@ func (r Account) GetSubnetRegistrations() (resp []datatypes.Network_Subnet_Regis
 	return
 }
 
+func (r Account) GetSubnetRegistrationsIter() (resp []datatypes.Network_Subnet_Registration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network subnets associated with an account.
 func (r Account) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1787,9 +5981,57 @@ func (r Account) GetSupportRepresentatives() (resp []datatypes.User_Employee, er
 	return
 }
 
+func (r Account) GetSupportRepresentativesIter() (resp []datatypes.User_Employee, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSupportRepresentatives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Employee{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSupportRepresentatives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The active support subscriptions for this account.
 func (r Account) GetSupportSubscriptions() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSupportSubscriptions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetSupportSubscriptionsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getSupportSubscriptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getSupportSubscriptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1808,6 +6050,30 @@ func (r Account) GetSuppressInvoicesFlag() (resp bool, err error) {
 // Retrieve
 func (r Account) GetTags() (resp []datatypes.Tag, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getTags", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetTagsIter() (resp []datatypes.Tag, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getTags", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getTags", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1832,9 +6098,57 @@ func (r Account) GetThirdPartyPoliciesAcceptanceStatus() (resp []datatypes.Conta
 	return
 }
 
+func (r Account) GetThirdPartyPoliciesAcceptanceStatusIter() (resp []datatypes.Container_Policy_Acceptance, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getThirdPartyPoliciesAcceptanceStatus", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Policy_Acceptance{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getThirdPartyPoliciesAcceptanceStatus", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated tickets.
 func (r Account) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1844,9 +6158,57 @@ func (r Account) GetTicketsClosedInTheLastThreeDays() (resp []datatypes.Ticket, 
 	return
 }
 
+func (r Account) GetTicketsClosedInTheLastThreeDaysIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getTicketsClosedInTheLastThreeDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getTicketsClosedInTheLastThreeDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Tickets closed today associated with an account.
 func (r Account) GetTicketsClosedToday() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getTicketsClosedToday", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetTicketsClosedTodayIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getTicketsClosedToday", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getTicketsClosedToday", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1856,9 +6218,57 @@ func (r Account) GetUpgradeRequests() (resp []datatypes.Product_Upgrade_Request,
 	return
 }
 
+func (r Account) GetUpgradeRequestsIter() (resp []datatypes.Product_Upgrade_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getUpgradeRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Upgrade_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getUpgradeRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's portal users.
 func (r Account) GetUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getUsers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1868,9 +6278,57 @@ func (r Account) GetValidSecurityCertificateEntries() (resp []datatypes.Security
 	return
 }
 
+func (r Account) GetValidSecurityCertificateEntriesIter() (resp []datatypes.Security_Certificate_Entry, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificateEntries", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate_Entry{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificateEntries", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Stored security certificates that are not expired (ie. SSL)
 func (r Account) GetValidSecurityCertificates() (resp []datatypes.Security_Certificate, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetValidSecurityCertificatesIter() (resp []datatypes.Security_Certificate, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Certificate{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1886,9 +6344,57 @@ func (r Account) GetVirtualDedicatedRacks() (resp []datatypes.Network_Bandwidth_
 	return
 }
 
+func (r Account) GetVirtualDedicatedRacksIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualDedicatedRacks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualDedicatedRacks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated virtual server virtual disk images.
 func (r Account) GetVirtualDiskImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualDiskImages", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualDiskImagesIter() (resp []datatypes.Virtual_Disk_Image, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualDiskImages", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Disk_Image{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualDiskImages", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1898,35 +6404,20 @@ func (r Account) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) 
 	return
 }
 
-// Retrieve An account's associated virtual guest objects in pages
 func (r Account) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-
-	limit := 2
-	// r.Session.Debug = true
-	if r.Options.Limit == nil {
-		r = r.Limit(limit)
-	}
-	// Get the first result set to find out how many total results we have to get through.
+	limit := r.Options.ValidateLimit()
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &r.Options, &resp)
 	if err != nil {
 		return
 	}
-	// how many api calls we have to make still.
 	apicalls := r.Options.GetRemainingAPICalls()
-	fmt.Printf(" (%v -%v) / %v = %v \n", r.Options.TotalItems, limit, limit, apicalls)
-	// First call returned all items (or none) and we are done.
-	if apicalls < 1 {
-		return
-	}
 	var wg sync.WaitGroup
 	for x := 1; x <= apicalls; x++ {
 		wg.Add(1)
-		
 		go func(i int) {
 			defer wg.Done()
 			offset := i * limit
 			this_resp := []datatypes.Virtual_Guest{}
-			// Makes a copy of the options, because doing a go routine will have &r.Optoins all be the same.
 			options := r.Options
 			options.Offset = &offset
 			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &options, &this_resp)
@@ -1934,13 +6425,36 @@ func (r Account) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err err
 		}(x)
 	}
 	wg.Wait()
-	return 
-	
+	return
 }
 
 // Retrieve An account's associated virtual guest objects currently over bandwidth allocation.
 func (r Account) GetVirtualGuestsOverBandwidthAllocation() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsOverBandwidthAllocation", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualGuestsOverBandwidthAllocationIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsOverBandwidthAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsOverBandwidthAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1950,9 +6464,57 @@ func (r Account) GetVirtualGuestsProjectedOverBandwidthAllocation() (resp []data
 	return
 }
 
+func (r Account) GetVirtualGuestsProjectedOverBandwidthAllocationIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsProjectedOverBandwidthAllocation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsProjectedOverBandwidthAllocation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All virtual guests associated with an account that has the cPanel web hosting control panel installed.
 func (r Account) GetVirtualGuestsWithCpanel() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithCpanel", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualGuestsWithCpanelIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithCpanel", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithCpanel", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1962,9 +6524,57 @@ func (r Account) GetVirtualGuestsWithMcafee() (resp []datatypes.Virtual_Guest, e
 	return
 }
 
+func (r Account) GetVirtualGuestsWithMcafeeIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafee", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafee", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All virtual guests associated with an account that have McAfee Secure AntiVirus for Redhat software components.
 func (r Account) GetVirtualGuestsWithMcafeeAntivirusRedhat() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeAntivirusRedhat", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualGuestsWithMcafeeAntivirusRedhatIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeAntivirusRedhat", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeAntivirusRedhat", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1974,9 +6584,57 @@ func (r Account) GetVirtualGuestsWithMcafeeAntivirusWindows() (resp []datatypes.
 	return
 }
 
+func (r Account) GetVirtualGuestsWithMcafeeAntivirusWindowsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeAntivirusWindows", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeAntivirusWindows", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All virtual guests associated with an account that has McAfee Secure Intrusion Detection System software components.
 func (r Account) GetVirtualGuestsWithMcafeeIntrusionDetectionSystem() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeIntrusionDetectionSystem", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualGuestsWithMcafeeIntrusionDetectionSystemIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeIntrusionDetectionSystem", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithMcafeeIntrusionDetectionSystem", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1986,15 +6644,87 @@ func (r Account) GetVirtualGuestsWithPlesk() (resp []datatypes.Virtual_Guest, er
 	return
 }
 
+func (r Account) GetVirtualGuestsWithPleskIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithPlesk", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithPlesk", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All virtual guests associated with an account that have the QuantaStor storage system installed.
 func (r Account) GetVirtualGuestsWithQuantastor() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithQuantastor", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account) GetVirtualGuestsWithQuantastorIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithQuantastor", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithQuantastor", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All virtual guests associated with an account that has the Urchin web traffic analytics package installed.
 func (r Account) GetVirtualGuestsWithUrchin() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithUrchin", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualGuestsWithUrchinIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithUrchin", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuestsWithUrchin", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2010,9 +6740,57 @@ func (r Account) GetVirtualStorageArchiveRepositories() (resp []datatypes.Virtua
 	return
 }
 
+func (r Account) GetVirtualStorageArchiveRepositoriesIter() (resp []datatypes.Virtual_Storage_Repository, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualStorageArchiveRepositories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Storage_Repository{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualStorageArchiveRepositories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated virtual server public storage repositories.
 func (r Account) GetVirtualStoragePublicRepositories() (resp []datatypes.Virtual_Storage_Repository, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualStoragePublicRepositories", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVirtualStoragePublicRepositoriesIter() (resp []datatypes.Virtual_Storage_Repository, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualStoragePublicRepositories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Storage_Repository{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVirtualStoragePublicRepositories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2022,9 +6800,57 @@ func (r Account) GetVmWareActiveAccountLicenseKeys() (resp []string, err error) 
 	return
 }
 
+func (r Account) GetVmWareActiveAccountLicenseKeysIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVmWareActiveAccountLicenseKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVmWareActiveAccountLicenseKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An account's associated VPC configured virtual guest objects.
 func (r Account) GetVpcVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getVpcVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetVpcVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getVpcVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getVpcVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2037,6 +6863,30 @@ func (r Account) GetVpnConfigRequiresVPNManageFlag() (resp bool, err error) {
 // Retrieve a list of an account's hardware's Windows Update status. This list includes which servers have available updates, which servers require rebooting due to updates, which servers have failed retrieving updates, and which servers have failed to communicate with the SoftLayer private Windows Software Update Services server.
 func (r Account) GetWindowsUpdateStatus() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getWindowsUpdateStatus", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account) GetWindowsUpdateStatusIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "getWindowsUpdateStatus", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "getWindowsUpdateStatus", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2212,6 +7062,33 @@ func (r Account) Validate(account *datatypes.Account) (resp []string, err error)
 	return
 }
 
+func (r Account) ValidateIter(account *datatypes.Account) (resp []string, err error) {
+	params := []interface{}{
+		account,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account", "validate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account", "validate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method checks global and account specific requirements and returns true if the dollar amount entered is acceptable for this account and false otherwise. Please note the dollar amount is in USD.
 func (r Account) ValidateManualPaymentAmount(amount *string) (resp bool, err error) {
 	params := []interface{}{
@@ -2291,6 +7168,30 @@ func (r Account_Address) GetAllDataCenters() (resp []datatypes.Account_Address, 
 	return
 }
 
+func (r Account_Address) GetAllDataCentersIter() (resp []datatypes.Account_Address, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Address", "getAllDataCenters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Address", "getAllDataCenters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The customer user who created this address.
 func (r Account_Address) GetCreateUser() (resp datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Address", "getCreateUser", nil, &r.Options, &resp)
@@ -2321,6 +7222,33 @@ func (r Account_Address) GetNetworkAddress(name *string) (resp []datatypes.Accou
 		name,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Address", "getNetworkAddress", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_Address) GetNetworkAddressIter(name *string) (resp []datatypes.Account_Address, err error) {
+	params := []interface{}{
+		name,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Address", "getNetworkAddress", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Address", "getNetworkAddress", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2461,6 +7389,33 @@ func (r Account_Affiliation) GetAccountAffiliationsByAffiliateId(affiliateId *st
 	return
 }
 
+func (r Account_Affiliation) GetAccountAffiliationsByAffiliateIdIter(affiliateId *string) (resp []datatypes.Account_Affiliation, err error) {
+	params := []interface{}{
+		affiliateId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Affiliation", "getAccountAffiliationsByAffiliateId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Affiliation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Affiliation", "getAccountAffiliationsByAffiliateId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Affiliation) GetObject() (resp datatypes.Account_Affiliation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Affiliation", "getObject", nil, &r.Options, &resp)
@@ -2525,9 +7480,57 @@ func (r Account_Agreement) GetAttachedBillingAgreementFiles() (resp []datatypes.
 	return
 }
 
+func (r Account_Agreement) GetAttachedBillingAgreementFilesIter() (resp []datatypes.Account_MasterServiceAgreement, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getAttachedBillingAgreementFiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_MasterServiceAgreement{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getAttachedBillingAgreementFiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing items associated with an agreement.
 func (r Account_Agreement) GetBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Agreement) GetBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2546,6 +7549,30 @@ func (r Account_Agreement) GetStatus() (resp datatypes.Account_Agreement_Status,
 // Retrieve The top level billing item associated with an agreement.
 func (r Account_Agreement) GetTopLevelBillingItems() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getTopLevelBillingItems", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Agreement) GetTopLevelBillingItemsIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getTopLevelBillingItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Agreement", "getTopLevelBillingItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2659,6 +7686,30 @@ func (r Account_Authentication_Attribute_Type) GetAllObjects() (resp []datatypes
 	return
 }
 
+func (r Account_Authentication_Attribute_Type) GetAllObjectsIter() (resp []datatypes.Account_Attribute_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Authentication_Attribute_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Attribute_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Authentication_Attribute_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Authentication_Attribute_Type) GetObject() (resp datatypes.Account_Authentication_Attribute_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Authentication_Attribute_Type", "getObject", nil, &r.Options, &resp)
@@ -2738,6 +7789,30 @@ func (r Account_Authentication_Saml) GetAccount() (resp datatypes.Account, err e
 // Retrieve The saml attribute values for a SoftLayer customer account.
 func (r Account_Authentication_Saml) GetAttributes() (resp []datatypes.Account_Authentication_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Authentication_Saml", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Authentication_Saml) GetAttributesIter() (resp []datatypes.Account_Authentication_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Authentication_Saml", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Authentication_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Authentication_Saml", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2972,6 +8047,30 @@ func (r Account_Contact) GetAllContactTypes() (resp []datatypes.Account_Contact_
 	return
 }
 
+func (r Account_Contact) GetAllContactTypesIter() (resp []datatypes.Account_Contact_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Contact", "getAllContactTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Contact_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Contact", "getAllContactTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Contact) GetObject() (resp datatypes.Account_Contact, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Contact", "getObject", nil, &r.Options, &resp)
@@ -3201,6 +8300,30 @@ func (r Account_Internal_Ibm) GetAccountTypes() (resp []string, err error) {
 	return
 }
 
+func (r Account_Internal_Ibm) GetAccountTypesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getAccountTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getAccountTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Gets the URL used to perform manager validation.
 func (r Account_Internal_Ibm) GetAuthorizationUrl(requestId *int) (resp string, err error) {
 	params := []interface{}{
@@ -3216,9 +8339,57 @@ func (r Account_Internal_Ibm) GetBmsCountries() (resp []datatypes.BMS_Container_
 	return
 }
 
+func (r Account_Internal_Ibm) GetBmsCountriesIter() (resp []datatypes.BMS_Container_Country, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountries", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.BMS_Container_Country{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountries", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Internal_Ibm) GetBmsCountryList() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountryList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Internal_Ibm) GetBmsCountryListIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountryList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Internal_Ibm", "getBmsCountryList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3498,6 +8669,30 @@ func (r Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link_
 	return
 }
 
+func (r Account_Link_OpenStack) ListOSProjectsIter() (resp []datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "listOSProjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Link_OpenStack_ProjectDetails{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "listOSProjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The SoftLayer_Account_Lockdown_Request data type holds information on API requests from brand customers.
 type Account_Lockdown_Request struct {
 	Session session.SLSession
@@ -3570,6 +8765,33 @@ func (r Account_Lockdown_Request) GetAccountHistory(accountId *int) (resp []data
 		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Lockdown_Request", "getAccountHistory", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_Lockdown_Request) GetAccountHistoryIter(accountId *int) (resp []datatypes.Account_Lockdown_Request, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Lockdown_Request", "getAccountHistory", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Lockdown_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Lockdown_Request", "getAccountHistory", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3707,6 +8929,30 @@ func (r Account_Media) GetAllMediaTypes() (resp []datatypes.Account_Media_Type, 
 	return
 }
 
+func (r Account_Media) GetAllMediaTypesIter() (resp []datatypes.Account_Media_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Media", "getAllMediaTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Media_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Media", "getAllMediaTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The customer user who created the media object.
 func (r Account_Media) GetCreateUser() (resp datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Media", "getCreateUser", nil, &r.Options, &resp)
@@ -3825,9 +9071,57 @@ func (r Account_Media_Data_Transfer_Request) GetActiveTickets() (resp []datatype
 	return
 }
 
+func (r Account_Media_Data_Transfer_Request) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getActiveTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getActiveTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of all the possible statuses to which a request may be set.
 func (r Account_Media_Data_Transfer_Request) GetAllRequestStatuses() (resp []datatypes.Account_Media_Data_Transfer_Request_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getAllRequestStatuses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Media_Data_Transfer_Request) GetAllRequestStatusesIter() (resp []datatypes.Account_Media_Data_Transfer_Request_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getAllRequestStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Media_Data_Transfer_Request_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getAllRequestStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3873,6 +9167,30 @@ func (r Account_Media_Data_Transfer_Request) GetShipments() (resp []datatypes.Ac
 	return
 }
 
+func (r Account_Media_Data_Transfer_Request) GetShipmentsIter() (resp []datatypes.Account_Shipment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getShipments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getShipments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The status of the request.
 func (r Account_Media_Data_Transfer_Request) GetStatus() (resp datatypes.Account_Media_Data_Transfer_Request_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getStatus", nil, &r.Options, &resp)
@@ -3882,6 +9200,30 @@ func (r Account_Media_Data_Transfer_Request) GetStatus() (resp datatypes.Account
 // Retrieve All tickets that are attached to the data transfer request.
 func (r Account_Media_Data_Transfer_Request) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Media_Data_Transfer_Request) GetTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Media_Data_Transfer_Request", "getTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3967,6 +9309,30 @@ func (r Account_Note) GetNoteHistory() (resp []datatypes.Account_Note_History, e
 	return
 }
 
+func (r Account_Note) GetNoteHistoryIter() (resp []datatypes.Account_Note_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Note", "getNoteHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Note_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Note", "getNoteHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Note) GetObject() (resp datatypes.Account_Note, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Note", "getObject", nil, &r.Options, &resp)
@@ -4032,6 +9398,30 @@ func (r Account_Partner_Referral_Prospect) GetObject() (resp datatypes.Account_P
 // Retrieves Questions for a Referral Partner Survey
 func (r Account_Partner_Referral_Prospect) GetSurveyQuestions() (resp []datatypes.Survey_Question, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Partner_Referral_Prospect", "getSurveyQuestions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Partner_Referral_Prospect) GetSurveyQuestionsIter() (resp []datatypes.Survey_Question, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Partner_Referral_Prospect", "getSurveyQuestions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Survey_Question{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Partner_Referral_Prospect", "getSurveyQuestions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4183,12 +9573,66 @@ func (r Account_ProofOfConcept) GetRequestsPendingIntegratedOfferingTeamReview(a
 	return
 }
 
+func (r Account_ProofOfConcept) GetRequestsPendingIntegratedOfferingTeamReviewIter(accessToken *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingIntegratedOfferingTeamReview", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Account_ProofOfConcept_Review_Summary{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingIntegratedOfferingTeamReview", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of requests that are pending over threshold review
 func (r Account_ProofOfConcept) GetRequestsPendingOverThresholdReview(accessToken *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
 	params := []interface{}{
 		accessToken,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingOverThresholdReview", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_ProofOfConcept) GetRequestsPendingOverThresholdReviewIter(accessToken *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		accessToken,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingOverThresholdReview", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Account_ProofOfConcept_Review_Summary{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getRequestsPendingOverThresholdReview", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4229,6 +9673,34 @@ func (r Account_ProofOfConcept) GetSubmittedRequests(email *string, sortOrder *s
 		sortOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequests", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_ProofOfConcept) GetSubmittedRequestsIter(email *string, sortOrder *string) (resp []datatypes.Container_Account_ProofOfConcept_Review_Summary, err error) {
+	params := []interface{}{
+		email,
+		sortOrder,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequests", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Account_ProofOfConcept_Review_Summary{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept", "getSubmittedRequests", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4360,6 +9832,30 @@ func (r Account_ProofOfConcept_Approver) GetAllObjects() (resp []datatypes.Accou
 	return
 }
 
+func (r Account_ProofOfConcept_Approver) GetAllObjectsIter() (resp []datatypes.Account_ProofOfConcept_Approver, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Approver{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_ProofOfConcept_Approver) GetObject() (resp datatypes.Account_ProofOfConcept_Approver, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver", "getObject", nil, &r.Options, &resp)
@@ -4470,6 +9966,30 @@ func (r Account_ProofOfConcept_Approver_Type) GetApprovers() (resp []datatypes.A
 	return
 }
 
+func (r Account_ProofOfConcept_Approver_Type) GetApproversIter() (resp []datatypes.Account_ProofOfConcept_Approver, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver_Type", "getApprovers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Approver{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver_Type", "getApprovers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_ProofOfConcept_Approver_Type) GetObject() (resp datatypes.Account_ProofOfConcept_Approver_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Approver_Type", "getObject", nil, &r.Options, &resp)
@@ -4519,6 +10039,30 @@ func (r Account_ProofOfConcept_Campaign_Code) Offset(offset int) Account_ProofOf
 // This method will retrieve all SoftLayer_Account_ProofOfConcept_Campaign_Code objects. Use the `code` field when submitting a request on the [[SoftLayer_Container_Account_ProofOfConcept_Request_Opportunity]] container.
 func (r Account_ProofOfConcept_Campaign_Code) GetAllObjects() (resp []datatypes.Account_ProofOfConcept_Campaign_Code, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Campaign_Code", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_ProofOfConcept_Campaign_Code) GetAllObjectsIter() (resp []datatypes.Account_ProofOfConcept_Campaign_Code, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Campaign_Code", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Campaign_Code{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Campaign_Code", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4574,15 +10118,87 @@ func (r Account_ProofOfConcept_Funding_Type) GetAllObjects() (resp []datatypes.A
 	return
 }
 
+func (r Account_ProofOfConcept_Funding_Type) GetAllObjectsIter() (resp []datatypes.Account_ProofOfConcept_Funding_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Funding_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account_ProofOfConcept_Funding_Type) GetApproverTypes() (resp []datatypes.Account_ProofOfConcept_Approver_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApproverTypes", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account_ProofOfConcept_Funding_Type) GetApproverTypesIter() (resp []datatypes.Account_ProofOfConcept_Approver_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApproverTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Approver_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApproverTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Account_ProofOfConcept_Funding_Type) GetApprovers() (resp []datatypes.Account_ProofOfConcept_Approver, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApprovers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_ProofOfConcept_Funding_Type) GetApproversIter() (resp []datatypes.Account_ProofOfConcept_Approver, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApprovers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_ProofOfConcept_Approver{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getApprovers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4687,6 +10303,30 @@ func (r Account_Regional_Registry_Detail) GetDetails() (resp []datatypes.Network
 	return
 }
 
+func (r Account_Regional_Registry_Detail) GetDetailsIter() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration_Details{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Regional_Registry_Detail, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getObject", nil, &r.Options, &resp)
@@ -4696,6 +10336,30 @@ func (r Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Re
 // Retrieve [Deprecated] The individual properties that define this detail object's values.
 func (r Account_Regional_Registry_Detail) GetProperties() (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Regional_Registry_Detail) GetPropertiesIter() (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getProperties", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Regional_Registry_Detail_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getProperties", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4726,6 +10390,30 @@ func (r Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp 
 // Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail) ValidatePersonForAllRegistrars() (resp []datatypes.Container_Message, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "validatePersonForAllRegistrars", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Regional_Registry_Detail) ValidatePersonForAllRegistrarsIter() (resp []datatypes.Container_Message, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "validatePersonForAllRegistrars", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Message{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "validatePersonForAllRegistrars", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4795,6 +10483,33 @@ func (r Account_Regional_Registry_Detail_Property) CreateObjects(templateObjects
 		templateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "createObjects", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_Regional_Registry_Detail_Property) CreateObjectsIter(templateObjects []datatypes.Account_Regional_Registry_Detail_Property) (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Regional_Registry_Detail_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4899,6 +10614,30 @@ func (r Account_Regional_Registry_Detail_Property_Type) GetAllObjects() (resp []
 	return
 }
 
+func (r Account_Regional_Registry_Detail_Property_Type) GetAllObjectsIter() (resp []datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Regional_Registry_Detail_Property_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Account_Regional_Registry_Detail_Property_Type) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getObject", nil, &r.Options, &resp)
@@ -4954,6 +10693,30 @@ func (r Account_Regional_Registry_Detail_Type) Offset(offset int) Account_Region
 // Deprecated: This function has been marked as deprecated.
 func (r Account_Regional_Registry_Detail_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Regional_Registry_Detail_Type) GetAllObjectsIter() (resp []datatypes.Account_Regional_Registry_Detail_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Regional_Registry_Detail_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5151,6 +10914,30 @@ func (r Account_Shipment) GetAllCouriers() (resp []datatypes.Auxiliary_Shipping_
 	return
 }
 
+func (r Account_Shipment) GetAllCouriersIter() (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllCouriers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Auxiliary_Shipping_Courier{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllCouriers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of available shipping couriers.
 func (r Account_Shipment) GetAllCouriersByType(courierTypeKeyName *string) (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
 	params := []interface{}{
@@ -5160,15 +10947,90 @@ func (r Account_Shipment) GetAllCouriersByType(courierTypeKeyName *string) (resp
 	return
 }
 
+func (r Account_Shipment) GetAllCouriersByTypeIter(courierTypeKeyName *string) (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
+	params := []interface{}{
+		courierTypeKeyName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllCouriersByType", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Auxiliary_Shipping_Courier{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllCouriersByType", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a a list of shipment statuses.
 func (r Account_Shipment) GetAllShipmentStatuses() (resp []datatypes.Account_Shipment_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentStatuses", nil, &r.Options, &resp)
 	return
 }
 
+func (r Account_Shipment) GetAllShipmentStatusesIter() (resp []datatypes.Account_Shipment_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a a list of shipment types.
 func (r Account_Shipment) GetAllShipmentTypes() (resp []datatypes.Account_Shipment_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentTypes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Shipment) GetAllShipmentTypesIter() (resp []datatypes.Account_Shipment_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getAllShipmentTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5238,6 +11100,30 @@ func (r Account_Shipment) GetShipmentItems() (resp []datatypes.Account_Shipment_
 	return
 }
 
+func (r Account_Shipment) GetShipmentItemsIter() (resp []datatypes.Account_Shipment_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getShipmentItems", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getShipmentItems", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The status of the shipment.
 func (r Account_Shipment) GetStatus() (resp datatypes.Account_Shipment_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getStatus", nil, &r.Options, &resp)
@@ -5247,6 +11133,30 @@ func (r Account_Shipment) GetStatus() (resp datatypes.Account_Shipment_Status, e
 // Retrieve All tracking data for the shipment and packages.
 func (r Account_Shipment) GetTrackingData() (resp []datatypes.Account_Shipment_Tracking_Data, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getTrackingData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Account_Shipment) GetTrackingDataIter() (resp []datatypes.Account_Shipment_Tracking_Data, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getTrackingData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment_Tracking_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment", "getTrackingData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5522,6 +11432,33 @@ func (r Account_Shipment_Tracking_Data) CreateObjects(templateObjects []datatype
 		templateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment_Tracking_Data", "createObjects", params, &r.Options, &resp)
+	return
+}
+
+func (r Account_Shipment_Tracking_Data) CreateObjectsIter(templateObjects []datatypes.Account_Shipment_Tracking_Data) (resp []datatypes.Account_Shipment_Tracking_Data, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Account_Shipment_Tracking_Data", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment_Tracking_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Account_Shipment_Tracking_Data", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

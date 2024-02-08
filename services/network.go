@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -210,6 +211,35 @@ func (r Network_Application_Delivery_Controller) GetBandwidthDataByDate(startDat
 	return
 }
 
+func (r Network_Application_Delivery_Controller) GetBandwidthDataByDateIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+		networkType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getBandwidthDataByDate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getBandwidthDataByDate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Use this method when needing a bandwidth image for a single application delivery controller. It will gather the correct input parameters for the generic graphing utility based on the date ranges
 func (r Network_Application_Delivery_Controller) GetBandwidthImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -230,6 +260,30 @@ func (r Network_Application_Delivery_Controller) GetBillingItem() (resp datatype
 // Retrieve Previous configurations for an Application Delivery Controller.
 func (r Network_Application_Delivery_Controller) GetConfigurationHistory() (resp []datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getConfigurationHistory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller) GetConfigurationHistoryIter() (resp []datatypes.Network_Application_Delivery_Controller_Configuration_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getConfigurationHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_Configuration_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getConfigurationHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -276,6 +330,30 @@ func (r Network_Application_Delivery_Controller) GetLoadBalancers() (resp []data
 	return
 }
 
+func (r Network_Application_Delivery_Controller) GetLoadBalancersIter() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getLoadBalancers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LoadBalancer_VirtualIpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getLoadBalancers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag indicating that this Application Delivery Controller is a managed resource.
 func (r Network_Application_Delivery_Controller) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -297,6 +375,30 @@ func (r Network_Application_Delivery_Controller) GetNetworkVlan() (resp datatype
 // Retrieve The network VLANs that an application delivery controller resides on.
 func (r Network_Application_Delivery_Controller) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -336,9 +438,57 @@ func (r Network_Application_Delivery_Controller) GetSubnets() (resp []datatypes.
 	return
 }
 
+func (r Network_Application_Delivery_Controller) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Application_Delivery_Controller) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -351,6 +501,30 @@ func (r Network_Application_Delivery_Controller) GetType() (resp datatypes.Netwo
 // Retrieve
 func (r Network_Application_Delivery_Controller) GetVirtualIpAddresses() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getVirtualIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller) GetVirtualIpAddressesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getVirtualIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getVirtualIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -559,6 +733,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Ty
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetAllObjectsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type", "getObject", nil, &r.Options, &resp)
@@ -611,6 +809,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAt
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetAttributesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getObject", nil, &r.Options, &resp)
@@ -620,6 +842,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetOb
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetServices() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getServices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check) GetServicesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getServices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check", "getServices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -675,6 +921,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) 
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetAllObjectsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type", "getObject", nil, &r.Options, &resp)
@@ -727,6 +997,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) Get
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetAllObjectsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Method", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Method", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Method) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Method, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Method", "getObject", nil, &r.Options, &resp)
@@ -776,6 +1070,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) Offse
 // no documentation yet
 func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetAllObjects() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Routing_Type) GetAllObjectsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Routing_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Routing_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -850,9 +1168,57 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroupRe
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroupReferencesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroupReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroupReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroups() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetGroupsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -865,6 +1231,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetHealthC
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetHealthChecks() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getHealthChecks", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetHealthChecksIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getHealthChecks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Health_Check{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getHealthChecks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -968,9 +1358,57 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetS
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetServiceReferencesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServiceReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServiceReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetServices() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetServicesIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getServices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -983,6 +1421,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetV
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetVirtualServers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getVirtualServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service_Group) GetVirtualServersIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getVirtualServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service_Group", "getVirtualServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1059,15 +1521,87 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) G
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetApplicationDeliveryControllersIter() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getApplicationDeliveryControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getApplicationDeliveryControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Yields a list of the SSL/TLS encryption ciphers that are currently supported on this virtual IP address instance.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportCiphers() (resp []datatypes.Security_SecureTransportCipher, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportCiphers", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportCiphersIter() (resp []datatypes.Security_SecureTransportCipher, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportCiphers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_SecureTransportCipher{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportCiphers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Yields a list of the secure communication protocols that are currently supported on this virtual IP address instance. The list of supported ciphers for each protocol is culled to match availability.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportProtocols() (resp []datatypes.Security_SecureTransportProtocol, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportProtocols", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetAvailableSecureTransportProtocolsIter() (resp []datatypes.Security_SecureTransportProtocol, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportProtocols", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_SecureTransportProtocol{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getAvailableSecureTransportProtocols", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1101,6 +1635,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) G
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetLoadBalancerHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getLoadBalancerHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getLoadBalancerHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag indicating that the load balancer is a managed resource.
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -1119,9 +1677,57 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) G
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportCiphersIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportCiphers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportCiphers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The list of secure transport protocols enabled for this virtual IP address
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportProtocols() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportProtocols", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetSecureTransportProtocolsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportProtocols", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getSecureTransportProtocols", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1140,6 +1746,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) G
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetVirtualServers() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getVirtualServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress) GetVirtualServersIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getVirtualServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress", "getVirtualServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1226,6 +1856,30 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetS
 	return
 }
 
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetServiceGroupsIter() (resp []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getServiceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getServiceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetVirtualIpAddress() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getVirtualIpAddress", nil, &r.Options, &resp)
@@ -1292,12 +1946,63 @@ func (r Network_Backbone) GetAllBackbones() (resp []datatypes.Network_Backbone, 
 	return
 }
 
+func (r Network_Backbone) GetAllBackbonesIter() (resp []datatypes.Network_Backbone, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getAllBackbones", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Backbone{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getAllBackbones", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of all SoftLayer backbone connections for a location name.
 func (r Network_Backbone) GetBackbonesForLocationName(locationName *string) (resp []datatypes.Network_Backbone, err error) {
 	params := []interface{}{
 		locationName,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getBackbonesForLocationName", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Backbone) GetBackbonesForLocationNameIter(locationName *string) (resp []datatypes.Network_Backbone, err error) {
+	params := []interface{}{
+		locationName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getBackbonesForLocationName", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Backbone{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getBackbonesForLocationName", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1368,6 +2073,30 @@ func (r Network_Backbone_Location_Dependent) Offset(offset int) Network_Backbone
 // no documentation yet
 func (r Network_Backbone_Location_Dependent) GetAllObjects() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone_Location_Dependent", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Backbone_Location_Dependent) GetAllObjectsIter() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Backbone_Location_Dependent", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Backbone_Location_Dependent{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Backbone_Location_Dependent", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1468,9 +2197,57 @@ func (r Network_Bandwidth_Version1_Allotment) GetActiveDetails() (resp []datatyp
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetActiveDetailsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getActiveDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment_Detail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getActiveDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Application Delivery Controller contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllers() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getApplicationDeliveryControllers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Bandwidth_Version1_Allotment) GetApplicationDeliveryControllersIter() (resp []datatypes.Network_Application_Delivery_Controller, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getApplicationDeliveryControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Application_Delivery_Controller{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getApplicationDeliveryControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1496,6 +2273,34 @@ func (r Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRange(startDate
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetBandwidthForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthForDateRange", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBandwidthForDateRange", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method recurses through all servers on a Bandwidth Pool for a given snapshot range, gathers the necessary parameters, and then calls the bandwidth graphing server.  The return result is a container that includes the min and max dates for all servers to be used in the query, as well as an image in PNG format.  This method uses the new and improved drawing routines which should return in a reasonable time frame now that the new backend data warehouse is used.
 func (r Network_Bandwidth_Version1_Allotment) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -1515,9 +2320,57 @@ func (r Network_Bandwidth_Version1_Allotment) GetBareMetalInstances() (resp []da
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetBareMetalInstancesIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBareMetalInstances", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBareMetalInstances", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A virtual rack's raw bandwidth usage data for an account's current billing cycle. One object is returned for each network this server is attached to.
 func (r Network_Bandwidth_Version1_Allotment) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Bandwidth_Version1_Allotment) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1557,9 +2410,57 @@ func (r Network_Bandwidth_Version1_Allotment) GetDetails() (resp []datatypes.Net
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetDetailsIter() (resp []datatypes.Network_Bandwidth_Version1_Allotment_Detail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Version1_Allotment_Detail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Bandwidth_Version1_Allotment) GetHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1581,15 +2482,87 @@ func (r Network_Bandwidth_Version1_Allotment) GetManagedBareMetalInstances() (re
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetManagedBareMetalInstancesIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedBareMetalInstances", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedBareMetalInstances", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The managed hardware contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetManagedHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedHardware", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetManagedHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The managed Virtual Server contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Bandwidth_Version1_Allotment) GetManagedVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getManagedVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1629,6 +2602,30 @@ func (r Network_Bandwidth_Version1_Allotment) GetPrivateNetworkOnlyHardware() (r
 	return
 }
 
+func (r Network_Bandwidth_Version1_Allotment) GetPrivateNetworkOnlyHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getPrivateNetworkOnlyHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getPrivateNetworkOnlyHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the bandwidth usage for this bandwidth pool for the current billing cycle is projected to exceed the allocation.
 func (r Network_Bandwidth_Version1_Allotment) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getProjectedOverBandwidthAllocationFlag", nil, &r.Options, &resp)
@@ -1662,6 +2659,30 @@ func (r Network_Bandwidth_Version1_Allotment) GetVdrMemberRecurringFee() (resp d
 // Retrieve The Virtual Server contained within a virtual rack.
 func (r Network_Bandwidth_Version1_Allotment) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Bandwidth_Version1_Allotment) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Bandwidth_Version1_Allotment", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2048,12 +3069,66 @@ func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) List
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) ListModifyResponseHeaderIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "listModifyResponseHeader", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "listModifyResponseHeader", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) UpdateModifyResponseHeader(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
 	params := []interface{}{
 		input,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "updateModifyResponseHeader", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) UpdateModifyResponseHeaderIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "updateModifyResponseHeader", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader", "updateModifyResponseHeader", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2106,6 +3181,33 @@ func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) CreateTokenAuth
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) CreateTokenAuthPathIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "createTokenAuthPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "createTokenAuthPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) DeleteTokenAuthPath(uniqueId *string, path *string) (resp string, err error) {
 	params := []interface{}{
@@ -2131,12 +3233,66 @@ func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) ListTokenAuthPa
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) ListTokenAuthPathIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "listTokenAuthPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "listTokenAuthPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) UpdateTokenAuthPath(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
 	params := []interface{}{
 		input,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "updateTokenAuthPath", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Behavior_TokenAuth) UpdateTokenAuthPathIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "updateTokenAuthPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Behavior_TokenAuth{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Behavior_TokenAuth", "updateTokenAuthPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2190,6 +3346,34 @@ func (r Network_CdnMarketplace_Configuration_Cache_Purge) CreatePurge(uniqueId *
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Cache_Purge) CreatePurgeIter(uniqueId *string, path *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
+	params := []interface{}{
+		uniqueId,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "createPurge", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "createPurge", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetObject() (resp datatypes.Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getObject", nil, &r.Options, &resp)
@@ -2206,6 +3390,34 @@ func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetPurgeHistoryPerMapp
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetPurgeHistoryPerMappingIter(uniqueId *string, saved *int) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
+	params := []interface{}{
+		uniqueId,
+		saved,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getPurgeHistoryPerMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getPurgeHistoryPerMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetPurgeStatus(uniqueId *string, path *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
 	params := []interface{}{
@@ -2213,6 +3425,34 @@ func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetPurgeStatus(uniqueI
 		path,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getPurgeStatus", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_Purge) GetPurgeStatusIter(uniqueId *string, path *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
+	params := []interface{}{
+		uniqueId,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getPurgeStatus", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "getPurgeStatus", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2224,6 +3464,35 @@ func (r Network_CdnMarketplace_Configuration_Cache_Purge) SaveOrUnsavePurgePath(
 		saveOrUnsave,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "saveOrUnsavePurgePath", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_Purge) SaveOrUnsavePurgePathIter(uniqueId *string, path *string, saveOrUnsave *int) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge, err error) {
+	params := []interface{}{
+		uniqueId,
+		path,
+		saveOrUnsave,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "saveOrUnsavePurgePath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_Purge{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_Purge", "saveOrUnsavePurgePath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2310,12 +3579,66 @@ func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListFavoriteGroup
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListFavoriteGroupIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listFavoriteGroup", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listFavoriteGroup", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListUnfavoriteGroup(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
 	params := []interface{}{
 		uniqueId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listUnfavoriteGroup", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) ListUnfavoriteGroupIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listUnfavoriteGroup", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "listUnfavoriteGroup", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2326,6 +3649,34 @@ func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) PurgeByGroupIds(u
 		groupUniqueIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "purgeByGroupIds", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeGroup) PurgeByGroupIdsIter(uniqueId *string, groupUniqueIds []string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory, err error) {
+	params := []interface{}{
+		uniqueId,
+		groupUniqueIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "purgeByGroupIds", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeGroup", "purgeByGroupIds", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2401,6 +3752,33 @@ func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) ListPurgeGroupH
 		uniqueId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeHistory", "listPurgeGroupHistory", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Cache_PurgeHistory) ListPurgeGroupHistoryIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeHistory", "listPurgeGroupHistory", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Cache_PurgeGroupHistory{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_PurgeHistory", "listPurgeGroupHistory", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2480,6 +3858,33 @@ func (r Network_CdnMarketplace_Configuration_Cache_TimeToLive) ListTimeToLive(un
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Cache_TimeToLive) ListTimeToLiveIter(uniqueId *string) (resp []datatypes.Network_CdnMarketplace_Configuration_Cache_TimeToLive, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_TimeToLive", "listTimeToLive", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_CdnMarketplace_Configuration_Cache_TimeToLive{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Cache_TimeToLive", "listTimeToLive", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Cache_TimeToLive) UpdateTimeToLive(uniqueId *string, oldPath *string, newPath *string, oldTtl *string, newTtl *string) (resp string, err error) {
 	params := []interface{}{
@@ -2542,12 +3947,66 @@ func (r Network_CdnMarketplace_Configuration_Mapping) CreateDomainMapping(input 
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping) CreateDomainMappingIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "createDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "createDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping) DeleteDomainMapping(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
 	params := []interface{}{
 		uniqueId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "deleteDomainMapping", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping) DeleteDomainMappingIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "deleteDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "deleteDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2566,9 +4025,60 @@ func (r Network_CdnMarketplace_Configuration_Mapping) ListDomainMappingByUniqueI
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping) ListDomainMappingByUniqueIdIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listDomainMappingByUniqueId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listDomainMappingByUniqueId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping) ListDomainMappings() (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listDomainMappings", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping) ListDomainMappingsIter() (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listDomainMappings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "listDomainMappings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2581,12 +4091,66 @@ func (r Network_CdnMarketplace_Configuration_Mapping) RetryHttpsActionRequest(un
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping) RetryHttpsActionRequestIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "retryHttpsActionRequest", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "retryHttpsActionRequest", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping) StartDomainMapping(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
 	params := []interface{}{
 		uniqueId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "startDomainMapping", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping) StartDomainMappingIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "startDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "startDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2599,12 +4163,66 @@ func (r Network_CdnMarketplace_Configuration_Mapping) StopDomainMapping(uniqueId
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping) StopDomainMappingIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "stopDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "stopDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping) UpdateDomainMapping(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
 	params := []interface{}{
 		input,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "updateDomainMapping", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping) UpdateDomainMappingIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "updateDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "updateDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2623,6 +4241,33 @@ func (r Network_CdnMarketplace_Configuration_Mapping) VerifyDomainMapping(unique
 		uniqueId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "verifyDomainMapping", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping) VerifyDomainMappingIter(uniqueId *int) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "verifyDomainMapping", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping", "verifyDomainMapping", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2675,6 +4320,33 @@ func (r Network_CdnMarketplace_Configuration_Mapping_Path) CreateOriginPath(inpu
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping_Path) CreateOriginPathIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "createOriginPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "createOriginPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping_Path) DeleteOriginPath(uniqueId *string, path *string) (resp string, err error) {
 	params := []interface{}{
@@ -2700,12 +4372,66 @@ func (r Network_CdnMarketplace_Configuration_Mapping_Path) ListOriginPath(unique
 	return
 }
 
+func (r Network_CdnMarketplace_Configuration_Mapping_Path) ListOriginPathIter(uniqueId *string) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path, err error) {
+	params := []interface{}{
+		uniqueId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "listOriginPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "listOriginPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Configuration_Mapping_Path) UpdateOriginPath(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path, err error) {
 	params := []interface{}{
 		input,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "updateOriginPath", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Configuration_Mapping_Path) UpdateOriginPathIter(input *datatypes.Container_Network_CdnMarketplace_Configuration_Input) (resp []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path, err error) {
+	params := []interface{}{
+		input,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "updateOriginPath", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Configuration_Mapping_Path{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Configuration_Mapping_Path", "updateOriginPath", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2761,6 +4487,36 @@ func (r Network_CdnMarketplace_Metrics) GetCustomerInvoicingMetrics(vendorName *
 	return
 }
 
+func (r Network_CdnMarketplace_Metrics) GetCustomerInvoicingMetricsIter(vendorName *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		vendorName,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerInvoicingMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerInvoicingMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetCustomerRealTimeMetrics(vendorName *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
@@ -2770,6 +4526,36 @@ func (r Network_CdnMarketplace_Metrics) GetCustomerRealTimeMetrics(vendorName *s
 		timeInterval,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerRealTimeMetrics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Metrics) GetCustomerRealTimeMetricsIter(vendorName *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		vendorName,
+		startTime,
+		endTime,
+		timeInterval,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerRealTimeMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerRealTimeMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2785,6 +4571,36 @@ func (r Network_CdnMarketplace_Metrics) GetCustomerUsageMetrics(vendorName *stri
 	return
 }
 
+func (r Network_CdnMarketplace_Metrics) GetCustomerUsageMetricsIter(vendorName *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		vendorName,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerUsageMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getCustomerUsageMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetMappingBandwidthByRegionMetrics(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
@@ -2794,6 +4610,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingBandwidthByRegionMetrics(mappi
 		frequency,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingBandwidthByRegionMetrics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Metrics) GetMappingBandwidthByRegionMetricsIter(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingBandwidthByRegionMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingBandwidthByRegionMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2809,6 +4655,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingBandwidthMetrics(mappingUnique
 	return
 }
 
+func (r Network_CdnMarketplace_Metrics) GetMappingBandwidthMetricsIter(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingBandwidthMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingBandwidthMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetMappingHitsByTypeMetrics(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
@@ -2818,6 +4694,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingHitsByTypeMetrics(mappingUniqu
 		frequency,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsByTypeMetrics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Metrics) GetMappingHitsByTypeMetricsIter(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsByTypeMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsByTypeMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2833,6 +4739,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingHitsMetrics(mappingUniqueId *s
 	return
 }
 
+func (r Network_CdnMarketplace_Metrics) GetMappingHitsMetricsIter(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingHitsMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetMappingIntegratedMetrics(mappingUniqueId *string, startTime *int, endTime *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
@@ -2842,6 +4778,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingIntegratedMetrics(mappingUniqu
 		frequency,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingIntegratedMetrics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Metrics) GetMappingIntegratedMetricsIter(mappingUniqueId *string, startTime *int, endTime *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startTime,
+		endTime,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingIntegratedMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingIntegratedMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2857,6 +4823,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingRealTimeMetrics(mappingUniqueI
 	return
 }
 
+func (r Network_CdnMarketplace_Metrics) GetMappingRealTimeMetricsIter(mappingUniqueId *string, startTime *int, endTime *int, timeInterval *int) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startTime,
+		endTime,
+		timeInterval,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingRealTimeMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingRealTimeMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_CdnMarketplace_Metrics) GetMappingUsageMetrics(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
 	params := []interface{}{
@@ -2866,6 +4862,36 @@ func (r Network_CdnMarketplace_Metrics) GetMappingUsageMetrics(mappingUniqueId *
 		frequency,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingUsageMetrics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Metrics) GetMappingUsageMetricsIter(mappingUniqueId *string, startDate *int, endDate *int, frequency *string) (resp []datatypes.Container_Network_CdnMarketplace_Metrics, err error) {
+	params := []interface{}{
+		mappingUniqueId,
+		startDate,
+		endDate,
+		frequency,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingUsageMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Metrics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Metrics", "getMappingUsageMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2918,6 +4944,30 @@ func (r Network_CdnMarketplace_Vendor) GetObject() (resp datatypes.Network_CdnMa
 // no documentation yet
 func (r Network_CdnMarketplace_Vendor) ListVendors() (resp []datatypes.Container_Network_CdnMarketplace_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Vendor", "listVendors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_CdnMarketplace_Vendor) ListVendorsIter() (resp []datatypes.Container_Network_CdnMarketplace_Vendor, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Vendor", "listVendors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_CdnMarketplace_Vendor{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_CdnMarketplace_Vendor", "listVendors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2978,6 +5028,33 @@ func (r Network_Component) AddNetworkVlanTrunks(networkVlans []datatypes.Network
 	return
 }
 
+func (r Network_Component) AddNetworkVlanTrunksIter(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		networkVlans,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "addNetworkVlanTrunks", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "addNetworkVlanTrunks", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Remove all VLANs currently attached as trunks to this network component.
 //
 // This method should be called on a network component of assigned hardware. A current list of VLAN trunks for a network component on a customer server can be found at 'uplinkComponent->networkVlanTrunks'.
@@ -2989,6 +5066,30 @@ func (r Network_Component) AddNetworkVlanTrunks(networkVlans []datatypes.Network
 // Note that in the event of a "pending API request" error some VLANs may still have been affected and scheduled for deactivation.
 func (r Network_Component) ClearNetworkVlanTrunks() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "clearNetworkVlanTrunks", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component) ClearNetworkVlanTrunksIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "clearNetworkVlanTrunks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "clearNetworkVlanTrunks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3028,9 +5129,57 @@ func (r Network_Component) GetIpAddressBindings() (resp []datatypes.Network_Comp
 	return
 }
 
+func (r Network_Component) GetIpAddressBindingsIter() (resp []datatypes.Network_Component_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getIpAddressBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getIpAddressBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Component) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component) GetIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3064,6 +5213,30 @@ func (r Network_Component) GetNetworkHardware() (resp []datatypes.Hardware, err 
 	return
 }
 
+func (r Network_Component) GetNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The VLAN that a network component's subnet is associated with.
 func (r Network_Component) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlan", nil, &r.Options, &resp)
@@ -3076,9 +5249,57 @@ func (r Network_Component) GetNetworkVlanTrunks() (resp []datatypes.Network_Comp
 	return
 }
 
+func (r Network_Component) GetNetworkVlanTrunksIter() (resp []datatypes.Network_Component_Network_Vlan_Trunk, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlanTrunks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Network_Vlan_Trunk{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlanTrunks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The viable trunking targets of this component. Viable targets include accessible VLANs in the same pod and network as this component, which are not already natively attached nor trunked to this component.
 func (r Network_Component) GetNetworkVlansTrunkable() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlansTrunkable", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component) GetNetworkVlansTrunkableIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlansTrunkable", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getNetworkVlansTrunkable", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3129,6 +5350,30 @@ func (r Network_Component) GetRecentCommands() (resp []datatypes.Hardware_Compon
 	return
 }
 
+func (r Network_Component) GetRecentCommandsIter() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getRecentCommands", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_Command_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getRecentCommands", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Indicates whether the network component is participating in a group of two or more components capable of being operationally redundant, if enabled.
 func (r Network_Component) GetRedundancyCapableFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getRedundancyCapableFlag", nil, &r.Options, &resp)
@@ -3147,6 +5392,30 @@ func (r Network_Component) GetRemoteManagementUsers() (resp []datatypes.Hardware
 	return
 }
 
+func (r Network_Component) GetRemoteManagementUsersIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getRemoteManagementUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getRemoteManagementUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A network component's routers.
 func (r Network_Component) GetRouter() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getRouter", nil, &r.Options, &resp)
@@ -3162,6 +5431,30 @@ func (r Network_Component) GetStorageNetworkFlag() (resp bool, err error) {
 // Retrieve A network component's subnets. A subnet is a group of IP addresses
 func (r Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "getSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "getSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "getSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3193,6 +5486,33 @@ func (r Network_Component) RemoveNetworkVlanTrunks(networkVlans []datatypes.Netw
 		networkVlans,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Component", "removeNetworkVlanTrunks", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component) RemoveNetworkVlanTrunksIter(networkVlans []datatypes.Network_Vlan) (resp []datatypes.Network_Vlan, err error) {
+	params := []interface{}{
+		networkVlans,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component", "removeNetworkVlanTrunks", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component", "removeNetworkVlanTrunks", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3242,6 +5562,30 @@ func (r Network_Component_Firewall) GetApplyServerRuleSubnets() (resp []datatype
 	return
 }
 
+func (r Network_Component_Firewall) GetApplyServerRuleSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getApplyServerRuleSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getApplyServerRuleSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing item for a Hardware Firewall (Dedicated).
 func (r Network_Component_Firewall) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getBillingItem", nil, &r.Options, &resp)
@@ -3266,6 +5610,30 @@ func (r Network_Component_Firewall) GetNetworkFirewallUpdateRequest() (resp []da
 	return
 }
 
+func (r Network_Component_Firewall) GetNetworkFirewallUpdateRequestIter() (resp []datatypes.Network_Firewall_Update_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getNetworkFirewallUpdateRequest", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Update_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getNetworkFirewallUpdateRequest", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject returns a SoftLayer_Network_Firewall_Module_Context_Interface_AccessControlList_Network_Component object. You can only get objects for servers attached to your account that have a network firewall enabled.
 func (r Network_Component_Firewall) GetObject() (resp datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getObject", nil, &r.Options, &resp)
@@ -3278,9 +5646,57 @@ func (r Network_Component_Firewall) GetRules() (resp []datatypes.Network_Compone
 	return
 }
 
+func (r Network_Component_Firewall) GetRulesIter() (resp []datatypes.Network_Component_Firewall_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Firewall_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The additional subnets linked to this network component firewall.
 func (r Network_Component_Firewall) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Component_Firewall) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Component_Firewall", "getSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3345,6 +5761,30 @@ func (r Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Cust
 	return
 }
 
+func (r Network_Customer_Subnet) GetIpAddressesIter() (resp []datatypes.Network_Customer_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Customer_Subnet", "getIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Customer_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Customer_Subnet", "getIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject retrieves the SoftLayer_Network_Customer_Subnet object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Customer_Subnet service. You can only retrieve the subnet whose account matches the account that your portal user is assigned to.
 func (r Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Customer_Subnet", "getObject", nil, &r.Options, &resp)
@@ -3394,6 +5834,30 @@ func (r Network_DirectLink_Location) Offset(offset int) Network_DirectLink_Locat
 // Return all existing Direct Link location.
 func (r Network_DirectLink_Location) GetAllObjects() (resp []datatypes.Network_DirectLink_Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_DirectLink_Location) GetAllObjectsIter() (resp []datatypes.Network_DirectLink_Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_DirectLink_Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_DirectLink_Location", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3559,6 +6023,30 @@ func (r Network_Firewall_AccessControlList) GetNetworkFirewallUpdateRequests() (
 	return
 }
 
+func (r Network_Firewall_AccessControlList) GetNetworkFirewallUpdateRequestsIter() (resp []datatypes.Network_Firewall_Update_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getNetworkFirewallUpdateRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Update_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getNetworkFirewallUpdateRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Firewall_AccessControlList) GetNetworkVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getNetworkVlan", nil, &r.Options, &resp)
@@ -3574,6 +6062,30 @@ func (r Network_Firewall_AccessControlList) GetObject() (resp datatypes.Network_
 // Retrieve The currently running rule set of this context access control list firewall.
 func (r Network_Firewall_AccessControlList) GetRules() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getRules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Firewall_AccessControlList) GetRulesIter() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan_Firewall_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_AccessControlList", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3620,6 +6132,30 @@ func (r Network_Firewall_Interface) Offset(offset int) Network_Firewall_Interfac
 // Retrieve
 func (r Network_Firewall_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Interface", "getFirewallContextAccessControlLists", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Firewall_Interface) GetFirewallContextAccessControlListsIter() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Interface", "getFirewallContextAccessControlLists", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_AccessControlList{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_Interface", "getFirewallContextAccessControlLists", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3678,6 +6214,30 @@ func (r Network_Firewall_Module_Context_Interface) Offset(offset int) Network_Fi
 // Retrieve
 func (r Network_Firewall_Module_Context_Interface) GetFirewallContextAccessControlLists() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Module_Context_Interface", "getFirewallContextAccessControlLists", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Firewall_Module_Context_Interface) GetFirewallContextAccessControlListsIter() (resp []datatypes.Network_Firewall_AccessControlList, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Module_Context_Interface", "getFirewallContextAccessControlLists", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_AccessControlList{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_Module_Context_Interface", "getFirewallContextAccessControlLists", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3743,6 +6303,30 @@ func (r Network_Firewall_Template) GetAllObjects() (resp []datatypes.Network_Fir
 	return
 }
 
+func (r Network_Firewall_Template) GetAllObjectsIter() (resp []datatypes.Network_Firewall_Template, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Template{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject returns a SoftLayer_Network_Firewall_Template object. You can retrieve all available firewall templates. getAllObjects returns an array of all available SoftLayer_Network_Firewall_Template objects. You can use these templates to generate a [[SoftLayer Network Firewall Update Request]].
 //
 // @SLDNDocumentation Service See Also SoftLayer_Network_Firewall_Update_Request
@@ -3754,6 +6338,30 @@ func (r Network_Firewall_Template) GetObject() (resp datatypes.Network_Firewall_
 // Retrieve The rule set that belongs to this firewall rules template.
 func (r Network_Firewall_Template) GetRules() (resp []datatypes.Network_Firewall_Template_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getRules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Firewall_Template) GetRulesIter() (resp []datatypes.Network_Firewall_Template_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Template_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_Template", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3849,6 +6457,30 @@ func (r Network_Firewall_Update_Request) GetObject() (resp datatypes.Network_Fir
 // Retrieve The group of rules contained within the update request.
 func (r Network_Firewall_Update_Request) GetRules() (resp []datatypes.Network_Firewall_Update_Request_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Update_Request", "getRules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Firewall_Update_Request) GetRulesIter() (resp []datatypes.Network_Firewall_Update_Request_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Firewall_Update_Request", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Update_Request_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Firewall_Update_Request", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4058,6 +6690,33 @@ func (r Network_Gateway) GetAllowedOsPriceIds(memberId *int) (resp []int, err er
 	return
 }
 
+func (r Network_Gateway) GetAllowedOsPriceIdsIter(memberId *int) (resp []int, err error) {
+	params := []interface{}{
+		memberId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAllowedOsPriceIds", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getAllowedOsPriceIds", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Returns the Gbps capacity of the gateway object
 func (r Network_Gateway) GetCapacity() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getCapacity", nil, &r.Options, &resp)
@@ -4067,6 +6726,30 @@ func (r Network_Gateway) GetCapacity() (resp string, err error) {
 // Retrieve All VLANs trunked to this gateway.
 func (r Network_Gateway) GetInsideVlans() (resp []datatypes.Network_Gateway_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getInsideVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway) GetInsideVlansIter() (resp []datatypes.Network_Gateway_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getInsideVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getInsideVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4092,6 +6775,30 @@ func (r Network_Gateway) GetMembers() (resp []datatypes.Network_Gateway_Member, 
 	return
 }
 
+func (r Network_Gateway) GetMembersIter() (resp []datatypes.Network_Gateway_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getMembers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getMembers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The firewall associated with this gateway, if any.
 func (r Network_Gateway) GetNetworkFirewall() (resp datatypes.Network_Vlan_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getNetworkFirewall", nil, &r.Options, &resp)
@@ -4113,6 +6820,30 @@ func (r Network_Gateway) GetObject() (resp datatypes.Network_Gateway, err error)
 // Get all VLANs that can become inside VLANs on this gateway. This means the VLAN must not already be an inside VLAN, on the same router as this gateway, not a gateway transit VLAN, and not firewalled.
 func (r Network_Gateway) GetPossibleInsideVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getPossibleInsideVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway) GetPossibleInsideVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getPossibleInsideVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getPossibleInsideVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4161,6 +6892,30 @@ func (r Network_Gateway) GetStatus() (resp datatypes.Network_Gateway_Status, err
 // Retrieve a list of upgradable items available for network gateways.
 func (r Network_Gateway) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4328,6 +7083,33 @@ func (r Network_Gateway_Member) CreateObjects(templateObjects []datatypes.Networ
 	return
 }
 
+func (r Network_Gateway_Member) CreateObjectsIter(templateObjects []datatypes.Network_Gateway_Member) (resp []datatypes.Network_Gateway_Member, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Edit this member, only manufacturer and version can be changed
 func (r Network_Gateway_Member) EditObject(templateObject *datatypes.Network_Gateway_Member) (resp bool, err error) {
 	params := []interface{}{
@@ -4361,6 +7143,30 @@ func (r Network_Gateway_Member) GetLicenses() (resp []datatypes.Network_Gateway_
 	return
 }
 
+func (r Network_Gateway_Member) GetLicensesIter() (resp []datatypes.Network_Gateway_Member_Licenses, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Member_Licenses{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The gateway this member belongs to.
 func (r Network_Gateway_Member) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getNetworkGateway", nil, &r.Options, &resp)
@@ -4376,6 +7182,30 @@ func (r Network_Gateway_Member) GetObject() (resp datatypes.Network_Gateway_Memb
 // Retrieve The gateway passwords for this member.
 func (r Network_Gateway_Member) GetPasswords() (resp []datatypes.Network_Gateway_Member_Passwords, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getPasswords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway_Member) GetPasswordsIter() (resp []datatypes.Network_Gateway_Member_Passwords, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getPasswords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Member_Passwords{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_Member", "getPasswords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4507,6 +7337,34 @@ func (r Network_Gateway_Precheck) GetPrecheckStatus(gatewayId *int, getRollbackP
 	return
 }
 
+func (r Network_Gateway_Precheck) GetPrecheckStatusIter(gatewayId *int, getRollbackPrecheck *bool) (resp []datatypes.Network_Gateway_Precheck, err error) {
+	params := []interface{}{
+		gatewayId,
+		getRollbackPrecheck,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "getPrecheckStatus", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Precheck{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_Precheck", "getPrecheckStatus", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Used to create a License Management Network Gateway Precheck transaction.
 func (r Network_Gateway_Precheck) LicenseManagementPrecheck(gatewayId *int) (resp bool, err error) {
 	params := []interface{}{
@@ -4629,12 +7487,66 @@ func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlId(upgradePkgUrlId 
 	return
 }
 
+func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlIdIter(upgradePkgUrlId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
+	params := []interface{}{
+		upgradePkgUrlId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByUpgradePkgUrlId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_VersionUpgrade{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByUpgradePkgUrlId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Gateway_VersionUpgrade) GetAllUpgradesByGatewayId(gatewayId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
 	params := []interface{}{
 		gatewayId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllUpgradesByGatewayId", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway_VersionUpgrade) GetAllUpgradesByGatewayIdIter(gatewayId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
+	params := []interface{}{
+		gatewayId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllUpgradesByGatewayId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_VersionUpgrade{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllUpgradesByGatewayId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4654,6 +7566,34 @@ func (r Network_Gateway_VersionUpgrade) GetGwOrdersAllowedOS(accountId *int, man
 		manufacturer,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getGwOrdersAllowedOS", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway_VersionUpgrade) GetGwOrdersAllowedOSIter(accountId *int, manufacturer *string) (resp []datatypes.Product_Package_Item_Prices, err error) {
+	params := []interface{}{
+		accountId,
+		manufacturer,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getGwOrdersAllowedOS", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Package_Item_Prices{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getGwOrdersAllowedOS", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4735,6 +7675,33 @@ func (r Network_Gateway_Vlan) CreateObjects(templateObjects []datatypes.Network_
 		templateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Vlan", "createObjects", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Gateway_Vlan) CreateObjectsIter(templateObjects []datatypes.Network_Gateway_Vlan) (resp []datatypes.Network_Gateway_Vlan, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Gateway_Vlan", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Gateway_Vlan", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4867,12 +7834,63 @@ func (r Network_Interconnect_Tenant) GetAllObjects() (resp []datatypes.Network_I
 	return
 }
 
+func (r Network_Interconnect_Tenant) GetAllObjectsIter() (resp []datatypes.Network_Interconnect_Tenant, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Interconnect_Tenant{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Interconnect_Tenant) GetAllPortLabelsWithCurrentUsage(directLinkLocationId *int) (resp []string, err error) {
 	params := []interface{}{
 		directLinkLocationId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllPortLabelsWithCurrentUsage", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Interconnect_Tenant) GetAllPortLabelsWithCurrentUsageIter(directLinkLocationId *int) (resp []string, err error) {
+	params := []interface{}{
+		directLinkLocationId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllPortLabelsWithCurrentUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getAllPortLabelsWithCurrentUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4916,6 +7934,30 @@ func (r Network_Interconnect_Tenant) GetDirectLinkSpeeds(offeringType *string) (
 // no documentation yet
 func (r Network_Interconnect_Tenant) GetNetworkZones() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getNetworkZones", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Interconnect_Tenant) GetNetworkZonesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getNetworkZones", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Interconnect_Tenant", "getNetworkZones", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5179,6 +8221,30 @@ func (r Network_LBaaS_L7Policy) GetL7Rules() (resp []datatypes.Network_LBaaS_L7R
 	return
 }
 
+func (r Network_LBaaS_L7Policy) GetL7RulesIter() (resp []datatypes.Network_LBaaS_L7Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Policy", "getL7Rules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Policy", "getL7Rules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_LBaaS_L7Policy) GetObject() (resp datatypes.Network_LBaaS_L7Policy, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Policy", "getObject", nil, &r.Options, &resp)
@@ -5256,9 +8322,57 @@ func (r Network_LBaaS_L7Pool) GetL7Members() (resp []datatypes.Network_LBaaS_L7M
 	return
 }
 
+func (r Network_LBaaS_L7Pool) GetL7MembersIter() (resp []datatypes.Network_LBaaS_L7Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7Members", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7Members", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_LBaaS_L7Pool) GetL7Policies() (resp []datatypes.Network_LBaaS_L7Policy, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7Policies", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_L7Pool) GetL7PoliciesIter() (resp []datatypes.Network_LBaaS_L7Policy, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7Policies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7Policy{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7Policies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5268,6 +8382,33 @@ func (r Network_LBaaS_L7Pool) GetL7PoolMemberHealth(loadBalancerUuid *string) (r
 		loadBalancerUuid,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7PoolMemberHealth", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_L7Pool) GetL7PoolMemberHealthIter(loadBalancerUuid *string) (resp []datatypes.Network_LBaaS_L7PoolMembersHealth, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7PoolMemberHealth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7PoolMembersHealth{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_L7Pool", "getL7PoolMemberHealth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5433,6 +8574,30 @@ func (r Network_LBaaS_Listener) GetL7Policies() (resp []datatypes.Network_LBaaS_
 	return
 }
 
+func (r Network_LBaaS_Listener) GetL7PoliciesIter() (resp []datatypes.Network_LBaaS_L7Policy, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getL7Policies", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7Policy{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getL7Policies", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_LBaaS_Listener) GetObject() (resp datatypes.Network_LBaaS_Listener, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_Listener", "getObject", nil, &r.Options, &resp)
@@ -5514,12 +8679,63 @@ func (r Network_LBaaS_LoadBalancer) GetAllObjects() (resp []datatypes.Network_LB
 	return
 }
 
+func (r Network_LBaaS_LoadBalancer) GetAllObjectsIter() (resp []datatypes.Network_LBaaS_LoadBalancer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_LoadBalancer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the load balancer appliances for the given lb id.
 func (r Network_LBaaS_LoadBalancer) GetAppliances(lbId *string) (resp []datatypes.Network_LBaaS_LoadBalancerAppliance, err error) {
 	params := []interface{}{
 		lbId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAppliances", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_LoadBalancer) GetAppliancesIter(lbId *string) (resp []datatypes.Network_LBaaS_LoadBalancerAppliance, err error) {
+	params := []interface{}{
+		lbId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAppliances", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_LoadBalancerAppliance{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getAppliances", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5535,9 +8751,57 @@ func (r Network_LBaaS_LoadBalancer) GetHealthMonitors() (resp []datatypes.Networ
 	return
 }
 
+func (r Network_LBaaS_LoadBalancer) GetHealthMonitorsIter() (resp []datatypes.Network_LBaaS_HealthMonitor, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getHealthMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_HealthMonitor{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getHealthMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve L7Pools for load balancer.
 func (r Network_LBaaS_LoadBalancer) GetL7Pools() (resp []datatypes.Network_LBaaS_L7Pool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getL7Pools", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_LoadBalancer) GetL7PoolsIter() (resp []datatypes.Network_LBaaS_L7Pool, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getL7Pools", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_L7Pool{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getL7Pools", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5553,9 +8817,63 @@ func (r Network_LBaaS_LoadBalancer) GetListenerTimeSeriesData(loadBalancerUuid *
 	return
 }
 
+func (r Network_LBaaS_LoadBalancer) GetListenerTimeSeriesDataIter(loadBalancerUuid *string, metricName *string, timeRange *string, listenerUuid *string) (resp []datatypes.Network_LBaaS_LoadBalancerMonitoringMetricDataPoint, err error) {
+	params := []interface{}{
+		loadBalancerUuid,
+		metricName,
+		timeRange,
+		listenerUuid,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListenerTimeSeriesData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_LoadBalancerMonitoringMetricDataPoint{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListenerTimeSeriesData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Listeners assigned to load balancer.
 func (r Network_LBaaS_LoadBalancer) GetListeners() (resp []datatypes.Network_LBaaS_Listener, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListeners", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_LoadBalancer) GetListenersIter() (resp []datatypes.Network_LBaaS_Listener, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListeners", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_Listener{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getListeners", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5577,6 +8895,33 @@ func (r Network_LBaaS_LoadBalancer) GetLoadBalancerMemberHealth(uuid *string) (r
 	return
 }
 
+func (r Network_LBaaS_LoadBalancer) GetLoadBalancerMemberHealthIter(uuid *string) (resp []datatypes.Network_LBaaS_PoolMembersHealth, err error) {
+	params := []interface{}{
+		uuid,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancerMemberHealth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_PoolMembersHealth{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancerMemberHealth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Return load balancers statistics such as total number of current sessions and total number of accumulated connections.
 func (r Network_LBaaS_LoadBalancer) GetLoadBalancerStatistics(uuid *string) (resp datatypes.Network_LBaaS_LoadBalancerStatistics, err error) {
 	params := []interface{}{
@@ -5595,9 +8940,60 @@ func (r Network_LBaaS_LoadBalancer) GetLoadBalancers(data *string) (resp []datat
 	return
 }
 
+func (r Network_LBaaS_LoadBalancer) GetLoadBalancersIter(data *string) (resp []datatypes.Network_LBaaS_LoadBalancer, err error) {
+	params := []interface{}{
+		data,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancers", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_LoadBalancer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getLoadBalancers", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Members assigned to load balancer.
 func (r Network_LBaaS_LoadBalancer) GetMembers() (resp []datatypes.Network_LBaaS_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getMembers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_LoadBalancer) GetMembersIter() (resp []datatypes.Network_LBaaS_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getMembers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getMembers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5610,6 +9006,30 @@ func (r Network_LBaaS_LoadBalancer) GetObject() (resp datatypes.Network_LBaaS_Lo
 // Retrieve list of preferred custom ciphers configured for the load balancer.
 func (r Network_LBaaS_LoadBalancer) GetSslCiphers() (resp []datatypes.Network_LBaaS_SSLCipher, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getSslCiphers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LBaaS_LoadBalancer) GetSslCiphersIter() (resp []datatypes.Network_LBaaS_SSLCipher, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getSslCiphers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_SSLCipher{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_LoadBalancer", "getSslCiphers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5820,6 +9240,30 @@ func (r Network_LBaaS_SSLCipher) GetAllObjects() (resp []datatypes.Network_LBaaS
 	return
 }
 
+func (r Network_LBaaS_SSLCipher) GetAllObjectsIter() (resp []datatypes.Network_LBaaS_SSLCipher, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_SSLCipher", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LBaaS_SSLCipher{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LBaaS_SSLCipher", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_LBaaS_SSLCipher) GetObject() (resp datatypes.Network_LBaaS_SSLCipher, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_SSLCipher", "getObject", nil, &r.Options, &resp)
@@ -5903,6 +9347,30 @@ func (r Network_LoadBalancer_Global_Account) GetBillingItem() (resp datatypes.Bi
 // Retrieve The hosts in the load balancing pool for a global load balancer account.
 func (r Network_LoadBalancer_Global_Account) GetHosts() (resp []datatypes.Network_LoadBalancer_Global_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getHosts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_LoadBalancer_Global_Account) GetHostsIter() (resp []datatypes.Network_LoadBalancer_Global_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LoadBalancer_Global_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6080,6 +9548,30 @@ func (r Network_LoadBalancer_Service) GetStatus() (resp []datatypes.Container_Ne
 	return
 }
 
+func (r Network_LoadBalancer_Service) GetStatusIter() (resp []datatypes.Container_Network_LoadBalancer_StatusEntry, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Service", "getStatus", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_LoadBalancer_StatusEntry{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Service", "getStatus", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The load balancer that this service belongs to.
 func (r Network_LoadBalancer_Service) GetVip() (resp datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Service", "getVip", nil, &r.Options, &resp)
@@ -6191,6 +9683,30 @@ func (r Network_LoadBalancer_VirtualIpAddress) GetServices() (resp []datatypes.N
 	return
 }
 
+func (r Network_LoadBalancer_VirtualIpAddress) GetServicesIter() (resp []datatypes.Network_LoadBalancer_Service, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getServices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_LoadBalancer_Service{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "getServices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Quickly remove all active external connections to a Virtual IP Address.
 func (r Network_LoadBalancer_VirtualIpAddress) KickAllConnections() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_VirtualIpAddress", "kickAllConnections", nil, &r.Options, &resp)
@@ -6279,6 +9795,30 @@ func (r Network_Message_Delivery) GetType() (resp datatypes.Network_Message_Deli
 // Retrieve a list of upgradable items available for network message delivery.
 func (r Network_Message_Delivery) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Message_Delivery) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6407,6 +9947,33 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetEmailList(list *string) (res
 	return
 }
 
+func (r Network_Message_Delivery_Email_Sendgrid) GetEmailListIter(list *string) (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_List_Entry, err error) {
+	params := []interface{}{
+		list,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getEmailList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_List_Entry{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getEmailList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Network_Message_Delivery_Email_Sendgrid, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getObject", nil, &r.Options, &resp)
@@ -6416,6 +9983,30 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetObject() (resp datatypes.Net
 // no documentation yet
 func (r Network_Message_Delivery_Email_Sendgrid) GetOfferingsList() (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Catalog_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getOfferingsList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) GetOfferingsListIter() (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Catalog_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getOfferingsList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Catalog_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getOfferingsList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6431,6 +10022,33 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetStatistics(options *datatype
 		options,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getStatistics", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) GetStatisticsIter(options *datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics_Options) (resp []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics, err error) {
+	params := []interface{}{
+		options,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getStatistics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Message_Delivery_Email_Sendgrid_Statistics{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getStatistics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6452,6 +10070,30 @@ func (r Network_Message_Delivery_Email_Sendgrid) GetType() (resp datatypes.Netwo
 // Retrieve a list of upgradable items available for network message delivery.
 func (r Network_Message_Delivery_Email_Sendgrid) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Message_Delivery_Email_Sendgrid) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Message_Delivery_Email_Sendgrid", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6526,6 +10168,34 @@ func (r Network_Monitor) GetIpAddressesByHardware(hardware *datatypes.Hardware, 
 	return
 }
 
+func (r Network_Monitor) GetIpAddressesByHardwareIter(hardware *datatypes.Hardware, partialIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		hardware,
+		partialIpAddress,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor", "getIpAddressesByHardware", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor", "getIpAddressesByHardware", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This will return an arrayObject of objects containing the ipaddresses.  Using an string parameter you can send a partial ipaddress to search within a given ipaddress.  You can also set the max limit as well using the setting the resultLimit.
 func (r Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_Guest, partialIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	params := []interface{}{
@@ -6533,6 +10203,34 @@ func (r Network_Monitor) GetIpAddressesByVirtualGuest(guest *datatypes.Virtual_G
 		partialIpAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Monitor", "getIpAddressesByVirtualGuest", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Monitor) GetIpAddressesByVirtualGuestIter(guest *datatypes.Virtual_Guest, partialIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		guest,
+		partialIpAddress,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor", "getIpAddressesByVirtualGuest", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor", "getIpAddressesByVirtualGuest", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6594,6 +10292,33 @@ func (r Network_Monitor_Version1_Query_Host) CreateObjects(templateObjects []dat
 	return
 }
 
+func (r Network_Monitor_Version1_Query_Host) CreateObjectsIter(templateObjects []datatypes.Network_Monitor_Version1_Query_Host) (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Like any other API object, the monitoring objects can be deleted by passing an instance of them into this function.  The ID on the object must be set.
 func (r Network_Monitor_Version1_Query_Host) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "deleteObject", nil, &r.Options, &resp)
@@ -6635,6 +10360,33 @@ func (r Network_Monitor_Version1_Query_Host) FindByHardwareId(hardwareId *int) (
 		hardwareId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "findByHardwareId", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Monitor_Version1_Query_Host) FindByHardwareIdIter(hardwareId *int) (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	params := []interface{}{
+		hardwareId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "findByHardwareId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host", "findByHardwareId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6720,9 +10472,57 @@ func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllQueryTypes() (resp []
 	return
 }
 
+func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllQueryTypesIter() (resp []datatypes.Network_Monitor_Version1_Query_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllQueryTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllQueryTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Calling this function returns all possible response type objects. These objects are to be used to set the values on the SoftLayer_Network_Monitor_Version1_Query_Host when creating new monitoring instances.
 func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllResponseTypes() (resp []datatypes.Network_Monitor_Version1_Query_ResponseType, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllResponseTypes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Monitor_Version1_Query_Host_Stratum) GetAllResponseTypesIter() (resp []datatypes.Network_Monitor_Version1_Query_ResponseType, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllResponseTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_ResponseType{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Monitor_Version1_Query_Host_Stratum", "getAllResponseTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6792,9 +10592,57 @@ func (r Network_Pod) GetAllObjects() (resp []datatypes.Network_Pod, err error) {
 	return
 }
 
+func (r Network_Pod) GetAllObjectsIter() (resp []datatypes.Network_Pod, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Pod", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Pod{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Pod", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Provides the list of capabilities a Pod fulfills. See [[SoftLayer_Network_Pod/listCapabilities]] for more information on capabilities.
 func (r Network_Pod) GetCapabilities() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Pod", "getCapabilities", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Pod) GetCapabilitiesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Pod", "getCapabilities", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Pod", "getCapabilities", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6807,6 +10655,30 @@ func (r Network_Pod) GetObject() (resp datatypes.Network_Pod, err error) {
 // A capability is simply a string literal that denotes the availability of a feature. Capabilities are generally self describing, but any additional details concerning the implications of a capability will be documented elsewhere; usually by the Service or Operation related to it.
 func (r Network_Pod) ListCapabilities() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Pod", "listCapabilities", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Pod) ListCapabilitiesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Pod", "listCapabilities", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Pod", "listCapabilities", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6886,6 +10758,33 @@ func (r Network_SecurityGroup) CreateObjects(templateObjects []datatypes.Network
 	return
 }
 
+func (r Network_SecurityGroup) CreateObjectsIter(templateObjects []datatypes.Network_SecurityGroup) (resp []datatypes.Network_SecurityGroup, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_SecurityGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Delete a security group for an account. A security group cannot be deleted if any network components are attached or if the security group is a remote security group for a [[SoftLayer_Network_SecurityGroup_Rule (type)|rule]].
 func (r Network_SecurityGroup) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "deleteObject", nil, &r.Options, &resp)
@@ -6949,15 +10848,87 @@ func (r Network_SecurityGroup) GetAllObjects() (resp []datatypes.Network_Securit
 	return
 }
 
+func (r Network_SecurityGroup) GetAllObjectsIter() (resp []datatypes.Network_SecurityGroup, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_SecurityGroup{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // List the current security group limits
 func (r Network_SecurityGroup) GetLimits() (resp []datatypes.Container_Network_SecurityGroup_Limit, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getLimits", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_SecurityGroup) GetLimitsIter() (resp []datatypes.Container_Network_SecurityGroup_Limit, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getLimits", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_SecurityGroup_Limit{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getLimits", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network component bindings for this security group.
 func (r Network_SecurityGroup) GetNetworkComponentBindings() (resp []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getNetworkComponentBindings", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_SecurityGroup) GetNetworkComponentBindingsIter() (resp []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getNetworkComponentBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getNetworkComponentBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6973,15 +10944,87 @@ func (r Network_SecurityGroup) GetOrderBindings() (resp []datatypes.Network_Secu
 	return
 }
 
+func (r Network_SecurityGroup) GetOrderBindingsIter() (resp []datatypes.Network_SecurityGroup_OrderBinding, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getOrderBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_SecurityGroup_OrderBinding{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getOrderBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The rules for this security group.
 func (r Network_SecurityGroup) GetRules() (resp []datatypes.Network_SecurityGroup_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getRules", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_SecurityGroup) GetRulesIter() (resp []datatypes.Network_SecurityGroup_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_SecurityGroup_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // List the data centers that currently support the use of security groups.
 func (r Network_SecurityGroup) GetSupportedDataCenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getSupportedDataCenters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_SecurityGroup) GetSupportedDataCentersIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getSupportedDataCenters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_SecurityGroup", "getSupportedDataCenters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7246,6 +11289,33 @@ func (r Network_Storage) AllowAccessFromHostList(hostObjectTemplates []datatypes
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "allowAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) AllowAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "allowAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "allowAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7607,9 +11677,57 @@ func (r Network_Storage) GetActiveTransactions() (resp []datatypes.Provisioning_
 	return
 }
 
+func (r Network_Storage) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFiles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllFilesIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7619,6 +11737,33 @@ func (r Network_Storage) GetAllFilesByFilter(filter *datatypes.Container_Utility
 		filter,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFilesByFilter", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllFilesByFilterIter(filter *datatypes.Container_Utility_File_Entity) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		filter,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFilesByFilter", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllFilesByFilter", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7643,6 +11788,33 @@ func (r Network_Storage) GetAllowableHardware(filterHostname *string) (resp []da
 	return
 }
 
+func (r Network_Storage) GetAllowableHardwareIter(filterHostname *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableHardware", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableHardware", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Subnet_IpAddress that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage) GetAllowableIpAddresses(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	params := []interface{}{
@@ -7650,6 +11822,34 @@ func (r Network_Storage) GetAllowableIpAddresses(subnetId *int, filterIpAddress 
 		filterIpAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableIpAddresses", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllowableIpAddressesIter(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		subnetId,
+		filterIpAddress,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableIpAddresses", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableIpAddresses", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7662,6 +11862,33 @@ func (r Network_Storage) GetAllowableSubnets(filterNetworkIdentifier *string) (r
 	return
 }
 
+func (r Network_Storage) GetAllowableSubnetsIter(filterNetworkIdentifier *string) (resp []datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		filterNetworkIdentifier,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableSubnets", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableSubnets", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Virtual_Guest that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage) GetAllowableVirtualGuests(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
 	params := []interface{}{
@@ -7671,9 +11898,60 @@ func (r Network_Storage) GetAllowableVirtualGuests(filterHostname *string) (resp
 	return
 }
 
+func (r Network_Storage) GetAllowableVirtualGuestsIter(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableVirtualGuests", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowableVirtualGuests", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllowedHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7689,9 +11967,57 @@ func (r Network_Storage) GetAllowedIpAddresses() (resp []datatypes.Network_Subne
 	return
 }
 
+func (r Network_Storage) GetAllowedIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllowedReplicationHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7701,9 +12027,57 @@ func (r Network_Storage) GetAllowedReplicationIpAddresses() (resp []datatypes.Ne
 	return
 }
 
+func (r Network_Storage) GetAllowedReplicationIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllowedReplicationSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7713,15 +12087,87 @@ func (r Network_Storage) GetAllowedReplicationVirtualGuests() (resp []datatypes.
 	return
 }
 
+func (r Network_Storage) GetAllowedReplicationVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedReplicationVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage) GetAllowedSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetAllowedVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getAllowedVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7747,6 +12193,34 @@ func (r Network_Storage) GetByUsername(username *string, typ *string) (resp []da
 	return
 }
 
+func (r Network_Storage) GetByUsernameIter(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		username,
+		typ,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getByUsername", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getByUsername", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage) GetBytesUsed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getBytesUsed", nil, &r.Options, &resp)
@@ -7756,6 +12230,30 @@ func (r Network_Storage) GetBytesUsed() (resp string, err error) {
 // no documentation yet
 func (r Network_Storage) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getCdnUrls", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetCdnUrlsIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getCdnUrls", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getCdnUrls", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7777,6 +12275,30 @@ func (r Network_Storage) GetCredentials() (resp []datatypes.Network_Storage_Cred
 	return
 }
 
+func (r Network_Storage) GetCredentialsIter() (resp []datatypes.Network_Storage_Credential, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getCredentials", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Credential{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getCredentials", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDailySchedule", nil, &r.Options, &resp)
@@ -7795,6 +12317,30 @@ func (r Network_Storage) GetDependentDuplicates() (resp []datatypes.Network_Stor
 	return
 }
 
+func (r Network_Storage) GetDependentDuplicatesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDependentDuplicates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDependentDuplicates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
 func (r Network_Storage) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getDuplicateConversionStatus", nil, &r.Options, &resp)
@@ -7804,6 +12350,30 @@ func (r Network_Storage) GetDuplicateConversionStatus() (resp datatypes.Containe
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7821,6 +12391,30 @@ func (r Network_Storage) GetFailoverNotAllowed() (resp string, err error) {
 
 func (r Network_Storage) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetFileBlockEncryptedLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileBlockEncryptedLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7849,6 +12443,34 @@ func (r Network_Storage) GetFileList(folder *string, path *string) (resp []datat
 	return
 }
 
+func (r Network_Storage) GetFileListIter(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		folder,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 func (r Network_Storage) GetFileNetworkMountAddress() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFileNetworkMountAddress", nil, &r.Options, &resp)
@@ -7867,6 +12489,30 @@ func (r Network_Storage) GetFilesPendingDelete() (resp []datatypes.Container_Uti
 	return
 }
 
+func (r Network_Storage) GetFilesPendingDeleteIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFilesPendingDelete", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFilesPendingDelete", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Storage) GetFixReplicationCurrentStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
@@ -7876,6 +12522,30 @@ func (r Network_Storage) GetFixReplicationCurrentStatus() (resp string, err erro
 // no documentation yet
 func (r Network_Storage) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFolderList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetFolderListIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFolderList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getFolderList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7970,6 +12640,30 @@ func (r Network_Storage) GetIscsiLuns() (resp []datatypes.Network_Storage, err e
 	return
 }
 
+func (r Network_Storage) GetIscsiLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of this volume.
 func (r Network_Storage) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
@@ -7982,6 +12676,30 @@ func (r Network_Storage) GetIscsiTargetIpAddresses() (resp []string, err error) 
 	return
 }
 
+func (r Network_Storage) GetIscsiTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getIscsiTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage) GetLunId() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getLunId", nil, &r.Options, &resp)
@@ -7991,6 +12709,30 @@ func (r Network_Storage) GetLunId() (resp string, err error) {
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getManualSnapshots", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetManualSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getManualSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getManualSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8048,6 +12790,30 @@ func (r Network_Storage) GetNotificationSubscribers() (resp []datatypes.Notifica
 	return
 }
 
+func (r Network_Storage) GetNotificationSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getNotificationSubscribers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_User_Subscriber{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getNotificationSubscribers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject retrieves the SoftLayer_Network_Storage object whose ID corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Storage service.
 //
 // Please use the associated methods in the [[SoftLayer_Network_Storage]] service to retrieve a Storage account's id.
@@ -8062,12 +12828,63 @@ func (r Network_Storage) GetObjectStorageConnectionInformation() (resp []datatyp
 	return
 }
 
+func (r Network_Storage) GetObjectStorageConnectionInformationIter() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getObjectStorageConnectionInformation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getObjectStorageConnectionInformation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve network storage accounts by SoftLayer_Network_Storage_Credential object. Use this method if you wish to retrieve a storage record by a credential rather than by id.
 func (r Network_Storage) GetObjectsByCredential(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		credentialObject,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getObjectsByCredential", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetObjectsByCredentialIter(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		credentialObject,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getObjectsByCredential", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getObjectsByCredential", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8113,6 +12930,30 @@ func (r Network_Storage) GetParentPartnerships() (resp []datatypes.Network_Stora
 	return
 }
 
+func (r Network_Storage) GetParentPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getParentPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getParentPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage) GetParentVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getParentVolume", nil, &r.Options, &resp)
@@ -8125,15 +12966,87 @@ func (r Network_Storage) GetPartnerships() (resp []datatypes.Network_Storage_Par
 	return
 }
 
+func (r Network_Storage) GetPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getPermissionsGroups", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage) GetPermissionsGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getPermissionsGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getPermissionsGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetPropertiesIter() (resp []datatypes.Network_Storage_Property, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getProperties", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getProperties", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8170,6 +13083,30 @@ func (r Network_Storage) GetReplicatingLuns() (resp []datatypes.Network_Storage,
 	return
 }
 
+func (r Network_Storage) GetReplicatingLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicatingLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicatingLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicatingVolume", nil, &r.Options, &resp)
@@ -8182,9 +13119,57 @@ func (r Network_Storage) GetReplicationEvents() (resp []datatypes.Network_Storag
 	return
 }
 
+func (r Network_Storage) GetReplicationEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicationEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicationEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicationPartners", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetReplicationPartnersIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicationPartners", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getReplicationPartners", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8209,6 +13194,30 @@ func (r Network_Storage) GetReplicationTimestamp() (resp string, err error) {
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSchedules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetSchedulesIter() (resp []datatypes.Network_Storage_Schedule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSchedules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Schedule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSchedules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8272,9 +13281,57 @@ func (r Network_Storage) GetSnapshots() (resp []datatypes.Network_Storage, err e
 	return
 }
 
+func (r Network_Storage) GetSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetSnapshotsForVolumeIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getSnapshotsForVolume", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8290,9 +13347,57 @@ func (r Network_Storage) GetStorageGroups() (resp []datatypes.Network_Storage_Gr
 	return
 }
 
+func (r Network_Storage) GetStorageGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetStorageGroupsNetworkConnectionDetailsIter() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_NetworkConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getStorageGroupsNetworkConnectionDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8311,6 +13416,30 @@ func (r Network_Storage) GetStorageType() (resp datatypes.Network_Storage_Type, 
 // no documentation yet
 func (r Network_Storage) GetTargetIpAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getTargetIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8338,6 +13467,30 @@ func (r Network_Storage) GetValidReplicationTargetDatacenterLocations() (resp []
 	return
 }
 
+func (r Network_Storage) GetValidReplicationTargetDatacenterLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getValidReplicationTargetDatacenterLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getValidReplicationTargetDatacenterLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The type of network storage service.
 func (r Network_Storage) GetVendorName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVendorName", nil, &r.Options, &resp)
@@ -8356,6 +13509,30 @@ func (r Network_Storage) GetVolumeCountLimits() (resp []datatypes.Container_Netw
 	return
 }
 
+func (r Network_Storage) GetVolumeCountLimitsIter() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeCountLimits", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeCountLimits", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns the parameters for cloning a volume
 func (r Network_Storage) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
@@ -8365,6 +13542,30 @@ func (r Network_Storage) GetVolumeDuplicateParameters() (resp datatypes.Containe
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeHistory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) GetVolumeHistoryIter() (resp []datatypes.Network_Storage_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "getVolumeHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8487,6 +13688,33 @@ func (r Network_Storage) RemoveAccessFromHostList(hostObjectTemplates []datatype
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage", "removeAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage) RemoveAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "removeAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "removeAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8692,6 +13920,33 @@ func (r Network_Storage) ValidateHostsAccess(hostObjectTemplates []datatypes.Con
 	return
 }
 
+func (r Network_Storage) ValidateHostsAccessIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage", "validateHostsAccess", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_HostsGatewayInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage", "validateHostsAccess", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 type Network_Storage_Allowed_Host struct {
 	Session session.SLSession
@@ -8741,6 +13996,33 @@ func (r Network_Storage_Allowed_Host) AssignSubnetsToAcl(subnetIds []int) (resp 
 	return
 }
 
+func (r Network_Storage_Allowed_Host) AssignSubnetsToAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "assignSubnetsToAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "assignSubnetsToAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
@@ -8756,9 +14038,57 @@ func (r Network_Storage_Allowed_Host) GetAllObjects() (resp []datatypes.Network_
 	return
 }
 
+func (r Network_Storage_Allowed_Host) GetAllObjectsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host) GetAssignedGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8768,9 +14098,57 @@ func (r Network_Storage_Allowed_Host) GetAssignedIscsiVolumes() (resp []datatype
 	return
 }
 
+func (r Network_Storage_Allowed_Host) GetAssignedIscsiVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedIscsiVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedIscsiVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host) GetAssignedNfsVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host) GetAssignedNfsVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedNfsVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8780,9 +14158,57 @@ func (r Network_Storage_Allowed_Host) GetAssignedReplicationVolumes() (resp []da
 	return
 }
 
+func (r Network_Storage_Allowed_Host) GetAssignedReplicationVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedReplicationVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedReplicationVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host) GetAssignedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getAssignedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8810,12 +14236,63 @@ func (r Network_Storage_Allowed_Host) GetSubnetsInAcl() (resp []datatypes.Networ
 	return
 }
 
+func (r Network_Storage_Allowed_Host) GetSubnetsInAclIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getSubnetsInAcl", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "getSubnetsInAcl", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
 		subnetIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host) RemoveSubnetsFromAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host", "removeSubnetsFromAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8877,6 +14354,33 @@ func (r Network_Storage_Allowed_Host_Hardware) AssignSubnetsToAcl(subnetIds []in
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Hardware) AssignSubnetsToAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "assignSubnetsToAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "assignSubnetsToAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
@@ -8898,9 +14402,57 @@ func (r Network_Storage_Allowed_Host_Hardware) GetAllObjects() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Hardware) GetAllObjectsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) GetAssignedGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8910,9 +14462,57 @@ func (r Network_Storage_Allowed_Host_Hardware) GetAssignedIscsiVolumes() (resp [
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Hardware) GetAssignedIscsiVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedIscsiVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedIscsiVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedNfsVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) GetAssignedNfsVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedNfsVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8922,9 +14522,57 @@ func (r Network_Storage_Allowed_Host_Hardware) GetAssignedReplicationVolumes() (
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Hardware) GetAssignedReplicationVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedReplicationVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedReplicationVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Hardware) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) GetAssignedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getAssignedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8958,12 +14606,63 @@ func (r Network_Storage_Allowed_Host_Hardware) GetSubnetsInAcl() (resp []datatyp
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Hardware) GetSubnetsInAclIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getSubnetsInAcl", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "getSubnetsInAcl", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Hardware) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
 		subnetIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Hardware) RemoveSubnetsFromAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Hardware", "removeSubnetsFromAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9025,6 +14724,33 @@ func (r Network_Storage_Allowed_Host_IpAddress) AssignSubnetsToAcl(subnetIds []i
 	return
 }
 
+func (r Network_Storage_Allowed_Host_IpAddress) AssignSubnetsToAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "assignSubnetsToAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "assignSubnetsToAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
@@ -9046,9 +14772,57 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetAllObjects() (resp []datatype
 	return
 }
 
+func (r Network_Storage_Allowed_Host_IpAddress) GetAllObjectsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9058,9 +14832,57 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedIscsiVolumes() (resp 
 	return
 }
 
+func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedIscsiVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedIscsiVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedIscsiVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedNfsVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedNfsVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedNfsVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9070,9 +14892,57 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedReplicationVolumes() 
 	return
 }
 
+func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedReplicationVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedReplicationVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedReplicationVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) GetAssignedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getAssignedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9106,12 +14976,63 @@ func (r Network_Storage_Allowed_Host_IpAddress) GetSubnetsInAcl() (resp []dataty
 	return
 }
 
+func (r Network_Storage_Allowed_Host_IpAddress) GetSubnetsInAclIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getSubnetsInAcl", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "getSubnetsInAcl", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_IpAddress) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
 		subnetIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_IpAddress) RemoveSubnetsFromAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_IpAddress", "removeSubnetsFromAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9173,6 +15094,33 @@ func (r Network_Storage_Allowed_Host_Subnet) AssignSubnetsToAcl(subnetIds []int)
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Subnet) AssignSubnetsToAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "assignSubnetsToAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "assignSubnetsToAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
@@ -9194,9 +15142,57 @@ func (r Network_Storage_Allowed_Host_Subnet) GetAllObjects() (resp []datatypes.N
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Subnet) GetAllObjectsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) GetAssignedGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9206,9 +15202,57 @@ func (r Network_Storage_Allowed_Host_Subnet) GetAssignedIscsiVolumes() (resp []d
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Subnet) GetAssignedIscsiVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedIscsiVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedIscsiVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedNfsVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) GetAssignedNfsVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedNfsVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9218,9 +15262,57 @@ func (r Network_Storage_Allowed_Host_Subnet) GetAssignedReplicationVolumes() (re
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Subnet) GetAssignedReplicationVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedReplicationVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedReplicationVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_Subnet) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) GetAssignedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getAssignedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9254,12 +15346,63 @@ func (r Network_Storage_Allowed_Host_Subnet) GetSubnetsInAcl() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Allowed_Host_Subnet) GetSubnetsInAclIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getSubnetsInAcl", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "getSubnetsInAcl", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_Subnet) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
 		subnetIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_Subnet) RemoveSubnetsFromAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_Subnet", "removeSubnetsFromAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9321,6 +15464,33 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) AssignSubnetsToAcl(subnetIds 
 	return
 }
 
+func (r Network_Storage_Allowed_Host_VirtualGuest) AssignSubnetsToAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "assignSubnetsToAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "assignSubnetsToAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) EditObject(templateObject *datatypes.Network_Storage_Allowed_Host) (resp bool, err error) {
 	params := []interface{}{
@@ -9342,9 +15512,57 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetAllObjects() (resp []datat
 	return
 }
 
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAllObjectsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Group objects this SoftLayer_Network_Storage_Allowed_Host is present in.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9354,9 +15572,57 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedIscsiVolumes() (re
 	return
 }
 
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedIscsiVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedIscsiVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedIscsiVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedNfsVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedNfsVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedNfsVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedNfsVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9366,9 +15632,57 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedReplicationVolumes
 	return
 }
 
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedReplicationVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedReplicationVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedReplicationVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage volumes to which this SoftLayer_Network_Storage_Allowed_Host is allowed access.
 func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetAssignedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getAssignedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9402,12 +15716,63 @@ func (r Network_Storage_Allowed_Host_VirtualGuest) GetSubnetsInAcl() (resp []dat
 	return
 }
 
+func (r Network_Storage_Allowed_Host_VirtualGuest) GetSubnetsInAclIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getSubnetsInAcl", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "getSubnetsInAcl", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Allowed_Host_VirtualGuest) RemoveSubnetsFromAcl(subnetIds []int) (resp []int, err error) {
 	params := []interface{}{
 		subnetIds,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Allowed_Host_VirtualGuest) RemoveSubnetsFromAclIter(subnetIds []int) (resp []int, err error) {
+	params := []interface{}{
+		subnetIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "removeSubnetsFromAcl", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Allowed_Host_VirtualGuest", "removeSubnetsFromAcl", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9494,6 +15859,33 @@ func (r Network_Storage_Backup_Evault) AllowAccessFromHostList(hostObjectTemplat
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) AllowAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "allowAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9866,9 +16258,57 @@ func (r Network_Storage_Backup_Evault) GetActiveTransactions() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage_Backup_Evault) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFiles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllFilesIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9878,6 +16318,33 @@ func (r Network_Storage_Backup_Evault) GetAllFilesByFilter(filter *datatypes.Con
 		filter,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFilesByFilter", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllFilesByFilterIter(filter *datatypes.Container_Utility_File_Entity) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		filter,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFilesByFilter", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllFilesByFilter", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9902,6 +16369,33 @@ func (r Network_Storage_Backup_Evault) GetAllowableHardware(filterHostname *stri
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowableHardwareIter(filterHostname *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableHardware", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableHardware", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Subnet_IpAddress that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Backup_Evault) GetAllowableIpAddresses(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	params := []interface{}{
@@ -9909,6 +16403,34 @@ func (r Network_Storage_Backup_Evault) GetAllowableIpAddresses(subnetId *int, fi
 		filterIpAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableIpAddresses", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllowableIpAddressesIter(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		subnetId,
+		filterIpAddress,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableIpAddresses", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableIpAddresses", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9921,6 +16443,33 @@ func (r Network_Storage_Backup_Evault) GetAllowableSubnets(filterNetworkIdentifi
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowableSubnetsIter(filterNetworkIdentifier *string) (resp []datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		filterNetworkIdentifier,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableSubnets", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableSubnets", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Virtual_Guest that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Backup_Evault) GetAllowableVirtualGuests(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
 	params := []interface{}{
@@ -9930,9 +16479,60 @@ func (r Network_Storage_Backup_Evault) GetAllowableVirtualGuests(filterHostname 
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowableVirtualGuestsIter(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableVirtualGuests", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowableVirtualGuests", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllowedHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9948,9 +16548,57 @@ func (r Network_Storage_Backup_Evault) GetAllowedIpAddresses() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowedIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllowedReplicationHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9960,9 +16608,57 @@ func (r Network_Storage_Backup_Evault) GetAllowedReplicationIpAddresses() (resp 
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowedReplicationIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Backup_Evault) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllowedReplicationSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9972,15 +16668,87 @@ func (r Network_Storage_Backup_Evault) GetAllowedReplicationVirtualGuests() (res
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowedReplicationVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedReplicationVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetAllowedSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage_Backup_Evault) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetAllowedVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getAllowedVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10006,6 +16774,34 @@ func (r Network_Storage_Backup_Evault) GetByUsername(username *string, typ *stri
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetByUsernameIter(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		username,
+		typ,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getByUsername", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getByUsername", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage_Backup_Evault) GetBytesUsed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getBytesUsed", nil, &r.Options, &resp)
@@ -10015,6 +16811,30 @@ func (r Network_Storage_Backup_Evault) GetBytesUsed() (resp string, err error) {
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getCdnUrls", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetCdnUrlsIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getCdnUrls", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getCdnUrls", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10036,6 +16856,30 @@ func (r Network_Storage_Backup_Evault) GetCredentials() (resp []datatypes.Networ
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetCredentialsIter() (resp []datatypes.Network_Storage_Credential, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getCredentials", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Credential{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getCredentials", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage_Backup_Evault) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDailySchedule", nil, &r.Options, &resp)
@@ -10054,6 +16898,30 @@ func (r Network_Storage_Backup_Evault) GetDependentDuplicates() (resp []datatype
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetDependentDuplicatesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDependentDuplicates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDependentDuplicates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
 func (r Network_Storage_Backup_Evault) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getDuplicateConversionStatus", nil, &r.Options, &resp)
@@ -10063,6 +16931,30 @@ func (r Network_Storage_Backup_Evault) GetDuplicateConversionStatus() (resp data
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Backup_Evault) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10080,6 +16972,30 @@ func (r Network_Storage_Backup_Evault) GetFailoverNotAllowed() (resp string, err
 
 func (r Network_Storage_Backup_Evault) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetFileBlockEncryptedLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileBlockEncryptedLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10108,6 +17024,34 @@ func (r Network_Storage_Backup_Evault) GetFileList(folder *string, path *string)
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetFileListIter(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		folder,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 func (r Network_Storage_Backup_Evault) GetFileNetworkMountAddress() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFileNetworkMountAddress", nil, &r.Options, &resp)
@@ -10126,6 +17070,30 @@ func (r Network_Storage_Backup_Evault) GetFilesPendingDelete() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetFilesPendingDeleteIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFilesPendingDelete", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFilesPendingDelete", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Storage_Backup_Evault) GetFixReplicationCurrentStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
@@ -10135,6 +17103,30 @@ func (r Network_Storage_Backup_Evault) GetFixReplicationCurrentStatus() (resp st
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFolderList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetFolderListIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFolderList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getFolderList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10170,6 +17162,36 @@ func (r Network_Storage_Backup_Evault) GetHardwareWithEvaultFirst(option *string
 		mode,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getHardwareWithEvaultFirst", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetHardwareWithEvaultFirstIter(option *string, exactMatch *bool, criteria *string, mode *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		option,
+		exactMatch,
+		criteria,
+		mode,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getHardwareWithEvaultFirst", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getHardwareWithEvaultFirst", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10245,6 +17267,30 @@ func (r Network_Storage_Backup_Evault) GetIscsiLuns() (resp []datatypes.Network_
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetIscsiLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of this volume.
 func (r Network_Storage_Backup_Evault) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
@@ -10257,6 +17303,30 @@ func (r Network_Storage_Backup_Evault) GetIscsiTargetIpAddresses() (resp []strin
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetIscsiTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getIscsiTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage_Backup_Evault) GetLunId() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getLunId", nil, &r.Options, &resp)
@@ -10266,6 +17336,30 @@ func (r Network_Storage_Backup_Evault) GetLunId() (resp string, err error) {
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage_Backup_Evault) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getManualSnapshots", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetManualSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getManualSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getManualSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10323,6 +17417,30 @@ func (r Network_Storage_Backup_Evault) GetNotificationSubscribers() (resp []data
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetNotificationSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getNotificationSubscribers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_User_Subscriber{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getNotificationSubscribers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject retrieves the SoftLayer_Network_Storage_Backup_Evault object whose ID corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Storage_Backup_Evault service.
 func (r Network_Storage_Backup_Evault) GetObject() (resp datatypes.Network_Storage_Backup_Evault, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObject", nil, &r.Options, &resp)
@@ -10335,12 +17453,63 @@ func (r Network_Storage_Backup_Evault) GetObjectStorageConnectionInformation() (
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetObjectStorageConnectionInformationIter() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObjectStorageConnectionInformation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObjectStorageConnectionInformation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve network storage accounts by SoftLayer_Network_Storage_Credential object. Use this method if you wish to retrieve a storage record by a credential rather than by id.
 func (r Network_Storage_Backup_Evault) GetObjectsByCredential(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		credentialObject,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObjectsByCredential", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetObjectsByCredentialIter(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		credentialObject,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObjectsByCredential", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getObjectsByCredential", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10386,6 +17555,30 @@ func (r Network_Storage_Backup_Evault) GetParentPartnerships() (resp []datatypes
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetParentPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getParentPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getParentPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage_Backup_Evault) GetParentVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getParentVolume", nil, &r.Options, &resp)
@@ -10398,15 +17591,87 @@ func (r Network_Storage_Backup_Evault) GetPartnerships() (resp []datatypes.Netwo
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage_Backup_Evault) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getPermissionsGroups", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetPermissionsGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getPermissionsGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getPermissionsGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Backup_Evault) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetPropertiesIter() (resp []datatypes.Network_Storage_Property, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getProperties", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getProperties", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10443,6 +17708,30 @@ func (r Network_Storage_Backup_Evault) GetReplicatingLuns() (resp []datatypes.Ne
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetReplicatingLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicatingLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicatingLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage_Backup_Evault) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicatingVolume", nil, &r.Options, &resp)
@@ -10455,9 +17744,57 @@ func (r Network_Storage_Backup_Evault) GetReplicationEvents() (resp []datatypes.
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetReplicationEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicationEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicationEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage_Backup_Evault) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicationPartners", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetReplicationPartnersIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicationPartners", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getReplicationPartners", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10482,6 +17819,30 @@ func (r Network_Storage_Backup_Evault) GetReplicationTimestamp() (resp string, e
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage_Backup_Evault) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSchedules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetSchedulesIter() (resp []datatypes.Network_Storage_Schedule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSchedules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Schedule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSchedules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10545,9 +17906,57 @@ func (r Network_Storage_Backup_Evault) GetSnapshots() (resp []datatypes.Network_
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage_Backup_Evault) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetSnapshotsForVolumeIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getSnapshotsForVolume", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10563,9 +17972,57 @@ func (r Network_Storage_Backup_Evault) GetStorageGroups() (resp []datatypes.Netw
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetStorageGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetStorageGroupsNetworkConnectionDetailsIter() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_NetworkConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getStorageGroupsNetworkConnectionDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10584,6 +18041,30 @@ func (r Network_Storage_Backup_Evault) GetStorageType() (resp datatypes.Network_
 // no documentation yet
 func (r Network_Storage_Backup_Evault) GetTargetIpAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getTargetIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10611,6 +18092,30 @@ func (r Network_Storage_Backup_Evault) GetValidReplicationTargetDatacenterLocati
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetValidReplicationTargetDatacenterLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getValidReplicationTargetDatacenterLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getValidReplicationTargetDatacenterLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The type of network storage service.
 func (r Network_Storage_Backup_Evault) GetVendorName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVendorName", nil, &r.Options, &resp)
@@ -10629,6 +18134,30 @@ func (r Network_Storage_Backup_Evault) GetVolumeCountLimits() (resp []datatypes.
 	return
 }
 
+func (r Network_Storage_Backup_Evault) GetVolumeCountLimitsIter() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeCountLimits", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeCountLimits", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns the parameters for cloning a volume
 func (r Network_Storage_Backup_Evault) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
@@ -10638,6 +18167,30 @@ func (r Network_Storage_Backup_Evault) GetVolumeDuplicateParameters() (resp data
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Backup_Evault) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeHistory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) GetVolumeHistoryIter() (resp []datatypes.Network_Storage_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "getVolumeHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10781,6 +18334,33 @@ func (r Network_Storage_Backup_Evault) RemoveAccessFromHostList(hostObjectTempla
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Backup_Evault) RemoveAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "removeAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10986,6 +18566,33 @@ func (r Network_Storage_Backup_Evault) ValidateHostsAccess(hostObjectTemplates [
 	return
 }
 
+func (r Network_Storage_Backup_Evault) ValidateHostsAccessIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "validateHostsAccess", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_HostsGatewayInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Backup_Evault", "validateHostsAccess", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 type Network_Storage_DedicatedCluster struct {
 	Session session.SLSession
@@ -11035,6 +18642,30 @@ func (r Network_Storage_DedicatedCluster) GetAccount() (resp datatypes.Account, 
 // no documentation yet
 func (r Network_Storage_DedicatedCluster) GetDedicatedClusterList() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getDedicatedClusterList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_DedicatedCluster) GetDedicatedClusterListIter() (resp []int, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getDedicatedClusterList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_DedicatedCluster", "getDedicatedClusterList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11144,15 +18775,87 @@ func (r Network_Storage_Group) GetAllObjects() (resp []datatypes.Network_Storage
 	return
 }
 
+func (r Network_Storage_Group) GetAllObjectsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAllowedHosts", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Group) GetAllowedHostsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAllowedHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAllowedHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAttachedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Group) GetAttachedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAttachedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group", "getAttachedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11298,15 +19001,87 @@ func (r Network_Storage_Group_Iscsi) GetAllObjects() (resp []datatypes.Network_S
 	return
 }
 
+func (r Network_Storage_Group_Iscsi) GetAllObjectsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group_Iscsi) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAllowedHosts", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Group_Iscsi) GetAllowedHostsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAllowedHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAllowedHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group_Iscsi) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAttachedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Group_Iscsi) GetAttachedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAttachedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Iscsi", "getAttachedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11452,15 +19227,87 @@ func (r Network_Storage_Group_Nfs) GetAllObjects() (resp []datatypes.Network_Sto
 	return
 }
 
+func (r Network_Storage_Group_Nfs) GetAllObjectsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The allowed hosts list for this group.
 func (r Network_Storage_Group_Nfs) GetAllowedHosts() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAllowedHosts", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Group_Nfs) GetAllowedHostsIter() (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAllowedHosts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAllowedHosts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes this group is attached to.
 func (r Network_Storage_Group_Nfs) GetAttachedVolumes() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAttachedVolumes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Group_Nfs) GetAttachedVolumesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAttachedVolumes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Nfs", "getAttachedVolumes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11558,6 +19405,30 @@ func (r Network_Storage_Group_Type) GetAllObjects() (resp []datatypes.Network_St
 	return
 }
 
+func (r Network_Storage_Group_Type) GetAllObjectsIter() (resp []datatypes.Network_Storage_Group_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Group_Type) GetObject() (resp datatypes.Network_Storage_Group_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Group_Type", "getObject", nil, &r.Options, &resp)
@@ -11610,6 +19481,30 @@ func (r Network_Storage_Hub_Cleversafe_Account) CredentialCreate() (resp []datat
 	return
 }
 
+func (r Network_Storage_Hub_Cleversafe_Account) CredentialCreateIter() (resp []datatypes.Network_Storage_Credential, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "credentialCreate", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Credential{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "credentialCreate", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Delete a credential
 func (r Network_Storage_Hub_Cleversafe_Account) CredentialDelete(credential *datatypes.Network_Storage_Credential) (resp bool, err error) {
 	params := []interface{}{
@@ -11631,6 +19526,30 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetAllObjects() (resp []datatype
 	return
 }
 
+func (r Network_Storage_Hub_Cleversafe_Account) GetAllObjectsIter() (resp []datatypes.Network_Storage_Hub_Cleversafe_Account, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Hub_Cleversafe_Account{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
 func (r Network_Storage_Hub_Cleversafe_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBillingItem", nil, &r.Options, &resp)
@@ -11640,6 +19559,30 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetBillingItem() (resp datatypes
 // Get buckets
 func (r Network_Storage_Hub_Cleversafe_Account) GetBuckets() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Bucket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBuckets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) GetBucketsIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Bucket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBuckets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Bucket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getBuckets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11680,6 +19623,37 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCloudObjectStorageMetrics(sta
 	return
 }
 
+func (r Network_Storage_Hub_Cleversafe_Account) GetCloudObjectStorageMetricsIter(start *string, end *string, storageLocation *string, storageClass *string, metrics *string) (resp []string, err error) {
+	params := []interface{}{
+		start,
+		end,
+		storageLocation,
+		storageClass,
+		metrics,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCloudObjectStorageMetrics", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCloudObjectStorageMetrics", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Returns credential limits for this IBM Cloud Object Storage account.
 func (r Network_Storage_Hub_Cleversafe_Account) GetCredentialLimit() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentialLimit", nil, &r.Options, &resp)
@@ -11692,12 +19666,63 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetCredentials() (resp []datatyp
 	return
 }
 
+func (r Network_Storage_Hub_Cleversafe_Account) GetCredentialsIter() (resp []datatypes.Network_Storage_Credential, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentials", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Credential{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getCredentials", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Returns a collection of endpoint URLs available to this IBM Cloud Object Storage account.
 func (r Network_Storage_Hub_Cleversafe_Account) GetEndpoints(accountId *int) (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
 	params := []interface{}{
 		accountId,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpoints", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) GetEndpointsIter(accountId *int) (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
+	params := []interface{}{
+		accountId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpoints", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpoints", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11708,6 +19733,34 @@ func (r Network_Storage_Hub_Cleversafe_Account) GetEndpointsWithRefetch(accountI
 		refetch,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpointsWithRefetch", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Hub_Cleversafe_Account) GetEndpointsWithRefetchIter(accountId *int, refetch *bool) (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint, err error) {
+	params := []interface{}{
+		accountId,
+		refetch,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpointsWithRefetch", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Endpoint{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Cleversafe_Account", "getEndpointsWithRefetch", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11781,6 +19834,36 @@ func (r Network_Storage_Hub_Swift_Metrics) GetMetricData(startDateTime *datatype
 	return
 }
 
+func (r Network_Storage_Hub_Swift_Metrics) GetMetricDataIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, metricKey *string, location *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+		metricKey,
+		location,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getMetricData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getMetricData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Hub_Swift_Metrics) GetSummaryData(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -11790,6 +19873,36 @@ func (r Network_Storage_Hub_Swift_Metrics) GetSummaryData(startDateTime *datatyp
 		summaryPeriod,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getSummaryData", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Hub_Swift_Metrics) GetSummaryDataIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDateTime,
+		endDateTime,
+		validTypes,
+		summaryPeriod,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getSummaryData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Metrics", "getSummaryData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11839,6 +19952,30 @@ func (r Network_Storage_Hub_Swift_Share) GetContainerList() (resp []datatypes.Co
 	return
 }
 
+func (r Network_Storage_Hub_Swift_Share) GetContainerListIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Share", "getContainerList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Share", "getContainerList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns a file object given the file's full name.
 func (r Network_Storage_Hub_Swift_Share) GetFile(fileName *string, container *string) (resp datatypes.Container_Network_Storage_Hub_ObjectStorage_File, err error) {
 	params := []interface{}{
@@ -11856,6 +19993,34 @@ func (r Network_Storage_Hub_Swift_Share) GetFileList(container *string, path *st
 		path,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Share", "getFileList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Hub_Swift_Share) GetFileListIter(container *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		container,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Share", "getFileList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Hub_Swift_Share", "getFileList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -11933,6 +20098,33 @@ func (r Network_Storage_Iscsi) AllowAccessFromHostList(hostObjectTemplates []dat
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) AllowAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "allowAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12294,9 +20486,57 @@ func (r Network_Storage_Iscsi) GetActiveTransactions() (resp []datatypes.Provisi
 	return
 }
 
+func (r Network_Storage_Iscsi) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // {{CloudLayerOnlyMethod}} Retrieve details such as id, name, size, create date for all files in a Storage account's root directory. This does not download file content.
 func (r Network_Storage_Iscsi) GetAllFiles() (resp []datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFiles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllFilesIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFiles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFiles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12306,6 +20546,33 @@ func (r Network_Storage_Iscsi) GetAllFilesByFilter(filter *datatypes.Container_U
 		filter,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFilesByFilter", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllFilesByFilterIter(filter *datatypes.Container_Utility_File_Entity) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		filter,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFilesByFilter", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllFilesByFilter", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12330,6 +20597,33 @@ func (r Network_Storage_Iscsi) GetAllowableHardware(filterHostname *string) (res
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowableHardwareIter(filterHostname *string) (resp []datatypes.Hardware, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableHardware", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableHardware", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Subnet_IpAddress that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Iscsi) GetAllowableIpAddresses(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	params := []interface{}{
@@ -12337,6 +20631,34 @@ func (r Network_Storage_Iscsi) GetAllowableIpAddresses(subnetId *int, filterIpAd
 		filterIpAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableIpAddresses", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllowableIpAddressesIter(subnetId *int, filterIpAddress *string) (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	params := []interface{}{
+		subnetId,
+		filterIpAddress,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableIpAddresses", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableIpAddresses", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12349,6 +20671,33 @@ func (r Network_Storage_Iscsi) GetAllowableSubnets(filterNetworkIdentifier *stri
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowableSubnetsIter(filterNetworkIdentifier *string) (resp []datatypes.Network_Subnet, err error) {
+	params := []interface{}{
+		filterNetworkIdentifier,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableSubnets", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableSubnets", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Virtual_Guest that can be authorized to this SoftLayer_Network_Storage.
 func (r Network_Storage_Iscsi) GetAllowableVirtualGuests(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
 	params := []interface{}{
@@ -12358,9 +20707,60 @@ func (r Network_Storage_Iscsi) GetAllowableVirtualGuests(filterHostname *string)
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowableVirtualGuestsIter(filterHostname *string) (resp []datatypes.Virtual_Guest, err error) {
+	params := []interface{}{
+		filterHostname,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableVirtualGuests", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowableVirtualGuests", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllowedHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12376,9 +20776,57 @@ func (r Network_Storage_Iscsi) GetAllowedIpAddresses() (resp []datatypes.Network
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowedIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Hardware objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllowedReplicationHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12388,9 +20836,57 @@ func (r Network_Storage_Iscsi) GetAllowedReplicationIpAddresses() (resp []dataty
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowedReplicationIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume's Replicant.
 func (r Network_Storage_Iscsi) GetAllowedReplicationSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllowedReplicationSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12400,15 +20896,87 @@ func (r Network_Storage_Iscsi) GetAllowedReplicationVirtualGuests() (resp []data
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowedReplicationVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedReplicationVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Subnet objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Iscsi) GetAllowedSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Virtual_Guest objects which are allowed access to this storage volume.
 func (r Network_Storage_Iscsi) GetAllowedVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetAllowedVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getAllowedVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12434,6 +21002,34 @@ func (r Network_Storage_Iscsi) GetByUsername(username *string, typ *string) (res
 	return
 }
 
+func (r Network_Storage_Iscsi) GetByUsernameIter(username *string, typ *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		username,
+		typ,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getByUsername", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getByUsername", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of space used by the volume, in bytes.
 func (r Network_Storage_Iscsi) GetBytesUsed() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getBytesUsed", nil, &r.Options, &resp)
@@ -12443,6 +21039,30 @@ func (r Network_Storage_Iscsi) GetBytesUsed() (resp string, err error) {
 // no documentation yet
 func (r Network_Storage_Iscsi) GetCdnUrls() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getCdnUrls", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetCdnUrlsIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getCdnUrls", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_ContentDeliveryUrl{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getCdnUrls", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12464,6 +21084,30 @@ func (r Network_Storage_Iscsi) GetCredentials() (resp []datatypes.Network_Storag
 	return
 }
 
+func (r Network_Storage_Iscsi) GetCredentialsIter() (resp []datatypes.Network_Storage_Credential, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getCredentials", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Credential{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getCredentials", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The Daily Schedule which is associated with this network storage volume.
 func (r Network_Storage_Iscsi) GetDailySchedule() (resp datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDailySchedule", nil, &r.Options, &resp)
@@ -12482,6 +21126,30 @@ func (r Network_Storage_Iscsi) GetDependentDuplicates() (resp []datatypes.Networ
 	return
 }
 
+func (r Network_Storage_Iscsi) GetDependentDuplicatesIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDependentDuplicates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDependentDuplicates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method is used to check, if for the given classic file block storage volume, a transaction performing dependent to independent duplicate conversion is active. If yes, then this returns the current percentage of its progress along with its start time as [SoftLayer_Container_Network_Storage_DuplicateConversionStatusInformation] object with its name, percentage and transaction start timestamp.
 func (r Network_Storage_Iscsi) GetDuplicateConversionStatus() (resp datatypes.Container_Network_Storage_DuplicateConversionStatusInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getDuplicateConversionStatus", nil, &r.Options, &resp)
@@ -12491,6 +21159,30 @@ func (r Network_Storage_Iscsi) GetDuplicateConversionStatus() (resp datatypes.Co
 // Retrieve The events which have taken place on a network storage volume.
 func (r Network_Storage_Iscsi) GetEvents() (resp []datatypes.Network_Storage_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12508,6 +21200,30 @@ func (r Network_Storage_Iscsi) GetFailoverNotAllowed() (resp string, err error) 
 
 func (r Network_Storage_Iscsi) GetFileBlockEncryptedLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetFileBlockEncryptedLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileBlockEncryptedLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileBlockEncryptedLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12536,6 +21252,34 @@ func (r Network_Storage_Iscsi) GetFileList(folder *string, path *string) (resp [
 	return
 }
 
+func (r Network_Storage_Iscsi) GetFileListIter(folder *string, path *string) (resp []datatypes.Container_Utility_File_Entity, err error) {
+	params := []interface{}{
+		folder,
+		path,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Retrieves the NFS Network Mount Address Name for a given File Storage Volume.
 func (r Network_Storage_Iscsi) GetFileNetworkMountAddress() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFileNetworkMountAddress", nil, &r.Options, &resp)
@@ -12554,6 +21298,30 @@ func (r Network_Storage_Iscsi) GetFilesPendingDelete() (resp []datatypes.Contain
 	return
 }
 
+func (r Network_Storage_Iscsi) GetFilesPendingDeleteIter() (resp []datatypes.Container_Utility_File_Entity, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFilesPendingDelete", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_File_Entity{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFilesPendingDelete", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Storage_Iscsi) GetFixReplicationCurrentStatus() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFixReplicationCurrentStatus", nil, &r.Options, &resp)
@@ -12563,6 +21331,30 @@ func (r Network_Storage_Iscsi) GetFixReplicationCurrentStatus() (resp string, er
 // no documentation yet
 func (r Network_Storage_Iscsi) GetFolderList() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFolderList", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetFolderListIter() (resp []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFolderList", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_Hub_ObjectStorage_Folder{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getFolderList", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12657,6 +21449,30 @@ func (r Network_Storage_Iscsi) GetIscsiLuns() (resp []datatypes.Network_Storage,
 	return
 }
 
+func (r Network_Storage_Iscsi) GetIscsiLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of this volume.
 func (r Network_Storage_Iscsi) GetIscsiReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiReplicatingVolume", nil, &r.Options, &resp)
@@ -12669,6 +21485,30 @@ func (r Network_Storage_Iscsi) GetIscsiTargetIpAddresses() (resp []string, err e
 	return
 }
 
+func (r Network_Storage_Iscsi) GetIscsiTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getIscsiTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The ID of the LUN volume.
 func (r Network_Storage_Iscsi) GetLunId() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getLunId", nil, &r.Options, &resp)
@@ -12678,6 +21518,30 @@ func (r Network_Storage_Iscsi) GetLunId() (resp string, err error) {
 // Retrieve The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 func (r Network_Storage_Iscsi) GetManualSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getManualSnapshots", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetManualSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getManualSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getManualSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12735,6 +21599,30 @@ func (r Network_Storage_Iscsi) GetNotificationSubscribers() (resp []datatypes.No
 	return
 }
 
+func (r Network_Storage_Iscsi) GetNotificationSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getNotificationSubscribers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_User_Subscriber{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getNotificationSubscribers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Iscsi) GetObject() (resp datatypes.Network_Storage_Iscsi, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObject", nil, &r.Options, &resp)
@@ -12747,12 +21635,63 @@ func (r Network_Storage_Iscsi) GetObjectStorageConnectionInformation() (resp []d
 	return
 }
 
+func (r Network_Storage_Iscsi) GetObjectStorageConnectionInformationIter() (resp []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObjectStorageConnectionInformation", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Service_Resource_ObjectStorage_ConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObjectStorageConnectionInformation", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve network storage accounts by SoftLayer_Network_Storage_Credential object. Use this method if you wish to retrieve a storage record by a credential rather than by id.
 func (r Network_Storage_Iscsi) GetObjectsByCredential(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		credentialObject,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObjectsByCredential", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetObjectsByCredentialIter(credentialObject *datatypes.Network_Storage_Credential) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		credentialObject,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObjectsByCredential", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getObjectsByCredential", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12798,6 +21737,30 @@ func (r Network_Storage_Iscsi) GetParentPartnerships() (resp []datatypes.Network
 	return
 }
 
+func (r Network_Storage_Iscsi) GetParentPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getParentPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getParentPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The parent volume of a volume in a complex storage relationship.
 func (r Network_Storage_Iscsi) GetParentVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getParentVolume", nil, &r.Options, &resp)
@@ -12810,15 +21773,87 @@ func (r Network_Storage_Iscsi) GetPartnerships() (resp []datatypes.Network_Stora
 	return
 }
 
+func (r Network_Storage_Iscsi) GetPartnershipsIter() (resp []datatypes.Network_Storage_Partnership, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getPartnerships", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Partnership{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getPartnerships", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All permissions group(s) this volume is in.
 func (r Network_Storage_Iscsi) GetPermissionsGroups() (resp []datatypes.Network_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getPermissionsGroups", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Storage_Iscsi) GetPermissionsGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getPermissionsGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getPermissionsGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The properties used to provide additional details about a network storage volume.
 func (r Network_Storage_Iscsi) GetProperties() (resp []datatypes.Network_Storage_Property, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getProperties", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetPropertiesIter() (resp []datatypes.Network_Storage_Property, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getProperties", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getProperties", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12855,6 +21890,30 @@ func (r Network_Storage_Iscsi) GetReplicatingLuns() (resp []datatypes.Network_St
 	return
 }
 
+func (r Network_Storage_Iscsi) GetReplicatingLunsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicatingLuns", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicatingLuns", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volume being replicated by a volume.
 func (r Network_Storage_Iscsi) GetReplicatingVolume() (resp datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicatingVolume", nil, &r.Options, &resp)
@@ -12867,9 +21926,57 @@ func (r Network_Storage_Iscsi) GetReplicationEvents() (resp []datatypes.Network_
 	return
 }
 
+func (r Network_Storage_Iscsi) GetReplicationEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicationEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicationEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage volumes configured to be replicants of a volume.
 func (r Network_Storage_Iscsi) GetReplicationPartners() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicationPartners", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetReplicationPartnersIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicationPartners", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getReplicationPartners", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12894,6 +22001,30 @@ func (r Network_Storage_Iscsi) GetReplicationTimestamp() (resp string, err error
 // Retrieve The schedules which are associated with a network storage volume.
 func (r Network_Storage_Iscsi) GetSchedules() (resp []datatypes.Network_Storage_Schedule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSchedules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetSchedulesIter() (resp []datatypes.Network_Storage_Schedule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSchedules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Schedule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSchedules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12957,9 +22088,57 @@ func (r Network_Storage_Iscsi) GetSnapshots() (resp []datatypes.Network_Storage,
 	return
 }
 
+func (r Network_Storage_Iscsi) GetSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of snapshots for this SoftLayer_Network_Storage volume. This method works with the result limits and offset to support pagination.
 func (r Network_Storage_Iscsi) GetSnapshotsForVolume() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetSnapshotsForVolumeIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshotsForVolume", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getSnapshotsForVolume", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12975,9 +22154,57 @@ func (r Network_Storage_Iscsi) GetStorageGroups() (resp []datatypes.Network_Stor
 	return
 }
 
+func (r Network_Storage_Iscsi) GetStorageGroupsIter() (resp []datatypes.Network_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Storage_Iscsi) GetStorageGroupsNetworkConnectionDetails() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetStorageGroupsNetworkConnectionDetailsIter() (resp []datatypes.Container_Network_Storage_NetworkConnectionInformation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getStorageGroupsNetworkConnectionDetails", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_NetworkConnectionInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getStorageGroupsNetworkConnectionDetails", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -12996,6 +22223,30 @@ func (r Network_Storage_Iscsi) GetStorageType() (resp datatypes.Network_Storage_
 // no documentation yet
 func (r Network_Storage_Iscsi) GetTargetIpAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getTargetIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetTargetIpAddressesIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getTargetIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getTargetIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13023,6 +22274,30 @@ func (r Network_Storage_Iscsi) GetValidReplicationTargetDatacenterLocations() (r
 	return
 }
 
+func (r Network_Storage_Iscsi) GetValidReplicationTargetDatacenterLocationsIter() (resp []datatypes.Location, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getValidReplicationTargetDatacenterLocations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Location{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getValidReplicationTargetDatacenterLocations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The type of network storage service.
 func (r Network_Storage_Iscsi) GetVendorName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVendorName", nil, &r.Options, &resp)
@@ -13041,6 +22316,30 @@ func (r Network_Storage_Iscsi) GetVolumeCountLimits() (resp []datatypes.Containe
 	return
 }
 
+func (r Network_Storage_Iscsi) GetVolumeCountLimitsIter() (resp []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeCountLimits", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_DataCenterLimits_VolumeCountLimitContainer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeCountLimits", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns the parameters for cloning a volume
 func (r Network_Storage_Iscsi) GetVolumeDuplicateParameters() (resp datatypes.Container_Network_Storage_VolumeDuplicateParameters, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeDuplicateParameters", nil, &r.Options, &resp)
@@ -13050,6 +22349,30 @@ func (r Network_Storage_Iscsi) GetVolumeDuplicateParameters() (resp datatypes.Co
 // Retrieve The username and password history for a Storage service.
 func (r Network_Storage_Iscsi) GetVolumeHistory() (resp []datatypes.Network_Storage_History, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeHistory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) GetVolumeHistoryIter() (resp []datatypes.Network_Storage_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "getVolumeHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13172,6 +22495,33 @@ func (r Network_Storage_Iscsi) RemoveAccessFromHostList(hostObjectTemplates []da
 		hostObjectTemplates,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHostList", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi) RemoveAccessFromHostListIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Network_Storage_Allowed_Host, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHostList", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Allowed_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "removeAccessFromHostList", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13377,6 +22727,33 @@ func (r Network_Storage_Iscsi) ValidateHostsAccess(hostObjectTemplates []datatyp
 	return
 }
 
+func (r Network_Storage_Iscsi) ValidateHostsAccessIter(hostObjectTemplates []datatypes.Container_Network_Storage_Host) (resp []datatypes.Container_Network_Storage_HostsGatewayInformation, err error) {
+	params := []interface{}{
+		hostObjectTemplates,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "validateHostsAccess", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Network_Storage_HostsGatewayInformation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi", "validateHostsAccess", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 type Network_Storage_Iscsi_OS_Type struct {
 	Session session.SLSession
@@ -13420,6 +22797,30 @@ func (r Network_Storage_Iscsi_OS_Type) Offset(offset int) Network_Storage_Iscsi_
 // Use this method to retrieve all iSCSI OS Types.
 func (r Network_Storage_Iscsi_OS_Type) GetAllObjects() (resp []datatypes.Network_Storage_Iscsi_OS_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi_OS_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Iscsi_OS_Type) GetAllObjectsIter() (resp []datatypes.Network_Storage_Iscsi_OS_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi_OS_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Iscsi_OS_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Iscsi_OS_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13475,6 +22876,30 @@ func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetAllObject
 	return
 }
 
+func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetAllObjectsIter() (resp []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve SoftLayer_Locale_Country Id.
 func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetCountry() (resp datatypes.Locale_Country, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getCountry", nil, &r.Options, &resp)
@@ -13499,6 +22924,33 @@ func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetValidCoun
 		locationGroupName,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getValidCountriesForRegion", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetValidCountriesForRegionIter(locationGroupName *string) (resp []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref, err error) {
+	params := []interface{}{
+		locationGroupName,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getValidCountriesForRegion", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getValidCountriesForRegion", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13554,6 +23006,30 @@ func (r Network_Storage_MassDataMigration_Request) GetActiveTickets() (resp []da
 	return
 }
 
+func (r Network_Storage_MassDataMigration_Request) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getActiveTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getActiveTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The customer address where the device is shipped to.
 func (r Network_Storage_MassDataMigration_Request) GetAddress() (resp datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAddress", nil, &r.Options, &resp)
@@ -13566,9 +23042,57 @@ func (r Network_Storage_MassDataMigration_Request) GetAllObjects() (resp []datat
 	return
 }
 
+func (r Network_Storage_MassDataMigration_Request) GetAllObjectsIter() (resp []datatypes.Network_Storage_MassDataMigration_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves a list of all the possible statuses to which a request may be set.
 func (r Network_Storage_MassDataMigration_Request) GetAllRequestStatuses() (resp []datatypes.Network_Storage_MassDataMigration_Request_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllRequestStatuses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_MassDataMigration_Request) GetAllRequestStatusesIter() (resp []datatypes.Network_Storage_MassDataMigration_Request_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllRequestStatuses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_Request_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllRequestStatuses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13608,6 +23132,30 @@ func (r Network_Storage_MassDataMigration_Request) GetKeyContacts() (resp []data
 	return
 }
 
+func (r Network_Storage_MassDataMigration_Request) GetKeyContactsIter() (resp []datatypes.Network_Storage_MassDataMigration_Request_KeyContact, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getKeyContacts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_Request_KeyContact{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getKeyContacts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The employee who last modified the request.
 func (r Network_Storage_MassDataMigration_Request) GetModifyEmployee() (resp datatypes.User_Employee, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getModifyEmployee", nil, &r.Options, &resp)
@@ -13632,9 +23180,57 @@ func (r Network_Storage_MassDataMigration_Request) GetPendingRequests() (resp []
 	return
 }
 
+func (r Network_Storage_MassDataMigration_Request) GetPendingRequestsIter() (resp []datatypes.Network_Storage_MassDataMigration_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getPendingRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_MassDataMigration_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getPendingRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The shipments of the request.
 func (r Network_Storage_MassDataMigration_Request) GetShipments() (resp []datatypes.Account_Shipment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getShipments", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_MassDataMigration_Request) GetShipmentsIter() (resp []datatypes.Account_Shipment, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getShipments", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Account_Shipment{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getShipments", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13653,6 +23249,30 @@ func (r Network_Storage_MassDataMigration_Request) GetTicket() (resp datatypes.T
 // Retrieve All tickets that are attached to the mass data migration request.
 func (r Network_Storage_MassDataMigration_Request) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_MassDataMigration_Request) GetTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13848,6 +23468,30 @@ func (r Network_Storage_Schedule) GetEvents() (resp []datatypes.Network_Storage_
 	return
 }
 
+func (r Network_Storage_Schedule) GetEventsIter() (resp []datatypes.Network_Storage_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hour parameter of this schedule.
 func (r Network_Storage_Schedule) GetHour() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getHour", nil, &r.Options, &resp)
@@ -13884,9 +23528,57 @@ func (r Network_Storage_Schedule) GetProperties() (resp []datatypes.Network_Stor
 	return
 }
 
+func (r Network_Storage_Schedule) GetPropertiesIter() (resp []datatypes.Network_Storage_Schedule_Property, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getProperties", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Schedule_Property{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getProperties", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Replica snapshots which have been created as the result of this schedule's execution.
 func (r Network_Storage_Schedule) GetReplicaSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getReplicaSnapshots", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Schedule) GetReplicaSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getReplicaSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getReplicaSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13905,6 +23597,30 @@ func (r Network_Storage_Schedule) GetSecond() (resp string, err error) {
 // Retrieve Snapshots which have been created as the result of this schedule's execution.
 func (r Network_Storage_Schedule) GetSnapshots() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getSnapshots", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Schedule) GetSnapshotsIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getSnapshots", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule", "getSnapshots", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -13963,6 +23679,30 @@ func (r Network_Storage_Schedule_Property_Type) Offset(offset int) Network_Stora
 // Use this method to retrieve all network storage schedule property types.
 func (r Network_Storage_Schedule_Property_Type) GetAllObjects() (resp []datatypes.Network_Storage_Schedule_Property_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule_Property_Type", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Storage_Schedule_Property_Type) GetAllObjectsIter() (resp []datatypes.Network_Storage_Schedule_Property_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule_Property_Type", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage_Schedule_Property_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Storage_Schedule_Property_Type", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14096,6 +23836,30 @@ func (r Network_Subnet) FindAllSubnetsAndActiveSwipTransactionStatus() (resp []d
 	return
 }
 
+func (r Network_Subnet) FindAllSubnetsAndActiveSwipTransactionStatusIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "findAllSubnetsAndActiveSwipTransactionStatus", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "findAllSubnetsAndActiveSwipTransactionStatus", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Subnet) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAccount", nil, &r.Options, &resp)
@@ -14138,9 +23902,57 @@ func (r Network_Subnet) GetAllowedNetworkStorage() (resp []datatypes.Network_Sto
 	return
 }
 
+func (r Network_Subnet) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network storage device replicas this subnet has been granted access to.
 func (r Network_Subnet) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14153,12 +23965,66 @@ func (r Network_Subnet) GetAttachedNetworkStorages(nasType *string) (resp []data
 	return
 }
 
+func (r Network_Subnet) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves the combination of network storage devices and replicas this subnet has NOT been granted access to. Allows for filtering based on storage device type.
 func (r Network_Subnet) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14174,6 +24040,30 @@ func (r Network_Subnet) GetBoundDescendants() (resp []datatypes.Network_Subnet, 
 	return
 }
 
+func (r Network_Subnet) GetBoundDescendantsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundDescendants", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundDescendants", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Indicates whether this subnet is associated to a network router and is routable on the network.
 func (r Network_Subnet) GetBoundRouterFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundRouterFlag", nil, &r.Options, &resp)
@@ -14186,9 +24076,57 @@ func (r Network_Subnet) GetBoundRouters() (resp []datatypes.Hardware, err error)
 	return
 }
 
+func (r Network_Subnet) GetBoundRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getBoundRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The immediate descendants of this subnet.
 func (r Network_Subnet) GetChildren() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getChildren", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetChildrenIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getChildren", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getChildren", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14201,6 +24139,30 @@ func (r Network_Subnet) GetDatacenter() (resp datatypes.Location_Datacenter, err
 // Retrieve The descendants of this subnet, including all parents and children.
 func (r Network_Subnet) GetDescendants() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDescendants", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetDescendantsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDescendants", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getDescendants", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14228,6 +24190,30 @@ func (r Network_Subnet) GetHardware() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Network_Subnet) GetHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Returns a list of IP address assignment details. Only assigned IP addresses are reported on. IP address assignments are presently only recorded and available for Primary Subnets.
 //
 // Details on the resource assigned to each IP address will only be provided to users with access to the underlying resource. If the user cannot access the resource, a detail record will still be returned for the assignment but without any accompanying resource data.
@@ -14236,9 +24222,57 @@ func (r Network_Subnet) GetIpAddressUsage() (resp []datatypes.Network_Subnet_IpA
 	return
 }
 
+func (r Network_Subnet) GetIpAddressUsageIter() (resp []datatypes.Network_Subnet_IpAddress_UsageDetail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddressUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_UsageDetail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddressUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The IP address records belonging to this subnet.
 func (r Network_Subnet) GetIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14254,9 +24288,57 @@ func (r Network_Subnet) GetNetworkProtectionAddresses() (resp []datatypes.Networ
 	return
 }
 
+func (r Network_Subnet) GetNetworkProtectionAddressesIter() (resp []datatypes.Network_Protection_Address, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkProtectionAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Protection_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkProtectionAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The IPSec VPN tunnels associated to this subnet.
 func (r Network_Subnet) GetNetworkTunnelContexts() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkTunnelContexts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetNetworkTunnelContextsIter() (resp []datatypes.Network_Tunnel_Module_Context, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkTunnelContexts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getNetworkTunnelContexts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14284,6 +24366,30 @@ func (r Network_Subnet) GetProtectedIpAddresses() (resp []datatypes.Network_Subn
 	return
 }
 
+func (r Network_Subnet) GetProtectedIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getProtectedIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getProtectedIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The RIR which is authoritative over the network in which this subnet resides.
 func (r Network_Subnet) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRegionalInternetRegistry", nil, &r.Options, &resp)
@@ -14296,6 +24402,30 @@ func (r Network_Subnet) GetRegistrations() (resp []datatypes.Network_Subnet_Regi
 	return
 }
 
+func (r Network_Subnet) GetRegistrationsIter() (resp []datatypes.Network_Subnet_Registration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRegistrations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRegistrations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The reverse DNS domain associated with this subnet.
 func (r Network_Subnet) GetReverseDomain() (resp datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getReverseDomain", nil, &r.Options, &resp)
@@ -14305,6 +24435,30 @@ func (r Network_Subnet) GetReverseDomain() (resp datatypes.Dns_Domain, err error
 // Retrieve all reverse DNS records associated with a subnet.
 func (r Network_Subnet) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getReverseDomainRecords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getReverseDomainRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getReverseDomainRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14323,6 +24477,30 @@ func (r Network_Subnet) GetRoleName() (resp string, err error) {
 // Returns IP addresses which may be used as routing endpoints for a given subnet. IP address which are currently the network, gateway, or broadcast address of a Secondary Portable subnet, are an address in a Secondary Static subnet, or if the address is not assigned to a resource when part of a Primary Subnet will not be available as a routing endpoint.
 func (r Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutableEndpointIpAddresses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetRoutableEndpointIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutableEndpointIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutableEndpointIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14353,15 +24531,87 @@ func (r Network_Subnet) GetSwipTransaction() (resp []datatypes.Network_Subnet_Sw
 	return
 }
 
+func (r Network_Subnet) GetSwipTransactionIter() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getSwipTransaction", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Swip_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getSwipTransaction", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The tags associated to this subnet.
 func (r Network_Subnet) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getTagReferences", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Subnet) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Subnet) GetUnboundDescendants() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUnboundDescendants", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetUnboundDescendantsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUnboundDescendants", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getUnboundDescendants", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14374,6 +24624,30 @@ func (r Network_Subnet) GetUtilizedIpAddressCount() (resp uint, err error) {
 // Retrieve The Virtual Server devices which have been assigned a primary IP address from this subnet.
 func (r Network_Subnet) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14530,6 +24804,30 @@ func (r Network_Subnet_IpAddress) FindUsage() (resp []datatypes.Network_Subnet_I
 	return
 }
 
+func (r Network_Subnet_IpAddress) FindUsageIter() (resp []datatypes.Network_Subnet_IpAddress_UsageDetail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "findUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_UsageDetail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "findUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage_Allowed_Host information to connect this IP Address to Network Storage supporting access control lists.
 func (r Network_Subnet_IpAddress) GetAllowedHost() (resp datatypes.Network_Storage_Allowed_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedHost", nil, &r.Options, &resp)
@@ -14542,9 +24840,57 @@ func (r Network_Subnet_IpAddress) GetAllowedNetworkStorage() (resp []datatypes.N
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Network_Subnet_IpAddress) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14563,12 +24909,66 @@ func (r Network_Subnet_IpAddress) GetAttachedNetworkStorages(nasType *string) (r
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Network_Subnet_IpAddress.
 func (r Network_Subnet_IpAddress) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14587,9 +24987,57 @@ func (r Network_Subnet_IpAddress) GetContextTunnelTranslations() (resp []datatyp
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetContextTunnelTranslationsIter() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getContextTunnelTranslations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context_Address_Translation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getContextTunnelTranslations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All the subnets routed to an IP address.
 func (r Network_Subnet_IpAddress) GetEndpointSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getEndpointSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetEndpointSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getEndpointSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getEndpointSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14635,6 +25083,30 @@ func (r Network_Subnet_IpAddress) GetProtectionAddress() (resp []datatypes.Netwo
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetProtectionAddressIter() (resp []datatypes.Network_Protection_Address, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getProtectionAddress", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Protection_Address{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getProtectionAddress", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network gateway appliance using this address as the public IP address.
 func (r Network_Subnet_IpAddress) GetPublicNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getPublicNetworkGateway", nil, &r.Options, &resp)
@@ -14659,9 +25131,57 @@ func (r Network_Subnet_IpAddress) GetSyslogEventsOneDay() (resp []datatypes.Netw
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetSyslogEventsOneDayIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsOneDay", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsOneDay", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All events for this IP address stored in the datacenter syslogs from the last 7 days
 func (r Network_Subnet_IpAddress) GetSyslogEventsSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsSevenDays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetSyslogEventsSevenDaysIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsSevenDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getSyslogEventsSevenDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14671,9 +25191,57 @@ func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortOneDay()
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortOneDayIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortOneDay", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortOneDay", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Top Ten network datacenter syslog events, grouped by destination port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortSevenDays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByDestinationPortSevenDaysIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortSevenDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByDestinationPortSevenDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14683,9 +25251,57 @@ func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsOneDay() (resp
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsOneDayIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsOneDay", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsOneDay", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsSevenDays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsByProtocolsSevenDaysIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsSevenDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsByProtocolsSevenDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14695,9 +25311,57 @@ func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpOneDay() (resp 
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpOneDayIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpOneDay", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpOneDay", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Top Ten network datacenter syslog events, grouped by source ip address, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpSevenDays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourceIpSevenDaysIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpSevenDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourceIpSevenDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14707,9 +25371,57 @@ func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortOneDay() (res
 	return
 }
 
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortOneDayIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortOneDay", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortOneDay", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Top Ten network datacenter syslog events, grouped by source port, for the last 7 days
 func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortSevenDays() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortSevenDays", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetTopTenSyslogEventsBySourcePortSevenDaysIter() (resp []datatypes.Network_Logging_Syslog, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortSevenDays", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Logging_Syslog{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getTopTenSyslogEventsBySourcePortSevenDays", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14722,6 +25434,30 @@ func (r Network_Subnet_IpAddress) GetVirtualGuest() (resp datatypes.Virtual_Gues
 // Retrieve Virtual licenses allocated for an IP Address.
 func (r Network_Subnet_IpAddress) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_IpAddress) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_IpAddress", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -14919,6 +25655,33 @@ func (r Network_Subnet_Registration) CreateObjects(templateObjects []datatypes.N
 	return
 }
 
+func (r Network_Subnet_Registration) CreateObjectsIter(templateObjects []datatypes.Network_Subnet_Registration) (resp []datatypes.Network_Subnet_Registration, err error) {
+	params := []interface{}{
+		templateObjects,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "createObjects", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "createObjects", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The subnet registration service has been deprecated.
 //
 // This method will edit an existing SoftLayer_Network_Subnet_Registration object. For more detail, see [[SoftLayer_Network_Subnet_Registration::createObject|createObject]].
@@ -14956,9 +25719,57 @@ func (r Network_Subnet_Registration) GetDetailReferences() (resp []datatypes.Net
 	return
 }
 
+func (r Network_Subnet_Registration) GetDetailReferencesIter() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getDetailReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration_Details{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getDetailReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [Deprecated] The related registration events.
 func (r Network_Subnet_Registration) GetEvents() (resp []datatypes.Network_Subnet_Registration_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getEvents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_Registration) GetEventsIter() (resp []datatypes.Network_Subnet_Registration_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration", "getEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15140,6 +25951,30 @@ func (r Network_Subnet_Registration_Status) GetAllObjects() (resp []datatypes.Ne
 	return
 }
 
+func (r Network_Subnet_Registration_Status) GetAllObjectsIter() (resp []datatypes.Network_Subnet_Registration_Status, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Status", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Registration_Status{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Status", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Network_Subnet_Registration_Status) GetObject() (resp datatypes.Network_Subnet_Registration_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Registration_Status", "getObject", nil, &r.Options, &resp)
@@ -15270,6 +26105,30 @@ func (r Network_Subnet_Swip_Transaction) Offset(offset int) Network_Subnet_Swip_
 // Deprecated: This function has been marked as deprecated.
 func (r Network_Subnet_Swip_Transaction) FindMyTransactions() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Subnet_Swip_Transaction) FindMyTransactionsIter() (resp []datatypes.Network_Subnet_Swip_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_Swip_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Subnet_Swip_Transaction", "findMyTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15435,6 +26294,33 @@ func (r Network_Tunnel_Module_Context) CreateAddressTranslations(translations []
 	return
 }
 
+func (r Network_Tunnel_Module_Context) CreateAddressTranslationsIter(translations []datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
+	params := []interface{}{
+		translations,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "createAddressTranslations", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context_Address_Translation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "createAddressTranslations", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Remove an existing address translation from a network tunnel.
 //
 // Address translations deliver packets to a destination ip address that is on a customer subnet (remote).
@@ -15483,6 +26369,33 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 		translations,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "editAddressTranslations", params, &r.Options, &resp)
+	return
+}
+
+func (r Network_Tunnel_Module_Context) EditAddressTranslationsIter(translations []datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
+	params := []interface{}{
+		translations,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "editAddressTranslations", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context_Address_Translation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "editAddressTranslations", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15569,9 +26482,57 @@ func (r Network_Tunnel_Module_Context) GetAddressTranslations() (resp []datatype
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetAddressTranslationsIter() (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAddressTranslations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Tunnel_Module_Context_Address_Translation{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAddressTranslations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Subnets that provide access to SoftLayer services such as the management portal and the SoftLayer API.
 func (r Network_Tunnel_Module_Context) GetAllAvailableServiceSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAllAvailableServiceSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Tunnel_Module_Context) GetAllAvailableServiceSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAllAvailableServiceSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAllAvailableServiceSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15592,6 +26553,30 @@ func (r Network_Tunnel_Module_Context) GetAuthenticationOptions() (resp []string
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetAuthenticationOptionsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The current billing item for network tunnel.
 func (r Network_Tunnel_Module_Context) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getBillingItem", nil, &r.Options, &resp)
@@ -15601,6 +26586,30 @@ func (r Network_Tunnel_Module_Context) GetBillingItem() (resp datatypes.Billing_
 // Retrieve Remote subnets that are allowed access through a network tunnel.
 func (r Network_Tunnel_Module_Context) GetCustomerSubnets() (resp []datatypes.Network_Customer_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getCustomerSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Tunnel_Module_Context) GetCustomerSubnetsIter() (resp []datatypes.Network_Customer_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getCustomerSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Customer_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getCustomerSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15628,6 +26637,30 @@ func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupOptions() (resp []in
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupOptionsIter() (resp []int, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The default encryption type used for both phases of the negotiation process.  The default value is set to 3DES.
 func (r Network_Tunnel_Module_Context) GetEncryptionDefault() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionDefault", nil, &r.Options, &resp)
@@ -15647,15 +26680,87 @@ func (r Network_Tunnel_Module_Context) GetEncryptionOptions() (resp []string, er
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetEncryptionOptionsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Private subnets that can be accessed through the network tunnel.
 func (r Network_Tunnel_Module_Context) GetInternalSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getInternalSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetInternalSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getInternalSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getInternalSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The keylife limits.  Keylife max limit is set to 120.  Keylife min limit is set to 172800.
 func (r Network_Tunnel_Module_Context) GetKeylifeLimits() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getKeylifeLimits", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Tunnel_Module_Context) GetKeylifeLimitsIter() (resp []int, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getKeylifeLimits", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []int{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getKeylifeLimits", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15689,15 +26794,87 @@ func (r Network_Tunnel_Module_Context) GetServiceSubnets() (resp []datatypes.Net
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetServiceSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getServiceSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getServiceSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Subnets used for a network tunnel's address translations.
 func (r Network_Tunnel_Module_Context) GetStaticRouteSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getStaticRouteSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Tunnel_Module_Context) GetStaticRouteSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getStaticRouteSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getStaticRouteSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve DEPRECATED
 func (r Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getTransactionHistory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Tunnel_Module_Context) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15805,6 +26982,30 @@ func (r Network_Vlan) GetAdditionalPrimarySubnets() (resp []datatypes.Network_Su
 	return
 }
 
+func (r Network_Vlan) GetAdditionalPrimarySubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAdditionalPrimarySubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAdditionalPrimarySubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The gateway device this VLAN is associated with for routing purposes.
 func (r Network_Vlan) GetAttachedNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getAttachedNetworkGateway", nil, &r.Options, &resp)
@@ -15835,6 +27036,30 @@ func (r Network_Vlan) GetCancelFailureReasons() (resp []string, err error) {
 	return
 }
 
+func (r Network_Vlan) GetCancelFailureReasonsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getCancelFailureReasons", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getCancelFailureReasons", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The datacenter this VLAN is associated with.
 func (r Network_Vlan) GetDatacenter() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getDatacenter", nil, &r.Options, &resp)
@@ -15859,15 +27084,87 @@ func (r Network_Vlan) GetFirewallGuestNetworkComponents() (resp []datatypes.Netw
 	return
 }
 
+func (r Network_Vlan) GetFirewallGuestNetworkComponentsIter() (resp []datatypes.Network_Component_Firewall, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallGuestNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Firewall{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallGuestNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The context for the firewall device associated with this VLAN.
 func (r Network_Vlan) GetFirewallInterfaces() (resp []datatypes.Network_Firewall_Module_Context_Interface, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallInterfaces", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Vlan) GetFirewallInterfacesIter() (resp []datatypes.Network_Firewall_Module_Context_Interface, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallInterfaces", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Module_Context_Interface{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallInterfaces", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The uplinks of the hardware network interfaces connected natively to this VLAN and associated with a Hardware Firewall.
 func (r Network_Vlan) GetFirewallNetworkComponents() (resp []datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetFirewallNetworkComponentsIter() (resp []datatypes.Network_Component_Firewall, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Firewall{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15879,11 +27176,59 @@ func (r Network_Vlan) GetFirewallProtectableIpAddresses() (resp []datatypes.Netw
 	return
 }
 
+func (r Network_Vlan) GetFirewallProtectableIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // *** DEPRECATED ***
 // Retrieves the subnets routed on this VLAN that are protectable by a Hardware Firewall.
 // Deprecated: This function has been marked as deprecated.
 func (r Network_Vlan) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetFirewallProtectableSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallProtectableSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15893,15 +27238,87 @@ func (r Network_Vlan) GetFirewallRules() (resp []datatypes.Network_Vlan_Firewall
 	return
 }
 
+func (r Network_Vlan) GetFirewallRulesIter() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan_Firewall_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getFirewallRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The VSI network interfaces connected to this VLAN.
 func (r Network_Vlan) GetGuestNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getGuestNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Vlan) GetGuestNetworkComponentsIter() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getGuestNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getGuestNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware with network interfaces connected natively to this VLAN.
 func (r Network_Vlan) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15919,6 +27336,30 @@ func (r Network_Vlan) GetIpAddressUsage() (resp []datatypes.Network_Subnet_IpAdd
 	return
 }
 
+func (r Network_Vlan) GetIpAddressUsageIter() (resp []datatypes.Network_Subnet_IpAddress_UsageDetail, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getIpAddressUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress_UsageDetail{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getIpAddressUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A value of '1' indicates this VLAN's pod has VSI local disk storage capability.
 func (r Network_Vlan) GetLocalDiskStorageCapabilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getLocalDiskStorageCapabilityFlag", nil, &r.Options, &resp)
@@ -15931,15 +27372,87 @@ func (r Network_Vlan) GetNetworkComponentTrunks() (resp []datatypes.Network_Comp
 	return
 }
 
+func (r Network_Vlan) GetNetworkComponentTrunksIter() (resp []datatypes.Network_Component_Network_Vlan_Trunk, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentTrunks", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Network_Vlan_Trunk{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentTrunks", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The hardware network interfaces connected natively to this VLAN.
 func (r Network_Vlan) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Vlan) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The viable hardware network interface trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already connected, either natively or trunked.
 func (r Network_Vlan) GetNetworkComponentsTrunkable() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentsTrunkable", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetNetworkComponentsTrunkableIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentsTrunkable", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getNetworkComponentsTrunkable", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -15991,9 +27504,57 @@ func (r Network_Vlan) GetPrimarySubnets() (resp []datatypes.Network_Subnet, err 
 	return
 }
 
+func (r Network_Vlan) GetPrimarySubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimarySubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrimarySubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The gateway devices with connectivity supported by this private VLAN.
 func (r Network_Vlan) GetPrivateNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrivateNetworkGateways", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetPrivateNetworkGatewaysIter() (resp []datatypes.Network_Gateway, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrivateNetworkGateways", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPrivateNetworkGateways", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -16022,9 +27583,57 @@ func (r Network_Vlan) GetProtectedIpAddresses() (resp []datatypes.Network_Subnet
 	return
 }
 
+func (r Network_Vlan) GetProtectedIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getProtectedIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getProtectedIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The gateway devices with connectivity supported by this public VLAN.
 func (r Network_Vlan) GetPublicNetworkGateways() (resp []datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPublicNetworkGateways", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetPublicNetworkGatewaysIter() (resp []datatypes.Network_Gateway, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPublicNetworkGateways", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Gateway{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getPublicNetworkGateways", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -16047,6 +27656,30 @@ func (r Network_Vlan) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, er
 	return
 }
 
+func (r Network_Vlan) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getReverseDomainRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getReverseDomainRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A value of '1' indicates this VLAN's pod has VSI SAN disk storage capability.
 func (r Network_Vlan) GetSanStorageCapabilityFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSanStorageCapabilityFlag", nil, &r.Options, &resp)
@@ -16065,15 +27698,87 @@ func (r Network_Vlan) GetSecondarySubnets() (resp []datatypes.Network_Subnet, er
 	return
 }
 
+func (r Network_Vlan) GetSecondarySubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSecondarySubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSecondarySubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All subnets routed on this VLAN.
 func (r Network_Vlan) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSubnets", nil, &r.Options, &resp)
 	return
 }
 
+func (r Network_Vlan) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The tags associated to this VLAN.
 func (r Network_Vlan) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -16092,6 +27797,30 @@ func (r Network_Vlan) GetType() (resp datatypes.Network_Vlan_Type, err error) {
 // Retrieve The VSIs with network interfaces connected to this VLAN.
 func (r Network_Vlan) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -16198,6 +27927,30 @@ func (r Network_Vlan_Firewall) GetBillingCycleBandwidthUsage() (resp []datatypes
 	return
 }
 
+func (r Network_Vlan_Firewall) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The raw private bandwidth usage data for the current billing cycle.
 func (r Network_Vlan_Firewall) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getBillingCyclePrivateBandwidthUsage", nil, &r.Options, &resp)
@@ -16270,6 +28023,30 @@ func (r Network_Vlan_Firewall) GetNetworkFirewallUpdateRequests() (resp []dataty
 	return
 }
 
+func (r Network_Vlan_Firewall) GetNetworkFirewallUpdateRequestsIter() (resp []datatypes.Network_Firewall_Update_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getNetworkFirewallUpdateRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Firewall_Update_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getNetworkFirewallUpdateRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The gateway associated with this firewall, if any.
 func (r Network_Vlan_Firewall) GetNetworkGateway() (resp datatypes.Network_Gateway, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getNetworkGateway", nil, &r.Options, &resp)
@@ -16288,6 +28065,30 @@ func (r Network_Vlan_Firewall) GetNetworkVlans() (resp []datatypes.Network_Vlan,
 	return
 }
 
+func (r Network_Vlan_Firewall) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getObject returns a SoftLayer_Network_Vlan_Firewall object. You can only get objects for vlans attached to your account that have a network firewall enabled.
 func (r Network_Vlan_Firewall) GetObject() (resp datatypes.Network_Vlan_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getObject", nil, &r.Options, &resp)
@@ -16300,9 +28101,57 @@ func (r Network_Vlan_Firewall) GetRules() (resp []datatypes.Network_Vlan_Firewal
 	return
 }
 
+func (r Network_Vlan_Firewall) GetRulesIter() (resp []datatypes.Network_Vlan_Firewall_Rule, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getRules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan_Firewall_Rule{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getRules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Network_Vlan_Firewall) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Network_Vlan_Firewall) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Network_Vlan_Firewall", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -74,6 +75,30 @@ func (r Sales_Presale_Event) GetAllObjects() (resp []datatypes.Sales_Presale_Eve
 	return
 }
 
+func (r Sales_Presale_Event) GetAllObjectsIter() (resp []datatypes.Sales_Presale_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Sales_Presale_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag to indicate that the presale event is expired. A presale event is expired if the current time is after the end date.
 func (r Sales_Presale_Event) GetExpiredFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getExpiredFlag", nil, &r.Options, &resp)
@@ -101,5 +126,29 @@ func (r Sales_Presale_Event) GetObject() (resp datatypes.Sales_Presale_Event, er
 // Retrieve The orders ([[SoftLayer_Billing_Order]]) associated with this presale event that were created for the customer's account.
 func (r Sales_Presale_Event) GetOrders() (resp []datatypes.Billing_Order, err error) {
 	err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getOrders", nil, &r.Options, &resp)
+	return
+}
+
+func (r Sales_Presale_Event) GetOrdersIter() (resp []datatypes.Billing_Order, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getOrders", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Order{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Sales_Presale_Event", "getOrders", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }

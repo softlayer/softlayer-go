@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -150,6 +151,30 @@ func (r Provisioning_Hook_Type) GetAllHookTypes() (resp []datatypes.Provisioning
 	return
 }
 
+func (r Provisioning_Hook_Type) GetAllHookTypesIter() (resp []datatypes.Provisioning_Hook_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook_Type", "getAllHookTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Hook_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Hook_Type", "getAllHookTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Provisioning_Hook_Type) GetObject() (resp datatypes.Provisioning_Hook_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Hook_Type", "getObject", nil, &r.Options, &resp)
@@ -202,6 +227,30 @@ func (r Provisioning_Maintenance_Classification) GetItemCategories() (resp []dat
 	return
 }
 
+func (r Provisioning_Maintenance_Classification) GetItemCategoriesIter() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getItemCategories", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Classification_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getItemCategories", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve an array of SoftLayer_Provisioning_Maintenance_Classification data types, which contain all maintenance classifications.
 func (r Provisioning_Maintenance_Classification) GetMaintenanceClassification(maintenanceClassificationId *int) (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
 	params := []interface{}{
@@ -211,9 +260,60 @@ func (r Provisioning_Maintenance_Classification) GetMaintenanceClassification(ma
 	return
 }
 
+func (r Provisioning_Maintenance_Classification) GetMaintenanceClassificationIter(maintenanceClassificationId *int) (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
+	params := []interface{}{
+		maintenanceClassificationId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassification", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Classification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassification", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve an array of SoftLayer_Provisioning_Maintenance_Classification data types, which contain all maintenance classifications.
 func (r Provisioning_Maintenance_Classification) GetMaintenanceClassificationsByItemCategory() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassificationsByItemCategory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Provisioning_Maintenance_Classification) GetMaintenanceClassificationsByItemCategoryIter() (resp []datatypes.Provisioning_Maintenance_Classification_Item_Category, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassificationsByItemCategory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Classification_Item_Category{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Classification", "getMaintenanceClassificationsByItemCategory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -440,6 +540,30 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceClassifications() (resp [
 	return
 }
 
+func (r Provisioning_Maintenance_Window) GetMaintenanceClassificationsIter() (resp []datatypes.Provisioning_Maintenance_Classification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceClassifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Classification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceClassifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // getMaintenanceStartEndTime() returns a specific maintenance window
 func (r Provisioning_Maintenance_Window) GetMaintenanceStartEndTime(ticketId *int) (resp datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
@@ -467,6 +591,33 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindowTicketsByTicketId(t
 	return
 }
 
+func (r Provisioning_Maintenance_Window) GetMaintenanceWindowTicketsByTicketIdIter(ticketId *int) (resp []datatypes.Provisioning_Maintenance_Ticket, err error) {
+	params := []interface{}{
+		ticketId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowTicketsByTicketId", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindowTicketsByTicketId", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method returns a list of available maintenance windows
 func (r Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
 	params := []interface{}{
@@ -476,6 +627,36 @@ func (r Provisioning_Maintenance_Window) GetMaintenanceWindows(beginDate *dataty
 		slotsNeeded,
 	}
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindows", params, &r.Options, &resp)
+	return
+}
+
+func (r Provisioning_Maintenance_Window) GetMaintenanceWindowsIter(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
+	params := []interface{}{
+		beginDate,
+		endDate,
+		locationId,
+		slotsNeeded,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindows", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Window{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenanceWindows", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -489,6 +670,36 @@ func (r Provisioning_Maintenance_Window) GetMaintenceWindows(beginDate *datatype
 		slotsNeeded,
 	}
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, &r.Options, &resp)
+	return
+}
+
+func (r Provisioning_Maintenance_Window) GetMaintenceWindowsIter(beginDate *datatypes.Time, endDate *datatypes.Time, locationId *int, slotsNeeded *int) (resp []datatypes.Provisioning_Maintenance_Window, err error) {
+	params := []interface{}{
+		beginDate,
+		endDate,
+		locationId,
+		slotsNeeded,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Maintenance_Window{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Maintenance_Window", "getMaintenceWindows", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -537,6 +748,30 @@ func (r Provisioning_Version1_Transaction_Group) Offset(offset int) Provisioning
 // no documentation yet
 func (r Provisioning_Version1_Transaction_Group) GetAllObjects() (resp []datatypes.Provisioning_Version1_Transaction_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+func (r Provisioning_Version1_Transaction_Group) GetAllObjectsIter() (resp []datatypes.Provisioning_Version1_Transaction_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Provisioning_Version1_Transaction_Group", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 

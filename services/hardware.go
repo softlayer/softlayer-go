@@ -16,6 +16,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -446,15 +447,87 @@ func (r Hardware) GetActiveComponents() (resp []datatypes.Hardware_Component, er
 	return
 }
 
+func (r Hardware) GetActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's active network monitoring incidents.
 func (r Hardware) GetActiveNetworkMonitorIncident() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware) GetAllPowerComponents() (resp []datatypes.Hardware_Power_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getAllPowerComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetAllPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAllPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAllPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -470,9 +543,57 @@ func (r Hardware) GetAllowedNetworkStorage() (resp []datatypes.Network_Storage, 
 	return
 }
 
+func (r Hardware) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Hardware) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -491,9 +612,60 @@ func (r Hardware) GetAttachedNetworkStorages(nasType *string) (resp []datatypes.
 	return
 }
 
+func (r Hardware) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's specific attributes.
 func (r Hardware) GetAttributes() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetAttributesIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -503,12 +675,63 @@ func (r Hardware) GetAvailableBillingTermChangePrices() (resp []datatypes.Produc
 	return
 }
 
+func (r Hardware) GetAvailableBillingTermChangePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableBillingTermChangePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Hardware.
 func (r Hardware) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -534,6 +757,30 @@ func (r Hardware) GetBackendNetworkComponents() (resp []datatypes.Network_Compon
 	return
 }
 
+func (r Hardware) GetBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendOutgoingBandwidth”' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -547,6 +794,30 @@ func (r Hardware) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate
 // Retrieve A hardware's backend or private router.
 func (r Hardware) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getBackendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getBackendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getBackendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -565,6 +836,30 @@ func (r Hardware) GetBandwidthAllotmentDetail() (resp datatypes.Network_Bandwidt
 // Retrieve Information regarding a piece of hardware's benchmark certifications.
 func (r Hardware) GetBenchmarkCertifications() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetBenchmarkCertificationsIter() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Benchmark_Certification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getBenchmarkCertifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -598,6 +893,30 @@ func (r Hardware) GetChildrenHardware() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Hardware) GetChildrenHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getChildrenHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getChildrenHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -607,6 +926,30 @@ func (r Hardware) GetComponentDetailsXML() (resp string, err error) {
 // Retrieve A piece of hardware's components.
 func (r Hardware) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -633,6 +976,30 @@ func (r Hardware) GetCurrentBillableBandwidthUsage() (resp datatypes.Float64, er
 // Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getCurrentBillingDetail", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -676,9 +1043,57 @@ func (r Hardware) GetDownlinkHardware() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Hardware) GetDownlinkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware that has uplink network connections to a piece of hardware.
 func (r Hardware) GetDownlinkNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetDownlinkNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -688,9 +1103,57 @@ func (r Hardware) GetDownlinkServers() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Hardware) GetDownlinkServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all virtual guests attached to a piece of network hardware.
 func (r Hardware) GetDownlinkVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetDownlinkVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownlinkVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -700,9 +1163,57 @@ func (r Hardware) GetDownstreamHardwareBindings() (resp []datatypes.Network_Comp
 	return
 }
 
+func (r Hardware) GetDownstreamHardwareBindingsIter() (resp []datatypes.Network_Component_Uplink_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamHardwareBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Uplink_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamHardwareBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network hardware downstream from the selected piece of hardware.
 func (r Hardware) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetDownstreamNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -712,9 +1223,57 @@ func (r Hardware) GetDownstreamNetworkHardwareWithIncidents() (resp []datatypes.
 	return
 }
 
+func (r Hardware) GetDownstreamNetworkHardwareWithIncidentsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamNetworkHardwareWithIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all servers attached downstream to a piece of network hardware.
 func (r Hardware) GetDownstreamServers() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetDownstreamServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -724,15 +1283,87 @@ func (r Hardware) GetDownstreamVirtualGuests() (resp []datatypes.Virtual_Guest, 
 	return
 }
 
+func (r Hardware) GetDownstreamVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDownstreamVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The drive controllers contained within a piece of hardware.
 func (r Hardware) GetDriveControllers() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getDriveControllers", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware) GetDriveControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getDriveControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getDriveControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's associated EVault network storage service account.
 func (r Hardware) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -764,6 +1395,30 @@ func (r Hardware) GetFrontendNetworkComponents() (resp []datatypes.Network_Compo
 	return
 }
 
+func (r Hardware) GetFrontendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getFrontendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getFrontendOutgoingBandwidth”' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ”dateTime” parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
 func (r Hardware) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -777,6 +1432,30 @@ func (r Hardware) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDat
 // Retrieve A hardware's frontend or public router.
 func (r Hardware) GetFrontendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getFrontendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetFrontendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getFrontendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getFrontendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -795,6 +1474,30 @@ func (r Hardware) GetGlobalIdentifier() (resp string, err error) {
 // Retrieve The hard drives contained within a piece of hardware.
 func (r Hardware) GetHardDrives() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getHardDrives", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetHardDrivesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getHardDrives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getHardDrives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -853,6 +1556,34 @@ func (r Hardware) GetHourlyBandwidth(mode *string, day *datatypes.Time) (resp []
 		day,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getHourlyBandwidth", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetHourlyBandwidthIter(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		mode,
+		day,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getHourlyBandwidth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getHourlyBandwidth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -922,6 +1653,30 @@ func (r Hardware) GetMemory() (resp []datatypes.Hardware_Component, err error) {
 	return
 }
 
+func (r Hardware) GetMemoryIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getMemory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getMemory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of memory a piece of hardware has, measured in gigabytes.
 func (r Hardware) GetMemoryCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getMemoryCapacity", nil, &r.Options, &resp)
@@ -937,6 +1692,30 @@ func (r Hardware) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Obje
 // Retrieve
 func (r Hardware) GetModules() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getModules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetModulesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getModules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getModules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -970,9 +1749,57 @@ func (r Hardware) GetNetworkCards() (resp []datatypes.Hardware_Component, err er
 	return
 }
 
+func (r Hardware) GetNetworkCardsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkCards", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkCards", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Returns a hardware's network components.
 func (r Hardware) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1000,9 +1827,57 @@ func (r Hardware) GetNetworkMonitorAttachedDownHardware() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware) GetNetworkMonitorAttachedDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorAttachedDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorAttachedDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Virtual guests that are attached downstream to a hardware that have failed monitoring
 func (r Hardware) GetNetworkMonitorAttachedDownVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetNetworkMonitorAttachedDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorAttachedDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1012,9 +1887,57 @@ func (r Hardware) GetNetworkMonitorIncidents() (resp []datatypes.Network_Monitor
 	return
 }
 
+func (r Hardware) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitorIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's network monitors.
 func (r Hardware) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1036,9 +1959,57 @@ func (r Hardware) GetNetworkStorage() (resp []datatypes.Network_Storage, err err
 	return
 }
 
+func (r Hardware) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network virtual LANs (VLANs) associated with a piece of hardware's network components.
 func (r Hardware) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1054,6 +2025,30 @@ func (r Hardware) GetNotesHistory() (resp []datatypes.Hardware_Note, err error) 
 	return
 }
 
+func (r Hardware) GetNotesHistoryIter() (resp []datatypes.Hardware_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNotesHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNotesHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of non-volatile memory a piece of hardware has, measured in gigabytes.
 func (r Hardware) GetNvRamCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNvRamCapacity", nil, &r.Options, &resp)
@@ -1063,6 +2058,30 @@ func (r Hardware) GetNvRamCapacity() (resp uint, err error) {
 // Retrieve
 func (r Hardware) GetNvRamComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getNvRamComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetNvRamComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getNvRamComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getNvRamComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1120,9 +2139,57 @@ func (r Hardware) GetPowerComponents() (resp []datatypes.Hardware_Power_Componen
 	return
 }
 
+func (r Hardware) GetPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's power supply.
 func (r Hardware) GetPowerSupply() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getPowerSupply", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetPowerSupplyIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getPowerSupply", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getPowerSupply", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1160,6 +2227,34 @@ func (r Hardware) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []
 	return
 }
 
+func (r Hardware) GetPrivateBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getPrivateBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getPrivateBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the hardware only has access to the private network.
 func (r Hardware) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getPrivateNetworkOnlyFlag", nil, &r.Options, &resp)
@@ -1184,6 +2279,30 @@ func (r Hardware) GetProcessors() (resp []datatypes.Hardware_Component, err erro
 	return
 }
 
+func (r Hardware) GetProcessorsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -1191,6 +2310,34 @@ func (r Hardware) GetPublicBandwidthData(startTime *int, endTime *int) (resp []d
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getPublicBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetPublicBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getPublicBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getPublicBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1206,15 +2353,87 @@ func (r Hardware) GetRaidControllers() (resp []datatypes.Hardware_Component, err
 	return
 }
 
+func (r Hardware) GetRaidControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getRaidControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getRaidControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Recent events that impact this hardware.
 func (r Hardware) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getRecentEvents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve User credentials to issue commands and/or interact with the server's remote management card.
 func (r Hardware) GetRemoteManagementAccounts() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetRemoteManagementAccountsIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getRemoteManagementAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1230,9 +2449,57 @@ func (r Hardware) GetResourceConfigurations() (resp []datatypes.Hardware_Resourc
 	return
 }
 
+func (r Hardware) GetResourceConfigurationsIter() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Resource_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware) GetResourceGroupMemberReferences() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetResourceGroupMemberReferencesIter() (resp []datatypes.Resource_Group_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupMemberReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1242,9 +2509,57 @@ func (r Hardware) GetResourceGroupRoles() (resp []datatypes.Resource_Group_Role,
 	return
 }
 
+func (r Hardware) GetResourceGroupRolesIter() (resp []datatypes.Resource_Group_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroupRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The resource groups in which this hardware is a member.
 func (r Hardware) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetResourceGroupsIter() (resp []datatypes.Resource_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getResourceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1254,15 +2569,87 @@ func (r Hardware) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Hardware) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's vulnerability scan requests.
 func (r Hardware) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getSecurityScanRequests", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getSensorData”' method retrieves a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures various information, including system temperatures, voltages and other local server settings. Sensor data is cached for 30 second; calls made to this method for the same server within 30 seconds of each other will result in the same data being returned. To ensure that the data retrieved retrieves snapshot of varied data, make calls greater than 30 seconds apart.
 func (r Hardware) GetSensorData() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getSensorData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetSensorDataIter() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getSensorData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_SensorReading{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getSensorData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1275,6 +2662,30 @@ func (r Hardware) GetSensorDataWithGraphs() (resp datatypes.Container_RemoteMana
 // The ”'getServerFanSpeedGraphs”' method retrieves the server's fan speeds and displays the speeds using tachometer graphs. data used to construct these graphs is retrieved from the server's remote management card. Each graph returned will have an associated title.
 func (r Hardware) GetServerFanSpeedGraphs() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetServerFanSpeedGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorSpeed{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getServerFanSpeedGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1296,6 +2707,30 @@ func (r Hardware) GetServerTemperatureGraphs() (resp []datatypes.Container_Remot
 	return
 }
 
+func (r Hardware) GetServerTemperatureGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorTemperature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getServerTemperatureGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorTemperature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getServerTemperatureGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the piece of hardware's service provider.
 func (r Hardware) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getServiceProvider", nil, &r.Options, &resp)
@@ -1305,6 +2740,30 @@ func (r Hardware) GetServiceProvider() (resp datatypes.Service_Provider, err err
 // Retrieve Information regarding a piece of hardware's installed software.
 func (r Hardware) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getSoftwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getSoftwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getSoftwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1320,9 +2779,57 @@ func (r Hardware) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	return
 }
 
+func (r Hardware) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1332,9 +2839,57 @@ func (r Hardware) GetStorageNetworkComponents() (resp []datatypes.Network_Compon
 	return
 }
 
+func (r Hardware) GetStorageNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getStorageNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1350,9 +2905,57 @@ func (r Hardware) GetTransactionHistory() (resp []datatypes.Provisioning_Version
 	return
 }
 
+func (r Hardware) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of upgradeable items available to this piece of hardware. Currently, getUpgradeItemPrices retrieves upgrades available for a server's memory, hard drives, network port speed, bandwidth allocation and GPUs.
 func (r Hardware) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1368,6 +2971,30 @@ func (r Hardware) GetUpgradeableActiveComponents() (resp []datatypes.Hardware_Co
 	return
 }
 
+func (r Hardware) GetUpgradeableActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getUpgradeableActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getUplinkHardware", nil, &r.Options, &resp)
@@ -1380,9 +3007,57 @@ func (r Hardware) GetUplinkNetworkComponents() (resp []datatypes.Network_Compone
 	return
 }
 
+func (r Hardware) GetUplinkNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getUplinkNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getUplinkNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getUserData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetUserDataIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getUserData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getUserData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1398,6 +3073,30 @@ func (r Hardware) GetVirtualChassisSiblings() (resp []datatypes.Hardware, err er
 	return
 }
 
+func (r Hardware) GetVirtualChassisSiblingsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualChassisSiblings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualChassisSiblings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's virtual host record.
 func (r Hardware) GetVirtualHost() (resp datatypes.Virtual_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualHost", nil, &r.Options, &resp)
@@ -1407,6 +3106,30 @@ func (r Hardware) GetVirtualHost() (resp datatypes.Virtual_Host, err error) {
 // Retrieve Information regarding a piece of hardware's virtual software licenses.
 func (r Hardware) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1722,6 +3445,33 @@ func (r Hardware_Component_Locator) GetGenericComponentModelAvailability(generic
 	return
 }
 
+func (r Hardware_Component_Locator) GetGenericComponentModelAvailabilityIter(genericComponentModelIds []int) (resp []datatypes.Hardware_Component_Locator_Result, err error) {
+	params := []interface{}{
+		genericComponentModelIds,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getGenericComponentModelAvailability", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Locator_Result{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getGenericComponentModelAvailability", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_Component_Locator) GetPackageItemsAvailability(packageId *int) (resp []datatypes.Hardware_Component_Locator_Result, err error) {
 	params := []interface{}{
@@ -1731,9 +3481,60 @@ func (r Hardware_Component_Locator) GetPackageItemsAvailability(packageId *int) 
 	return
 }
 
+func (r Hardware_Component_Locator) GetPackageItemsAvailabilityIter(packageId *int) (resp []datatypes.Hardware_Component_Locator_Result, err error) {
+	params := []interface{}{
+		packageId,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getPackageItemsAvailability", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Locator_Result{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getPackageItemsAvailability", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_Component_Locator) GetServerPackageAvailability() (resp []datatypes.Hardware_Component_Locator_Result, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getServerPackageAvailability", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Locator) GetServerPackageAvailabilityIter() (resp []datatypes.Hardware_Component_Locator_Result, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getServerPackageAvailability", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Locator_Result{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Locator", "getServerPackageAvailability", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1789,9 +3590,57 @@ func (r Hardware_Component_Model) GetAttributes() (resp []datatypes.Hardware_Com
 	return
 }
 
+func (r Hardware_Component_Model) GetAttributesIter() (resp []datatypes.Hardware_Component_Model_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Component_Model) GetCompatibleArrayTypes() (resp []datatypes.Configuration_Storage_Group_Array_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleArrayTypes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Model) GetCompatibleArrayTypesIter() (resp []datatypes.Configuration_Storage_Group_Array_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleArrayTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group_Array_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleArrayTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1801,9 +3650,57 @@ func (r Hardware_Component_Model) GetCompatibleChildComponentModels() (resp []da
 	return
 }
 
+func (r Hardware_Component_Model) GetCompatibleChildComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleChildComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleChildComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All the component models that a hardware component model is compatible with.
 func (r Hardware_Component_Model) GetCompatibleParentComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleParentComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Model) GetCompatibleParentComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleParentComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getCompatibleParentComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1819,9 +3716,57 @@ func (r Hardware_Component_Model) GetFirmwares() (resp []datatypes.Hardware_Comp
 	return
 }
 
+func (r Hardware_Component_Model) GetFirmwaresIter() (resp []datatypes.Hardware_Component_Firmware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getFirmwares", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Firmware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getFirmwares", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A hardware component model's physical components in inventory.
 func (r Hardware_Component_Model) GetHardwareComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getHardwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Model) GetHardwareComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getHardwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getHardwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1861,6 +3806,30 @@ func (r Hardware_Component_Model) GetQualifiedFirmwares() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_Component_Model) GetQualifiedFirmwaresIter() (resp []datatypes.Hardware_Component_Firmware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getQualifiedFirmwares", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Firmware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getQualifiedFirmwares", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A motherboard's average reboot time.
 func (r Hardware_Component_Model) GetRebootTime() (resp datatypes.Hardware_Component_Motherboard_Reboot_Time, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getRebootTime", nil, &r.Options, &resp)
@@ -1876,6 +3845,30 @@ func (r Hardware_Component_Model) GetType() (resp string, err error) {
 // Retrieve The types of attributes that are allowed for a given hardware component model.
 func (r Hardware_Component_Model) GetValidAttributeTypes() (resp []datatypes.Hardware_Component_Model_Attribute_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getValidAttributeTypes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Model) GetValidAttributeTypesIter() (resp []datatypes.Hardware_Component_Model_Attribute_Type, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getValidAttributeTypes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model_Attribute_Type{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getValidAttributeTypes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1925,6 +3918,30 @@ func (r Hardware_Component_Partition_OperatingSystem) GetAllObjects() (resp []da
 	return
 }
 
+func (r Hardware_Component_Partition_OperatingSystem) GetAllObjectsIter() (resp []datatypes.Hardware_Component_Partition_OperatingSystem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_OperatingSystem", "getAllObjects", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Partition_OperatingSystem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_OperatingSystem", "getAllObjects", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getByDescription”' method retrieves all possible partition templates based on the description (required parameter) entered when calling the method. The description is typically the operating system's name. Current recognized values include 'linux', 'windows', 'freebsd', and 'Debian'.
 func (r Hardware_Component_Partition_OperatingSystem) GetByDescription(description *string) (resp datatypes.Hardware_Component_Partition_OperatingSystem, err error) {
 	params := []interface{}{
@@ -1943,6 +3960,30 @@ func (r Hardware_Component_Partition_OperatingSystem) GetObject() (resp datatype
 // Retrieve Information regarding an operating system's [[SoftLayer_Hardware_Component_Partition_Template|Partition Templates]].
 func (r Hardware_Component_Partition_OperatingSystem) GetPartitionTemplates() (resp []datatypes.Hardware_Component_Partition_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_OperatingSystem", "getPartitionTemplates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Partition_OperatingSystem) GetPartitionTemplatesIter() (resp []datatypes.Hardware_Component_Partition_Template, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_OperatingSystem", "getPartitionTemplates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Partition_Template{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_OperatingSystem", "getPartitionTemplates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -1998,6 +4039,30 @@ func (r Hardware_Component_Partition_Template) GetData() (resp []datatypes.Hardw
 	return
 }
 
+func (r Hardware_Component_Partition_Template) GetDataIter() (resp []datatypes.Hardware_Component_Partition_Template_Partition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Partition_Template_Partition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Component_Partition_Template) GetExpireDate() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getExpireDate", nil, &r.Options, &resp)
@@ -2019,6 +4084,30 @@ func (r Hardware_Component_Partition_Template) GetPartitionOperatingSystem() (re
 // Retrieve An individual partition for a partition template.
 func (r Hardware_Component_Partition_Template) GetPartitionTemplatePartition() (resp []datatypes.Hardware_Component_Partition_Template_Partition, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getPartitionTemplatePartition", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Component_Partition_Template) GetPartitionTemplatePartitionIter() (resp []datatypes.Hardware_Component_Partition_Template_Partition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getPartitionTemplatePartition", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Partition_Template_Partition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Component_Partition_Template", "getPartitionTemplatePartition", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2446,15 +4535,87 @@ func (r Hardware_Router) GetActiveComponents() (resp []datatypes.Hardware_Compon
 	return
 }
 
+func (r Hardware_Router) GetActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's active network monitoring incidents.
 func (r Hardware_Router) GetActiveNetworkMonitorIncident() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Router) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Router) GetAllPowerComponents() (resp []datatypes.Hardware_Power_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllPowerComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetAllPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2470,9 +4631,57 @@ func (r Hardware_Router) GetAllowedNetworkStorage() (resp []datatypes.Network_St
 	return
 }
 
+func (r Hardware_Router) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Hardware_Router) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2491,9 +4700,60 @@ func (r Hardware_Router) GetAttachedNetworkStorages(nasType *string) (resp []dat
 	return
 }
 
+func (r Hardware_Router) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's specific attributes.
 func (r Hardware_Router) GetAttributes() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetAttributesIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2503,12 +4763,63 @@ func (r Hardware_Router) GetAvailableBillingTermChangePrices() (resp []datatypes
 	return
 }
 
+func (r Hardware_Router) GetAvailableBillingTermChangePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableBillingTermChangePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method retrieves a list of SoftLayer_Network_Storage volumes that can be authorized to this SoftLayer_Hardware.
 func (r Hardware_Router) GetAvailableNetworkStorages(nasType *string) (resp []datatypes.Network_Storage, err error) {
 	params := []interface{}{
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2534,6 +4845,30 @@ func (r Hardware_Router) GetBackendNetworkComponents() (resp []datatypes.Network
 	return
 }
 
+func (r Hardware_Router) GetBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendOutgoingBandwidth”' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_Router) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -2547,6 +4882,30 @@ func (r Hardware_Router) GetBackendOutgoingBandwidth(startDate *datatypes.Time, 
 // Retrieve A hardware's backend or private router.
 func (r Hardware_Router) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBackendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBackendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBackendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2565,6 +4924,30 @@ func (r Hardware_Router) GetBandwidthAllotmentDetail() (resp datatypes.Network_B
 // Retrieve Information regarding a piece of hardware's benchmark certifications.
 func (r Hardware_Router) GetBenchmarkCertifications() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetBenchmarkCertificationsIter() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Benchmark_Certification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBenchmarkCertifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2592,6 +4975,30 @@ func (r Hardware_Router) GetBoundSubnets() (resp []datatypes.Network_Subnet, err
 	return
 }
 
+func (r Hardware_Router) GetBoundSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBoundSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBoundSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_Router) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
@@ -2604,6 +5011,30 @@ func (r Hardware_Router) GetChildrenHardware() (resp []datatypes.Hardware, err e
 	return
 }
 
+func (r Hardware_Router) GetChildrenHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getChildrenHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getChildrenHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_Router) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -2613,6 +5044,30 @@ func (r Hardware_Router) GetComponentDetailsXML() (resp string, err error) {
 // Retrieve A piece of hardware's components.
 func (r Hardware_Router) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2639,6 +5094,30 @@ func (r Hardware_Router) GetCurrentBillableBandwidthUsage() (resp datatypes.Floa
 // Get the billing detail for this hardware for the current billing period. This does not include bandwidth usage.
 func (r Hardware_Router) GetCurrentBillingDetail() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getCurrentBillingDetail", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2682,9 +5161,57 @@ func (r Hardware_Router) GetDownlinkHardware() (resp []datatypes.Hardware, err e
 	return
 }
 
+func (r Hardware_Router) GetDownlinkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware that has uplink network connections to a piece of hardware.
 func (r Hardware_Router) GetDownlinkNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetDownlinkNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2694,9 +5221,57 @@ func (r Hardware_Router) GetDownlinkServers() (resp []datatypes.Hardware, err er
 	return
 }
 
+func (r Hardware_Router) GetDownlinkServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all virtual guests attached to a piece of network hardware.
 func (r Hardware_Router) GetDownlinkVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetDownlinkVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownlinkVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2706,9 +5281,57 @@ func (r Hardware_Router) GetDownstreamHardwareBindings() (resp []datatypes.Netwo
 	return
 }
 
+func (r Hardware_Router) GetDownstreamHardwareBindingsIter() (resp []datatypes.Network_Component_Uplink_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamHardwareBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Uplink_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamHardwareBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network hardware downstream from the selected piece of hardware.
 func (r Hardware_Router) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetDownstreamNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2718,9 +5341,57 @@ func (r Hardware_Router) GetDownstreamNetworkHardwareWithIncidents() (resp []dat
 	return
 }
 
+func (r Hardware_Router) GetDownstreamNetworkHardwareWithIncidentsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamNetworkHardwareWithIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all servers attached downstream to a piece of network hardware.
 func (r Hardware_Router) GetDownstreamServers() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetDownstreamServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2730,15 +5401,87 @@ func (r Hardware_Router) GetDownstreamVirtualGuests() (resp []datatypes.Virtual_
 	return
 }
 
+func (r Hardware_Router) GetDownstreamVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDownstreamVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The drive controllers contained within a piece of hardware.
 func (r Hardware_Router) GetDriveControllers() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDriveControllers", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Router) GetDriveControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDriveControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getDriveControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's associated EVault network storage service account.
 func (r Hardware_Router) GetEvaultNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2770,6 +5513,30 @@ func (r Hardware_Router) GetFrontendNetworkComponents() (resp []datatypes.Networ
 	return
 }
 
+func (r Hardware_Router) GetFrontendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFrontendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getFrontendOutgoingBandwidth”' method retrieves the amount of outgoing public network traffic used by a server between the given start and end date parameters. The ”dateTime” parameter requires only the day, month and year to be entered - the time (hour, minute and second) are set to midnight be default in order to gather the data for the entire start and end date indicated in the parameter. The amount of bandwidth retrieved is measured in gigabytes (GB).
 func (r Hardware_Router) GetFrontendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -2783,6 +5550,30 @@ func (r Hardware_Router) GetFrontendOutgoingBandwidth(startDate *datatypes.Time,
 // Retrieve A hardware's frontend or public router.
 func (r Hardware_Router) GetFrontendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFrontendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetFrontendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFrontendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getFrontendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2801,6 +5592,30 @@ func (r Hardware_Router) GetGlobalIdentifier() (resp string, err error) {
 // Retrieve The hard drives contained within a piece of hardware.
 func (r Hardware_Router) GetHardDrives() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHardDrives", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetHardDrivesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHardDrives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHardDrives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2859,6 +5674,34 @@ func (r Hardware_Router) GetHourlyBandwidth(mode *string, day *datatypes.Time) (
 		day,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHourlyBandwidth", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetHourlyBandwidthIter(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		mode,
+		day,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHourlyBandwidth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getHourlyBandwidth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2934,6 +5777,30 @@ func (r Hardware_Router) GetMemory() (resp []datatypes.Hardware_Component, err e
 	return
 }
 
+func (r Hardware_Router) GetMemoryIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMemory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMemory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of memory a piece of hardware has, measured in gigabytes.
 func (r Hardware_Router) GetMemoryCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getMemoryCapacity", nil, &r.Options, &resp)
@@ -2949,6 +5816,30 @@ func (r Hardware_Router) GetMetricTrackingObject() (resp datatypes.Metric_Tracki
 // Retrieve
 func (r Hardware_Router) GetModules() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getModules", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetModulesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getModules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getModules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -2982,9 +5873,57 @@ func (r Hardware_Router) GetNetworkCards() (resp []datatypes.Hardware_Component,
 	return
 }
 
+func (r Hardware_Router) GetNetworkCardsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkCards", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkCards", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Returns a hardware's network components.
 func (r Hardware_Router) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3012,9 +5951,57 @@ func (r Hardware_Router) GetNetworkMonitorAttachedDownHardware() (resp []datatyp
 	return
 }
 
+func (r Hardware_Router) GetNetworkMonitorAttachedDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorAttachedDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorAttachedDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Virtual guests that are attached downstream to a hardware that have failed monitoring
 func (r Hardware_Router) GetNetworkMonitorAttachedDownVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetNetworkMonitorAttachedDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorAttachedDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3024,9 +6011,57 @@ func (r Hardware_Router) GetNetworkMonitorIncidents() (resp []datatypes.Network_
 	return
 }
 
+func (r Hardware_Router) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitorIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's network monitors.
 func (r Hardware_Router) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3048,9 +6083,57 @@ func (r Hardware_Router) GetNetworkStorage() (resp []datatypes.Network_Storage, 
 	return
 }
 
+func (r Hardware_Router) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network virtual LANs (VLANs) associated with a piece of hardware's network components.
 func (r Hardware_Router) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3066,6 +6149,30 @@ func (r Hardware_Router) GetNotesHistory() (resp []datatypes.Hardware_Note, err 
 	return
 }
 
+func (r Hardware_Router) GetNotesHistoryIter() (resp []datatypes.Hardware_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNotesHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNotesHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of non-volatile memory a piece of hardware has, measured in gigabytes.
 func (r Hardware_Router) GetNvRamCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNvRamCapacity", nil, &r.Options, &resp)
@@ -3075,6 +6182,30 @@ func (r Hardware_Router) GetNvRamCapacity() (resp uint, err error) {
 // Retrieve
 func (r Hardware_Router) GetNvRamComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNvRamComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetNvRamComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNvRamComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getNvRamComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3132,9 +6263,57 @@ func (r Hardware_Router) GetPowerComponents() (resp []datatypes.Hardware_Power_C
 	return
 }
 
+func (r Hardware_Router) GetPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's power supply.
 func (r Hardware_Router) GetPowerSupply() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPowerSupply", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetPowerSupplyIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPowerSupply", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPowerSupply", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3172,6 +6351,34 @@ func (r Hardware_Router) GetPrivateBandwidthData(startTime *int, endTime *int) (
 	return
 }
 
+func (r Hardware_Router) GetPrivateBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPrivateBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPrivateBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the hardware only has access to the private network.
 func (r Hardware_Router) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPrivateNetworkOnlyFlag", nil, &r.Options, &resp)
@@ -3196,6 +6403,30 @@ func (r Hardware_Router) GetProcessors() (resp []datatypes.Hardware_Component, e
 	return
 }
 
+func (r Hardware_Router) GetProcessorsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_Router) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -3203,6 +6434,34 @@ func (r Hardware_Router) GetPublicBandwidthData(startTime *int, endTime *int) (r
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPublicBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetPublicBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPublicBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getPublicBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3218,15 +6477,87 @@ func (r Hardware_Router) GetRaidControllers() (resp []datatypes.Hardware_Compone
 	return
 }
 
+func (r Hardware_Router) GetRaidControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRaidControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRaidControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Recent events that impact this hardware.
 func (r Hardware_Router) GetRecentEvents() (resp []datatypes.Notification_Occurrence_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRecentEvents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Router) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve User credentials to issue commands and/or interact with the server's remote management card.
 func (r Hardware_Router) GetRemoteManagementAccounts() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetRemoteManagementAccountsIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRemoteManagementAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3242,9 +6573,57 @@ func (r Hardware_Router) GetResourceConfigurations() (resp []datatypes.Hardware_
 	return
 }
 
+func (r Hardware_Router) GetResourceConfigurationsIter() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Resource_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Router) GetResourceGroupMemberReferences() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetResourceGroupMemberReferencesIter() (resp []datatypes.Resource_Group_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroupMemberReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3254,15 +6633,87 @@ func (r Hardware_Router) GetResourceGroupRoles() (resp []datatypes.Resource_Grou
 	return
 }
 
+func (r Hardware_Router) GetResourceGroupRolesIter() (resp []datatypes.Resource_Group_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroupRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroupRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The resource groups in which this hardware is a member.
 func (r Hardware_Router) GetResourceGroups() (resp []datatypes.Resource_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroups", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Router) GetResourceGroupsIter() (resp []datatypes.Resource_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getResourceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A hardware's routers.
 func (r Hardware_Router) GetRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3278,9 +6729,57 @@ func (r Hardware_Router) GetSecurityScanRequests() (resp []datatypes.Network_Sec
 	return
 }
 
+func (r Hardware_Router) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getSensorData”' method retrieves a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures various information, including system temperatures, voltages and other local server settings. Sensor data is cached for 30 second; calls made to this method for the same server within 30 seconds of each other will result in the same data being returned. To ensure that the data retrieved retrieves snapshot of varied data, make calls greater than 30 seconds apart.
 func (r Hardware_Router) GetSensorData() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSensorData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetSensorDataIter() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSensorData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_SensorReading{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSensorData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3293,6 +6792,30 @@ func (r Hardware_Router) GetSensorDataWithGraphs() (resp datatypes.Container_Rem
 // The ”'getServerFanSpeedGraphs”' method retrieves the server's fan speeds and displays the speeds using tachometer graphs. data used to construct these graphs is retrieved from the server's remote management card. Each graph returned will have an associated title.
 func (r Hardware_Router) GetServerFanSpeedGraphs() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetServerFanSpeedGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorSpeed{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServerFanSpeedGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3314,6 +6837,30 @@ func (r Hardware_Router) GetServerTemperatureGraphs() (resp []datatypes.Containe
 	return
 }
 
+func (r Hardware_Router) GetServerTemperatureGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorTemperature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServerTemperatureGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorTemperature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServerTemperatureGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the piece of hardware's service provider.
 func (r Hardware_Router) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getServiceProvider", nil, &r.Options, &resp)
@@ -3323,6 +6870,30 @@ func (r Hardware_Router) GetServiceProvider() (resp datatypes.Service_Provider, 
 // Retrieve Information regarding a piece of hardware's installed software.
 func (r Hardware_Router) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSoftwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSoftwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSoftwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3338,9 +6909,57 @@ func (r Hardware_Router) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err er
 	return
 }
 
+func (r Hardware_Router) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Router) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageGroups", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3350,9 +6969,57 @@ func (r Hardware_Router) GetStorageNetworkComponents() (resp []datatypes.Network
 	return
 }
 
+func (r Hardware_Router) GetStorageNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getStorageNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Router) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3368,9 +7035,57 @@ func (r Hardware_Router) GetTransactionHistory() (resp []datatypes.Provisioning_
 	return
 }
 
+func (r Hardware_Router) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of upgradeable items available to this piece of hardware. Currently, getUpgradeItemPrices retrieves upgrades available for a server's memory, hard drives, network port speed, bandwidth allocation and GPUs.
 func (r Hardware_Router) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3386,6 +7101,30 @@ func (r Hardware_Router) GetUpgradeableActiveComponents() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_Router) GetUpgradeableActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUpgradeableActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_Router) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUplinkHardware", nil, &r.Options, &resp)
@@ -3398,9 +7137,57 @@ func (r Hardware_Router) GetUplinkNetworkComponents() (resp []datatypes.Network_
 	return
 }
 
+func (r Hardware_Router) GetUplinkNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUplinkNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUplinkNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_Router) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUserData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetUserDataIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUserData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getUserData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -3416,6 +7203,30 @@ func (r Hardware_Router) GetVirtualChassisSiblings() (resp []datatypes.Hardware,
 	return
 }
 
+func (r Hardware_Router) GetVirtualChassisSiblingsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualChassisSiblings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualChassisSiblings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's virtual host record.
 func (r Hardware_Router) GetVirtualHost() (resp datatypes.Virtual_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualHost", nil, &r.Options, &resp)
@@ -3425,6 +7236,30 @@ func (r Hardware_Router) GetVirtualHost() (resp datatypes.Virtual_Host, err erro
 // Retrieve Information regarding a piece of hardware's virtual software licenses.
 func (r Hardware_Router) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Router) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4080,6 +7915,30 @@ func (r Hardware_SecurityModule) GetActiveComponents() (resp []datatypes.Hardwar
 	return
 }
 
+func (r Hardware_SecurityModule) GetActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing item for a server's attached network firewall.
 func (r Hardware_SecurityModule) GetActiveNetworkFirewallBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveNetworkFirewallBillingItem", nil, &r.Options, &resp)
@@ -4092,9 +7951,57 @@ func (r Hardware_SecurityModule) GetActiveNetworkMonitorIncident() (resp []datat
 	return
 }
 
+func (r Hardware_SecurityModule) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetActiveTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4110,9 +8017,57 @@ func (r Hardware_SecurityModule) GetActiveTransactions() (resp []datatypes.Provi
 	return
 }
 
+func (r Hardware_SecurityModule) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetAllPowerComponents() (resp []datatypes.Hardware_Power_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllPowerComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetAllPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4128,9 +8083,57 @@ func (r Hardware_SecurityModule) GetAllowedNetworkStorage() (resp []datatypes.Ne
 	return
 }
 
+func (r Hardware_SecurityModule) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Hardware_SecurityModule) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4149,9 +8152,60 @@ func (r Hardware_SecurityModule) GetAttachedNetworkStorages(nasType *string) (re
 	return
 }
 
+func (r Hardware_SecurityModule) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's specific attributes.
 func (r Hardware_SecurityModule) GetAttributes() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetAttributesIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4161,9 +8215,57 @@ func (r Hardware_SecurityModule) GetAvailableBillingTermChangePrices() (resp []d
 	return
 }
 
+func (r Hardware_SecurityModule) GetAvailableBillingTermChangePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableBillingTermChangePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_SecurityModule) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableMonitoring", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetAvailableMonitoringIter() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableMonitoring", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host_Stratum{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableMonitoring", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4173,6 +8275,33 @@ func (r Hardware_SecurityModule) GetAvailableNetworkStorages(nasType *string) (r
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4206,6 +8335,34 @@ func (r Hardware_SecurityModule) GetBackendBandwidthUsage(startDate *datatypes.T
 	return
 }
 
+func (r Hardware_SecurityModule) GetBackendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -4222,6 +8379,30 @@ func (r Hardware_SecurityModule) GetBackendNetworkComponents() (resp []datatypes
 	return
 }
 
+func (r Hardware_SecurityModule) GetBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendOutgoingBandwidth”' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -4235,6 +8416,30 @@ func (r Hardware_SecurityModule) GetBackendOutgoingBandwidth(startDate *datatype
 // Retrieve A hardware's backend or private router.
 func (r Hardware_SecurityModule) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBackendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4260,6 +8465,34 @@ func (r Hardware_SecurityModule) GetBandwidthForDateRange(startDate *datatypes.T
 	return
 }
 
+func (r Hardware_SecurityModule) GetBandwidthForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBandwidthForDateRange", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBandwidthForDateRange", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
 func (r Hardware_SecurityModule) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -4279,9 +8512,57 @@ func (r Hardware_SecurityModule) GetBenchmarkCertifications() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetBenchmarkCertificationsIter() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Benchmark_Certification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBenchmarkCertifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
 func (r Hardware_SecurityModule) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4327,6 +8608,30 @@ func (r Hardware_SecurityModule) GetBootModeOptions() (resp []string, err error)
 	return
 }
 
+func (r Hardware_SecurityModule) GetBootModeOptionsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBootModeOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBootModeOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_SecurityModule) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
@@ -4345,6 +8650,30 @@ func (r Hardware_SecurityModule) GetChildrenHardware() (resp []datatypes.Hardwar
 	return
 }
 
+func (r Hardware_SecurityModule) GetChildrenHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getChildrenHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getChildrenHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_SecurityModule) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -4354,6 +8683,30 @@ func (r Hardware_SecurityModule) GetComponentDetailsXML() (resp string, err erro
 // Retrieve A piece of hardware's components.
 func (r Hardware_SecurityModule) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4413,6 +8766,30 @@ func (r Hardware_SecurityModule) GetCurrentBillingDetail() (resp []datatypes.Bil
 	return
 }
 
+func (r Hardware_SecurityModule) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingDetail", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_SecurityModule) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getCurrentBillingTotal", nil, &r.Options, &resp)
@@ -4465,9 +8842,57 @@ func (r Hardware_SecurityModule) GetDownlinkHardware() (resp []datatypes.Hardwar
 	return
 }
 
+func (r Hardware_SecurityModule) GetDownlinkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware that has uplink network connections to a piece of hardware.
 func (r Hardware_SecurityModule) GetDownlinkNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetDownlinkNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4477,9 +8902,57 @@ func (r Hardware_SecurityModule) GetDownlinkServers() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule) GetDownlinkServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all virtual guests attached to a piece of network hardware.
 func (r Hardware_SecurityModule) GetDownlinkVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetDownlinkVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownlinkVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4489,9 +8962,57 @@ func (r Hardware_SecurityModule) GetDownstreamHardwareBindings() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule) GetDownstreamHardwareBindingsIter() (resp []datatypes.Network_Component_Uplink_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamHardwareBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Uplink_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamHardwareBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network hardware downstream from the selected piece of hardware.
 func (r Hardware_SecurityModule) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetDownstreamNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4501,9 +9022,57 @@ func (r Hardware_SecurityModule) GetDownstreamNetworkHardwareWithIncidents() (re
 	return
 }
 
+func (r Hardware_SecurityModule) GetDownstreamNetworkHardwareWithIncidentsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamNetworkHardwareWithIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all servers attached downstream to a piece of network hardware.
 func (r Hardware_SecurityModule) GetDownstreamServers() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetDownstreamServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4513,9 +9082,57 @@ func (r Hardware_SecurityModule) GetDownstreamVirtualGuests() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetDownstreamVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDownstreamVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The drive controllers contained within a piece of hardware.
 func (r Hardware_SecurityModule) GetDriveControllers() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDriveControllers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetDriveControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDriveControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getDriveControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4525,9 +9142,57 @@ func (r Hardware_SecurityModule) GetEvaultNetworkStorage() (resp []datatypes.Net
 	return
 }
 
+func (r Hardware_SecurityModule) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the subnets associated with this server that are protectable by a network component firewall.
 func (r Hardware_SecurityModule) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetFirewallProtectableSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFirewallProtectableSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4555,6 +9220,34 @@ func (r Hardware_SecurityModule) GetFrontendBandwidthUsage(startDate *datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetFrontendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getFrontendIncomingBandwidth”' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ”dateTime” parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
 func (r Hardware_SecurityModule) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -4568,6 +9261,30 @@ func (r Hardware_SecurityModule) GetFrontendIncomingBandwidth(startDate *datatyp
 // Retrieve A piece of hardware's front-end or public network components.
 func (r Hardware_SecurityModule) GetFrontendNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetFrontendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4587,6 +9304,30 @@ func (r Hardware_SecurityModule) GetFrontendRouters() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule) GetFrontendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFrontendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the future billing item for a server.
 func (r Hardware_SecurityModule) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getFutureBillingItem", nil, &r.Options, &resp)
@@ -4602,6 +9343,30 @@ func (r Hardware_SecurityModule) GetGlobalIdentifier() (resp string, err error) 
 // Retrieve The hard drives contained within a piece of hardware.
 func (r Hardware_SecurityModule) GetHardDrives() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHardDrives", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetHardDrivesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHardDrives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHardDrives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4678,6 +9443,34 @@ func (r Hardware_SecurityModule) GetHourlyBandwidth(mode *string, day *datatypes
 	return
 }
 
+func (r Hardware_SecurityModule) GetHourlyBandwidthIter(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		mode,
+		day,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHourlyBandwidth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHourlyBandwidth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's hourly billing status.
 func (r Hardware_SecurityModule) GetHourlyBillingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getHourlyBillingFlag", nil, &r.Options, &resp)
@@ -4743,6 +9536,35 @@ func (r Hardware_SecurityModule) GetItemPricesFromSoftwareDescriptions(softwareD
 	return
 }
 
+func (r Hardware_SecurityModule) GetItemPricesFromSoftwareDescriptionsIter(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		softwareDescriptions,
+		includeTranslationsFlag,
+		returnAllPricesFlag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getItemPricesFromSoftwareDescriptions", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last transaction that a server's operating system was loaded.
 func (r Hardware_SecurityModule) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getLastOperatingSystemReload", nil, &r.Options, &resp)
@@ -4785,6 +9607,30 @@ func (r Hardware_SecurityModule) GetLogicalVolumeStorageGroups() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule) GetLogicalVolumeStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getLogicalVolumeStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_SecurityModule) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -4800,6 +9646,30 @@ func (r Hardware_SecurityModule) GetManagementNetworkComponent() (resp datatypes
 // Retrieve Information regarding a piece of hardware's memory.
 func (r Hardware_SecurityModule) GetMemory() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMemory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetMemoryIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMemory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMemory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4827,6 +9697,30 @@ func (r Hardware_SecurityModule) GetModules() (resp []datatypes.Hardware_Compone
 	return
 }
 
+func (r Hardware_SecurityModule) GetModulesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getModules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getModules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMonitoringRobot", nil, &r.Options, &resp)
@@ -4851,6 +9745,30 @@ func (r Hardware_SecurityModule) GetMonitoringUserNotification() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule) GetMonitoringUserNotificationIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMonitoringUserNotification", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer_Notification_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMonitoringUserNotification", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's motherboard.
 func (r Hardware_SecurityModule) GetMotherboard() (resp datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getMotherboard", nil, &r.Options, &resp)
@@ -4863,15 +9781,87 @@ func (r Hardware_SecurityModule) GetNetworkCards() (resp []datatypes.Hardware_Co
 	return
 }
 
+func (r Hardware_SecurityModule) GetNetworkCardsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkCards", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkCards", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the IP addresses associated with this server that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this server. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Hardware_SecurityModule) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule) GetNetworkComponentFirewallProtectableIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponentFirewallProtectableIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Returns a hardware's network components.
 func (r Hardware_SecurityModule) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4899,9 +9889,57 @@ func (r Hardware_SecurityModule) GetNetworkMonitorAttachedDownHardware() (resp [
 	return
 }
 
+func (r Hardware_SecurityModule) GetNetworkMonitorAttachedDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorAttachedDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorAttachedDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Virtual guests that are attached downstream to a hardware that have failed monitoring
 func (r Hardware_SecurityModule) GetNetworkMonitorAttachedDownVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetNetworkMonitorAttachedDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorAttachedDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4911,9 +9949,57 @@ func (r Hardware_SecurityModule) GetNetworkMonitorIncidents() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitorIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's network monitors.
 func (r Hardware_SecurityModule) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4935,9 +10021,57 @@ func (r Hardware_SecurityModule) GetNetworkStorage() (resp []datatypes.Network_S
 	return
 }
 
+func (r Hardware_SecurityModule) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network virtual LANs (VLANs) associated with a piece of hardware's network components.
 func (r Hardware_SecurityModule) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -4953,6 +10087,30 @@ func (r Hardware_SecurityModule) GetNotesHistory() (resp []datatypes.Hardware_No
 	return
 }
 
+func (r Hardware_SecurityModule) GetNotesHistoryIter() (resp []datatypes.Hardware_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNotesHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNotesHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of non-volatile memory a piece of hardware has, measured in gigabytes.
 func (r Hardware_SecurityModule) GetNvRamCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNvRamCapacity", nil, &r.Options, &resp)
@@ -4962,6 +10120,30 @@ func (r Hardware_SecurityModule) GetNvRamCapacity() (resp uint, err error) {
 // Retrieve
 func (r Hardware_SecurityModule) GetNvRamComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNvRamComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetNvRamComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNvRamComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getNvRamComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5019,6 +10201,30 @@ func (r Hardware_SecurityModule) GetPMInfo() (resp []datatypes.Container_RemoteM
 	return
 }
 
+func (r Hardware_SecurityModule) GetPMInfoIter() (resp []datatypes.Container_RemoteManagement_PmInfo, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPMInfo", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_PmInfo{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPMInfo", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Blade Bay
 func (r Hardware_SecurityModule) GetParentBay() (resp datatypes.Hardware_Blade, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getParentBay", nil, &r.Options, &resp)
@@ -5037,6 +10243,30 @@ func (r Hardware_SecurityModule) GetPartitions() (resp []datatypes.Hardware_Serv
 	return
 }
 
+func (r Hardware_SecurityModule) GetPartitionsIter() (resp []datatypes.Hardware_Server_Partition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPartitions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Server_Partition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPartitions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 func (r Hardware_SecurityModule) GetPointOfPresenceLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPointOfPresenceLocation", nil, &r.Options, &resp)
@@ -5049,9 +10279,57 @@ func (r Hardware_SecurityModule) GetPowerComponents() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule) GetPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's power supply.
 func (r Hardware_SecurityModule) GetPowerSupply() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPowerSupply", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetPowerSupplyIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPowerSupply", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPowerSupply", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5091,6 +10369,30 @@ func (r Hardware_SecurityModule) GetPrivateBackendNetworkComponents() (resp []da
 	return
 }
 
+func (r Hardware_SecurityModule) GetPrivateBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_SecurityModule) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -5098,6 +10400,34 @@ func (r Hardware_SecurityModule) GetPrivateBandwidthData(startTime *int, endTime
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetPrivateBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5170,6 +10500,30 @@ func (r Hardware_SecurityModule) GetProcessors() (resp []datatypes.Hardware_Comp
 	return
 }
 
+func (r Hardware_SecurityModule) GetProcessorsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the bandwidth usage for this hardware for the current billing cycle is projected to exceed the allocation.
 func (r Hardware_SecurityModule) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getProjectedOverBandwidthAllocationFlag", nil, &r.Options, &resp)
@@ -5195,6 +10549,34 @@ func (r Hardware_SecurityModule) GetPublicBandwidthData(startTime *int, endTime 
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPublicBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetPublicBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPublicBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPublicBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5257,6 +10639,30 @@ func (r Hardware_SecurityModule) GetRaidControllers() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule) GetRaidControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRaidControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRaidControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Determine if hardware object is vSan Ready Node.
 func (r Hardware_SecurityModule) GetReadyNodeFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getReadyNodeFlag", nil, &r.Options, &resp)
@@ -5269,9 +10675,57 @@ func (r Hardware_SecurityModule) GetRecentEvents() (resp []datatypes.Notificatio
 	return
 }
 
+func (r Hardware_SecurityModule) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last five commands issued to the server's remote management card.
 func (r Hardware_SecurityModule) GetRecentRemoteManagementCommands() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetRecentRemoteManagementCommandsIter() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_Command_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRecentRemoteManagementCommands", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5293,6 +10747,30 @@ func (r Hardware_SecurityModule) GetRemoteManagementAccounts() (resp []datatypes
 	return
 }
 
+func (r Hardware_SecurityModule) GetRemoteManagementAccountsIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRemoteManagementAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A hardware's associated remote management component. This is normally IPMI.
 func (r Hardware_SecurityModule) GetRemoteManagementComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRemoteManagementComponent", nil, &r.Options, &resp)
@@ -5305,9 +10783,57 @@ func (r Hardware_SecurityModule) GetRemoteManagementUsers() (resp []datatypes.Ha
 	return
 }
 
+func (r Hardware_SecurityModule) GetRemoteManagementUsersIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRemoteManagementUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRemoteManagementUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetResourceConfigurationsIter() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Resource_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5317,9 +10843,57 @@ func (r Hardware_SecurityModule) GetResourceGroupMemberReferences() (resp []data
 	return
 }
 
+func (r Hardware_SecurityModule) GetResourceGroupMemberReferencesIter() (resp []datatypes.Resource_Group_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupMemberReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetResourceGroupRoles() (resp []datatypes.Resource_Group_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupRoles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetResourceGroupRolesIter() (resp []datatypes.Resource_Group_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroupRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5329,9 +10903,57 @@ func (r Hardware_SecurityModule) GetResourceGroups() (resp []datatypes.Resource_
 	return
 }
 
+func (r Hardware_SecurityModule) GetResourceGroupsIter() (resp []datatypes.Resource_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getResourceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve the reverse domain records associated with this server.
 func (r Hardware_SecurityModule) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getReverseDomainRecords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getReverseDomainRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getReverseDomainRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5341,15 +10963,87 @@ func (r Hardware_SecurityModule) GetRouters() (resp []datatypes.Hardware, err er
 	return
 }
 
+func (r Hardware_SecurityModule) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's vulnerability scan requests.
 func (r Hardware_SecurityModule) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSecurityScanRequests", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures system temperatures, voltages, and other local server settings. Sensor data is cached for 30 seconds. Calls made to getSensorData for the same server within 30 seconds of each other will return the same data. Subsequent calls will return new data once the cache expires.
 func (r Hardware_SecurityModule) GetSensorData() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSensorData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetSensorDataIter() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSensorData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_SensorReading{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSensorData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5371,6 +11065,30 @@ func (r Hardware_SecurityModule) GetServerFanSpeedGraphs() (resp []datatypes.Con
 	return
 }
 
+func (r Hardware_SecurityModule) GetServerFanSpeedGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorSpeed{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServerFanSpeedGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
 func (r Hardware_SecurityModule) GetServerPowerState() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServerPowerState", nil, &r.Options, &resp)
@@ -5389,6 +11107,30 @@ func (r Hardware_SecurityModule) GetServerTemperatureGraphs() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetServerTemperatureGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorTemperature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServerTemperatureGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorTemperature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServerTemperatureGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the piece of hardware's service provider.
 func (r Hardware_SecurityModule) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getServiceProvider", nil, &r.Options, &resp)
@@ -5398,6 +11140,30 @@ func (r Hardware_SecurityModule) GetServiceProvider() (resp datatypes.Service_Pr
 // Retrieve Information regarding a piece of hardware's installed software.
 func (r Hardware_SecurityModule) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSoftwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSoftwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSoftwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5419,6 +11185,30 @@ func (r Hardware_SecurityModule) GetSshKeys() (resp []datatypes.Security_Ssh_Key
 	return
 }
 
+func (r Hardware_SecurityModule) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_SecurityModule) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
@@ -5431,15 +11221,87 @@ func (r Hardware_SecurityModule) GetStorageGroups() (resp []datatypes.Configurat
 	return
 }
 
+func (r Hardware_SecurityModule) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_SecurityModule) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule) GetStorageNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getStorageNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5455,6 +11317,30 @@ func (r Hardware_SecurityModule) GetTransactionHistory() (resp []datatypes.Provi
 	return
 }
 
+func (r Hardware_SecurityModule) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether to use UEFI boot instead of BIOS.
 func (r Hardware_SecurityModule) GetUefiBootFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUefiBootFlag", nil, &r.Options, &resp)
@@ -5464,6 +11350,30 @@ func (r Hardware_SecurityModule) GetUefiBootFlag() (resp bool, err error) {
 // Retrieve a list of upgradeable items available to this piece of hardware. Currently, getUpgradeItemPrices retrieves upgrades available for a server's memory, hard drives, network port speed, bandwidth allocation and GPUs.
 func (r Hardware_SecurityModule) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5479,6 +11389,30 @@ func (r Hardware_SecurityModule) GetUpgradeableActiveComponents() (resp []dataty
 	return
 }
 
+func (r Hardware_SecurityModule) GetUpgradeableActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUpgradeableActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_SecurityModule) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUplinkHardware", nil, &r.Options, &resp)
@@ -5491,9 +11425,57 @@ func (r Hardware_SecurityModule) GetUplinkNetworkComponents() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule) GetUplinkNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUplinkNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUplinkNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_SecurityModule) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUserData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetUserDataIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUserData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUserData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5503,12 +11485,63 @@ func (r Hardware_SecurityModule) GetUsers() (resp []datatypes.User_Customer, err
 	return
 }
 
+func (r Hardware_SecurityModule) GetUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return the list of block device template groups that are valid to the host. For instance, it will only retrieve FLEX images.
 func (r Hardware_SecurityModule) GetValidBlockDeviceTemplateGroups(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		visibility,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetValidBlockDeviceTemplateGroupsIter(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	params := []interface{}{
+		visibility,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getValidBlockDeviceTemplateGroups", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5524,9 +11557,57 @@ func (r Hardware_SecurityModule) GetVirtualChassisSiblings() (resp []datatypes.H
 	return
 }
 
+func (r Hardware_SecurityModule) GetVirtualChassisSiblingsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualChassisSiblings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualChassisSiblings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_SecurityModule) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5539,6 +11620,30 @@ func (r Hardware_SecurityModule) GetVirtualHost() (resp datatypes.Virtual_Host, 
 // Retrieve Information regarding a piece of hardware's virtual software licenses.
 func (r Hardware_SecurityModule) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5572,9 +11677,57 @@ func (r Hardware_SecurityModule) GetWindowsUpdateAvailableUpdates() (resp []data
 	return
 }
 
+func (r Hardware_SecurityModule) GetWindowsUpdateAvailableUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getWindowsUpdateAvailableUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getWindowsUpdateAvailableUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of Windows updates installed on a server as reported by the local SoftLayer Windows Server Update Services (WSUS) server. Windows servers provisioned by SoftLayer are configured to use the local WSUS server via the private network by default.
 func (r Hardware_SecurityModule) GetWindowsUpdateInstalledUpdates() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) GetWindowsUpdateInstalledUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getWindowsUpdateInstalledUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5634,6 +11787,36 @@ func (r Hardware_SecurityModule) MassFirmwareReflash(hardwareIds []int, ipmi *bo
 	return
 }
 
+func (r Hardware_SecurityModule) MassFirmwareReflashIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareReflash", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareReflash", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
@@ -5650,6 +11833,38 @@ func (r Hardware_SecurityModule) MassFirmwareUpdate(hardwareIds []int, ipmi *boo
 	return
 }
 
+func (r Hardware_SecurityModule) MassFirmwareUpdateIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+		harddrive,
+		networkCard,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massFirmwareUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch hyper-threading update by selecting from your server list. It will bring your server offline for approximately 60 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this update our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online. They will be in contact with you to ensure that impact on your server is minimal.
@@ -5659,6 +11874,34 @@ func (r Hardware_SecurityModule) MassHyperThreadingUpdate(hardwareIds []int, dis
 		disableHyperthreading,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) MassHyperThreadingUpdateIter(hardwareIds []int, disableHyperthreading *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		disableHyperthreading,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massHyperThreadingUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5687,6 +11930,35 @@ func (r Hardware_SecurityModule) MassSparePool(hardwareIds []string, action *str
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massSparePool", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) MassSparePoolIter(hardwareIds []string, action *string, newOrder *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		action,
+		newOrder,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massSparePool", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "massSparePool", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -5886,6 +12158,33 @@ func (r Hardware_SecurityModule) SetUserMetadata(metadata []string) (resp []data
 		metadata,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "setUserMetadata", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule) SetUserMetadataIter(metadata []string) (resp []datatypes.Hardware_Attribute, err error) {
+	params := []interface{}{
+		metadata,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "setUserMetadata", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "setUserMetadata", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6464,6 +12763,30 @@ func (r Hardware_SecurityModule750) GetActiveComponents() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_SecurityModule750) GetActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing item for a server's attached network firewall.
 func (r Hardware_SecurityModule750) GetActiveNetworkFirewallBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveNetworkFirewallBillingItem", nil, &r.Options, &resp)
@@ -6476,9 +12799,57 @@ func (r Hardware_SecurityModule750) GetActiveNetworkMonitorIncident() (resp []da
 	return
 }
 
+func (r Hardware_SecurityModule750) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetActiveTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6494,9 +12865,57 @@ func (r Hardware_SecurityModule750) GetActiveTransactions() (resp []datatypes.Pr
 	return
 }
 
+func (r Hardware_SecurityModule750) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetAllPowerComponents() (resp []datatypes.Hardware_Power_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllPowerComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetAllPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6512,9 +12931,57 @@ func (r Hardware_SecurityModule750) GetAllowedNetworkStorage() (resp []datatypes
 	return
 }
 
+func (r Hardware_SecurityModule750) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Hardware_SecurityModule750) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6533,9 +13000,60 @@ func (r Hardware_SecurityModule750) GetAttachedNetworkStorages(nasType *string) 
 	return
 }
 
+func (r Hardware_SecurityModule750) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's specific attributes.
 func (r Hardware_SecurityModule750) GetAttributes() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetAttributesIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6545,9 +13063,57 @@ func (r Hardware_SecurityModule750) GetAvailableBillingTermChangePrices() (resp 
 	return
 }
 
+func (r Hardware_SecurityModule750) GetAvailableBillingTermChangePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableBillingTermChangePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_SecurityModule750) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableMonitoring", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetAvailableMonitoringIter() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableMonitoring", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host_Stratum{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableMonitoring", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6557,6 +13123,33 @@ func (r Hardware_SecurityModule750) GetAvailableNetworkStorages(nasType *string)
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6590,6 +13183,34 @@ func (r Hardware_SecurityModule750) GetBackendBandwidthUsage(startDate *datatype
 	return
 }
 
+func (r Hardware_SecurityModule750) GetBackendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule750) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -6606,6 +13227,30 @@ func (r Hardware_SecurityModule750) GetBackendNetworkComponents() (resp []dataty
 	return
 }
 
+func (r Hardware_SecurityModule750) GetBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendOutgoingBandwidth”' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_SecurityModule750) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -6619,6 +13264,30 @@ func (r Hardware_SecurityModule750) GetBackendOutgoingBandwidth(startDate *datat
 // Retrieve A hardware's backend or private router.
 func (r Hardware_SecurityModule750) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBackendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6644,6 +13313,34 @@ func (r Hardware_SecurityModule750) GetBandwidthForDateRange(startDate *datatype
 	return
 }
 
+func (r Hardware_SecurityModule750) GetBandwidthForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBandwidthForDateRange", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBandwidthForDateRange", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
 func (r Hardware_SecurityModule750) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -6663,9 +13360,57 @@ func (r Hardware_SecurityModule750) GetBenchmarkCertifications() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetBenchmarkCertificationsIter() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Benchmark_Certification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBenchmarkCertifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
 func (r Hardware_SecurityModule750) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6711,6 +13456,30 @@ func (r Hardware_SecurityModule750) GetBootModeOptions() (resp []string, err err
 	return
 }
 
+func (r Hardware_SecurityModule750) GetBootModeOptionsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBootModeOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBootModeOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_SecurityModule750) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
@@ -6729,6 +13498,30 @@ func (r Hardware_SecurityModule750) GetChildrenHardware() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_SecurityModule750) GetChildrenHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getChildrenHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getChildrenHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_SecurityModule750) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -6738,6 +13531,30 @@ func (r Hardware_SecurityModule750) GetComponentDetailsXML() (resp string, err e
 // Retrieve A piece of hardware's components.
 func (r Hardware_SecurityModule750) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6797,6 +13614,30 @@ func (r Hardware_SecurityModule750) GetCurrentBillingDetail() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule750) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCurrentBillingDetail", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_SecurityModule750) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getCurrentBillingTotal", nil, &r.Options, &resp)
@@ -6849,9 +13690,57 @@ func (r Hardware_SecurityModule750) GetDownlinkHardware() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_SecurityModule750) GetDownlinkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware that has uplink network connections to a piece of hardware.
 func (r Hardware_SecurityModule750) GetDownlinkNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetDownlinkNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6861,9 +13750,57 @@ func (r Hardware_SecurityModule750) GetDownlinkServers() (resp []datatypes.Hardw
 	return
 }
 
+func (r Hardware_SecurityModule750) GetDownlinkServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all virtual guests attached to a piece of network hardware.
 func (r Hardware_SecurityModule750) GetDownlinkVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetDownlinkVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownlinkVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6873,9 +13810,57 @@ func (r Hardware_SecurityModule750) GetDownstreamHardwareBindings() (resp []data
 	return
 }
 
+func (r Hardware_SecurityModule750) GetDownstreamHardwareBindingsIter() (resp []datatypes.Network_Component_Uplink_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamHardwareBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Uplink_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamHardwareBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network hardware downstream from the selected piece of hardware.
 func (r Hardware_SecurityModule750) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetDownstreamNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6885,9 +13870,57 @@ func (r Hardware_SecurityModule750) GetDownstreamNetworkHardwareWithIncidents() 
 	return
 }
 
+func (r Hardware_SecurityModule750) GetDownstreamNetworkHardwareWithIncidentsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamNetworkHardwareWithIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all servers attached downstream to a piece of network hardware.
 func (r Hardware_SecurityModule750) GetDownstreamServers() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetDownstreamServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6897,9 +13930,57 @@ func (r Hardware_SecurityModule750) GetDownstreamVirtualGuests() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetDownstreamVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDownstreamVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The drive controllers contained within a piece of hardware.
 func (r Hardware_SecurityModule750) GetDriveControllers() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDriveControllers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetDriveControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDriveControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getDriveControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6909,9 +13990,57 @@ func (r Hardware_SecurityModule750) GetEvaultNetworkStorage() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule750) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the subnets associated with this server that are protectable by a network component firewall.
 func (r Hardware_SecurityModule750) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetFirewallProtectableSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFirewallProtectableSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6939,6 +14068,34 @@ func (r Hardware_SecurityModule750) GetFrontendBandwidthUsage(startDate *datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetFrontendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getFrontendIncomingBandwidth”' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ”dateTime” parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
 func (r Hardware_SecurityModule750) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -6952,6 +14109,30 @@ func (r Hardware_SecurityModule750) GetFrontendIncomingBandwidth(startDate *data
 // Retrieve A piece of hardware's front-end or public network components.
 func (r Hardware_SecurityModule750) GetFrontendNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetFrontendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -6971,6 +14152,30 @@ func (r Hardware_SecurityModule750) GetFrontendRouters() (resp []datatypes.Hardw
 	return
 }
 
+func (r Hardware_SecurityModule750) GetFrontendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFrontendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the future billing item for a server.
 func (r Hardware_SecurityModule750) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getFutureBillingItem", nil, &r.Options, &resp)
@@ -6986,6 +14191,30 @@ func (r Hardware_SecurityModule750) GetGlobalIdentifier() (resp string, err erro
 // Retrieve The hard drives contained within a piece of hardware.
 func (r Hardware_SecurityModule750) GetHardDrives() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHardDrives", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetHardDrivesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHardDrives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHardDrives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7062,6 +14291,34 @@ func (r Hardware_SecurityModule750) GetHourlyBandwidth(mode *string, day *dataty
 	return
 }
 
+func (r Hardware_SecurityModule750) GetHourlyBandwidthIter(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		mode,
+		day,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHourlyBandwidth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHourlyBandwidth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's hourly billing status.
 func (r Hardware_SecurityModule750) GetHourlyBillingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getHourlyBillingFlag", nil, &r.Options, &resp)
@@ -7127,6 +14384,35 @@ func (r Hardware_SecurityModule750) GetItemPricesFromSoftwareDescriptions(softwa
 	return
 }
 
+func (r Hardware_SecurityModule750) GetItemPricesFromSoftwareDescriptionsIter(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		softwareDescriptions,
+		includeTranslationsFlag,
+		returnAllPricesFlag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getItemPricesFromSoftwareDescriptions", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last transaction that a server's operating system was loaded.
 func (r Hardware_SecurityModule750) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getLastOperatingSystemReload", nil, &r.Options, &resp)
@@ -7169,6 +14455,30 @@ func (r Hardware_SecurityModule750) GetLogicalVolumeStorageGroups() (resp []data
 	return
 }
 
+func (r Hardware_SecurityModule750) GetLogicalVolumeStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getLogicalVolumeStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_SecurityModule750) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -7184,6 +14494,30 @@ func (r Hardware_SecurityModule750) GetManagementNetworkComponent() (resp dataty
 // Retrieve Information regarding a piece of hardware's memory.
 func (r Hardware_SecurityModule750) GetMemory() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMemory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetMemoryIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMemory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMemory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7211,6 +14545,30 @@ func (r Hardware_SecurityModule750) GetModules() (resp []datatypes.Hardware_Comp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetModulesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getModules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getModules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMonitoringRobot", nil, &r.Options, &resp)
@@ -7235,6 +14593,30 @@ func (r Hardware_SecurityModule750) GetMonitoringUserNotification() (resp []data
 	return
 }
 
+func (r Hardware_SecurityModule750) GetMonitoringUserNotificationIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMonitoringUserNotification", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer_Notification_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMonitoringUserNotification", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's motherboard.
 func (r Hardware_SecurityModule750) GetMotherboard() (resp datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getMotherboard", nil, &r.Options, &resp)
@@ -7247,15 +14629,87 @@ func (r Hardware_SecurityModule750) GetNetworkCards() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNetworkCardsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkCards", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkCards", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the IP addresses associated with this server that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this server. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Hardware_SecurityModule750) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNetworkComponentFirewallProtectableIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponentFirewallProtectableIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Returns a hardware's network components.
 func (r Hardware_SecurityModule750) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7283,9 +14737,57 @@ func (r Hardware_SecurityModule750) GetNetworkMonitorAttachedDownHardware() (res
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNetworkMonitorAttachedDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorAttachedDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorAttachedDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Virtual guests that are attached downstream to a hardware that have failed monitoring
 func (r Hardware_SecurityModule750) GetNetworkMonitorAttachedDownVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetNetworkMonitorAttachedDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorAttachedDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7295,9 +14797,57 @@ func (r Hardware_SecurityModule750) GetNetworkMonitorIncidents() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitorIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's network monitors.
 func (r Hardware_SecurityModule750) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7319,9 +14869,57 @@ func (r Hardware_SecurityModule750) GetNetworkStorage() (resp []datatypes.Networ
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network virtual LANs (VLANs) associated with a piece of hardware's network components.
 func (r Hardware_SecurityModule750) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7337,6 +14935,30 @@ func (r Hardware_SecurityModule750) GetNotesHistory() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_SecurityModule750) GetNotesHistoryIter() (resp []datatypes.Hardware_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNotesHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNotesHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of non-volatile memory a piece of hardware has, measured in gigabytes.
 func (r Hardware_SecurityModule750) GetNvRamCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNvRamCapacity", nil, &r.Options, &resp)
@@ -7346,6 +14968,30 @@ func (r Hardware_SecurityModule750) GetNvRamCapacity() (resp uint, err error) {
 // Retrieve
 func (r Hardware_SecurityModule750) GetNvRamComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNvRamComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetNvRamComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNvRamComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getNvRamComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7403,6 +15049,30 @@ func (r Hardware_SecurityModule750) GetPMInfo() (resp []datatypes.Container_Remo
 	return
 }
 
+func (r Hardware_SecurityModule750) GetPMInfoIter() (resp []datatypes.Container_RemoteManagement_PmInfo, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPMInfo", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_PmInfo{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPMInfo", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Blade Bay
 func (r Hardware_SecurityModule750) GetParentBay() (resp datatypes.Hardware_Blade, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getParentBay", nil, &r.Options, &resp)
@@ -7421,6 +15091,30 @@ func (r Hardware_SecurityModule750) GetPartitions() (resp []datatypes.Hardware_S
 	return
 }
 
+func (r Hardware_SecurityModule750) GetPartitionsIter() (resp []datatypes.Hardware_Server_Partition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPartitions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Server_Partition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPartitions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 func (r Hardware_SecurityModule750) GetPointOfPresenceLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPointOfPresenceLocation", nil, &r.Options, &resp)
@@ -7433,9 +15127,57 @@ func (r Hardware_SecurityModule750) GetPowerComponents() (resp []datatypes.Hardw
 	return
 }
 
+func (r Hardware_SecurityModule750) GetPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's power supply.
 func (r Hardware_SecurityModule750) GetPowerSupply() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPowerSupply", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetPowerSupplyIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPowerSupply", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPowerSupply", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7475,6 +15217,30 @@ func (r Hardware_SecurityModule750) GetPrivateBackendNetworkComponents() (resp [
 	return
 }
 
+func (r Hardware_SecurityModule750) GetPrivateBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_SecurityModule750) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -7482,6 +15248,34 @@ func (r Hardware_SecurityModule750) GetPrivateBandwidthData(startTime *int, endT
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetPrivateBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7554,6 +15348,30 @@ func (r Hardware_SecurityModule750) GetProcessors() (resp []datatypes.Hardware_C
 	return
 }
 
+func (r Hardware_SecurityModule750) GetProcessorsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the bandwidth usage for this hardware for the current billing cycle is projected to exceed the allocation.
 func (r Hardware_SecurityModule750) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getProjectedOverBandwidthAllocationFlag", nil, &r.Options, &resp)
@@ -7579,6 +15397,34 @@ func (r Hardware_SecurityModule750) GetPublicBandwidthData(startTime *int, endTi
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPublicBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetPublicBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPublicBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPublicBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7641,6 +15487,30 @@ func (r Hardware_SecurityModule750) GetRaidControllers() (resp []datatypes.Hardw
 	return
 }
 
+func (r Hardware_SecurityModule750) GetRaidControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRaidControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRaidControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Determine if hardware object is vSan Ready Node.
 func (r Hardware_SecurityModule750) GetReadyNodeFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getReadyNodeFlag", nil, &r.Options, &resp)
@@ -7653,9 +15523,57 @@ func (r Hardware_SecurityModule750) GetRecentEvents() (resp []datatypes.Notifica
 	return
 }
 
+func (r Hardware_SecurityModule750) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last five commands issued to the server's remote management card.
 func (r Hardware_SecurityModule750) GetRecentRemoteManagementCommands() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetRecentRemoteManagementCommandsIter() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_Command_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRecentRemoteManagementCommands", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7677,6 +15595,30 @@ func (r Hardware_SecurityModule750) GetRemoteManagementAccounts() (resp []dataty
 	return
 }
 
+func (r Hardware_SecurityModule750) GetRemoteManagementAccountsIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRemoteManagementAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A hardware's associated remote management component. This is normally IPMI.
 func (r Hardware_SecurityModule750) GetRemoteManagementComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRemoteManagementComponent", nil, &r.Options, &resp)
@@ -7689,9 +15631,57 @@ func (r Hardware_SecurityModule750) GetRemoteManagementUsers() (resp []datatypes
 	return
 }
 
+func (r Hardware_SecurityModule750) GetRemoteManagementUsersIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRemoteManagementUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRemoteManagementUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetResourceConfigurationsIter() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Resource_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7701,9 +15691,57 @@ func (r Hardware_SecurityModule750) GetResourceGroupMemberReferences() (resp []d
 	return
 }
 
+func (r Hardware_SecurityModule750) GetResourceGroupMemberReferencesIter() (resp []datatypes.Resource_Group_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroupMemberReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetResourceGroupRoles() (resp []datatypes.Resource_Group_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroupRoles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetResourceGroupRolesIter() (resp []datatypes.Resource_Group_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroupRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroupRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7713,9 +15751,57 @@ func (r Hardware_SecurityModule750) GetResourceGroups() (resp []datatypes.Resour
 	return
 }
 
+func (r Hardware_SecurityModule750) GetResourceGroupsIter() (resp []datatypes.Resource_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getResourceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve the reverse domain records associated with this server.
 func (r Hardware_SecurityModule750) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getReverseDomainRecords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getReverseDomainRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getReverseDomainRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7725,15 +15811,87 @@ func (r Hardware_SecurityModule750) GetRouters() (resp []datatypes.Hardware, err
 	return
 }
 
+func (r Hardware_SecurityModule750) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's vulnerability scan requests.
 func (r Hardware_SecurityModule750) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSecurityScanRequests", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule750) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures system temperatures, voltages, and other local server settings. Sensor data is cached for 30 seconds. Calls made to getSensorData for the same server within 30 seconds of each other will return the same data. Subsequent calls will return new data once the cache expires.
 func (r Hardware_SecurityModule750) GetSensorData() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSensorData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetSensorDataIter() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSensorData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_SensorReading{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSensorData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7755,6 +15913,30 @@ func (r Hardware_SecurityModule750) GetServerFanSpeedGraphs() (resp []datatypes.
 	return
 }
 
+func (r Hardware_SecurityModule750) GetServerFanSpeedGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorSpeed{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServerFanSpeedGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
 func (r Hardware_SecurityModule750) GetServerPowerState() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServerPowerState", nil, &r.Options, &resp)
@@ -7773,6 +15955,30 @@ func (r Hardware_SecurityModule750) GetServerTemperatureGraphs() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetServerTemperatureGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorTemperature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServerTemperatureGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorTemperature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServerTemperatureGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the piece of hardware's service provider.
 func (r Hardware_SecurityModule750) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getServiceProvider", nil, &r.Options, &resp)
@@ -7782,6 +15988,30 @@ func (r Hardware_SecurityModule750) GetServiceProvider() (resp datatypes.Service
 // Retrieve Information regarding a piece of hardware's installed software.
 func (r Hardware_SecurityModule750) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSoftwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSoftwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSoftwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7803,6 +16033,30 @@ func (r Hardware_SecurityModule750) GetSshKeys() (resp []datatypes.Security_Ssh_
 	return
 }
 
+func (r Hardware_SecurityModule750) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_SecurityModule750) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
@@ -7815,15 +16069,87 @@ func (r Hardware_SecurityModule750) GetStorageGroups() (resp []datatypes.Configu
 	return
 }
 
+func (r Hardware_SecurityModule750) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_SecurityModule750) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_SecurityModule750) GetStorageNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getStorageNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7839,6 +16165,30 @@ func (r Hardware_SecurityModule750) GetTransactionHistory() (resp []datatypes.Pr
 	return
 }
 
+func (r Hardware_SecurityModule750) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether to use UEFI boot instead of BIOS.
 func (r Hardware_SecurityModule750) GetUefiBootFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUefiBootFlag", nil, &r.Options, &resp)
@@ -7848,6 +16198,30 @@ func (r Hardware_SecurityModule750) GetUefiBootFlag() (resp bool, err error) {
 // Retrieve a list of upgradeable items available to this piece of hardware. Currently, getUpgradeItemPrices retrieves upgrades available for a server's memory, hard drives, network port speed, bandwidth allocation and GPUs.
 func (r Hardware_SecurityModule750) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7863,6 +16237,30 @@ func (r Hardware_SecurityModule750) GetUpgradeableActiveComponents() (resp []dat
 	return
 }
 
+func (r Hardware_SecurityModule750) GetUpgradeableActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUpgradeableActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_SecurityModule750) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUplinkHardware", nil, &r.Options, &resp)
@@ -7875,9 +16273,57 @@ func (r Hardware_SecurityModule750) GetUplinkNetworkComponents() (resp []datatyp
 	return
 }
 
+func (r Hardware_SecurityModule750) GetUplinkNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUplinkNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUplinkNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_SecurityModule750) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUserData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetUserDataIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUserData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUserData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7887,12 +16333,63 @@ func (r Hardware_SecurityModule750) GetUsers() (resp []datatypes.User_Customer, 
 	return
 }
 
+func (r Hardware_SecurityModule750) GetUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return the list of block device template groups that are valid to the host. For instance, it will only retrieve FLEX images.
 func (r Hardware_SecurityModule750) GetValidBlockDeviceTemplateGroups(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		visibility,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetValidBlockDeviceTemplateGroupsIter(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	params := []interface{}{
+		visibility,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getValidBlockDeviceTemplateGroups", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7908,9 +16405,57 @@ func (r Hardware_SecurityModule750) GetVirtualChassisSiblings() (resp []datatype
 	return
 }
 
+func (r Hardware_SecurityModule750) GetVirtualChassisSiblingsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualChassisSiblings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualChassisSiblings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_SecurityModule750) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7923,6 +16468,30 @@ func (r Hardware_SecurityModule750) GetVirtualHost() (resp datatypes.Virtual_Hos
 // Retrieve Information regarding a piece of hardware's virtual software licenses.
 func (r Hardware_SecurityModule750) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -7956,9 +16525,57 @@ func (r Hardware_SecurityModule750) GetWindowsUpdateAvailableUpdates() (resp []d
 	return
 }
 
+func (r Hardware_SecurityModule750) GetWindowsUpdateAvailableUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getWindowsUpdateAvailableUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getWindowsUpdateAvailableUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of Windows updates installed on a server as reported by the local SoftLayer Windows Server Update Services (WSUS) server. Windows servers provisioned by SoftLayer are configured to use the local WSUS server via the private network by default.
 func (r Hardware_SecurityModule750) GetWindowsUpdateInstalledUpdates() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) GetWindowsUpdateInstalledUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getWindowsUpdateInstalledUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8018,6 +16635,36 @@ func (r Hardware_SecurityModule750) MassFirmwareReflash(hardwareIds []int, ipmi 
 	return
 }
 
+func (r Hardware_SecurityModule750) MassFirmwareReflashIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massFirmwareReflash", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massFirmwareReflash", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
@@ -8034,6 +16681,38 @@ func (r Hardware_SecurityModule750) MassFirmwareUpdate(hardwareIds []int, ipmi *
 	return
 }
 
+func (r Hardware_SecurityModule750) MassFirmwareUpdateIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+		harddrive,
+		networkCard,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massFirmwareUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massFirmwareUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch hyper-threading update by selecting from your server list. It will bring your server offline for approximately 60 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this update our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online. They will be in contact with you to ensure that impact on your server is minimal.
@@ -8043,6 +16722,34 @@ func (r Hardware_SecurityModule750) MassHyperThreadingUpdate(hardwareIds []int, 
 		disableHyperthreading,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) MassHyperThreadingUpdateIter(hardwareIds []int, disableHyperthreading *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		disableHyperthreading,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massHyperThreadingUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8071,6 +16778,35 @@ func (r Hardware_SecurityModule750) MassSparePool(hardwareIds []string, action *
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massSparePool", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) MassSparePoolIter(hardwareIds []string, action *string, newOrder *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		action,
+		newOrder,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massSparePool", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "massSparePool", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8270,6 +17006,33 @@ func (r Hardware_SecurityModule750) SetUserMetadata(metadata []string) (resp []d
 		metadata,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "setUserMetadata", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_SecurityModule750) SetUserMetadataIter(metadata []string) (resp []datatypes.Hardware_Attribute, err error) {
+	params := []interface{}{
+		metadata,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "setUserMetadata", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "setUserMetadata", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8848,6 +17611,30 @@ func (r Hardware_Server) GetActiveComponents() (resp []datatypes.Hardware_Compon
 	return
 }
 
+func (r Hardware_Server) GetActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The billing item for a server's attached network firewall.
 func (r Hardware_Server) GetActiveNetworkFirewallBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveNetworkFirewallBillingItem", nil, &r.Options, &resp)
@@ -8860,9 +17647,57 @@ func (r Hardware_Server) GetActiveNetworkMonitorIncident() (resp []datatypes.Net
 	return
 }
 
+func (r Hardware_Server) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetActiveTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveTickets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveTickets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Ticket{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveTickets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8878,9 +17713,57 @@ func (r Hardware_Server) GetActiveTransactions() (resp []datatypes.Provisioning_
 	return
 }
 
+func (r Hardware_Server) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveTransactions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getActiveTransactions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetAllPowerComponents() (resp []datatypes.Hardware_Power_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllPowerComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetAllPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8896,9 +17779,57 @@ func (r Hardware_Server) GetAllowedNetworkStorage() (resp []datatypes.Network_St
 	return
 }
 
+func (r Hardware_Server) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllowedNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllowedNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Hardware has access to.
 func (r Hardware_Server) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8917,9 +17848,60 @@ func (r Hardware_Server) GetAttachedNetworkStorages(nasType *string) (resp []dat
 	return
 }
 
+func (r Hardware_Server) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAttachedNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAttachedNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's specific attributes.
 func (r Hardware_Server) GetAttributes() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAttributes", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetAttributesIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAttributes", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAttributes", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8929,9 +17911,57 @@ func (r Hardware_Server) GetAvailableBillingTermChangePrices() (resp []datatypes
 	return
 }
 
+func (r Hardware_Server) GetAvailableBillingTermChangePricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableBillingTermChangePrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableBillingTermChangePrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Hardware_Server) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableMonitoring", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetAvailableMonitoringIter() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableMonitoring", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host_Stratum{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableMonitoring", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8941,6 +17971,33 @@ func (r Hardware_Server) GetAvailableNetworkStorages(nasType *string) (resp []da
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
+	params := []interface{}{
+		nasType,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableNetworkStorages", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getAvailableNetworkStorages", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -8974,6 +18031,34 @@ func (r Hardware_Server) GetBackendBandwidthUsage(startDate *datatypes.Time, end
 	return
 }
 
+func (r Hardware_Server) GetBackendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendIncomingBandwidth”' method retrieves the amount of incoming private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_Server) GetBackendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -8990,6 +18075,30 @@ func (r Hardware_Server) GetBackendNetworkComponents() (resp []datatypes.Network
 	return
 }
 
+func (r Hardware_Server) GetBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getBackendOutgoingBandwidth”' method retrieves the amount of outgoing private network traffic used between the given start date and end date parameters. When entering start and end dates, only the month, day and year are used to calculate bandwidth totals - the time (HH:MM:SS) is ignored and defaults to midnight. The amount of bandwidth retrieved is measured in gigabytes.
 func (r Hardware_Server) GetBackendOutgoingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -9003,6 +18112,30 @@ func (r Hardware_Server) GetBackendOutgoingBandwidth(startDate *datatypes.Time, 
 // Retrieve A hardware's backend or private router.
 func (r Hardware_Server) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendRouters", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBackendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9028,6 +18161,34 @@ func (r Hardware_Server) GetBandwidthForDateRange(startDate *datatypes.Time, end
 	return
 }
 
+func (r Hardware_Server) GetBandwidthForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBandwidthForDateRange", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBandwidthForDateRange", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
 func (r Hardware_Server) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -9047,9 +18208,57 @@ func (r Hardware_Server) GetBenchmarkCertifications() (resp []datatypes.Hardware
 	return
 }
 
+func (r Hardware_Server) GetBenchmarkCertificationsIter() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBenchmarkCertifications", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Benchmark_Certification{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBenchmarkCertifications", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The raw bandwidth usage data for the current billing cycle. One object will be returned for each network this server is attached to.
 func (r Hardware_Server) GetBillingCycleBandwidthUsage() (resp []datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Bandwidth_Usage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9095,6 +18304,30 @@ func (r Hardware_Server) GetBootModeOptions() (resp []string, err error) {
 	return
 }
 
+func (r Hardware_Server) GetBootModeOptionsIter() (resp []string, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBootModeOptions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []string{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBootModeOptions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_Server) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
@@ -9113,6 +18346,30 @@ func (r Hardware_Server) GetChildrenHardware() (resp []datatypes.Hardware, err e
 	return
 }
 
+func (r Hardware_Server) GetChildrenHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getChildrenHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getChildrenHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // no documentation yet
 func (r Hardware_Server) GetComponentDetailsXML() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponentDetailsXML", nil, &r.Options, &resp)
@@ -9122,6 +18379,30 @@ func (r Hardware_Server) GetComponentDetailsXML() (resp string, err error) {
 // Retrieve A piece of hardware's components.
 func (r Hardware_Server) GetComponents() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9181,6 +18462,30 @@ func (r Hardware_Server) GetCurrentBillingDetail() (resp []datatypes.Billing_Ite
 	return
 }
 
+func (r Hardware_Server) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingDetail", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Billing_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingDetail", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the total bill amount in US Dollars ($) for this hardware in the current billing period. This includes all bandwidth used up to the point the method is called on the hardware.
 func (r Hardware_Server) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getCurrentBillingTotal", nil, &r.Options, &resp)
@@ -9233,9 +18538,57 @@ func (r Hardware_Server) GetDownlinkHardware() (resp []datatypes.Hardware, err e
 	return
 }
 
+func (r Hardware_Server) GetDownlinkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All hardware that has uplink network connections to a piece of hardware.
 func (r Hardware_Server) GetDownlinkNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetDownlinkNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9245,9 +18598,57 @@ func (r Hardware_Server) GetDownlinkServers() (resp []datatypes.Hardware, err er
 	return
 }
 
+func (r Hardware_Server) GetDownlinkServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all virtual guests attached to a piece of network hardware.
 func (r Hardware_Server) GetDownlinkVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetDownlinkVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownlinkVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9257,9 +18658,57 @@ func (r Hardware_Server) GetDownstreamHardwareBindings() (resp []datatypes.Netwo
 	return
 }
 
+func (r Hardware_Server) GetDownstreamHardwareBindingsIter() (resp []datatypes.Network_Component_Uplink_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamHardwareBindings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component_Uplink_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamHardwareBindings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve All network hardware downstream from the selected piece of hardware.
 func (r Hardware_Server) GetDownstreamNetworkHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetDownstreamNetworkHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9269,9 +18718,57 @@ func (r Hardware_Server) GetDownstreamNetworkHardwareWithIncidents() (resp []dat
 	return
 }
 
+func (r Hardware_Server) GetDownstreamNetworkHardwareWithIncidentsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardwareWithIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamNetworkHardwareWithIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding all servers attached downstream to a piece of network hardware.
 func (r Hardware_Server) GetDownstreamServers() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamServers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetDownstreamServersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamServers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamServers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9281,9 +18778,57 @@ func (r Hardware_Server) GetDownstreamVirtualGuests() (resp []datatypes.Virtual_
 	return
 }
 
+func (r Hardware_Server) GetDownstreamVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDownstreamVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The drive controllers contained within a piece of hardware.
 func (r Hardware_Server) GetDriveControllers() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDriveControllers", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetDriveControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDriveControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getDriveControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9293,9 +18838,57 @@ func (r Hardware_Server) GetEvaultNetworkStorage() (resp []datatypes.Network_Sto
 	return
 }
 
+func (r Hardware_Server) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getEvaultNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getEvaultNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the subnets associated with this server that are protectable by a network component firewall.
 func (r Hardware_Server) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetFirewallProtectableSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFirewallProtectableSubnets", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9323,6 +18916,34 @@ func (r Hardware_Server) GetFrontendBandwidthUsage(startDate *datatypes.Time, en
 	return
 }
 
+func (r Hardware_Server) GetFrontendBandwidthUsageIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startDate,
+		endDate,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendBandwidthUsage", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendBandwidthUsage", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // The ”'getFrontendIncomingBandwidth”' method retrieves the amount of incoming public network traffic used by a server between the given start and end date parameters. When entering the ”dateTime” parameter, only the month, day and year of the start and end dates are required - the time (hour, minute and second) are set to midnight by default and cannot be changed. The amount of bandwidth retrieved is measured in gigabytes (GB).
 func (r Hardware_Server) GetFrontendIncomingBandwidth(startDate *datatypes.Time, endDate *datatypes.Time) (resp datatypes.Float64, err error) {
 	params := []interface{}{
@@ -9336,6 +18957,30 @@ func (r Hardware_Server) GetFrontendIncomingBandwidth(startDate *datatypes.Time,
 // Retrieve A piece of hardware's front-end or public network components.
 func (r Hardware_Server) GetFrontendNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetFrontendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9355,6 +19000,30 @@ func (r Hardware_Server) GetFrontendRouters() (resp []datatypes.Hardware, err er
 	return
 }
 
+func (r Hardware_Server) GetFrontendRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFrontendRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the future billing item for a server.
 func (r Hardware_Server) GetFutureBillingItem() (resp datatypes.Billing_Item_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getFutureBillingItem", nil, &r.Options, &resp)
@@ -9370,6 +19039,30 @@ func (r Hardware_Server) GetGlobalIdentifier() (resp string, err error) {
 // Retrieve The hard drives contained within a piece of hardware.
 func (r Hardware_Server) GetHardDrives() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHardDrives", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetHardDrivesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHardDrives", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHardDrives", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9446,6 +19139,34 @@ func (r Hardware_Server) GetHourlyBandwidth(mode *string, day *datatypes.Time) (
 	return
 }
 
+func (r Hardware_Server) GetHourlyBandwidthIter(mode *string, day *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		mode,
+		day,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHourlyBandwidth", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHourlyBandwidth", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's hourly billing status.
 func (r Hardware_Server) GetHourlyBillingFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getHourlyBillingFlag", nil, &r.Options, &resp)
@@ -9511,6 +19232,35 @@ func (r Hardware_Server) GetItemPricesFromSoftwareDescriptions(softwareDescripti
 	return
 }
 
+func (r Hardware_Server) GetItemPricesFromSoftwareDescriptionsIter(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item, err error) {
+	params := []interface{}{
+		softwareDescriptions,
+		includeTranslationsFlag,
+		returnAllPricesFlag,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getItemPricesFromSoftwareDescriptions", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last transaction that a server's operating system was loaded.
 func (r Hardware_Server) GetLastOperatingSystemReload() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getLastOperatingSystemReload", nil, &r.Options, &resp)
@@ -9553,6 +19303,30 @@ func (r Hardware_Server) GetLogicalVolumeStorageGroups() (resp []datatypes.Confi
 	return
 }
 
+func (r Hardware_Server) GetLogicalVolumeStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getLogicalVolumeStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getLogicalVolumeStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A flag indicating that the hardware is a managed resource.
 func (r Hardware_Server) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -9568,6 +19342,30 @@ func (r Hardware_Server) GetManagementNetworkComponent() (resp datatypes.Network
 // Retrieve Information regarding a piece of hardware's memory.
 func (r Hardware_Server) GetMemory() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMemory", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetMemoryIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMemory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMemory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9595,6 +19393,30 @@ func (r Hardware_Server) GetModules() (resp []datatypes.Hardware_Component, err 
 	return
 }
 
+func (r Hardware_Server) GetModulesIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getModules", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getModules", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetMonitoringRobot() (resp datatypes.Monitoring_Robot, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMonitoringRobot", nil, &r.Options, &resp)
@@ -9619,6 +19441,30 @@ func (r Hardware_Server) GetMonitoringUserNotification() (resp []datatypes.User_
 	return
 }
 
+func (r Hardware_Server) GetMonitoringUserNotificationIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMonitoringUserNotification", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer_Notification_Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMonitoringUserNotification", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's motherboard.
 func (r Hardware_Server) GetMotherboard() (resp datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getMotherboard", nil, &r.Options, &resp)
@@ -9631,15 +19477,87 @@ func (r Hardware_Server) GetNetworkCards() (resp []datatypes.Hardware_Component,
 	return
 }
 
+func (r Hardware_Server) GetNetworkCardsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkCards", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkCards", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Get the IP addresses associated with this server that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this server. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Hardware_Server) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Server) GetNetworkComponentFirewallProtectableIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Subnet_IpAddress{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponentFirewallProtectableIpAddresses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Returns a hardware's network components.
 func (r Hardware_Server) GetNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9667,9 +19585,57 @@ func (r Hardware_Server) GetNetworkMonitorAttachedDownHardware() (resp []datatyp
 	return
 }
 
+func (r Hardware_Server) GetNetworkMonitorAttachedDownHardwareIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorAttachedDownHardware", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorAttachedDownHardware", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Virtual guests that are attached downstream to a hardware that have failed monitoring
 func (r Hardware_Server) GetNetworkMonitorAttachedDownVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetNetworkMonitorAttachedDownVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorAttachedDownVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorAttachedDownVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9679,9 +19645,57 @@ func (r Hardware_Server) GetNetworkMonitorIncidents() (resp []datatypes.Network_
 	return
 }
 
+func (r Hardware_Server) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitorIncidents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's network monitors.
 func (r Hardware_Server) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitors", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkMonitors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9703,9 +19717,57 @@ func (r Hardware_Server) GetNetworkStorage() (resp []datatypes.Network_Storage, 
 	return
 }
 
+func (r Hardware_Server) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkStorage", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Storage{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkStorage", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network virtual LANs (VLANs) associated with a piece of hardware's network components.
 func (r Hardware_Server) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkVlans", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkVlans", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Vlan{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNetworkVlans", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9721,6 +19783,30 @@ func (r Hardware_Server) GetNotesHistory() (resp []datatypes.Hardware_Note, err 
 	return
 }
 
+func (r Hardware_Server) GetNotesHistoryIter() (resp []datatypes.Hardware_Note, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNotesHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Note{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNotesHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The amount of non-volatile memory a piece of hardware has, measured in gigabytes.
 func (r Hardware_Server) GetNvRamCapacity() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNvRamCapacity", nil, &r.Options, &resp)
@@ -9730,6 +19816,30 @@ func (r Hardware_Server) GetNvRamCapacity() (resp uint, err error) {
 // Retrieve
 func (r Hardware_Server) GetNvRamComponentModels() (resp []datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNvRamComponentModels", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetNvRamComponentModelsIter() (resp []datatypes.Hardware_Component_Model, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNvRamComponentModels", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_Model{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getNvRamComponentModels", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9787,6 +19897,30 @@ func (r Hardware_Server) GetPMInfo() (resp []datatypes.Container_RemoteManagemen
 	return
 }
 
+func (r Hardware_Server) GetPMInfoIter() (resp []datatypes.Container_RemoteManagement_PmInfo, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPMInfo", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_PmInfo{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPMInfo", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Blade Bay
 func (r Hardware_Server) GetParentBay() (resp datatypes.Hardware_Blade, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getParentBay", nil, &r.Options, &resp)
@@ -9805,6 +19939,30 @@ func (r Hardware_Server) GetPartitions() (resp []datatypes.Hardware_Server_Parti
 	return
 }
 
+func (r Hardware_Server) GetPartitionsIter() (resp []datatypes.Hardware_Server_Partition, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPartitions", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Server_Partition{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPartitions", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the Point of Presence (PoP) location in which a piece of hardware resides.
 func (r Hardware_Server) GetPointOfPresenceLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPointOfPresenceLocation", nil, &r.Options, &resp)
@@ -9817,9 +19975,57 @@ func (r Hardware_Server) GetPowerComponents() (resp []datatypes.Hardware_Power_C
 	return
 }
 
+func (r Hardware_Server) GetPowerComponentsIter() (resp []datatypes.Hardware_Power_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPowerComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Power_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPowerComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's power supply.
 func (r Hardware_Server) GetPowerSupply() (resp []datatypes.Hardware_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPowerSupply", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetPowerSupplyIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPowerSupply", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPowerSupply", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9859,6 +20065,30 @@ func (r Hardware_Server) GetPrivateBackendNetworkComponents() (resp []datatypes.
 	return
 }
 
+func (r Hardware_Server) GetPrivateBackendNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBackendNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBackendNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
 func (r Hardware_Server) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -9866,6 +20096,34 @@ func (r Hardware_Server) GetPrivateBandwidthData(startTime *int, endTime *int) (
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetPrivateBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -9938,6 +20196,30 @@ func (r Hardware_Server) GetProcessors() (resp []datatypes.Hardware_Component, e
 	return
 }
 
+func (r Hardware_Server) GetProcessorsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getProcessors", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getProcessors", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether the bandwidth usage for this hardware for the current billing cycle is projected to exceed the allocation.
 func (r Hardware_Server) GetProjectedOverBandwidthAllocationFlag() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getProjectedOverBandwidthAllocationFlag", nil, &r.Options, &resp)
@@ -9963,6 +20245,34 @@ func (r Hardware_Server) GetPublicBandwidthData(startTime *int, endTime *int) (r
 		endTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPublicBandwidthData", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetPublicBandwidthDataIter(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
+	params := []interface{}{
+		startTime,
+		endTime,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPublicBandwidthData", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Metric_Tracking_Object_Data{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPublicBandwidthData", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10025,6 +20335,30 @@ func (r Hardware_Server) GetRaidControllers() (resp []datatypes.Hardware_Compone
 	return
 }
 
+func (r Hardware_Server) GetRaidControllersIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRaidControllers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRaidControllers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Determine if hardware object is vSan Ready Node.
 func (r Hardware_Server) GetReadyNodeFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getReadyNodeFlag", nil, &r.Options, &resp)
@@ -10037,9 +20371,57 @@ func (r Hardware_Server) GetRecentEvents() (resp []datatypes.Notification_Occurr
 	return
 }
 
+func (r Hardware_Server) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRecentEvents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Notification_Occurrence_Event{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRecentEvents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The last five commands issued to the server's remote management card.
 func (r Hardware_Server) GetRecentRemoteManagementCommands() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetRecentRemoteManagementCommandsIter() (resp []datatypes.Hardware_Component_RemoteManagement_Command_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRecentRemoteManagementCommands", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_Command_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRecentRemoteManagementCommands", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10061,6 +20443,30 @@ func (r Hardware_Server) GetRemoteManagementAccounts() (resp []datatypes.Hardwar
 	return
 }
 
+func (r Hardware_Server) GetRemoteManagementAccountsIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRemoteManagementAccounts", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRemoteManagementAccounts", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A hardware's associated remote management component. This is normally IPMI.
 func (r Hardware_Server) GetRemoteManagementComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRemoteManagementComponent", nil, &r.Options, &resp)
@@ -10073,9 +20479,57 @@ func (r Hardware_Server) GetRemoteManagementUsers() (resp []datatypes.Hardware_C
 	return
 }
 
+func (r Hardware_Server) GetRemoteManagementUsersIter() (resp []datatypes.Hardware_Component_RemoteManagement_User, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRemoteManagementUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component_RemoteManagement_User{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRemoteManagementUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetResourceConfigurations() (resp []datatypes.Hardware_Resource_Configuration, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceConfigurations", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetResourceConfigurationsIter() (resp []datatypes.Hardware_Resource_Configuration, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceConfigurations", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Resource_Configuration{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceConfigurations", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10085,9 +20539,57 @@ func (r Hardware_Server) GetResourceGroupMemberReferences() (resp []datatypes.Re
 	return
 }
 
+func (r Hardware_Server) GetResourceGroupMemberReferencesIter() (resp []datatypes.Resource_Group_Member, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupMemberReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Member{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupMemberReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetResourceGroupRoles() (resp []datatypes.Resource_Group_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupRoles", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetResourceGroupRolesIter() (resp []datatypes.Resource_Group_Role, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupRoles", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group_Role{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroupRoles", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10097,9 +20599,57 @@ func (r Hardware_Server) GetResourceGroups() (resp []datatypes.Resource_Group, e
 	return
 }
 
+func (r Hardware_Server) GetResourceGroupsIter() (resp []datatypes.Resource_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Resource_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getResourceGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve the reverse domain records associated with this server.
 func (r Hardware_Server) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getReverseDomainRecords", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getReverseDomainRecords", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Dns_Domain{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getReverseDomainRecords", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10109,15 +20659,87 @@ func (r Hardware_Server) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
+func (r Hardware_Server) GetRoutersIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRouters", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRouters", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding a piece of hardware's vulnerability scan requests.
 func (r Hardware_Server) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSecurityScanRequests", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Server) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSecurityScanRequests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Security_Scanner_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSecurityScanRequests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a server's hardware state via its internal sensors. Remote sensor data is transmitted to the SoftLayer API by way of the server's remote management card. Sensor data measures system temperatures, voltages, and other local server settings. Sensor data is cached for 30 seconds. Calls made to getSensorData for the same server within 30 seconds of each other will return the same data. Subsequent calls will return new data once the cache expires.
 func (r Hardware_Server) GetSensorData() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSensorData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetSensorDataIter() (resp []datatypes.Container_RemoteManagement_SensorReading, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSensorData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_SensorReading{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSensorData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10139,6 +20761,30 @@ func (r Hardware_Server) GetServerFanSpeedGraphs() (resp []datatypes.Container_R
 	return
 }
 
+func (r Hardware_Server) GetServerFanSpeedGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorSpeed, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServerFanSpeedGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorSpeed{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServerFanSpeedGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
 func (r Hardware_Server) GetServerPowerState() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServerPowerState", nil, &r.Options, &resp)
@@ -10157,6 +20803,30 @@ func (r Hardware_Server) GetServerTemperatureGraphs() (resp []datatypes.Containe
 	return
 }
 
+func (r Hardware_Server) GetServerTemperatureGraphsIter() (resp []datatypes.Container_RemoteManagement_Graphs_SensorTemperature, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServerTemperatureGraphs", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_RemoteManagement_Graphs_SensorTemperature{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServerTemperatureGraphs", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Information regarding the piece of hardware's service provider.
 func (r Hardware_Server) GetServiceProvider() (resp datatypes.Service_Provider, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getServiceProvider", nil, &r.Options, &resp)
@@ -10166,6 +20836,30 @@ func (r Hardware_Server) GetServiceProvider() (resp datatypes.Service_Provider, 
 // Retrieve Information regarding a piece of hardware's installed software.
 func (r Hardware_Server) GetSoftwareComponents() (resp []datatypes.Software_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSoftwareComponents", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSoftwareComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSoftwareComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10187,6 +20881,30 @@ func (r Hardware_Server) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err er
 	return
 }
 
+func (r Hardware_Server) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSshKeys", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Security_Ssh_Key{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getSshKeys", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A server's remote management card used for statistics.
 func (r Hardware_Server) GetStatisticsRemoteManagement() (resp datatypes.Hardware_Component_RemoteManagement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStatisticsRemoteManagement", nil, &r.Options, &resp)
@@ -10199,15 +20917,87 @@ func (r Hardware_Server) GetStorageGroups() (resp []datatypes.Configuration_Stor
 	return
 }
 
+func (r Hardware_Server) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageGroups", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Configuration_Storage_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageGroups", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve A piece of hardware's private storage network components. [Deprecated]
 func (r Hardware_Server) GetStorageNetworkComponents() (resp []datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageNetworkComponents", nil, &r.Options, &resp)
 	return
 }
 
+func (r Hardware_Server) GetStorageNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getStorageNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getTagReferences", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getTagReferences", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Tag_Reference{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getTagReferences", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10223,6 +21013,30 @@ func (r Hardware_Server) GetTransactionHistory() (resp []datatypes.Provisioning_
 	return
 }
 
+func (r Hardware_Server) GetTransactionHistoryIter() (resp []datatypes.Provisioning_Version1_Transaction_History, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getTransactionHistory", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Provisioning_Version1_Transaction_History{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getTransactionHistory", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve Whether to use UEFI boot instead of BIOS.
 func (r Hardware_Server) GetUefiBootFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUefiBootFlag", nil, &r.Options, &resp)
@@ -10232,6 +21046,30 @@ func (r Hardware_Server) GetUefiBootFlag() (resp bool, err error) {
 // Retrieve a list of upgradeable items available to this piece of hardware. Currently, getUpgradeItemPrices retrieves upgrades available for a server's memory, hard drives, network port speed, bandwidth allocation and GPUs.
 func (r Hardware_Server) GetUpgradeItemPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetUpgradeItemPricesIter() (resp []datatypes.Product_Item_Price, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeItemPrices", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Product_Item_Price{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeItemPrices", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10247,6 +21085,30 @@ func (r Hardware_Server) GetUpgradeableActiveComponents() (resp []datatypes.Hard
 	return
 }
 
+func (r Hardware_Server) GetUpgradeableActiveComponentsIter() (resp []datatypes.Hardware_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeableActiveComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUpgradeableActiveComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve The network device connected to a piece of hardware.
 func (r Hardware_Server) GetUplinkHardware() (resp datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUplinkHardware", nil, &r.Options, &resp)
@@ -10259,9 +21121,57 @@ func (r Hardware_Server) GetUplinkNetworkComponents() (resp []datatypes.Network_
 	return
 }
 
+func (r Hardware_Server) GetUplinkNetworkComponentsIter() (resp []datatypes.Network_Component, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUplinkNetworkComponents", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Network_Component{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUplinkNetworkComponents", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve An array containing a single string of custom user data for a hardware order. Max size is 16 kb.
 func (r Hardware_Server) GetUserData() (resp []datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUserData", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetUserDataIter() (resp []datatypes.Hardware_Attribute, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUserData", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUserData", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10271,12 +21181,63 @@ func (r Hardware_Server) GetUsers() (resp []datatypes.User_Customer, err error) 
 	return
 }
 
+func (r Hardware_Server) GetUsersIter() (resp []datatypes.User_Customer, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUsers", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.User_Customer{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getUsers", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // This method will return the list of block device template groups that are valid to the host. For instance, it will only retrieve FLEX images.
 func (r Hardware_Server) GetValidBlockDeviceTemplateGroups(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	params := []interface{}{
 		visibility,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetValidBlockDeviceTemplateGroupsIter(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
+	params := []interface{}{
+		visibility,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getValidBlockDeviceTemplateGroups", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10292,9 +21253,57 @@ func (r Hardware_Server) GetVirtualChassisSiblings() (resp []datatypes.Hardware,
 	return
 }
 
+func (r Hardware_Server) GetVirtualChassisSiblingsIter() (resp []datatypes.Hardware, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualChassisSiblings", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualChassisSiblings", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve [DEPRECATED] A hardware server's virtual servers.
 func (r Hardware_Server) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualGuests", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualGuests", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualGuests", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10307,6 +21316,30 @@ func (r Hardware_Server) GetVirtualHost() (resp datatypes.Virtual_Host, err erro
 // Retrieve Information regarding a piece of hardware's virtual software licenses.
 func (r Hardware_Server) GetVirtualLicenses() (resp []datatypes.Software_VirtualLicense, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualLicenses", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetVirtualLicensesIter() (resp []datatypes.Software_VirtualLicense, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualLicenses", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Software_VirtualLicense{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getVirtualLicenses", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10340,9 +21373,57 @@ func (r Hardware_Server) GetWindowsUpdateAvailableUpdates() (resp []datatypes.Co
 	return
 }
 
+func (r Hardware_Server) GetWindowsUpdateAvailableUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getWindowsUpdateAvailableUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getWindowsUpdateAvailableUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // Retrieve a list of Windows updates installed on a server as reported by the local SoftLayer Windows Server Update Services (WSUS) server. Windows servers provisioned by SoftLayer are configured to use the local WSUS server via the private network by default.
 func (r Hardware_Server) GetWindowsUpdateInstalledUpdates() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) GetWindowsUpdateInstalledUpdatesIter() (resp []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem, err error) {
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getWindowsUpdateInstalledUpdates", nil, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Utility_Microsoft_Windows_UpdateServices_UpdateItem{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getWindowsUpdateInstalledUpdates", nil, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10402,6 +21483,36 @@ func (r Hardware_Server) MassFirmwareReflash(hardwareIds []int, ipmi *bool, raid
 	return
 }
 
+func (r Hardware_Server) MassFirmwareReflashIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareReflash", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareReflash", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch firmware updates by selecting from your server list. It will bring your server offline for approximately 20 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this test our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
@@ -10418,6 +21529,38 @@ func (r Hardware_Server) MassFirmwareUpdate(hardwareIds []int, ipmi *bool, raidC
 	return
 }
 
+func (r Hardware_Server) MassFirmwareUpdateIter(hardwareIds []int, ipmi *bool, raidController *bool, bios *bool, harddrive *bool, networkCard *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		ipmi,
+		raidController,
+		bios,
+		harddrive,
+		networkCard,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massFirmwareUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return
+}
+
 // You can launch hyper-threading update by selecting from your server list. It will bring your server offline for approximately 60 minutes while the updates are in progress.
 //
 // In the event of a hardware failure during this update our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online. They will be in contact with you to ensure that impact on your server is minimal.
@@ -10427,6 +21570,34 @@ func (r Hardware_Server) MassHyperThreadingUpdate(hardwareIds []int, disableHype
 		disableHyperthreading,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) MassHyperThreadingUpdateIter(hardwareIds []int, disableHyperthreading *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		disableHyperthreading,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massHyperThreadingUpdate", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massHyperThreadingUpdate", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10455,6 +21626,35 @@ func (r Hardware_Server) MassSparePool(hardwareIds []string, action *string, new
 		newOrder,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massSparePool", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) MassSparePoolIter(hardwareIds []string, action *string, newOrder *bool) (resp []datatypes.Container_Hardware_Server_Request, err error) {
+	params := []interface{}{
+		hardwareIds,
+		action,
+		newOrder,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massSparePool", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Container_Hardware_Server_Request{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "massSparePool", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
@@ -10654,6 +21854,33 @@ func (r Hardware_Server) SetUserMetadata(metadata []string) (resp []datatypes.Ha
 		metadata,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "setUserMetadata", params, &r.Options, &resp)
+	return
+}
+
+func (r Hardware_Server) SetUserMetadataIter(metadata []string) (resp []datatypes.Hardware_Attribute, err error) {
+	params := []interface{}{
+		metadata,
+	}
+	limit := r.Options.ValidateLimit()
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "setUserMetadata", params, &r.Options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := r.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware_Attribute{}
+			options := r.Options
+			options.Offset = &offset
+			err = r.Session.DoRequest("SoftLayer_Hardware_Server", "setUserMetadata", params, &options, &this_resp)
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
 	return
 }
 
