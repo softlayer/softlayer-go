@@ -289,10 +289,12 @@ func makeHTTPRequest(
 	}
 	if resp.Header["Softlayer-Total-Items"] != nil && len(resp.Header["Softlayer-Total-Items"]) == 1 {
 		var str_err error
-		options.TotalItems, str_err = strconv.Atoi(resp.Header["Softlayer-Total-Items"][0])
+		var total_items int
+		total_items, str_err = strconv.Atoi(resp.Header["Softlayer-Total-Items"][0])
 		if str_err != nil {
 			log.Println("[Error] Unable to convert Softlayer-Total-Items to int: ", str_err)
 		}
+		options.SetTotalItems(total_items)
 	}
 
 	if session.Debug {

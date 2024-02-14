@@ -46,3 +46,15 @@ func (opt *Options) ValidateLimit() int {
 	}
 	return *opt.Limit
 }
+
+func (opt *Options) SetTotalItems(total int) {
+	opt.TotalItems = total
+}
+
+func (opt *Options) SetOffset(offset int) {
+	opt.Offset = &offset
+}
+
+func (opt *Options) SetLimit(limit int) {
+	opt.Limit = &limit
+}

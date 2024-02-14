@@ -19,6 +19,7 @@ package virtual
 import (
 	"time"
 	"sync"
+	"fmt"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/helpers/product"
 	"github.com/softlayer/softlayer-go/services"
@@ -160,14 +161,17 @@ func UpgradeVirtualGuestWithPreset(
 	return orderService.PlaceOrder(&order, sl.Bool(false))
 }
 
-func GetVirtualGuestsIter(service services.Account) (resp []datatypes.Virtual_Guest, err error) {
+func GetVirtualGuestsIter(session session.SLSession, options *sl.Options) (resp []datatypes.Virtual_Guest, err error) {
 
-	resp, err = service.GetVirtualGuests()
-	limit := service.Options.ValidateLimit()
+	options.SetOffset(0)
+	limit := options.ValidateLimit()
+
+	// Can't call service.GetVirtualGuests because it passes a copy of options, not the address to options sadly.
+	err = session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, options, &resp)
 	if err != nil {
 		return
 	}
-	apicalls := service.Options.GetRemainingAPICalls()
+	apicalls := options.GetRemainingAPICalls()
 	var wg sync.WaitGroup
 	for x := 1; x <= apicalls; x++ {
 		wg.Add(1)
@@ -175,9 +179,11 @@ func GetVirtualGuestsIter(service services.Account) (resp []datatypes.Virtual_Gu
 			defer wg.Done()
 			offset := i * limit
 			this_resp := []datatypes.Virtual_Guest{}
-			options := service.Options
 			options.Offset = &offset
-			this_resp, err = service.GetVirtualGuests()
+			err = session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, options, &this_resp)
+			if err != nil {
+				fmt.Printf("[ERROR] %v\n", err)
+			}
 			resp = append(resp, this_resp...)
 		}(x)
 	}
