@@ -64,6 +64,7 @@ package services
 import (
 	"fmt"
 	"strings"
+	"github.com/softlayer/softlayer-go/datatypes"
 )
 
 {{range .}}{{$base := .Name|removePrefix}}{{.TypeDoc|goDoc}}{{deprecatedDoc .Deprecated}}

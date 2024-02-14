@@ -14,201 +14,6 @@ var _ = Describe("Resource Tests", func() {
 		slsession = &sessionfakes.FakeSLSession{}
 	})
 
-	Context("Testing SoftLayer_Resource_Configuration service", func() {
-		var sl_service services.Resource_Configuration
-		BeforeEach(func() {
-			sl_service = services.GetResourceConfigurationService(slsession)
-		})
-		Context("SoftLayer_Resource_Configuration Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Resource_Configuration Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Resource_Configuration::setOsPasswordFromEncrypted", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.SetOsPasswordFromEncrypted(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Resource_Group service", func() {
-		var sl_service services.Resource_Group
-		BeforeEach(func() {
-			sl_service = services.GetResourceGroupService(slsession)
-		})
-		Context("SoftLayer_Resource_Group Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Resource_Group Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Resource_Group::editObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getAncestorGroups", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAncestorGroups()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getAttributes", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAttributes()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getHardwareMembers", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetHardwareMembers()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getMembers", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMembers()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getRootResourceGroup", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetRootResourceGroup()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getSubnetMembers", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetSubnetMembers()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getTemplate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetTemplate()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group::getVlanMembers", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetVlanMembers()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Resource_Group_Template service", func() {
-		var sl_service services.Resource_Group_Template
-		BeforeEach(func() {
-			sl_service = services.GetResourceGroupTemplateService(slsession)
-		})
-		Context("SoftLayer_Resource_Group_Template Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Resource_Group_Template Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Resource_Group_Template::getAllObjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAllObjects()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group_Template::getChildren", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetChildren()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group_Template::getMembers", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMembers()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Group_Template::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
 	Context("Testing SoftLayer_Resource_Metadata service", func() {
 		var sl_service services.Resource_Metadata
 		BeforeEach(func() {
@@ -237,13 +42,6 @@ var _ = Describe("Resource Tests", func() {
 				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
 			})
 		})
-		Context("SoftLayer_Resource_Metadata::getAccountId", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAccountId()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Resource_Metadata::getBackendMacAddresses", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBackendMacAddresses()
@@ -265,13 +63,6 @@ var _ = Describe("Resource Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Resource_Metadata::getDomain", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetDomain()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Resource_Metadata::getFrontendMacAddresses", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetFrontendMacAddresses()
@@ -282,20 +73,6 @@ var _ = Describe("Resource Tests", func() {
 		Context("SoftLayer_Resource_Metadata::getFullyQualifiedDomainName", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetFullyQualifiedDomainName()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Metadata::getGlobalIdentifier", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetGlobalIdentifier()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Metadata::getHostname", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetHostname()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -331,20 +108,6 @@ var _ = Describe("Resource Tests", func() {
 		Context("SoftLayer_Resource_Metadata::getRouter", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetRouter(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Metadata::getServiceResource", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetServiceResource(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Resource_Metadata::getServiceResources", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetServiceResources()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

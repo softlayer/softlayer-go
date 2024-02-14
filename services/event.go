@@ -62,15 +62,6 @@ func (r Event_Log) Offset(offset int) Event_Log {
 	return r
 }
 
-// This all indexed event names.
-func (r Event_Log) GetAllEventNames(objectName *string) (resp []string, err error) {
-	params := []interface{}{
-		objectName,
-	}
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventNames", params, &r.Options, &resp)
-	return
-}
-
 // This all indexed event object names.
 func (r Event_Log) GetAllEventObjectNames() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventObjectNames", nil, &r.Options, &resp)
@@ -80,17 +71,5 @@ func (r Event_Log) GetAllEventObjectNames() (resp []string, err error) {
 // no documentation yet
 func (r Event_Log) GetAllObjects() (resp []datatypes.Event_Log, err error) {
 	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Event_Log) GetAllUserTypes() (resp []string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllUserTypes", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Event_Log) GetUser() (resp datatypes.User_Customer, err error) {
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getUser", nil, &r.Options, &resp)
 	return
 }

@@ -17,226 +17,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
 	"github.com/softlayer/softlayer-go/sl"
 )
-
-// no documentation yet
-type Resource_Configuration struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetResourceConfigurationService returns an instance of the Resource_Configuration SoftLayer service
-func GetResourceConfigurationService(sess session.SLSession) Resource_Configuration {
-	return Resource_Configuration{Session: sess}
-}
-
-func (r Resource_Configuration) Id(id int) Resource_Configuration {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Resource_Configuration) Mask(mask string) Resource_Configuration {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Resource_Configuration) Filter(filter string) Resource_Configuration {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Resource_Configuration) Limit(limit int) Resource_Configuration {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Resource_Configuration) Offset(offset int) Resource_Configuration {
-	r.Options.Offset = &offset
-	return r
-}
-
-// The setOsPasswordFromEncrypted method is used to set the operating system password from a key/pair encrypted password signed by SoftLayer.
-func (r Resource_Configuration) SetOsPasswordFromEncrypted(encryptedPassword *string) (resp bool, err error) {
-	params := []interface{}{
-		encryptedPassword,
-	}
-	err = r.Session.DoRequest("SoftLayer_Resource_Configuration", "setOsPasswordFromEncrypted", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-type Resource_Group struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetResourceGroupService returns an instance of the Resource_Group SoftLayer service
-func GetResourceGroupService(sess session.SLSession) Resource_Group {
-	return Resource_Group{Session: sess}
-}
-
-func (r Resource_Group) Id(id int) Resource_Group {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Resource_Group) Mask(mask string) Resource_Group {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Resource_Group) Filter(filter string) Resource_Group {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Resource_Group) Limit(limit int) Resource_Group {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Resource_Group) Offset(offset int) Resource_Group {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-func (r Resource_Group) EditObject(templateObject *datatypes.Resource_Group) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "editObject", params, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated group ancestors.
-func (r Resource_Group) GetAncestorGroups() (resp []datatypes.Resource_Group, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAncestorGroups", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated attributes.
-func (r Resource_Group) GetAttributes() (resp []datatypes.Resource_Group_Attribute, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated hardware members.
-func (r Resource_Group) GetHardwareMembers() (resp []datatypes.Resource_Group_Member, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getHardwareMembers", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated members.
-func (r Resource_Group) GetMembers() (resp []datatypes.Resource_Group_Member, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getMembers", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Resource_Group) GetObject() (resp datatypes.Resource_Group, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated root resource group.
-func (r Resource_Group) GetRootResourceGroup() (resp datatypes.Resource_Group, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getRootResourceGroup", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated subnet members.
-func (r Resource_Group) GetSubnetMembers() (resp []datatypes.Resource_Group_Member, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getSubnetMembers", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated template.
-func (r Resource_Group) GetTemplate() (resp datatypes.Resource_Group_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getTemplate", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A resource group's associated VLAN members.
-func (r Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Member, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getVlanMembers", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-type Resource_Group_Template struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetResourceGroupTemplateService returns an instance of the Resource_Group_Template SoftLayer service
-func GetResourceGroupTemplateService(sess session.SLSession) Resource_Group_Template {
-	return Resource_Group_Template{Session: sess}
-}
-
-func (r Resource_Group_Template) Id(id int) Resource_Group_Template {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Resource_Group_Template) Mask(mask string) Resource_Group_Template {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Resource_Group_Template) Filter(filter string) Resource_Group_Template {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Resource_Group_Template) Limit(limit int) Resource_Group_Template {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Resource_Group_Template) Offset(offset int) Resource_Group_Template {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-func (r Resource_Group_Template) GetAllObjects() (resp []datatypes.Resource_Group_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Resource_Group_Template) GetChildren() (resp []datatypes.Resource_Group_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getChildren", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Resource_Group_Template) GetMembers() (resp []datatypes.Resource_Group_Template_Member, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getMembers", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Resource_Group_Template) GetObject() (resp datatypes.Resource_Group_Template, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getObject", nil, &r.Options, &resp)
-	return
-}
 
 // no documentation yet
 type Resource_Metadata struct {
@@ -278,12 +61,6 @@ func (r Resource_Metadata) Offset(offset int) Resource_Metadata {
 	return r
 }
 
-// The getAccountId retrieves the ID for the account on which the resource is located.
-func (r Resource_Metadata) GetAccountId() (resp int, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getAccountId", nil, &r.Options, &resp)
-	return
-}
-
 // The getBackendMacAddresses method retrieves a list of backend MAC addresses for the resource
 func (r Resource_Metadata) GetBackendMacAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getBackendMacAddresses", nil, &r.Options, &resp)
@@ -302,12 +79,6 @@ func (r Resource_Metadata) GetDatacenterId() (resp int, err error) {
 	return
 }
 
-// The getDomain method retrieves the hostname for the resource.
-func (r Resource_Metadata) GetDomain() (resp string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getDomain", nil, &r.Options, &resp)
-	return
-}
-
 // The getFrontendMacAddresses method retrieves a list of frontend MAC addresses for the resource
 func (r Resource_Metadata) GetFrontendMacAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getFrontendMacAddresses", nil, &r.Options, &resp)
@@ -317,18 +88,6 @@ func (r Resource_Metadata) GetFrontendMacAddresses() (resp []string, err error) 
 // The getFullyQualifiedDomainName method provides the user with a combined return which includes the hostname and domain for the resource. Because this method returns multiple pieces of information, it avoids the need to use multiple methods to return the desired information.
 func (r Resource_Metadata) GetFullyQualifiedDomainName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getFullyQualifiedDomainName", nil, &r.Options, &resp)
-	return
-}
-
-// The getId getGlobalIdentifier retrieves the globalIdentifier for the resource
-func (r Resource_Metadata) GetGlobalIdentifier() (resp string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getGlobalIdentifier", nil, &r.Options, &resp)
-	return
-}
-
-// The getHostname method retrieves the hostname for the resource.
-func (r Resource_Metadata) GetHostname() (resp string, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getHostname", nil, &r.Options, &resp)
 	return
 }
 
@@ -362,22 +121,6 @@ func (r Resource_Metadata) GetRouter(macAddress *string) (resp string, err error
 		macAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getRouter", params, &r.Options, &resp)
-	return
-}
-
-// The getServiceResource method retrieves a specific service resource associated with the resource. Service resources are additional resources that may be used by this resource.
-func (r Resource_Metadata) GetServiceResource(serviceName *string, index *int) (resp string, err error) {
-	params := []interface{}{
-		serviceName,
-		index,
-	}
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getServiceResource", params, &r.Options, &resp)
-	return
-}
-
-// The getServiceResources method retrieves all service resources associated with the resource. Service resources are additional resources that may be used by this resource. The output format is <type>=<address> for each service resource.
-func (r Resource_Metadata) GetServiceResources() (resp []datatypes.Container_Resource_Metadata_ServiceResource, err error) {
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getServiceResources", nil, &r.Options, &resp)
 	return
 }
 

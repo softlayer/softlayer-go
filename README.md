@@ -398,6 +398,29 @@ make generate
 go run ./tools generate
 ```
 
+### Minimal
+
+To update the list of minimal api calls:
+
+```bash
+find  ~/go/src/github.ibm.com/softlayer/softlayer-cli/plugin/testfixtures/ -name '*.json' | grep -v "\-[0-9]" | grep -v .bluemix | awk -F "/" '{ print $12"::"$13 }' > min_filter.txt
+```
+
+```bash
+go run ./tools minimal
+```
+
+
+Handy Regex for go errors during a minimal build:
+
+```
+plugin\managers\load_balancer.go:129:37: l.LoadBalancerMemberService.AddLoadBalancerMembers undefined (type services.Network_LBaaS_Member has no field or method AddLoadBalancerMembers)
+```
+For search/replace in sublime text editor at least.
+1. `^(.*) undefined \(type services\.` => `touch SoftLayer_`
+2. ` has no field or method ([A-Z])([a-z]+)\)` => `/\l$1$2.json`
+
+
 
 ## Copyright
 

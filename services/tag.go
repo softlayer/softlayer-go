@@ -62,15 +62,6 @@ func (r Tag) Offset(offset int) Tag {
 	return r
 }
 
-// This function is responsible for setting the Tags values. The internal flag is set to 0 if the user is a customer, and 1 otherwise. AccountId is set to the account bound to the user, and the tags name is set to the clean version of the tag inputted by the user.
-func (r Tag) AutoComplete(tag *string) (resp []datatypes.Tag, err error) {
-	params := []interface{}{
-		tag,
-	}
-	err = r.Session.DoRequest("SoftLayer_Tag", "autoComplete", params, &r.Options, &resp)
-	return
-}
-
 // Delete a tag for an object.
 func (r Tag) DeleteTag(tagName *string) (resp bool, err error) {
 	params := []interface{}{
@@ -80,27 +71,9 @@ func (r Tag) DeleteTag(tagName *string) (resp bool, err error) {
 	return
 }
 
-// Retrieve The account to which the tag is tied.
-func (r Tag) GetAccount() (resp datatypes.Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Tag", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
-// Returns all tags of a given object type.
-func (r Tag) GetAllTagTypes() (resp []datatypes.Tag_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Tag", "getAllTagTypes", nil, &r.Options, &resp)
-	return
-}
-
 // Get all tags with at least one reference attached to it for the current account. The total items header for this method contains the total number of attached tags even if a result limit is applied.
 func (r Tag) GetAttachedTagsForCurrentUser() (resp []datatypes.Tag, err error) {
 	err = r.Session.DoRequest("SoftLayer_Tag", "getAttachedTagsForCurrentUser", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Tag) GetObject() (resp datatypes.Tag, err error) {
-	err = r.Session.DoRequest("SoftLayer_Tag", "getObject", nil, &r.Options, &resp)
 	return
 }
 

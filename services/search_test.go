@@ -49,20 +49,6 @@ var _ = Describe("Search Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Search::getObjectTypes", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObjectTypes()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Search::search", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.Search(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 	})
 
 })
