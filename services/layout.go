@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -69,30 +68,6 @@ func (r Layout_Container) GetAllObjects() (resp []datatypes.Layout_Container, er
 	return
 }
 
-func (r Layout_Container) GetAllObjectsIter() (resp []datatypes.Layout_Container, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Container{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Container", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The type of the layout container object
 func (r Layout_Container) GetLayoutContainerType() (resp datatypes.Layout_Container_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutContainerType", nil, &r.Options, &resp)
@@ -102,30 +77,6 @@ func (r Layout_Container) GetLayoutContainerType() (resp datatypes.Layout_Contai
 // Retrieve The layout items assigned to this layout container
 func (r Layout_Container) GetLayoutItems() (resp []datatypes.Layout_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutItems", nil, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Container) GetLayoutItemsIter() (resp []datatypes.Layout_Item, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutItems", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Item{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Container", "getLayoutItems", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -178,30 +129,6 @@ func (r Layout_Item) Offset(offset int) Layout_Item {
 // Retrieve The layout preferences assigned to this layout item
 func (r Layout_Item) GetLayoutItemPreferences() (resp []datatypes.Layout_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Layout_Item", "getLayoutItemPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Item) GetLayoutItemPreferencesIter() (resp []datatypes.Layout_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Item", "getLayoutItemPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Item", "getLayoutItemPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -287,57 +214,9 @@ func (r Layout_Profile) GetLayoutContainers() (resp []datatypes.Layout_Container
 	return
 }
 
-func (r Layout_Profile) GetLayoutContainersIter() (resp []datatypes.Layout_Container, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutContainers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Container{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutContainers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Layout_Profile) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Profile) GetLayoutPreferencesIter() (resp []datatypes.Layout_Profile_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile", "getLayoutPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -366,33 +245,6 @@ func (r Layout_Profile) ModifyPreferences(layoutPreferenceObjects []datatypes.La
 		layoutPreferenceObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "modifyPreferences", params, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Profile) ModifyPreferencesIter(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
-	params := []interface{}{
-		layoutPreferenceObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile", "modifyPreferences", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile", "modifyPreferences", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -542,57 +394,9 @@ func (r Layout_Profile_Customer) GetLayoutContainers() (resp []datatypes.Layout_
 	return
 }
 
-func (r Layout_Profile_Customer) GetLayoutContainersIter() (resp []datatypes.Layout_Container, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutContainers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Container{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutContainers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Layout_Profile_Customer) GetLayoutPreferences() (resp []datatypes.Layout_Profile_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Profile_Customer) GetLayoutPreferencesIter() (resp []datatypes.Layout_Profile_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "getLayoutPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -627,33 +431,6 @@ func (r Layout_Profile_Customer) ModifyPreferences(layoutPreferenceObjects []dat
 		layoutPreferenceObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "modifyPreferences", params, &r.Options, &resp)
-	return
-}
-
-func (r Layout_Profile_Customer) ModifyPreferencesIter(layoutPreferenceObjects []datatypes.Layout_Profile_Preference) (resp []datatypes.Layout_Profile_Preference, err error) {
-	params := []interface{}{
-		layoutPreferenceObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "modifyPreferences", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Layout_Profile_Customer", "modifyPreferences", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -127,57 +126,9 @@ func (r Resource_Group) GetAncestorGroups() (resp []datatypes.Resource_Group, er
 	return
 }
 
-func (r Resource_Group) GetAncestorGroupsIter() (resp []datatypes.Resource_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAncestorGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAncestorGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A resource group's associated attributes.
 func (r Resource_Group) GetAttributes() (resp []datatypes.Resource_Group_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Group) GetAttributesIter() (resp []datatypes.Resource_Group_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -187,57 +138,9 @@ func (r Resource_Group) GetHardwareMembers() (resp []datatypes.Resource_Group_Me
 	return
 }
 
-func (r Resource_Group) GetHardwareMembersIter() (resp []datatypes.Resource_Group_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getHardwareMembers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getHardwareMembers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A resource group's associated members.
 func (r Resource_Group) GetMembers() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getMembers", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Group) GetMembersIter() (resp []datatypes.Resource_Group_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getMembers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getMembers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -259,30 +162,6 @@ func (r Resource_Group) GetSubnetMembers() (resp []datatypes.Resource_Group_Memb
 	return
 }
 
-func (r Resource_Group) GetSubnetMembersIter() (resp []datatypes.Resource_Group_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getSubnetMembers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getSubnetMembers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A resource group's associated template.
 func (r Resource_Group) GetTemplate() (resp datatypes.Resource_Group_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getTemplate", nil, &r.Options, &resp)
@@ -292,30 +171,6 @@ func (r Resource_Group) GetTemplate() (resp datatypes.Resource_Group_Template, e
 // Retrieve A resource group's associated VLAN members.
 func (r Resource_Group) GetVlanMembers() (resp []datatypes.Resource_Group_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getVlanMembers", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Group) GetVlanMembersIter() (resp []datatypes.Resource_Group_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group", "getVlanMembers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group", "getVlanMembers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -365,87 +220,15 @@ func (r Resource_Group_Template) GetAllObjects() (resp []datatypes.Resource_Grou
 	return
 }
 
-func (r Resource_Group_Template) GetAllObjectsIter() (resp []datatypes.Resource_Group_Template, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Template{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Resource_Group_Template) GetChildren() (resp []datatypes.Resource_Group_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getChildren", nil, &r.Options, &resp)
 	return
 }
 
-func (r Resource_Group_Template) GetChildrenIter() (resp []datatypes.Resource_Group_Template, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getChildren", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Template{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getChildren", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Resource_Group_Template) GetMembers() (resp []datatypes.Resource_Group_Template_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getMembers", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Group_Template) GetMembersIter() (resp []datatypes.Resource_Group_Template_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getMembers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Resource_Group_Template_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Group_Template", "getMembers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -507,30 +290,6 @@ func (r Resource_Metadata) GetBackendMacAddresses() (resp []string, err error) {
 	return
 }
 
-func (r Resource_Metadata) GetBackendMacAddressesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getBackendMacAddresses", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getBackendMacAddresses", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getDatacenter method retrieves the name of the datacenter in which the resource is located.
 func (r Resource_Metadata) GetDatacenter() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getDatacenter", nil, &r.Options, &resp)
@@ -552,30 +311,6 @@ func (r Resource_Metadata) GetDomain() (resp string, err error) {
 // The getFrontendMacAddresses method retrieves a list of frontend MAC addresses for the resource
 func (r Resource_Metadata) GetFrontendMacAddresses() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getFrontendMacAddresses", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Metadata) GetFrontendMacAddressesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getFrontendMacAddresses", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getFrontendMacAddresses", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -646,57 +381,9 @@ func (r Resource_Metadata) GetServiceResources() (resp []datatypes.Container_Res
 	return
 }
 
-func (r Resource_Metadata) GetServiceResourcesIter() (resp []datatypes.Container_Resource_Metadata_ServiceResource, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getServiceResources", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Resource_Metadata_ServiceResource{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getServiceResources", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getTags method retrieves all tags associated with the resource. Tags are single keywords assigned to a resource that assist the user in identifying the resource and its roles when performing a simple search. Tags are assigned by any user with access to the resource.
 func (r Resource_Metadata) GetTags() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getTags", nil, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Metadata) GetTagsIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getTags", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getTags", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -715,65 +402,11 @@ func (r Resource_Metadata) GetVlanIds(macAddress *string) (resp []int, err error
 	return
 }
 
-func (r Resource_Metadata) GetVlanIdsIter(macAddress *string) (resp []int, err error) {
-	params := []interface{}{
-		macAddress,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getVlanIds", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getVlanIds", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getVlans method returns a list of VLAN numbers for the network component matching the provided MAC address associated with the resource. For each return, the native VLAN will appear first, followed by any trunked VLANs associated with the network component.
 func (r Resource_Metadata) GetVlans(macAddress *string) (resp []int, err error) {
 	params := []interface{}{
 		macAddress,
 	}
 	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getVlans", params, &r.Options, &resp)
-	return
-}
-
-func (r Resource_Metadata) GetVlansIter(macAddress *string) (resp []int, err error) {
-	params := []interface{}{
-		macAddress,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getVlans", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Resource_Metadata", "getVlans", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }

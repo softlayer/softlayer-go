@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -72,60 +71,9 @@ func (r Event_Log) GetAllEventNames(objectName *string) (resp []string, err erro
 	return
 }
 
-func (r Event_Log) GetAllEventNamesIter(objectName *string) (resp []string, err error) {
-	params := []interface{}{
-		objectName,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventNames", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventNames", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This all indexed event object names.
 func (r Event_Log) GetAllEventObjectNames() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventObjectNames", nil, &r.Options, &resp)
-	return
-}
-
-func (r Event_Log) GetAllEventObjectNamesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventObjectNames", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllEventObjectNames", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -135,57 +83,9 @@ func (r Event_Log) GetAllObjects() (resp []datatypes.Event_Log, err error) {
 	return
 }
 
-func (r Event_Log) GetAllObjectsIter() (resp []datatypes.Event_Log, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Event_Log{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Event_Log) GetAllUserTypes() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllUserTypes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Event_Log) GetAllUserTypesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllUserTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Event_Log", "getAllUserTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

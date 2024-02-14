@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -93,62 +92,11 @@ func (r Search) AdvancedSearch(searchString *string) (resp []datatypes.Container
 	return
 }
 
-func (r Search) AdvancedSearchIter(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
-	params := []interface{}{
-		searchString,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Search", "advancedSearch", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Search_Result{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Search", "advancedSearch", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This method returns a collection of [[SoftLayer_Container_Search_ObjectType]] containers that specify which indexed object types and properties are exposed for the current user.  These object types can be used to discover searchable data and to create or validate object index search strings.
 //
 // Refer to the [[SoftLayer_Search/search]] and [[SoftLayer_Search/advancedSearch]] methods for information on using object types and properties in search strings.
 func (r Search) GetObjectTypes() (resp []datatypes.Container_Search_ObjectType, err error) {
 	err = r.Session.DoRequest("SoftLayer_Search", "getObjectTypes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Search) GetObjectTypesIter() (resp []datatypes.Container_Search_ObjectType, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Search", "getObjectTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Search_ObjectType{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Search", "getObjectTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -181,32 +129,5 @@ func (r Search) Search(searchString *string) (resp []datatypes.Container_Search_
 		searchString,
 	}
 	err = r.Session.DoRequest("SoftLayer_Search", "search", params, &r.Options, &resp)
-	return
-}
-
-func (r Search) SearchIter(searchString *string) (resp []datatypes.Container_Search_Result, err error) {
-	params := []interface{}{
-		searchString,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Search", "search", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Search_Result{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Search", "search", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }

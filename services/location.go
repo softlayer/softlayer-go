@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -69,87 +68,15 @@ func (r Location) GetActivePresaleEvents() (resp []datatypes.Sales_Presale_Event
 	return
 }
 
-func (r Location) GetActivePresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getActivePresaleEvents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Sales_Presale_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getActivePresaleEvents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Object Storage is only available in select datacenters. This method will return all the datacenters where object storage is available.
 func (r Location) GetAvailableObjectStorageDatacenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getAvailableObjectStorageDatacenters", nil, &r.Options, &resp)
 	return
 }
 
-func (r Location) GetAvailableObjectStorageDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getAvailableObjectStorageDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getAvailableObjectStorageDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getBackboneDependents", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetBackboneDependentsIter() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getBackboneDependents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Backbone_Location_Dependent{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getBackboneDependents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -165,57 +92,9 @@ func (r Location) GetDatacenters() (resp []datatypes.Location, err error) {
 	return
 }
 
-func (r Location) GetDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Location) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetDatacentersWithVirtualImageStoreServiceResourceRecordIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -231,57 +110,9 @@ func (r Location) GetGroups() (resp []datatypes.Location_Group, err error) {
 	return
 }
 
-func (r Location) GetGroupsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location) GetHardwareFirewalls() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getHardwareFirewalls", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetHardwareFirewallsIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getHardwareFirewalls", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getHardwareFirewalls", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -294,30 +125,6 @@ func (r Location) GetLocationAddress() (resp datatypes.Account_Address, err erro
 // Retrieve A location's physical addresses.
 func (r Location) GetLocationAddresses() (resp []datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getLocationAddresses", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetLocationAddressesIter() (resp []datatypes.Account_Address, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getLocationAddresses", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account_Address{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getLocationAddresses", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -363,57 +170,9 @@ func (r Location) GetPriceGroups() (resp []datatypes.Location_Group, err error) 
 	return
 }
 
-func (r Location) GetPriceGroupsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getPriceGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getPriceGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A location can be a member of 1 or more regions. This will show which regions to which a location belongs.
 func (r Location) GetRegions() (resp []datatypes.Location_Region, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getRegions", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetRegionsIter() (resp []datatypes.Location_Region, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getRegions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Region{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getRegions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -435,57 +194,9 @@ func (r Location) GetViewableDatacenters() (resp []datatypes.Location, err error
 	return
 }
 
-func (r Location) GetViewableDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getViewableDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getViewableDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve all viewable pop and datacenter locations.
 func (r Location) GetViewablePopsAndDataCenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getViewablePopsAndDataCenters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetViewablePopsAndDataCentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getViewablePopsAndDataCenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getViewablePopsAndDataCenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -495,57 +206,9 @@ func (r Location) GetViewablepointOfPresence() (resp []datatypes.Location, err e
 	return
 }
 
-func (r Location) GetViewablepointOfPresenceIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getViewablepointOfPresence", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getViewablepointOfPresence", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve all point of presence locations.
 func (r Location) GetpointOfPresence() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getpointOfPresence", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location) GetpointOfPresenceIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location", "getpointOfPresence", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location", "getpointOfPresence", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -595,57 +258,9 @@ func (r Location_Datacenter) GetActiveItemPresaleEvents() (resp []datatypes.Sale
 	return
 }
 
-func (r Location_Datacenter) GetActiveItemPresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getActiveItemPresaleEvents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Sales_Presale_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getActiveItemPresaleEvents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location_Datacenter) GetActivePresaleEvents() (resp []datatypes.Sales_Presale_Event, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getActivePresaleEvents", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetActivePresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getActivePresaleEvents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Sales_Presale_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getActivePresaleEvents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -655,87 +270,15 @@ func (r Location_Datacenter) GetAvailableObjectStorageDatacenters() (resp []data
 	return
 }
 
-func (r Location_Datacenter) GetAvailableObjectStorageDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getAvailableObjectStorageDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getAvailableObjectStorageDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location_Datacenter) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackboneDependents", nil, &r.Options, &resp)
 	return
 }
 
-func (r Location_Datacenter) GetBackboneDependentsIter() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackboneDependents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Backbone_Location_Dependent{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackboneDependents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location_Datacenter) GetBackendHardwareRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackendHardwareRouters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetBackendHardwareRoutersIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackendHardwareRouters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackendHardwareRouters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -751,57 +294,9 @@ func (r Location_Datacenter) GetBoundSubnets() (resp []datatypes.Network_Subnet,
 	return
 }
 
-func (r Location_Datacenter) GetBoundSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBoundSubnets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Subnet{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBoundSubnets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve This references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
 func (r Location_Datacenter) GetBrandCountryRestrictions() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBrandCountryRestrictions", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetBrandCountryRestrictionsIter() (resp []datatypes.Brand_Restriction_Location_CustomerCountry, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBrandCountryRestrictions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Brand_Restriction_Location_CustomerCountry{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBrandCountryRestrictions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -811,57 +306,9 @@ func (r Location_Datacenter) GetDatacenters() (resp []datatypes.Location, err er
 	return
 }
 
-func (r Location_Datacenter) GetDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Location_Datacenter) GetDatacentersWithVirtualImageStoreServiceResourceRecord() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetDatacentersWithVirtualImageStoreServiceResourceRecordIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getDatacentersWithVirtualImageStoreServiceResourceRecord", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -877,57 +324,9 @@ func (r Location_Datacenter) GetFrontendHardwareRouters() (resp []datatypes.Hard
 	return
 }
 
-func (r Location_Datacenter) GetFrontendHardwareRoutersIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getFrontendHardwareRouters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getFrontendHardwareRouters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A location can be a member of 1 or more groups. This will show which groups to which a location belongs.
 func (r Location_Datacenter) GetGroups() (resp []datatypes.Location_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getGroups", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetGroupsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -937,57 +336,9 @@ func (r Location_Datacenter) GetHardwareFirewalls() (resp []datatypes.Hardware, 
 	return
 }
 
-func (r Location_Datacenter) GetHardwareFirewallsIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getHardwareFirewalls", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getHardwareFirewalls", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Location_Datacenter) GetHardwareRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getHardwareRouters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetHardwareRoutersIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getHardwareRouters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getHardwareRouters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1000,30 +351,6 @@ func (r Location_Datacenter) GetLocationAddress() (resp datatypes.Account_Addres
 // Retrieve A location's physical addresses.
 func (r Location_Datacenter) GetLocationAddresses() (resp []datatypes.Account_Address, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getLocationAddresses", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetLocationAddressesIter() (resp []datatypes.Account_Address, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getLocationAddresses", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account_Address{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getLocationAddresses", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1069,57 +396,9 @@ func (r Location_Datacenter) GetPresaleEvents() (resp []datatypes.Sales_Presale_
 	return
 }
 
-func (r Location_Datacenter) GetPresaleEventsIter() (resp []datatypes.Sales_Presale_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getPresaleEvents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Sales_Presale_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getPresaleEvents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A location can be a member of 1 or more Price Groups. This will show which groups to which a location belongs.
 func (r Location_Datacenter) GetPriceGroups() (resp []datatypes.Location_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getPriceGroups", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetPriceGroupsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getPriceGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getPriceGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1141,57 +420,9 @@ func (r Location_Datacenter) GetRegions() (resp []datatypes.Location_Region, err
 	return
 }
 
-func (r Location_Datacenter) GetRegionsIter() (resp []datatypes.Location_Region, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRegions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Region{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRegions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
 func (r Location_Datacenter) GetRoutableBoundSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRoutableBoundSubnets", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetRoutableBoundSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRoutableBoundSubnets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Subnet{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRoutableBoundSubnets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1219,57 +450,9 @@ func (r Location_Datacenter) GetViewableDatacenters() (resp []datatypes.Location
 	return
 }
 
-func (r Location_Datacenter) GetViewableDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewableDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewableDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve all viewable pop and datacenter locations.
 func (r Location_Datacenter) GetViewablePopsAndDataCenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewablePopsAndDataCenters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetViewablePopsAndDataCentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewablePopsAndDataCenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewablePopsAndDataCenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1279,57 +462,9 @@ func (r Location_Datacenter) GetViewablepointOfPresence() (resp []datatypes.Loca
 	return
 }
 
-func (r Location_Datacenter) GetViewablepointOfPresenceIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewablepointOfPresence", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getViewablepointOfPresence", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve all point of presence locations.
 func (r Location_Datacenter) GetpointOfPresence() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getpointOfPresence", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Datacenter) GetpointOfPresenceIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getpointOfPresence", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getpointOfPresence", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1379,30 +514,6 @@ func (r Location_Group) GetAllObjects() (resp []datatypes.Location_Group, err er
 	return
 }
 
-func (r Location_Group) GetAllObjectsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The type for this location group.
 func (r Location_Group) GetLocationGroupType() (resp datatypes.Location_Group_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group", "getLocationGroupType", nil, &r.Options, &resp)
@@ -1412,30 +523,6 @@ func (r Location_Group) GetLocationGroupType() (resp datatypes.Location_Group_Ty
 // Retrieve The locations in a group.
 func (r Location_Group) GetLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group", "getLocations", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Group) GetLocationsIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group", "getLocations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group", "getLocations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1491,30 +578,6 @@ func (r Location_Group_Pricing) GetAllObjects() (resp []datatypes.Location_Group
 	return
 }
 
-func (r Location_Group_Pricing) GetAllObjectsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The type for this location group.
 func (r Location_Group_Pricing) GetLocationGroupType() (resp datatypes.Location_Group_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getLocationGroupType", nil, &r.Options, &resp)
@@ -1527,30 +590,6 @@ func (r Location_Group_Pricing) GetLocations() (resp []datatypes.Location, err e
 	return
 }
 
-func (r Location_Group_Pricing) GetLocationsIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getLocations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getLocations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Location_Group_Pricing) GetObject() (resp datatypes.Location_Group_Pricing, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getObject", nil, &r.Options, &resp)
@@ -1560,30 +599,6 @@ func (r Location_Group_Pricing) GetObject() (resp datatypes.Location_Group_Prici
 // Retrieve The prices that this pricing location group limits. All of these prices will only be available in the locations defined by this pricing location group.
 func (r Location_Group_Pricing) GetPrices() (resp []datatypes.Product_Item_Price, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getPrices", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Group_Pricing) GetPricesIter() (resp []datatypes.Product_Item_Price, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getPrices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Product_Item_Price{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Pricing", "getPrices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1633,57 +648,9 @@ func (r Location_Group_Regional) GetAllObjects() (resp []datatypes.Location_Grou
 	return
 }
 
-func (r Location_Group_Regional) GetAllObjectsIter() (resp []datatypes.Location_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The datacenters in a group.
 func (r Location_Group_Regional) GetDatacenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getDatacenters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Group_Regional) GetDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1696,30 +663,6 @@ func (r Location_Group_Regional) GetLocationGroupType() (resp datatypes.Location
 // Retrieve The locations in a group.
 func (r Location_Group_Regional) GetLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getLocations", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Group_Regional) GetLocationsIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getLocations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Group_Regional", "getLocations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1784,30 +727,6 @@ func (r Location_Reservation) GetAccount() (resp datatypes.Account, err error) {
 // no documentation yet
 func (r Location_Reservation) GetAccountReservations() (resp []datatypes.Location_Reservation, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Reservation", "getAccountReservations", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Reservation) GetAccountReservationsIter() (resp []datatypes.Location_Reservation, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Reservation", "getAccountReservations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Reservation{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Reservation", "getAccountReservations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1890,30 +809,6 @@ func (r Location_Reservation_Rack) GetAllotment() (resp datatypes.Network_Bandwi
 // Retrieve Members of the rack.
 func (r Location_Reservation_Rack) GetChildren() (resp []datatypes.Location_Reservation_Rack_Member, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Reservation_Rack", "getChildren", nil, &r.Options, &resp)
-	return
-}
-
-func (r Location_Reservation_Rack) GetChildrenIter() (resp []datatypes.Location_Reservation_Rack_Member, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Location_Reservation_Rack", "getChildren", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location_Reservation_Rack_Member{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Location_Reservation_Rack", "getChildren", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

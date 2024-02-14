@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -152,33 +151,6 @@ func (r Dns_Domain) CreateObjects(templateObjects []datatypes.Dns_Domain) (resp 
 	return
 }
 
-func (r Dns_Domain) CreateObjectsIter(templateObjects []datatypes.Dns_Domain) (resp []datatypes.Dns_Domain, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // setPtrRecordForIpAddress() sets a single reverse DNS record for a single IP address and returns the newly created or edited [[SoftLayer_Dns_Domain_ResourceRecord]] record. Currently this method only supports IPv4 addresses and performs no operation when given an IPv6 address.
 func (r Dns_Domain) CreatePtrRecord(ipAddress *string, ptrRecord *string, ttl *int) (resp datatypes.Dns_Domain_ResourceRecord, err error) {
 	params := []interface{}{
@@ -233,33 +205,6 @@ func (r Dns_Domain) GetByDomainName(name *string) (resp []datatypes.Dns_Domain, 
 	return
 }
 
-func (r Dns_Domain) GetByDomainNameIter(name *string) (resp []datatypes.Dns_Domain, err error) {
-	params := []interface{}{
-		name,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getByDomainName", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getByDomainName", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A flag indicating that the dns domain record is a managed resource.
 func (r Dns_Domain) GetManagedResourceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getManagedResourceFlag", nil, &r.Options, &resp)
@@ -275,30 +220,6 @@ func (r Dns_Domain) GetObject() (resp datatypes.Dns_Domain, err error) {
 // Retrieve The individual records contained within a domain record. These include but are not limited to A, AAAA, MX, CTYPE, SPF and TXT records.
 func (r Dns_Domain) GetResourceRecords() (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getResourceRecords", nil, &r.Options, &resp)
-	return
-}
-
-func (r Dns_Domain) GetResourceRecordsIter() (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getResourceRecords", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain_ResourceRecord{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain", "getResourceRecords", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -391,33 +312,6 @@ func (r Dns_Domain_ResourceRecord) CreateObjects(templateObjects []datatypes.Dns
 		templateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "createObjects", params, &r.Options, &resp)
-	return
-}
-
-func (r Dns_Domain_ResourceRecord) CreateObjectsIter(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain_ResourceRecord{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -538,33 +432,6 @@ func (r Dns_Domain_ResourceRecord_MxType) CreateObjects(templateObjects []dataty
 	return
 }
 
-func (r Dns_Domain_ResourceRecord_MxType) CreateObjectsIter(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain_ResourceRecord{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_MxType", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Delete a domain's MX record. ”'This cannot be undone.”' Be wary of running this method. If you remove a resource record in error you will need to re-create it by creating a new SoftLayer_Dns_Domain_ResourceRecord_MxType object. The serial number of the domain associated with this MX record is updated upon deletion.
 //
 // ”deleteObject” returns Boolean ”true” on successful deletion or ”false” if it was unable to remove a resource record.
@@ -675,33 +542,6 @@ func (r Dns_Domain_ResourceRecord_SrvType) CreateObjects(templateObjects []datat
 		templateObjects,
 	}
 	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "createObjects", params, &r.Options, &resp)
-	return
-}
-
-func (r Dns_Domain_ResourceRecord_SrvType) CreateObjectsIter(templateObjects []datatypes.Dns_Domain_ResourceRecord) (resp []datatypes.Dns_Domain_ResourceRecord, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain_ResourceRecord{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Domain_ResourceRecord_SrvType", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -834,33 +674,6 @@ func (r Dns_Secondary) CreateObjects(templateObjects []datatypes.Dns_Secondary) 
 	return
 }
 
-func (r Dns_Secondary) CreateObjectsIter(templateObjects []datatypes.Dns_Secondary) (resp []datatypes.Dns_Secondary, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Secondary{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Delete a secondary DNS Record. This will also remove any associated domain records and resource records on the SoftLayer nameservers that were created as a result of the zone transfers. This action cannot be undone.
 func (r Dns_Secondary) DeleteObject() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "deleteObject", nil, &r.Options, &resp)
@@ -891,33 +704,6 @@ func (r Dns_Secondary) GetByDomainName(name *string) (resp []datatypes.Dns_Secon
 	return
 }
 
-func (r Dns_Secondary) GetByDomainNameIter(name *string) (resp []datatypes.Dns_Secondary, err error) {
-	params := []interface{}{
-		name,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getByDomainName", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Secondary{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getByDomainName", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The domain record created by zone transfer from a secondary DNS record.
 func (r Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getDomain", nil, &r.Options, &resp)
@@ -927,30 +713,6 @@ func (r Dns_Secondary) GetDomain() (resp datatypes.Dns_Domain, err error) {
 // Retrieve The error messages created during secondary DNS record transfer.
 func (r Dns_Secondary) GetErrorMessages() (resp []datatypes.Dns_Message, err error) {
 	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getErrorMessages", nil, &r.Options, &resp)
-	return
-}
-
-func (r Dns_Secondary) GetErrorMessagesIter() (resp []datatypes.Dns_Message, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getErrorMessages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Message{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Dns_Secondary", "getErrorMessages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

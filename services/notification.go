@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -69,30 +68,6 @@ func (r Notification) GetAllObjects() (resp []datatypes.Notification, err error)
 	return
 }
 
-func (r Notification) GetAllObjectsIter() (resp []datatypes.Notification, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Notification) GetObject() (resp datatypes.Notification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification", "getObject", nil, &r.Options, &resp)
@@ -105,57 +80,9 @@ func (r Notification) GetPreferences() (resp []datatypes.Notification_Preference
 	return
 }
 
-func (r Notification) GetPreferencesIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
 func (r Notification) GetRequiredPreferences() (resp []datatypes.Notification_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification", "getRequiredPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification) GetRequiredPreferencesIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification", "getRequiredPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification", "getRequiredPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -216,30 +143,6 @@ func (r Notification_Mobile) GetAllObjects() (resp []datatypes.Notification, err
 	return
 }
 
-func (r Notification_Mobile) GetAllObjectsIter() (resp []datatypes.Notification, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Notification_Mobile) GetObject() (resp datatypes.Notification_Mobile, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getObject", nil, &r.Options, &resp)
@@ -252,57 +155,9 @@ func (r Notification_Mobile) GetPreferences() (resp []datatypes.Notification_Pre
 	return
 }
 
-func (r Notification_Mobile) GetPreferencesIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The required preferences related to the notification. While configurable, the subscriber does not have the option whether to use the preference.
 func (r Notification_Mobile) GetRequiredPreferences() (resp []datatypes.Notification_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getRequiredPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_Mobile) GetRequiredPreferencesIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getRequiredPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Mobile", "getRequiredPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -364,30 +219,6 @@ func (r Notification_Occurrence_Event) GetAllObjects() (resp []datatypes.Notific
 	return
 }
 
-func (r Notification_Occurrence_Event) GetAllObjectsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve the contents of the file attached to a SoftLayer event by it's given identifier.
 func (r Notification_Occurrence_Event) GetAttachedFile(attachmentId *int) (resp []byte, err error) {
 	params := []interface{}{
@@ -400,30 +231,6 @@ func (r Notification_Occurrence_Event) GetAttachedFile(attachmentId *int) (resp 
 // Retrieve A collection of attachments for this event which provide supplementary information to impacted users some examples are RFO (Reason For Outage) and root cause analysis documents.
 func (r Notification_Occurrence_Event) GetAttachments() (resp []datatypes.Notification_Occurrence_Event_Attachment, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAttachments", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_Occurrence_Event) GetAttachmentsIter() (resp []datatypes.Notification_Occurrence_Event_Attachment, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAttachments", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Event_Attachment{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getAttachments", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -445,30 +252,6 @@ func (r Notification_Occurrence_Event) GetImpactedAccounts() (resp []datatypes.N
 	return
 }
 
-func (r Notification_Occurrence_Event) GetImpactedAccountsIter() (resp []datatypes.Notification_Occurrence_Account, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedAccounts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Account{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedAccounts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This method will return the number of impacted devices associated with this event for the current user.
 func (r Notification_Occurrence_Event) GetImpactedDeviceCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedDeviceCount", nil, &r.Options, &resp)
@@ -481,87 +264,15 @@ func (r Notification_Occurrence_Event) GetImpactedDevices() (resp []datatypes.No
 	return
 }
 
-func (r Notification_Occurrence_Event) GetImpactedDevicesIter() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Resource{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A collection of resources impacted by this event. Each record will relate to some physical resource that the user has access to such as [[SoftLayer_Hardware]] or [[SoftLayer_Virtual_Guest]].
 func (r Notification_Occurrence_Event) GetImpactedResources() (resp []datatypes.Notification_Occurrence_Resource, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedResources", nil, &r.Options, &resp)
 	return
 }
 
-func (r Notification_Occurrence_Event) GetImpactedResourcesIter() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedResources", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Resource{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedResources", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A collection of users impacted by this event. Each impacted user record relates directly to a [[SoftLayer_User_Customer]].
 func (r Notification_Occurrence_Event) GetImpactedUsers() (resp []datatypes.Notification_Occurrence_User, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedUsers", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_Occurrence_Event) GetImpactedUsersIter() (resp []datatypes.Notification_Occurrence_User, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_User{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getImpactedUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -592,30 +303,6 @@ func (r Notification_Occurrence_Event) GetStatusCode() (resp datatypes.Notificat
 // Retrieve All updates for this event.
 func (r Notification_Occurrence_Event) GetUpdates() (resp []datatypes.Notification_Occurrence_Update, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getUpdates", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_Occurrence_Event) GetUpdatesIter() (resp []datatypes.Notification_Occurrence_Update, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getUpdates", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Update{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_Event", "getUpdates", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -671,30 +358,6 @@ func (r Notification_Occurrence_User) GetAllObjects() (resp []datatypes.Notifica
 	return
 }
 
-func (r Notification_Occurrence_User) GetAllObjectsIter() (resp []datatypes.Notification_Occurrence_User, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_User{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Notification_Occurrence_User) GetImpactedDeviceCount() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedDeviceCount", nil, &r.Options, &resp)
@@ -704,30 +367,6 @@ func (r Notification_Occurrence_User) GetImpactedDeviceCount() (resp int, err er
 // Retrieve A collection of resources impacted by the associated event.
 func (r Notification_Occurrence_User) GetImpactedResources() (resp []datatypes.Notification_Occurrence_Resource, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedResources", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_Occurrence_User) GetImpactedResourcesIter() (resp []datatypes.Notification_Occurrence_Resource, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedResources", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Resource{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_Occurrence_User", "getImpactedResources", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -843,30 +482,6 @@ func (r Notification_User_Subscriber) GetDeliveryMethods() (resp []datatypes.Not
 	return
 }
 
-func (r Notification_User_Subscriber) GetDeliveryMethodsIter() (resp []datatypes.Notification_Delivery_Method, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getDeliveryMethods", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Delivery_Method{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getDeliveryMethods", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber) GetNotification() (resp datatypes.Notification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getNotification", nil, &r.Options, &resp)
@@ -885,57 +500,9 @@ func (r Notification_User_Subscriber) GetPreferences() (resp []datatypes.Notific
 	return
 }
 
-func (r Notification_User_Subscriber) GetPreferencesIter() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferencesDetails", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_User_Subscriber) GetPreferencesDetailsIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferencesDetails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber", "getPreferencesDetails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1045,30 +612,6 @@ func (r Notification_User_Subscriber_Billing) GetDeliveryMethods() (resp []datat
 	return
 }
 
-func (r Notification_User_Subscriber_Billing) GetDeliveryMethodsIter() (resp []datatypes.Notification_Delivery_Method, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getDeliveryMethods", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Delivery_Method{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getDeliveryMethods", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber_Billing) GetNotification() (resp datatypes.Notification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getNotification", nil, &r.Options, &resp)
@@ -1087,57 +630,9 @@ func (r Notification_User_Subscriber_Billing) GetPreferences() (resp []datatypes
 	return
 }
 
-func (r Notification_User_Subscriber_Billing) GetPreferencesIter() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber_Billing) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferencesDetails", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_User_Subscriber_Billing) GetPreferencesDetailsIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferencesDetails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Billing", "getPreferencesDetails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1253,30 +748,6 @@ func (r Notification_User_Subscriber_Mobile) GetDeliveryMethods() (resp []dataty
 	return
 }
 
-func (r Notification_User_Subscriber_Mobile) GetDeliveryMethodsIter() (resp []datatypes.Notification_Delivery_Method, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getDeliveryMethods", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Delivery_Method{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getDeliveryMethods", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscribed to.
 func (r Notification_User_Subscriber_Mobile) GetNotification() (resp datatypes.Notification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getNotification", nil, &r.Options, &resp)
@@ -1295,57 +766,9 @@ func (r Notification_User_Subscriber_Mobile) GetPreferences() (resp []datatypes.
 	return
 }
 
-func (r Notification_User_Subscriber_Mobile) GetPreferencesIter() (resp []datatypes.Notification_User_Subscriber_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Preference details such as description, minimum and maximum limits, default value and unit of measure.
 func (r Notification_User_Subscriber_Mobile) GetPreferencesDetails() (resp []datatypes.Notification_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferencesDetails", nil, &r.Options, &resp)
-	return
-}
-
-func (r Notification_User_Subscriber_Mobile) GetPreferencesDetailsIter() (resp []datatypes.Notification_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferencesDetails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Notification_User_Subscriber_Mobile", "getPreferencesDetails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

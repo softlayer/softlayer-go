@@ -1368,6 +1368,14 @@ type Billing_Item_Gateway_Appliance_Cluster struct {
 	Billing_Item
 }
 
+// The SoftLayer_Billing_Item_Gateway_License data type contains general information relating to a single SoftLayer billing item for a bare_metal_gateway_license
+type Billing_Item_Gateway_License struct {
+	Billing_Item
+
+	// no documentation yet
+	Resource *Network_Gateway `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+}
+
 // The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware.
 type Billing_Item_Hardware struct {
 	Billing_Item

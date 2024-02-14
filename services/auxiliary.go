@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -73,33 +72,6 @@ func (r Auxiliary_Network_Status) GetNetworkStatus(target *string) (resp []datat
 	return
 }
 
-func (r Auxiliary_Network_Status) GetNetworkStatusIter(target *string) (resp []datatypes.Container_Auxiliary_Network_Status_Reading, err error) {
-	params := []interface{}{
-		target,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Auxiliary_Network_Status", "getNetworkStatus", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Auxiliary_Network_Status_Reading{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Auxiliary_Network_Status", "getNetworkStatus", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // A SoftLayer_Auxiliary_Notification_Emergency data object represents a notification event being broadcast to the SoftLayer customer base. It is used to provide information regarding outages or current known issues.
 type Auxiliary_Notification_Emergency struct {
 	Session session.SLSession
@@ -146,57 +118,9 @@ func (r Auxiliary_Notification_Emergency) GetAllObjects() (resp []datatypes.Auxi
 	return
 }
 
-func (r Auxiliary_Notification_Emergency) GetAllObjectsIter() (resp []datatypes.Auxiliary_Notification_Emergency, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Auxiliary_Notification_Emergency", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Auxiliary_Notification_Emergency{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Auxiliary_Notification_Emergency", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve an array of SoftLayer_Auxiliary_Notification_Emergency data types, which contain all current notification events.
 func (r Auxiliary_Notification_Emergency) GetCurrentNotifications() (resp []datatypes.Auxiliary_Notification_Emergency, err error) {
 	err = r.Session.DoRequest("SoftLayer_Auxiliary_Notification_Emergency", "getCurrentNotifications", nil, &r.Options, &resp)
-	return
-}
-
-func (r Auxiliary_Notification_Emergency) GetCurrentNotificationsIter() (resp []datatypes.Auxiliary_Notification_Emergency, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Auxiliary_Notification_Emergency", "getCurrentNotifications", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Auxiliary_Notification_Emergency{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Auxiliary_Notification_Emergency", "getCurrentNotifications", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -261,30 +185,6 @@ func (r Auxiliary_Shipping_Courier_Type) Offset(offset int) Auxiliary_Shipping_C
 // Retrieve
 func (r Auxiliary_Shipping_Courier_Type) GetCourier() (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
 	err = r.Session.DoRequest("SoftLayer_Auxiliary_Shipping_Courier_Type", "getCourier", nil, &r.Options, &resp)
-	return
-}
-
-func (r Auxiliary_Shipping_Courier_Type) GetCourierIter() (resp []datatypes.Auxiliary_Shipping_Courier, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Auxiliary_Shipping_Courier_Type", "getCourier", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Auxiliary_Shipping_Courier{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Auxiliary_Shipping_Courier_Type", "getCourier", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

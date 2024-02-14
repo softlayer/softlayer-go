@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -75,36 +74,6 @@ func (r Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, 
 	return
 }
 
-func (r Metric_Tracking_Object) GetBandwidthDataIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, typ *string, rollupSeconds *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		typ,
-		rollupSeconds,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthData", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthData", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve a PNG image of a bandwidth graph representing the bandwidth usage over time recorded by SofTLayer's bandwidth pollers.
 func (r Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -143,35 +112,6 @@ func (r Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time
 	return
 }
 
-func (r Metric_Tracking_Object) GetDetailsForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-		graphType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getDetailsForDateRange", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Metric_Tracking_Object_Details{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getDetailsForDateRange", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve a PNG image of a metric in graph form.
 func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -186,30 +126,6 @@ func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateT
 // Returns a collection of metric data types that can be retrieved for a metric tracking object.
 func (r Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container_Metric_Data_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getMetricDataTypes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Metric_Tracking_Object) GetMetricDataTypesIter() (resp []datatypes.Container_Metric_Data_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getMetricDataTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Metric_Data_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getMetricDataTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -237,36 +153,6 @@ func (r Metric_Tracking_Object) GetSummaryData(startDateTime *datatypes.Time, en
 		summaryPeriod,
 	}
 	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummaryData", params, &r.Options, &resp)
-	return
-}
-
-func (r Metric_Tracking_Object) GetSummaryDataIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, validTypes []datatypes.Container_Metric_Data_Type, summaryPeriod *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		validTypes,
-		summaryPeriod,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummaryData", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummaryData", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

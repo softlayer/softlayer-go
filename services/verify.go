@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -84,30 +83,6 @@ func (r Verify_Api_HttpObj) GetAllObjects() (resp []datatypes.Verify_Api_HttpObj
 	return
 }
 
-func (r Verify_Api_HttpObj) GetAllObjectsIter() (resp []datatypes.Verify_Api_HttpObj, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpObj", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Verify_Api_HttpObj{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpObj", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Verify_Api_HttpObj) GetObject() (resp datatypes.Verify_Api_HttpObj, err error) {
 	err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpObj", "getObject", nil, &r.Options, &resp)
@@ -172,30 +147,6 @@ func (r Verify_Api_HttpsObj) DeleteObject() (resp bool, err error) {
 // no documentation yet
 func (r Verify_Api_HttpsObj) GetAllObjects() (resp []datatypes.Verify_Api_HttpsObj, err error) {
 	err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpsObj", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r Verify_Api_HttpsObj) GetAllObjectsIter() (resp []datatypes.Verify_Api_HttpsObj, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpsObj", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Verify_Api_HttpsObj{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Verify_Api_HttpsObj", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

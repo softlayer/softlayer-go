@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -236,34 +235,6 @@ func (r User_Customer) ChangePreference(preferenceTypeKeyName *string, value *st
 	return
 }
 
-func (r User_Customer) ChangePreferenceIter(preferenceTypeKeyName *string, value *string) (resp []datatypes.User_Preference, err error) {
-	params := []interface{}{
-		preferenceTypeKeyName,
-		value,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "changePreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "changePreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Create a new subscriber for a given resource.
 func (r User_Customer) CreateNotificationSubscriber(keyName *string, resourceTableId *int) (resp bool, err error) {
 	params := []interface{}{
@@ -356,35 +327,6 @@ func (r User_Customer) FindUserPreference(profileName *string, containerKeyname 
 	return
 }
 
-func (r User_Customer) FindUserPreferenceIter(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-		preferenceKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "findUserPreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "findUserPreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The customer account that a user belongs to.
 func (r User_Customer) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAccount", nil, &r.Options, &resp)
@@ -397,87 +339,15 @@ func (r User_Customer) GetActions() (resp []datatypes.User_Permission_Action, er
 	return
 }
 
-func (r User_Customer) GetActionsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getActiveExternalAuthenticationVendors method will return a list of available external vendors that a SoftLayer user can authenticate against.  The list will only contain vendors for which the user has at least one active external binding.
 func (r User_Customer) GetActiveExternalAuthenticationVendors() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer) GetActiveExternalAuthenticationVendorsIter() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_User_Customer_External_Binding_Vendor{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getActiveExternalAuthenticationVendors", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
 func (r User_Customer) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAdditionalEmails", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetAdditionalEmailsIter() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAdditionalEmails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_AdditionalEmail{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getAdditionalEmails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -493,57 +363,9 @@ func (r User_Customer) GetAllowedDedicatedHostIds() (resp []int, err error) {
 	return
 }
 
-func (r User_Customer) GetAllowedDedicatedHostIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedDedicatedHostIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedDedicatedHostIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer) GetAllowedHardwareIds() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetAllowedHardwareIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedHardwareIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -553,57 +375,9 @@ func (r User_Customer) GetAllowedVirtualGuestIds() (resp []int, err error) {
 	return
 }
 
-func (r User_Customer) GetAllowedVirtualGuestIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedVirtualGuestIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getAllowedVirtualGuestIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's API Authentication keys. There is a max limit of one API key per user.
 func (r User_Customer) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetApiAuthenticationKeysIter() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_ApiAuthentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getApiAuthenticationKeys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -622,87 +396,15 @@ func (r User_Customer) GetChildUsers() (resp []datatypes.User_Customer, err erro
 	return
 }
 
-func (r User_Customer) GetChildUsersIter() (resp []datatypes.User_Customer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getChildUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getChildUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated closed tickets.
 func (r User_Customer) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getClosedTickets", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer) GetClosedTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getClosedTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getClosedTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The dedicated hosts to which the user has been granted access.
 func (r User_Customer) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getDedicatedHosts", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetDedicatedHostsIter() (resp []datatypes.Virtual_DedicatedHost, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getDedicatedHosts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_DedicatedHost{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getDedicatedHosts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -721,57 +423,9 @@ func (r User_Customer) GetExternalBindings() (resp []datatypes.User_External_Bin
 	return
 }
 
-func (r User_Customer) GetExternalBindingsIter() (resp []datatypes.User_External_Binding, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getExternalBindings", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getExternalBindings", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
 func (r User_Customer) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardware", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetHardwareIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardware", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardware", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -784,30 +438,6 @@ func (r User_Customer) GetHardwareCount() (resp int, err error) {
 // Retrieve Hardware notifications associated with this user. A hardware notification links a user to a piece of hardware, and that user will be notified if any monitors on that hardware fail, if the monitors have a status of 'Notify User'.
 func (r User_Customer) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardwareNotifications", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetHardwareNotificationsIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardwareNotifications", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getHardwareNotifications", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -853,30 +483,6 @@ func (r User_Customer) GetLayoutProfiles() (resp []datatypes.Layout_Profile, err
 	return
 }
 
-func (r User_Customer) GetLayoutProfilesIter() (resp []datatypes.Layout_Profile, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLayoutProfiles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getLayoutProfiles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's locale. Locale holds user's language and region information.
 func (r User_Customer) GetLocale() (resp datatypes.Locale, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLocale", nil, &r.Options, &resp)
@@ -886,30 +492,6 @@ func (r User_Customer) GetLocale() (resp datatypes.Locale, err error) {
 // Retrieve A user's attempts to log into the SoftLayer customer portal.
 func (r User_Customer) GetLoginAttempts() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLoginAttempts", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetLoginAttemptsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getLoginAttempts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getLoginAttempts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -931,60 +513,9 @@ func (r User_Customer) GetMappedAccounts(providerType *string) (resp []datatypes
 	return
 }
 
-func (r User_Customer) GetMappedAccountsIter(providerType *string) (resp []datatypes.Account, err error) {
-	params := []interface{}{
-		providerType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getMappedAccounts", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getMappedAccounts", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscription records for the user.
 func (r User_Customer) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getNotificationSubscribers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetNotificationSubscribersIter() (resp []datatypes.Notification_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getNotificationSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getNotificationSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1006,57 +537,9 @@ func (r User_Customer) GetOpenTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
-func (r User_Customer) GetOpenTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getOpenTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getOpenTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's vpn accessible subnets.
 func (r User_Customer) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getOverrides", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetOverridesIter() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getOverrides", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Service_Vpn_Overrides{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getOverrides", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1078,30 +561,6 @@ func (r User_Customer) GetPasswordRequirements(isVpn *bool) (resp datatypes.Cont
 // Retrieve A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 func (r User_Customer) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPermissions", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetPermissionsIter() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPermissions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_CustomerPermission_Permission{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getPermissions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1132,57 +591,9 @@ func (r User_Customer) GetPreferenceTypes() (resp []datatypes.User_Preference_Ty
 	return
 }
 
-func (r User_Customer) GetPreferenceTypesIter() (resp []datatypes.User_Preference_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferenceTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferenceTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetPreferencesIter() (resp []datatypes.User_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1203,57 +614,9 @@ func (r User_Customer) GetRoles() (resp []datatypes.User_Permission_Role, err er
 	return
 }
 
-func (r User_Customer) GetRolesIter() (resp []datatypes.User_Permission_Role, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getRoles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Role{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getRoles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
 func (r User_Customer) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSecurityAnswers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetSecurityAnswersIter() (resp []datatypes.User_Customer_Security_Answer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSecurityAnswers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Security_Answer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getSecurityAnswers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1263,57 +626,9 @@ func (r User_Customer) GetSubscribers() (resp []datatypes.Notification_User_Subs
 	return
 }
 
-func (r User_Customer) GetSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's successful attempts to log into the SoftLayer customer portal.
 func (r User_Customer) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetSuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getSuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1341,30 +656,6 @@ func (r User_Customer) GetSupportedLocales() (resp []datatypes.Locale, err error
 	return
 }
 
-func (r User_Customer) GetSupportedLocalesIter() (resp []datatypes.Locale, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSupportedLocales", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Locale{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getSupportedLocales", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Whether or not a user must take a brief survey the next time they log into the SoftLayer customer portal.
 func (r User_Customer) GetSurveyRequiredFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSurveyRequiredFlag", nil, &r.Options, &resp)
@@ -1377,57 +668,9 @@ func (r User_Customer) GetSurveys() (resp []datatypes.Survey, err error) {
 	return
 }
 
-func (r User_Customer) GetSurveysIter() (resp []datatypes.Survey, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getSurveys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Survey{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getSurveys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated tickets.
 func (r User_Customer) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getTickets", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1440,30 +683,6 @@ func (r User_Customer) GetTimezone() (resp datatypes.Locale_Timezone, err error)
 // Retrieve A user's unsuccessful attempts to log into the SoftLayer customer portal.
 func (r User_Customer) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetUnsuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getUnsuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1484,30 +703,6 @@ func (r User_Customer) GetUserLinks() (resp []datatypes.User_Customer_Link, err 
 	return
 }
 
-func (r User_Customer) GetUserLinksIter() (resp []datatypes.User_Customer_Link, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserLinks", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Link{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserLinks", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
@@ -1515,34 +710,6 @@ func (r User_Customer) GetUserPreferences(profileName *string, containerKeyname 
 		containerKeyname,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserPreferences", params, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetUserPreferencesIter(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserPreferences", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getUserPreferences", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1561,30 +728,6 @@ func (r User_Customer) GetVirtualGuestCount() (resp int, err error) {
 // Retrieve A portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
 func (r User_Customer) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer", "getVirtualGuests", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer", "getVirtualGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer", "getVirtualGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2124,30 +1267,6 @@ func (r User_Customer_CustomerPermission_Permission) GetAllObjects() (resp []dat
 	return
 }
 
-func (r User_Customer_CustomerPermission_Permission) GetAllObjectsIter() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_CustomerPermission_Permission", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_CustomerPermission_Permission{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_CustomerPermission_Permission", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // getObject retrieves the SoftLayer_User_Customer_CustomerPermission_Permission object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer_CustomerPermission_Permission service.
 func (r User_Customer_CustomerPermission_Permission) GetObject() (resp datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_CustomerPermission_Permission", "getObject", nil, &r.Options, &resp)
@@ -2226,30 +1345,6 @@ func (r User_Customer_External_Binding) Enable() (resp bool, err error) {
 // Retrieve Attributes of an external authentication binding.
 func (r User_Customer_External_Binding) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_External_Binding) GetAttributesIter() (resp []datatypes.User_External_Binding_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2399,30 +1494,6 @@ func (r User_Customer_External_Binding_Totp) GetAttributes() (resp []datatypes.U
 	return
 }
 
-func (r User_Customer_External_Binding_Totp) GetAttributesIter() (resp []datatypes.User_External_Binding_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Totp", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Totp", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Information regarding the billing item for external authentication.
 func (r User_Customer_External_Binding_Totp) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Totp", "getBillingItem", nil, &r.Options, &resp)
@@ -2511,30 +1582,6 @@ func (r User_Customer_External_Binding_Vendor) Offset(offset int) User_Customer_
 // getAllObjects() will return a list of the available external binding vendors that SoftLayer supports.  Use this list to select the appropriate vendor when creating a new external binding.
 func (r User_Customer_External_Binding_Vendor) GetAllObjects() (resp []datatypes.User_External_Binding_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Vendor", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_External_Binding_Vendor) GetAllObjectsIter() (resp []datatypes.User_External_Binding_Vendor, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Vendor", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Vendor{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Vendor", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2635,30 +1682,6 @@ func (r User_Customer_External_Binding_Verisign) GetActivationCodeForMobileClien
 // Retrieve Attributes of an external authentication binding.
 func (r User_Customer_External_Binding_Verisign) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Verisign", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_External_Binding_Verisign) GetAttributesIter() (resp []datatypes.User_External_Binding_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Verisign", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_External_Binding_Verisign", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2860,33 +1883,6 @@ func (r User_Customer_Notification_Hardware) CreateObjects(templateObjects []dat
 	return
 }
 
-func (r User_Customer_Notification_Hardware) CreateObjectsIter(templateObjects []datatypes.User_Customer_Notification_Hardware) (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Hardware", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Hardware", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Like any other API object, the customer notification objects can be deleted by passing an instance of them into this function.  The ID on the object must be set.
 func (r User_Customer_Notification_Hardware) DeleteObjects(templateObjects []datatypes.User_Customer_Notification_Hardware) (resp bool, err error) {
 	params := []interface{}{
@@ -2904,33 +1900,6 @@ func (r User_Customer_Notification_Hardware) FindByHardwareId(hardwareId *int) (
 		hardwareId,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Hardware", "findByHardwareId", params, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_Notification_Hardware) FindByHardwareIdIter(hardwareId *int) (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	params := []interface{}{
-		hardwareId,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Hardware", "findByHardwareId", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Hardware", "findByHardwareId", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3010,33 +1979,6 @@ func (r User_Customer_Notification_Virtual_Guest) CreateObjects(templateObjects 
 	return
 }
 
-func (r User_Customer_Notification_Virtual_Guest) CreateObjectsIter(templateObjects []datatypes.User_Customer_Notification_Virtual_Guest) (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Virtual_Guest", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Virtual_Guest", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Like any other API object, the customer notification objects can be deleted by passing an instance of them into this function.  The ID on the object must be set.
 func (r User_Customer_Notification_Virtual_Guest) DeleteObjects(templateObjects []datatypes.User_Customer_Notification_Virtual_Guest) (resp bool, err error) {
 	params := []interface{}{
@@ -3054,33 +1996,6 @@ func (r User_Customer_Notification_Virtual_Guest) FindByGuestId(id *int) (resp [
 		id,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Virtual_Guest", "findByGuestId", params, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_Notification_Virtual_Guest) FindByGuestIdIter(id *int) (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
-	params := []interface{}{
-		id,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Virtual_Guest", "findByGuestId", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_Notification_Virtual_Guest", "findByGuestId", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3327,34 +2242,6 @@ func (r User_Customer_OpenIdConnect) ChangePreference(preferenceTypeKeyName *str
 	return
 }
 
-func (r User_Customer_OpenIdConnect) ChangePreferenceIter(preferenceTypeKeyName *string, value *string) (resp []datatypes.User_Preference, err error) {
-	params := []interface{}{
-		preferenceTypeKeyName,
-		value,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "changePreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "changePreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect) CompleteInvitationAfterLogin(providerType *string, accessToken *string, emailRegistrationCode *string) (err error) {
 	var resp datatypes.Void
@@ -3483,35 +2370,6 @@ func (r User_Customer_OpenIdConnect) FindUserPreference(profileName *string, con
 	return
 }
 
-func (r User_Customer_OpenIdConnect) FindUserPreferenceIter(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-		preferenceKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "findUserPreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "findUserPreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The customer account that a user belongs to.
 func (r User_Customer_OpenIdConnect) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAccount", nil, &r.Options, &resp)
@@ -3524,87 +2382,15 @@ func (r User_Customer_OpenIdConnect) GetActions() (resp []datatypes.User_Permiss
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetActionsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getActiveExternalAuthenticationVendors method will return a list of available external vendors that a SoftLayer user can authenticate against.  The list will only contain vendors for which the user has at least one active external binding.
 func (r User_Customer_OpenIdConnect) GetActiveExternalAuthenticationVendors() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetActiveExternalAuthenticationVendorsIter() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_User_Customer_External_Binding_Vendor{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getActiveExternalAuthenticationVendors", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
 func (r User_Customer_OpenIdConnect) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAdditionalEmails", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetAdditionalEmailsIter() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAdditionalEmails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_AdditionalEmail{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAdditionalEmails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3620,57 +2406,9 @@ func (r User_Customer_OpenIdConnect) GetAllowedDedicatedHostIds() (resp []int, e
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetAllowedDedicatedHostIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedDedicatedHostIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedDedicatedHostIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect) GetAllowedHardwareIds() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetAllowedHardwareIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedHardwareIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3680,57 +2418,9 @@ func (r User_Customer_OpenIdConnect) GetAllowedVirtualGuestIds() (resp []int, er
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetAllowedVirtualGuestIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedVirtualGuestIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getAllowedVirtualGuestIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's API Authentication keys. There is a max limit of one API key per user.
 func (r User_Customer_OpenIdConnect) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetApiAuthenticationKeysIter() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_ApiAuthentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getApiAuthenticationKeys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3749,87 +2439,15 @@ func (r User_Customer_OpenIdConnect) GetChildUsers() (resp []datatypes.User_Cust
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetChildUsersIter() (resp []datatypes.User_Customer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getChildUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getChildUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated closed tickets.
 func (r User_Customer_OpenIdConnect) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getClosedTickets", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetClosedTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getClosedTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getClosedTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The dedicated hosts to which the user has been granted access.
 func (r User_Customer_OpenIdConnect) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getDedicatedHosts", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetDedicatedHostsIter() (resp []datatypes.Virtual_DedicatedHost, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getDedicatedHosts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_DedicatedHost{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getDedicatedHosts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3848,57 +2466,9 @@ func (r User_Customer_OpenIdConnect) GetExternalBindings() (resp []datatypes.Use
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetExternalBindingsIter() (resp []datatypes.User_External_Binding, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getExternalBindings", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getExternalBindings", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardware", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetHardwareIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardware", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardware", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3911,30 +2481,6 @@ func (r User_Customer_OpenIdConnect) GetHardwareCount() (resp int, err error) {
 // Retrieve Hardware notifications associated with this user. A hardware notification links a user to a piece of hardware, and that user will be notified if any monitors on that hardware fail, if the monitors have a status of 'Notify User'.
 func (r User_Customer_OpenIdConnect) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardwareNotifications", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetHardwareNotificationsIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardwareNotifications", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getHardwareNotifications", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3980,30 +2526,6 @@ func (r User_Customer_OpenIdConnect) GetLayoutProfiles() (resp []datatypes.Layou
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetLayoutProfilesIter() (resp []datatypes.Layout_Profile, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLayoutProfiles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLayoutProfiles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's locale. Locale holds user's language and region information.
 func (r User_Customer_OpenIdConnect) GetLocale() (resp datatypes.Locale, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLocale", nil, &r.Options, &resp)
@@ -4026,30 +2548,6 @@ func (r User_Customer_OpenIdConnect) GetLoginAttempts() (resp []datatypes.User_C
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetLoginAttemptsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLoginAttempts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getLoginAttempts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Attempt to authenticate a user to the SoftLayer customer portal using the provided authentication container. Depending on the specific type of authentication container that is used, this API will leverage the appropriate authentication protocol. If authentication is successful then the API returns a list of linked accounts for the user, a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
 func (r User_Customer_OpenIdConnect) GetLoginToken(request *datatypes.Container_Authentication_Request_Contract) (resp datatypes.Container_Authentication_Response_Common, err error) {
 	params := []interface{}{
@@ -4068,60 +2566,9 @@ func (r User_Customer_OpenIdConnect) GetMappedAccounts(providerType *string) (re
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetMappedAccountsIter(providerType *string) (resp []datatypes.Account, err error) {
-	params := []interface{}{
-		providerType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getMappedAccounts", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getMappedAccounts", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscription records for the user.
 func (r User_Customer_OpenIdConnect) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getNotificationSubscribers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetNotificationSubscribersIter() (resp []datatypes.Notification_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getNotificationSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getNotificationSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4153,57 +2600,9 @@ func (r User_Customer_OpenIdConnect) GetOpenTickets() (resp []datatypes.Ticket, 
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetOpenTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOpenTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOpenTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's vpn accessible subnets.
 func (r User_Customer_OpenIdConnect) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOverrides", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetOverridesIter() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOverrides", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Service_Vpn_Overrides{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getOverrides", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4225,30 +2624,6 @@ func (r User_Customer_OpenIdConnect) GetPasswordRequirements(isVpn *bool) (resp 
 // Retrieve A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 func (r User_Customer_OpenIdConnect) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPermissions", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetPermissionsIter() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPermissions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_CustomerPermission_Permission{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPermissions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4293,57 +2668,9 @@ func (r User_Customer_OpenIdConnect) GetPreferenceTypes() (resp []datatypes.User
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetPreferenceTypesIter() (resp []datatypes.User_Preference_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferenceTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferenceTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer_OpenIdConnect) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetPreferencesIter() (resp []datatypes.User_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4364,57 +2691,9 @@ func (r User_Customer_OpenIdConnect) GetRoles() (resp []datatypes.User_Permissio
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetRolesIter() (resp []datatypes.User_Permission_Role, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getRoles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Role{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getRoles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
 func (r User_Customer_OpenIdConnect) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSecurityAnswers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetSecurityAnswersIter() (resp []datatypes.User_Customer_Security_Answer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSecurityAnswers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Security_Answer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSecurityAnswers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4424,57 +2703,9 @@ func (r User_Customer_OpenIdConnect) GetSubscribers() (resp []datatypes.Notifica
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's successful attempts to log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetSuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4502,30 +2733,6 @@ func (r User_Customer_OpenIdConnect) GetSupportedLocales() (resp []datatypes.Loc
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetSupportedLocalesIter() (resp []datatypes.Locale, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSupportedLocales", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Locale{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSupportedLocales", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Whether or not a user must take a brief survey the next time they log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetSurveyRequiredFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSurveyRequiredFlag", nil, &r.Options, &resp)
@@ -4538,57 +2745,9 @@ func (r User_Customer_OpenIdConnect) GetSurveys() (resp []datatypes.Survey, err 
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetSurveysIter() (resp []datatypes.Survey, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSurveys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Survey{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getSurveys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated tickets.
 func (r User_Customer_OpenIdConnect) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getTickets", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4601,30 +2760,6 @@ func (r User_Customer_OpenIdConnect) GetTimezone() (resp datatypes.Locale_Timezo
 // Retrieve A user's unsuccessful attempts to log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetUnsuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUnsuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4657,30 +2792,6 @@ func (r User_Customer_OpenIdConnect) GetUserLinks() (resp []datatypes.User_Custo
 	return
 }
 
-func (r User_Customer_OpenIdConnect) GetUserLinksIter() (resp []datatypes.User_Customer_Link, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserLinks", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Link{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserLinks", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
@@ -4688,34 +2799,6 @@ func (r User_Customer_OpenIdConnect) GetUserPreferences(profileName *string, con
 		containerKeyname,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserPreferences", params, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetUserPreferencesIter(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserPreferences", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getUserPreferences", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4734,30 +2817,6 @@ func (r User_Customer_OpenIdConnect) GetVirtualGuestCount() (resp int, err error
 // Retrieve A portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getVirtualGuests", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getVirtualGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect", "getVirtualGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5414,34 +3473,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) ChangePreference(preferenceT
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) ChangePreferenceIter(preferenceTypeKeyName *string, value *string) (resp []datatypes.User_Preference, err error) {
-	params := []interface{}{
-		preferenceTypeKeyName,
-		value,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "changePreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "changePreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect_TrustedProfile) CompleteInvitationAfterLogin(providerType *string, accessToken *string, emailRegistrationCode *string) (err error) {
 	var resp datatypes.Void
@@ -5548,35 +3579,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) FindUserPreference(profileNa
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) FindUserPreferenceIter(profileName *string, containerKeyname *string, preferenceKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-		preferenceKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "findUserPreference", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "findUserPreference", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The customer account that a user belongs to.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAccount", nil, &r.Options, &resp)
@@ -5589,87 +3591,15 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetActions() (resp []datatyp
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetActionsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // The getActiveExternalAuthenticationVendors method will return a list of available external vendors that a SoftLayer user can authenticate against.  The list will only contain vendors for which the user has at least one active external binding.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetActiveExternalAuthenticationVendors() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetActiveExternalAuthenticationVendorsIter() (resp []datatypes.Container_User_Customer_External_Binding_Vendor, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getActiveExternalAuthenticationVendors", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_User_Customer_External_Binding_Vendor{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getActiveExternalAuthenticationVendors", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's additional email addresses. These email addresses are contacted when updates are made to support tickets.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetAdditionalEmails() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAdditionalEmails", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetAdditionalEmailsIter() (resp []datatypes.User_Customer_AdditionalEmail, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAdditionalEmails", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_AdditionalEmail{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAdditionalEmails", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5685,57 +3615,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedDedicatedHostIds()
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedDedicatedHostIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedDedicatedHostIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedDedicatedHostIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedHardwareIds() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedHardwareIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedHardwareIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedHardwareIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5745,57 +3627,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedVirtualGuestIds() 
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetAllowedVirtualGuestIdsIter() (resp []int, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedVirtualGuestIds", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []int{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getAllowedVirtualGuestIds", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's API Authentication keys. There is a max limit of one API key per user.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetApiAuthenticationKeys() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetApiAuthenticationKeysIter() (resp []datatypes.User_Customer_ApiAuthentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getApiAuthenticationKeys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_ApiAuthentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getApiAuthenticationKeys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5814,87 +3648,15 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetChildUsers() (resp []data
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetChildUsersIter() (resp []datatypes.User_Customer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getChildUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getChildUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated closed tickets.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetClosedTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getClosedTickets", nil, &r.Options, &resp)
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetClosedTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getClosedTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getClosedTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The dedicated hosts to which the user has been granted access.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetDedicatedHosts() (resp []datatypes.Virtual_DedicatedHost, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getDedicatedHosts", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetDedicatedHostsIter() (resp []datatypes.Virtual_DedicatedHost, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getDedicatedHosts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_DedicatedHost{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getDedicatedHosts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5913,57 +3675,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetExternalBindings() (resp 
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetExternalBindingsIter() (resp []datatypes.User_External_Binding, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getExternalBindings", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getExternalBindings", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's accessible hardware. These permissions control which hardware a user has access to in the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetHardware() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardware", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetHardwareIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardware", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardware", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5976,30 +3690,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetHardwareCount() (resp int
 // Retrieve Hardware notifications associated with this user. A hardware notification links a user to a piece of hardware, and that user will be notified if any monitors on that hardware fail, if the monitors have a status of 'Notify User'.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetHardwareNotifications() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardwareNotifications", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetHardwareNotificationsIter() (resp []datatypes.User_Customer_Notification_Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardwareNotifications", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getHardwareNotifications", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6045,30 +3735,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetLayoutProfiles() (resp []
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetLayoutProfilesIter() (resp []datatypes.Layout_Profile, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLayoutProfiles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLayoutProfiles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's locale. Locale holds user's language and region information.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetLocale() (resp datatypes.Locale, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLocale", nil, &r.Options, &resp)
@@ -6091,30 +3757,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetLoginAttempts() (resp []d
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetLoginAttemptsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLoginAttempts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getLoginAttempts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Attempt to authenticate a user to the SoftLayer customer portal using the provided authentication container. Depending on the specific type of authentication container that is used, this API will leverage the appropriate authentication protocol. If authentication is successful then the API returns a list of linked accounts for the user, a token containing the ID of the authenticated user and a hash key used by the SoftLayer customer portal to maintain authentication.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetLoginToken(request *datatypes.Container_Authentication_Request_Contract) (resp datatypes.Container_Authentication_Response_Common, err error) {
 	params := []interface{}{
@@ -6133,60 +3775,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetMappedAccounts(providerTy
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetMappedAccountsIter(providerType *string) (resp []datatypes.Account, err error) {
-	params := []interface{}{
-		providerType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getMappedAccounts", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getMappedAccounts", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Notification subscription records for the user.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetNotificationSubscribers() (resp []datatypes.Notification_Subscriber, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getNotificationSubscribers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetNotificationSubscribersIter() (resp []datatypes.Notification_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getNotificationSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getNotificationSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6218,57 +3809,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetOpenTickets() (resp []dat
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetOpenTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getOpenTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getOpenTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's vpn accessible subnets.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetOverrides() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getOverrides", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetOverridesIter() (resp []datatypes.Network_Service_Vpn_Overrides, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getOverrides", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Service_Vpn_Overrides{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getOverrides", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6290,30 +3833,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetPasswordRequirements(isVp
 // Retrieve A portal user's permissions. These permissions control that user's access to functions within the SoftLayer customer portal and API.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetPermissions() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPermissions", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetPermissionsIter() (resp []datatypes.User_Customer_CustomerPermission_Permission, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPermissions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_CustomerPermission_Permission{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPermissions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6358,57 +3877,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferenceTypes() (resp [
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferenceTypesIter() (resp []datatypes.User_Preference_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferenceTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferenceTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Data type contains a single user preference to a specific preference type.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferences() (resp []datatypes.User_Preference, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetPreferencesIter() (resp []datatypes.User_Preference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Preference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getPreferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6429,57 +3900,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetRoles() (resp []datatypes
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetRolesIter() (resp []datatypes.User_Permission_Role, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getRoles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Role{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getRoles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A portal user's security question answers. Some portal users may not have security answers or may not be configured to require answering a security question on login.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetSecurityAnswers() (resp []datatypes.User_Customer_Security_Answer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSecurityAnswers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSecurityAnswersIter() (resp []datatypes.User_Customer_Security_Answer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSecurityAnswers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Security_Answer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSecurityAnswers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6489,57 +3912,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetSubscribers() (resp []dat
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSubscribersIter() (resp []datatypes.Notification_User_Subscriber, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSubscribers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_User_Subscriber{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSubscribers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A user's successful attempts to log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetSuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6567,30 +3942,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetSupportedLocales() (resp 
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSupportedLocalesIter() (resp []datatypes.Locale, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSupportedLocales", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Locale{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSupportedLocales", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve Whether or not a user must take a brief survey the next time they log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetSurveyRequiredFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSurveyRequiredFlag", nil, &r.Options, &resp)
@@ -6603,57 +3954,9 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetSurveys() (resp []datatyp
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetSurveysIter() (resp []datatypes.Survey, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSurveys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Survey{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getSurveys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An user's associated tickets.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getTickets", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6666,30 +3969,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetTimezone() (resp datatype
 // Retrieve A user's unsuccessful attempts to log into the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetUnsuccessfulLogins() (resp []datatypes.User_Customer_Access_Authentication, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetUnsuccessfulLoginsIter() (resp []datatypes.User_Customer_Access_Authentication, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUnsuccessfulLogins", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Access_Authentication{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUnsuccessfulLogins", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6722,30 +4001,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserLinks() (resp []datat
 	return
 }
 
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserLinksIter() (resp []datatypes.User_Customer_Link, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserLinks", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Link{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserLinks", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserPreferences(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
 	params := []interface{}{
@@ -6753,34 +4008,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserPreferences(profileNa
 		containerKeyname,
 	}
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserPreferences", params, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetUserPreferencesIter(profileName *string, containerKeyname *string) (resp []datatypes.Layout_Profile, err error) {
-	params := []interface{}{
-		profileName,
-		containerKeyname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserPreferences", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Layout_Profile{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getUserPreferences", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -6799,30 +4026,6 @@ func (r User_Customer_OpenIdConnect_TrustedProfile) GetVirtualGuestCount() (resp
 // Retrieve A portal user's accessible CloudLayer Computing Instances. These permissions control which CloudLayer Computing Instances a user has access to in the SoftLayer customer portal.
 func (r User_Customer_OpenIdConnect_TrustedProfile) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getVirtualGuests", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Customer_OpenIdConnect_TrustedProfile) GetVirtualGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getVirtualGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_OpenIdConnect_TrustedProfile", "getVirtualGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -7470,30 +4673,6 @@ func (r User_Customer_Status) GetAllObjects() (resp []datatypes.User_Customer_St
 	return
 }
 
-func (r User_Customer_Status) GetAllObjectsIter() (resp []datatypes.User_Customer_Status, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Customer_Status", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Status{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Customer_Status", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // getObject retrieves the SoftLayer_User_Customer_Status object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_User_Customer_Status service.
 func (r User_Customer_Status) GetObject() (resp datatypes.User_Customer_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Customer_Status", "getObject", nil, &r.Options, &resp)
@@ -7549,30 +4728,6 @@ func (r User_External_Binding) DeleteObject() (resp bool, err error) {
 // Retrieve Attributes of an external authentication binding.
 func (r User_External_Binding) GetAttributes() (resp []datatypes.User_External_Binding_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_External_Binding", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_External_Binding) GetAttributesIter() (resp []datatypes.User_External_Binding_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_External_Binding", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_External_Binding", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -7661,30 +4816,6 @@ func (r User_External_Binding_Vendor) GetAllObjects() (resp []datatypes.User_Ext
 	return
 }
 
-func (r User_External_Binding_Vendor) GetAllObjectsIter() (resp []datatypes.User_External_Binding_Vendor, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_External_Binding_Vendor", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_External_Binding_Vendor{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_External_Binding_Vendor", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_External_Binding_Vendor) GetObject() (resp datatypes.User_External_Binding_Vendor, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_External_Binding_Vendor", "getObject", nil, &r.Options, &resp)
@@ -7736,30 +4867,6 @@ func (r User_Permission_Action) Offset(offset int) User_Permission_Action {
 // Object filters and result limits are enabled on this method.
 func (r User_Permission_Action) GetAllObjects() (resp []datatypes.User_Permission_Action, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Permission_Action) GetAllObjectsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -7887,30 +4994,6 @@ func (r User_Permission_Group) GetActions() (resp []datatypes.User_Permission_Ac
 	return
 }
 
-func (r User_Permission_Group) GetActionsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Permission_Group) GetObject() (resp datatypes.User_Permission_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getObject", nil, &r.Options, &resp)
@@ -7920,30 +5003,6 @@ func (r User_Permission_Group) GetObject() (resp datatypes.User_Permission_Group
 // Retrieve
 func (r User_Permission_Group) GetRoles() (resp []datatypes.User_Permission_Role, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getRoles", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Permission_Group) GetRolesIter() (resp []datatypes.User_Permission_Role, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getRoles", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Role{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Group", "getRoles", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -8061,30 +5120,6 @@ func (r User_Permission_Group_Type) GetGroups() (resp []datatypes.User_Permissio
 	return
 }
 
-func (r User_Permission_Group_Type) GetGroupsIter() (resp []datatypes.User_Permission_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Group_Type", "getGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Group_Type", "getGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r User_Permission_Group_Type) GetObject() (resp datatypes.User_Permission_Group_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Group_Type", "getObject", nil, &r.Options, &resp)
@@ -8134,30 +5169,6 @@ func (r User_Permission_Resource_Type) Offset(offset int) User_Permission_Resour
 // Retrieve an array of SoftLayer_User_Permission_Resource_Type objects.
 func (r User_Permission_Resource_Type) GetAllObjects() (resp []datatypes.User_Permission_Resource_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Resource_Type", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Permission_Resource_Type) GetAllObjectsIter() (resp []datatypes.User_Permission_Resource_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Resource_Type", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Resource_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Resource_Type", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -8255,57 +5266,9 @@ func (r User_Permission_Role) GetActions() (resp []datatypes.User_Permission_Act
 	return
 }
 
-func (r User_Permission_Role) GetActionsIter() (resp []datatypes.User_Permission_Action, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Action{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r User_Permission_Role) GetGroups() (resp []datatypes.User_Permission_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getGroups", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Permission_Role) GetGroupsIter() (resp []datatypes.User_Permission_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Permission_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -8318,30 +5281,6 @@ func (r User_Permission_Role) GetObject() (resp datatypes.User_Permission_Role, 
 // Retrieve
 func (r User_Permission_Role) GetUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getUsers", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Permission_Role) GetUsersIter() (resp []datatypes.User_Customer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Permission_Role", "getUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -8418,30 +5357,6 @@ func (r User_Security_Question) Offset(offset int) User_Security_Question {
 // Retrieve all viewable security questions.
 func (r User_Security_Question) GetAllObjects() (resp []datatypes.User_Security_Question, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Security_Question", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r User_Security_Question) GetAllObjectsIter() (resp []datatypes.User_Security_Question, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_User_Security_Question", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Security_Question{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_User_Security_Question", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

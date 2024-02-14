@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -72,60 +71,9 @@ func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerific
 	return
 }
 
-func (r FlexibleCredit_Program) GetAffiliatesAvailableForSelfEnrollmentByVerificationTypeIter(verificationTypeKeyName *string) (resp []datatypes.FlexibleCredit_Affiliate, err error) {
-	params := []interface{}{
-		verificationTypeKeyName,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getAffiliatesAvailableForSelfEnrollmentByVerificationType", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.FlexibleCredit_Affiliate{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getAffiliatesAvailableForSelfEnrollmentByVerificationType", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r FlexibleCredit_Program) GetCompanyTypes() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getCompanyTypes", nil, &r.Options, &resp)
-	return
-}
-
-func (r FlexibleCredit_Program) GetCompanyTypesIter() (resp []datatypes.FlexibleCredit_Company_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getCompanyTypes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.FlexibleCredit_Company_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_FlexibleCredit_Program", "getCompanyTypes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

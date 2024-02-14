@@ -18,7 +18,7 @@ package virtual
 
 import (
 	"time"
-
+	"sync"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/helpers/product"
 	"github.com/softlayer/softlayer-go/services"
@@ -158,4 +158,29 @@ func UpgradeVirtualGuestWithPreset(
 
 	orderService := services.GetProductOrderService(sess)
 	return orderService.PlaceOrder(&order, sl.Bool(false))
+}
+
+func GetVirtualGuestsIter(service services.Account) (resp []datatypes.Virtual_Guest, err error) {
+
+	resp, err = service.GetVirtualGuests()
+	limit := service.Options.ValidateLimit()
+	if err != nil {
+		return
+	}
+	apicalls := service.Options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Virtual_Guest{}
+			options := service.Options
+			options.Offset = &offset
+			this_resp, err = service.GetVirtualGuests()
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return resp, err
 }

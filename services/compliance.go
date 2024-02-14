@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -66,30 +65,6 @@ func (r Compliance_Report_Type) Offset(offset int) Compliance_Report_Type {
 // no documentation yet
 func (r Compliance_Report_Type) GetAllObjects() (resp []datatypes.Compliance_Report_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Compliance_Report_Type", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r Compliance_Report_Type) GetAllObjectsIter() (resp []datatypes.Compliance_Report_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Compliance_Report_Type", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Compliance_Report_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Compliance_Report_Type", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 

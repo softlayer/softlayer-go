@@ -16,7 +16,6 @@ package services
 import (
 	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/session"
@@ -99,33 +98,6 @@ func (r Virtual_DedicatedHost) GetAvailableRouters(dedicatedHost *datatypes.Virt
 	return
 }
 
-func (r Virtual_DedicatedHost) GetAvailableRoutersIter(dedicatedHost *datatypes.Virtual_DedicatedHost) (resp []datatypes.Hardware, err error) {
-	params := []interface{}{
-		dedicatedHost,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getAvailableRouters", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getAvailableRouters", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The backend router behind dedicated host's pool of resources.
 func (r Virtual_DedicatedHost) GetBackendRouter() (resp datatypes.Hardware_Router_Backend, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getBackendRouter", nil, &r.Options, &resp)
@@ -150,57 +122,9 @@ func (r Virtual_DedicatedHost) GetGuests() (resp []datatypes.Virtual_Guest, err 
 	return
 }
 
-func (r Virtual_DedicatedHost) GetGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Virtual_DedicatedHost) GetInternalTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getInternalTagReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_DedicatedHost) GetInternalTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getInternalTagReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Tag_Reference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getInternalTagReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -222,57 +146,9 @@ func (r Virtual_DedicatedHost) GetPciDevices() (resp []datatypes.Virtual_Host_Pc
 	return
 }
 
-func (r Virtual_DedicatedHost) GetPciDevicesIter() (resp []datatypes.Virtual_Host_PciDevice, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getPciDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Host_PciDevice{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getPciDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Virtual_DedicatedHost) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getTagReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_DedicatedHost) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getTagReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Tag_Reference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_DedicatedHost", "getTagReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -342,30 +218,6 @@ func (r Virtual_Disk_Image) GetAvailableBootModes() (resp []string, err error) {
 	return
 }
 
-func (r Virtual_Disk_Image) GetAvailableBootModesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getAvailableBootModes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getAvailableBootModes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The billing item for a virtual disk image.
 func (r Virtual_Disk_Image) GetBillingItem() (resp datatypes.Billing_Item_Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getBillingItem", nil, &r.Options, &resp)
@@ -375,30 +227,6 @@ func (r Virtual_Disk_Image) GetBillingItem() (resp datatypes.Billing_Item_Virtua
 // Retrieve The block devices that a disk image is attached to. Block devices connect computing instances to disk images.
 func (r Virtual_Disk_Image) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getBlockDevices", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Disk_Image) GetBlockDevicesIter() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getBlockDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getBlockDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -417,30 +245,6 @@ func (r Virtual_Disk_Image) GetCloudInitFlag() (resp bool, err error) {
 // Retrieve
 func (r Virtual_Disk_Image) GetCoalescedDiskImages() (resp []datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCoalescedDiskImages", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Disk_Image) GetCoalescedDiskImagesIter() (resp []datatypes.Virtual_Disk_Image, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCoalescedDiskImages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Disk_Image{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getCoalescedDiskImages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -498,57 +302,9 @@ func (r Virtual_Disk_Image) GetPublicIsoImages() (resp []datatypes.Virtual_Disk_
 	return
 }
 
-func (r Virtual_Disk_Image) GetPublicIsoImagesIter() (resp []datatypes.Virtual_Disk_Image, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getPublicIsoImages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Disk_Image{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getPublicIsoImages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve References to the software that resides on a disk image.
 func (r Virtual_Disk_Image) GetSoftwareReferences() (resp []datatypes.Virtual_Disk_Image_Software, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getSoftwareReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Disk_Image) GetSoftwareReferencesIter() (resp []datatypes.Virtual_Disk_Image_Software, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getSoftwareReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Disk_Image_Software{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getSoftwareReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -567,30 +323,6 @@ func (r Virtual_Disk_Image) GetStorageGroupDetails() (resp datatypes.Container_I
 // Retrieve The storage group for a virtual disk image.
 func (r Virtual_Disk_Image) GetStorageGroups() (resp []datatypes.Configuration_Storage_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroups", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Disk_Image) GetStorageGroupsIter() (resp []datatypes.Configuration_Storage_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroups", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Configuration_Storage_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Disk_Image", "getStorageGroups", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1046,33 +778,6 @@ func (r Virtual_Guest) CreateObjects(templateObjects []datatypes.Virtual_Guest) 
 	return
 }
 
-func (r Virtual_Guest) CreateObjectsIter(templateObjects []datatypes.Virtual_Guest) (resp []datatypes.Virtual_Guest, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "createObjects", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "createObjects", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Virtual_Guest) CreatePostSoftwareInstallTransaction(data *string, returnBoolean *bool) (resp bool, err error) {
 	params := []interface{}{
@@ -1162,33 +867,6 @@ func (r Virtual_Guest) FindByHostname(hostname *string) (resp []datatypes.Virtua
 	return
 }
 
-func (r Virtual_Guest) FindByHostnameIter(hostname *string) (resp []datatypes.Virtual_Guest, err error) {
-	params := []interface{}{
-		hostname,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "findByHostname", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "findByHostname", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Find CCI by only its primary public or private IP address. IP addresses within secondary subnets tied to the CCI will not return the CCI. If no CCI is found, no errors are generated and no data is returned.
 func (r Virtual_Guest) FindByIpAddress(ipAddress *string) (resp datatypes.Virtual_Guest, err error) {
 	params := []interface{}{
@@ -1229,57 +907,9 @@ func (r Virtual_Guest) GetActiveNetworkMonitorIncident() (resp []datatypes.Netwo
 	return
 }
 
-func (r Virtual_Guest) GetActiveNetworkMonitorIncidentIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveNetworkMonitorIncident", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveNetworkMonitorIncident", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Virtual_Guest) GetActiveTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveTickets", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetActiveTicketsIter() (resp []datatypes.Ticket, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveTickets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Ticket{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveTickets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1295,63 +925,12 @@ func (r Virtual_Guest) GetActiveTransactions() (resp []datatypes.Provisioning_Ve
 	return
 }
 
-func (r Virtual_Guest) GetActiveTransactionsIter() (resp []datatypes.Provisioning_Version1_Transaction, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveTransactions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Provisioning_Version1_Transaction{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getActiveTransactions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Return a collection of SoftLayer_Item_Price objects for an OS reload
 func (r Virtual_Guest) GetAdditionalRequiredPricesForOsReload(config *datatypes.Container_Hardware_Server_Configuration) (resp []datatypes.Product_Item_Price, err error) {
 	params := []interface{}{
 		config,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAdditionalRequiredPricesForOsReload", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetAdditionalRequiredPricesForOsReloadIter(config *datatypes.Container_Hardware_Server_Configuration) (resp []datatypes.Product_Item_Price, err error) {
-	params := []interface{}{
-		config,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAdditionalRequiredPricesForOsReload", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Product_Item_Price{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAdditionalRequiredPricesForOsReload", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1367,57 +946,9 @@ func (r Virtual_Guest) GetAllowedNetworkStorage() (resp []datatypes.Network_Stor
 	return
 }
 
-func (r Virtual_Guest) GetAllowedNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAllowedNetworkStorage", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAllowedNetworkStorage", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The SoftLayer_Network_Storage objects whose Replica that this SoftLayer_Virtual_Guest has access to.
 func (r Virtual_Guest) GetAllowedNetworkStorageReplicas() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetAllowedNetworkStorageReplicasIter() (resp []datatypes.Network_Storage, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAllowedNetworkStorageReplicas", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAllowedNetworkStorageReplicas", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1442,60 +973,9 @@ func (r Virtual_Guest) GetAttachedNetworkStorages(nasType *string) (resp []datat
 	return
 }
 
-func (r Virtual_Guest) GetAttachedNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
-	params := []interface{}{
-		nasType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAttachedNetworkStorages", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAttachedNetworkStorages", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve
 func (r Virtual_Guest) GetAttributes() (resp []datatypes.Virtual_Guest_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetAttributesIter() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1505,57 +985,9 @@ func (r Virtual_Guest) GetAvailableBlockDevicePositions() (resp []string, err er
 	return
 }
 
-func (r Virtual_Guest) GetAvailableBlockDevicePositionsIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableBlockDevicePositions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableBlockDevicePositions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve An object that stores the maximum level for the monitoring query types and response types.
 func (r Virtual_Guest) GetAvailableMonitoring() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableMonitoring", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetAvailableMonitoringIter() (resp []datatypes.Network_Monitor_Version1_Query_Host_Stratum, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableMonitoring", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Monitor_Version1_Query_Host_Stratum{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableMonitoring", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1565,33 +997,6 @@ func (r Virtual_Guest) GetAvailableNetworkStorages(nasType *string) (resp []data
 		nasType,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableNetworkStorages", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetAvailableNetworkStoragesIter(nasType *string) (resp []datatypes.Network_Storage, err error) {
-	params := []interface{}{
-		nasType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableNetworkStorages", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getAvailableNetworkStorages", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1613,57 +1018,9 @@ func (r Virtual_Guest) GetBackendNetworkComponents() (resp []datatypes.Virtual_G
 	return
 }
 
-func (r Virtual_Guest) GetBackendNetworkComponentsIter() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBackendNetworkComponents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Network_Component{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBackendNetworkComponents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A guest's backend or private router.
 func (r Virtual_Guest) GetBackendRouters() (resp []datatypes.Hardware, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBackendRouters", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetBackendRoutersIter() (resp []datatypes.Hardware, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBackendRouters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBackendRouters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1690,35 +1047,6 @@ func (r Virtual_Guest) GetBandwidthDataByDate(startDateTime *datatypes.Time, end
 	return
 }
 
-func (r Virtual_Guest) GetBandwidthDataByDateIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		networkType,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthDataByDate", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthDataByDate", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve a collection of bandwidth data from an individual public or private network tracking object. Data is ideal if you with to employ your own traffic storage and graphing systems.
 func (r Virtual_Guest) GetBandwidthForDateRange(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
@@ -1726,34 +1054,6 @@ func (r Virtual_Guest) GetBandwidthForDateRange(startDate *datatypes.Time, endDa
 		endDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthForDateRange", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetBandwidthForDateRangeIter(startDate *datatypes.Time, endDate *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthForDateRange", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthForDateRange", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -1798,30 +1098,6 @@ func (r Virtual_Guest) GetBillingCycleBandwidthUsage() (resp []datatypes.Network
 	return
 }
 
-func (r Virtual_Guest) GetBillingCycleBandwidthUsageIter() (resp []datatypes.Network_Bandwidth_Usage, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBillingCycleBandwidthUsage", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Bandwidth_Usage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBillingCycleBandwidthUsage", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The raw private bandwidth usage data for the current billing cycle.
 func (r Virtual_Guest) GetBillingCyclePrivateBandwidthUsage() (resp datatypes.Network_Bandwidth_Usage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBillingCyclePrivateBandwidthUsage", nil, &r.Options, &resp)
@@ -1858,30 +1134,6 @@ func (r Virtual_Guest) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_D
 	return
 }
 
-func (r Virtual_Guest) GetBlockDevicesIter() (resp []datatypes.Virtual_Guest_Block_Device, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBlockDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBlockDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieves the boot mode of the VSI.
 func (r Virtual_Guest) GetBootMode() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBootMode", nil, &r.Options, &resp)
@@ -1900,57 +1152,9 @@ func (r Virtual_Guest) GetBrowserConsoleAccessLogs() (resp []datatypes.Virtual_B
 	return
 }
 
-func (r Virtual_Guest) GetBrowserConsoleAccessLogsIter() (resp []datatypes.Virtual_BrowserConsoleAccessLog, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBrowserConsoleAccessLogs", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_BrowserConsoleAccessLog{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBrowserConsoleAccessLogs", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Gets the console access logs for a computing instance
 func (r Virtual_Guest) GetConsoleAccessLog() (resp []datatypes.Network_Logging_Syslog, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleAccessLog", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetConsoleAccessLogIter() (resp []datatypes.Network_Logging_Syslog, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleAccessLog", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Logging_Syslog{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleAccessLog", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2001,35 +1205,6 @@ func (r Virtual_Guest) GetCpuMetricDataByDate(startDateTime *datatypes.Time, end
 	return
 }
 
-func (r Virtual_Guest) GetCpuMetricDataByDateIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time, cpuIndexes []int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		cpuIndexes,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCpuMetricDataByDate", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCpuMetricDataByDate", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Use this method when needing a cpu usage image for a single guest.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.
 func (r Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
@@ -2071,30 +1246,6 @@ func (r Virtual_Guest) GetCurrentBillingDetail() (resp []datatypes.Billing_Item,
 	return
 }
 
-func (r Virtual_Guest) GetCurrentBillingDetailIter() (resp []datatypes.Billing_Item, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCurrentBillingDetail", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Billing_Item{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCurrentBillingDetail", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Get the total bill amount in US Dollars ($) for this instance in the current billing period. This includes all bandwidth used up to the point this method is called on the instance.
 func (r Virtual_Guest) GetCurrentBillingTotal() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCurrentBillingTotal", nil, &r.Options, &resp)
@@ -2131,57 +1282,9 @@ func (r Virtual_Guest) GetEvaultNetworkStorage() (resp []datatypes.Network_Stora
 	return
 }
 
-func (r Virtual_Guest) GetEvaultNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getEvaultNetworkStorage", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getEvaultNetworkStorage", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Get the subnets associated with this CloudLayer computing instance that are protectable by a network component firewall.
 func (r Virtual_Guest) GetFirewallProtectableSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetFirewallProtectableSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFirewallProtectableSubnets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Subnet{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFirewallProtectableSubnets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2200,30 +1303,6 @@ func (r Virtual_Guest) GetFirstAvailableBlockDevicePosition() (resp string, err 
 // Retrieve A guest's frontend network components.
 func (r Virtual_Guest) GetFrontendNetworkComponents() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFrontendNetworkComponents", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetFrontendNetworkComponentsIter() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFrontendNetworkComponents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Network_Component{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getFrontendNetworkComponents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2299,30 +1378,6 @@ func (r Virtual_Guest) GetInternalTagReferences() (resp []datatypes.Tag_Referenc
 	return
 }
 
-func (r Virtual_Guest) GetInternalTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getInternalTagReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Tag_Reference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getInternalTagReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Virtual_Guest) GetIsoBootImage() (resp datatypes.Virtual_Disk_Image, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getIsoBootImage", nil, &r.Options, &resp)
@@ -2337,35 +1392,6 @@ func (r Virtual_Guest) GetItemPricesFromSoftwareDescriptions(softwareDescription
 		returnAllPricesFlag,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetItemPricesFromSoftwareDescriptionsIter(softwareDescriptions []datatypes.Software_Description, includeTranslationsFlag *bool, returnAllPricesFlag *bool) (resp []datatypes.Product_Item, err error) {
-	params := []interface{}{
-		softwareDescriptions,
-		includeTranslationsFlag,
-		returnAllPricesFlag,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getItemPricesFromSoftwareDescriptions", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Product_Item{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getItemPricesFromSoftwareDescriptions", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2418,34 +1444,6 @@ func (r Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *datatypes.Time, 
 		endDateTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetMemoryMetricDataByDateIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricDataByDate", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricDataByDate", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2505,57 +1503,9 @@ func (r Virtual_Guest) GetMonitoringUserNotification() (resp []datatypes.User_Cu
 	return
 }
 
-func (r Virtual_Guest) GetMonitoringUserNotificationIter() (resp []datatypes.User_Customer_Notification_Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringUserNotification", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer_Notification_Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMonitoringUserNotification", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Get the IP addresses associated with this CloudLayer computing instance that are protectable by a network component firewall. Note, this may not return all values for IPv6 subnets for this CloudLayer computing instance. Please use getFirewallProtectableSubnets to get all protectable subnets.
 func (r Virtual_Guest) GetNetworkComponentFirewallProtectableIpAddresses() (resp []datatypes.Network_Subnet_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetNetworkComponentFirewallProtectableIpAddressesIter() (resp []datatypes.Network_Subnet_IpAddress, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkComponentFirewallProtectableIpAddresses", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Subnet_IpAddress{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkComponentFirewallProtectableIpAddresses", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2565,57 +1515,9 @@ func (r Virtual_Guest) GetNetworkComponents() (resp []datatypes.Virtual_Guest_Ne
 	return
 }
 
-func (r Virtual_Guest) GetNetworkComponentsIter() (resp []datatypes.Virtual_Guest_Network_Component, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkComponents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Network_Component{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkComponents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve All of a virtual guest's network monitoring incidents.
 func (r Virtual_Guest) GetNetworkMonitorIncidents() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetNetworkMonitorIncidentsIter() (resp []datatypes.Network_Monitor_Version1_Incident, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkMonitorIncidents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Monitor_Version1_Incident{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkMonitorIncidents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2625,87 +1527,15 @@ func (r Virtual_Guest) GetNetworkMonitors() (resp []datatypes.Network_Monitor_Ve
 	return
 }
 
-func (r Virtual_Guest) GetNetworkMonitorsIter() (resp []datatypes.Network_Monitor_Version1_Query_Host, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkMonitors", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Monitor_Version1_Query_Host{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkMonitors", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A guest's associated network storage accounts.
 func (r Virtual_Guest) GetNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkStorage", nil, &r.Options, &resp)
 	return
 }
 
-func (r Virtual_Guest) GetNetworkStorageIter() (resp []datatypes.Network_Storage, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkStorage", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Storage{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkStorage", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The network Vlans that a guest's network components are associated with.
 func (r Virtual_Guest) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkVlans", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetNetworkVlansIter() (resp []datatypes.Network_Vlan, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkVlans", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Vlan{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getNetworkVlans", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2770,30 +1600,6 @@ func (r Virtual_Guest) GetOverBandwidthAllocationFlag() (resp int, err error) {
 // Returns a list of all the pending maintenance actions affecting this guest.
 func (r Virtual_Guest) GetPendingMaintenanceActions() (resp []datatypes.Container_Virtual_Guest_PendingMaintenanceAction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPendingMaintenanceActions", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetPendingMaintenanceActionsIter() (resp []datatypes.Container_Virtual_Guest_PendingMaintenanceAction, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPendingMaintenanceActions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Container_Virtual_Guest_PendingMaintenanceAction{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getPendingMaintenanceActions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2869,63 +1675,12 @@ func (r Virtual_Guest) GetRecentEvents() (resp []datatypes.Notification_Occurren
 	return
 }
 
-func (r Virtual_Guest) GetRecentEventsIter() (resp []datatypes.Notification_Occurrence_Event, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRecentEvents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Notification_Occurrence_Event{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRecentEvents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Recent metric data for a guest
 func (r Virtual_Guest) GetRecentMetricData(time *uint) (resp []datatypes.Metric_Tracking_Object, err error) {
 	params := []interface{}{
 		time,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRecentMetricData", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetRecentMetricDataIter(time *uint) (resp []datatypes.Metric_Tracking_Object, err error) {
-	params := []interface{}{
-		time,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRecentMetricData", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getRecentMetricData", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -2965,57 +1720,9 @@ func (r Virtual_Guest) GetReverseDomainRecords() (resp []datatypes.Dns_Domain, e
 	return
 }
 
-func (r Virtual_Guest) GetReverseDomainRecordsIter() (resp []datatypes.Dns_Domain, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getReverseDomainRecords", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Dns_Domain{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getReverseDomainRecords", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A guest's vulnerability scan requests.
 func (r Virtual_Guest) GetSecurityScanRequests() (resp []datatypes.Network_Security_Scanner_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSecurityScanRequests", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetSecurityScanRequestsIter() (resp []datatypes.Network_Security_Scanner_Request, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSecurityScanRequests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Security_Scanner_Request{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSecurityScanRequests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3031,57 +1738,9 @@ func (r Virtual_Guest) GetSoftwareComponents() (resp []datatypes.Software_Compon
 	return
 }
 
-func (r Virtual_Guest) GetSoftwareComponentsIter() (resp []datatypes.Software_Component, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSoftwareComponents", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Software_Component{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSoftwareComponents", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve SSH keys to be installed on the server during provisioning or an OS reload.
 func (r Virtual_Guest) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSshKeys", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSshKeys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Security_Ssh_Key{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getSshKeys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3094,30 +1753,6 @@ func (r Virtual_Guest) GetStatus() (resp datatypes.Virtual_Guest_Status, err err
 // Retrieve
 func (r Virtual_Guest) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getTagReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getTagReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Tag_Reference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getTagReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3150,33 +1785,6 @@ func (r Virtual_Guest) GetUpgradeItemPrices(includeDowngradeItemPrices *bool) (r
 	return
 }
 
-func (r Virtual_Guest) GetUpgradeItemPricesIter(includeDowngradeItemPrices *bool) (resp []datatypes.Product_Item_Price, err error) {
-	params := []interface{}{
-		includeDowngradeItemPrices,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUpgradeItemPrices", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Product_Item_Price{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUpgradeItemPrices", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A computing instance's associated upgrade request object if any.
 func (r Virtual_Guest) GetUpgradeRequest() (resp datatypes.Product_Upgrade_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUpgradeRequest", nil, &r.Options, &resp)
@@ -3189,57 +1797,9 @@ func (r Virtual_Guest) GetUserData() (resp []datatypes.Virtual_Guest_Attribute, 
 	return
 }
 
-func (r Virtual_Guest) GetUserDataIter() (resp []datatypes.Virtual_Guest_Attribute, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUserData", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Attribute{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUserData", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A list of users that have access to this computing instance.
 func (r Virtual_Guest) GetUsers() (resp []datatypes.User_Customer, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUsers", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetUsersIter() (resp []datatypes.User_Customer, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUsers", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.User_Customer{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getUsers", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3249,33 +1809,6 @@ func (r Virtual_Guest) GetValidBlockDeviceTemplateGroups(visibility *string) (re
 		visibility,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest) GetValidBlockDeviceTemplateGroupsIter(visibility *string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	params := []interface{}{
-		visibility,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getValidBlockDeviceTemplateGroups", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getValidBlockDeviceTemplateGroups", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3710,34 +2243,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) FindGcImagesByCurrentUser(dat
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) FindGcImagesByCurrentUserIter(dataCenters []string, regions []string) (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	params := []interface{}{
-		dataCenters,
-		regions,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "findGcImagesByCurrentUser", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "findGcImagesByCurrentUser", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A block device template group's [[SoftLayer_Account|account]].
 func (r Virtual_Guest_Block_Device_Template_Group) GetAccount() (resp datatypes.Account, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccount", nil, &r.Options, &resp)
@@ -3750,57 +2255,9 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetAccountContacts() (resp []
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetAccountContactsIter() (resp []datatypes.Account_Contact, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountContacts", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Account_Contact{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountContacts", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The accounts which may have read-only access to an image template group. Will only be populated for parent template group objects.
 func (r Virtual_Guest_Block_Device_Template_Group) GetAccountReferences() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group_Accounts, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetAccountReferencesIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group_Accounts, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group_Accounts{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAccountReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3810,57 +2267,9 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetAllAvailableCompatiblePlat
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetAllAvailableCompatiblePlatformNamesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAllAvailableCompatiblePlatformNames", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getAllAvailableCompatiblePlatformNames", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The block devices that are part of an image template group
 func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevices() (resp []datatypes.Virtual_Guest_Block_Device_Template, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevices", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetBlockDevicesIter() (resp []datatypes.Virtual_Guest_Block_Device_Template, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getBlockDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3888,57 +2297,9 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetChildren() (resp []datatyp
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetChildrenIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getChildren", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getChildren", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Get compatible platform names currently set on the template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetCurrentCompatiblePlatformNames() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getCurrentCompatiblePlatformNames", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetCurrentCompatiblePlatformNamesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getCurrentCompatiblePlatformNames", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getCurrentCompatiblePlatformNames", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -3954,30 +2315,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetDatacenters() (resp []data
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetDatacentersIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getDatacenters", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getDatacenters", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This method returns the default boot mode set by the software description
 func (r Virtual_Guest_Block_Device_Template_Group) GetDefaultBootMode() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getDefaultBootMode", nil, &r.Options, &resp)
@@ -3987,30 +2324,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetDefaultBootMode() (resp st
 // This method returns an array of encryption values, or empty array if none are found
 func (r Virtual_Guest_Block_Device_Template_Group) GetEncryptionAttributes() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getEncryptionAttributes", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetEncryptionAttributesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getEncryptionAttributes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getEncryptionAttributes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4068,57 +2381,9 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetPublicCustomerOwnedImages(
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetPublicCustomerOwnedImagesIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicCustomerOwnedImages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicCustomerOwnedImages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This method gets all public image templates that the user is allowed to see.
 func (r Virtual_Guest_Block_Device_Template_Group) GetPublicImages() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicImages", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetPublicImagesIter() (resp []datatypes.Virtual_Guest_Block_Device_Template_Group, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicImages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Block_Device_Template_Group{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getPublicImages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4131,30 +2396,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetRegion() (resp datatypes.N
 // Retrieve
 func (r Virtual_Guest_Block_Device_Template_Group) GetRegions() (resp []datatypes.Network_Service_Resource, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegions", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetRegionsIter() (resp []datatypes.Network_Service_Resource, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Service_Resource{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRegions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4173,30 +2414,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetSshKeys() (resp []datatype
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetSshKeysIter() (resp []datatypes.Security_Ssh_Key, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSshKeys", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Security_Ssh_Key{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSshKeys", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A template group's status.
 func (r Virtual_Guest_Block_Device_Template_Group) GetStatus() (resp datatypes.Virtual_Guest_Block_Device_Template_Group_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStatus", nil, &r.Options, &resp)
@@ -4206,30 +2423,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetStatus() (resp datatypes.V
 // Returns the image storage locations.
 func (r Virtual_Guest_Block_Device_Template_Group) GetStorageLocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStorageLocations", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetStorageLocationsIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStorageLocations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getStorageLocations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4245,57 +2438,9 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetSupportedBootModes() (resp
 	return
 }
 
-func (r Virtual_Guest_Block_Device_Template_Group) GetSupportedBootModesIter() (resp []string, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSupportedBootModes", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []string{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSupportedBootModes", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The tags associated with this image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetTagReferences() (resp []datatypes.Tag_Reference, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTagReferences", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetTagReferencesIter() (resp []datatypes.Tag_Reference, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTagReferences", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Tag_Reference{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getTagReferences", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4314,30 +2459,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetTransaction() (resp dataty
 // Returns an array of SoftLayer_Software_Description that are supported for VHD imports.
 func (r Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescriptions() (resp []datatypes.Software_Description, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getVhdImportSoftwareDescriptions", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Block_Device_Template_Group) GetVhdImportSoftwareDescriptionsIter() (resp []datatypes.Software_Description, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getVhdImportSoftwareDescriptions", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Software_Description{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getVhdImportSoftwareDescriptions", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4577,30 +2698,6 @@ func (r Virtual_Guest_Boot_Parameter_Type) GetAllObjects() (resp []datatypes.Vir
 	return
 }
 
-func (r Virtual_Guest_Boot_Parameter_Type) GetAllObjectsIter() (resp []datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Boot_Parameter_Type", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Boot_Parameter_Type{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Boot_Parameter_Type", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // no documentation yet
 func (r Virtual_Guest_Boot_Parameter_Type) GetObject() (resp datatypes.Virtual_Guest_Boot_Parameter_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Boot_Parameter_Type", "getObject", nil, &r.Options, &resp)
@@ -4685,30 +2782,6 @@ func (r Virtual_Guest_Network_Component) GetIpAddressBindings() (resp []datatype
 	return
 }
 
-func (r Virtual_Guest_Network_Component) GetIpAddressBindingsIter() (resp []datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getIpAddressBindings", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest_Network_Component_IpAddress{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getIpAddressBindings", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The upstream network component firewall.
 func (r Virtual_Guest_Network_Component) GetNetworkComponentFirewall() (resp datatypes.Network_Component_Firewall, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getNetworkComponentFirewall", nil, &r.Options, &resp)
@@ -4763,57 +2836,9 @@ func (r Virtual_Guest_Network_Component) GetSecurityGroupBindings() (resp []data
 	return
 }
 
-func (r Virtual_Guest_Network_Component) GetSecurityGroupBindingsIter() (resp []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSecurityGroupBindings", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Network_SecurityGroup_NetworkComponentBinding{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSecurityGroupBindings", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A network component's subnets. A subnet is a group of IP addresses
 func (r Virtual_Guest_Network_Component) GetSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSubnets", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Guest_Network_Component) GetSubnetsIter() (resp []datatypes.Network_Subnet, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSubnets", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Network_Subnet{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Network_Component", "getSubnets", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -4899,30 +2924,6 @@ func (r Virtual_Host) GetPciDevices() (resp []datatypes.Virtual_Host_PciDevice, 
 	return
 }
 
-func (r Virtual_Host) GetPciDevicesIter() (resp []datatypes.Virtual_Host_PciDevice, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getPciDevices", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Host_PciDevice{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getPciDevices", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // This data type presents the structure for a virtual guest placement group. The data type contains relational properties to the virtual guest placement group rule class.
 type Virtual_PlacementGroup struct {
 	Session session.SLSession
@@ -5002,33 +3003,6 @@ func (r Virtual_PlacementGroup) GetAvailableRouters(datacenterId *int) (resp []d
 	return
 }
 
-func (r Virtual_PlacementGroup) GetAvailableRoutersIter(datacenterId *int) (resp []datatypes.Hardware, err error) {
-	params := []interface{}{
-		datacenterId,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getAvailableRouters", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Hardware{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getAvailableRouters", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The router the placement group is implemented on.
 func (r Virtual_PlacementGroup) GetBackendRouter() (resp datatypes.Hardware_Router_Backend, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getBackendRouter", nil, &r.Options, &resp)
@@ -5038,30 +3012,6 @@ func (r Virtual_PlacementGroup) GetBackendRouter() (resp datatypes.Hardware_Rout
 // Retrieve The virtual guests that are members of the placement group.
 func (r Virtual_PlacementGroup) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getGuests", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_PlacementGroup) GetGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup", "getGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5120,30 +3070,6 @@ func (r Virtual_PlacementGroup_Rule) Offset(offset int) Virtual_PlacementGroup_R
 // Get all placement group rules.
 func (r Virtual_PlacementGroup_Rule) GetAllObjects() (resp []datatypes.Virtual_PlacementGroup_Rule, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup_Rule", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_PlacementGroup_Rule) GetAllObjectsIter() (resp []datatypes.Virtual_PlacementGroup_Rule, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup_Rule", "getAllObjects", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_PlacementGroup_Rule{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_PlacementGroup_Rule", "getAllObjects", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5214,30 +3140,6 @@ func (r Virtual_ReservedCapacityGroup) GetAvailableInstances() (resp []datatypes
 	return
 }
 
-func (r Virtual_ReservedCapacityGroup) GetAvailableInstancesIter() (resp []datatypes.Virtual_ReservedCapacityGroup_Instance, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getAvailableInstances", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_ReservedCapacityGroup_Instance{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getAvailableInstances", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The router the reserved capacity group is implemented on.
 func (r Virtual_ReservedCapacityGroup) GetBackendRouter() (resp datatypes.Hardware_Router_Backend, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getBackendRouter", nil, &r.Options, &resp)
@@ -5247,30 +3149,6 @@ func (r Virtual_ReservedCapacityGroup) GetBackendRouter() (resp datatypes.Hardwa
 // Retrieve The guest instances that are members of this reserved capacity group.
 func (r Virtual_ReservedCapacityGroup) GetInstances() (resp []datatypes.Virtual_ReservedCapacityGroup_Instance, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getInstances", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_ReservedCapacityGroup) GetInstancesIter() (resp []datatypes.Virtual_ReservedCapacityGroup_Instance, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getInstances", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_ReservedCapacityGroup_Instance{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getInstances", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5289,30 +3167,6 @@ func (r Virtual_ReservedCapacityGroup) GetObject() (resp datatypes.Virtual_Reser
 // Retrieve The instances already occupied by a guest on this reserved capacity group.
 func (r Virtual_ReservedCapacityGroup) GetOccupiedInstances() (resp []datatypes.Virtual_ReservedCapacityGroup_Instance, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getOccupiedInstances", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_ReservedCapacityGroup) GetOccupiedInstancesIter() (resp []datatypes.Virtual_ReservedCapacityGroup_Instance, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getOccupiedInstances", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_ReservedCapacityGroup_Instance{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_ReservedCapacityGroup", "getOccupiedInstances", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5476,57 +3330,9 @@ func (r Virtual_Storage_Repository) GetDiskImages() (resp []datatypes.Virtual_Di
 	return
 }
 
-func (r Virtual_Storage_Repository) GetDiskImagesIter() (resp []datatypes.Virtual_Disk_Image, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getDiskImages", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Disk_Image{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getDiskImages", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve The computing instances that have disk images in a storage repository.
 func (r Virtual_Storage_Repository) GetGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getGuests", nil, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Storage_Repository) GetGuestsIter() (resp []datatypes.Virtual_Guest, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getGuests", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Virtual_Guest{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getGuests", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
@@ -5560,30 +3366,6 @@ func (r Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Loca
 	return
 }
 
-func (r Virtual_Storage_Repository) GetStorageLocationsIter() (resp []datatypes.Location, err error) {
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getStorageLocations", nil, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Location{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getStorageLocations", nil, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
-	return
-}
-
 // Retrieve A storage repository's [[SoftLayer_Virtual_Storage_Repository_Type|type]].
 func (r Virtual_Storage_Repository) GetType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getType", nil, &r.Options, &resp)
@@ -5597,34 +3379,6 @@ func (r Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *data
 		endDateTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getUsageMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
-func (r Virtual_Storage_Repository) GetUsageMetricDataByDateIter(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	limit := r.Options.ValidateLimit()
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getUsageMetricDataByDate", params, &r.Options, &resp)
-	if err != nil {
-		return
-	}
-	apicalls := r.Options.GetRemainingAPICalls()
-	var wg sync.WaitGroup
-	for x := 1; x <= apicalls; x++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			offset := i * limit
-			this_resp := []datatypes.Metric_Tracking_Object_Data{}
-			options := r.Options
-			options.Offset = &offset
-			err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getUsageMetricDataByDate", params, &options, &this_resp)
-			resp = append(resp, this_resp...)
-		}(x)
-	}
-	wg.Wait()
 	return
 }
 
