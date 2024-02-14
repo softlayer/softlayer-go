@@ -93,6 +93,13 @@ var _ = Describe("Location Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Location_Datacenter::getObject", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetObject()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 	})
 
 	Context("Testing SoftLayer_Location_Group service", func() {

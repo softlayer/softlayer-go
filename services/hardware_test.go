@@ -107,13 +107,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_Server::deleteObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_Server::editObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.EditObject(nil)
@@ -264,13 +257,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::rebootDefault", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.RebootDefault()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_Server::rebootHard", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.RebootHard()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

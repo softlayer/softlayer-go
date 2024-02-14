@@ -246,6 +246,54 @@ func (r Billing_Order) GetObject() (resp datatypes.Billing_Order, err error) {
 	return
 }
 
+// Every individual item that a SoftLayer customer is billed for is recorded in the SoftLayer_Billing_Item data type. Billing items range from server chassis to hard drives to control panels, bandwidth quota upgrades and port upgrade charges. SoftLayer [[SoftLayer_Billing_Invoice|invoices]] are generated from the cost of a customer's billing items. Billing items are copied from the product catalog as they're ordered by customers to create a reference between an account and the billable items they own.
+//
+// Billing items exist in a tree relationship. Items are associated with each other by parent/child relationships. Component items such as CPU's, RAM, and software each have a parent billing item for the server chassis they're associated with. Billing Items with a null parent item do not have an associated parent item.
+type Billing_Order_Item struct {
+	Session session.SLSession
+	Options sl.Options
+}
+
+// GetBillingOrderItemService returns an instance of the Billing_Order_Item SoftLayer service
+func GetBillingOrderItemService(sess session.SLSession) Billing_Order_Item {
+	return Billing_Order_Item{Session: sess}
+}
+
+func (r Billing_Order_Item) Id(id int) Billing_Order_Item {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Billing_Order_Item) Mask(mask string) Billing_Order_Item {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Billing_Order_Item) Filter(filter string) Billing_Order_Item {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Billing_Order_Item) Limit(limit int) Billing_Order_Item {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Billing_Order_Item) Offset(offset int) Billing_Order_Item {
+	r.Options.Offset = &offset
+	return r
+}
+
+// getObject retrieves the SoftLayer_Billing_Item object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Billing_Item service. You can only retrieve billing items tied to the account that your portal user is assigned to. Billing items are an account's items of billable items. There are "parent" billing items and "child" billing items. The server billing item is generally referred to as a parent billing item. The items tied to a server, such as ram, harddrives, and operating systems are considered "child" billing items.
+func (r Billing_Order_Item) GetObject() (resp datatypes.Billing_Order_Item, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Item", "getObject", nil, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Billing_Oder_Quote data type contains general information relating to an individual order applied to a SoftLayer customer account or to a new customer. Personal information in this type such as names, addresses, and phone numbers are taken from the account's contact information at the time the quote is generated for existing SoftLayer customer.
 type Billing_Order_Quote struct {
 	Session session.SLSession
@@ -318,6 +366,15 @@ func (r Billing_Order_Quote) PlaceOrder(orderData interface{}) (resp datatypes.C
 		orderData,
 	}
 	err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "placeOrder", params, &r.Options, &resp)
+	return
+}
+
+// Use this method for placing server quotes and additional services quotes. The same applies for this as with verifyOrder. Send in the SoftLayer_Container_Product_Order_Hardware_Server for server quotes. In addition to verifying the quote, placeQuote() also makes an initial authorization on the SoftLayer_Account tied to this order, if a credit card is on file. If the account tied to this order is a paypal customer, an URL will also be returned to the customer. After placing the order, you must go to this URL to finish the authorization process. This tells paypal that you indeed want to place the order. After going to this URL, it will direct you back to a SoftLayer webpage that tells us you have finished the process.
+func (r Billing_Order_Quote) PlaceQuote(orderData interface{}) (resp datatypes.Container_Product_Order, err error) {
+	params := []interface{}{
+		orderData,
+	}
+	err = r.Session.DoRequest("SoftLayer_Billing_Order_Quote", "placeQuote", params, &r.Options, &resp)
 	return
 }
 

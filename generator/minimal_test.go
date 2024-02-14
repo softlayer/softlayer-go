@@ -1,15 +1,14 @@
 package generator_test
 
 import (
+	"fmt"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	. "github.com/softlayer/softlayer-go/generator"
 	"os"
-	"testing"
-
-	"fmt"
 )
-var metaPath = "../sldnSample.json"
+
+var metaMinPath = "../sldnSample.json"
 var _ = Describe("Minimal Tests", func() {
 	var outDir string
 
@@ -25,7 +24,7 @@ var _ = Describe("Minimal Tests", func() {
 	Context("Testing SLDN Generation", func() {
 		Context("GenerateAPI From File", func() {
 			It("Generates SLDN from test file", func() {
-				GenerateAPI(metaPath, outDir)
+				GenerateAPI(metaMinPath, outDir)
 				Expect(fmt.Sprintf("%s/services/account.go", outDir)).Should(BeAnExistingFile())
 				Expect(fmt.Sprintf("%s/services/account_test.go", outDir)).Should(BeAnExistingFile())
 				Expect(fmt.Sprintf("%s/datatypes/virtual.go", outDir)).Should(BeAnExistingFile())

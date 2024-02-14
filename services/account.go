@@ -333,12 +333,3 @@ func (r Account) GetVirtualGuests() (resp []datatypes.Virtual_Guest, err error) 
 	err = r.Session.DoRequest("SoftLayer_Account", "getVirtualGuests", nil, &r.Options, &resp)
 	return
 }
-
-// Set the flag that enables or disables automatic private network VLAN spanning for a SoftLayer customer account. Enabling VLAN spanning allows an account's servers to talk on the same broadcast domain even if they reside within different private vlans.
-func (r Account) SetVlanSpan(enabled *bool) (resp bool, err error) {
-	params := []interface{}{
-		enabled,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account", "setVlanSpan", params, &r.Options, &resp)
-	return
-}

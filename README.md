@@ -376,7 +376,7 @@ make test
 gofmt -w `find . -name '*.go' | grep -v vendor`
 go vet -all $(go list ./... | grep -v datatypes)
 go get -d -v -t ./...
-go test $(go list ./... | grep -v '/vendor/') -timeout=30s -parallel=4 -coverprofile coverage.out
+go test $(go list ./... | grep -v '/vendor/') -timeout=30s -coverprofile coverage.out
 ```
 
 ### Updating dependencies
@@ -399,12 +399,14 @@ go run ./tools generate
 ```
 
 ### Minimal
-
+This is an experimental feature.
 To update the list of minimal api calls:
 
 ```bash
 find  ~/go/src/github.ibm.com/softlayer/softlayer-cli/plugin/testfixtures/ -name '*.json' | grep -v "\-[0-9]" | grep -v .bluemix | awk -F "/" '{ print $12"::"$13 }' > min_filter.txt
 ```
+
+Or you can update min_filter.txt manually with `Service::Method` annotations. Everything in that list will be generated. For Required datatypes, currently you would need to update the `requiredDatatypes` in the `generator/minimal.go` file. Until I figure out a better way to do this, the minimal build currently generates ALL datatypes.
 
 ```bash
 go run ./tools minimal

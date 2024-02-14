@@ -121,6 +121,12 @@ func (r Location_Datacenter) GetHardwareRouters() (resp []datatypes.Hardware, er
 }
 
 // no documentation yet
+func (r Location_Datacenter) GetObject() (resp datatypes.Location_Datacenter, err error) {
+	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Location_Group struct {
 	Session session.SLSession
 	Options sl.Options

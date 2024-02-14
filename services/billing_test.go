@@ -183,6 +183,43 @@ var _ = Describe("Billing Tests", func() {
 		})
 	})
 
+	Context("Testing SoftLayer_Billing_Order_Item service", func() {
+		var sl_service services.Billing_Order_Item
+		BeforeEach(func() {
+			sl_service = services.GetBillingOrderItemService(slsession)
+		})
+		Context("SoftLayer_Billing_Order_Item Set Options", func() {
+			It("Set Options properly", func() {
+				t_id := 1234
+				t_filter := "{'testFilter':{'test'}}"
+				t_limit := 100
+				t_offset := 5
+				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
+				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
+				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
+				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
+				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
+			})
+		})
+		Context("SoftLayer_Billing_Order_Item Set Mask", func() {
+			It("Set Options properly", func() {
+				t_mask1 := "mask[test,test2]"
+				sl_service = sl_service.Mask(t_mask1)
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
+				sl_service = sl_service.Mask("test,test2")
+				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
+			})
+		})
+		Context("SoftLayer_Billing_Order_Item::getObject", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetObject()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+	})
+
 	Context("Testing SoftLayer_Billing_Order_Quote service", func() {
 		var sl_service services.Billing_Order_Quote
 		BeforeEach(func() {
@@ -235,6 +272,13 @@ var _ = Describe("Billing Tests", func() {
 		Context("SoftLayer_Billing_Order_Quote::placeOrder", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.PlaceOrder(GetOrderContainer())
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Billing_Order_Quote::placeQuote", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.PlaceQuote(GetOrderContainer())
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

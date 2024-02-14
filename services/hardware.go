@@ -154,12 +154,6 @@ func (r Hardware_Server) CreateFirmwareUpdateTransaction(ipmi *int, raidControll
 	return
 }
 
-// This method will cancel a server effective immediately. For servers billed hourly, the charges will stop immediately after the method returns.
-func (r Hardware_Server) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
 // Edit a server's properties
 func (r Hardware_Server) EditObject(templateObject *datatypes.Hardware_Server) (resp bool, err error) {
 	params := []interface{}{
@@ -295,12 +289,6 @@ func (r Hardware_Server) PowerOn() (resp bool, err error) {
 // Attempts to reboot the server by issuing a reset (soft reboot) command to the server's remote management card. If the reset (soft reboot) attempt is unsuccessful, a power cycle command will be issued via the powerstrip. The power cycle command is equivalent to unplugging the server from the powerstrip and then plugging the server back into the powerstrip.  If a reboot command has been issued successfully in the past 20 minutes, another remote management command (rebootSoft, rebootHard, powerOn, powerOff and powerCycle) will not be allowed.  This is to avoid any type of server failures.
 func (r Hardware_Server) RebootDefault() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "rebootDefault", nil, &r.Options, &resp)
-	return
-}
-
-// Reboot the server by issuing a cycle command to the server's remote management card.  This is equivalent to pressing the 'Reset' button on the server.  This command is issued immediately and will not wait for processes to shutdown. After this command is issued, the server may take a few moments to boot up as server may run system disks checks. If a reboot command has been issued successfully in the past 20 minutes, another remote management command (rebootSoft, rebootHard, powerOn, powerOff and powerCycle) will not be allowed.  This is to avoid any type of server failures.
-func (r Hardware_Server) RebootHard() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "rebootHard", nil, &r.Options, &resp)
 	return
 }
 

@@ -357,13 +357,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::setVlanSpan", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.SetVlanSpan(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 	})
 
 })

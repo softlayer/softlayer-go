@@ -62,9 +62,131 @@ func (r Network_Application_Delivery_Controller) Offset(offset int) Network_Appl
 	return r
 }
 
+// Remove an entire load balancer service, including all virtual IP addresses, from and application delivery controller based load balancer. The ”name” property the and ”name” property within the ”vip” property of the service parameter must be provided. Changes are reflected immediately in the application delivery controller.
+func (r Network_Application_Delivery_Controller) DeleteLiveLoadBalancerService(service *datatypes.Network_LoadBalancer_Service) (err error) {
+	var resp datatypes.Void
+	params := []interface{}{
+		service,
+	}
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "deleteLiveLoadBalancerService", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve The virtual IP address records that belong to an application delivery controller based load balancer.
+func (r Network_Application_Delivery_Controller) GetLoadBalancers() (resp []datatypes.Network_LoadBalancer_VirtualIpAddress, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getLoadBalancers", nil, &r.Options, &resp)
+	return
+}
+
 // getObject retrieves the SoftLayer_Network_Application_Delivery_Controller object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Application_Delivery_Controller service. You can only retrieve application delivery controllers that are associated with your SoftLayer customer account.
 func (r Network_Application_Delivery_Controller) GetObject() (resp datatypes.Network_Application_Delivery_Controller, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
+	Session session.SLSession
+	Options sl.Options
+}
+
+// GetNetworkApplicationDeliveryControllerLoadBalancerServiceService returns an instance of the Network_Application_Delivery_Controller_LoadBalancer_Service SoftLayer service
+func GetNetworkApplicationDeliveryControllerLoadBalancerServiceService(sess session.SLSession) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	return Network_Application_Delivery_Controller_LoadBalancer_Service{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Id(id int) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Limit(limit int) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) Offset(offset int) Network_Application_Delivery_Controller_LoadBalancer_Service {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) DeleteObject() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "deleteObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Application_Delivery_Controller_LoadBalancer_Service) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_Service, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_Service", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
+	Session session.SLSession
+	Options sl.Options
+}
+
+// GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService returns an instance of the Network_Application_Delivery_Controller_LoadBalancer_VirtualServer SoftLayer service
+func GetNetworkApplicationDeliveryControllerLoadBalancerVirtualServerService(sess session.SLSession) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	return Network_Application_Delivery_Controller_LoadBalancer_VirtualServer{Session: sess}
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Id(id int) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Mask(mask string) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Filter(filter string) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Limit(limit int) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Offset(offset int) Network_Application_Delivery_Controller_LoadBalancer_VirtualServer {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) DeleteObject() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "deleteObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) GetObject() (resp datatypes.Network_Application_Delivery_Controller_LoadBalancer_VirtualServer, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualServer", "getObject", nil, &r.Options, &resp)
 	return
 }
 
