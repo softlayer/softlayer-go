@@ -6,8 +6,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/softlayer/softlayer-go/filter"
-	"github.com/softlayer/softlayer-go/session"
 	"github.com/softlayer/softlayer-go/helpers/virtual"
+	"github.com/softlayer/softlayer-go/session"
 	"github.com/softlayer/softlayer-go/sl"
 )
 
@@ -41,9 +41,9 @@ func RunListVirtCmd(cmd *cobra.Command, args []string) error {
 	// Sets the mask, filter, result limit, and then makes the API call SoftLayer_Account::getHardware()
 	limit := 5
 	options := sl.Options{
-		Mask: objectMask,
+		Mask:   objectMask,
 		Filter: objectFilter,
-		Limit: &limit,
+		Limit:  &limit,
 	}
 
 	servers, err := virtual.GetVirtualGuestsIter(sess, &options)
@@ -60,7 +60,6 @@ func RunListVirtCmd(cmd *cobra.Command, args []string) error {
 		}
 		fmt.Printf("%v, %v, %v, %v\n", *server.Id, *server.Hostname, *server.Domain, ipAddress)
 	}
-
 
 	return nil
 }

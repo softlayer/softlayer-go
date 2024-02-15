@@ -17,14 +17,14 @@
 package virtual
 
 import (
-	"time"
-	"sync"
 	"fmt"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/helpers/product"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 	"github.com/softlayer/softlayer-go/sl"
+	"sync"
+	"time"
 )
 
 // Upgrade a virtual guest to a specified set of features (e.g. cpu, ram).
@@ -161,6 +161,9 @@ func UpgradeVirtualGuestWithPreset(
 	return orderService.PlaceOrder(&order, sl.Bool(false))
 }
 
+// Use go-routines to iterate through all virtual guest results.
+// optoins should be any Mask or Filter you need, and a Limit if the default is too large.
+// Any error in the subsequent API calls will be logged, but largely ignored
 func GetVirtualGuestsIter(session session.SLSession, options *sl.Options) (resp []datatypes.Virtual_Guest, err error) {
 
 	options.SetOffset(0)

@@ -1,11 +1,9 @@
-package virtual_test
+package hardware_test
 
 import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	// "github.com/softlayer/softlayer-go/datatypes"
-
-	"github.com/softlayer/softlayer-go/helpers/virtual"
+	"github.com/softlayer/softlayer-go/helpers/hardware"
 	"github.com/softlayer/softlayer-go/session/sessionfakes"
 	"github.com/softlayer/softlayer-go/sl"
 	"testing"
@@ -13,10 +11,10 @@ import (
 
 func TestServices(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Helper Virtual Tests")
+	RunSpecs(t, "Helper Hardware Tests")
 }
 
-var _ = Describe("Helper Virtual Tests", func() {
+var _ = Describe("Helper Hardware Tests", func() {
 	var slsession *sessionfakes.FakeSLSession
 	var options *sl.Options
 	BeforeEach(func() {
@@ -29,10 +27,10 @@ var _ = Describe("Helper Virtual Tests", func() {
 		}
 	})
 
-	Context("GetVirtualGuestsIter Tests", func() {
+	Context("GetHardwareIter Tests", func() {
 
 		It("API call made properly", func() {
-			_, err := virtual.GetVirtualGuestsIter(slsession, options)
+			_, err := hardware.GetHardwareIter(slsession, options)
 			Expect(err).ToNot(HaveOccurred())
 			Expect(slsession.DoRequestCallCount()).To(Equal(1))
 		})
