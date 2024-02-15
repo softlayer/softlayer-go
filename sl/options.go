@@ -20,7 +20,7 @@ import (
 	"math"
 )
 
-var defaultLimit = 50
+var DefaultLimit = 50
 
 // Options contains the individual query parameters that can be applied to a request.
 type Options struct {
@@ -41,8 +41,8 @@ func (opt *Options) GetRemainingAPICalls() int {
 
 // Makes sure the limit is set to something, not 0 or 1. Will set to default if no other limit is set.
 func (opt *Options) ValidateLimit() int {
-	if opt.Limit == nil || *opt.Limit < 2 {
-		opt.Limit = &defaultLimit
+	if opt.Limit == nil || *opt.Limit < DefaultLimit {
+		opt.Limit = &DefaultLimit
 	}
 	return *opt.Limit
 }
