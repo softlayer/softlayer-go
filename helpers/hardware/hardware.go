@@ -18,13 +18,13 @@ package hardware
 
 import (
 	"fmt"
-	"sync"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/helpers/location"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
 	"github.com/softlayer/softlayer-go/sl"
 	"regexp"
+	"sync"
 )
 
 // GeRouterByName returns a Hardware that matches the provided hostname,
