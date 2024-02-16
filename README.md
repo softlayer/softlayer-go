@@ -375,8 +375,8 @@ make test
 ```bash
 gofmt -w `find . -name '*.go' | grep -v vendor`
 go vet -all $(go list ./... | grep -v datatypes)
-go get -d -v -t ./...
-go test $(go list ./... | grep -v '/vendor/') -timeout=30s -parallel=4 -coverprofile coverage.out
+go mod vendor
+go test $(go list ./... | grep -v '/vendor/') -timeout=30s -coverprofile coverage.out
 ```
 
 ### Updating dependencies

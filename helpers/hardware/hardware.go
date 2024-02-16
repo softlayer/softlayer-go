@@ -18,12 +18,13 @@ package hardware
 
 import (
 	"fmt"
-
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/helpers/location"
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
+	"github.com/softlayer/softlayer-go/sl"
 	"regexp"
+	"sync"
 )
 
 // GeRouterByName returns a Hardware that matches the provided hostname,
@@ -58,4 +59,37 @@ func GetRouterByName(sess *session.Session, hostname string, args ...interface{}
 	}
 
 	return datatypes.Hardware{}, fmt.Errorf("No routers found with hostname of %s", hostname)
+}
+
+// Use go-routines to iterate through all hardware results.
+// options should be any Mask or Filter you need, and a Limit if the default is too large.
+// Any error in the subsequent API calls will be logged, but largely ignored
+func GetHardwareIter(session session.SLSession, options *sl.Options) (resp []datatypes.Hardware, err error) {
+
+	options.SetOffset(0)
+	limit := options.ValidateLimit()
+
+	// Can't call service.GetVirtualGuests because it passes a copy of options, not the address to options sadly.
+	err = session.DoRequest("SoftLayer_Account", "getHardware", nil, options, &resp)
+	if err != nil {
+		return
+	}
+	apicalls := options.GetRemainingAPICalls()
+	var wg sync.WaitGroup
+	for x := 1; x <= apicalls; x++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			offset := i * limit
+			this_resp := []datatypes.Hardware{}
+			options.Offset = &offset
+			err = session.DoRequest("SoftLayer_Account", "getHardware", nil, options, &this_resp)
+			if err != nil {
+				fmt.Printf("[ERROR] %v\n", err)
+			}
+			resp = append(resp, this_resp...)
+		}(x)
+	}
+	wg.Wait()
+	return resp, err
 }
