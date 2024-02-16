@@ -41,7 +41,7 @@ func (opt *Options) GetRemainingAPICalls() int {
 
 // Makes sure the limit is set to something, not 0 or 1. Will set to default if no other limit is set.
 func (opt *Options) ValidateLimit() int {
-	if opt.Limit == nil || *opt.Limit < DefaultLimit {
+	if opt.Limit == nil || *opt.Limit < 2 {
 		opt.Limit = &DefaultLimit
 	}
 	return *opt.Limit
