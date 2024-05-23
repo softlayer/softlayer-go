@@ -537,6 +537,12 @@ func (r Account) GetBlockDeviceTemplateGroups() (resp []datatypes.Virtual_Guest_
 	return
 }
 
+// Retrieve Flag indicating whether this account is restricted from performing a self-service brand migration by updating their credit card details.
+func (r Account) GetBlockSelfServiceBrandMigration() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getBlockSelfServiceBrandMigration", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Account) GetBluemixAccountId() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBluemixAccountId", nil, &r.Options, &resp)
@@ -744,12 +750,6 @@ func (r Account) GetGlobalIpv4Records() (resp []datatypes.Network_Subnet_IpAddre
 // Retrieve
 func (r Account) GetGlobalIpv6Records() (resp []datatypes.Network_Subnet_IpAddress_Global, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalIpv6Records", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The global load balancer accounts for a softlayer customer account.
-func (r Account) GetGlobalLoadBalancerAccounts() (resp []datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getGlobalLoadBalancerAccounts", nil, &r.Options, &resp)
 	return
 }
 
@@ -3505,9 +3505,10 @@ func (r Account_Lockdown_Request) CancelRequest() (err error) {
 }
 
 // Takes the original lockdown request ID, and an optional disable date. If no date is passed with the API call, the account will be disabled immediately. Otherwise, the account will be disabled on the date given. All hardware will be reclaimed and all accounts permanently disabled.
-func (r Account_Lockdown_Request) DisableLockedAccount(disableDate *string) (resp int, err error) {
+func (r Account_Lockdown_Request) DisableLockedAccount(disableDate *string, statusChangeReasonKeyName *string) (resp int, err error) {
 	params := []interface{}{
 		disableDate,
+		statusChangeReasonKeyName,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account_Lockdown_Request", "disableLockedAccount", params, &r.Options, &resp)
 	return
@@ -5578,5 +5579,57 @@ func (r Account_Shipment_Type) Offset(offset int) Account_Shipment_Type {
 // no documentation yet
 func (r Account_Shipment_Type) GetObject() (resp datatypes.Account_Shipment_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Shipment_Type", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type Account_Status_Change_Reason struct {
+	Session session.SLSession
+	Options sl.Options
+}
+
+// GetAccountStatusChangeReasonService returns an instance of the Account_Status_Change_Reason SoftLayer service
+func GetAccountStatusChangeReasonService(sess session.SLSession) Account_Status_Change_Reason {
+	return Account_Status_Change_Reason{Session: sess}
+}
+
+func (r Account_Status_Change_Reason) Id(id int) Account_Status_Change_Reason {
+	r.Options.Id = &id
+	return r
+}
+
+func (r Account_Status_Change_Reason) Mask(mask string) Account_Status_Change_Reason {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r Account_Status_Change_Reason) Filter(filter string) Account_Status_Change_Reason {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r Account_Status_Change_Reason) Limit(limit int) Account_Status_Change_Reason {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r Account_Status_Change_Reason) Offset(offset int) Account_Status_Change_Reason {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r Account_Status_Change_Reason) GetAllObjects() (resp []datatypes.Account_Status_Change_Reason, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_Status_Change_Reason", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Account_Status_Change_Reason) GetObject() (resp datatypes.Account_Status_Change_Reason, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account_Status_Change_Reason", "getObject", nil, &r.Options, &resp)
 	return
 }

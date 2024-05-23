@@ -1670,6 +1670,13 @@ var _ = Describe("Virtual Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Virtual_Guest::reconfigureConsole", func() {
+			It("API Call Test", func() {
+				err := sl_service.ReconfigureConsole()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Virtual_Guest::reloadCurrentOperatingSystemConfiguration", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.ReloadCurrentOperatingSystemConfiguration()

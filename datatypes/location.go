@@ -27,6 +27,7 @@ type Location struct {
 	BackboneDependentCount *uint `json:"backboneDependentCount,omitempty" xmlrpc:"backboneDependentCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	BackboneDependents []Network_Backbone_Location_Dependent `json:"backboneDependents,omitempty" xmlrpc:"backboneDependents,omitempty"`
 
 	// A flag indicating whether or not the datacenter/location is BNPP compliant.

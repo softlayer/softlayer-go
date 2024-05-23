@@ -3665,6 +3665,15 @@ func (r Hardware_SecurityModule) CaptureImage(captureTemplate *datatypes.Contain
 	return
 }
 
+// Changes the power state for the server.  The server's power status is changed from its remote management card.
+func (r Hardware_SecurityModule) ChangeRedfishPowerState(state *string) (resp bool, err error) {
+	params := []interface{}{
+		state,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "changeRedfishPowerState", params, &r.Options, &resp)
+	return
+}
+
 // You can launch firmware reflash by selecting from your server list. It will bring your server offline for approximately 60 minutes while the flashes are in progress.
 //
 // In the event of a hardware failure during this our datacenter engineers will be notified of the problem automatically. They will then replace any failed components to bring your server back online, and will be contacting you to ensure that impact on your server is minimal.
@@ -5275,6 +5284,12 @@ func (r Hardware_SecurityModule) GetRecentRemoteManagementCommands() (resp []dat
 	return
 }
 
+// Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
+func (r Hardware_SecurityModule) GetRedfishPowerState() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRedfishPowerState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getRegionalInternetRegistry", nil, &r.Options, &resp)
@@ -5954,6 +5969,13 @@ func (r Hardware_SecurityModule) ValidatePartitionsForOperatingSystem(operatingS
 }
 
 // no documentation yet
+func (r Hardware_SecurityModule) ValidateSecurityLevel() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "validateSecurityLevel", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
 type Hardware_SecurityModule750 struct {
 	Session session.SLSession
 	Options sl.Options
@@ -6046,6 +6068,15 @@ func (r Hardware_SecurityModule750) CaptureImage(captureTemplate *datatypes.Cont
 		captureTemplate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "captureImage", params, &r.Options, &resp)
+	return
+}
+
+// Changes the power state for the server.  The server's power status is changed from its remote management card.
+func (r Hardware_SecurityModule750) ChangeRedfishPowerState(state *string) (resp bool, err error) {
+	params := []interface{}{
+		state,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "changeRedfishPowerState", params, &r.Options, &resp)
 	return
 }
 
@@ -7659,6 +7690,12 @@ func (r Hardware_SecurityModule750) GetRecentRemoteManagementCommands() (resp []
 	return
 }
 
+// Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
+func (r Hardware_SecurityModule750) GetRedfishPowerState() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRedfishPowerState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Hardware_SecurityModule750) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getRegionalInternetRegistry", nil, &r.Options, &resp)
@@ -8337,6 +8374,13 @@ func (r Hardware_SecurityModule750) ValidatePartitionsForOperatingSystem(operati
 	return
 }
 
+// no documentation yet
+func (r Hardware_SecurityModule750) ValidateSecurityLevel() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "validateSecurityLevel", nil, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Hardware_Server data type contains general information relating to a single SoftLayer server.
 type Hardware_Server struct {
 	Session session.SLSession
@@ -8430,6 +8474,15 @@ func (r Hardware_Server) CaptureImage(captureTemplate *datatypes.Container_Disk_
 		captureTemplate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "captureImage", params, &r.Options, &resp)
+	return
+}
+
+// Changes the power state for the server.  The server's power status is changed from its remote management card.
+func (r Hardware_Server) ChangeRedfishPowerState(state *string) (resp bool, err error) {
+	params := []interface{}{
+		state,
+	}
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "changeRedfishPowerState", params, &r.Options, &resp)
 	return
 }
 
@@ -10043,6 +10096,12 @@ func (r Hardware_Server) GetRecentRemoteManagementCommands() (resp []datatypes.H
 	return
 }
 
+// Retrieves the power state for the server.  The server's power status is retrieved from its remote management card.  This will return 'on' or 'off'.
+func (r Hardware_Server) GetRedfishPowerState() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRedfishPowerState", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Hardware_Server) GetRegionalInternetRegistry() (resp datatypes.Network_Regional_Internet_Registry, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getRegionalInternetRegistry", nil, &r.Options, &resp)
@@ -10718,5 +10777,12 @@ func (r Hardware_Server) ValidatePartitionsForOperatingSystem(operatingSystem *d
 		partitions,
 	}
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "validatePartitionsForOperatingSystem", params, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r Hardware_Server) ValidateSecurityLevel() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "validateSecurityLevel", nil, &r.Options, &resp)
 	return
 }

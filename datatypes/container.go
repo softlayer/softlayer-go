@@ -3946,19 +3946,6 @@ type Container_Product_Order_Network_LoadBalancer_AsAService struct {
 	UseSystemPublicIpPool *bool `json:"useSystemPublicIpPool,omitempty" xmlrpc:"useSystemPublicIpPool,omitempty"`
 }
 
-// The global load balancer service has been deprecated and is no longer available.
-//
-// This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a global load balancer order with SoftLayer.
-type Container_Product_Order_Network_LoadBalancer_Global struct {
-	Container_Product_Order
-
-	// The domain name that will be load balanced.
-	Domain *string `json:"domain,omitempty" xmlrpc:"domain,omitempty"`
-
-	// The hostname that will be load balanced.
-	Hostname *string `json:"hostname,omitempty" xmlrpc:"hostname,omitempty"`
-}
-
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place a network message delivery order with SoftLayer.
 type Container_Product_Order_Network_Message_Delivery struct {
 	Container_Product_Order

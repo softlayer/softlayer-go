@@ -94,6 +94,24 @@ func (r Network) DisconnectPrivateEndpointService() (resp bool, err error) {
 	return
 }
 
+// Initiate the change of the private network to VRF, which will cause a brief private network outage.
+//
+// @SLDNDocumentation Method Permissions NETWORK_VLAN_SPANNING
+//
+// <h2>Responses</h2>
+//
+// <code>True</code> The request to change the private network has been accepted and the change will begin immediately.
+//
+// <code>False</code> The request had no change because the private network is already in a VRF or in the process of converting to VRF.
+//
+// <h2>Exceptions</h2>
+//
+// <code>SoftLayer_Exception_NotReady</code> Thrown when the current private network cannot be converted to VRF without specialized assistance.
+func (r Network) EnableVrf() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Network", "enableVrf", nil, &r.Options, &resp)
+	return
+}
+
 // Accessing select IBM Cloud services attached to the private back-end network is made possible by establishing a network relationship between an account's private network and the Service Endpoint network.
 //
 // <h2>Responses</h2>
@@ -1247,6 +1265,7 @@ func (r Network_Application_Delivery_Controller_LoadBalancer_VirtualServer) Stop
 }
 
 // A SoftLayer_Network_Backbone represents a single backbone connection from SoftLayer to the public Internet, from the Internet to the SoftLayer private network, or a link that connects the private networks between SoftLayer's datacenters. The SoftLayer_Network_Backbone data type is a collection of data associated with one of those connections.
+// Deprecated: This function has been marked as deprecated.
 type Network_Backbone struct {
 	Session session.SLSession
 	Options sl.Options
@@ -1301,19 +1320,19 @@ func (r Network_Backbone) GetBackbonesForLocationName(locationName *string) (res
 	return
 }
 
-// Retrieve A backbone's status.
+// Retrieve [Deprecated] A backbone's status.
 func (r Network_Backbone) GetHealth() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getHealth", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve Which of the SoftLayer datacenters a backbone is connected to.
+// Retrieve [Deprecated] Which of the SoftLayer datacenters a backbone is connected to.
 func (r Network_Backbone) GetLocation() (resp datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getLocation", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A backbone's primary network component.
+// Retrieve [Deprecated] A backbone's primary network component.
 func (r Network_Backbone) GetNetworkComponent() (resp datatypes.Network_Component, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Backbone", "getNetworkComponent", nil, &r.Options, &resp)
 	return
@@ -1326,6 +1345,7 @@ func (r Network_Backbone) GetObject() (resp datatypes.Network_Backbone, err erro
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 type Network_Backbone_Location_Dependent struct {
 	Session session.SLSession
 	Options sl.Options
@@ -3996,44 +4016,6 @@ func (r Network_Gateway) BypassVlans(vlans []datatypes.Network_Gateway_Vlan) (er
 	return
 }
 
-// Used to create a transaction to upgrade or rollback the vSRX version for Juniper gateway.
-func (r Network_Gateway) ChangeGatewayVersion(versionId *int, rollbackVersion *bool) (resp bool, err error) {
-	params := []interface{}{
-		versionId,
-		rollbackVersion,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "changeGatewayVersion", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Network_Gateway) CheckAccountWhiteList(accountId *int, category *string) (resp bool, err error) {
-	params := []interface{}{
-		accountId,
-		category,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "checkAccountWhiteList", params, &r.Options, &resp)
-	return
-}
-
-// Create and return a new gateway. This object can be created with any number of members or VLANs, but they all must be in the same pod. By creating a gateway with members and/or VLANs attached, it is the equivalent of individually calling their createObject methods except this will start a single asynchronous process to setup the gateway. The status of this process can be checked using the status field.
-func (r Network_Gateway) CreateObject(templateObject *datatypes.Network_Gateway) (resp datatypes.Network_Gateway, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "createObject", params, &r.Options, &resp)
-	return
-}
-
-// Edit this gateway. Currently, the only value that can be edited is the name.
-func (r Network_Gateway) EditObject(templateObject *datatypes.Network_Gateway) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "editObject", params, &r.Options, &resp)
-	return
-}
-
 // Purpose is to rebuild the target Gateway cluster with the specified OS price id. Method will remove the current OS and apply the default configuration settings. This will result in an extended OUTAGE!! Any custom configuration settings must be re-applied after the forced rebuild is completed. This is a DESTRUCTIVE action, use with caution.
 func (r Network_Gateway) ForceRebuildCluster(osPriceId *int) (resp bool, err error) {
 	params := []interface{}{
@@ -4165,26 +4147,11 @@ func (r Network_Gateway) GetUpgradeItemPrices() (resp []datatypes.Product_Item_P
 }
 
 // no documentation yet
-func (r Network_Gateway) IsAccountWhiteListed(category *string) (resp bool, err error) {
-	params := []interface{}{
-		category,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isAccountWhiteListed", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
 func (r Network_Gateway) IsLicenseServerAllowed(licenseKeyName *string) (resp bool, err error) {
 	params := []interface{}{
 		licenseKeyName,
 	}
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isLicenseServerAllowed", params, &r.Options, &resp)
-	return
-}
-
-// Returns true if rollback is allowed.
-func (r Network_Gateway) IsRollbackAllowed() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "isRollbackAllowed", nil, &r.Options, &resp)
 	return
 }
 
@@ -4216,7 +4183,7 @@ func (r Network_Gateway) RebuildvSRXHACluster() (resp bool, err error) {
 	return
 }
 
-// Used to refresh the license for the Juniper Gateway, requires License readiness check has passed.
+// Used to refresh the all licenses (Required and add ons) for Virtual gateways.  License precheck must be ready.
 func (r Network_Gateway) RefreshGatewayLicense() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Gateway", "refreshGatewayLicense", nil, &r.Options, &resp)
 	return
@@ -4618,15 +4585,6 @@ func (r Network_Gateway_VersionUpgrade) Limit(limit int) Network_Gateway_Version
 func (r Network_Gateway_VersionUpgrade) Offset(offset int) Network_Gateway_VersionUpgrade {
 	r.Options.Offset = &offset
 	return r
-}
-
-// no documentation yet
-func (r Network_Gateway_VersionUpgrade) GetAllByUpgradePkgUrlId(upgradePkgUrlId *int) (resp []datatypes.Network_Gateway_VersionUpgrade, err error) {
-	params := []interface{}{
-		upgradePkgUrlId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_Gateway_VersionUpgrade", "getAllByUpgradePkgUrlId", params, &r.Options, &resp)
-	return
 }
 
 // no documentation yet
@@ -5823,175 +5781,6 @@ func (r Network_LBaaS_SSLCipher) GetAllObjects() (resp []datatypes.Network_LBaaS
 // no documentation yet
 func (r Network_LBaaS_SSLCipher) GetObject() (resp datatypes.Network_LBaaS_SSLCipher, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_LBaaS_SSLCipher", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-// Deprecated: This function has been marked as deprecated.
-type Network_LoadBalancer_Global_Account struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetNetworkLoadBalancerGlobalAccountService returns an instance of the Network_LoadBalancer_Global_Account SoftLayer service
-func GetNetworkLoadBalancerGlobalAccountService(sess session.SLSession) Network_LoadBalancer_Global_Account {
-	return Network_LoadBalancer_Global_Account{Session: sess}
-}
-
-func (r Network_LoadBalancer_Global_Account) Id(id int) Network_LoadBalancer_Global_Account {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Account) Mask(mask string) Network_LoadBalancer_Global_Account {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Account) Filter(filter string) Network_LoadBalancer_Global_Account {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Account) Limit(limit int) Network_LoadBalancer_Global_Account {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Account) Offset(offset int) Network_LoadBalancer_Global_Account {
-	r.Options.Offset = &offset
-	return r
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-//
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will add the required NS resource record to your DNS zone file and remove any A records that match the host portion of a global load balancer account hostname.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_LoadBalancer_Global_Account) AddNsRecord() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "addNsRecord", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-//
-// Edit the properties of a global load balancer account by passing in a modified instance of the object.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_LoadBalancer_Global_Account) EditObject(templateObject *datatypes.Network_LoadBalancer_Global_Account) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "editObject", params, &r.Options, &resp)
-	return
-}
-
-// Retrieve Your SoftLayer customer account.
-func (r Network_LoadBalancer_Global_Account) GetAccount() (resp datatypes.Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The current billing item for a Global Load Balancer account.
-func (r Network_LoadBalancer_Global_Account) GetBillingItem() (resp datatypes.Billing_Item, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getBillingItem", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The hosts in the load balancing pool for a global load balancer account.
-func (r Network_LoadBalancer_Global_Account) GetHosts() (resp []datatypes.Network_LoadBalancer_Global_Host, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getHosts", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The load balance method of a global load balancer account
-func (r Network_LoadBalancer_Global_Account) GetLoadBalanceType() (resp datatypes.Network_LoadBalancer_Global_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getLoadBalanceType", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve A flag indicating that the global load balancer is a managed resource.
-func (r Network_LoadBalancer_Global_Account) GetManagedResourceFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getManagedResourceFlag", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-func (r Network_LoadBalancer_Global_Account) GetObject() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-//
-// If your globally load balanced domain is hosted on the SoftLayer nameservers this method will remove the NS resource record from your DNS zone file.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_LoadBalancer_Global_Account) RemoveNsRecord() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Account", "removeNsRecord", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-// Deprecated: This function has been marked as deprecated.
-type Network_LoadBalancer_Global_Host struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetNetworkLoadBalancerGlobalHostService returns an instance of the Network_LoadBalancer_Global_Host SoftLayer service
-func GetNetworkLoadBalancerGlobalHostService(sess session.SLSession) Network_LoadBalancer_Global_Host {
-	return Network_LoadBalancer_Global_Host{Session: sess}
-}
-
-func (r Network_LoadBalancer_Global_Host) Id(id int) Network_LoadBalancer_Global_Host {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Host) Mask(mask string) Network_LoadBalancer_Global_Host {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Host) Filter(filter string) Network_LoadBalancer_Global_Host {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Host) Limit(limit int) Network_LoadBalancer_Global_Host {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Network_LoadBalancer_Global_Host) Offset(offset int) Network_LoadBalancer_Global_Host {
-	r.Options.Offset = &offset
-	return r
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-//
-// Remove a host from the load balancing pool of a global load balancer account.
-// Deprecated: This function has been marked as deprecated.
-func (r Network_LoadBalancer_Global_Host) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve The global load balancer account a host belongs to.
-func (r Network_LoadBalancer_Global_Host) GetLoadBalancerAccount() (resp datatypes.Network_LoadBalancer_Global_Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "getLoadBalancerAccount", nil, &r.Options, &resp)
-	return
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-func (r Network_LoadBalancer_Global_Host) GetObject() (resp datatypes.Network_LoadBalancer_Global_Host, err error) {
-	err = r.Session.DoRequest("SoftLayer_Network_LoadBalancer_Global_Host", "getObject", nil, &r.Options, &resp)
 	return
 }
 

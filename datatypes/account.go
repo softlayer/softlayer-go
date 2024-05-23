@@ -257,6 +257,9 @@ type Account struct {
 	// Private template group objects (parent and children) and the shared template group objects (parent only) for an account.
 	BlockDeviceTemplateGroups []Virtual_Guest_Block_Device_Template_Group `json:"blockDeviceTemplateGroups,omitempty" xmlrpc:"blockDeviceTemplateGroups,omitempty"`
 
+	// Flag indicating whether this account is restricted from performing a self-service brand migration by updating their credit card details.
+	BlockSelfServiceBrandMigration *bool `json:"blockSelfServiceBrandMigration,omitempty" xmlrpc:"blockSelfServiceBrandMigration,omitempty"`
+
 	// no documentation yet
 	BluemixAccountId *string `json:"bluemixAccountId,omitempty" xmlrpc:"bluemixAccountId,omitempty"`
 
@@ -422,13 +425,6 @@ type Account struct {
 
 	// no documentation yet
 	GlobalIpv6Records []Network_Subnet_IpAddress_Global `json:"globalIpv6Records,omitempty" xmlrpc:"globalIpv6Records,omitempty"`
-
-	// A count of [Deprecated] The global load balancer accounts for a softlayer customer account.
-	GlobalLoadBalancerAccountCount *uint `json:"globalLoadBalancerAccountCount,omitempty" xmlrpc:"globalLoadBalancerAccountCount,omitempty"`
-
-	// [Deprecated] The global load balancer accounts for a softlayer customer account.
-	// Deprecated: This function has been marked as deprecated.
-	GlobalLoadBalancerAccounts []Network_LoadBalancer_Global_Account `json:"globalLoadBalancerAccounts,omitempty" xmlrpc:"globalLoadBalancerAccounts,omitempty"`
 
 	// An account's associated hardware objects.
 	Hardware []Hardware `json:"hardware,omitempty" xmlrpc:"hardware,omitempty"`
@@ -3078,6 +3074,20 @@ type Account_Status struct {
 
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
+// no documentation yet
+type Account_Status_Change_Reason struct {
+	Entity
+
+	// no documentation yet
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// no documentation yet
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`

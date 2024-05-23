@@ -1522,16 +1522,6 @@ type Billing_Item_Network_LoadBalancer struct {
 	Billing_Item
 }
 
-// The global load balancer service has been deprecated and is no longer available.
-//
-// The SoftLayer_Billing_Item_Network_LoadBalancer_Global data type contains general information relating to a single SoftLayer billing item whose item category code is 'global_load_balancer'
-type Billing_Item_Network_LoadBalancer_Global struct {
-	Billing_Item
-
-	// The resource for a global load balancer billing item.
-	Resource *Network_LoadBalancer_Global_Account `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
-}
-
 // A SoftLayer_Billing_Item_Network_LoadBalancer_VirtualIpAddress represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer_VirtualIpAddress|load balancer]] instance.
 type Billing_Item_Network_LoadBalancer_VirtualIpAddress struct {
 	Billing_Item

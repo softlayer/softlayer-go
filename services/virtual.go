@@ -1928,6 +1928,13 @@ func (r Virtual_Guest) RebootSoft() (resp bool, err error) {
 	return
 }
 
+// no documentation yet
+func (r Virtual_Guest) ReconfigureConsole() (err error) {
+	var resp datatypes.Void
+	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "reconfigureConsole", nil, &r.Options, &resp)
+	return
+}
+
 // Create a transaction to perform an OS reload
 func (r Virtual_Guest) ReloadCurrentOperatingSystemConfiguration() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "reloadCurrentOperatingSystemConfiguration", nil, &r.Options, &resp)

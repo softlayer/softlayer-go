@@ -3194,6 +3194,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule::changeRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.ChangeRedfishPowerState(nil)
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_SecurityModule::createFirmwareReflashTransaction", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CreateFirmwareReflashTransaction(nil, nil, nil)
@@ -4580,6 +4587,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule::getRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetRedfishPowerState()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_SecurityModule::getRegionalInternetRegistry", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetRegionalInternetRegistry()
@@ -5203,6 +5217,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule::validateSecurityLevel", func() {
+			It("API Call Test", func() {
+				err := sl_service.ValidateSecurityLevel()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 	})
 
 	Context("Testing SoftLayer_Hardware_SecurityModule750 service", func() {
@@ -5271,6 +5292,13 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule750::captureImage", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CaptureImage(nil)
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Hardware_SecurityModule750::changeRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.ChangeRedfishPowerState(nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -6661,6 +6689,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule750::getRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetRedfishPowerState()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_SecurityModule750::getRegionalInternetRegistry", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetRegionalInternetRegistry()
@@ -7284,6 +7319,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule750::validateSecurityLevel", func() {
+			It("API Call Test", func() {
+				err := sl_service.ValidateSecurityLevel()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 	})
 
 	Context("Testing SoftLayer_Hardware_Server service", func() {
@@ -7352,6 +7394,13 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::captureImage", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.CaptureImage(nil)
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Hardware_Server::changeRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.ChangeRedfishPowerState(nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -8742,6 +8791,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_Server::getRedfishPowerState", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetRedfishPowerState()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_Server::getRegionalInternetRegistry", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetRegionalInternetRegistry()
@@ -9361,6 +9417,13 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::validatePartitionsForOperatingSystem", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.ValidatePartitionsForOperatingSystem(nil, nil)
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Hardware_Server::validateSecurityLevel", func() {
+			It("API Call Test", func() {
+				err := sl_service.ValidateSecurityLevel()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
