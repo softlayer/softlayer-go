@@ -56,6 +56,13 @@ var _ = Describe("Network Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Network::enableVrf", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.EnableVrf()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Network::isConnectedToPrivateEndpointService", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.IsConnectedToPrivateEndpointService()
@@ -3428,34 +3435,6 @@ var _ = Describe("Network Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Network_Gateway::changeGatewayVersion", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.ChangeGatewayVersion(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_Gateway::checkAccountWhiteList", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CheckAccountWhiteList(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_Gateway::createObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_Gateway::editObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Network_Gateway::forceRebuildCluster", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.ForceRebuildCluster(nil)
@@ -3596,23 +3575,9 @@ var _ = Describe("Network Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Network_Gateway::isAccountWhiteListed", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.IsAccountWhiteListed(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Network_Gateway::isLicenseServerAllowed", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.IsLicenseServerAllowed(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_Gateway::isRollbackAllowed", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.IsRollbackAllowed()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -3961,13 +3926,6 @@ var _ = Describe("Network Tests", func() {
 				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
 				sl_service = sl_service.Mask("test,test2")
 				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Network_Gateway_VersionUpgrade::getAllByUpgradePkgUrlId", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAllByUpgradePkgUrlId(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
 		Context("SoftLayer_Network_Gateway_VersionUpgrade::getAllUpgradesByGatewayId", func() {
@@ -4961,150 +4919,6 @@ var _ = Describe("Network Tests", func() {
 			})
 		})
 		Context("SoftLayer_Network_LBaaS_SSLCipher::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Network_LoadBalancer_Global_Account service", func() {
-		var sl_service services.Network_LoadBalancer_Global_Account
-		BeforeEach(func() {
-			sl_service = services.GetNetworkLoadBalancerGlobalAccountService(slsession)
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::addNsRecord", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.AddNsRecord()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::editObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getAccount", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAccount()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getBillingItem", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBillingItem()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getHosts", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetHosts()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getLoadBalanceType", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetLoadBalanceType()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getManagedResourceFlag", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetManagedResourceFlag()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Account::removeNsRecord", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.RemoveNsRecord()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Network_LoadBalancer_Global_Host service", func() {
-		var sl_service services.Network_LoadBalancer_Global_Host
-		BeforeEach(func() {
-			sl_service = services.GetNetworkLoadBalancerGlobalHostService(slsession)
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Host Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Host Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Host::deleteObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Host::getLoadBalancerAccount", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetLoadBalancerAccount()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Network_LoadBalancer_Global_Host::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
 				Expect(err).To(Succeed())

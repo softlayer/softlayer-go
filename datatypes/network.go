@@ -567,19 +567,22 @@ type Network_Backbone struct {
 	// The unit portion of the bandwidth capacity of a SoftLayer backbone. For instance, if a backbone is rated at "10 G" capacity then the capacityUnits property of the backbone is "G".
 	CapacityUnits *string `json:"capacityUnits,omitempty" xmlrpc:"capacityUnits,omitempty"`
 
-	// A backbone's status.
+	// [Deprecated] A backbone's status.
+	// Deprecated: This function has been marked as deprecated.
 	Health *string `json:"health,omitempty" xmlrpc:"health,omitempty"`
 
 	// A backbone's internal identifier.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// Which of the SoftLayer datacenters a backbone is connected to.
+	// [Deprecated] Which of the SoftLayer datacenters a backbone is connected to.
+	// Deprecated: This function has been marked as deprecated.
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// A backbone's name. This is usually the name of the backbone's network provider followed by a number in case SoftLayer uses more than one backbone from a provider. Backbone provider numbers start with the number one and increment from there.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
-	// A backbone's primary network component.
+	// [Deprecated] A backbone's primary network component.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkComponent *Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
 
 	// The internal identifier of the network component that backbone is connected to.
@@ -594,6 +597,7 @@ type Network_Backbone_Location_Dependent struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	DependentLocation *Location `json:"dependentLocation,omitempty" xmlrpc:"dependentLocation,omitempty"`
 
 	// no documentation yet
@@ -603,6 +607,7 @@ type Network_Backbone_Location_Dependent struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SourceLocation *Location `json:"sourceLocation,omitempty" xmlrpc:"sourceLocation,omitempty"`
 
 	// no documentation yet
@@ -1883,9 +1888,6 @@ type Network_Gateway_Member_Attribute struct {
 	// Username associated with the gateway.
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 
-	// The vSRX version of the gateway software
-	VSRXVersion *string `json:"vSRXVersion,omitempty" xmlrpc:"vSRXVersion,omitempty"`
-
 	// The version of the gateway software
 	Version *string `json:"version,omitempty" xmlrpc:"version,omitempty"`
 
@@ -2736,104 +2738,6 @@ type Network_LBaaS_SessionAffinity struct {
 
 	// Type of the session persistence
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-type Network_LoadBalancer_Global_Account struct {
-	Entity
-
-	// Your SoftLayer customer account.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// The maximum number of hosts that a global load balancer account is allowed to have.
-	AllowedNumberOfHosts *int `json:"allowedNumberOfHosts,omitempty" xmlrpc:"allowedNumberOfHosts,omitempty"`
-
-	// The average amount of connections per second used within the current billing cycle.  This number is updated daily.
-	AverageConnectionsPerSecond *Float64 `json:"averageConnectionsPerSecond,omitempty" xmlrpc:"averageConnectionsPerSecond,omitempty"`
-
-	// The current billing item for a Global Load Balancer account.
-	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
-
-	// The amount of connections per second a global load balancer account may use within a billing cycle without being billed for an overage.
-	ConnectionsPerSecond *int `json:"connectionsPerSecond,omitempty" xmlrpc:"connectionsPerSecond,omitempty"`
-
-	// The IP address that will be return to a DNS request when none of the hosts for a global load balancer account could be returned.
-	FallbackIp *string `json:"fallbackIp,omitempty" xmlrpc:"fallbackIp,omitempty"`
-
-	// A count of the hosts in the load balancing pool for a global load balancer account.
-	HostCount *uint `json:"hostCount,omitempty" xmlrpc:"hostCount,omitempty"`
-
-	// The hostname of a global load balancer account that is being load balanced.
-	Hostname *string `json:"hostname,omitempty" xmlrpc:"hostname,omitempty"`
-
-	// The hosts in the load balancing pool for a global load balancer account.
-	Hosts []Network_LoadBalancer_Global_Host `json:"hosts,omitempty" xmlrpc:"hosts,omitempty"`
-
-	// The unique identifier of a global load balancer account.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// The load balance method of a global load balancer account
-	LoadBalanceType *Network_LoadBalancer_Global_Type `json:"loadBalanceType,omitempty" xmlrpc:"loadBalanceType,omitempty"`
-
-	// The identifier of the load balance method for a global load balancer account.
-	LoadBalanceTypeId *int `json:"loadBalanceTypeId,omitempty" xmlrpc:"loadBalanceTypeId,omitempty"`
-
-	// A flag indicating that the global load balancer is a managed resource.
-	ManagedResourceFlag *bool `json:"managedResourceFlag,omitempty" xmlrpc:"managedResourceFlag,omitempty"`
-
-	// Additional customer defined information for a global load balancer account.
-	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-type Network_LoadBalancer_Global_Host struct {
-	Entity
-
-	// The IP address of the host that will be returned by the global load balancers in response to a dns request.
-	DestinationIp *string `json:"destinationIp,omitempty" xmlrpc:"destinationIp,omitempty"`
-
-	// The port of the host that will be used for health checks.
-	DestinationPort *int `json:"destinationPort,omitempty" xmlrpc:"destinationPort,omitempty"`
-
-	// Whether the host is enabled or not.  The value can be '0' for disabled, or '1' for enabled.
-	Enabled *int `json:"enabled,omitempty" xmlrpc:"enabled,omitempty"`
-
-	// The health check type of a host.  Valid values include 'none', 'http', and 'tcp'.
-	HealthCheck *string `json:"healthCheck,omitempty" xmlrpc:"healthCheck,omitempty"`
-
-	// The number of times the host was selected by the load balance method.
-	Hits *Float64 `json:"hits,omitempty" xmlrpc:"hits,omitempty"`
-
-	// The unique identifier of a global load balancer host.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// The order of this host within the load balance pool.  This is only significant if the load balance method is set to failover.
-	LoadBalanceOrder *int `json:"loadBalanceOrder,omitempty" xmlrpc:"loadBalanceOrder,omitempty"`
-
-	// The global load balancer account a host belongs to.
-	LoadBalancerAccount *Network_LoadBalancer_Global_Account `json:"loadBalancerAccount,omitempty" xmlrpc:"loadBalancerAccount,omitempty"`
-
-	// The location of a host in a datacenter.serverRoom format.
-	Location *string `json:"location,omitempty" xmlrpc:"location,omitempty"`
-
-	// The health status of a host.  The status can be either 'UP', 'DOWN', or null which could mean that the health check type is set to 'none' or an update to the ip, port, or health check type was recently done and the host is waiting for the new status.
-	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
-
-	// The load balance weight of a host.  The total weight of all hosts in the load balancing pool must not exceed 100.
-	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
-}
-
-// The global load balancer service has been deprecated and is no longer available.
-//
-// The SoftLayer_Network_LoadBalancer_Global_Type data type represents a single load balance method that can be assigned to a global load balancer account. The load balance method determines how hosts in a load balancing pool are chosen by the global load balancers.
-type Network_LoadBalancer_Global_Type struct {
-	Entity
-
-	// The unique identifier of a load balance method.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// The name of a load balance method.
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
 // The SoftLayer_Network_LoadBalancer_Service data type contains all the information relating to a specific service (destination) on a particular load balancer.
