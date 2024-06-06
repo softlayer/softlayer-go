@@ -1136,6 +1136,12 @@ type User_Permission_Action struct {
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
+	Department *User_Permission_Department `json:"department,omitempty" xmlrpc:"department,omitempty"`
+
+	// no documentation yet
+	DepartmentId *int `json:"departmentId,omitempty" xmlrpc:"departmentId,omitempty"`
+
+	// no documentation yet
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
@@ -1153,6 +1159,29 @@ type User_Permission_Action struct {
 
 	// no documentation yet
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+}
+
+// no documentation yet
+type User_Permission_Department struct {
+	Entity
+
+	// Department description
+	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
+
+	// Department primary identifier
+	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
+
+	// Department key name
+	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
+
+	// Department readable name
+	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
+
+	// A count of
+	PermissionCount *uint `json:"permissionCount,omitempty" xmlrpc:"permissionCount,omitempty"`
+
+	// no documentation yet
+	Permissions []User_Permission_Action `json:"permissions,omitempty" xmlrpc:"permissions,omitempty"`
 }
 
 // The SoftLayer_User_Permission_Group data type contains local attributes to identify and describe the permission groups that have been created within IMS.  These includes a name, description, and account id.  Permission groups are defined specifically for a single [[SoftLayer_Account]].

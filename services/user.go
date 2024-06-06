@@ -4870,9 +4870,73 @@ func (r User_Permission_Action) GetAllObjects() (resp []datatypes.User_Permissio
 	return
 }
 
+// Retrieve
+func (r User_Permission_Action) GetDepartment() (resp datatypes.User_Permission_Department, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getDepartment", nil, &r.Options, &resp)
+	return
+}
+
 // no documentation yet
 func (r User_Permission_Action) GetObject() (resp datatypes.User_Permission_Action, err error) {
 	err = r.Session.DoRequest("SoftLayer_User_Permission_Action", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+type User_Permission_Department struct {
+	Session session.SLSession
+	Options sl.Options
+}
+
+// GetUserPermissionDepartmentService returns an instance of the User_Permission_Department SoftLayer service
+func GetUserPermissionDepartmentService(sess session.SLSession) User_Permission_Department {
+	return User_Permission_Department{Session: sess}
+}
+
+func (r User_Permission_Department) Id(id int) User_Permission_Department {
+	r.Options.Id = &id
+	return r
+}
+
+func (r User_Permission_Department) Mask(mask string) User_Permission_Department {
+	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
+		mask = fmt.Sprintf("mask[%s]", mask)
+	}
+
+	r.Options.Mask = mask
+	return r
+}
+
+func (r User_Permission_Department) Filter(filter string) User_Permission_Department {
+	r.Options.Filter = filter
+	return r
+}
+
+func (r User_Permission_Department) Limit(limit int) User_Permission_Department {
+	r.Options.Limit = &limit
+	return r
+}
+
+func (r User_Permission_Department) Offset(offset int) User_Permission_Department {
+	r.Options.Offset = &offset
+	return r
+}
+
+// no documentation yet
+func (r User_Permission_Department) GetAllObjects() (resp []datatypes.User_Permission_Department, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Department", "getAllObjects", nil, &r.Options, &resp)
+	return
+}
+
+// no documentation yet
+func (r User_Permission_Department) GetObject() (resp datatypes.User_Permission_Department, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Department", "getObject", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve
+func (r User_Permission_Department) GetPermissions() (resp []datatypes.User_Permission_Action, err error) {
+	err = r.Session.DoRequest("SoftLayer_User_Permission_Department", "getPermissions", nil, &r.Options, &resp)
 	return
 }
 

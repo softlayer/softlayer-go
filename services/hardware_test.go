@@ -1646,6 +1646,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_Component_Model::getVmwareQualifiedFirmwares", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetVmwareQualifiedFirmwares()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 	})
 
 	Context("Testing SoftLayer_Hardware_Component_Partition_OperatingSystem service", func() {

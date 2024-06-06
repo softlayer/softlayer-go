@@ -56,13 +56,6 @@ var _ = Describe("Location Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Location::getBackboneDependents", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBackboneDependents()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Location::getBnppCompliantFlag", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBnppCompliantFlag()
@@ -264,13 +257,6 @@ var _ = Describe("Location Tests", func() {
 		Context("SoftLayer_Location_Datacenter::getAvailableObjectStorageDatacenters", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetAvailableObjectStorageDatacenters()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Location_Datacenter::getBackboneDependents", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBackboneDependents()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

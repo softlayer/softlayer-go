@@ -557,63 +557,6 @@ type Network_Application_Delivery_Controller_Type struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
-// A SoftLayer_Network_Backbone represents a single backbone connection from SoftLayer to the public Internet, from the Internet to the SoftLayer private network, or a link that connects the private networks between SoftLayer's datacenters. The SoftLayer_Network_Backbone data type is a collection of data associated with one of those connections.
-type Network_Backbone struct {
-	Entity
-
-	// The numeric portion of the bandwidth capacity of a SoftLayer backbone. For instance, if a backbone is rated at "1 GigE" capacity then the capacity property of the backbone is 1.
-	Capacity *int `json:"capacity,omitempty" xmlrpc:"capacity,omitempty"`
-
-	// The unit portion of the bandwidth capacity of a SoftLayer backbone. For instance, if a backbone is rated at "10 G" capacity then the capacityUnits property of the backbone is "G".
-	CapacityUnits *string `json:"capacityUnits,omitempty" xmlrpc:"capacityUnits,omitempty"`
-
-	// [Deprecated] A backbone's status.
-	// Deprecated: This function has been marked as deprecated.
-	Health *string `json:"health,omitempty" xmlrpc:"health,omitempty"`
-
-	// A backbone's internal identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// [Deprecated] Which of the SoftLayer datacenters a backbone is connected to.
-	// Deprecated: This function has been marked as deprecated.
-	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
-
-	// A backbone's name. This is usually the name of the backbone's network provider followed by a number in case SoftLayer uses more than one backbone from a provider. Backbone provider numbers start with the number one and increment from there.
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-
-	// [Deprecated] A backbone's primary network component.
-	// Deprecated: This function has been marked as deprecated.
-	NetworkComponent *Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
-
-	// The internal identifier of the network component that backbone is connected to.
-	NetworkComponentId *int `json:"networkComponentId,omitempty" xmlrpc:"networkComponentId,omitempty"`
-
-	// Whether a SoftLayer backbone connects to the public Internet, to the private network, or connecting the private networks of SoftLayer's datacenters. Type is either the string "public", "private", or "private-interconnect".
-	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
-}
-
-// no documentation yet
-type Network_Backbone_Location_Dependent struct {
-	Entity
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	DependentLocation *Location `json:"dependentLocation,omitempty" xmlrpc:"dependentLocation,omitempty"`
-
-	// no documentation yet
-	DependentLocationId *int `json:"dependentLocationId,omitempty" xmlrpc:"dependentLocationId,omitempty"`
-
-	// no documentation yet
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	SourceLocation *Location `json:"sourceLocation,omitempty" xmlrpc:"sourceLocation,omitempty"`
-
-	// no documentation yet
-	SourceLocationId *int `json:"sourceLocationId,omitempty" xmlrpc:"sourceLocationId,omitempty"`
-}
-
 // The SoftLayer_Network_Bandwidth_Usage data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
 type Network_Bandwidth_Usage struct {
 	Entity
@@ -3456,6 +3399,7 @@ type Network_Service_Health struct {
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// A service's location.
+	// Deprecated: This function has been marked as deprecated.
 	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
 
 	// A service's location identifier.
@@ -3465,6 +3409,7 @@ type Network_Service_Health struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// The status portion of a service/status relationship.
+	// Deprecated: This function has been marked as deprecated.
 	Status *Network_Service_Health_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// A service's status identifier.
