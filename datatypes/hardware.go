@@ -1190,6 +1190,12 @@ type Hardware_Component_Model struct {
 
 	// The model number or model description of a hardware component model.
 	Version *string `json:"version,omitempty" xmlrpc:"version,omitempty"`
+
+	// A count of
+	VmwareQualifiedFirmwareCount *uint `json:"vmwareQualifiedFirmwareCount,omitempty" xmlrpc:"vmwareQualifiedFirmwareCount,omitempty"`
+
+	// no documentation yet
+	VmwareQualifiedFirmwares []Hardware_Component_Firmware `json:"vmwareQualifiedFirmwares,omitempty" xmlrpc:"vmwareQualifiedFirmwares,omitempty"`
 }
 
 // no documentation yet

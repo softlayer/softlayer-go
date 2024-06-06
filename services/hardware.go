@@ -1879,6 +1879,12 @@ func (r Hardware_Component_Model) GetValidAttributeTypes() (resp []datatypes.Har
 	return
 }
 
+// Retrieve
+func (r Hardware_Component_Model) GetVmwareQualifiedFirmwares() (resp []datatypes.Hardware_Component_Firmware, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getVmwareQualifiedFirmwares", nil, &r.Options, &resp)
+	return
+}
+
 // The SoftLayer_Hardware_Component_Partition_OperatingSystem data type contains general information relating to a single SoftLayer Operating System Partition Template.
 type Hardware_Component_Partition_OperatingSystem struct {
 	Session session.SLSession

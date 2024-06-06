@@ -3504,7 +3504,7 @@ func (r Account_Lockdown_Request) CancelRequest() (err error) {
 	return
 }
 
-// Takes the original lockdown request ID, and an optional disable date. If no date is passed with the API call, the account will be disabled immediately. Otherwise, the account will be disabled on the date given. All hardware will be reclaimed and all accounts permanently disabled.
+// Takes the original lockdown request ID. The account will be disabled immediately. All hardware will be reclaimed and all accounts permanently disabled.
 func (r Account_Lockdown_Request) DisableLockedAccount(disableDate *string, statusChangeReasonKeyName *string) (resp int, err error) {
 	params := []interface{}{
 		disableDate,
@@ -3514,7 +3514,7 @@ func (r Account_Lockdown_Request) DisableLockedAccount(disableDate *string, stat
 	return
 }
 
-// Takes an account ID and an optional disconnect date. If no disconnect date is passed into the API call, the account disconnection will happen immediately. Otherwise, the account disconnection will happen on the date given. A brand account request ID will be returned and will then be updated when the disconnection occurs.
+// Takes an account ID. Note the disconnection will happen immediately. A brand account request ID will be returned and will then be updated when the disconnection occurs.
 func (r Account_Lockdown_Request) DisconnectCompute(accountId *int, disconnectDate *string) (resp int, err error) {
 	params := []interface{}{
 		accountId,
@@ -3539,7 +3539,7 @@ func (r Account_Lockdown_Request) GetObject() (resp datatypes.Account_Lockdown_R
 	return
 }
 
-// Takes the original disconnected lockdown event ID, and an optional reconnect date. If no reconnect date is passed with the API call, the account reconnection will happen immediately. Otherwise, the account reconnection will happen on the date given. The associated lockdown event will be unlocked and closed at that time.
+// Takes the original disconnected lockdown request ID. The account reconnection will happen immediately. The associated lockdown event will be unlocked and closed at that time.
 func (r Account_Lockdown_Request) ReconnectCompute(reconnectDate *string) (resp int, err error) {
 	params := []interface{}{
 		reconnectDate,

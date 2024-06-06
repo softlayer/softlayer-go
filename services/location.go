@@ -22,7 +22,7 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-// Every piece of hardware and network connection owned by SoftLayer is tracked physically by location and stored in the SoftLayer_Location data type. SoftLayer locations exist in parent/child relationships, a convenient way to track equipment from it's city, datacenter, server room, rack, then slot. Network backbones are tied to datacenters only, not to a room, rack, or slot.
+// Every piece of hardware and network connection owned by SoftLayer is tracked physically by location and stored in the SoftLayer_Location data type. SoftLayer locations exist in parent/child relationships, a convenient way to track equipment from it's city, datacenter, server room, rack, then slot.
 type Location struct {
 	Session session.SLSession
 	Options sl.Options
@@ -71,12 +71,6 @@ func (r Location) GetActivePresaleEvents() (resp []datatypes.Sales_Presale_Event
 // Object Storage is only available in select datacenters. This method will return all the datacenters where object storage is available.
 func (r Location) GetAvailableObjectStorageDatacenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getAvailableObjectStorageDatacenters", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Location) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
-	err = r.Session.DoRequest("SoftLayer_Location", "getBackboneDependents", nil, &r.Options, &resp)
 	return
 }
 
@@ -267,12 +261,6 @@ func (r Location_Datacenter) GetActivePresaleEvents() (resp []datatypes.Sales_Pr
 // Object Storage is only available in select datacenters. This method will return all the datacenters where object storage is available.
 func (r Location_Datacenter) GetAvailableObjectStorageDatacenters() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getAvailableObjectStorageDatacenters", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Location_Datacenter) GetBackboneDependents() (resp []datatypes.Network_Backbone_Location_Dependent, err error) {
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBackboneDependents", nil, &r.Options, &resp)
 	return
 }
 
