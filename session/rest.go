@@ -38,7 +38,7 @@ type RestTransport struct{}
 
 const IBMCLOUDIAMENDPOINT = "https://iam.cloud.ibm.com/identity/token"
 
-//IAMTokenResponse ...
+// IAMTokenResponse ...
 type IAMTokenResponse struct {
 	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
