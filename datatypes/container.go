@@ -3340,11 +3340,6 @@ type Container_Product_Item_Discount_Program struct {
 type Container_Product_Order struct {
 	Entity
 
-	// Used to identify which items on an order belong in the same cluster.
-	ClusterIdentifier *string `json:"clusterIdentifier,omitempty" xmlrpc:"clusterIdentifier,omitempty"`
-
-	HostId *int `json:"hostId,omitempty" xmlrpc:"hostId,omitempty"`
-
 	// Flag for identifying an order for Big Data Deployment.
 	BigDataOrderFlag *bool `json:"bigDataOrderFlag,omitempty" xmlrpc:"bigDataOrderFlag,omitempty"`
 
@@ -3498,9 +3493,6 @@ type Container_Product_Order struct {
 	//
 	// If a regional group is provided and VLANs are specified (within the <code>hardware</code> or <code>virtualGuests</code> properties), we will use the datacenter where the VLANs are located. If no VLANs are specified, we will use the preferred datacenter on the regional group object.
 	RegionalGroup *string `json:"regionalGroup,omitempty" xmlrpc:"regionalGroup,omitempty"`
-
-	// Identifier of [[SoftLayer_Virtual_ReservedCapacityGroup]] to order
-	ReservedCapacityId *int `json:"reservedCapacityId,omitempty" xmlrpc:"reservedCapacityId,omitempty"`
 
 	// An optional resource group identifier specifying the resource group to attach the order to
 	ResourceGroupId *int `json:"resourceGroupId,omitempty" xmlrpc:"resourceGroupId,omitempty"`
