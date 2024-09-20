@@ -24,10 +24,15 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"os/user"
 	"strings"
 	"time"
+	"encoding/base64"
+	"encoding/json"
+	"io/ioutil"
+
 
 	"github.com/softlayer/softlayer-go/config"
 	"github.com/softlayer/softlayer-go/sl"
@@ -43,6 +48,21 @@ func init() {
 
 // DefaultEndpoint is the default endpoint for API calls, when no override is provided.
 const DefaultEndpoint = "https://api.softlayer.com/rest/v3.1"
+
+const IBMCLOUDIAMENDPOINT = "https://iam.cloud.ibm.com/identity/token"
+
+// IAMTokenResponse ...
+type IAMTokenResponse struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	TokenType    string `json:"token_type"`
+}
+
+// IAMErrorMessage -
+type IAMErrorMessage struct {
+	ErrorMessage string `json:"errormessage"`
+	ErrorCode    string `json:"errorcode"`
+}
 
 var retryableErrorCodes = []string{"SoftLayer_Exception_WebService_RateLimitExceeded"}
 
@@ -319,6 +339,56 @@ func (r *Session) ResetUserAgent() {
 	r.userAgent = getDefaultUserAgent()
 }
 
+// Refreshes an IAM authenticated session
+func (r *Session) RefreshToken() error {
+
+	Logger.Println("[DEBUG] Refreshing IAM Token")
+	client := http.DefaultClient
+	reqPayload := url.Values{}
+	reqPayload.Add("grant_type", "refresh_token")
+	reqPayload.Add("refresh_token", r.IAMRefreshToken)
+
+	req, err := http.NewRequest("POST", IBMCLOUDIAMENDPOINT, strings.NewReader(reqPayload.Encode()))
+	if err != nil {
+		return err
+	}
+	req.Header.Add("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte("bx:bx")))
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("Accept", "application/json")
+	var token IAMTokenResponse
+	var eresp IAMErrorMessage
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+
+	responseBody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	if resp != nil && resp.StatusCode != 200 {
+		err = json.Unmarshal(responseBody, &eresp)
+		if err != nil {
+			return err
+		}
+		if eresp.ErrorCode != "" {
+			return sl.Error{Exception: eresp.ErrorCode, Message: eresp.ErrorMessage}
+		}
+	}
+
+	err = json.Unmarshal(responseBody, &token)
+	if err != nil {
+		return err
+	}
+	r.IAMToken = fmt.Sprintf("%s %s", token.TokenType, token.AccessToken)
+	r.IAMRefreshToken = token.RefreshToken
+	return nil
+}
+
 func envFallback(keyName string, value *string) {
 	if *value == "" {
 		*value = os.Getenv(keyName)
@@ -373,6 +443,15 @@ func hasRetryableCode(err error) bool {
 
 func isRetryable(err error) bool {
 	return isTimeout(err) || hasRetryableCode(err)
+}
+
+func NeedsRefresh(err error) bool {
+	if slError, ok := err.(sl.Error); ok {
+		if slError.StatusCode == 500 && slError.Exception == "SoftLayer_Exception_Account_Authentication_AccessTokenValidation" {
+			return true
+		}
+	}
+	return false
 }
 
 // Set ENV Variable SL_USERAGENT to append that to the useragent string
