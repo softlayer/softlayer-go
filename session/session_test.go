@@ -1,6 +1,9 @@
 package session
 
 import (
+	"fmt"
+	"github.com/jarcoal/httpmock"
+	"github.com/softlayer/softlayer-go/sl"
 	"os"
 	"strings"
 	"testing"
@@ -95,4 +98,81 @@ func TestSetRetries(t *testing.T) {
 	if s.Retries != newVariable {
 		t.Errorf("Session.Retries (%v) != newVariable (%v)", s.Retries, newVariable)
 	}
+}
+
+func TestNeedsRefresh(t *testing.T) {
+	testError := sl.Error{
+		StatusCode: 500,
+		Exception:  "SoftLayer_Exception_Account_Authentication_AccessTokenValidation",
+	}
+	if !NeedsRefresh(testError) {
+		t.Errorf("NeedsRefresh() failed to detect refresh error")
+	}
+	testError = sl.Error{
+		StatusCode: 500,
+		Exception:  "SoftLayer_Exception_Public",
+	}
+	if NeedsRefresh(testError) {
+		t.Errorf("NeedsRefresh() failed to properly error check")
+	}
+}
+
+// Tests refreshing a IAM token if it is expired.
+func TestRefreshToken(t *testing.T) {
+	// setup session and mock environment
+	s = New()
+	s.Endpoint = restEndpoint
+	s.IAMToken = "Bearer TestToken"
+	s.IAMRefreshToken = "TestTokenRefresh"
+	//s.Debug = true
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	fmt.Printf("TestRefreshToken [Happy Path]: ")
+	expectedError := ""
+	// Happy Path
+	httpmock.RegisterResponder("POST", IBMCLOUDIAMENDPOINT,
+		httpmock.NewStringResponder(200, `{"access_token": "NewToken123", "refresh_token":"NewRefreshToken123", "token_type":"Bearer"}`),
+	)
+	err := s.RefreshToken()
+	if err != nil {
+		t.Errorf("Testing Error: %v\n", err.Error())
+	}
+
+	if s.IAMToken != "Bearer NewToken123" {
+		t.Errorf("(IAMToken) %s != 'Bearer NewToken123', Refresh Failed.", s.IAMToken)
+	}
+	if s.IAMRefreshToken != "NewRefreshToken123" {
+		t.Errorf("(IAMRefreshToken) %s != 'NewRefreshToken123', Refresh Failed.", s.IAMRefreshToken)
+	}
+	httpmock.Reset()
+
+	// Error returned from IAM API
+	fmt.Printf("TestRefreshToken [API error]: ")
+	httpmock.RegisterResponder("POST", IBMCLOUDIAMENDPOINT,
+		httpmock.NewStringResponder(400, `{"errormessage": "Some Error", "errorcode":"400"}`),
+	)
+	err = s.RefreshToken()
+	if err == nil {
+		t.Errorf("Expected an error, none returned\n")
+	}
+	expectedError = "400: Some Error "
+	if err.Error() != expectedError {
+		t.Errorf("Expected |%s| == %s", err.Error(), expectedError)
+	}
+	httpmock.Reset()
+
+	// Junk returned from IAM API
+	fmt.Printf("TestRefreshToken [Bad Response]: ")
+	httpmock.RegisterResponder("POST", IBMCLOUDIAMENDPOINT,
+		httpmock.NewStringResponder(200, ""),
+	)
+	err = s.RefreshToken()
+	if err == nil {
+		t.Errorf("Expected an error, none returned\n")
+	}
+	expectedError = "unexpected end of JSON input"
+	if err.Error() != expectedError {
+		t.Errorf("Expected %s == %s", err.Error(), expectedError)
+	}
+	httpmock.Reset()
 }

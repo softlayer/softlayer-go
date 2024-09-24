@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"time"
 	"github.com/spf13/cobra"
+	"time"
 
 	"github.com/softlayer/softlayer-go/services"
 	"github.com/softlayer/softlayer-go/session"
@@ -26,17 +26,16 @@ func RunIamCmd(cmd *cobra.Command, args []string) error {
 
 	// Sets up the session with authentication headers.
 	sess := &session.Session{
-		Endpoint: session.DefaultEndpoint,
-		IAMToken: "Bearer TOKEN",
+		Endpoint:        session.DefaultEndpoint,
+		IAMToken:        "Bearer TOKEN",
 		IAMRefreshToken: "REFRESH TOKEN",
-		Debug: true,
+		Debug:           true,
 	}
 
 	// creates a reference to the service object (SoftLayer_Account)
 	service := services.GetAccountService(sess)
 
 	// Sets the mask, filter, result limit, and then makes the API call SoftLayer_Account::getHardware()
-
 
 	for {
 		account, err := service.Mask(objectMask).GetObject()

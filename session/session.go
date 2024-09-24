@@ -19,7 +19,10 @@ package session
 
 import (
 	"context"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net"
@@ -29,10 +32,6 @@ import (
 	"os/user"
 	"strings"
 	"time"
-	"encoding/base64"
-	"encoding/json"
-	"io/ioutil"
-
 
 	"github.com/softlayer/softlayer-go/config"
 	"github.com/softlayer/softlayer-go/sl"
@@ -349,6 +348,7 @@ func (r *Session) RefreshToken() error {
 	reqPayload.Add("refresh_token", r.IAMRefreshToken)
 
 	req, err := http.NewRequest("POST", IBMCLOUDIAMENDPOINT, strings.NewReader(reqPayload.Encode()))
+
 	if err != nil {
 		return err
 	}
@@ -366,6 +366,7 @@ func (r *Session) RefreshToken() error {
 	defer resp.Body.Close()
 
 	responseBody, err := ioutil.ReadAll(resp.Body)
+
 	if err != nil {
 		return err
 	}
@@ -384,6 +385,7 @@ func (r *Session) RefreshToken() error {
 	if err != nil {
 		return err
 	}
+
 	r.IAMToken = fmt.Sprintf("%s %s", token.TokenType, token.AccessToken)
 	r.IAMRefreshToken = token.RefreshToken
 	return nil

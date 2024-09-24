@@ -35,7 +35,6 @@ import (
 
 type RestTransport struct{}
 
-
 // DoRequest - Implementation of the TransportHandler interface for handling
 // calls to the REST endpoint.
 func (r *RestTransport) DoRequest(sess *Session, service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
@@ -228,6 +227,7 @@ func makeHTTPRequest(
 	} else {
 		url = url + session.Endpoint
 	}
+	// fmt.Printf("Calling %s/%s", strings.TrimRight(url, "/"), path)
 	url = fmt.Sprintf("%s/%s", strings.TrimRight(url, "/"), path)
 	req, err := http.NewRequest(requestType, url, bytes.NewBuffer(requestBody))
 	if err != nil {
@@ -348,5 +348,3 @@ func findResponseError(code int, resp []byte) error {
 	}
 	return nil
 }
-
-
