@@ -42,4 +42,3 @@ var _ = Describe("Generate Tests", func() {
 		Expect(os.RemoveAll(outDir)).To(Succeed())
 	})
 })
-
