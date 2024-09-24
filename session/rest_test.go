@@ -26,7 +26,6 @@ import (
 	"github.com/jarcoal/httpmock"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
-	"github.com/softlayer/softlayer-go/tests"
 )
 
 var s *Session
@@ -208,7 +207,7 @@ var testcases = []testcase{
 			sl.String("https://example.com"),
 		},
 		options:     sl.Options{Id: sl.Int(12345)},
-		responder:   tests.NewEchoResponder(200),
+		responder:   httpmock.NewStringResponder(200, `{"parameters":["https://example.com"]}`),
 		expected:    `{"parameters":["https://example.com"]}`,
 		expectError: nil,
 	},
