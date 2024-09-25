@@ -18,15 +18,14 @@ package session
 
 import (
 	"errors"
-	"testing"
-
 	"fmt"
+	"net/http"
 	"reflect"
+	"testing"
 
 	"github.com/jarcoal/httpmock"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
-	"github.com/softlayer/softlayer-go/tests"
 )
 
 var s *Session
@@ -208,7 +207,7 @@ var testcases = []testcase{
 			sl.String("https://example.com"),
 		},
 		options:     sl.Options{Id: sl.Int(12345)},
-		responder:   tests.NewEchoResponder(200),
+		responder:   httpmock.NewStringResponder(200, `{"parameters":["https://example.com"]}`),
 		expected:    `{"parameters":["https://example.com"]}`,
 		expectError: nil,
 	},
@@ -318,6 +317,64 @@ func TestRest(t *testing.T) {
 
 		teardown()
 	}
+}
+
+// Tests refreshing a IAM token if it is expired.
+func TestRestReauth(t *testing.T) {
+	// setup session and mock environment
+	s = New()
+	s.Endpoint = restEndpoint
+	s.IAMToken = "Bearer TestToken"
+	s.IAMRefreshToken = "TestTokenRefresh"
+	//s.Debug = true
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	fmt.Printf("Test [Rest Reauthentication]: ")
+	slOptions := &sl.Options{}
+	slResults := &datatypes.Account{}
+
+	httpmock.RegisterResponder("GET", fmt.Sprintf("%s/SoftLayer_Account.json", restEndpoint),
+		func(req *http.Request) (*http.Response, error) {
+			if s.IAMToken == "Bearer TestToken" {
+				return httpmock.NewStringResponse(
+					500,
+					`{"code":"SoftLayer_Exception_Account_Authentication_AccessTokenValidation", "error": "Expired Token"}`,
+				), nil
+			} else {
+				return httpmock.NewStringResponse(
+					200,
+					`{"id":1234,"companyName":"test"}`,
+				), nil
+			}
+		})
+	httpmock.RegisterResponder("POST", IBMCLOUDIAMENDPOINT,
+		httpmock.NewStringResponder(200, `{"access_token": "NewToken123", "refresh_token":"NewRefreshToken123", "token_type":"Bearer"}`),
+	)
+	err := s.DoRequest("SoftLayer_Account", "getObject", nil, slOptions, slResults)
+	if err != nil {
+		t.Errorf("Testing Error: %v\n", err.Error())
+	}
+
+	if s.IAMToken != "Bearer NewToken123" {
+		t.Errorf("(IAMToken) %s != 'Bearer NewToken123', Refresh Failed.", s.IAMToken)
+	}
+	if s.IAMRefreshToken != "NewRefreshToken123" {
+		t.Errorf("(IAMRefreshToken) %s != 'NewRefreshToken123', Refresh Failed.", s.IAMRefreshToken)
+	}
+	if httpmock.GetTotalCallCount() != 3 {
+		t.Errorf("Call Count = %d, expected 3", httpmock.GetTotalCallCount())
+	}
+	callInfo := httpmock.GetCallCountInfo()
+	fmt.Printf("%v\n", callInfo)
+	iamUrl := "POST https://iam.cloud.ibm.com/identity/token"
+	slUrl := "GET https://api.softlayer.com/rest/v3/SoftLayer_Account.json"
+	if callInfo[iamUrl] != 1 {
+		t.Errorf("%s called %d times, expected 1", iamUrl, callInfo[iamUrl])
+	}
+	if callInfo[slUrl] != 2 {
+		t.Errorf("%s called %d times, expected 1", slUrl, callInfo[slUrl])
+	}
+	teardown()
 }
 
 func setup(tc testcase) {

@@ -52,12 +52,13 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 
 	path := buildPath(service, method, options)
 
-	resp, code, err := sendHTTPRequest(
-		sess,
-		path,
-		restMethod,
-		parameters,
-		options)
+	resp, code, err := sendHTTPRequest(sess, path, restMethod, parameters, options)
+
+	//Check if this is a refreshable exception
+	if err != nil && sess.IAMRefreshToken != "" && NeedsRefresh(err) {
+		sess.RefreshToken()
+		resp, code, err = sendHTTPRequest(sess, path, restMethod, parameters, options)
+	}
 
 	if err != nil {
 		//Preserve the original sl error
@@ -226,6 +227,7 @@ func makeHTTPRequest(
 	} else {
 		url = url + session.Endpoint
 	}
+	// fmt.Printf("Calling %s/%s", strings.TrimRight(url, "/"), path)
 	url = fmt.Sprintf("%s/%s", strings.TrimRight(url, "/"), path)
 	req, err := http.NewRequest(requestType, url, bytes.NewBuffer(requestBody))
 	if err != nil {
