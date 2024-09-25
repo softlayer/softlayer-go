@@ -2421,7 +2421,7 @@ func (r Product_Upgrade_Request) GetVirtualGuest() (resp datatypes.Virtual_Guest
 }
 
 // In case an upgrade cannot be performed, the maintenance window needs to be updated to a future date.
-func (r Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *datatypes.Time, maintenanceWindowId *int) (resp bool, err error) {
+func (r Product_Upgrade_Request) UpdateMaintenanceWindow(maintenanceStartTime *string, maintenanceWindowId *int) (resp bool, err error) {
 	params := []interface{}{
 		maintenanceStartTime,
 		maintenanceWindowId,

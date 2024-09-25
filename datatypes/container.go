@@ -3340,7 +3340,8 @@ type Container_Product_Item_Discount_Program struct {
 type Container_Product_Order struct {
 	Entity
 
-	// Flag for identifying an order for Big Data Deployment.
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	BigDataOrderFlag *bool `json:"bigDataOrderFlag,omitempty" xmlrpc:"bigDataOrderFlag,omitempty"`
 
 	// Billing Information associated with an order. For existing customers this information is completely ignored. Do not send this information for existing customers.
@@ -3460,10 +3461,12 @@ type Container_Product_Order struct {
 	// Priorities to set on replication set servers.
 	Priorities []string `json:"priorities,omitempty" xmlrpc:"priorities,omitempty"`
 
-	// Flag for identifying a container as Virtual Server (Private Node).
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	PrivateCloudOrderFlag *bool `json:"privateCloudOrderFlag,omitempty" xmlrpc:"privateCloudOrderFlag,omitempty"`
 
-	// Type of Virtual Server (Private Node) order. Potential values: INITIAL, ADDHOST, ADDIPS, ADDZONE
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	PrivateCloudOrderType *string `json:"privateCloudOrderType,omitempty" xmlrpc:"privateCloudOrderType,omitempty"`
 
 	// Optional promotion code for an order.
@@ -3494,10 +3497,12 @@ type Container_Product_Order struct {
 	// If a regional group is provided and VLANs are specified (within the <code>hardware</code> or <code>virtualGuests</code> properties), we will use the datacenter where the VLANs are located. If no VLANs are specified, we will use the preferred datacenter on the regional group object.
 	RegionalGroup *string `json:"regionalGroup,omitempty" xmlrpc:"regionalGroup,omitempty"`
 
-	// An optional resource group identifier specifying the resource group to attach the order to
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	ResourceGroupId *int `json:"resourceGroupId,omitempty" xmlrpc:"resourceGroupId,omitempty"`
 
-	// This variable specifies the name of the resource group the server configuration belongs to. For MongoDB Replica sets, it would be the replica set name.
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" xmlrpc:"resourceGroupName,omitempty"`
 
 	// An optional resource group template identifier to be used as a deployment base for a Virtual Server (Private Node) order.
@@ -3677,6 +3682,12 @@ type Container_Product_Order_Billing_Information struct {
 
 	// The State for the account.
 	BillingState *string `json:"billingState,omitempty" xmlrpc:"billingState,omitempty"`
+
+	// Total height of browser screen in pixels.
+	BrowserScreenHeight *string `json:"browserScreenHeight,omitempty" xmlrpc:"browserScreenHeight,omitempty"`
+
+	// Total width of browser screen in pixels.
+	BrowserScreenWidth *string `json:"browserScreenWidth,omitempty" xmlrpc:"browserScreenWidth,omitempty"`
 
 	// The credit card number to use.
 	CardAccountNumber *string `json:"cardAccountNumber,omitempty" xmlrpc:"cardAccountNumber,omitempty"`

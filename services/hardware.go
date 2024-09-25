@@ -880,6 +880,12 @@ func (r Hardware) GetIsBillingTermChangeAvailableFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
+func (r Hardware) GetIsCloudReadyNodeCertified() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware", "getIsCloudReadyNodeCertified", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Information regarding the last transaction a server performed.
 func (r Hardware) GetLastTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware", "getLastTransaction", nil, &r.Options, &resp)
@@ -2892,6 +2898,12 @@ func (r Hardware_Router) GetIsBillingTermChangeAvailableFlag() (resp bool, err e
 	return
 }
 
+// Retrieve Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
+func (r Hardware_Router) GetIsCloudReadyNodeCertified() (resp bool, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getIsCloudReadyNodeCertified", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Information regarding the last transaction a server performed.
 func (r Hardware_Router) GetLastTransaction() (resp datatypes.Provisioning_Version1_Transaction, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getLastTransaction", nil, &r.Options, &resp)
@@ -4732,6 +4744,12 @@ func (r Hardware_SecurityModule) GetIsCloudReadyNodeCertified() (resp bool, err 
 // Retrieve Determine if remote management has been disabled due to port speed.
 func (r Hardware_SecurityModule) GetIsIpmiDisabled() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getIsIpmiDisabled", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A server that has nfs only drive.
+func (r Hardware_SecurityModule) GetIsNfsOnly() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getIsNfsOnly", nil, &r.Options, &resp)
 	return
 }
 
@@ -7141,6 +7159,12 @@ func (r Hardware_SecurityModule750) GetIsIpmiDisabled() (resp bool, err error) {
 	return
 }
 
+// Retrieve A server that has nfs only drive.
+func (r Hardware_SecurityModule750) GetIsNfsOnly() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getIsNfsOnly", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve Determine if hardware object has the QE_INTERNAL_SERVER attribute.
 func (r Hardware_SecurityModule750) GetIsQeInternalServer() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getIsQeInternalServer", nil, &r.Options, &resp)
@@ -9544,6 +9568,12 @@ func (r Hardware_Server) GetIsCloudReadyNodeCertified() (resp bool, err error) {
 // Retrieve Determine if remote management has been disabled due to port speed.
 func (r Hardware_Server) GetIsIpmiDisabled() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getIsIpmiDisabled", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve A server that has nfs only drive.
+func (r Hardware_Server) GetIsNfsOnly() (resp string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getIsNfsOnly", nil, &r.Options, &resp)
 	return
 }
 

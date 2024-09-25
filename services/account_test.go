@@ -1071,13 +1071,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getLegacyBandwidthAllotments", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetLegacyBandwidthAllotments()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getLegacyIscsiCapacityGB", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetLegacyIscsiCapacityGB()
@@ -1123,13 +1116,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getMediaDataTransferRequests", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetMediaDataTransferRequests()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getMetricTrackingObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMetricTrackingObject()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -1274,13 +1260,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getNextBillingPublicAllotmentHardwareBandwidthDetails", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetNextBillingPublicAllotmentHardwareBandwidthDetails()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getNextInvoiceExcel", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetNextInvoiceExcel(nil)
@@ -1305,6 +1284,13 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getNextInvoicePdfDetailed", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetNextInvoicePdfDetailed(nil)
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Account::getNextInvoicePlatformServicesTotalAmount", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetNextInvoicePlatformServicesTotalAmount()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -1624,6 +1610,13 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Account::getPreOpenRecurringInvoices", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetPreOpenRecurringInvoices()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Account::getPreviousRecurringRevenue", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPreviousRecurringRevenue()
@@ -1641,13 +1634,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getPriorityOneTickets", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPriorityOneTickets()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getPrivateAllotmentHardwareBandwidthDetails", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateAllotmentHardwareBandwidthDetails()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -1683,13 +1669,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getProofOfConceptAccountFlag", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetProofOfConceptAccountFlag()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getPublicAllotmentHardwareBandwidthDetails", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPublicAllotmentHardwareBandwidthDetails()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -2033,13 +2012,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getValidSecurityCertificates", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetValidSecurityCertificates()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getVdrUpdatesInProgressFlag", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetVdrUpdatesInProgressFlag()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

@@ -642,6 +642,12 @@ func (r Billing_Invoice_Item) GetDPart() (resp string, err error) {
 	return
 }
 
+// Retrieve The invoice item ID from which the discount is derived.
+func (r Billing_Invoice_Item) GetDiscountingInvoiceItemId() (resp int, err error) {
+	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getDiscountingInvoiceItemId", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An Invoice Item's associated child invoice items, excluding some items with a $0.00 recurring fee. Only parent invoice items have associated children. For instance, a server invoice item may have associated children.
 func (r Billing_Invoice_Item) GetFilteredAssociatedChildren() (resp []datatypes.Billing_Invoice_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Billing_Invoice_Item", "getFilteredAssociatedChildren", nil, &r.Options, &resp)
