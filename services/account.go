@@ -269,7 +269,7 @@ func (r Account) GetActiveCatalystEnrollment() (resp datatypes.Catalyst_Enrollme
 	return
 }
 
-// Retrieve The account's active top level colocation containers.
+// Retrieve Deprecated.
 func (r Account) GetActiveColocationContainers() (resp []datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getActiveColocationContainers", nil, &r.Options, &resp)
 	return
@@ -1033,12 +1033,6 @@ func (r Account) GetLatestRecurringPendingInvoice() (resp datatypes.Billing_Invo
 	return
 }
 
-// Retrieve [DEPRECATED] The legacy bandwidth allotments for an account.
-func (r Account) GetLegacyBandwidthAllotments() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getLegacyBandwidthAllotments", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve The total capacity of Legacy iSCSI Volumes on an account, in GB.
 func (r Account) GetLegacyIscsiCapacityGB() (resp uint, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getLegacyIscsiCapacityGB", nil, &r.Options, &resp)
@@ -1078,12 +1072,6 @@ func (r Account) GetMasterUser() (resp datatypes.User_Customer, err error) {
 // Retrieve An account's media transfer service requests.
 func (r Account) GetMediaDataTransferRequests() (resp []datatypes.Account_Media_Data_Transfer_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getMediaDataTransferRequests", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [DEPRECATED] - An accounts metric tracking object. This object records all periodic polled data available to this account.
-func (r Account) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -1207,12 +1195,6 @@ func (r Account) GetNetworkVlans() (resp []datatypes.Network_Vlan, err error) {
 	return
 }
 
-// Retrieve DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers for the next billing cycle. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-func (r Account) GetNextBillingPublicAllotmentHardwareBandwidthDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getNextBillingPublicAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
-	return
-}
-
 // Return an account's next invoice in a Microsoft excel format. The "next invoice" is what a customer will be billed on their next invoice, assuming no changes are made. Currently this does not include Bandwidth Pooling charges.
 func (r Account) GetNextInvoiceExcel(documentCreateDate *datatypes.Time) (resp []byte, err error) {
 	params := []interface{}{
@@ -1243,6 +1225,12 @@ func (r Account) GetNextInvoicePdfDetailed(documentCreateDate *datatypes.Time) (
 		documentCreateDate,
 	}
 	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoicePdfDetailed", params, &r.Options, &resp)
+	return
+}
+
+// Retrieve The pre-tax platform services total amount of an account's next invoice.
+func (r Account) GetNextInvoicePlatformServicesTotalAmount() (resp datatypes.Float64, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getNextInvoicePlatformServicesTotalAmount", nil, &r.Options, &resp)
 	return
 }
 
@@ -1516,6 +1504,12 @@ func (r Account) GetPptpVpnUsers() (resp []datatypes.User_Customer, err error) {
 	return
 }
 
+// Retrieve An account's invoices in the PRE_OPEN status.
+func (r Account) GetPreOpenRecurringInvoices() (resp []datatypes.Billing_Invoice, err error) {
+	err = r.Session.DoRequest("SoftLayer_Account", "getPreOpenRecurringInvoices", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve The total recurring amount for an accounts previous revenue.
 func (r Account) GetPreviousRecurringRevenue() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPreviousRecurringRevenue", nil, &r.Options, &resp)
@@ -1531,12 +1525,6 @@ func (r Account) GetPriceRestrictions() (resp []datatypes.Product_Item_Price_Acc
 // Retrieve All priority one tickets associated with an account.
 func (r Account) GetPriorityOneTickets() (resp []datatypes.Ticket, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getPriorityOneTickets", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The private inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-func (r Account) GetPrivateAllotmentHardwareBandwidthDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getPrivateAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
 	return
 }
 
@@ -1567,12 +1555,6 @@ func (r Account) GetPrivateSubnets() (resp []datatypes.Network_Subnet, err error
 // Retrieve Boolean flag indicating whether or not this account is a Proof of Concept account.
 func (r Account) GetProofOfConceptAccountFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getProofOfConceptAccountFlag", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-func (r Account) GetPublicAllotmentHardwareBandwidthDetails() (resp []datatypes.Network_Bandwidth_Version1_Allotment, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getPublicAllotmentHardwareBandwidthDetails", nil, &r.Options, &resp)
 	return
 }
 
@@ -1870,12 +1852,6 @@ func (r Account) GetValidSecurityCertificateEntries() (resp []datatypes.Security
 // Retrieve Stored security certificates that are not expired (ie. SSL)
 func (r Account) GetValidSecurityCertificates() (resp []datatypes.Security_Certificate, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getValidSecurityCertificates", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve DEPRECATED - Return 0 if VDR updates are currently in progress on this account otherwise 1.
-func (r Account) GetVdrUpdatesInProgressFlag() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getVdrUpdatesInProgressFlag", nil, &r.Options, &resp)
 	return
 }
 
@@ -3395,6 +3371,7 @@ func (r Account_Link_OpenStack) Offset(offset int) Account_Link_OpenStack {
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Link_OpenStack) CreateOSDomain(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_DomainCreationDetails, err error) {
 	params := []interface{}{
 		request,
@@ -3404,6 +3381,7 @@ func (r Account_Link_OpenStack) CreateOSDomain(request *datatypes.Account_Link_O
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account_Link_OpenStack) CreateOSProject(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_ProjectCreationDetails, err error) {
 	params := []interface{}{
 		request,

@@ -85,10 +85,11 @@ type Account struct {
 	// no documentation yet
 	ActiveCatalystEnrollment *Catalyst_Enrollment `json:"activeCatalystEnrollment,omitempty" xmlrpc:"activeCatalystEnrollment,omitempty"`
 
-	// A count of the account's active top level colocation containers.
+	// A count of deprecated.
 	ActiveColocationContainerCount *uint `json:"activeColocationContainerCount,omitempty" xmlrpc:"activeColocationContainerCount,omitempty"`
 
-	// The account's active top level colocation containers.
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	ActiveColocationContainers []Billing_Item `json:"activeColocationContainers,omitempty" xmlrpc:"activeColocationContainers,omitempty"`
 
 	// [Deprecated] Please use SoftLayer_Account::activeFlexibleCreditEnrollments.
@@ -651,13 +652,6 @@ type Account struct {
 	// An account's latest recurring pending invoice.
 	LatestRecurringPendingInvoice *Billing_Invoice `json:"latestRecurringPendingInvoice,omitempty" xmlrpc:"latestRecurringPendingInvoice,omitempty"`
 
-	// A count of [DEPRECATED] The legacy bandwidth allotments for an account.
-	LegacyBandwidthAllotmentCount *uint `json:"legacyBandwidthAllotmentCount,omitempty" xmlrpc:"legacyBandwidthAllotmentCount,omitempty"`
-
-	// [DEPRECATED] The legacy bandwidth allotments for an account.
-	// Deprecated: This function has been marked as deprecated.
-	LegacyBandwidthAllotments []Network_Bandwidth_Version1_Allotment `json:"legacyBandwidthAllotments,omitempty" xmlrpc:"legacyBandwidthAllotments,omitempty"`
-
 	// The total capacity of Legacy iSCSI Volumes on an account, in GB.
 	LegacyIscsiCapacityGB *uint `json:"legacyIscsiCapacityGB,omitempty" xmlrpc:"legacyIscsiCapacityGB,omitempty"`
 
@@ -690,10 +684,6 @@ type Account struct {
 
 	// An account's media transfer service requests.
 	MediaDataTransferRequests []Account_Media_Data_Transfer_Request `json:"mediaDataTransferRequests,omitempty" xmlrpc:"mediaDataTransferRequests,omitempty"`
-
-	// [DEPRECATED] - An accounts metric tracking object. This object records all periodic polled data available to this account.
-	// Deprecated: This function has been marked as deprecated.
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// Flag indicating whether this account is restricted to the IBM Cloud portal.
 	MigratedToIbmCloudPortalFlag *bool `json:"migratedToIbmCloudPortalFlag,omitempty" xmlrpc:"migratedToIbmCloudPortalFlag,omitempty"`
@@ -803,15 +793,11 @@ type Account struct {
 	// All network VLANs assigned to an account.
 	NetworkVlans []Network_Vlan `json:"networkVlans,omitempty" xmlrpc:"networkVlans,omitempty"`
 
-	// A count of dEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers for the next billing cycle. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	NextBillingPublicAllotmentHardwareBandwidthDetailCount *uint `json:"nextBillingPublicAllotmentHardwareBandwidthDetailCount,omitempty" xmlrpc:"nextBillingPublicAllotmentHardwareBandwidthDetailCount,omitempty"`
-
-	// DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers for the next billing cycle. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	// Deprecated: This function has been marked as deprecated.
-	NextBillingPublicAllotmentHardwareBandwidthDetails []Network_Bandwidth_Version1_Allotment `json:"nextBillingPublicAllotmentHardwareBandwidthDetails,omitempty" xmlrpc:"nextBillingPublicAllotmentHardwareBandwidthDetails,omitempty"`
-
 	// The pre-tax total amount exempt from incubator credit for the account's next invoice. This field is now deprecated and will soon be removed. Please update all references to instead use nextInvoiceTotalAmount
 	NextInvoiceIncubatorExemptTotal *Float64 `json:"nextInvoiceIncubatorExemptTotal,omitempty" xmlrpc:"nextInvoiceIncubatorExemptTotal,omitempty"`
+
+	// The pre-tax platform services total amount of an account's next invoice.
+	NextInvoicePlatformServicesTotalAmount *Float64 `json:"nextInvoicePlatformServicesTotalAmount,omitempty" xmlrpc:"nextInvoicePlatformServicesTotalAmount,omitempty"`
 
 	// The total recurring charge amount of an account's next invoice eligible for account discount measured in US Dollars ($USD), assuming no changes or charges occur between now and time of billing.
 	NextInvoiceRecurringAmountEligibleForAccountDiscount *Float64 `json:"nextInvoiceRecurringAmountEligibleForAccountDiscount,omitempty" xmlrpc:"nextInvoiceRecurringAmountEligibleForAccountDiscount,omitempty"`
@@ -1026,6 +1012,12 @@ type Account struct {
 	// An account's associated portal users with PPTP VPN access. (Deprecated)
 	PptpVpnUsers []User_Customer `json:"pptpVpnUsers,omitempty" xmlrpc:"pptpVpnUsers,omitempty"`
 
+	// A count of an account's invoices in the PRE_OPEN status.
+	PreOpenRecurringInvoiceCount *uint `json:"preOpenRecurringInvoiceCount,omitempty" xmlrpc:"preOpenRecurringInvoiceCount,omitempty"`
+
+	// An account's invoices in the PRE_OPEN status.
+	PreOpenRecurringInvoices []Billing_Invoice `json:"preOpenRecurringInvoices,omitempty" xmlrpc:"preOpenRecurringInvoices,omitempty"`
+
 	// The total recurring amount for an accounts previous revenue.
 	PreviousRecurringRevenue *Float64 `json:"previousRecurringRevenue,omitempty" xmlrpc:"previousRecurringRevenue,omitempty"`
 
@@ -1040,13 +1032,6 @@ type Account struct {
 
 	// All priority one tickets associated with an account.
 	PriorityOneTickets []Ticket `json:"priorityOneTickets,omitempty" xmlrpc:"priorityOneTickets,omitempty"`
-
-	// A count of dEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The private inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	PrivateAllotmentHardwareBandwidthDetailCount *uint `json:"privateAllotmentHardwareBandwidthDetailCount,omitempty" xmlrpc:"privateAllotmentHardwareBandwidthDetailCount,omitempty"`
-
-	// DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The private inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	// Deprecated: This function has been marked as deprecated.
-	PrivateAllotmentHardwareBandwidthDetails []Network_Bandwidth_Version1_Allotment `json:"privateAllotmentHardwareBandwidthDetails,omitempty" xmlrpc:"privateAllotmentHardwareBandwidthDetails,omitempty"`
 
 	// A count of private and shared template group objects (parent only) for an account.
 	PrivateBlockDeviceTemplateGroupCount *uint `json:"privateBlockDeviceTemplateGroupCount,omitempty" xmlrpc:"privateBlockDeviceTemplateGroupCount,omitempty"`
@@ -1074,13 +1059,6 @@ type Account struct {
 
 	// Boolean flag indicating whether or not this account is a Proof of Concept account.
 	ProofOfConceptAccountFlag *bool `json:"proofOfConceptAccountFlag,omitempty" xmlrpc:"proofOfConceptAccountFlag,omitempty"`
-
-	// A count of dEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	PublicAllotmentHardwareBandwidthDetailCount *uint `json:"publicAllotmentHardwareBandwidthDetailCount,omitempty" xmlrpc:"publicAllotmentHardwareBandwidthDetailCount,omitempty"`
-
-	// DEPRECATED - This information can be pulled directly through tapping keys now - DEPRECATED. The allotments for this account and their servers. The public inbound and outbound bandwidth is calculated for each server in addition to the daily average network traffic since the last billing date.
-	// Deprecated: This function has been marked as deprecated.
-	PublicAllotmentHardwareBandwidthDetails []Network_Bandwidth_Version1_Allotment `json:"publicAllotmentHardwareBandwidthDetails,omitempty" xmlrpc:"publicAllotmentHardwareBandwidthDetails,omitempty"`
 
 	// A count of
 	PublicIpAddressCount *uint `json:"publicIpAddressCount,omitempty" xmlrpc:"publicIpAddressCount,omitempty"`
@@ -1321,9 +1299,6 @@ type Account struct {
 
 	// Stored security certificates that are not expired (ie. SSL)
 	ValidSecurityCertificates []Security_Certificate `json:"validSecurityCertificates,omitempty" xmlrpc:"validSecurityCertificates,omitempty"`
-
-	// DEPRECATED - Return 0 if VDR updates are currently in progress on this account otherwise 1.
-	VdrUpdatesInProgressFlag *bool `json:"vdrUpdatesInProgressFlag,omitempty" xmlrpc:"vdrUpdatesInProgressFlag,omitempty"`
 
 	// A count of the bandwidth pooling for this account.
 	VirtualDedicatedRackCount *uint `json:"virtualDedicatedRackCount,omitempty" xmlrpc:"virtualDedicatedRackCount,omitempty"`
@@ -2097,7 +2072,7 @@ type Account_Link_OpenStack_DomainCreationDetails struct {
 	UserName *string `json:"userName,omitempty" xmlrpc:"userName,omitempty"`
 }
 
-// Details required for OpenStack link request
+// Details Deprecated.
 type Account_Link_OpenStack_LinkRequest struct {
 	Entity
 
