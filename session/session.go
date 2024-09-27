@@ -284,12 +284,12 @@ func New(args ...interface{}) *Session {
 //
 // For a description of parameters, see TransportHandler.DoRequest in this package
 func (r *Session) DoRequest(service string, method string, args []interface{}, options *sl.Options, pResult interface{}) error {
-	r.LastCall = CallToString(service, method, args, options)
 	if r.TransportHandler == nil {
 		r.TransportHandler = getDefaultTransport(r.Endpoint)
 	}
 
 	err := r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	r.LastCall = CallToString(service, method, args, options)
 	if err != nil {
 		return err
 	}
