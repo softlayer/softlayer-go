@@ -74,7 +74,8 @@ func (r Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, 
 	return
 }
 
-// Retrieve a PNG image of a bandwidth graph representing the bandwidth usage over time recorded by SofTLayer's bandwidth pollers.
+// [DEPRECATED] Retrieve a PNG image of a bandwidth graph representing the bandwidth usage over time recorded by SofTLayer's bandwidth pollers.
+// Deprecated: This function has been marked as deprecated.
 func (r Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,
@@ -112,7 +113,8 @@ func (r Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time
 	return
 }
 
-// Retrieve a PNG image of a metric in graph form.
+// [DEPRECATED] Retrieve a PNG image of a metric in graph form.
+// Deprecated: This function has been marked as deprecated.
 func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
 	params := []interface{}{
 		startDateTime,

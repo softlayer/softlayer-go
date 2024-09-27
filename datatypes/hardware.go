@@ -279,6 +279,9 @@ type Hardware struct {
 	// Whether or not this hardware object is eligible to change to term billing.
 	IsBillingTermChangeAvailableFlag *bool `json:"isBillingTermChangeAvailableFlag,omitempty" xmlrpc:"isBillingTermChangeAvailableFlag,omitempty"`
 
+	// Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
+	IsCloudReadyNodeCertified *bool `json:"isCloudReadyNodeCertified,omitempty" xmlrpc:"isCloudReadyNodeCertified,omitempty"`
+
 	// Information regarding the last transaction a server performed.
 	LastTransaction *Provisioning_Version1_Transaction `json:"lastTransaction,omitempty" xmlrpc:"lastTransaction,omitempty"`
 
@@ -1965,11 +1968,11 @@ type Hardware_Server struct {
 	// The total private inbound bandwidth for this hardware for the current billing cycle.
 	InboundPrivateBandwidthUsage *Float64 `json:"inboundPrivateBandwidthUsage,omitempty" xmlrpc:"inboundPrivateBandwidthUsage,omitempty"`
 
-	// Determine if hardware object has the IBM_CLOUD_READY_NODE_CERTIFIED attribute.
-	IsCloudReadyNodeCertified *bool `json:"isCloudReadyNodeCertified,omitempty" xmlrpc:"isCloudReadyNodeCertified,omitempty"`
-
 	// Determine if remote management has been disabled due to port speed.
 	IsIpmiDisabled *bool `json:"isIpmiDisabled,omitempty" xmlrpc:"isIpmiDisabled,omitempty"`
+
+	// A server that has nfs only drive.
+	IsNfsOnly *string `json:"isNfsOnly,omitempty" xmlrpc:"isNfsOnly,omitempty"`
 
 	// Determine if hardware object has the QE_INTERNAL_SERVER attribute.
 	IsQeInternalServer *bool `json:"isQeInternalServer,omitempty" xmlrpc:"isQeInternalServer,omitempty"`

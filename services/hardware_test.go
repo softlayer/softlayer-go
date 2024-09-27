@@ -595,6 +595,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware::getIsCloudReadyNodeCertified", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetIsCloudReadyNodeCertified()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware::getLastTransaction", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetLastTransaction()
@@ -2373,6 +2380,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_Router::getIsCloudReadyNodeCertified", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetIsCloudReadyNodeCertified()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_Router::getLastTransaction", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetLastTransaction()
@@ -3981,6 +3995,13 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule::getIsIpmiDisabled", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetIsIpmiDisabled()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Hardware_SecurityModule::getIsNfsOnly", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetIsNfsOnly()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -6087,6 +6108,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_SecurityModule750::getIsNfsOnly", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetIsNfsOnly()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_SecurityModule750::getIsQeInternalServer", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetIsQeInternalServer()
@@ -8185,6 +8213,13 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::getIsIpmiDisabled", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetIsIpmiDisabled()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Hardware_Server::getIsNfsOnly", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetIsNfsOnly()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

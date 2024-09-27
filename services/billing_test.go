@@ -612,6 +612,13 @@ var _ = Describe("Billing Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Billing_Invoice_Item::getDiscountingInvoiceItemId", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetDiscountingInvoiceItemId()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Billing_Invoice_Item::getFilteredAssociatedChildren", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetFilteredAssociatedChildren()

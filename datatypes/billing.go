@@ -445,6 +445,9 @@ type Billing_Invoice_Item struct {
 	// The item description for this invoice item.
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
+	// The invoice item ID from which the discount is derived.
+	DiscountingInvoiceItemId *int `json:"discountingInvoiceItemId,omitempty" xmlrpc:"discountingInvoiceItemId,omitempty"`
+
 	// The domain name of the invoiced item. This is only used on invoice items whose category is "server".
 	DomainName *string `json:"domainName,omitempty" xmlrpc:"domainName,omitempty"`
 
@@ -1968,7 +1971,8 @@ type Billing_Order struct {
 	// no documentation yet
 	PresaleEventId *int `json:"presaleEventId,omitempty" xmlrpc:"presaleEventId,omitempty"`
 
-	// Flag indicating a private cloud solution order (Deprecated)
+	// Deprecated.
+	// Deprecated: This function has been marked as deprecated.
 	PrivateCloudOrderFlag *bool `json:"privateCloudOrderFlag,omitempty" xmlrpc:"privateCloudOrderFlag,omitempty"`
 
 	// The quote of an order. This quote holds information about its expiration date, creation date, name and status. This information is tied to an order having the status 'QUOTE'
@@ -2306,6 +2310,12 @@ type Billing_Payment_Card_ChangeRequest struct {
 	// The State for the account.
 	BillingState *string `json:"billingState,omitempty" xmlrpc:"billingState,omitempty"`
 
+	// Total height of browser screen in pixels.
+	BrowserScreenHeight *string `json:"browserScreenHeight,omitempty" xmlrpc:"browserScreenHeight,omitempty"`
+
+	// Total width of browser screen in pixels.
+	BrowserScreenWidth *string `json:"browserScreenWidth,omitempty" xmlrpc:"browserScreenWidth,omitempty"`
+
 	// The SoftLayer_Billing_Payment_Card_Transaction tied to the capture of funds performed as part of this change request.
 	CaptureCreditCardTransaction *Billing_Payment_Card_Transaction `json:"captureCreditCardTransaction,omitempty" xmlrpc:"captureCreditCardTransaction,omitempty"`
 
@@ -2431,6 +2441,12 @@ type Billing_Payment_Card_ManualPayment struct {
 
 	// The State for the account.
 	BillingState *string `json:"billingState,omitempty" xmlrpc:"billingState,omitempty"`
+
+	// Total height of browser screen in pixels.
+	BrowserScreenHeight *string `json:"browserScreenHeight,omitempty" xmlrpc:"browserScreenHeight,omitempty"`
+
+	// Total width of browser screen in pixels.
+	BrowserScreenWidth *string `json:"browserScreenWidth,omitempty" xmlrpc:"browserScreenWidth,omitempty"`
 
 	// The cancel URL is the page to which PayPal redirects if payment is not approved.
 	CancelUrl *string `json:"cancelUrl,omitempty" xmlrpc:"cancelUrl,omitempty"`

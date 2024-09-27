@@ -759,13 +759,6 @@ type Network_Bandwidth_Version1_Allotment_Detail struct {
 	// Bandwidth Pool associated with this detail.
 	BandwidthAllotmentId *int `json:"bandwidthAllotmentId,omitempty" xmlrpc:"bandwidthAllotmentId,omitempty"`
 
-	// DEPRECATED - Bandwidth used.
-	// Deprecated: This function has been marked as deprecated.
-	BandwidthUsage []Network_Bandwidth_Version1_Usage `json:"bandwidthUsage,omitempty" xmlrpc:"bandwidthUsage,omitempty"`
-
-	// A count of dEPRECATED - Bandwidth used.
-	BandwidthUsageCount *uint `json:"bandwidthUsageCount,omitempty" xmlrpc:"bandwidthUsageCount,omitempty"`
-
 	// Beginning this date the bandwidth allotment is active.
 	EffectiveDate *Time `json:"effectiveDate,omitempty" xmlrpc:"effectiveDate,omitempty"`
 
@@ -796,14 +789,6 @@ type Network_Bandwidth_Version1_Allotment_Type struct {
 	ShortDescription *string `json:"shortDescription,omitempty" xmlrpc:"shortDescription,omitempty"`
 }
 
-// The SoftLayer_Network_Bandwidth_Version1_Usage data type contains general information relating to a single bandwidth usage record.
-type Network_Bandwidth_Version1_Usage struct {
-	Entity
-
-	// Bandwidth allotment detail for this hardware.
-	BandwidthAllotmentDetail *Network_Bandwidth_Version1_Allotment_Detail `json:"bandwidthAllotmentDetail,omitempty" xmlrpc:"bandwidthAllotmentDetail,omitempty"`
-}
-
 // The SoftLayer_Network_Bandwidth_Version1_Usage_Detail data type contains specific information relating to bandwidth utilization at a specific point in time on a given network interface.
 type Network_Bandwidth_Version1_Usage_Detail struct {
 	Entity
@@ -813,10 +798,6 @@ type Network_Bandwidth_Version1_Usage_Detail struct {
 
 	// Outgoing bandwidth utilization .
 	AmountOut *Float64 `json:"amountOut,omitempty" xmlrpc:"amountOut,omitempty"`
-
-	// DEPRECATED - In and out bandwidth utilization for a specified time stamp.
-	// Deprecated: This function has been marked as deprecated.
-	BandwidthUsage *Network_Bandwidth_Version1_Usage `json:"bandwidthUsage,omitempty" xmlrpc:"bandwidthUsage,omitempty"`
 
 	// Describes this bandwidth utilization record as on the public or private network interface.
 	BandwidthUsageDetailType *Network_Bandwidth_Version1_Usage_Detail_Type `json:"bandwidthUsageDetailType,omitempty" xmlrpc:"bandwidthUsageDetailType,omitempty"`
@@ -3388,39 +3369,6 @@ type Network_Security_Scanner_Request_Status struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// The status message of a vulnerability scan.
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
-// Many general services that SoftLayer provides are tracked on the customer portal with a quick status message. These status message provide users with a quick reference to the health of a service, whether it's up or down. These services include SoftLayer's Internet backbone connections, VPN entry points, and router networks. The SoftLayer_Network_Service_Health data type provides the relationship between these services and their health status.
-type Network_Service_Health struct {
-	Entity
-
-	// The date that a service's status was created.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// A service's location.
-	// Deprecated: This function has been marked as deprecated.
-	Location *Location `json:"location,omitempty" xmlrpc:"location,omitempty"`
-
-	// A service's location identifier.
-	LocationId *int `json:"locationId,omitempty" xmlrpc:"locationId,omitempty"`
-
-	// The date that a service's status was last changed.
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// The status portion of a service/status relationship.
-	// Deprecated: This function has been marked as deprecated.
-	Status *Network_Service_Health_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
-
-	// A service's status identifier.
-	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
-}
-
-// Many general services that SoftLayer provides are marked by a status message. These health messages give portal users a quick way of determining the state of a SoftLayer service. Services range from backbones to VPN endpoints and routers. Generally a health status is either "Up" or "Down".
-type Network_Service_Health_Status struct {
-	Entity
-
-	// The status of a SoftLayer service. This is typically "Up" or "Down".
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 }
 
