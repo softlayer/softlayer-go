@@ -374,6 +374,7 @@ make test
 
 ```bash
 gofmt -w `find . -name '*.go' | grep -v vendor`
+go generate ./session
 go vet -all $(go list ./... | grep -v datatypes)
 go mod vendor
 go test $(go list ./... | grep -v '/vendor/') -timeout=30s -coverprofile coverage.out

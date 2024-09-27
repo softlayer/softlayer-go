@@ -67,6 +67,16 @@ type FakeSLSession struct {
 	setTimeoutReturnsOnCall map[int]struct {
 		result1 *session.Session
 	}
+	StringStub        func() string
+	stringMutex       sync.RWMutex
+	stringArgsForCall []struct {
+	}
+	stringReturns struct {
+		result1 string
+	}
+	stringReturnsOnCall map[int]struct {
+		result1 string
+	}
 	invocations      map[string][][]interface{}
 	invocationsMutex sync.RWMutex
 }
@@ -380,6 +390,59 @@ func (fake *FakeSLSession) SetTimeoutReturnsOnCall(i int, result1 *session.Sessi
 	}{result1}
 }
 
+func (fake *FakeSLSession) String() string {
+	fake.stringMutex.Lock()
+	ret, specificReturn := fake.stringReturnsOnCall[len(fake.stringArgsForCall)]
+	fake.stringArgsForCall = append(fake.stringArgsForCall, struct {
+	}{})
+	stub := fake.StringStub
+	fakeReturns := fake.stringReturns
+	fake.recordInvocation("String", []interface{}{})
+	fake.stringMutex.Unlock()
+	if stub != nil {
+		return stub()
+	}
+	if specificReturn {
+		return ret.result1
+	}
+	return fakeReturns.result1
+}
+
+func (fake *FakeSLSession) StringCallCount() int {
+	fake.stringMutex.RLock()
+	defer fake.stringMutex.RUnlock()
+	return len(fake.stringArgsForCall)
+}
+
+func (fake *FakeSLSession) StringCalls(stub func() string) {
+	fake.stringMutex.Lock()
+	defer fake.stringMutex.Unlock()
+	fake.StringStub = stub
+}
+
+func (fake *FakeSLSession) StringReturns(result1 string) {
+	fake.stringMutex.Lock()
+	defer fake.stringMutex.Unlock()
+	fake.StringStub = nil
+	fake.stringReturns = struct {
+		result1 string
+	}{result1}
+}
+
+func (fake *FakeSLSession) StringReturnsOnCall(i int, result1 string) {
+	fake.stringMutex.Lock()
+	defer fake.stringMutex.Unlock()
+	fake.StringStub = nil
+	if fake.stringReturnsOnCall == nil {
+		fake.stringReturnsOnCall = make(map[int]struct {
+			result1 string
+		})
+	}
+	fake.stringReturnsOnCall[i] = struct {
+		result1 string
+	}{result1}
+}
+
 func (fake *FakeSLSession) Invocations() map[string][][]interface{} {
 	fake.invocationsMutex.RLock()
 	defer fake.invocationsMutex.RUnlock()
@@ -395,6 +458,8 @@ func (fake *FakeSLSession) Invocations() map[string][][]interface{} {
 	defer fake.setRetryWaitMutex.RUnlock()
 	fake.setTimeoutMutex.RLock()
 	defer fake.setTimeoutMutex.RUnlock()
+	fake.stringMutex.RLock()
+	defer fake.stringMutex.RUnlock()
 	copiedInvocations := map[string][][]interface{}{}
 	for key, value := range fake.invocations {
 		copiedInvocations[key] = value
