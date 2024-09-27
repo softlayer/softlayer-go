@@ -3,6 +3,7 @@ package session
 import (
 	"fmt"
 	"github.com/jarcoal/httpmock"
+	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
 	"os"
 	"strings"
@@ -173,6 +174,60 @@ func TestRefreshToken(t *testing.T) {
 	expectedError = "unexpected end of JSON input"
 	if err.Error() != expectedError {
 		t.Errorf("Expected %s == %s", err.Error(), expectedError)
+	}
+	httpmock.Reset()
+}
+
+func TestString(t *testing.T) {
+	// setup session and mock environment
+	s = New()
+	s.Endpoint = restEndpoint
+	s.IAMToken = "Bearer TestToken"
+	s.IAMRefreshToken = "TestTokenRefresh"
+	slOptions := &sl.Options{}
+	slResults := &datatypes.Account{}
+	// s.Debug = true
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	fmt.Printf("TestString [Happy Path]: ")
+	expected := ""
+	if s.String() != expected {
+		t.Errorf("%s != %s", s.String(), expected)
+	}
+	// Happy Path
+	httpmock.RegisterResponder("GET", fmt.Sprintf("%s/SoftLayer_Account.json", restEndpoint),
+		httpmock.NewStringResponder(200, `{"id":123,"companyName":"test"}`),
+	)
+	err := s.DoRequest("SoftLayer_Account", "getObject", nil, slOptions, slResults)
+	if err != nil {
+		t.Errorf("Testing Error: %v\n", err.Error())
+	}
+	expected = "SoftLayer_Account::getObject(id=0, mask='', filter='', )"
+	if s.String() != expected {
+		t.Errorf("%s != %s", s.String(), expected)
+	}
+
+	// Test Setting args
+	// httpmock.Reset()
+	httpmock.RegisterResponder("POST", fmt.Sprintf("%s/SoftLayer_Account/999.json", restEndpoint),
+		httpmock.NewStringResponder(200, `{"id":123,"companyName":"test"}`),
+	)
+	fmt.Printf("TestString [Happy Path with args]: ")
+	slOptions = &sl.Options{
+		Mask:   "mask[id,companyName]",
+		Filter: `{"id":{"operation":{123}}`,
+		Id:     sl.Int(999),
+	}
+	args := []interface{}{
+		sl.String("https://example.com"),
+	}
+	err = s.DoRequest("SoftLayer_Account", "getObject", args, slOptions, slResults)
+	if err != nil {
+		t.Errorf("Testing Error: %v\n", err.Error())
+	}
+	expected = `SoftLayer_Account::getObject(id=999, mask='mask[id,companyName]', filter='{"id":{"operation":{123}}', '{"parameters":["https://example.com"]}')`
+	if s.String() != expected {
+		t.Errorf("%s != %s", s.String(), expected)
 	}
 	httpmock.Reset()
 }

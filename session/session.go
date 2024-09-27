@@ -162,6 +162,9 @@ type Session struct {
 	// userAgent is the user agent to send with each API request
 	// User shouldn't be able to change or set the base user agent
 	userAgent string
+
+	// Last API call made in a human readable format
+	LastCall string
 }
 
 //counterfeiter:generate . SLSession
@@ -172,6 +175,7 @@ type SLSession interface {
 	SetRetryWait(retryWait time.Duration) *Session
 	AppendUserAgent(agent string)
 	ResetUserAgent()
+	String() string
 }
 
 func init() {
@@ -285,6 +289,7 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	}
 
 	err := r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	r.LastCall = CallToString(service, method, args, options)
 	if err != nil {
 		return err
 	}
@@ -391,6 +396,11 @@ func (r *Session) RefreshToken() error {
 	return nil
 }
 
+// Returns a string of the last api call made.
+func (r *Session) String() string {
+	return r.LastCall
+}
+
 func envFallback(keyName string, value *string) {
 	if *value == "" {
 		*value = os.Getenv(keyName)
@@ -463,4 +473,36 @@ func getDefaultUserAgent() string {
 		envAgent = fmt.Sprintf("(%s)", envAgent)
 	}
 	return fmt.Sprintf("softlayer-go/%s %s ", sl.Version.String(), envAgent)
+}
+
+func CallToString(service string, method string, args []interface{}, options *sl.Options) string {
+	if options == nil {
+		options = new(sl.Options)
+	}
+	default_id := 0
+	default_mask := "''"
+	default_filter := "''"
+	default_args := ""
+	if options.Id != nil {
+		default_id = *options.Id
+	}
+	if options.Mask != "" {
+		default_mask = fmt.Sprintf(`'%s'`, options.Mask)
+	}
+	if options.Filter != "" {
+		default_filter = fmt.Sprintf(`'%s'`, options.Filter)
+	}
+	if len(args) > 0 {
+		// This is what softlayer-go/session/rest.go does
+		parameters, err := json.Marshal(map[string]interface{}{"parameters": args})
+		default_args = fmt.Sprintf(`'%s'`, string(parameters))
+		if err != nil {
+			default_args = err.Error()
+		}
+
+	}
+	return fmt.Sprintf(
+		"%s::%s(id=%d, mask=%s, filter=%s, %s)",
+		service, method, default_id, default_mask, default_filter, default_args,
+	)
 }
