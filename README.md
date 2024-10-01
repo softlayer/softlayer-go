@@ -327,7 +327,7 @@ func main() {
 
 ### IAM authentication
 
-This library supports [IBM's IAM Authentication](https://cloud.ibm.com/docs/account?topic=account-iamoverview_) (used by the `ibmcloud` cli for example). You will want to set the `IAMToken` and `IAMRefreshToken` properties on the session to make use of it.
+This library supports [IBM's IAM Authentication](https://cloud.ibm.com/docs/account?topic=account-iamoverview) (used by the `ibmcloud` cli for example). You will want to set the `IAMToken` and `IAMRefreshToken` properties on the session to make use of it.
 
 
 ```go
