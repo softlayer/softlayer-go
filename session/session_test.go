@@ -1,12 +1,12 @@
 package session
 
 import (
-	"fmt"
-	"log"
 	"bytes"
+	"fmt"
 	"github.com/jarcoal/httpmock"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
+	"log"
 	"os"
 	"strings"
 	"testing"

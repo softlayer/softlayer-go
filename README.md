@@ -325,6 +325,60 @@ func main() {
 }
 ```
 
+### IAM authentication
+
+This library supports [IBM's IAM Authentication](https://cloud.ibm.com/docs/account?topic=account-iamoverview_) (used by the `ibmcloud` cli for example). You will want to set the `IAMToken` and `IAMRefreshToken` properties on the session to make use of it.
+
+
+```go
+token := "Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..."
+refreshToken := "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb..."
+sess := &session.Session{
+	Endpoint:         "https://api.softlayer.com/rest/v3.1",
+	Debug:            true,
+	Timeout:          90,
+	IAMToken:         token,
+	IAMRefreshToken:  refreshToken
+}
+```
+
+You can bypass automatic IAM refresh by either not setting the `IAMRefreshToken` property, or by manually configuring the `TransportHandler`
+
+```go
+token := "Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..."
+handler := &session.RestTransport{}
+sess := &session.Session{
+	Endpoint:         "https://api.softlayer.com/rest/v3.1",
+	Debug:            true,
+	Timeout:          90,
+	IAMToken:         token,
+	TransportHandler  handler,
+}
+```
+
+If you want to be able to record the new tokens in a config file (or elsewhere), you can configure an `IAMUpdaters` Observer which will take in as arguments the new tokens, allowing you to save them somewhere for reuse.
+
+```go
+type MyIamUpdater struct {
+	debug bool
+}
+// This function is where you can configure the logic to save these new tokens somewhere
+func (iamupdater *MyIamUpdater) Update(token string, refresh string) {
+	fmt.Printf("[DEBUG] New Token: %s\n", token)
+	fmt.Printf("[DEBUG] New Refresh Token: %s\n", refresh)
+}
+updater := &MyIamUpdater{debug: false}
+token := "Bearer aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..."
+refreshToken := "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb..."
+sess := &session.Session{
+	Endpoint:         "https://api.softlayer.com/rest/v3.1",
+	IAMToken:         token,
+	IAMRefreshToken  refreshToken,
+}
+sess.AddIAMUpdater(updater)
+```
+You can add multiple Updaters as well, they will be called in the order they are added. `MyIamUpdater.Update(token, refresh)` in this example will only be called when the token is actually refreshed.
+
 ## Running Examples
 
 The [Examples](https://github.com/softlayer/softlayer-go/tree/master/examples) directory has a few rough examples scripts that can help you get started developing with this library.
