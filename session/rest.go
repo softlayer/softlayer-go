@@ -54,12 +54,6 @@ func (r *RestTransport) DoRequest(sess *Session, service string, method string, 
 
 	resp, code, err := sendHTTPRequest(sess, path, restMethod, parameters, options)
 
-	//Check if this is a refreshable exception
-	if err != nil && sess.IAMRefreshToken != "" && NeedsRefresh(err) {
-		sess.RefreshToken()
-		resp, code, err = sendHTTPRequest(sess, path, restMethod, parameters, options)
-	}
-
 	if err != nil {
 		//Preserve the original sl error
 		if _, ok := err.(sl.Error); ok {

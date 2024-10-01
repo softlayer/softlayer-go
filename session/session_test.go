@@ -2,6 +2,8 @@ package session
 
 import (
 	"fmt"
+	"log"
+	"bytes"
 	"github.com/jarcoal/httpmock"
 	"github.com/softlayer/softlayer-go/datatypes"
 	"github.com/softlayer/softlayer-go/sl"
@@ -174,6 +176,50 @@ func TestRefreshToken(t *testing.T) {
 	expectedError = "unexpected end of JSON input"
 	if err.Error() != expectedError {
 		t.Errorf("Expected %s == %s", err.Error(), expectedError)
+	}
+	httpmock.Reset()
+}
+
+// Tests refreshing a IAM token logging output and calling IAMUpdaters
+func TestRefreshTokenWithLog(t *testing.T) {
+	// setup session and mock environment
+	logBuf := bytes.Buffer{}
+	Logger = log.New(&logBuf, "", log.LstdFlags)
+	s = New()
+	s.Endpoint = restEndpoint
+	s.IAMToken = "Bearer TestToken"
+	s.IAMRefreshToken = "TestTokenRefresh"
+	//s.Debug = true
+	updater := NewLogIamUpdater(true)
+	s.AddIAMUpdater(updater)
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	fmt.Printf("TestRefreshTokenWithLog [Happy Path]: ")
+
+	// Happy Path
+	httpmock.RegisterResponder("POST", IBMCLOUDIAMENDPOINT,
+		httpmock.NewStringResponder(200, `{"access_token": "NewToken123", "refresh_token":"NewRefreshToken123", "token_type":"Bearer"}`),
+	)
+	err := s.RefreshToken()
+	if err != nil {
+		t.Errorf("Testing Error: %v\n", err.Error())
+	}
+
+	if s.IAMToken != "Bearer NewToken123" {
+		t.Errorf("(IAMToken) %s != 'Bearer NewToken123', Refresh Failed.", s.IAMToken)
+	}
+	if s.IAMRefreshToken != "NewRefreshToken123" {
+		t.Errorf("(IAMRefreshToken) %s != 'NewRefreshToken123', Refresh Failed.", s.IAMRefreshToken)
+	}
+	logOutput := strings.Split(logBuf.String(), "\n")
+	if len(logOutput) < 2 {
+		t.Errorf("Not enough log output detected.")
+	}
+	if !strings.HasSuffix(logOutput[0], "[DEBUG] New Token: Bearer NewToken123") {
+		t.Errorf("%s is incorrect log output", logOutput[0])
+	}
+	if !strings.HasSuffix(logOutput[1], "[DEBUG] New Refresh Token: NewRefreshToken123") {
+		t.Errorf("%s is incorrect log output", logOutput[1])
 	}
 	httpmock.Reset()
 }
