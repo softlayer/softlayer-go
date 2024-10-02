@@ -127,6 +127,10 @@ type Session struct {
 	//IAMRefreshToken is the IAM refresh token secret that required to refresh IAM Token
 	IAMRefreshToken string
 
+	// A list objects that implement the IAMUpdater interface.
+	// When a IAMToken is refreshed, these are notified with the new token and new refresh token.
+	IAMUpdaters []IAMUpdater
+
 	// AuthToken is the token secret for token-based authentication
 	AuthToken string
 
@@ -289,6 +293,11 @@ func (r *Session) DoRequest(service string, method string, args []interface{}, o
 	}
 
 	err := r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	//Check if this is a refreshable exception and try 1 more time
+	if err != nil && r.IAMRefreshToken != "" && NeedsRefresh(err) {
+		r.RefreshToken()
+		err = r.TransportHandler.DoRequest(r, service, method, args, options, pResult)
+	}
 	r.LastCall = CallToString(service, method, args, options)
 	if err != nil {
 		return err
@@ -345,8 +354,6 @@ func (r *Session) ResetUserAgent() {
 
 // Refreshes an IAM authenticated session
 func (r *Session) RefreshToken() error {
-
-	Logger.Println("[DEBUG] Refreshing IAM Token")
 	client := http.DefaultClient
 	reqPayload := url.Values{}
 	reqPayload.Add("grant_type", "refresh_token")
@@ -393,12 +400,22 @@ func (r *Session) RefreshToken() error {
 
 	r.IAMToken = fmt.Sprintf("%s %s", token.TokenType, token.AccessToken)
 	r.IAMRefreshToken = token.RefreshToken
+	// Mostly these are needed if we want to save these new tokens to a config file.
+	for _, updater := range r.IAMUpdaters {
+		updater.Update(r.IAMToken, r.IAMRefreshToken)
+	}
 	return nil
 }
 
 // Returns a string of the last api call made.
 func (r *Session) String() string {
 	return r.LastCall
+}
+
+// Adds a new IAMUpdater instance to the session
+// Useful if you want to update a config file with the new Tokens
+func (r *Session) AddIAMUpdater(updater IAMUpdater) {
+	r.IAMUpdaters = append(r.IAMUpdaters, updater)
 }
 
 func envFallback(keyName string, value *string) {
@@ -457,6 +474,7 @@ func isRetryable(err error) bool {
 	return isTimeout(err) || hasRetryableCode(err)
 }
 
+// Detects if the SL API returned a specific exception indicating the IAMToken is expired.
 func NeedsRefresh(err error) bool {
 	if slError, ok := err.(sl.Error); ok {
 		if slError.StatusCode == 500 && slError.Exception == "SoftLayer_Exception_Account_Authentication_AccessTokenValidation" {
@@ -475,6 +493,7 @@ func getDefaultUserAgent() string {
 	return fmt.Sprintf("softlayer-go/%s %s ", sl.Version.String(), envAgent)
 }
 
+// Formats an API call into a readable string
 func CallToString(service string, method string, args []interface{}, options *sl.Options) string {
 	if options == nil {
 		options = new(sl.Options)
