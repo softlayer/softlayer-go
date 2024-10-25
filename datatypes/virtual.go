@@ -423,10 +423,12 @@ type Virtual_Guest struct {
 	// A container for a guest's console data
 	ConsoleData *Container_Virtual_ConsoleData `json:"consoleData,omitempty" xmlrpc:"consoleData,omitempty"`
 
-	// A flag indicating a computing instance's console IP address is assigned.
+	// [DEPRECATED] A flag indicating a computing instance's console IP address is assigned.
+	// Deprecated: This function has been marked as deprecated.
 	ConsoleIpAddressFlag *bool `json:"consoleIpAddressFlag,omitempty" xmlrpc:"consoleIpAddressFlag,omitempty"`
 
-	// A record containing information about a computing instance's console IP and port number.
+	// [DEPRECATED] A record containing information about a computing instance's console IP and port number.
+	// Deprecated: This function has been marked as deprecated.
 	ConsoleIpAddressRecord *Virtual_Guest_Network_Component_IpAddress `json:"consoleIpAddressRecord,omitempty" xmlrpc:"consoleIpAddressRecord,omitempty"`
 
 	// A continuous data protection software component object.

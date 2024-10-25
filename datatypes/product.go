@@ -251,6 +251,12 @@ type Product_Item struct {
 	// A product item's prices.
 	Prices []Product_Item_Price `json:"prices,omitempty" xmlrpc:"prices,omitempty"`
 
+	// The number of private network interfaces provided by a port_speed product.
+	PrivateInterfaceCount *uint `json:"privateInterfaceCount,omitempty" xmlrpc:"privateInterfaceCount,omitempty"`
+
+	// The number of public network interfaces provided by a port_speed product.
+	PublicInterfaceCount *uint `json:"publicInterfaceCount,omitempty" xmlrpc:"publicInterfaceCount,omitempty"`
+
 	// If an item must be ordered with another item, it will have a requirement item here.
 	Requirements []Product_Item_Requirement `json:"requirements,omitempty" xmlrpc:"requirements,omitempty"`
 
