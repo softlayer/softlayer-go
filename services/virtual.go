@@ -1164,13 +1164,13 @@ func (r Virtual_Guest) GetConsoleData() (resp datatypes.Container_Virtual_Consol
 	return
 }
 
-// Retrieve A flag indicating a computing instance's console IP address is assigned.
+// Retrieve [DEPRECATED] A flag indicating a computing instance's console IP address is assigned.
 func (r Virtual_Guest) GetConsoleIpAddressFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleIpAddressFlag", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve A record containing information about a computing instance's console IP and port number.
+// Retrieve [DEPRECATED] A record containing information about a computing instance's console IP and port number.
 func (r Virtual_Guest) GetConsoleIpAddressRecord() (resp datatypes.Virtual_Guest_Network_Component_IpAddress, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getConsoleIpAddressRecord", nil, &r.Options, &resp)
 	return
@@ -1929,6 +1929,7 @@ func (r Virtual_Guest) RebootSoft() (resp bool, err error) {
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Virtual_Guest) ReconfigureConsole() (err error) {
 	var resp datatypes.Void
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "reconfigureConsole", nil, &r.Options, &resp)

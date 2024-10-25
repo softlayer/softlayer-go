@@ -308,6 +308,20 @@ var _ = Describe("Product Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Product_Item::getPrivateInterfaceCount", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetPrivateInterfaceCount()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
+		Context("SoftLayer_Product_Item::getPublicInterfaceCount", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetPublicInterfaceCount()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Product_Item::getRequirements", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetRequirements()

@@ -69,6 +69,7 @@ func (r Marketplace_Partner) GetAllObjects() (resp []datatypes.Marketplace_Partn
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Marketplace_Partner) GetAllPublishedPartners(searchTerm *string) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		searchTerm,
@@ -84,6 +85,7 @@ func (r Marketplace_Partner) GetAttachments() (resp []datatypes.Marketplace_Part
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Marketplace_Partner, err error) {
 	params := []interface{}{
 		non,
@@ -93,6 +95,7 @@ func (r Marketplace_Partner) GetFeaturedPartners(non *bool) (resp []datatypes.Ma
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Marketplace_Partner) GetFile(name *string) (resp datatypes.Marketplace_Partner_File, err error) {
 	params := []interface{}{
 		name,

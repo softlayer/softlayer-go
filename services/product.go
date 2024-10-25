@@ -290,6 +290,18 @@ func (r Product_Item) GetPrices() (resp []datatypes.Product_Item_Price, err erro
 	return
 }
 
+// Retrieve The number of private network interfaces provided by a port_speed product.
+func (r Product_Item) GetPrivateInterfaceCount() (resp uint, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPrivateInterfaceCount", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve The number of public network interfaces provided by a port_speed product.
+func (r Product_Item) GetPublicInterfaceCount() (resp uint, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getPublicInterfaceCount", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve If an item must be ordered with another item, it will have a requirement item here.
 func (r Product_Item) GetRequirements() (resp []datatypes.Product_Item_Requirement, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getRequirements", nil, &r.Options, &resp)
