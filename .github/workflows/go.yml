@@ -56,8 +56,8 @@ jobs:
         go test -v `go list ./... | grep -v '/vendor/'` -covermode=count  -coverprofile=coverage.out
         # Required because the coverage.out file on github actions has a path that breaks gcov2lcov
         sed -i "s/$(pwd|sed 's/\//\\\//g')/./g" coverage.out
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
+    - name: Coveralls Report
+      uses: coverallsapp/github-action@v2.3.6
       with:
           github-token: ${{ secrets.github_token }}
           file: coverage.out
