@@ -989,7 +989,8 @@ func (r Product_Order) CheckItemConflicts(itemPrices []datatypes.Product_Item_Pr
 	return
 }
 
-// This method simply returns a receipt for a previously finalized payment authorization from PayPal. The response matches the response returned from placeOrder when the order was originally placed with PayPal as the payment type.
+// no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Product_Order) GetExternalPaymentAuthorizationReceipt(token *string, payerId *string) (resp datatypes.Container_Product_Order_Receipt, err error) {
 	params := []interface{}{
 		token,
@@ -1417,7 +1418,8 @@ func (r Product_Order) PlaceQuote(orderData interface{}) (resp datatypes.Contain
 	return
 }
 
-// This method simply finalizes an authorization from PayPal. It tells SoftLayer that the customer has completed the PayPal process. This is ONLY needed if you, the customer, have your own API into PayPal and wish to automate authorizations from PayPal and our system. For most, this method will not be needed. Once an order is placed using placeOrder() for PayPal customers, a URL is given back to the customer. In it is the token and PayerID. If you want to systematically pay with PayPal, do so then call this method with the token and PayerID.
+// no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Product_Order) ProcessExternalPaymentAuthorization(token *string, payerId *string) (resp datatypes.Container_Product_Order, err error) {
 	params := []interface{}{
 		token,

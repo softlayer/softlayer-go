@@ -23,6 +23,7 @@ import (
 )
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 type Marketplace_Partner struct {
 	Session session.SLSession
 	Options sl.Options

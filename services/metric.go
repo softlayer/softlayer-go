@@ -74,22 +74,6 @@ func (r Metric_Tracking_Object) GetBandwidthData(startDateTime *datatypes.Time, 
 	return
 }
 
-// [DEPRECATED] Retrieve a PNG image of a bandwidth graph representing the bandwidth usage over time recorded by SofTLayer's bandwidth pollers.
-// Deprecated: This function has been marked as deprecated.
-func (r Metric_Tracking_Object) GetBandwidthGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType *string, fontSize *int, graphWidth *int, graphHeight *int, doNotShowTimeZone *bool) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		graphType,
-		fontSize,
-		graphWidth,
-		graphHeight,
-		doNotShowTimeZone,
-	}
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getBandwidthGraph", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve the total amount of bandwidth recorded by a tracking object within the given date range. This method will only work on SoftLayer_Metric_Tracking_Object for SoftLayer_Hardware objects, and SoftLayer_Virtual_Guest objects.
 func (r Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, typ *string) (resp uint, err error) {
 	params := []interface{}{
@@ -102,29 +86,6 @@ func (r Metric_Tracking_Object) GetBandwidthTotal(startDateTime *datatypes.Time,
 	return
 }
 
-// Retrieve a collection of detailed metric data over a date range. Ideal if you want to employ your own graphing systems.  Note not all metrics support this method.  Those that do not return null.
-func (r Metric_Tracking_Object) GetDetailsForDateRange(startDate *datatypes.Time, endDate *datatypes.Time, graphType []string) (resp []datatypes.Container_Metric_Tracking_Object_Details, err error) {
-	params := []interface{}{
-		startDate,
-		endDate,
-		graphType,
-	}
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getDetailsForDateRange", params, &r.Options, &resp)
-	return
-}
-
-// [DEPRECATED] Retrieve a PNG image of a metric in graph form.
-// Deprecated: This function has been marked as deprecated.
-func (r Metric_Tracking_Object) GetGraph(startDateTime *datatypes.Time, endDateTime *datatypes.Time, graphType []string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		graphType,
-	}
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getGraph", params, &r.Options, &resp)
-	return
-}
-
 // Returns a collection of metric data types that can be retrieved for a metric tracking object.
 func (r Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container_Metric_Data_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getMetricDataTypes", nil, &r.Options, &resp)
@@ -134,15 +95,6 @@ func (r Metric_Tracking_Object) GetMetricDataTypes() (resp []datatypes.Container
 // getObject retrieves the SoftLayer_Metric_Tracking_Object object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Metric_Tracking_Object service. You can only tracking objects that are associated with your SoftLayer account or services.
 func (r Metric_Tracking_Object) GetObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a metric summary. Ideal if you want to employ your own graphing systems.  Note not all metric types contain a summary.  These return null.
-func (r Metric_Tracking_Object) GetSummary(graphType *string) (resp datatypes.Container_Metric_Tracking_Object_Summary, err error) {
-	params := []interface{}{
-		graphType,
-	}
-	err = r.Session.DoRequest("SoftLayer_Metric_Tracking_Object", "getSummary", params, &r.Options, &resp)
 	return
 }
 

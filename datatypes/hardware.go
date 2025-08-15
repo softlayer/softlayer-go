@@ -543,6 +543,7 @@ type Hardware struct {
 	SecurityScanRequestCount *uint `json:"securityScanRequestCount,omitempty" xmlrpc:"securityScanRequestCount,omitempty"`
 
 	// Information regarding a piece of hardware's vulnerability scan requests.
+	// Deprecated: This function has been marked as deprecated.
 	SecurityScanRequests []Network_Security_Scanner_Request `json:"securityScanRequests,omitempty" xmlrpc:"securityScanRequests,omitempty"`
 
 	// A hardware's serial number that is supplied by SoftLayer.
@@ -844,6 +845,10 @@ type Hardware_Component struct {
 
 	// A component's M.2 SATA capacity.
 	M2SataSlotCapacity *string `json:"m2SataSlotCapacity,omitempty" xmlrpc:"m2SataSlotCapacity,omitempty"`
+
+	// [DEPRECATED] - A hardware component power supply metric tracking object. This object records all periodic polled data available to this hardware componet model.
+	// Deprecated: This function has been marked as deprecated.
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// The date that a hardware component was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
@@ -1170,6 +1175,10 @@ type Hardware_Component_Model struct {
 	// A hardware component model's manufacturer.
 	Manufacturer *string `json:"manufacturer,omitempty" xmlrpc:"manufacturer,omitempty"`
 
+	// [DEPRECATED] - A hardware component models metric tracking object. This object records all periodic polled data available to this hardware componet model.
+	// Deprecated: This function has been marked as deprecated.
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
+
 	// The model name of a hardware component model.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
@@ -1297,6 +1306,9 @@ type Hardware_Component_Model_Generic struct {
 
 	// A list of features that a generic component model can provide.
 	MarketingFeatures *Hardware_Component_Model_Generic_MarketingFeature `json:"marketingFeatures,omitempty" xmlrpc:"marketingFeatures,omitempty"`
+
+	// no documentation yet
+	PciGeneration *string `json:"pciGeneration,omitempty" xmlrpc:"pciGeneration,omitempty"`
 
 	// The unit of measurement for the capacity of a generic component model.
 	Units *string `json:"units,omitempty" xmlrpc:"units,omitempty"`
@@ -1858,12 +1870,6 @@ type Hardware_Resource_Configuration_Type struct {
 // The SoftLayer_Hardware_Router data type contains general information relating to a single SoftLayer router.
 type Hardware_Router struct {
 	Hardware_Switch
-
-	// A count of associated subnets for a router object.
-	BoundSubnetCount *uint `json:"boundSubnetCount,omitempty" xmlrpc:"boundSubnetCount,omitempty"`
-
-	// Associated subnets for a router object.
-	BoundSubnets []Network_Subnet `json:"boundSubnets,omitempty" xmlrpc:"boundSubnets,omitempty"`
 
 	// A flag indicating that a VLAN on the router can be assigned to a host that has local disk functionality.
 	LocalDiskStorageCapabilityFlag *bool `json:"localDiskStorageCapabilityFlag,omitempty" xmlrpc:"localDiskStorageCapabilityFlag,omitempty"`

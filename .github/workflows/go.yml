@@ -10,17 +10,17 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.21.x]
+        go-version: [1.25.x]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Install Go
       if: success()
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
     - name: Run tests
       run: make test
   detectsecrets:
@@ -44,42 +44,38 @@ jobs:
     steps:
     - name: Install Go
       if: success()
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.21.x
+        go-version: 1.25.x
     - name: Checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
     - name: Calc coverage 
       run: |
         export PATH=$PATH:$(go env GOPATH)/bin
-        go get -v -t -d ./...
+        go mod vendor
         go test -v `go list ./... | grep -v '/vendor/'` -covermode=count  -coverprofile=coverage.out
         # Required because the coverage.out file on github actions has a path that breaks gcov2lcov
         sed -i "s/$(pwd|sed 's/\//\\\//g')/./g" coverage.out
-    - name: Convert coverage to lcov
-      uses: jandelgado/gcov2lcov-action@v1.0.8
-      with:
-          infile: coverage.out
-          outfile: coverage.lcov
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
+    - name: Coveralls Report
+      uses: coverallsapp/github-action@v2.3.6
       with:
           github-token: ${{ secrets.github_token }}
-          path-to-lcov: coverage.lcov
+          file: coverage.out
+          format: golang
 
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
 
-    - name: Set up Go 1.21
-      uses: actions/setup-go@v1
+    - name: Set up Go
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.21
+        go-version: 1.25
       id: go
 
     - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Get dependencies
       run: |

@@ -110,29 +110,36 @@
     	"typeDoc": "this is just a test datatype"
     },
     "SoftLayer_Inherit": {
-    	"base": "SoftLayer_Account",
-    	"name": "SoftLayer_Test_Service",
-    	"serviceDoc": "This is just a test service",
-    	"typeDoc": "this is just a test datatype",
-    	"methods": {
-    		"test1": {
-    			"docOverview": "A test Method",
-    			"name": "test1",
-    			"type": "SoftLayer_Inherit",
-    			"parameters": [
-    				{"name": "param1", "type": "string"},
-    				{"name": "param2", "type": "int"}
-    			]
-    		}
-    	},
-    	"properties": {
-    		"p_test1": {
-    			"doc": "a test property",
-    			"form": "relational",
-    			"typeArray": true,
-    			"name": "p_test1"
-    		}
-    	}
+        "base": "SoftLayer_Account",
+        "name": "SoftLayer_Inherit",
+        "serviceDoc": "This is just a test service",
+        "typeDoc": "this is just a test datatype",
+        "methods": {
+            "test1": {
+                "docOverview": "A test Method",
+                "name": "test1",
+                "type": "SoftLayer_Inherit",
+                "parameters": [
+                    {"name": "param1", "type": "string"},
+                    {"name": "param2", "type": "int"}
+                ]
+            }           
+        },
+        "properties": {
+            "property1": {
+                "doc": "The quantity of the item being ordered",
+                "form": "local",
+                "name": "quantity",
+                "type": "int"
+            },
+            "ptest1": {
+                "doc": "a test property",
+                "form": "relational",
+                "typeArray": true,
+                "name": "p_test1",
+                "type": "SoftLayer_Inherit"
+            }
+        }
     },
     "SoftLayer_Container_Product_Order": {
     	"base": "SoftLayer_Entity",

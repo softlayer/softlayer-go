@@ -98,7 +98,8 @@ func (r Account) AreVdrUpdatesBlockedForBilling() (resp bool, err error) {
 	return
 }
 
-// Cancel the PayPal Payment Request process. During the process of submitting a PayPal payment request, the customer is redirected to PayPal to confirm the request.  If the customer elects to cancel the payment from PayPal, they are returned to SoftLayer where the manual payment record is updated to a status of canceled.
+// no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account) CancelPayPalTransaction(token *string, payerId *string) (resp bool, err error) {
 	params := []interface{}{
 		token,
@@ -108,7 +109,8 @@ func (r Account) CancelPayPalTransaction(token *string, payerId *string) (resp b
 	return
 }
 
-// Complete the PayPal Payment Request process and receive confirmation message. During the process of submitting a PayPal payment request, the customer is redirected to PayPal to confirm the request.  Once confirmed, PayPal returns the customer to SoftLayer where an attempt is made to finalize the transaction.  A status message regarding the attempt is returned to the calling function.
+// no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Account) CompletePayPalTransaction(token *string, payerId *string) (resp string, err error) {
 	params := []interface{}{
 		token,
@@ -456,26 +458,6 @@ func (r Account) GetAvailablePublicNetworkVlans() (resp []datatypes.Network_Vlan
 	return
 }
 
-// Returns the average disk space usage for all archive repositories.
-func (r Account) GetAverageArchiveUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account", "getAverageArchiveUsageMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
-// Returns the average disk space usage for all public repositories.
-func (r Account) GetAveragePublicUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account", "getAveragePublicUsageMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The account balance of a SoftLayer customer account. An account's balance is the amount of money owed to SoftLayer by the account holder, returned as a floating point number with two decimal places, measured in US Dollars ($USD). A negative account balance means the account holder has overpaid and is owed money by SoftLayer.
 func (r Account) GetBalance() (resp datatypes.Float64, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getBalance", nil, &r.Options, &resp)
@@ -615,7 +597,7 @@ func (r Account) GetCurrentUser() (resp datatypes.User_Customer, err error) {
 	return
 }
 
-// Retrieve Datacenters which contain subnets that the account has access to route.
+// Retrieve [DEPRECATED] Datacenters which contain subnets that the account has access to route.
 func (r Account) GetDatacentersWithSubnetAllocations() (resp []datatypes.Location, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getDatacentersWithSubnetAllocations", nil, &r.Options, &resp)
 	return
@@ -954,16 +936,6 @@ func (r Account) GetIscsiIsolationDisabled() (resp bool, err error) {
 // Retrieve An account's associated iSCSI storage volumes.
 func (r Account) GetIscsiNetworkStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getIscsiNetworkStorage", nil, &r.Options, &resp)
-	return
-}
-
-// Computes the number of available public secondary IP addresses, aligned to a subnet size.
-func (r Account) GetLargestAllowedSubnetCidr(numberOfHosts *int, locationId *int) (resp int, err error) {
-	params := []interface{}{
-		numberOfHosts,
-		locationId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account", "getLargestAllowedSubnetCidr", params, &r.Options, &resp)
 	return
 }
 
@@ -1348,12 +1320,6 @@ func (r Account) GetOpenSalesTickets() (resp []datatypes.Ticket, err error) {
 	return
 }
 
-// Retrieve
-func (r Account) GetOpenStackAccountLinks() (resp []datatypes.Account_Link, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackAccountLinks", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve An account's associated Openstack related Object Storage accounts.
 func (r Account) GetOpenStackObjectStorage() (resp []datatypes.Network_Storage, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getOpenStackObjectStorage", nil, &r.Options, &resp)
@@ -1666,12 +1632,6 @@ func (r Account) GetRouters() (resp []datatypes.Hardware, err error) {
 	return
 }
 
-// Retrieve DEPRECATED
-func (r Account) GetRwhoisData() (resp []datatypes.Network_Subnet_Rwhois_Data, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getRwhoisData", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve The SAML configuration for this account.
 func (r Account) GetSamlAuthentication() (resp datatypes.Account_Authentication_Saml, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getSamlAuthentication", nil, &r.Options, &resp)
@@ -1741,18 +1701,6 @@ func (r Account) GetSslVpnUsers() (resp []datatypes.User_Customer, err error) {
 // Retrieve An account's virtual guest objects that are hosted on a user provisioned hypervisor.
 func (r Account) GetStandardPoolVirtualGuests() (resp []datatypes.Virtual_Guest, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account", "getStandardPoolVirtualGuests", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Account) GetSubnetRegistrationDetails() (resp []datatypes.Account_Regional_Registry_Detail, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrationDetails", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve
-func (r Account) GetSubnetRegistrations() (resp []datatypes.Network_Subnet_Registration, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account", "getSubnetRegistrations", nil, &r.Options, &resp)
 	return
 }
 
@@ -2981,116 +2929,6 @@ func (r Account_External_Setup) GetVerifyCardTransaction() (resp datatypes.Billi
 }
 
 // no documentation yet
-type Account_Historical_Report struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountHistoricalReportService returns an instance of the Account_Historical_Report SoftLayer service
-func GetAccountHistoricalReportService(sess session.SLSession) Account_Historical_Report {
-	return Account_Historical_Report{Session: sess}
-}
-
-func (r Account_Historical_Report) Id(id int) Account_Historical_Report {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Historical_Report) Mask(mask string) Account_Historical_Report {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Historical_Report) Filter(filter string) Account_Historical_Report {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Historical_Report) Limit(limit int) Account_Historical_Report {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Historical_Report) Offset(offset int) Account_Historical_Report {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Historical_Report) GetAccountHostUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		accountId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountHostUptimeSummary", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Historical_Report) GetAccountUrlUptimeSummary(startDateTime *string, endDateTime *string, accountId *int) (resp datatypes.Container_Account_Historical_Summary, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		accountId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getAccountUrlUptimeSummary", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Historical_Report) GetHostUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
-	params := []interface{}{
-		configurationValueId,
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getHostUptimeDetail", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Historical_Report) GetHostUptimeGraphData(configurationValueId *int, startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
-	params := []interface{}{
-		configurationValueId,
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getHostUptimeGraphData", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Historical_Report) GetUrlUptimeDetail(configurationValueId *int, startDateTime *string, endDateTime *string) (resp datatypes.Container_Account_Historical_Summary_Detail, err error) {
-	params := []interface{}{
-		configurationValueId,
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getUrlUptimeDetail", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Historical_Report) GetUrlUptimeGraphData(configurationValueId *int, startDate *string, endDate *string) (resp datatypes.Container_Graph, err error) {
-	params := []interface{}{
-		configurationValueId,
-		startDate,
-		endDate,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Historical_Report", "getUrlUptimeGraphData", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
 type Account_Internal_Ibm struct {
 	Session session.SLSession
 	Options sl.Options
@@ -3327,111 +3165,6 @@ func (r Account_Link_Bluemix) GetObject() (resp datatypes.Account_Link_Bluemix, 
 // no documentation yet
 func (r Account_Link_Bluemix) GetSupportTierType() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_Link_Bluemix", "getSupportTierType", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-type Account_Link_OpenStack struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountLinkOpenStackService returns an instance of the Account_Link_OpenStack SoftLayer service
-func GetAccountLinkOpenStackService(sess session.SLSession) Account_Link_OpenStack {
-	return Account_Link_OpenStack{Session: sess}
-}
-
-func (r Account_Link_OpenStack) Id(id int) Account_Link_OpenStack {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Link_OpenStack) Mask(mask string) Account_Link_OpenStack {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Link_OpenStack) Filter(filter string) Account_Link_OpenStack {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Link_OpenStack) Limit(limit int) Account_Link_OpenStack {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Link_OpenStack) Offset(offset int) Account_Link_OpenStack {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Link_OpenStack) CreateOSDomain(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_DomainCreationDetails, err error) {
-	params := []interface{}{
-		request,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "createOSDomain", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Link_OpenStack) CreateOSProject(request *datatypes.Account_Link_OpenStack_LinkRequest) (resp datatypes.Account_Link_OpenStack_ProjectCreationDetails, err error) {
-	params := []interface{}{
-		request,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "createOSProject", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Link_OpenStack) DeleteOSDomain(domainId *string) (resp bool, err error) {
-	params := []interface{}{
-		domainId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "deleteOSDomain", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Link_OpenStack) DeleteOSProject(projectId *string) (resp bool, err error) {
-	params := []interface{}{
-		projectId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "deleteOSProject", params, &r.Options, &resp)
-	return
-}
-
-// deleteObject permanently removes an account link and all of it's associated keystone data (including users for the associated project). ”'This cannot be undone.”' Be wary of running this method. If you remove an account link in error you will need to re-create it by creating a new SoftLayer_Account_Link_OpenStack object.
-func (r Account_Link_OpenStack) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Link_OpenStack) GetOSProject(projectId *string) (resp datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
-	params := []interface{}{
-		projectId,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "getOSProject", params, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Link_OpenStack) GetObject() (resp datatypes.Account_Link_OpenStack, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Link_OpenStack) ListOSProjects() (resp []datatypes.Account_Link_OpenStack_ProjectDetails, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Link_OpenStack", "listOSProjects", nil, &r.Options, &resp)
 	return
 }
 
@@ -4527,377 +4260,6 @@ func (r Account_ProofOfConcept_Funding_Type) GetApprovers() (resp []datatypes.Ac
 // no documentation yet
 func (r Account_ProofOfConcept_Funding_Type) GetObject() (resp datatypes.Account_ProofOfConcept_Funding_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Account_ProofOfConcept_Funding_Type", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail type has been deprecated.
-//
-// Deprecated: This function has been marked as deprecated.
-type Account_Regional_Registry_Detail struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountRegionalRegistryDetailService returns an instance of the Account_Regional_Registry_Detail SoftLayer service
-func GetAccountRegionalRegistryDetailService(sess session.SLSession) Account_Regional_Registry_Detail {
-	return Account_Regional_Registry_Detail{Session: sess}
-}
-
-func (r Account_Regional_Registry_Detail) Id(id int) Account_Regional_Registry_Detail {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Regional_Registry_Detail) Mask(mask string) Account_Regional_Registry_Detail {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Regional_Registry_Detail) Filter(filter string) Account_Regional_Registry_Detail {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Regional_Registry_Detail) Limit(limit int) Account_Regional_Registry_Detail {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Regional_Registry_Detail) Offset(offset int) Account_Regional_Registry_Detail {
-	r.Options.Offset = &offset
-	return r
-}
-
-// The subnet registration detail service has been deprecated.
-//
-// <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail object.
-//
-// <b>Input</b> - [[SoftLayer_Account_Regional_Registry_Detail (type)|SoftLayer_Account_Regional_Registry_Detail]] <ul class="create_object"> <li><code>detailTypeId</code> <div>The [[SoftLayer_Account_Regional_Registry_Detail_Type|type id]] of this detail object</div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>regionalInternetRegistryHandleId</code> <div> The id of the [[SoftLayer_Account_Rwhois_Handle|RWhois handle]] object. This is only to be used for detailed registrations, where a subnet is registered to an organization. The associated handle will be required to be a valid organization object id at the relevant registry. In this case, the detail object will only be valid for the registry the organization belongs to. </div> <ul> <li><b>Optional</b></li> <li><b>Type</b> - integer</li> </ul> </li> </ul>
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail) CreateObject(templateObject *datatypes.Account_Regional_Registry_Detail) (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "createObject", params, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail service has been deprecated.
-//
-// This method will delete an existing SoftLayer_Account_Regional_Registry_Detail object.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail service has been deprecated.
-//
-// This method will edit an existing SoftLayer_Account_Regional_Registry_Detail object. For more detail, see [[SoftLayer_Account_Regional_Registry_Detail::createObject|createObject]].
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail) EditObject(templateObject *datatypes.Account_Regional_Registry_Detail) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "editObject", params, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The account that this detail object belongs to.
-func (r Account_Regional_Registry_Detail) GetAccount() (resp datatypes.Account, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getAccount", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The associated type of this detail object.
-func (r Account_Regional_Registry_Detail) GetDetailType() (resp datatypes.Account_Regional_Registry_Detail_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetailType", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
-func (r Account_Regional_Registry_Detail) GetDetails() (resp []datatypes.Network_Subnet_Registration_Details, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getDetails", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Regional_Registry_Detail) GetObject() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The individual properties that define this detail object's values.
-func (r Account_Regional_Registry_Detail) GetProperties() (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getProperties", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
-func (r Account_Regional_Registry_Detail) GetRegionalInternetRegistryHandle() (resp datatypes.Account_Rwhois_Handle, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "getRegionalInternetRegistryHandle", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail service has been deprecated.
-//
-// This method will create a bulk transaction to update any registrations that reference this detail object. It should only be called from a child class such as [[SoftLayer_Account_Regional_Registry_Detail_Person]] or [[SoftLayer_Account_Regional_Registry_Detail_Network]]. The registrations should be in the Open or Registration_Complete status.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail) UpdateReferencedRegistrations() (resp datatypes.Container_Network_Subnet_Registration_TransactionDetails, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "updateReferencedRegistrations", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail service has been deprecated.
-//
-// Validates this person detail against all supported external registrars (APNIC/ARIN/RIPE). The validation uses the most restrictive rules ensuring that any person detail passing this validation would be acceptable to any supported registrar.
-//
-// # The person detail properties are validated against - Non-emptiness - Minimum length - Maximum length - Maximum words - Supported characters - Format of data
-//
-// If the person detail validation succeeds, then an empty list is returned indicating no errors were found and that this person detail would work against all three registrars during a subnet registration.
-//
-// If the person detail validation fails, then an array of validation errors (SoftLayer_Container_Message[]) is returned. Each message container contains error messages grouped by property type and a message type indicating the person detail property type object which failed validation. It is possible to create a subnet registration using a person detail which does not pass this validation, but at least one registrar would reject it for being invalid.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail) ValidatePersonForAllRegistrars() (resp []datatypes.Container_Message, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail", "validatePersonForAllRegistrars", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property type has been deprecated.
-//
-// Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
-// Deprecated: This function has been marked as deprecated.
-type Account_Regional_Registry_Detail_Property struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountRegionalRegistryDetailPropertyService returns an instance of the Account_Regional_Registry_Detail_Property SoftLayer service
-func GetAccountRegionalRegistryDetailPropertyService(sess session.SLSession) Account_Regional_Registry_Detail_Property {
-	return Account_Regional_Registry_Detail_Property{Session: sess}
-}
-
-func (r Account_Regional_Registry_Detail_Property) Id(id int) Account_Regional_Registry_Detail_Property {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property) Mask(mask string) Account_Regional_Registry_Detail_Property {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property) Filter(filter string) Account_Regional_Registry_Detail_Property {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property) Limit(limit int) Account_Regional_Registry_Detail_Property {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property) Offset(offset int) Account_Regional_Registry_Detail_Property {
-	r.Options.Offset = &offset
-	return r
-}
-
-// The subnet registration detail property service has been deprecated.
-//
-// <style type="text/css">.create_object > li > div { padding-top: .5em; padding-bottom: .5em}</style> This method will create a new SoftLayer_Account_Regional_Registry_Detail_Property object.
-//
-// <b>Input</b> - [[SoftLayer_Account_Regional_Registry_Detail_Property (type)|SoftLayer_Account_Regional_Registry_Detail_Property]] <ul class="create_object"> <li><code>registrationDetailId</code> <div>The numeric ID of the [[SoftLayer_Account_Regional_Registry_Detail|detail object]] this property belongs to</div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>propertyTypeId</code> <div> The numeric ID of the associated [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>sequencePosition</code> <div> When more than one property of the same type exists on a detail object, this value determines the position in that collection. This can be thought of more as a sort order. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - integer</li> </ul> </li> <li><code>value</code> <div> The actual value of the property. </div> <ul> <li><b>Required</b></li> <li><b>Type</b> - string</li> </ul> </li> </ul>
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property) CreateObject(templateObject *datatypes.Account_Regional_Registry_Detail_Property) (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "createObject", params, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property service has been deprecated.
-//
-// Edit multiple [[SoftLayer_Account_Regional_Registry_Detail_Property]] objects.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property) CreateObjects(templateObjects []datatypes.Account_Regional_Registry_Detail_Property) (resp []datatypes.Account_Regional_Registry_Detail_Property, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "createObjects", params, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property service has been deprecated.
-//
-// This method will delete an existing SoftLayer_Account_Regional_Registry_Detail_Property object.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property) DeleteObject() (resp bool, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "deleteObject", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property service has been deprecated.
-//
-// This method will edit an existing SoftLayer_Account_Regional_Registry_Detail_Property object. For more detail, see [[SoftLayer_Account_Regional_Registry_Detail_Property::createObject|createObject]].
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property) EditObject(templateObject *datatypes.Account_Regional_Registry_Detail_Property) (resp bool, err error) {
-	params := []interface{}{
-		templateObject,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "editObject", params, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property service has been deprecated.
-//
-// Edit multiple [[SoftLayer_Account_Regional_Registry_Detail_Property]] objects.
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property) EditObjects(templateObjects []datatypes.Account_Regional_Registry_Detail_Property) (resp bool, err error) {
-	params := []interface{}{
-		templateObjects,
-	}
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "editObjects", params, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
-func (r Account_Regional_Registry_Detail_Property) GetDetail() (resp datatypes.Account_Regional_Registry_Detail, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "getDetail", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Regional_Registry_Detail_Property) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
-func (r Account_Regional_Registry_Detail_Property) GetPropertyType() (resp datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property", "getPropertyType", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail property type type has been deprecated.
-//
-// Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
-// Deprecated: This function has been marked as deprecated.
-type Account_Regional_Registry_Detail_Property_Type struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountRegionalRegistryDetailPropertyTypeService returns an instance of the Account_Regional_Registry_Detail_Property_Type SoftLayer service
-func GetAccountRegionalRegistryDetailPropertyTypeService(sess session.SLSession) Account_Regional_Registry_Detail_Property_Type {
-	return Account_Regional_Registry_Detail_Property_Type{Session: sess}
-}
-
-func (r Account_Regional_Registry_Detail_Property_Type) Id(id int) Account_Regional_Registry_Detail_Property_Type {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property_Type) Mask(mask string) Account_Regional_Registry_Detail_Property_Type {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property_Type) Filter(filter string) Account_Regional_Registry_Detail_Property_Type {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property_Type) Limit(limit int) Account_Regional_Registry_Detail_Property_Type {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Property_Type) Offset(offset int) Account_Regional_Registry_Detail_Property_Type {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Property_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Regional_Registry_Detail_Property_Type) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Property_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Property_Type", "getObject", nil, &r.Options, &resp)
-	return
-}
-
-// The subnet registration detail type type has been deprecated.
-//
-// Subnet Registration Detail Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail]] object.
-//
-// The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
-// Deprecated: This function has been marked as deprecated.
-type Account_Regional_Registry_Detail_Type struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAccountRegionalRegistryDetailTypeService returns an instance of the Account_Regional_Registry_Detail_Type SoftLayer service
-func GetAccountRegionalRegistryDetailTypeService(sess session.SLSession) Account_Regional_Registry_Detail_Type {
-	return Account_Regional_Registry_Detail_Type{Session: sess}
-}
-
-func (r Account_Regional_Registry_Detail_Type) Id(id int) Account_Regional_Registry_Detail_Type {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Type) Mask(mask string) Account_Regional_Registry_Detail_Type {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Type) Filter(filter string) Account_Regional_Registry_Detail_Type {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Type) Limit(limit int) Account_Regional_Registry_Detail_Type {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Account_Regional_Registry_Detail_Type) Offset(offset int) Account_Regional_Registry_Detail_Type {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Account_Regional_Registry_Detail_Type) GetAllObjects() (resp []datatypes.Account_Regional_Registry_Detail_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getAllObjects", nil, &r.Options, &resp)
-	return
-}
-
-// no documentation yet
-func (r Account_Regional_Registry_Detail_Type) GetObject() (resp datatypes.Account_Regional_Registry_Detail_Type, err error) {
-	err = r.Session.DoRequest("SoftLayer_Account_Regional_Registry_Detail_Type", "getObject", nil, &r.Options, &resp)
 	return
 }
 

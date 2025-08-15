@@ -13,11 +13,6 @@
 
 package datatypes
 
-// no documentation yet
-type Auxiliary_Network_Status struct {
-	Entity
-}
-
 // A SoftLayer_Auxiliary_Notification_Emergency data object represents a notification event being broadcast to the SoftLayer customer base. It is used to provide information regarding outages or current known issues.
 type Auxiliary_Notification_Emergency struct {
 	Entity

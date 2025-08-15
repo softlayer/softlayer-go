@@ -129,6 +129,7 @@ type Account struct {
 	AdcLoadBalancerCount *uint `json:"adcLoadBalancerCount,omitempty" xmlrpc:"adcLoadBalancerCount,omitempty"`
 
 	// An account's associated load balancers.
+	// Deprecated: This function has been marked as deprecated.
 	AdcLoadBalancers []Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"adcLoadBalancers,omitempty" xmlrpc:"adcLoadBalancers,omitempty"`
 
 	// The first line of the mailing address belonging to an account.
@@ -322,10 +323,11 @@ type Account struct {
 	// The date an account was created.
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
-	// A count of datacenters which contain subnets that the account has access to route.
+	// A count of [DEPRECATED] Datacenters which contain subnets that the account has access to route.
 	DatacentersWithSubnetAllocationCount *uint `json:"datacentersWithSubnetAllocationCount,omitempty" xmlrpc:"datacentersWithSubnetAllocationCount,omitempty"`
 
-	// Datacenters which contain subnets that the account has access to route.
+	// [DEPRECATED] Datacenters which contain subnets that the account has access to route.
+	// Deprecated: This function has been marked as deprecated.
 	DatacentersWithSubnetAllocations []Location `json:"datacentersWithSubnetAllocations,omitempty" xmlrpc:"datacentersWithSubnetAllocations,omitempty"`
 
 	// A count of an account's associated virtual dedicated host objects.
@@ -659,6 +661,7 @@ type Account struct {
 	LoadBalancerCount *uint `json:"loadBalancerCount,omitempty" xmlrpc:"loadBalancerCount,omitempty"`
 
 	// An account's associated load balancers.
+	// Deprecated: This function has been marked as deprecated.
 	LoadBalancers []Network_LoadBalancer_VirtualIpAddress `json:"loadBalancers,omitempty" xmlrpc:"loadBalancers,omitempty"`
 
 	// The total capacity of Legacy lockbox Volumes on an account, in GB.
@@ -879,12 +882,6 @@ type Account struct {
 
 	// The open sales tickets associated with an account.
 	OpenSalesTickets []Ticket `json:"openSalesTickets,omitempty" xmlrpc:"openSalesTickets,omitempty"`
-
-	// A count of
-	OpenStackAccountLinkCount *uint `json:"openStackAccountLinkCount,omitempty" xmlrpc:"openStackAccountLinkCount,omitempty"`
-
-	// no documentation yet
-	OpenStackAccountLinks []Account_Link `json:"openStackAccountLinks,omitempty" xmlrpc:"openStackAccountLinks,omitempty"`
 
 	// An account's associated Openstack related Object Storage accounts.
 	OpenStackObjectStorage []Network_Storage `json:"openStackObjectStorage,omitempty" xmlrpc:"openStackObjectStorage,omitempty"`
@@ -1144,13 +1141,6 @@ type Account struct {
 	// All Routers that an accounts VLANs reside on
 	Routers []Hardware `json:"routers,omitempty" xmlrpc:"routers,omitempty"`
 
-	// DEPRECATED
-	// Deprecated: This function has been marked as deprecated.
-	RwhoisData []Network_Subnet_Rwhois_Data `json:"rwhoisData,omitempty" xmlrpc:"rwhoisData,omitempty"`
-
-	// A count of dEPRECATED
-	RwhoisDataCount *uint `json:"rwhoisDataCount,omitempty" xmlrpc:"rwhoisDataCount,omitempty"`
-
 	// The SAML configuration for this account.
 	SamlAuthentication *Account_Authentication_Saml `json:"samlAuthentication,omitempty" xmlrpc:"samlAuthentication,omitempty"`
 
@@ -1179,6 +1169,7 @@ type Account struct {
 	SecurityScanRequestCount *uint `json:"securityScanRequestCount,omitempty" xmlrpc:"securityScanRequestCount,omitempty"`
 
 	// An account's vulnerability scan requests.
+	// Deprecated: This function has been marked as deprecated.
 	SecurityScanRequests []Network_Security_Scanner_Request `json:"securityScanRequests,omitempty" xmlrpc:"securityScanRequests,omitempty"`
 
 	// A count of the service billing items that will be on an account's next invoice.
@@ -1219,20 +1210,6 @@ type Account struct {
 
 	// A count of all network subnets associated with an account.
 	SubnetCount *uint `json:"subnetCount,omitempty" xmlrpc:"subnetCount,omitempty"`
-
-	// A count of
-	SubnetRegistrationCount *uint `json:"subnetRegistrationCount,omitempty" xmlrpc:"subnetRegistrationCount,omitempty"`
-
-	// A count of
-	SubnetRegistrationDetailCount *uint `json:"subnetRegistrationDetailCount,omitempty" xmlrpc:"subnetRegistrationDetailCount,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	SubnetRegistrationDetails []Account_Regional_Registry_Detail `json:"subnetRegistrationDetails,omitempty" xmlrpc:"subnetRegistrationDetails,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	SubnetRegistrations []Network_Subnet_Registration `json:"subnetRegistrations,omitempty" xmlrpc:"subnetRegistrations,omitempty"`
 
 	// All network subnets associated with an account.
 	Subnets []Network_Subnet `json:"subnets,omitempty" xmlrpc:"subnets,omitempty"`
@@ -1999,11 +1976,6 @@ type Account_External_Setup struct {
 }
 
 // no documentation yet
-type Account_Historical_Report struct {
-	Entity
-}
-
-// no documentation yet
 type Account_Internal_Ibm struct {
 	Entity
 }
@@ -2048,73 +2020,6 @@ type Account_Link struct {
 // no documentation yet
 type Account_Link_Bluemix struct {
 	Account_Link
-}
-
-// no documentation yet
-type Account_Link_OpenStack struct {
-	Account_Link
-
-	// Pseudonym for destinationAccountAlphanumericId
-	DomainId *string `json:"domainId,omitempty" xmlrpc:"domainId,omitempty"`
-}
-
-// OpenStack domain creation details
-type Account_Link_OpenStack_DomainCreationDetails struct {
-	Entity
-
-	// Id for the domain this user was added to.
-	DomainId *string `json:"domainId,omitempty" xmlrpc:"domainId,omitempty"`
-
-	// Id for the user given the Cloud Admin role for this domain.
-	UserId *string `json:"userId,omitempty" xmlrpc:"userId,omitempty"`
-
-	// Name for the user given the Cloud Admin role for this domain.
-	UserName *string `json:"userName,omitempty" xmlrpc:"userName,omitempty"`
-}
-
-// Details Deprecated.
-type Account_Link_OpenStack_LinkRequest struct {
-	Entity
-
-	// Optional password
-	DesiredPassword *string `json:"desiredPassword,omitempty" xmlrpc:"desiredPassword,omitempty"`
-
-	// Optional projectName
-	DesiredProjectName *string `json:"desiredProjectName,omitempty" xmlrpc:"desiredProjectName,omitempty"`
-
-	// Required username
-	DesiredUsername *string `json:"desiredUsername,omitempty" xmlrpc:"desiredUsername,omitempty"`
-}
-
-// OpenStack project creation details
-type Account_Link_OpenStack_ProjectCreationDetails struct {
-	Entity
-
-	// Id for the domain this project was added to.
-	DomainId *string `json:"domainId,omitempty" xmlrpc:"domainId,omitempty"`
-
-	// Id for this project.
-	ProjectId *string `json:"projectId,omitempty" xmlrpc:"projectId,omitempty"`
-
-	// Name for this project.
-	ProjectName *string `json:"projectName,omitempty" xmlrpc:"projectName,omitempty"`
-
-	// Id for the user given the Project Admin role for this project.
-	UserId *string `json:"userId,omitempty" xmlrpc:"userId,omitempty"`
-
-	// Name for the user given the Project Admin role for this project.
-	UserName *string `json:"userName,omitempty" xmlrpc:"userName,omitempty"`
-}
-
-// OpenStack project details
-type Account_Link_OpenStack_ProjectDetails struct {
-	Entity
-
-	// Id for this project.
-	ProjectId *string `json:"projectId,omitempty" xmlrpc:"projectId,omitempty"`
-
-	// Name for this project.
-	ProjectName *string `json:"projectName,omitempty" xmlrpc:"projectName,omitempty"`
 }
 
 // no documentation yet
@@ -2575,147 +2480,6 @@ type Account_ProofOfConcept_Funding_Type struct {
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 }
 
-// The subnet registration detail type has been deprecated.
-type Account_Regional_Registry_Detail struct {
-	Entity
-
-	// [Deprecated] The account that this detail object belongs to.
-	// Deprecated: This function has been marked as deprecated.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// The detail object's associated [[SoftLayer_Account|account]] id
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// The date and time the detail object was created
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// A count of [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
-	DetailCount *uint `json:"detailCount,omitempty" xmlrpc:"detailCount,omitempty"`
-
-	// [Deprecated] The associated type of this detail object.
-	// Deprecated: This function has been marked as deprecated.
-	DetailType *Account_Regional_Registry_Detail_Type `json:"detailType,omitempty" xmlrpc:"detailType,omitempty"`
-
-	// The detail object's associated [[SoftLayer_Account_Regional_Registry_Detail_Type|type]] id
-	DetailTypeId *int `json:"detailTypeId,omitempty" xmlrpc:"detailTypeId,omitempty"`
-
-	// [Deprecated] References to the [[SoftLayer_Network_Subnet_Registration|registration objects]] that consume this detail object.
-	// Deprecated: This function has been marked as deprecated.
-	Details []Network_Subnet_Registration_Details `json:"details,omitempty" xmlrpc:"details,omitempty"`
-
-	// Unique ID of the detail object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// The date and time the detail object was last modified
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// [Deprecated] The individual properties that define this detail object's values.
-	// Deprecated: This function has been marked as deprecated.
-	Properties []Account_Regional_Registry_Detail_Property `json:"properties,omitempty" xmlrpc:"properties,omitempty"`
-
-	// A count of [Deprecated] The individual properties that define this detail object's values.
-	PropertyCount *uint `json:"propertyCount,omitempty" xmlrpc:"propertyCount,omitempty"`
-
-	// [Deprecated] The associated RWhois handle of this detail object. Used only when detailed reassignments are necessary.
-	// Deprecated: This function has been marked as deprecated.
-	RegionalInternetRegistryHandle *Account_Rwhois_Handle `json:"regionalInternetRegistryHandle,omitempty" xmlrpc:"regionalInternetRegistryHandle,omitempty"`
-
-	// The detail object's associated [[SoftLayer_Account_Rwhois_Handle|RIR handle]] id
-	RegionalInternetRegistryHandleId *int `json:"regionalInternetRegistryHandleId,omitempty" xmlrpc:"regionalInternetRegistryHandleId,omitempty"`
-}
-
-// The subnet registration detail property type has been deprecated.
-//
-// Subnet registration properties are used to define various attributes of the [[SoftLayer_Account_Regional_Registry_Detail|detail objects]]. These properties are defined by the [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] objects, which describe the available value formats.
-type Account_Regional_Registry_Detail_Property struct {
-	Entity
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail]] object this property belongs to
-	// Deprecated: This function has been marked as deprecated.
-	Detail *Account_Regional_Registry_Detail `json:"detail,omitempty" xmlrpc:"detail,omitempty"`
-
-	// Unique ID of the property object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// [Deprecated] The [[SoftLayer_Account_Regional_Registry_Detail_Property_Type]] object this property belongs to
-	// Deprecated: This function has been marked as deprecated.
-	PropertyType *Account_Regional_Registry_Detail_Property_Type `json:"propertyType,omitempty" xmlrpc:"propertyType,omitempty"`
-
-	// The numeric ID of the related [[SoftLayer_Account_Regional_Registry_Detail_Property_Type|property type object]]
-	PropertyTypeId *int `json:"propertyTypeId,omitempty" xmlrpc:"propertyTypeId,omitempty"`
-
-	// The numeric ID of the related [[SoftLayer_Account_Regional_Registry_Detail|detail object]]
-	RegistrationDetailId *int `json:"registrationDetailId,omitempty" xmlrpc:"registrationDetailId,omitempty"`
-
-	// When multiple properties exist for a property type, defines the position in the sequence of those properties
-	SequencePosition *int `json:"sequencePosition,omitempty" xmlrpc:"sequencePosition,omitempty"`
-
-	// The value of the property
-	Value *string `json:"value,omitempty" xmlrpc:"value,omitempty"`
-}
-
-// The subnet registration detail property type type has been deprecated.
-//
-// Subnet Registration Detail Property Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail_Property]] object. These types use [http://php.net/pcre.pattern.php Perl-Compatible Regular Expressions] to validate the value of a property object.
-type Account_Regional_Registry_Detail_Property_Type struct {
-	Entity
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Unique numeric ID of the property type object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// Code-friendly string name of the property type
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// Human-readable name of the property type
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-
-	// A Perl-compatible regular expression used to describe the valid format of the property
-	ValueExpression *string `json:"valueExpression,omitempty" xmlrpc:"valueExpression,omitempty"`
-}
-
-// The subnet registration detail type type has been deprecated.
-//
-// Subnet Registration Detail Type objects describe the nature of a [[SoftLayer_Account_Regional_Registry_Detail]] object.
-//
-// The standard values for these objects are as follows: <ul> <li><strong>NETWORK</strong> - The detail object represents the information for a [[SoftLayer_Network_Subnet|subnet]]</li> <li><strong>NETWORK6</strong> - The detail object represents the information for an [[SoftLayer_Network_Subnet_Version6|IPv6 subnet]]</li> <li><strong>PERSON</strong> - The detail object represents the information for a customer with the RIR</li> </ul>
-type Account_Regional_Registry_Detail_Type struct {
-	Entity
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Unique numeric ID of the detail type object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// Code-friendly string name of the detail type
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// Human-readable name of the detail type
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
-// The subnet registration default person detail type has been deprecated.
-//
-// The SoftLayer_Account_Regional_Registry_Detail_Version4_Person_Default data type contains general information relating to a single SoftLayer RIR account. RIR account information in this type such as names, addresses, and phone numbers are assigned to the registry only and not to users belonging to the account.
-type Account_Regional_Registry_Detail_Version4_Person_Default struct {
-	Account_Regional_Registry_Detail
-}
-
 // no documentation yet
 type Account_Reports_Request struct {
 	Entity
@@ -2782,32 +2546,6 @@ type Account_Reports_Request struct {
 
 	// no documentation yet
 	UsrRecordId *int `json:"usrRecordId,omitempty" xmlrpc:"usrRecordId,omitempty"`
-}
-
-// The subnet registration handle type has been deprecated.
-//
-// Provides a means of tracking handle identifiers at the various regional internet registries (RIRs). These objects are used by the [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]] objects to identify a customer or organization when a subnet is registered.
-type Account_Rwhois_Handle struct {
-	Entity
-
-	// [Deprecated] The account that this handle belongs to.
-	// Deprecated: This function has been marked as deprecated.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// The handle object's associated [[SoftLayer_Account|account]] id
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// The handle object's unique identifier as assigned by the RIR.
-	Handle *string `json:"handle,omitempty" xmlrpc:"handle,omitempty"`
-
-	// Unique ID of the handle object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 }
 
 // The SoftLayer_Account_Shipment data type contains information relating to a shipment. Basic information such as addresses, the shipment courier, and any tracking information for as shipment is accessible with this data type.

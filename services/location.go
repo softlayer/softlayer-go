@@ -134,6 +134,12 @@ func (r Location) GetLocationStatus() (resp datatypes.Location_Status, err error
 	return
 }
 
+// Retrieve [DEPRECATED] - A location's metric tracking object.
+func (r Location) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = r.Session.DoRequest("SoftLayer_Location", "getMetricTrackingObject", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Location) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getNetworkConfigurationAttribute", nil, &r.Options, &resp)
@@ -276,7 +282,7 @@ func (r Location_Datacenter) GetBnppCompliantFlag() (resp bool, err error) {
 	return
 }
 
-// Retrieve Subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
+// Retrieve Subnets which are directly bound in a given datacenter, and currently allow routing.
 func (r Location_Datacenter) GetBoundSubnets() (resp []datatypes.Network_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getBoundSubnets", nil, &r.Options, &resp)
 	return
@@ -354,6 +360,12 @@ func (r Location_Datacenter) GetLocationStatus() (resp datatypes.Location_Status
 	return
 }
 
+// Retrieve [DEPRECATED] - A location's metric tracking object.
+func (r Location_Datacenter) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getMetricTrackingObject", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve
 func (r Location_Datacenter) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getNetworkConfigurationAttribute", nil, &r.Options, &resp)
@@ -405,12 +417,6 @@ func (r Location_Datacenter) GetRegionalInternetRegistry() (resp datatypes.Netwo
 // Retrieve A location can be a member of 1 or more regions. This will show which regions to which a location belongs.
 func (r Location_Datacenter) GetRegions() (resp []datatypes.Location_Region, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRegions", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve Retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
-func (r Location_Datacenter) GetRoutableBoundSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getRoutableBoundSubnets", nil, &r.Options, &resp)
 	return
 }
 

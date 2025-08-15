@@ -14,11 +14,6 @@
 package datatypes
 
 // no documentation yet
-type Utility_Network struct {
-	Entity
-}
-
-// no documentation yet
 type Utility_ObjectFilter struct {
 	Entity
 }

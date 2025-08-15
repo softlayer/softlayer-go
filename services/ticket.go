@@ -927,6 +927,7 @@ func (r Ticket_Subject_Category) GetSubjects() (resp []datatypes.Ticket_Subject,
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 type Ticket_Survey struct {
 	Session session.SLSession
 	Options sl.Options

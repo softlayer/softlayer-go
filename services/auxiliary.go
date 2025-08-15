@@ -22,56 +22,6 @@ import (
 	"github.com/softlayer/softlayer-go/sl"
 )
 
-// no documentation yet
-type Auxiliary_Network_Status struct {
-	Session session.SLSession
-	Options sl.Options
-}
-
-// GetAuxiliaryNetworkStatusService returns an instance of the Auxiliary_Network_Status SoftLayer service
-func GetAuxiliaryNetworkStatusService(sess session.SLSession) Auxiliary_Network_Status {
-	return Auxiliary_Network_Status{Session: sess}
-}
-
-func (r Auxiliary_Network_Status) Id(id int) Auxiliary_Network_Status {
-	r.Options.Id = &id
-	return r
-}
-
-func (r Auxiliary_Network_Status) Mask(mask string) Auxiliary_Network_Status {
-	if !strings.HasPrefix(mask, "mask[") && (strings.Contains(mask, "[") || strings.Contains(mask, ",")) {
-		mask = fmt.Sprintf("mask[%s]", mask)
-	}
-
-	r.Options.Mask = mask
-	return r
-}
-
-func (r Auxiliary_Network_Status) Filter(filter string) Auxiliary_Network_Status {
-	r.Options.Filter = filter
-	return r
-}
-
-func (r Auxiliary_Network_Status) Limit(limit int) Auxiliary_Network_Status {
-	r.Options.Limit = &limit
-	return r
-}
-
-func (r Auxiliary_Network_Status) Offset(offset int) Auxiliary_Network_Status {
-	r.Options.Offset = &offset
-	return r
-}
-
-// no documentation yet
-// Deprecated: This function has been marked as deprecated.
-func (r Auxiliary_Network_Status) GetNetworkStatus(target *string) (resp []datatypes.Container_Auxiliary_Network_Status_Reading, err error) {
-	params := []interface{}{
-		target,
-	}
-	err = r.Session.DoRequest("SoftLayer_Auxiliary_Network_Status", "getNetworkStatus", params, &r.Options, &resp)
-	return
-}
-
 // A SoftLayer_Auxiliary_Notification_Emergency data object represents a notification event being broadcast to the SoftLayer customer base. It is used to provide information regarding outages or current known issues.
 type Auxiliary_Notification_Emergency struct {
 	Session session.SLSession

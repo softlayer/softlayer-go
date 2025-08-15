@@ -36,11 +36,6 @@ type Metric_Tracking_Object struct {
 	Type *Metric_Tracking_Object_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// SoftLayer_Metric_Tracking_Object_Abstract models a generic tracking object type. Typically a tracking object with a specific purpose has it's own data type defined within the SoftLayer API.
-type Metric_Tracking_Object_Abstract struct {
-	Metric_Tracking_Object
-}
-
 // This data type provides commonly used bandwidth summary components for the current billing cycle.
 type Metric_Tracking_Object_Bandwidth_Summary struct {
 	Entity
@@ -92,7 +87,7 @@ type Metric_Tracking_Object_Data struct {
 
 // SoftLayer_Metric_Tracking_Object_HardwareServer models tracking objects specific to physical hardware and the data that are recorded by those servers.
 type Metric_Tracking_Object_HardwareServer struct {
-	Metric_Tracking_Object_Abstract
+	Metric_Tracking_Object
 
 	// The raw bandwidth usage data for the current billing cycle. One object is returned for each network this server is attached to.
 	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty" xmlrpc:"billingCycleBandwidthUsage,omitempty"`
@@ -128,7 +123,7 @@ type Metric_Tracking_Object_HardwareServer struct {
 	BillingCyclePublicUsageTotal *uint `json:"billingCyclePublicUsageTotal,omitempty" xmlrpc:"billingCyclePublicUsageTotal,omitempty"`
 
 	// The server that this tracking object tracks.
-	Resource *Hardware_Server `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
+	Resource *Hardware `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
 // SoftLayer [[SoftLayer_Metric_Tracking_Object|tracking objects]] can model various kinds of measured data, from server and virtual server bandwidth usage to CPU use to remote storage usage. SoftLayer_Metric_Tracking_Object_Type models one of these types and is referred to in tracking objects to reflect what type of data they track.
@@ -144,7 +139,7 @@ type Metric_Tracking_Object_Type struct {
 
 // SoftLayer_Metric_Tracking_Object_VirtualDedicatedRack models tracking objects specific to virtual dedicated racks. Bandwidth Pooling aggregate the bandwidth used by multiple servers within the rack.
 type Metric_Tracking_Object_VirtualDedicatedRack struct {
-	Metric_Tracking_Object_Abstract
+	Metric_Tracking_Object
 
 	// The raw bandwidth usage data for the current billing cycle. One object is returned for each network this server is attached to.
 	BillingCycleBandwidthUsage []Network_Bandwidth_Usage `json:"billingCycleBandwidthUsage,omitempty" xmlrpc:"billingCycleBandwidthUsage,omitempty"`
@@ -181,12 +176,4 @@ type Metric_Tracking_Object_VirtualDedicatedRack struct {
 
 	// The virtual rack that this tracking object tracks.
 	Resource *Network_Bandwidth_Version1_Allotment `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
-}
-
-// no documentation yet
-type Metric_Tracking_Object_Virtual_Storage_Repository struct {
-	Metric_Tracking_Object_Abstract
-
-	// The virtual storage repository that this tracking object tracks.
-	Resource *Virtual_Storage_Repository `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }

@@ -1057,29 +1057,6 @@ func (r Virtual_Guest) GetBandwidthForDateRange(startDate *datatypes.Time, endDa
 	return
 }
 
-// Use this method when needing a bandwidth image for a single guest.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.
-func (r Virtual_Guest) GetBandwidthImage(networkType *string, snapshotRange *string, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		networkType,
-		snapshotRange,
-		dateSpecified,
-		dateSpecifiedEnd,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthImage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method when needing a bandwidth image for a single guest.  It will gather the correct input parameters for the generic graphing utility based on the date ranges
-func (r Virtual_Guest) GetBandwidthImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, networkType *string) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		networkType,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getBandwidthImageByDate", params, &r.Options, &resp)
-	return
-}
-
 // Returns the total amount of bandwidth used during the time specified for a computing instance.
 func (r Virtual_Guest) GetBandwidthTotal(startDateTime *datatypes.Time, endDateTime *datatypes.Time, direction *string, side *string) (resp uint, err error) {
 	params := []interface{}{
@@ -2914,7 +2891,7 @@ func (r Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) 
 	return
 }
 
-// Retrieve The metric tracking object for this virtual host.
+// Retrieve [DEPRECATED] - The metric tracking object for this virtual host.
 func (r Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
@@ -3310,16 +3287,6 @@ func (r Virtual_Storage_Repository) GetAverageDiskUsageMetricDataFromInfluxByDat
 	return
 }
 
-// Returns the average disk space usage for a storage repository.
-func (r Virtual_Storage_Repository) GetAverageUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Float64, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getAverageUsageMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The current billing item for a storage repository.
 func (r Virtual_Storage_Repository) GetBillingItem() (resp datatypes.Billing_Item, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getBillingItem", nil, &r.Options, &resp)
@@ -3345,7 +3312,7 @@ func (r Virtual_Storage_Repository) GetGuests() (resp []datatypes.Virtual_Guest,
 }
 
 // Retrieve
-func (r Virtual_Storage_Repository) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object_Virtual_Storage_Repository, err error) {
+func (r Virtual_Storage_Repository) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
@@ -3377,25 +3344,5 @@ func (r Virtual_Storage_Repository) GetStorageLocations() (resp []datatypes.Loca
 // Retrieve A storage repository's [[SoftLayer_Virtual_Storage_Repository_Type|type]].
 func (r Virtual_Storage_Repository) GetType() (resp datatypes.Virtual_Storage_Repository_Type, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getType", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve disk usage data on a [[SoftLayer_Virtual_Guest|Cloud Computing Instance]] image for the time range you provide.  Each data entry objects contain ”dateTime” and ”counter” properties. ”dateTime” property indicates the time that the disk usage data was measured and ”counter” property holds the disk usage in bytes.
-func (r Virtual_Storage_Repository) GetUsageMetricDataByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getUsageMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
-// Returns a disk usage image based on disk usage specified by the input parameters.
-func (r Virtual_Storage_Repository) GetUsageMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Storage_Repository", "getUsageMetricImageByDate", params, &r.Options, &resp)
 	return
 }

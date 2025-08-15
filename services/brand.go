@@ -369,6 +369,7 @@ func (r Brand) GetTickets() (resp []datatypes.Ticket, err error) {
 }
 
 // (DEPRECATED) Use [[SoftLayer_User_Customer::getImpersonationToken]] method.
+// Deprecated: This function has been marked as deprecated.
 func (r Brand) GetToken(userId *int) (resp string, err error) {
 	params := []interface{}{
 		userId,

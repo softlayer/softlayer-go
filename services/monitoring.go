@@ -23,6 +23,7 @@ import (
 )
 
 // DEPRECATED. The SoftLayer_Monitoring_Robot data type contains general information relating to a monitoring robot.
+// Deprecated: This function has been marked as deprecated.
 type Monitoring_Robot struct {
 	Session session.SLSession
 	Options sl.Options
