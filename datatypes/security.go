@@ -61,6 +61,7 @@ type Security_Certificate struct {
 	LoadBalancerVirtualIpAddressCount *uint `json:"loadBalancerVirtualIpAddressCount,omitempty" xmlrpc:"loadBalancerVirtualIpAddressCount,omitempty"`
 
 	// The load balancers virtual IP addresses currently associated with the certificate.
+	// Deprecated: This function has been marked as deprecated.
 	LoadBalancerVirtualIpAddresses []Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"loadBalancerVirtualIpAddresses,omitempty" xmlrpc:"loadBalancerVirtualIpAddresses,omitempty"`
 
 	// The date the certificate _record_ was last modified.The contents of the certificate may of changed since the record was created, so this does not represent anything about the certificate itself.

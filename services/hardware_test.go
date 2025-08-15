@@ -1618,6 +1618,13 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Hardware_Component_Model::getMetricTrackingObject", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetMetricTrackingObject()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Hardware_Component_Model::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
@@ -2054,13 +2061,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Router::getBlockCancelBecauseDisconnectedFlag", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBlockCancelBecauseDisconnectedFlag()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_Router::getBoundSubnets", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBoundSubnets()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -3509,13 +3509,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_SecurityModule::getBandwidthImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBandwidthImage(nil, nil, nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_SecurityModule::getBenchmarkCertifications", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBenchmarkCertifications()
@@ -4447,13 +4440,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_SecurityModule::getPrivateBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateBandwidthGraphImage(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_SecurityModule::getPrivateIpAddress", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateIpAddress()
@@ -4478,13 +4464,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule::getPrivateVlan", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateVlan()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_SecurityModule::getPrivateVlanByIpAddress", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateVlanByIpAddress(nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -4541,13 +4520,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule::getPublicBandwidthDataSummary", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPublicBandwidthDataSummary()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_SecurityModule::getPublicBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPublicBandwidthGraphImage(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -5618,13 +5590,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_SecurityModule750::getBandwidthImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBandwidthImage(nil, nil, nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_SecurityModule750::getBenchmarkCertifications", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBenchmarkCertifications()
@@ -6556,13 +6521,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_SecurityModule750::getPrivateBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateBandwidthGraphImage(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_SecurityModule750::getPrivateIpAddress", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateIpAddress()
@@ -6587,13 +6545,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule750::getPrivateVlan", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateVlan()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_SecurityModule750::getPrivateVlanByIpAddress", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateVlanByIpAddress(nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -6650,13 +6601,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_SecurityModule750::getPublicBandwidthDataSummary", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPublicBandwidthDataSummary()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_SecurityModule750::getPublicBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPublicBandwidthGraphImage(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -7727,13 +7671,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_Server::getBandwidthImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBandwidthImage(nil, nil, nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_Server::getBenchmarkCertifications", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBenchmarkCertifications()
@@ -8665,13 +8602,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_Server::getPrivateBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateBandwidthGraphImage(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_Server::getPrivateIpAddress", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateIpAddress()
@@ -8696,13 +8626,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::getPrivateVlan", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPrivateVlan()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_Server::getPrivateVlanByIpAddress", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPrivateVlanByIpAddress(nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -8759,13 +8682,6 @@ var _ = Describe("Hardware Tests", func() {
 		Context("SoftLayer_Hardware_Server::getPublicBandwidthDataSummary", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetPublicBandwidthDataSummary()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Hardware_Server::getPublicBandwidthGraphImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPublicBandwidthGraphImage(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

@@ -434,20 +434,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getAverageArchiveUsageMetricDataByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAverageArchiveUsageMetricDataByDate(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getAveragePublicUsageMetricDataByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAveragePublicUsageMetricDataByDate(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getBalance", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBalance()
@@ -987,13 +973,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getLargestAllowedSubnetCidr", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetLargestAllowedSubnetCidr(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getLastCanceledBillingItem", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetLastCanceledBillingItem()
@@ -1428,13 +1407,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getOpenStackAccountLinks", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetOpenStackAccountLinks()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getOpenStackObjectStorage", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetOpenStackObjectStorage()
@@ -1799,13 +1771,6 @@ var _ = Describe("Account Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Account::getRwhoisData", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetRwhoisData()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Account::getSamlAuthentication", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetSamlAuthentication()
@@ -1886,20 +1851,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account::getStandardPoolVirtualGuests", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetStandardPoolVirtualGuests()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getSubnetRegistrationDetails", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetSubnetRegistrationDetails()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account::getSubnetRegistrations", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetSubnetRegistrations()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -3041,78 +2992,6 @@ var _ = Describe("Account Tests", func() {
 		})
 	})
 
-	Context("Testing SoftLayer_Account_Historical_Report service", func() {
-		var sl_service services.Account_Historical_Report
-		BeforeEach(func() {
-			sl_service = services.GetAccountHistoricalReportService(slsession)
-		})
-		Context("SoftLayer_Account_Historical_Report Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getAccountHostUptimeSummary", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAccountHostUptimeSummary(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getAccountUrlUptimeSummary", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAccountUrlUptimeSummary(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getHostUptimeDetail", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetHostUptimeDetail(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getHostUptimeGraphData", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetHostUptimeGraphData(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getUrlUptimeDetail", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetUrlUptimeDetail(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Historical_Report::getUrlUptimeGraphData", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetUrlUptimeGraphData(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
 	Context("Testing SoftLayer_Account_Internal_Ibm service", func() {
 		var sl_service services.Account_Internal_Ibm
 		BeforeEach(func() {
@@ -3295,92 +3174,6 @@ var _ = Describe("Account Tests", func() {
 		Context("SoftLayer_Account_Link_Bluemix::getSupportTierType", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetSupportTierType()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Account_Link_OpenStack service", func() {
-		var sl_service services.Account_Link_OpenStack
-		BeforeEach(func() {
-			sl_service = services.GetAccountLinkOpenStackService(slsession)
-		})
-		Context("SoftLayer_Account_Link_OpenStack Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::createOSDomain", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateOSDomain(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::createOSProject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateOSProject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::deleteOSDomain", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteOSDomain(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::deleteOSProject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteOSProject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::deleteObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::getOSProject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetOSProject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Link_OpenStack::listOSProjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.ListOSProjects()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -4322,287 +4115,6 @@ var _ = Describe("Account Tests", func() {
 			})
 		})
 		Context("SoftLayer_Account_ProofOfConcept_Funding_Type::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Account_Regional_Registry_Detail service", func() {
-		var sl_service services.Account_Regional_Registry_Detail
-		BeforeEach(func() {
-			sl_service = services.GetAccountRegionalRegistryDetailService(slsession)
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::createObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::deleteObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::editObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getAccount", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAccount()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getDetailType", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetDetailType()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getDetails", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetDetails()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getProperties", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetProperties()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::getRegionalInternetRegistryHandle", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetRegionalInternetRegistryHandle()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::updateReferencedRegistrations", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.UpdateReferencedRegistrations()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail::validatePersonForAllRegistrars", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.ValidatePersonForAllRegistrars()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Account_Regional_Registry_Detail_Property service", func() {
-		var sl_service services.Account_Regional_Registry_Detail_Property
-		BeforeEach(func() {
-			sl_service = services.GetAccountRegionalRegistryDetailPropertyService(slsession)
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::createObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::createObjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.CreateObjects(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::deleteObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.DeleteObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::editObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObject(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::editObjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.EditObjects(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::getDetail", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetDetail()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property::getPropertyType", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetPropertyType()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Account_Regional_Registry_Detail_Property_Type service", func() {
-		var sl_service services.Account_Regional_Registry_Detail_Property_Type
-		BeforeEach(func() {
-			sl_service = services.GetAccountRegionalRegistryDetailPropertyTypeService(slsession)
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property_Type Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property_Type Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property_Type::getAllObjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAllObjects()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Property_Type::getObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-	})
-
-	Context("Testing SoftLayer_Account_Regional_Registry_Detail_Type service", func() {
-		var sl_service services.Account_Regional_Registry_Detail_Type
-		BeforeEach(func() {
-			sl_service = services.GetAccountRegionalRegistryDetailTypeService(slsession)
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Type Set Options", func() {
-			It("Set Options properly", func() {
-				t_id := 1234
-				t_filter := "{'testFilter':{'test'}}"
-				t_limit := 100
-				t_offset := 5
-				sl_service = sl_service.Id(t_id).Filter(t_filter).Offset(t_offset).Limit(t_limit)
-				Expect(sl_service.Options.Id).To(HaveValue(Equal(t_id)))
-				Expect(sl_service.Options.Filter).To(HaveValue(Equal(t_filter)))
-				Expect(sl_service.Options.Limit).To(HaveValue(Equal(t_limit)))
-				Expect(sl_service.Options.Offset).To(HaveValue(Equal(t_offset)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Type Set Mask", func() {
-			It("Set Options properly", func() {
-				t_mask1 := "mask[test,test2]"
-				sl_service = sl_service.Mask(t_mask1)
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-				// Mask("test,test2") should set the mask to be "mask[test,test2]" aka t_mask1
-				sl_service = sl_service.Mask("test,test2")
-				Expect(sl_service.Options.Mask).To(HaveValue(Equal(t_mask1)))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Type::getAllObjects", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAllObjects()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Account_Regional_Registry_Detail_Type::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()
 				Expect(err).To(Succeed())

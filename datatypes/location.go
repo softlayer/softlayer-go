@@ -62,6 +62,10 @@ type Location struct {
 	// A longer location description.
 	LongName *string `json:"longName,omitempty" xmlrpc:"longName,omitempty"`
 
+	// [DEPRECATED] - A location's metric tracking object.
+	// Deprecated: This function has been marked as deprecated.
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
+
 	// A short location description.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
@@ -69,6 +73,7 @@ type Location struct {
 	NetworkConfigurationAttribute *Hardware_Attribute `json:"networkConfigurationAttribute,omitempty" xmlrpc:"networkConfigurationAttribute,omitempty"`
 
 	// The total number of users online using SoftLayer's SSL VPN service for a location.
+	// Deprecated: This function has been marked as deprecated.
 	OnlineSslVpnUserCount *int `json:"onlineSslVpnUserCount,omitempty" xmlrpc:"onlineSslVpnUserCount,omitempty"`
 
 	// no documentation yet
@@ -112,10 +117,10 @@ type Location_Datacenter struct {
 	// no documentation yet
 	BackendHardwareRouters []Hardware `json:"backendHardwareRouters,omitempty" xmlrpc:"backendHardwareRouters,omitempty"`
 
-	// A count of subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
+	// A count of subnets which are directly bound in a given datacenter, and currently allow routing.
 	BoundSubnetCount *uint `json:"boundSubnetCount,omitempty" xmlrpc:"boundSubnetCount,omitempty"`
 
-	// Subnets which are directly bound to one or more routers in a given datacenter, and currently allow routing.
+	// Subnets which are directly bound in a given datacenter, and currently allow routing.
 	BoundSubnets []Network_Subnet `json:"boundSubnets,omitempty" xmlrpc:"boundSubnets,omitempty"`
 
 	// A count of this references relationship between brands, locations and countries associated with a user's account that are ineligible when ordering products. For example, the India datacenter may not be available on this brand for customers that live in Great Britain.
@@ -147,12 +152,6 @@ type Location_Datacenter struct {
 
 	// no documentation yet
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty" xmlrpc:"regionalInternetRegistry,omitempty"`
-
-	// A count of retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
-	RoutableBoundSubnetCount *uint `json:"routableBoundSubnetCount,omitempty" xmlrpc:"routableBoundSubnetCount,omitempty"`
-
-	// Retrieve all subnets that are eligible to be routed; those which the account has permission to associate with a vlan.
-	RoutableBoundSubnets []Network_Subnet `json:"routableBoundSubnets,omitempty" xmlrpc:"routableBoundSubnets,omitempty"`
 }
 
 // no documentation yet

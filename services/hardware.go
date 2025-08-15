@@ -1156,7 +1156,7 @@ func (r Hardware) GetPrimaryNetworkComponent() (resp datatypes.Network_Component
 	return
 }
 
-// Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's private bandwidth data. If no timeframe is specified then getPrivateBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -1190,7 +1190,7 @@ func (r Hardware) GetProcessors() (resp []datatypes.Hardware_Component, err erro
 	return
 }
 
-// Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's public bandwidth data. If no timeframe is specified then getPublicBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -1852,6 +1852,12 @@ func (r Hardware_Component_Model) GetIsFlexSkuCompatible() (resp bool, err error
 // Retrieve
 func (r Hardware_Component_Model) GetIsInfinibandCompatible() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getIsInfinibandCompatible", nil, &r.Options, &resp)
+	return
+}
+
+// Retrieve [DEPRECATED] - A hardware component models metric tracking object. This object records all periodic polled data available to this hardware componet model.
+func (r Hardware_Component_Model) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
+	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
 
@@ -2598,12 +2604,6 @@ func (r Hardware_Router) GetBlockCancelBecauseDisconnectedFlag() (resp bool, err
 	return
 }
 
-// Retrieve Associated subnets for a router object.
-func (r Hardware_Router) GetBoundSubnets() (resp []datatypes.Network_Subnet, err error) {
-	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBoundSubnets", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve Status indicating whether or not a piece of hardware has business continuance insurance.
 func (r Hardware_Router) GetBusinessContinuanceInsuranceFlag() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Router", "getBusinessContinuanceInsuranceFlag", nil, &r.Options, &resp)
@@ -3180,7 +3180,7 @@ func (r Hardware_Router) GetPrimaryNetworkComponent() (resp datatypes.Network_Co
 	return
 }
 
-// Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's private bandwidth data. If no timeframe is specified then getPrivateBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_Router) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -3214,7 +3214,7 @@ func (r Hardware_Router) GetProcessors() (resp []datatypes.Hardware_Component, e
 	return
 }
 
-// Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's public bandwidth data. If no timeframe is specified then getPublicBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_Router) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -4287,19 +4287,6 @@ func (r Hardware_SecurityModule) GetBandwidthForDateRange(startDate *datatypes.T
 	return
 }
 
-// Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
-func (r Hardware_SecurityModule) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		networkType,
-		snapshotRange,
-		draw,
-		dateSpecified,
-		dateSpecifiedEnd,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBandwidthImage", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve Information regarding a piece of hardware's benchmark certifications.
 func (r Hardware_SecurityModule) GetBenchmarkCertifications() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getBenchmarkCertifications", nil, &r.Options, &resp)
@@ -5124,7 +5111,7 @@ func (r Hardware_SecurityModule) GetPrivateBackendNetworkComponents() (resp []da
 	return
 }
 
-// Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's private bandwidth data. If no timeframe is specified then getPrivateBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_SecurityModule) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -5137,16 +5124,6 @@ func (r Hardware_SecurityModule) GetPrivateBandwidthData(startTime *int, endTime
 // Retrieve a brief summary of a server's private network bandwidth usage. getPrivateBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_SecurityModule) GetPrivateBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's private network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image
-func (r Hardware_SecurityModule) GetPrivateBandwidthGraphImage(startTime *string, endTime *string) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 
@@ -5171,17 +5148,6 @@ func (r Hardware_SecurityModule) GetPrivateNetworkOnlyFlag() (resp bool, err err
 // Retrieve the backend VLAN for the primary IP address of the server
 func (r Hardware_SecurityModule) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateVlan", nil, &r.Options, &resp)
-	return
-}
-
-// *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPrivateVlanByIpAddress", params, &r.Options, &resp)
 	return
 }
 
@@ -5221,7 +5187,7 @@ func (r Hardware_SecurityModule) GetProvisionDate() (resp datatypes.Time, err er
 	return
 }
 
-// Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's public bandwidth data. If no timeframe is specified then getPublicBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_SecurityModule) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -5234,16 +5200,6 @@ func (r Hardware_SecurityModule) GetPublicBandwidthData(startTime *int, endTime 
 // Retrieve a brief summary of a server's public network bandwidth usage. getPublicBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_SecurityModule) GetPublicBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPublicBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's public network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.  THIS METHOD GENERATES GRAPHS BASED ON THE NEW DATA WAREHOUSE REPOSITORY.
-func (r Hardware_SecurityModule) GetPublicBandwidthGraphImage(startTime *datatypes.Time, endTime *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule", "getPublicBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 
@@ -6699,19 +6655,6 @@ func (r Hardware_SecurityModule750) GetBandwidthForDateRange(startDate *datatype
 	return
 }
 
-// Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
-func (r Hardware_SecurityModule750) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		networkType,
-		snapshotRange,
-		draw,
-		dateSpecified,
-		dateSpecifiedEnd,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBandwidthImage", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve Information regarding a piece of hardware's benchmark certifications.
 func (r Hardware_SecurityModule750) GetBenchmarkCertifications() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getBenchmarkCertifications", nil, &r.Options, &resp)
@@ -7536,7 +7479,7 @@ func (r Hardware_SecurityModule750) GetPrivateBackendNetworkComponents() (resp [
 	return
 }
 
-// Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's private bandwidth data. If no timeframe is specified then getPrivateBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_SecurityModule750) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -7549,16 +7492,6 @@ func (r Hardware_SecurityModule750) GetPrivateBandwidthData(startTime *int, endT
 // Retrieve a brief summary of a server's private network bandwidth usage. getPrivateBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_SecurityModule750) GetPrivateBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's private network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image
-func (r Hardware_SecurityModule750) GetPrivateBandwidthGraphImage(startTime *string, endTime *string) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 
@@ -7583,17 +7516,6 @@ func (r Hardware_SecurityModule750) GetPrivateNetworkOnlyFlag() (resp bool, err 
 // Retrieve the backend VLAN for the primary IP address of the server
 func (r Hardware_SecurityModule750) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateVlan", nil, &r.Options, &resp)
-	return
-}
-
-// *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_SecurityModule750) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPrivateVlanByIpAddress", params, &r.Options, &resp)
 	return
 }
 
@@ -7633,7 +7555,7 @@ func (r Hardware_SecurityModule750) GetProvisionDate() (resp datatypes.Time, err
 	return
 }
 
-// Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's public bandwidth data. If no timeframe is specified then getPublicBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_SecurityModule750) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -7646,16 +7568,6 @@ func (r Hardware_SecurityModule750) GetPublicBandwidthData(startTime *int, endTi
 // Retrieve a brief summary of a server's public network bandwidth usage. getPublicBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_SecurityModule750) GetPublicBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPublicBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's public network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.  THIS METHOD GENERATES GRAPHS BASED ON THE NEW DATA WAREHOUSE REPOSITORY.
-func (r Hardware_SecurityModule750) GetPublicBandwidthGraphImage(startTime *datatypes.Time, endTime *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_SecurityModule750", "getPublicBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 
@@ -9111,19 +9023,6 @@ func (r Hardware_Server) GetBandwidthForDateRange(startDate *datatypes.Time, end
 	return
 }
 
-// Use this method when needing a bandwidth image for a single server.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.  Use the $draw flag to suppress the generation of the actual binary PNG image.
-func (r Hardware_Server) GetBandwidthImage(networkType *string, snapshotRange *string, draw *bool, dateSpecified *datatypes.Time, dateSpecifiedEnd *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		networkType,
-		snapshotRange,
-		draw,
-		dateSpecified,
-		dateSpecifiedEnd,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBandwidthImage", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve Information regarding a piece of hardware's benchmark certifications.
 func (r Hardware_Server) GetBenchmarkCertifications() (resp []datatypes.Hardware_Benchmark_Certification, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getBenchmarkCertifications", nil, &r.Options, &resp)
@@ -9948,7 +9847,7 @@ func (r Hardware_Server) GetPrivateBackendNetworkComponents() (resp []datatypes.
 	return
 }
 
-// Retrieve a graph of a server's private network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPrivateBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's private bandwidth data. If no timeframe is specified then getPrivateBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_Server) GetPrivateBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -9961,16 +9860,6 @@ func (r Hardware_Server) GetPrivateBandwidthData(startTime *int, endTime *int) (
 // Retrieve a brief summary of a server's private network bandwidth usage. getPrivateBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_Server) GetPrivateBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's private network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image
-func (r Hardware_Server) GetPrivateBandwidthGraphImage(startTime *string, endTime *string) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 
@@ -9995,17 +9884,6 @@ func (r Hardware_Server) GetPrivateNetworkOnlyFlag() (resp bool, err error) {
 // Retrieve the backend VLAN for the primary IP address of the server
 func (r Hardware_Server) GetPrivateVlan() (resp datatypes.Network_Vlan, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateVlan", nil, &r.Options, &resp)
-	return
-}
-
-// *** DEPRECATED ***
-// Retrieve a backend network VLAN by searching for an IP address
-// Deprecated: This function has been marked as deprecated.
-func (r Hardware_Server) GetPrivateVlanByIpAddress(ipAddress *string) (resp datatypes.Network_Vlan, err error) {
-	params := []interface{}{
-		ipAddress,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPrivateVlanByIpAddress", params, &r.Options, &resp)
 	return
 }
 
@@ -10045,7 +9923,7 @@ func (r Hardware_Server) GetProvisionDate() (resp datatypes.Time, err error) {
 	return
 }
 
-// Retrieve a graph of a server's public network bandwidth usage over the specified timeframe. If no timeframe is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.
+// Retrieve this server's public bandwidth data. If no timeframe is specified then getPublicBandwidthData retrieves the last 24 hours of public bandwidth usage.
 func (r Hardware_Server) GetPublicBandwidthData(startTime *int, endTime *int) (resp []datatypes.Metric_Tracking_Object_Data, err error) {
 	params := []interface{}{
 		startTime,
@@ -10058,16 +9936,6 @@ func (r Hardware_Server) GetPublicBandwidthData(startTime *int, endTime *int) (r
 // Retrieve a brief summary of a server's public network bandwidth usage. getPublicBandwidthDataSummary retrieves a server's bandwidth allocation for its billing period, its estimated usage during its billing period, and an estimation of how much bandwidth it will use during its billing period based on its current usage. A server's projected bandwidth usage increases in accuracy as it progresses through its billing period.
 func (r Hardware_Server) GetPublicBandwidthDataSummary() (resp datatypes.Container_Network_Bandwidth_Data_Summary, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPublicBandwidthDataSummary", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve a graph of a server's public network bandwidth usage over the specified time frame. If no time frame is specified then getPublicBandwidthGraphImage retrieves the last 24 hours of public bandwidth usage. getPublicBandwidthGraphImage returns a PNG image measuring 827 pixels by 293 pixels.  THIS METHOD GENERATES GRAPHS BASED ON THE NEW DATA WAREHOUSE REPOSITORY.
-func (r Hardware_Server) GetPublicBandwidthGraphImage(startTime *datatypes.Time, endTime *datatypes.Time) (resp []byte, err error) {
-	params := []interface{}{
-		startTime,
-		endTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Hardware_Server", "getPublicBandwidthGraphImage", params, &r.Options, &resp)
 	return
 }
 

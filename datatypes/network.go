@@ -150,6 +150,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struc
 	HealthAttributeTypeId *int `json:"healthAttributeTypeId,omitempty" xmlrpc:"healthAttributeTypeId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	HealthCheck *Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthCheck,omitempty" xmlrpc:"healthCheck,omitempty"`
 
 	// no documentation yet
@@ -159,6 +160,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute struc
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Type *Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// no documentation yet
@@ -193,6 +195,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	AttributeCount *uint `json:"attributeCount,omitempty" xmlrpc:"attributeCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Attributes []Network_Application_Delivery_Controller_LoadBalancer_Health_Attribute `json:"attributes,omitempty" xmlrpc:"attributes,omitempty"`
 
 	// no documentation yet
@@ -211,9 +214,11 @@ type Network_Application_Delivery_Controller_LoadBalancer_Health_Check struct {
 	ServiceCount *uint `json:"serviceCount,omitempty" xmlrpc:"serviceCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Services []Network_Application_Delivery_Controller_LoadBalancer_Service `json:"services,omitempty" xmlrpc:"services,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Type *Network_Application_Delivery_Controller_LoadBalancer_Health_Check_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
@@ -273,24 +278,29 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	GroupReferenceCount *uint `json:"groupReferenceCount,omitempty" xmlrpc:"groupReferenceCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	GroupReferences []Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference `json:"groupReferences,omitempty" xmlrpc:"groupReferences,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Groups []Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"groups,omitempty" xmlrpc:"groups,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	HealthCheck *Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthCheck,omitempty" xmlrpc:"healthCheck,omitempty"`
 
 	// A count of
 	HealthCheckCount *uint `json:"healthCheckCount,omitempty" xmlrpc:"healthCheckCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	HealthChecks []Network_Application_Delivery_Controller_LoadBalancer_Health_Check `json:"healthChecks,omitempty" xmlrpc:"healthChecks,omitempty"`
 
 	// no documentation yet
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty" xmlrpc:"ipAddress,omitempty"`
 
 	// no documentation yet
@@ -306,6 +316,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service struct {
 	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ServiceGroup *Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroup,omitempty" xmlrpc:"serviceGroup,omitempty"`
 
 	// no documentation yet
@@ -326,12 +337,14 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	RoutingMethod *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method `json:"routingMethod,omitempty" xmlrpc:"routingMethod,omitempty"`
 
 	// no documentation yet
 	RoutingMethodId *int `json:"routingMethodId,omitempty" xmlrpc:"routingMethodId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	RoutingType *Network_Application_Delivery_Controller_LoadBalancer_Routing_Type `json:"routingType,omitempty" xmlrpc:"routingType,omitempty"`
 
 	// no documentation yet
@@ -344,21 +357,25 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service_Group struct {
 	ServiceReferenceCount *uint `json:"serviceReferenceCount,omitempty" xmlrpc:"serviceReferenceCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ServiceReferences []Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossReference `json:"serviceReferences,omitempty" xmlrpc:"serviceReferences,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Services []Network_Application_Delivery_Controller_LoadBalancer_Service `json:"services,omitempty" xmlrpc:"services,omitempty"`
 
 	// The timeout value for connections from remote clients to the load balancer. Timeout values are only valid for HTTP service groups.
 	Timeout *int `json:"timeout,omitempty" xmlrpc:"timeout,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualServer *Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServer,omitempty" xmlrpc:"virtualServer,omitempty"`
 
 	// A count of
 	VirtualServerCount *uint `json:"virtualServerCount,omitempty" xmlrpc:"virtualServerCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualServers []Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServers,omitempty" xmlrpc:"virtualServers,omitempty"`
 }
 
@@ -367,9 +384,11 @@ type Network_Application_Delivery_Controller_LoadBalancer_Service_Group_CrossRef
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Service *Network_Application_Delivery_Controller_LoadBalancer_Service `json:"service,omitempty" xmlrpc:"service,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ServiceGroup *Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroup,omitempty" xmlrpc:"serviceGroup,omitempty"`
 
 	// no documentation yet
@@ -387,21 +406,25 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The unique identifier of the SoftLayer customer account that owns the virtual IP address
 	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
 
 	// A virtual IP address's associated application delivery controller.
+	// Deprecated: This function has been marked as deprecated.
 	ApplicationDeliveryController *Network_Application_Delivery_Controller `json:"applicationDeliveryController,omitempty" xmlrpc:"applicationDeliveryController,omitempty"`
 
 	// A count of a virtual IP address's associated application delivery controllers.
 	ApplicationDeliveryControllerCount *uint `json:"applicationDeliveryControllerCount,omitempty" xmlrpc:"applicationDeliveryControllerCount,omitempty"`
 
 	// A virtual IP address's associated application delivery controllers.
+	// Deprecated: This function has been marked as deprecated.
 	ApplicationDeliveryControllers []Network_Application_Delivery_Controller `json:"applicationDeliveryControllers,omitempty" xmlrpc:"applicationDeliveryControllers,omitempty"`
 
 	// The current billing item for the load balancer virtual IP. This is only valid when dedicatedFlag is false. This is an independent virtual IP, and if canceled, will only affect the associated virtual IP.
+	// Deprecated: This function has been marked as deprecated.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// The connection limit for this virtual IP address
@@ -411,30 +434,35 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	ConnectionLimitUnits *string `json:"connectionLimitUnits,omitempty" xmlrpc:"connectionLimitUnits,omitempty"`
 
 	// The current billing item for the load balancing device housing the virtual IP. This billing item represents a device which could contain other virtual IPs. Caution should be taken when canceling. This is only valid when dedicatedFlag is true.
+	// Deprecated: This function has been marked as deprecated.
 	DedicatedBillingItem *Billing_Item_Network_LoadBalancer `json:"dedicatedBillingItem,omitempty" xmlrpc:"dedicatedBillingItem,omitempty"`
 
 	// A flag that determines if a VIP is dedicated or not. This is used to override the connection limit and use an unlimited value.
 	DedicatedFlag *bool `json:"dedicatedFlag,omitempty" xmlrpc:"dedicatedFlag,omitempty"`
 
 	// Denotes whether the virtual IP is configured within a high availability cluster.
+	// Deprecated: This function has been marked as deprecated.
 	HighAvailabilityFlag *bool `json:"highAvailabilityFlag,omitempty" xmlrpc:"highAvailabilityFlag,omitempty"`
 
 	// The unique identifier of the virtual IP address record
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	IpAddress *Network_Subnet_IpAddress `json:"ipAddress,omitempty" xmlrpc:"ipAddress,omitempty"`
 
 	// ID of the IP address this virtual IP utilizes
 	IpAddressId *int `json:"ipAddressId,omitempty" xmlrpc:"ipAddressId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	LoadBalancerHardware []Hardware `json:"loadBalancerHardware,omitempty" xmlrpc:"loadBalancerHardware,omitempty"`
 
 	// A count of
 	LoadBalancerHardwareCount *uint `json:"loadBalancerHardwareCount,omitempty" xmlrpc:"loadBalancerHardwareCount,omitempty"`
 
 	// A flag indicating that the load balancer is a managed resource.
+	// Deprecated: This function has been marked as deprecated.
 	ManagedResourceFlag *bool `json:"managedResourceFlag,omitempty" xmlrpc:"managedResourceFlag,omitempty"`
 
 	// User-created notes for this load balancer virtual IP address
@@ -444,19 +472,23 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	SecureTransportCipherCount *uint `json:"secureTransportCipherCount,omitempty" xmlrpc:"secureTransportCipherCount,omitempty"`
 
 	// The list of security ciphers enabled for this virtual IP address
+	// Deprecated: This function has been marked as deprecated.
 	SecureTransportCiphers []Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportCipher `json:"secureTransportCiphers,omitempty" xmlrpc:"secureTransportCiphers,omitempty"`
 
 	// A count of the list of secure transport protocols enabled for this virtual IP address
 	SecureTransportProtocolCount *uint `json:"secureTransportProtocolCount,omitempty" xmlrpc:"secureTransportProtocolCount,omitempty"`
 
 	// The list of secure transport protocols enabled for this virtual IP address
+	// Deprecated: This function has been marked as deprecated.
 	SecureTransportProtocols []Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_SecureTransportProtocol `json:"secureTransportProtocols,omitempty" xmlrpc:"secureTransportProtocols,omitempty"`
 
 	// The SSL certificate currently associated with the VIP.
+	// Deprecated: This function has been marked as deprecated.
 	SecurityCertificate *Security_Certificate `json:"securityCertificate,omitempty" xmlrpc:"securityCertificate,omitempty"`
 
 	// The SSL certificate currently associated with the VIP. Provides chosen certificate visibility to unprivileged users.
-	SecurityCertificateEntry *Security_Certificate_Entry `json:"securityCertificateEntry,omitempty" xmlrpc:"securityCertificateEntry,omitempty"`
+	// Deprecated: This function has been marked as deprecated.
+	SecurityCertificateEntry *Security_Certificate `json:"securityCertificateEntry,omitempty" xmlrpc:"securityCertificateEntry,omitempty"`
 
 	// The unique identifier of the Security Certificate to be utilized when SSL support is enabled.
 	SecurityCertificateId *int `json:"securityCertificateId,omitempty" xmlrpc:"securityCertificateId,omitempty"`
@@ -471,6 +503,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struc
 	VirtualServerCount *uint `json:"virtualServerCount,omitempty" xmlrpc:"virtualServerCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualServers []Network_Application_Delivery_Controller_LoadBalancer_VirtualServer `json:"virtualServers,omitempty" xmlrpc:"virtualServers,omitempty"`
 }
 
@@ -485,6 +518,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_Secur
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty" xmlrpc:"virtualIpAddress,omitempty"`
 
 	// Identifier for the associated [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress (type)|virtual IP address]] instance
@@ -502,6 +536,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress_Secur
 	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty" xmlrpc:"virtualIpAddress,omitempty"`
 
 	// Identifier for the associated [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress (type)|virtual IP address]] instance
@@ -528,6 +563,7 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	Port *int `json:"port,omitempty" xmlrpc:"port,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	RoutingMethod *Network_Application_Delivery_Controller_LoadBalancer_Routing_Method `json:"routingMethod,omitempty" xmlrpc:"routingMethod,omitempty"`
 
 	// no documentation yet
@@ -537,9 +573,11 @@ type Network_Application_Delivery_Controller_LoadBalancer_VirtualServer struct {
 	ServiceGroupCount *uint `json:"serviceGroupCount,omitempty" xmlrpc:"serviceGroupCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ServiceGroups []Network_Application_Delivery_Controller_LoadBalancer_Service_Group `json:"serviceGroups,omitempty" xmlrpc:"serviceGroups,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	VirtualIpAddress *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"virtualIpAddress,omitempty" xmlrpc:"virtualIpAddress,omitempty"`
 
 	// no documentation yet
@@ -682,24 +720,6 @@ type Network_Bandwidth_Version1_Allotment struct {
 	// Location Group Id for an allotment
 	LocationGroupId *int `json:"locationGroupId,omitempty" xmlrpc:"locationGroupId,omitempty"`
 
-	// A count of the managed bare metal server instances contained within a virtual rack.
-	ManagedBareMetalInstanceCount *uint `json:"managedBareMetalInstanceCount,omitempty" xmlrpc:"managedBareMetalInstanceCount,omitempty"`
-
-	// The managed bare metal server instances contained within a virtual rack.
-	ManagedBareMetalInstances []Hardware `json:"managedBareMetalInstances,omitempty" xmlrpc:"managedBareMetalInstances,omitempty"`
-
-	// The managed hardware contained within a virtual rack.
-	ManagedHardware []Hardware `json:"managedHardware,omitempty" xmlrpc:"managedHardware,omitempty"`
-
-	// A count of the managed hardware contained within a virtual rack.
-	ManagedHardwareCount *uint `json:"managedHardwareCount,omitempty" xmlrpc:"managedHardwareCount,omitempty"`
-
-	// A count of the managed Virtual Server contained within a virtual rack.
-	ManagedVirtualGuestCount *uint `json:"managedVirtualGuestCount,omitempty" xmlrpc:"managedVirtualGuestCount,omitempty"`
-
-	// The managed Virtual Server contained within a virtual rack.
-	ManagedVirtualGuests []Virtual_Guest `json:"managedVirtualGuests,omitempty" xmlrpc:"managedVirtualGuests,omitempty"`
-
 	// A virtual rack's metric tracking object. This object records all periodic polled data available to this rack.
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
@@ -812,132 +832,6 @@ type Network_Bandwidth_Version1_Usage_Detail_Type struct {
 
 	// Database key associated with this bandwidth detail type.
 	Alias *string `json:"alias,omitempty" xmlrpc:"alias,omitempty"`
-}
-
-// The SoftLayer_Network_CdnMarketplace_Account data type models an individual CDN account. CDN accounts contain the SoftLayer account ID of the customer, the vendor ID the account belongs to, the customer ID provided by the vendor, and a CDN account's status.
-type Network_CdnMarketplace_Account struct {
-	Entity
-
-	// SoftLayer account to which the CDN account belongs.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// An associated parent billing item which is active.
-	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Behavior_Geoblocking struct {
-	Entity
-
-	// no documentation yet
-	AccessType *string `json:"accessType,omitempty" xmlrpc:"accessType,omitempty"`
-
-	// no documentation yet
-	RegionType *string `json:"regionType,omitempty" xmlrpc:"regionType,omitempty"`
-
-	// no documentation yet
-	Regions []string `json:"regions,omitempty" xmlrpc:"regions,omitempty"`
-
-	// no documentation yet
-	Status *string `json:"status,omitempty" xmlrpc:"status,omitempty"`
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Behavior_Geoblocking_Type struct {
-	Entity
-
-	// no documentation yet
-	AccessType []string `json:"accessType,omitempty" xmlrpc:"accessType,omitempty"`
-
-	// no documentation yet
-	Continent []string `json:"continent,omitempty" xmlrpc:"continent,omitempty"`
-
-	// no documentation yet
-	CountryOrRegion []string `json:"countryOrRegion,omitempty" xmlrpc:"countryOrRegion,omitempty"`
-
-	// no documentation yet
-	RegionType []string `json:"regionType,omitempty" xmlrpc:"regionType,omitempty"`
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Behavior_HotlinkProtection struct {
-	Entity
-
-	// no documentation yet
-	ProtectionType *string `json:"protectionType,omitempty" xmlrpc:"protectionType,omitempty"`
-
-	// no documentation yet
-	RefererValues *string `json:"refererValues,omitempty" xmlrpc:"refererValues,omitempty"`
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Behavior_ModifyResponseHeader struct {
-	Entity
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Behavior_TokenAuth struct {
-	Entity
-}
-
-// This data type models a purge event that occurs in caching server. It contains a reference to a mapping configuration, the path to execute the purge on, the status of the purge, and flag that enables saving the purge information for future use.
-type Network_CdnMarketplace_Configuration_Cache_Purge struct {
-	Entity
-}
-
-// This data type models a purge group event that occurs in caching server. It contains a reference to a mapping configuration and the path to execute the purge on.
-type Network_CdnMarketplace_Configuration_Cache_PurgeGroup struct {
-	Entity
-}
-
-// This data type models a purge history event that occurs in caching server. The purge group history will be deleted after 15 days. The possible purge status of each history can be 'SUCCESS', "FAILED" or "IN_PROGRESS".
-type Network_CdnMarketplace_Configuration_Cache_PurgeHistory struct {
-	Entity
-}
-
-// This data type models a purge event that occurs repetitively and automatically in caching server after a set interval of time. A time to live instance contains a reference to a mapping configuration, the path to execute the purge on, the result of the purge, and the time interval after which the purge will be executed.
-type Network_CdnMarketplace_Configuration_Cache_TimeToLive struct {
-	Entity
-
-	// date record is created
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Path where purge will be executed after TTL
-	Path *string `json:"path,omitempty" xmlrpc:"path,omitempty"`
-
-	// Time interval after which purge will occur repeatedly
-	TimeToLive *int `json:"timeToLive,omitempty" xmlrpc:"timeToLive,omitempty"`
-}
-
-// This data type represents the mapping Configuration settings for enabling CDN services. Each instance contains a reference to a CDN account, and CDN configuration properties such as a domain, an origin host and its port, a cname we generate, a cname the vendor generates, and a status. Other properties include the type of content to be cached (static or dynamic), the origin type (a host server or an object storage account), and the protocol to be used for caching.
-type Network_CdnMarketplace_Configuration_Mapping struct {
-	Entity
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Configuration_Mapping_Path struct {
-	Entity
-}
-
-// This Metrics class provides methods to get CDN metrics based on account or mapping unique id.
-type Network_CdnMarketplace_Metrics struct {
-	Entity
-}
-
-// no documentation yet
-type Network_CdnMarketplace_Utils_Response struct {
-	Entity
-
-	// no documentation yet
-	Code *int `json:"code,omitempty" xmlrpc:"code,omitempty"`
-
-	// no documentation yet
-	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
-}
-
-// The SoftLayer_Network_CdnMarketplace_Vendor contains information regarding a CDN Vendor. This class is associated with SoftLayer_Network_CdnMarketplace_Vendor_Attribute class.
-type Network_CdnMarketplace_Vendor struct {
-	Entity
 }
 
 // Every piece of hardware running in SoftLayer's datacenters connected to the public, private, or management networks (where applicable) have a corresponding network component. These network components are modeled by the SoftLayer_Network_Component data type. These data types reflect the servers' local ethernet and remote management interfaces.
@@ -2664,9 +2558,7 @@ type Network_LBaaS_SessionAffinity struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 }
 
-// The SoftLayer_Network_LoadBalancer_Service data type contains all the information relating to a specific service (destination) on a particular load balancer.
-//
-// Information retained on the object itself is the the source and destination of the service, routing type, weight, and whether or not the service is currently enabled.
+// Deprecated
 type Network_LoadBalancer_Service struct {
 	Entity
 
@@ -2739,6 +2631,7 @@ type Network_LoadBalancer_Service struct {
 	Type *string `json:"type,omitempty" xmlrpc:"type,omitempty"`
 
 	// The load balancer that this service belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Vip *Network_LoadBalancer_VirtualIpAddress `json:"vip,omitempty" xmlrpc:"vip,omitempty"`
 
 	// Unique ID for this object's parent.  Probably not useful in the API, as this object will always be a child of a VirtualIpAddress anyway.
@@ -2748,22 +2641,23 @@ type Network_LoadBalancer_Service struct {
 	Weight *int `json:"weight,omitempty" xmlrpc:"weight,omitempty"`
 }
 
-// The SoftLayer_Network_LoadBalancer_VirtualIpAddress data type contains all the information relating to a specific load balancer assigned to a customer account.
-//
-// Information retained on the object itself is the virtual IP address, load balancing method, and any notes that are related to the load balancer.  There is also an array of SoftLayer_Network_LoadBalancer_Service objects, which represent the load balancer services, explained more fully in the SoftLayer_Network_LoadBalancer_Service documentation.
+// Deprecated
 type Network_LoadBalancer_VirtualIpAddress struct {
 	Entity
 
 	// The account that owns this load balancer.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The current billing item for the Load Balancer.
+	// Deprecated: This function has been marked as deprecated.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// Connection limit on this VIP.  Can be upgraded through the upgradeConnectionLimit() function
 	ConnectionLimit *int `json:"connectionLimit,omitempty" xmlrpc:"connectionLimit,omitempty"`
 
 	// If false, this VIP and associated services may be edited via the portal or the API. If true, you must configure this VIP manually on the device.
+	// Deprecated: This function has been marked as deprecated.
 	CustomerManagedFlag *int `json:"customerManagedFlag,omitempty" xmlrpc:"customerManagedFlag,omitempty"`
 
 	// Unique ID for this object, used for the getObject method, and must be set if you are editing this object.
@@ -2776,6 +2670,7 @@ type Network_LoadBalancer_VirtualIpAddress struct {
 	LoadBalancingMethodFullName *string `json:"loadBalancingMethodFullName,omitempty" xmlrpc:"loadBalancingMethodFullName,omitempty"`
 
 	// A flag indicating that the load balancer is a managed resource.
+	// Deprecated: This function has been marked as deprecated.
 	ManagedResourceFlag *bool `json:"managedResourceFlag,omitempty" xmlrpc:"managedResourceFlag,omitempty"`
 
 	// Date this load balancer was last modified
@@ -2794,6 +2689,7 @@ type Network_LoadBalancer_VirtualIpAddress struct {
 	ServiceCount *uint `json:"serviceCount,omitempty" xmlrpc:"serviceCount,omitempty"`
 
 	// the services on this load balancer.
+	// Deprecated: This function has been marked as deprecated.
 	Services []Network_LoadBalancer_Service `json:"services,omitempty" xmlrpc:"services,omitempty"`
 
 	// This is the port for incoming traffic.
@@ -3302,16 +3198,12 @@ type Network_SecurityGroup_Rule struct {
 	SecurityGroupId *int `json:"securityGroupId,omitempty" xmlrpc:"securityGroupId,omitempty"`
 }
 
-// The SoftLayer_Network_Security_Scanner_Request data type represents a single vulnerability scan request. It provides information on when the scan was created, last updated, and the current status. The status messages are as follows:
-// *Scan Pending
-// *Scan Processing
-// *Scan Complete
-// *Scan Cancelled
-// *Generating Report.
+// DEPRECATED
 type Network_Security_Scanner_Request struct {
 	Entity
 
 	// The account associated with a security scan request.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// A request's associated customer account identifier.
@@ -3321,12 +3213,14 @@ type Network_Security_Scanner_Request struct {
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// The virtual guest a security scan is run against.
+	// Deprecated: This function has been marked as deprecated.
 	Guest *Virtual_Guest `json:"guest,omitempty" xmlrpc:"guest,omitempty"`
 
 	// Virtual Guest Identification Number for the guest this security scanner request belongs to.
 	GuestId *int `json:"guestId,omitempty" xmlrpc:"guestId,omitempty"`
 
 	// The hardware a security scan is run against.
+	// Deprecated: This function has been marked as deprecated.
 	Hardware *Hardware `json:"hardware,omitempty" xmlrpc:"hardware,omitempty"`
 
 	// The identifier of the hardware item a scan is run on.
@@ -3345,23 +3239,18 @@ type Network_Security_Scanner_Request struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// Flag whether the requestor owns the hardware the scan was run on. This flag will return for hardware servers only, virtual servers will result in a null return even if you have a request out for them.
+	// Deprecated: This function has been marked as deprecated.
 	RequestorOwnedFlag *bool `json:"requestorOwnedFlag,omitempty" xmlrpc:"requestorOwnedFlag,omitempty"`
 
 	// A security scan request's status.
+	// Deprecated: This function has been marked as deprecated.
 	Status *Network_Security_Scanner_Request_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// A request status identifier.
 	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 }
 
-// The SoftLayer_Network_Security_Scanner_Request_Status data type represents the current status of a vulnerability scan. The status messages are as follows:
-// *Scan Pending
-// *Scan Processing
-// *Scan Complete
-// *Scan Cancelled
-// *Generating Report.
-//
-// The status of a vulnerability scan will change over the course of a scan's execution.
+// DEPRECATED
 type Network_Security_Scanner_Request_Status struct {
 	Entity
 
@@ -3378,6 +3267,9 @@ type Network_Service_Resource struct {
 
 	// no documentation yet
 	ApiHost *string `json:"apiHost,omitempty" xmlrpc:"apiHost,omitempty"`
+
+	// no documentation yet
+	ApiMode *string `json:"apiMode,omitempty" xmlrpc:"apiMode,omitempty"`
 
 	// no documentation yet
 	ApiPassword *string `json:"apiPassword,omitempty" xmlrpc:"apiPassword,omitempty"`
@@ -3701,7 +3593,8 @@ type Network_Storage struct {
 	// The manually-created snapshots associated with this SoftLayer_Network_Storage volume. Does not support pagination by result limit and offset.
 	ManualSnapshots []Network_Storage `json:"manualSnapshots,omitempty" xmlrpc:"manualSnapshots,omitempty"`
 
-	// A network storage volume's metric tracking object. This object records all periodic polled data available to this volume.
+	// [DEPRECATED] - A network storage volume's metric tracking object. This object records all periodic polled data available to this volume.
+	// Deprecated: This function has been marked as deprecated.
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// Retrieves the NFS Network Mount Path for a given File Storage Volume.
@@ -4346,7 +4239,8 @@ type Network_Storage_Hub_Cleversafe_Account struct {
 	// The IMS ID of an IBM Cloud Object Storage account.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// Provides an interface to various metrics relating to the usage of an IBM Cloud Object Storage account.
+	// [DEPRECATED] - Provides an interface to various metrics relating to the usage of an IBM Cloud Object Storage account.
+	// Deprecated: This function has been marked as deprecated.
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// A user-defined field of notes.
@@ -4920,13 +4814,6 @@ type Network_Subnet struct {
 	// no documentation yet
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
-	// The active regional internet registration for this subnet.
-	ActiveRegistration *Network_Subnet_Registration `json:"activeRegistration,omitempty" xmlrpc:"activeRegistration,omitempty"`
-
-	// DEPRECATED
-	// Deprecated: This function has been marked as deprecated.
-	ActiveSwipTransaction *Network_Subnet_Swip_Transaction `json:"activeSwipTransaction,omitempty" xmlrpc:"activeSwipTransaction,omitempty"`
-
 	// DEPRECATED
 	// Deprecated: This function has been marked as deprecated.
 	ActiveTransaction *Provisioning_Version1_Transaction `json:"activeTransaction,omitempty" xmlrpc:"activeTransaction,omitempty"`
@@ -4958,14 +4845,8 @@ type Network_Subnet struct {
 	// no documentation yet
 	BoundDescendants []Network_Subnet `json:"boundDescendants,omitempty" xmlrpc:"boundDescendants,omitempty"`
 
-	// A count of the list of network routers that this subnet is directly associated with, defining where this subnet may be routed on the network.
-	BoundRouterCount *uint `json:"boundRouterCount,omitempty" xmlrpc:"boundRouterCount,omitempty"`
-
 	// Indicates whether this subnet is associated to a network router and is routable on the network.
 	BoundRouterFlag *bool `json:"boundRouterFlag,omitempty" xmlrpc:"boundRouterFlag,omitempty"`
-
-	// The list of network routers that this subnet is directly associated with, defining where this subnet may be routed on the network.
-	BoundRouters []Hardware `json:"boundRouters,omitempty" xmlrpc:"boundRouters,omitempty"`
 
 	// The IP address of this subnet reserved for use as a broadcast address and which is unavailable for other use. Network traffic targeting this IP address will be broadcast to the entire subnet.
 	BroadcastAddress *string `json:"broadcastAddress,omitempty" xmlrpc:"broadcastAddress,omitempty"`
@@ -5069,12 +4950,6 @@ type Network_Subnet struct {
 	// The RIR which is authoritative over the network in which this subnet resides.
 	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty" xmlrpc:"regionalInternetRegistry,omitempty"`
 
-	// A count of the regional internet registrations that have been created for this subnet.
-	RegistrationCount *uint `json:"registrationCount,omitempty" xmlrpc:"registrationCount,omitempty"`
-
-	// The regional internet registrations that have been created for this subnet.
-	Registrations []Network_Subnet_Registration `json:"registrations,omitempty" xmlrpc:"registrations,omitempty"`
-
 	// The reverse DNS domain associated with this subnet.
 	ReverseDomain *Dns_Domain `json:"reverseDomain,omitempty" xmlrpc:"reverseDomain,omitempty"`
 
@@ -5124,13 +4999,6 @@ type Network_Subnet struct {
 	//
 	// "IPSEC_STATIC_NAT" refers to the networks associated to your IPSec VPN tunnels for NAT purposes.
 	SubnetType *string `json:"subnetType,omitempty" xmlrpc:"subnetType,omitempty"`
-
-	// DEPRECATED
-	// Deprecated: This function has been marked as deprecated.
-	SwipTransaction []Network_Subnet_Swip_Transaction `json:"swipTransaction,omitempty" xmlrpc:"swipTransaction,omitempty"`
-
-	// A count of dEPRECATED
-	SwipTransactionCount *uint `json:"swipTransactionCount,omitempty" xmlrpc:"swipTransactionCount,omitempty"`
 
 	// A count of the tags associated to this subnet.
 	TagReferenceCount *uint `json:"tagReferenceCount,omitempty" xmlrpc:"tagReferenceCount,omitempty"`
@@ -5450,307 +5318,6 @@ type Network_Subnet_IpAddress_Version6 struct {
 	PublicVersion6NetworkGateway *Network_Gateway `json:"publicVersion6NetworkGateway,omitempty" xmlrpc:"publicVersion6NetworkGateway,omitempty"`
 }
 
-// The subnet registration service has been deprecated.
-//
-// The subnet registration data type contains general information relating to a single subnet registration instance. These registration instances can be updated to reflect changes, and will record the changes in the [[SoftLayer_Network_Subnet_Registration_Event|events]].
-type Network_Subnet_Registration struct {
-	Entity
-
-	// [Deprecated] The account that this registration belongs to.
-	// Deprecated: This function has been marked as deprecated.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// The registration object's associated [[SoftLayer_Account|account]] id
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// The CIDR prefix for the registered subnet
-	Cidr *int `json:"cidr,omitempty" xmlrpc:"cidr,omitempty"`
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// A count of [Deprecated] The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
-	DetailReferenceCount *uint `json:"detailReferenceCount,omitempty" xmlrpc:"detailReferenceCount,omitempty"`
-
-	// [Deprecated] The cross-reference records that tie the [[SoftLayer_Account_Regional_Registry_Detail]] objects to the registration object.
-	// Deprecated: This function has been marked as deprecated.
-	DetailReferences []Network_Subnet_Registration_Details `json:"detailReferences,omitempty" xmlrpc:"detailReferences,omitempty"`
-
-	// A count of [Deprecated] The related registration events.
-	EventCount *uint `json:"eventCount,omitempty" xmlrpc:"eventCount,omitempty"`
-
-	// [Deprecated] The related registration events.
-	// Deprecated: This function has been marked as deprecated.
-	Events []Network_Subnet_Registration_Event `json:"events,omitempty" xmlrpc:"events,omitempty"`
-
-	// Unique ID of the registration object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// [Deprecated] The "network" detail object.
-	// Deprecated: This function has been marked as deprecated.
-	NetworkDetail *Account_Regional_Registry_Detail `json:"networkDetail,omitempty" xmlrpc:"networkDetail,omitempty"`
-
-	// The RIR-specific handle or name of the registered subnet. This field is read-only.
-	NetworkHandle *string `json:"networkHandle,omitempty" xmlrpc:"networkHandle,omitempty"`
-
-	// The base IP address of the registered subnet
-	NetworkIdentifier *string `json:"networkIdentifier,omitempty" xmlrpc:"networkIdentifier,omitempty"`
-
-	// [Deprecated] The "person" detail object.
-	// Deprecated: This function has been marked as deprecated.
-	PersonDetail *Account_Regional_Registry_Detail `json:"personDetail,omitempty" xmlrpc:"personDetail,omitempty"`
-
-	// [Deprecated] The related Regional Internet Registry.
-	// Deprecated: This function has been marked as deprecated.
-	RegionalInternetRegistry *Network_Regional_Internet_Registry `json:"regionalInternetRegistry,omitempty" xmlrpc:"regionalInternetRegistry,omitempty"`
-
-	// [Deprecated] The RIR handle that this registration object belongs to. This field may not be populated until the registration is complete.
-	// Deprecated: This function has been marked as deprecated.
-	RegionalInternetRegistryHandle *Account_Rwhois_Handle `json:"regionalInternetRegistryHandle,omitempty" xmlrpc:"regionalInternetRegistryHandle,omitempty"`
-
-	// The registration object's associated [[SoftLayer_Account_Rwhois_Handle|RIR handle]] id
-	RegionalInternetRegistryHandleId *int `json:"regionalInternetRegistryHandleId,omitempty" xmlrpc:"regionalInternetRegistryHandleId,omitempty"`
-
-	// The registration object's associated [[SoftLayer_Network_Regional_Internet_Registry|RIR]] id
-	RegionalInternetRegistryId *int `json:"regionalInternetRegistryId,omitempty" xmlrpc:"regionalInternetRegistryId,omitempty"`
-
-	// [Deprecated] The status of this registration.
-	// Deprecated: This function has been marked as deprecated.
-	Status *Network_Subnet_Registration_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
-
-	// The registration object's associated [[SoftLayer_Network_Subnet_Registration_Status|status]] id
-	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
-
-	// [Deprecated] The subnet that this registration pertains to.
-	// Deprecated: This function has been marked as deprecated.
-	Subnet *Network_Subnet `json:"subnet,omitempty" xmlrpc:"subnet,omitempty"`
-}
-
-// The APNIC subnet registration type has been deprecated.
-//
-// APNIC-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
-type Network_Subnet_Registration_Apnic struct {
-	Network_Subnet_Registration
-}
-
-// The ARIN subnet registration type has been deprecated.
-//
-// ARIN-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
-type Network_Subnet_Registration_Arin struct {
-	Network_Subnet_Registration
-}
-
-// The subnet registration details type has been deprecated.
-//
-// The SoftLayer_Network_Subnet_Registration_Details objects are used to relate [[SoftLayer_Account_Regional_Registry_Detail]] objects to a [[SoftLayer_Network_Subnet_Registration]] object. This allows for easy reuse of registration details. It is important to note that only one detail object per type may be associated to a registration object.
-type Network_Subnet_Registration_Details struct {
-	Entity
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// [Deprecated] The related [[SoftLayer_Account_Regional_Registry_Detail|detail object]].
-	// Deprecated: This function has been marked as deprecated.
-	Detail *Account_Regional_Registry_Detail `json:"detail,omitempty" xmlrpc:"detail,omitempty"`
-
-	// Numeric ID of the related [[SoftLayer_Account_Regional_Registry_Detail]] object
-	DetailId *int `json:"detailId,omitempty" xmlrpc:"detailId,omitempty"`
-
-	// Unique numeric ID of the object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// [Deprecated] The related [[SoftLayer_Network_Subnet_Registration|registration object]].
-	// Deprecated: This function has been marked as deprecated.
-	Registration *Network_Subnet_Registration `json:"registration,omitempty" xmlrpc:"registration,omitempty"`
-
-	// Numeric ID of the related [[SoftLayer_Network_Subnet_Registration]] object
-	RegistrationId *int `json:"registrationId,omitempty" xmlrpc:"registrationId,omitempty"`
-}
-
-// The subnet registration event type has been deprecated.
-//
-// Each time a [[SoftLayer_Network_Subnet_Registration|subnet registration]] object is created or modified, the system will generate an event for it. Additional actions that would create an event include RIR responses and error cases. *
-type Network_Subnet_Registration_Event struct {
-	Entity
-
-	// no documentation yet
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Unique numeric ID of the event object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// A string message indicating what took place during this event
-	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
-
-	// no documentation yet
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// [Deprecated] The registration this event pertains to.
-	// Deprecated: This function has been marked as deprecated.
-	Registration *Network_Subnet_Registration `json:"registration,omitempty" xmlrpc:"registration,omitempty"`
-
-	// The numeric ID of the related [[SoftLayer_Network_Subnet_Registration]] object
-	RegistrationId *int `json:"registrationId,omitempty" xmlrpc:"registrationId,omitempty"`
-
-	// [Deprecated] The type of this event.
-	// Deprecated: This function has been marked as deprecated.
-	Type *Network_Subnet_Registration_Event_Type `json:"type,omitempty" xmlrpc:"type,omitempty"`
-
-	// The numeric ID of the associated [[SoftLayer_Network_Subnet_Registration_Event_Type|event type]] object
-	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
-}
-
-// The subnet registration event type type has been deprecated.
-//
-// Subnet Registration Event Type objects describe the nature of a [[SoftLayer_Network_Subnet_Registration_Event]]
-//
-// The standard values for these objects are as follows: <ul> <li><strong>REGISTRATION_CREATED</strong> - Indicates that the registration has been created</li> <li><strong>REGISTRATION_UPDATED</strong> - Indicates that the registration has been updated</li> <li><strong>REGISTRATION_CANCELLED</strong> - Indicates that the registration has been cancelled</li> <li><strong>RIR_RESPONSE</strong> - Indicates that an action taken against the RIR has produced a response. More details will be provided in the event message.</li> <li><strong>ERROR</strong> - Indicates that an error has been encountered. More details will be provided in the event message.</li> <li><strong>NOTE</strong> - An employee or other system has entered a note regarding the registration. The note content will be provided in the event message.</li> </ul>
-type Network_Subnet_Registration_Event_Type struct {
-	Entity
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Unique numeric ID of the event type object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// Code-friendly string name of the event type
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// Human-readable name of the event type
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
-// The RIPE subnet registration type has been deprecated.
-//
-// RIPE-specific registration object. For more detail see [[SoftLayer_Network_Subnet_Registration (type)|SoftLayer_Network_Subnet_Registration]].
-type Network_Subnet_Registration_Ripe struct {
-	Network_Subnet_Registration
-}
-
-// The subnet registration status type has been deprecated.
-//
-// Subnet Registration Status objects describe the current status of a subnet registration.
-//
-// The standard values for these objects are as follows: <ul> <li><strong>OPEN</strong> - Indicates that the registration object is new and has yet to be submitted to the RIR</li> <li><strong>PENDING</strong> - Indicates that the registration object has been submitted to the RIR and is awaiting response</li> <li><strong>COMPLETE</strong> - Indicates that the RIR action has completed</li> <li><strong>DELETED</strong> - Indicates that the registration object has been gracefully removed is no longer valid</li> <li><strong>CANCELLED</strong> - Indicates that the registration object has been abruptly removed is no longer valid</li> </ul>
-type Network_Subnet_Registration_Status struct {
-	Entity
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Unique numeric ID of the status object
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// Code-friendly string name of the status
-	KeyName *string `json:"keyName,omitempty" xmlrpc:"keyName,omitempty"`
-
-	// no documentation yet
-	// Deprecated: This function has been marked as deprecated.
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// Human-readable name of the status
-	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
-}
-
-// Every SoftLayer customer account has contact information associated with it for reverse WHOIS purposes. An account's RWHOIS data, modeled by the SoftLayer_Network_Subnet_Rwhois_Data data type, is used by SoftLayer's reverse WHOIS server as well as for SWIP transactions. SoftLayer's reverse WHOIS servers respond to WHOIS queries for IP addresses belonging to a customer's servers, returning this RWHOIS data.
-//
-// A SoftLayer customer's RWHOIS data may not necessarily match their account or portal users' contact information.
-type Network_Subnet_Rwhois_Data struct {
-	Entity
-
-	// An email address associated with an account's RWHOIS data that is responsible for responding to network abuse queries about malicious traffic coming from your servers' IP addresses.
-	AbuseEmail *string `json:"abuseEmail,omitempty" xmlrpc:"abuseEmail,omitempty"`
-
-	// The SoftLayer customer account associated with this reverse WHOIS data.
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// An account's RWHOIS data's associated account identifier.
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// The first line of the mailing address associated with an account's RWHOIS data.
-	Address1 *string `json:"address1,omitempty" xmlrpc:"address1,omitempty"`
-
-	// The second line of the mailing address associated with an account's RWHOIS data.
-	Address2 *string `json:"address2,omitempty" xmlrpc:"address2,omitempty"`
-
-	// The city of the mailing address associated with an account's RWHOIS data.
-	City *string `json:"city,omitempty" xmlrpc:"city,omitempty"`
-
-	// The company name associated with an account's RWHOIS data.
-	CompanyName *string `json:"companyName,omitempty" xmlrpc:"companyName,omitempty"`
-
-	// A two-letter abbreviation of the country of the mailing address associated with an account's RWHOIS data.
-	Country *string `json:"country,omitempty" xmlrpc:"country,omitempty"`
-
-	// The date an account's RWHOIS data was created.
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// The first name associated with an account's RWHOIS data.
-	FirstName *string `json:"firstName,omitempty" xmlrpc:"firstName,omitempty"`
-
-	// An account's RWHOIS data's internal identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// The last name associated with an account's RWHOIS data.
-	LastName *string `json:"lastName,omitempty" xmlrpc:"lastName,omitempty"`
-
-	// The date an account's RWHOIS data was last modified.
-	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
-
-	// The postal code of the mailing address associated with an account's RWHOIS data.
-	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
-
-	// Whether an account's RWHOIS data refers to a private residence or not.
-	PrivateResidenceFlag *bool `json:"privateResidenceFlag,omitempty" xmlrpc:"privateResidenceFlag,omitempty"`
-
-	// A two-letter abbreviation of the state of the mailing address associated with an account's RWHOIS data. If an account does not reside in a province then this is typically blank.
-	State *string `json:"state,omitempty" xmlrpc:"state,omitempty"`
-}
-
-// **DEPRECATED**
-// The SoftLayer_Network_Subnet_Swip_Transaction data type contains basic information tracked at SoftLayer to allow automation of Swip creation, update, and removal requests.  A specific transaction is attached to an accountId and a subnetId. This also contains a "Status Name" which tells the customer what the transaction is doing:
-//
-// * REQUEST QUEUED:  Request is queued up to be sent to ARIN
-// * REQUEST SENT:  The email request has been sent to ARIN
-// * REQUEST CONFIRMED:  ARIN has confirmed that the request is good, and should be available in 24 hours
-// * OK:  The subnet has been checked with WHOIS and it the SWIP transaction has completed correctly
-// * REMOVE QUEUED:  A subnet is queued to be removed from ARIN's systems
-// * REMOVE SENT:  The removal email request has been sent to ARIN
-// * REMOVE CONFIRMED:  ARIN has confirmed that the removal request is good, and the subnet should be clear in WHOIS in 24 hours
-// * DELETED:  This specific SWIP Transaction has been removed from ARIN and is no longer in effect
-// * SOFTLAYER MANUALLY PROCESSING:  Sometimes a request doesn't go through correctly and has to be manually processed by SoftLayer.  This may take some time.
-type Network_Subnet_Swip_Transaction struct {
-	Entity
-
-	// The Account whose RWHOIS data was used to SWIP this subnet
-	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
-
-	// A SWIP transaction's unique identifier.
-	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// A Name describing which state a SWIP  transaction is in.
-	StatusName *string `json:"statusName,omitempty" xmlrpc:"statusName,omitempty"`
-
-	// The subnet that this SWIP transaction was created for.
-	Subnet *Network_Subnet `json:"subnet,omitempty" xmlrpc:"subnet,omitempty"`
-
-	// ID Number of the Subnet for this SWIP transaction.
-	SubnetId *int `json:"subnetId,omitempty" xmlrpc:"subnetId,omitempty"`
-}
-
 // The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.
 type Network_Tunnel_Module_Context struct {
 	Entity
@@ -6019,7 +5586,7 @@ type Network_Vlan struct {
 	// The viable hardware network interface trunking targets of this VLAN. Viable targets include accessible components of assigned hardware in the same pod and network as this VLAN, which are not already connected, either natively or trunked.
 	NetworkComponentsTrunkable []Network_Component `json:"networkComponentsTrunkable,omitempty" xmlrpc:"networkComponentsTrunkable,omitempty"`
 
-	// The network that this VLAN is on, either PUBLIC or PRIVATE, if applicable.
+	// The network that this VLAN is on, either PUBLIC or PRIVATE, if applicable
 	NetworkSpace *string `json:"networkSpace,omitempty" xmlrpc:"networkSpace,omitempty"`
 
 	// The firewall device associated with this VLAN.

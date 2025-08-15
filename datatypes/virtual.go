@@ -709,6 +709,7 @@ type Virtual_Guest struct {
 	SecurityScanRequestCount *uint `json:"securityScanRequestCount,omitempty" xmlrpc:"securityScanRequestCount,omitempty"`
 
 	// A guest's vulnerability scan requests.
+	// Deprecated: This function has been marked as deprecated.
 	SecurityScanRequests []Network_Security_Scanner_Request `json:"securityScanRequests,omitempty" xmlrpc:"securityScanRequests,omitempty"`
 
 	// The server room that a guest is located at. There may be more than one server room for every data center.
@@ -1361,7 +1362,8 @@ type Virtual_Host struct {
 	// Unique ID for a virtual host.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
-	// The metric tracking object for this virtual host.
+	// [DEPRECATED] - The metric tracking object for this virtual host.
+	// Deprecated: This function has been marked as deprecated.
 	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// The date a virtual host was last modified.
@@ -1595,7 +1597,8 @@ type Virtual_Storage_Repository struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
-	MetricTrackingObject *Metric_Tracking_Object_Virtual_Storage_Repository `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
+	// Deprecated: This function has been marked as deprecated.
+	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// A storage repositories name that describes its purpose or contents
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`

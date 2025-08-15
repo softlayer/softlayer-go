@@ -1475,14 +1475,6 @@ type Billing_Item_Network_Application_Delivery_Controller struct {
 	Resource *Network_Application_Delivery_Controller `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
-// A SoftLayer_Billing_Item_Network_Application_Delivery_Controller_LoadBalancer represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress|load balancer]] instance.
-type Billing_Item_Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress struct {
-	Billing_Item
-
-	// The load balancer that a load balancer billing item is associated with.
-	Resource *Network_Application_Delivery_Controller_LoadBalancer_VirtualIpAddress `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
-}
-
 // The SoftLayer_Billing_Item_Hardware data type contains general information relating to a single SoftLayer billing item for hardware.
 type Billing_Item_Network_Bandwidth struct {
 	Billing_Item
@@ -1523,14 +1515,6 @@ type Billing_Item_Network_Interconnect_Routing struct {
 // A SoftLayer_Billing_Item_Network_LoadBalancer represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer|load balancer]] instance.
 type Billing_Item_Network_LoadBalancer struct {
 	Billing_Item
-}
-
-// A SoftLayer_Billing_Item_Network_LoadBalancer_VirtualIpAddress represents the [[SoftLayer_Billing_Item|billing item]] related to a single [[SoftLayer_Network_LoadBalancer_VirtualIpAddress|load balancer]] instance.
-type Billing_Item_Network_LoadBalancer_VirtualIpAddress struct {
-	Billing_Item
-
-	// The load balancer's virtual IP address that the billing item is associated with.
-	Resource *Network_LoadBalancer_VirtualIpAddress `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 
 // The SoftLayer_Billing_Item_Network_Message_Delivery data describes the related billing item.

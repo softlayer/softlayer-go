@@ -739,20 +739,6 @@ var _ = Describe("Virtual Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Virtual_Guest::getBandwidthImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBandwidthImage(nil, nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Guest::getBandwidthImageByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetBandwidthImageByDate(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Virtual_Guest::getBandwidthTotal", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBandwidthTotal(nil, nil, nil, nil)
@@ -2957,13 +2943,6 @@ var _ = Describe("Virtual Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Virtual_Storage_Repository::getAverageUsageMetricDataByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetAverageUsageMetricDataByDate(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Virtual_Storage_Repository::getBillingItem", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetBillingItem()
@@ -3030,20 +3009,6 @@ var _ = Describe("Virtual Tests", func() {
 		Context("SoftLayer_Virtual_Storage_Repository::getType", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetType()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Storage_Repository::getUsageMetricDataByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetUsageMetricDataByDate(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Storage_Repository::getUsageMetricImageByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetUsageMetricImageByDate(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
