@@ -1184,7 +1184,7 @@ type Network_Component_Uplink_Hardware struct {
 	NetworkComponent *Network_Component `json:"networkComponent,omitempty" xmlrpc:"networkComponent,omitempty"`
 }
 
-// The SoftLayer_Network_Customer_Subnet data type contains general information relating to a single customer subnet (remote).
+// DEPRECATED
 type Network_Customer_Subnet struct {
 	Entity
 
@@ -1201,6 +1201,7 @@ type Network_Customer_Subnet struct {
 	IpAddressCount *uint `json:"ipAddressCount,omitempty" xmlrpc:"ipAddressCount,omitempty"`
 
 	// All ip addresses associated with a subnet.
+	// Deprecated: This function has been marked as deprecated.
 	IpAddresses []Network_Customer_Subnet_IpAddress `json:"ipAddresses,omitempty" xmlrpc:"ipAddresses,omitempty"`
 
 	// A bitmask in dotted-quad format that is used to separate a subnet's network address from it's host addresses. This performs the same function as the ''cidr'' property, but is expressed in a string format.
@@ -1213,7 +1214,7 @@ type Network_Customer_Subnet struct {
 	TotalIpAddresses *int `json:"totalIpAddresses,omitempty" xmlrpc:"totalIpAddresses,omitempty"`
 }
 
-// The SoftLayer_Network_Customer_Subnet_IpAddress data type contains general information relating to a single Customer Subnet (Remote) IPv4 address.
+// DEPRECATED
 type Network_Customer_Subnet_IpAddress struct {
 	Entity
 
@@ -1227,6 +1228,7 @@ type Network_Customer_Subnet_IpAddress struct {
 	Notes *string `json:"notes,omitempty" xmlrpc:"notes,omitempty"`
 
 	// The customer subnet (remote) that the ip address belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Subnet *Network_Customer_Subnet `json:"subnet,omitempty" xmlrpc:"subnet,omitempty"`
 
 	// The unique identifier for the customer subnet (remote) the ip address belongs to.
@@ -1236,6 +1238,7 @@ type Network_Customer_Subnet_IpAddress struct {
 	TranslationCount *uint `json:"translationCount,omitempty" xmlrpc:"translationCount,omitempty"`
 
 	// All the address translations that are tied to an IP address.
+	// Deprecated: This function has been marked as deprecated.
 	Translations []Network_Tunnel_Module_Context_Address_Translation `json:"translations,omitempty" xmlrpc:"translations,omitempty"`
 }
 
@@ -4329,11 +4332,12 @@ type Network_Storage_MassDataMigration_CrossRegion_Country_Xref struct {
 	LocationGroupId *int `json:"locationGroupId,omitempty" xmlrpc:"locationGroupId,omitempty"`
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request data type contains information on a single Mass Data Migration request. Creation of these requests is limited to SoftLayer customers through the SoftLayer Customer Portal.
+// DEPRECATED
 type Network_Storage_MassDataMigration_Request struct {
 	Entity
 
 	// The account to which the request belongs.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// The account id of the request.
@@ -4343,30 +4347,37 @@ type Network_Storage_MassDataMigration_Request struct {
 	ActiveTicketCount *uint `json:"activeTicketCount,omitempty" xmlrpc:"activeTicketCount,omitempty"`
 
 	// The active tickets that are attached to the MDMS request.
+	// Deprecated: This function has been marked as deprecated.
 	ActiveTickets []Ticket `json:"activeTickets,omitempty" xmlrpc:"activeTickets,omitempty"`
 
 	// The customer address where the device is shipped to.
+	// Deprecated: This function has been marked as deprecated.
 	Address *Account_Address `json:"address,omitempty" xmlrpc:"address,omitempty"`
 
 	// The address id of address assigned to this request.
 	AddressId *int `json:"addressId,omitempty" xmlrpc:"addressId,omitempty"`
 
 	// An associated parent billing item which is active. Includes billing items which are scheduled to be cancelled in the future.
+	// Deprecated: This function has been marked as deprecated.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// The employee user who created the request.
+	// Deprecated: This function has been marked as deprecated.
 	CreateEmployee *User_Employee `json:"createEmployee,omitempty" xmlrpc:"createEmployee,omitempty"`
 
 	// The customer user who created the request.
+	// Deprecated: This function has been marked as deprecated.
 	CreateUser *User_Customer `json:"createUser,omitempty" xmlrpc:"createUser,omitempty"`
 
 	// The create user id of the request.
 	CreateUserId *int `json:"createUserId,omitempty" xmlrpc:"createUserId,omitempty"`
 
 	// The device configurations.
+	// Deprecated: This function has been marked as deprecated.
 	DeviceConfiguration *Network_Storage_MassDataMigration_Request_DeviceConfiguration `json:"deviceConfiguration,omitempty" xmlrpc:"deviceConfiguration,omitempty"`
 
 	// The model of device assigned to this request.
+	// Deprecated: This function has been marked as deprecated.
 	DeviceModel *string `json:"deviceModel,omitempty" xmlrpc:"deviceModel,omitempty"`
 
 	// The end date of the request.
@@ -4379,12 +4390,15 @@ type Network_Storage_MassDataMigration_Request struct {
 	KeyContactCount *uint `json:"keyContactCount,omitempty" xmlrpc:"keyContactCount,omitempty"`
 
 	// The key contacts for this requests.
+	// Deprecated: This function has been marked as deprecated.
 	KeyContacts []Network_Storage_MassDataMigration_Request_KeyContact `json:"keyContacts,omitempty" xmlrpc:"keyContacts,omitempty"`
 
 	// The employee who last modified the request.
+	// Deprecated: This function has been marked as deprecated.
 	ModifyEmployee *User_Employee `json:"modifyEmployee,omitempty" xmlrpc:"modifyEmployee,omitempty"`
 
 	// The customer user who last modified the request.
+	// Deprecated: This function has been marked as deprecated.
 	ModifyUser *User_Customer `json:"modifyUser,omitempty" xmlrpc:"modifyUser,omitempty"`
 
 	// The modify user id of the request.
@@ -4397,28 +4411,32 @@ type Network_Storage_MassDataMigration_Request struct {
 	ShipmentCount *uint `json:"shipmentCount,omitempty" xmlrpc:"shipmentCount,omitempty"`
 
 	// The shipments of the request.
+	// Deprecated: This function has been marked as deprecated.
 	Shipments []Account_Shipment `json:"shipments,omitempty" xmlrpc:"shipments,omitempty"`
 
 	// The start date of the request.
 	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
 
 	// The status of the request.
+	// Deprecated: This function has been marked as deprecated.
 	Status *Network_Storage_MassDataMigration_Request_Status `json:"status,omitempty" xmlrpc:"status,omitempty"`
 
 	// The status id of the request.
 	StatusId *int `json:"statusId,omitempty" xmlrpc:"statusId,omitempty"`
 
 	// Ticket that is attached to this mass data migration request.
+	// Deprecated: This function has been marked as deprecated.
 	Ticket *Ticket `json:"ticket,omitempty" xmlrpc:"ticket,omitempty"`
 
 	// A count of all tickets that are attached to the mass data migration request.
 	TicketCount *uint `json:"ticketCount,omitempty" xmlrpc:"ticketCount,omitempty"`
 
 	// All tickets that are attached to the mass data migration request.
+	// Deprecated: This function has been marked as deprecated.
 	Tickets []Ticket `json:"tickets,omitempty" xmlrpc:"tickets,omitempty"`
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request_DeviceConfiguration data type contains settings such networking, COS account, which needs to be configured on device for a Mass Data Migration Request.
+// DEPRECATED
 type Network_Storage_MassDataMigration_Request_DeviceConfiguration struct {
 	Entity
 
@@ -4474,7 +4492,7 @@ type Network_Storage_MassDataMigration_Request_DeviceConfiguration struct {
 	Username *string `json:"username,omitempty" xmlrpc:"username,omitempty"`
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request_KeyContact data type contains name, email, and phone for key contact at customer location who will handle Mass Data Migration.
+// DEPRECATED
 type Network_Storage_MassDataMigration_Request_KeyContact struct {
 	Entity
 
@@ -4509,7 +4527,7 @@ type Network_Storage_MassDataMigration_Request_KeyContact struct {
 	RequestId *int `json:"requestId,omitempty" xmlrpc:"requestId,omitempty"`
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request_Status data type contains general information relating to the statuses to which a Mass Data Migration Request may be set.
+// DEPRECATED
 type Network_Storage_MassDataMigration_Request_Status struct {
 	Entity
 
@@ -4927,6 +4945,7 @@ type Network_Subnet struct {
 	NetworkTunnelContextCount *uint `json:"networkTunnelContextCount,omitempty" xmlrpc:"networkTunnelContextCount,omitempty"`
 
 	// The IPSec VPN tunnels associated to this subnet.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkTunnelContexts []Network_Tunnel_Module_Context `json:"networkTunnelContexts,omitempty" xmlrpc:"networkTunnelContexts,omitempty"`
 
 	// The VLAN this subnet is associated with.
@@ -4959,10 +4978,10 @@ type Network_Subnet struct {
 	// The name of the role the subnet is within. Roles dictate how a subnet may be used.
 	RoleName *string `json:"roleName,omitempty" xmlrpc:"roleName,omitempty"`
 
-	// The product and route classifier for this routed subnet, with the following values: PRIMARY, SECONDARY, STATIC_TO_IP, GLOBAL_IP, IPSEC_STATIC_NAT.
+	// The product and route classifier for this routed subnet, with the following values: PRIMARY, SECONDARY, STATIC_TO_IP, GLOBAL_IP
 	RoutingTypeKeyName *string `json:"routingTypeKeyName,omitempty" xmlrpc:"routingTypeKeyName,omitempty"`
 
-	// The description of the product and route classifier for this routed subnet, with the following values: Primary, Portable, Static, Global, IPSec Static NAT.
+	// The description of the product and route classifier for this routed subnet, with the following values: Primary, Portable, Static, Global.
 	RoutingTypeName *string `json:"routingTypeName,omitempty" xmlrpc:"routingTypeName,omitempty"`
 
 	// [DEPRECATED] Used to sort subnets and group subnets of similar type together for use on customer facing portals.
@@ -4978,7 +4997,6 @@ type Network_Subnet struct {
 	// * SUBNET_ON_VLAN
 	// * STATIC_IP_ROUTED_6
 	// * GLOBAL_IP
-	// * IPSEC_STATIC_NAT
 	//
 	//
 	// "PRIMARY" refers to the principal IPv4 network from which primary IP addresses are assigned to devices.
@@ -4997,7 +5015,7 @@ type Network_Subnet struct {
 	//
 	// "GLOBAL_IP" refers to a global IPv4/IPv6 address routed as static to a single endpoint IP address.
 	//
-	// "IPSEC_STATIC_NAT" refers to the networks associated to your IPSec VPN tunnels for NAT purposes.
+	//
 	SubnetType *string `json:"subnetType,omitempty" xmlrpc:"subnetType,omitempty"`
 
 	// A count of the tags associated to this subnet.
@@ -5057,6 +5075,7 @@ type Network_Subnet_IpAddress struct {
 	ContextTunnelTranslationCount *uint `json:"contextTunnelTranslationCount,omitempty" xmlrpc:"contextTunnelTranslationCount,omitempty"`
 
 	// An IPSec network tunnel's address translations. These translations use a SoftLayer ip address from an assigned static NAT subnet to deliver the packets to the remote (customer) destination.
+	// Deprecated: This function has been marked as deprecated.
 	ContextTunnelTranslations []Network_Tunnel_Module_Context_Address_Translation `json:"contextTunnelTranslations,omitempty" xmlrpc:"contextTunnelTranslations,omitempty"`
 
 	// A count of all the subnets routed to an IP address.
@@ -5318,11 +5337,12 @@ type Network_Subnet_IpAddress_Version6 struct {
 	PublicVersion6NetworkGateway *Network_Gateway `json:"publicVersion6NetworkGateway,omitempty" xmlrpc:"publicVersion6NetworkGateway,omitempty"`
 }
 
-// The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.
+// DEPRECATED
 type Network_Tunnel_Module_Context struct {
 	Entity
 
 	// The account that a network tunnel belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// A network tunnel's account identifier.
@@ -5336,6 +5356,7 @@ type Network_Tunnel_Module_Context struct {
 	AddressTranslationCount *uint `json:"addressTranslationCount,omitempty" xmlrpc:"addressTranslationCount,omitempty"`
 
 	// A network tunnel's address translations.
+	// Deprecated: This function has been marked as deprecated.
 	AddressTranslations []Network_Tunnel_Module_Context_Address_Translation `json:"addressTranslations,omitempty" xmlrpc:"addressTranslations,omitempty"`
 
 	// A flag used to specify when advanced configurations, complex configurations that require manual setup, are being applied to network devices for a network tunnel. When the flag is set to true (1), a network tunnel cannot be configured through the management portal nor the API.
@@ -5345,9 +5366,11 @@ type Network_Tunnel_Module_Context struct {
 	AllAvailableServiceSubnetCount *uint `json:"allAvailableServiceSubnetCount,omitempty" xmlrpc:"allAvailableServiceSubnetCount,omitempty"`
 
 	// Subnets that provide access to SoftLayer services such as the management portal and the SoftLayer API.
+	// Deprecated: This function has been marked as deprecated.
 	AllAvailableServiceSubnets []Network_Subnet `json:"allAvailableServiceSubnets,omitempty" xmlrpc:"allAvailableServiceSubnets,omitempty"`
 
 	// The current billing item for network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	BillingItem *Billing_Item `json:"billingItem,omitempty" xmlrpc:"billingItem,omitempty"`
 
 	// The date a network tunnel was created.
@@ -5360,9 +5383,11 @@ type Network_Tunnel_Module_Context struct {
 	CustomerSubnetCount *uint `json:"customerSubnetCount,omitempty" xmlrpc:"customerSubnetCount,omitempty"`
 
 	// Remote subnets that are allowed access through a network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	CustomerSubnets []Network_Customer_Subnet `json:"customerSubnets,omitempty" xmlrpc:"customerSubnets,omitempty"`
 
 	// The datacenter location for one end of the network tunnel that allows access to account's private subnets.
+	// Deprecated: This function has been marked as deprecated.
 	Datacenter *Location `json:"datacenter,omitempty" xmlrpc:"datacenter,omitempty"`
 
 	// The name giving to a network tunnel by a user.
@@ -5378,6 +5403,7 @@ type Network_Tunnel_Module_Context struct {
 	InternalSubnetCount *uint `json:"internalSubnetCount,omitempty" xmlrpc:"internalSubnetCount,omitempty"`
 
 	// Private subnets that can be accessed through the network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	InternalSubnets []Network_Subnet `json:"internalSubnets,omitempty" xmlrpc:"internalSubnets,omitempty"`
 
 	// The date a network tunnel was last modified.
@@ -5422,12 +5448,14 @@ type Network_Tunnel_Module_Context struct {
 	ServiceSubnetCount *uint `json:"serviceSubnetCount,omitempty" xmlrpc:"serviceSubnetCount,omitempty"`
 
 	// Service subnets that can be access through the network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	ServiceSubnets []Network_Subnet `json:"serviceSubnets,omitempty" xmlrpc:"serviceSubnets,omitempty"`
 
 	// A count of subnets used for a network tunnel's address translations.
 	StaticRouteSubnetCount *uint `json:"staticRouteSubnetCount,omitempty" xmlrpc:"staticRouteSubnetCount,omitempty"`
 
 	// Subnets used for a network tunnel's address translations.
+	// Deprecated: This function has been marked as deprecated.
 	StaticRouteSubnets []Network_Subnet `json:"staticRouteSubnets,omitempty" xmlrpc:"staticRouteSubnets,omitempty"`
 
 	// DEPRECATED
@@ -5438,7 +5466,7 @@ type Network_Tunnel_Module_Context struct {
 	TransactionHistoryCount *uint `json:"transactionHistoryCount,omitempty" xmlrpc:"transactionHistoryCount,omitempty"`
 }
 
-// The SoftLayer_Network_Tunnel_Module_Context_Address_Translation data type contains general information relating to a single address translation. Information such as notes, ip addresses, along with record information, and network tunnel data may be retrieved.
+// DEPRECATED
 type Network_Tunnel_Module_Context_Address_Translation struct {
 	Entity
 
@@ -5449,6 +5477,7 @@ type Network_Tunnel_Module_Context_Address_Translation struct {
 	CustomerIpAddressId *int `json:"customerIpAddressId,omitempty" xmlrpc:"customerIpAddressId,omitempty"`
 
 	// The ip address record for the ip that will receive the encrypted traffic from the IPSec network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	CustomerIpAddressRecord *Network_Customer_Subnet_IpAddress `json:"customerIpAddressRecord,omitempty" xmlrpc:"customerIpAddressRecord,omitempty"`
 
 	// An address translation's unique identifier.
@@ -5461,9 +5490,11 @@ type Network_Tunnel_Module_Context_Address_Translation struct {
 	InternalIpAddressId *int `json:"internalIpAddressId,omitempty" xmlrpc:"internalIpAddressId,omitempty"`
 
 	// The ip address record for the ip that will deliver the encrypted traffic from the IPSec network tunnel.
+	// Deprecated: This function has been marked as deprecated.
 	InternalIpAddressRecord *Network_Subnet_IpAddress `json:"internalIpAddressRecord,omitempty" xmlrpc:"internalIpAddressRecord,omitempty"`
 
 	// The IPSec network tunnel an address translation belongs to.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkTunnelContext *Network_Tunnel_Module_Context `json:"networkTunnelContext,omitempty" xmlrpc:"networkTunnelContext,omitempty"`
 
 	// An address translation's network tunnel identifier.

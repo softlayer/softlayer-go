@@ -1,6 +1,6 @@
 module github.com/softlayer/softlayer-go/examples
 
-go 1.25
+go 1.24
 
 replace github.com/softlayer/softlayer-go => ../
 

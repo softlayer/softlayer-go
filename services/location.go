@@ -134,12 +134,6 @@ func (r Location) GetLocationStatus() (resp datatypes.Location_Status, err error
 	return
 }
 
-// Retrieve [DEPRECATED] - A location's metric tracking object.
-func (r Location) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = r.Session.DoRequest("SoftLayer_Location", "getMetricTrackingObject", nil, &r.Options, &resp)
-	return
-}
-
 // Retrieve
 func (r Location) GetNetworkConfigurationAttribute() (resp datatypes.Hardware_Attribute, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location", "getNetworkConfigurationAttribute", nil, &r.Options, &resp)
@@ -357,12 +351,6 @@ func (r Location_Datacenter) GetLocationReservationMember() (resp datatypes.Loca
 // Retrieve The current locations status.
 func (r Location_Datacenter) GetLocationStatus() (resp datatypes.Location_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getLocationStatus", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [DEPRECATED] - A location's metric tracking object.
-func (r Location_Datacenter) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = r.Session.DoRequest("SoftLayer_Location_Datacenter", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
 

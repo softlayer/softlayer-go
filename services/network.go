@@ -1933,7 +1933,8 @@ func (r Network_Component_Firewall) HasActiveTransactions() (resp bool, err erro
 	return
 }
 
-// The SoftLayer_Network_Customer_Subnet data type contains general information relating to a single customer subnet (remote).
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 type Network_Customer_Subnet struct {
 	Session session.SLSession
 	Options sl.Options
@@ -1973,7 +1974,7 @@ func (r Network_Customer_Subnet) Offset(offset int) Network_Customer_Subnet {
 	return r
 }
 
-// For IPSec network tunnels, customers can create their local subnets using this method.  After the customer is created successfully, the customer subnet can then be added to the IPSec network tunnel.
+// DEPRECATED
 func (r Network_Customer_Subnet) CreateObject(templateObject *datatypes.Network_Customer_Subnet) (resp datatypes.Network_Customer_Subnet, err error) {
 	params := []interface{}{
 		templateObject,
@@ -1988,7 +1989,7 @@ func (r Network_Customer_Subnet) GetIpAddresses() (resp []datatypes.Network_Cust
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_Customer_Subnet object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Customer_Subnet service. You can only retrieve the subnet whose account matches the account that your portal user is assigned to.
+// DEPRECATED
 func (r Network_Customer_Subnet) GetObject() (resp datatypes.Network_Customer_Subnet, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Customer_Subnet", "getObject", nil, &r.Options, &resp)
 	return
@@ -11793,6 +11794,7 @@ func (r Network_Storage_Iscsi_OS_Type) GetObject() (resp datatypes.Network_Stora
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 type Network_Storage_MassDataMigration_CrossRegion_Country_Xref struct {
 	Session session.SLSession
 	Options sl.Options
@@ -11833,6 +11835,7 @@ func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) Offset(offse
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetAllObjects() (resp []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_CrossRegion_Country_Xref", "getAllObjects", nil, &r.Options, &resp)
 	return
@@ -11856,7 +11859,8 @@ func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetObject() 
 	return
 }
 
-// Returns countries assigned to the region having pricing info set.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetValidCountriesForRegion(locationGroupName *string) (resp []datatypes.Network_Storage_MassDataMigration_CrossRegion_Country_Xref, err error) {
 	params := []interface{}{
 		locationGroupName,
@@ -11865,7 +11869,8 @@ func (r Network_Storage_MassDataMigration_CrossRegion_Country_Xref) GetValidCoun
 	return
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request data type contains information on a single Mass Data Migration request. Creation of these requests is limited to SoftLayer customers through the SoftLayer Customer Portal.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 type Network_Storage_MassDataMigration_Request struct {
 	Session session.SLSession
 	Options sl.Options
@@ -11924,12 +11929,14 @@ func (r Network_Storage_MassDataMigration_Request) GetAddress() (resp datatypes.
 }
 
 // no documentation yet
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Storage_MassDataMigration_Request) GetAllObjects() (resp []datatypes.Network_Storage_MassDataMigration_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllObjects", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieves a list of all the possible statuses to which a request may be set.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Storage_MassDataMigration_Request) GetAllRequestStatuses() (resp []datatypes.Network_Storage_MassDataMigration_Request_Status, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getAllRequestStatuses", nil, &r.Options, &resp)
 	return
@@ -11989,7 +11996,8 @@ func (r Network_Storage_MassDataMigration_Request) GetObject() (resp datatypes.N
 	return
 }
 
-// Returns placeholder MDMS requests for any MDMS order pending approval.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Storage_MassDataMigration_Request) GetPendingRequests() (resp []datatypes.Network_Storage_MassDataMigration_Request, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Storage_MassDataMigration_Request", "getPendingRequests", nil, &r.Options, &resp)
 	return
@@ -12019,7 +12027,8 @@ func (r Network_Storage_MassDataMigration_Request) GetTickets() (resp []datatype
 	return
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request_KeyContact data type contains name, email, and phone for key contact at customer location who will handle Mass Data Migration.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 type Network_Storage_MassDataMigration_Request_KeyContact struct {
 	Session session.SLSession
 	Options sl.Options
@@ -12077,7 +12086,8 @@ func (r Network_Storage_MassDataMigration_Request_KeyContact) GetRequest() (resp
 	return
 }
 
-// The SoftLayer_Network_Storage_MassDataMigration_Request_Status data type contains general information relating to the statuses to which a Mass Data Migration Request may be set.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 type Network_Storage_MassDataMigration_Request_Status struct {
 	Session session.SLSession
 	Options sl.Options
@@ -12647,13 +12657,13 @@ func (r Network_Subnet) GetRoutableEndpointIpAddresses() (resp []datatypes.Netwo
 	return
 }
 
-// Retrieve The product and route classifier for this routed subnet, with the following values: PRIMARY, SECONDARY, STATIC_TO_IP, GLOBAL_IP, IPSEC_STATIC_NAT.
+// Retrieve The product and route classifier for this routed subnet, with the following values: PRIMARY, SECONDARY, STATIC_TO_IP, GLOBAL_IP
 func (r Network_Subnet) GetRoutingTypeKeyName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutingTypeKeyName", nil, &r.Options, &resp)
 	return
 }
 
-// Retrieve The description of the product and route classifier for this routed subnet, with the following values: Primary, Portable, Static, Global, IPSec Static NAT.
+// Retrieve The description of the product and route classifier for this routed subnet, with the following values: Primary, Portable, Static, Global.
 func (r Network_Subnet) GetRoutingTypeName() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Subnet", "getRoutingTypeName", nil, &r.Options, &resp)
 	return
@@ -13146,7 +13156,8 @@ func (r Network_Subnet_IpAddress_Global) Unroute() (resp bool, err error) {
 	return
 }
 
-// The SoftLayer_Network_Tunnel_Module_Context data type contains general information relating to a single SoftLayer network tunnel.  The SoftLayer_Network_Tunnel_Module_Context is useful to gather information such as related customer subnets (remote) and internal subnets (local) associated with the network tunnel as well as other information needed to manage the network tunnel.  Account and billing information related to the network tunnel can also be retrieved.
+// DEPRECATED
+// Deprecated: This function has been marked as deprecated.
 type Network_Tunnel_Module_Context struct {
 	Session session.SLSession
 	Options sl.Options
@@ -13186,9 +13197,7 @@ func (r Network_Tunnel_Module_Context) Offset(offset int) Network_Tunnel_Module_
 	return r
 }
 
-// Associates a remote subnet to the network tunnel.  When a remote subnet is associated, a network tunnel will allow the customer (remote) network to communicate with the private and service subnets on the SoftLayer network which are on the other end of this network tunnel.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the association described above to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) AddCustomerSubnetToNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,
@@ -13197,9 +13206,8 @@ func (r Network_Tunnel_Module_Context) AddCustomerSubnetToNetworkTunnel(subnetId
 	return
 }
 
-// Associates a private subnet to the network tunnel.  When a private subnet is associated, the network tunnel will allow the customer (remote) network to access the private subnet.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the association described above to take effect.
+// Deprecated
+// Deprecated: This function has been marked as deprecated.
 func (r Network_Tunnel_Module_Context) AddPrivateSubnetToNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,
@@ -13208,9 +13216,7 @@ func (r Network_Tunnel_Module_Context) AddPrivateSubnetToNetworkTunnel(subnetId 
 	return
 }
 
-// Associates a service subnet to the network tunnel.  When a service subnet is associated, a network tunnel will allow the customer (remote) network to communicate with the private and service subnets on the SoftLayer network which are on the other end of this network tunnel.  Service subnets provide access to SoftLayer services such as the customer management portal and the SoftLayer API.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the association described above to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) AddServiceSubnetToNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,
@@ -13219,17 +13225,13 @@ func (r Network_Tunnel_Module_Context) AddServiceSubnetToNetworkTunnel(subnetId 
 	return
 }
 
-// An asynchronous task will be created to apply the IPSec network tunnel's configuration to network devices. During this time, an IPSec network tunnel cannot be modified in anyway. Only one network tunnel configuration task can be created at a time. If a task has already been created and has not completed, a new task cannot be created.
+// Deprecated
 func (r Network_Tunnel_Module_Context) ApplyConfigurationsToDevice() (resp bool, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "applyConfigurationsToDevice", nil, &r.Options, &resp)
 	return
 }
 
-// Create an address translation for a network tunnel.
-//
-// To create an address translation, ip addresses from an assigned /30 static route subnet are used.  Address translations deliver packets to a destination ip address that is on a customer (remote) subnet.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for an address translation to be created.
+// Deprecated
 func (r Network_Tunnel_Module_Context) CreateAddressTranslation(translation *datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
 	params := []interface{}{
 		translation,
@@ -13238,9 +13240,7 @@ func (r Network_Tunnel_Module_Context) CreateAddressTranslation(translation *dat
 	return
 }
 
-// This has the same functionality as the SoftLayer_Network_Tunnel_Module_Context::createAddressTranslation.  However, it allows multiple translations to be passed in for creation.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the address translations to be created.
+// Deprecated
 func (r Network_Tunnel_Module_Context) CreateAddressTranslations(translations []datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
 	params := []interface{}{
 		translations,
@@ -13249,11 +13249,7 @@ func (r Network_Tunnel_Module_Context) CreateAddressTranslations(translations []
 	return
 }
 
-// Remove an existing address translation from a network tunnel.
-//
-// Address translations deliver packets to a destination ip address that is on a customer subnet (remote).
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for an address translation to be deleted.
+// Deprecated
 func (r Network_Tunnel_Module_Context) DeleteAddressTranslation(translationId *int) (resp bool, err error) {
 	params := []interface{}{
 		translationId,
@@ -13262,23 +13258,19 @@ func (r Network_Tunnel_Module_Context) DeleteAddressTranslation(translationId *i
 	return
 }
 
-// Provides all of the address translation configurations for an IPSec VPN tunnel in a text file
+// Deprecated
 func (r Network_Tunnel_Module_Context) DownloadAddressTranslationConfigurations() (resp datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "downloadAddressTranslationConfigurations", nil, &r.Options, &resp)
 	return
 }
 
-// Provides all of the configurations for an IPSec VPN network tunnel in a text file
+// Deprecated
 func (r Network_Tunnel_Module_Context) DownloadParameterConfigurations() (resp datatypes.Container_Utility_File_Entity, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "downloadParameterConfigurations", nil, &r.Options, &resp)
 	return
 }
 
-// Edit name, source (SoftLayer IP) ip address and/or destination (Customer IP) ip address for an existing address translation for a network tunnel.
-//
-// Address translations deliver packets to a destination ip address that is on a customer (remote) subnet.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for an address translation to be created.
+// Deprecated
 func (r Network_Tunnel_Module_Context) EditAddressTranslation(translation *datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
 	params := []interface{}{
 		translation,
@@ -13287,11 +13279,7 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslation(translation *datat
 	return
 }
 
-// Edit name, source (SoftLayer IP) ip address and/or destination (Customer IP) ip address for existing address translations for a network tunnel.
-//
-// Address translations deliver packets to a destination ip address that is on a customer (remote) subnet.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for an address translation to be modified.
+// Deprecated
 func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []datatypes.Network_Tunnel_Module_Context_Address_Translation) (resp []datatypes.Network_Tunnel_Module_Context_Address_Translation, err error) {
 	params := []interface{}{
 		translations,
@@ -13300,53 +13288,7 @@ func (r Network_Tunnel_Module_Context) EditAddressTranslations(translations []da
 	return
 }
 
-// Negotiation parameters for both phases one and two are editable. Here are the phase one and two parameters that can modified:
-//
-// *Phase One
-// **Authentication
-// ***Default value is set to MD5.
-// ***Valid Options are: MD5, SHA1, SHA256.
-// **Encryption
-// ***Default value is set to 3DES.
-// ***Valid Options are: DES, 3DES, AES128, AES192, AES256.
-// **Diffie-Hellman Group
-// ***Default value is set to 2.
-// ***Valid Options are: 0 (None), 1, 2, 5.
-// **Keylife
-// ***Default value is set to 3600.
-// ***Limits are:  MIN = 120, MAX = 172800
-// **Preshared Key
-// *Phase Two
-// **Authentication
-// ***Default value is set to MD5.
-// ***Valid Options are: MD5, SHA1, SHA256.
-// **Encryption
-// ***Default value is set to 3DES.
-// ***Valid Options are: DES, 3DES, AES128, AES192, AES256.
-// **Diffie-Hellman Group
-// ***Default value is set to 2.
-// ***Valid Options are: 0 (None), 1, 2, 5.
-// **Keylife
-// ***Default value is set to 28800.
-// ***Limits are:  MIN = 120, MAX = 172800
-// **Perfect Forward Secrecy
-// ***Valid Options are: Off = 0, On = 1.
-// ***NOTE:  If perfect forward secrecy is turned On (set to 1), then a phase 2 diffie-hellman group is required.
-//
-// The remote peer address for the network tunnel may also be modified if needed.  Invalid options will not be accepted and will cause an exception to be thrown.  There are properties that provide valid options and limits for each negotiation parameter.  Those properties are as follows:
-// * encryptionDefault
-// * encryptionOptions
-// * authenticationDefault
-// * authenticationOptions
-// * diffieHellmanGroupDefault
-// * diffieHellmanGroupOptions
-// * phaseOneKeylifeDefault
-// * phaseTwoKeylifeDefault
-// * keylifeLimits
-//
-// Configurations cannot be modified if a network tunnel's requires complex manual setups/configuration modifications by the SoftLayer Network department.  If the former is required, the configurations for the network tunnel will be locked until the manual configurations are complete. A network tunnel's configurations are applied via a transaction.  If a network tunnel configuration change transaction is currently running, the network tunnel's setting cannot be modified until the running transaction completes.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the modifications made to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) EditObject(templateObject *datatypes.Network_Tunnel_Module_Context) (resp bool, err error) {
 	params := []interface{}{
 		templateObject,
@@ -13367,11 +13309,7 @@ func (r Network_Tunnel_Module_Context) GetActiveTransaction() (resp datatypes.Pr
 	return
 }
 
-// The address translations will be returned.  All the translations will be formatted so that the configurations can be copied into a host file.
-//
-// Format:
-//
-// {address translation SoftLayer IP Address}        {address translation name}
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetAddressTranslationConfigurations() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAddressTranslationConfigurations", nil, &r.Options, &resp)
 	return
@@ -13389,18 +13327,13 @@ func (r Network_Tunnel_Module_Context) GetAllAvailableServiceSubnets() (resp []d
 	return
 }
 
-// The default authentication type used for both phases of the negotiation process.  The default value is set to MD5.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetAuthenticationDefault() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationDefault", nil, &r.Options, &resp)
 	return
 }
 
-// Authentication options available for both phases of the negotiation process.
-//
-// The authentication options are as follows:
-// * MD5
-// * SHA1
-// * SHA256
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetAuthenticationOptions() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getAuthenticationOptions", nil, &r.Options, &resp)
 	return
@@ -13424,38 +13357,25 @@ func (r Network_Tunnel_Module_Context) GetDatacenter() (resp datatypes.Location,
 	return
 }
 
-// The default Diffie-Hellman group used for both phases of the negotiation process.  The default value is set to 2.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupDefault() (resp int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupDefault", nil, &r.Options, &resp)
 	return
 }
 
-// The Diffie-Hellman group options used for both phases of the negotiation process.
-//
-// The diffie-hellman group options are as follows:
-// * 0 (None)
-// * 1
-// * 2
-// * 5
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetDiffieHellmanGroupOptions() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getDiffieHellmanGroupOptions", nil, &r.Options, &resp)
 	return
 }
 
-// The default encryption type used for both phases of the negotiation process.  The default value is set to 3DES.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetEncryptionDefault() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionDefault", nil, &r.Options, &resp)
 	return
 }
 
-// Encryption options available for both phases of the negotiation process.
-//
-// The valid encryption options are as follows:
-// * DES
-// * 3DES
-// * AES128
-// * AES192
-// * AES256
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetEncryptionOptions() (resp []string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getEncryptionOptions", nil, &r.Options, &resp)
 	return
@@ -13467,31 +13387,31 @@ func (r Network_Tunnel_Module_Context) GetInternalSubnets() (resp []datatypes.Ne
 	return
 }
 
-// The keylife limits.  Keylife max limit is set to 120.  Keylife min limit is set to 172800.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetKeylifeLimits() (resp []int, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getKeylifeLimits", nil, &r.Options, &resp)
 	return
 }
 
-// getObject retrieves the SoftLayer_Network_Tunnel_Module_Context object whose ID number corresponds to the ID number of the init parameter passed to the SoftLayer_Network_Tunnel_Module_Context service. The IPSec network tunnel will be returned if it is associated with the account and the user has proper permission to manage network tunnels.
+// DEPRECATED
 func (r Network_Tunnel_Module_Context) GetObject() (resp datatypes.Network_Tunnel_Module_Context, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getObject", nil, &r.Options, &resp)
 	return
 }
 
-// All of the IPSec VPN tunnel's configurations will be returned.  It will list all of phase one and two negotiation parameters.  Both remote and local subnets will be provided as well.  This is useful when the configurations need to be passed on to another team and/or company for internal network configuration.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetParameterConfigurationsForCustomerView() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getParameterConfigurationsForCustomerView", nil, &r.Options, &resp)
 	return
 }
 
-// The default phase 1 keylife used if a value is not provided.  The default value is set to 3600.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetPhaseOneKeylifeDefault() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getPhaseOneKeylifeDefault", nil, &r.Options, &resp)
 	return
 }
 
-// The default phase 2 keylife used if a value is not provided.  The default value is set to 28800.
+// Deprecated
 func (r Network_Tunnel_Module_Context) GetPhaseTwoKeylifeDefault() (resp string, err error) {
 	err = r.Session.DoRequest("SoftLayer_Network_Tunnel_Module_Context", "getPhaseTwoKeylifeDefault", nil, &r.Options, &resp)
 	return
@@ -13515,9 +13435,7 @@ func (r Network_Tunnel_Module_Context) GetTransactionHistory() (resp []datatypes
 	return
 }
 
-// Disassociate a customer subnet (remote) from a network tunnel.  When a remote subnet is disassociated, that subnet will not able to communicate with private and service subnets on the SoftLayer network.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the disassociation described above to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) RemoveCustomerSubnetFromNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,
@@ -13526,9 +13444,7 @@ func (r Network_Tunnel_Module_Context) RemoveCustomerSubnetFromNetworkTunnel(sub
 	return
 }
 
-// Disassociate a private subnet from a network tunnel.  When a private subnet is disassociated, the customer (remote) subnet on the other end of the tunnel will not able to communicate with the private subnet that was just disassociated.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the disassociation described above to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) RemovePrivateSubnetFromNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,
@@ -13537,9 +13453,7 @@ func (r Network_Tunnel_Module_Context) RemovePrivateSubnetFromNetworkTunnel(subn
 	return
 }
 
-// Disassociate a service subnet from a network tunnel.  When a service subnet is disassociated, that customer (remote) subnet on the other end of the network tunnel will not able to communicate with that service subnet on the SoftLayer network.
-//
-// NOTE:  A network tunnel's configurations must be applied to the network device in order for the disassociation described above to take effect.
+// Deprecated
 func (r Network_Tunnel_Module_Context) RemoveServiceSubnetFromNetworkTunnel(subnetId *int) (resp bool, err error) {
 	params := []interface{}{
 		subnetId,

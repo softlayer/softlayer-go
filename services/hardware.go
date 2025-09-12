@@ -1855,12 +1855,6 @@ func (r Hardware_Component_Model) GetIsInfinibandCompatible() (resp bool, err er
 	return
 }
 
-// Retrieve [DEPRECATED] - A hardware component models metric tracking object. This object records all periodic polled data available to this hardware componet model.
-func (r Hardware_Component_Model) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getMetricTrackingObject", nil, &r.Options, &resp)
-	return
-}
-
 // getObject retrieves the SoftLayer_Hardware_Component_Model object.
 func (r Hardware_Component_Model) GetObject() (resp datatypes.Hardware_Component_Model, err error) {
 	err = r.Session.DoRequest("SoftLayer_Hardware_Component_Model", "getObject", nil, &r.Options, &resp)

@@ -322,12 +322,14 @@ type Hardware struct {
 	Modules []Hardware_Component `json:"modules,omitempty" xmlrpc:"modules,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty" xmlrpc:"monitoringRobot,omitempty"`
 
 	// Information regarding a piece of hardware's network monitoring services.
 	MonitoringServiceComponent *Network_Monitor_Version1_Query_Host_Stratum `json:"monitoringServiceComponent,omitempty" xmlrpc:"monitoringServiceComponent,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty" xmlrpc:"monitoringServiceEligibilityFlag,omitempty"`
 
 	// Information regarding a piece of hardware's motherboard.
@@ -1174,10 +1176,6 @@ type Hardware_Component_Model struct {
 
 	// A hardware component model's manufacturer.
 	Manufacturer *string `json:"manufacturer,omitempty" xmlrpc:"manufacturer,omitempty"`
-
-	// [DEPRECATED] - A hardware component models metric tracking object. This object records all periodic polled data available to this hardware componet model.
-	// Deprecated: This function has been marked as deprecated.
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// The model name of a hardware component model.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`

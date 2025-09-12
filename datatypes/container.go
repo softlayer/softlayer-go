@@ -941,66 +941,6 @@ type Container_Authentication_Response_Success struct {
 	Token *Container_User_Authentication_Token `json:"token,omitempty" xmlrpc:"token,omitempty"`
 }
 
-// SoftLayer_Container_Bandwidth_GraphInputs models a single inbound object for a given bandwidth graph.
-type Container_Bandwidth_GraphInputs struct {
-	Entity
-
-	// This is a unix timestamp that represents the stop date/time for a graph.
-	EndDate *Time `json:"endDate,omitempty" xmlrpc:"endDate,omitempty"`
-
-	// The front-end or back-end network uplink interface associated with this server.
-	NetworkInterfaceId *int `json:"networkInterfaceId,omitempty" xmlrpc:"networkInterfaceId,omitempty"`
-
-	// *
-	Pod *int `json:"pod,omitempty" xmlrpc:"pod,omitempty"`
-
-	// This is a human readable name for the server or rack being graphed.
-	ServerName *string `json:"serverName,omitempty" xmlrpc:"serverName,omitempty"`
-
-	// This is a unix timestamp that represents the begin date/time for a graph.
-	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
-}
-
-// SoftLayer_Container_Bandwidth_GraphOutputs models a single outbound object for a given bandwidth graph.
-type Container_Bandwidth_GraphOutputs struct {
-	Entity
-
-	// The raw PNG binary data to be displayed once the graph is drawn.
-	GraphImage *[]byte `json:"graphImage,omitempty" xmlrpc:"graphImage,omitempty"`
-
-	// The title that ended up being displayed as part of the graph image.
-	GraphTitle *string `json:"graphTitle,omitempty" xmlrpc:"graphTitle,omitempty"`
-
-	// The maximum date included in this graph.
-	MaxEndDate *Time `json:"maxEndDate,omitempty" xmlrpc:"maxEndDate,omitempty"`
-
-	// The minimum date included in this graph.
-	MinStartDate *Time `json:"minStartDate,omitempty" xmlrpc:"minStartDate,omitempty"`
-}
-
-// SoftLayer_Container_Bandwidth_Projection models projected bandwidth use over a time range.
-type Container_Bandwidth_Projection struct {
-	Entity
-
-	// Bandwidth limit for this hardware.
-	AllowedUsage *string `json:"allowedUsage,omitempty" xmlrpc:"allowedUsage,omitempty"`
-
-	// Estimated bandwidth usage so far this billing cycle.
-	EstimatedUsage *string `json:"estimatedUsage,omitempty" xmlrpc:"estimatedUsage,omitempty"`
-
-	// Hardware ID of server to monitor.
-	HardwareId *int `json:"hardwareId,omitempty" xmlrpc:"hardwareId,omitempty"`
-
-	// Projected usage for this hardware based on previous usage this billing cycle.
-	ProjectedUsage *string `json:"projectedUsage,omitempty" xmlrpc:"projectedUsage,omitempty"`
-
-	// the text name of the server being monitored.
-	ServerName *string `json:"serverName,omitempty" xmlrpc:"serverName,omitempty"`
-
-	// The minimum date included in this list.
-	StartDate *Time `json:"startDate,omitempty" xmlrpc:"startDate,omitempty"`
-}
-
 // When a customer uses SoftLayer_Account::getBandwidthUsage, this container is used to return their usage information in bytes
 type Container_Bandwidth_Usage struct {
 	Entity
@@ -1777,37 +1717,6 @@ type Container_Metric_Tracking_Object_Virtual_Host_Summary struct {
 
 	// This virtual hosting platform name.
 	VirtualPlatformName *string `json:"virtualPlatformName,omitempty" xmlrpc:"virtualPlatformName,omitempty"`
-}
-
-// The SoftLayer_Container_Monitoring_Alarm_History data type contains information relating to SoftLayer monitoring alarm history.
-type Container_Monitoring_Alarm_History struct {
-	Entity
-
-	// Account ID that this alarm belongs to
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// DEPRECATED. ID of the monitoring agent that triggered this alarm
-	// Deprecated: This function has been marked as deprecated.
-	AgentId *int `json:"agentId,omitempty" xmlrpc:"agentId,omitempty"`
-
-	// Alarm ID
-	AlarmId *string `json:"alarmId,omitempty" xmlrpc:"alarmId,omitempty"`
-
-	// Time that an alarm was closed.
-	ClosedDate *Time `json:"closedDate,omitempty" xmlrpc:"closedDate,omitempty"`
-
-	// Time that an alarm was triggered
-	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
-
-	// Alarm message
-	Message *string `json:"message,omitempty" xmlrpc:"message,omitempty"`
-
-	// DEPRECATED. Robot ID
-	// Deprecated: This function has been marked as deprecated.
-	RobotId *int `json:"robotId,omitempty" xmlrpc:"robotId,omitempty"`
-
-	// Severity of an alarm
-	Severity *string `json:"severity,omitempty" xmlrpc:"severity,omitempty"`
 }
 
 // This object holds authentication data to a server.
@@ -3164,6 +3073,9 @@ type Container_Product_Order_Hardware_Security_Module struct {
 // This is the datatype that needs to be populated and sent to SoftLayer_Product_Order::placeOrder. This datatype has everything required to place an order with SoftLayer.
 type Container_Product_Order_Hardware_Server struct {
 	Container_Product_Order
+
+	// Optional profile for custom bios settings to be applied during provisioning. See [[SoftLayer_Product_Item/supportedBiosSettingsProfiles]] on the server product item for available values.
+	BiosSettingsProfile *string `json:"biosSettingsProfile,omitempty" xmlrpc:"biosSettingsProfile,omitempty"`
 
 	// Used to identify which category should be used for the boot disk.
 	BootCategoryCode *string `json:"bootCategoryCode,omitempty" xmlrpc:"bootCategoryCode,omitempty"`
@@ -5158,20 +5070,6 @@ type Container_Virtual_Guest_Block_Device_Template_Configuration struct {
 	//
 	// Wrapped Decryption Key provided by IBM Key Protect
 	WrappedDek *string `json:"wrappedDek,omitempty" xmlrpc:"wrappedDek,omitempty"`
-}
-
-// no documentation yet
-type Container_Virtual_Guest_Block_Device_Template_Group_RiasAccount struct {
-	Entity
-
-	// no documentation yet
-	AccountId *int `json:"accountId,omitempty" xmlrpc:"accountId,omitempty"`
-
-	// no documentation yet
-	MasterUserId *int `json:"masterUserId,omitempty" xmlrpc:"masterUserId,omitempty"`
-
-	// no documentation yet
-	Token *string `json:"token,omitempty" xmlrpc:"token,omitempty"`
 }
 
 // The guest configuration container is used to provide configuration options for creating computing instances.

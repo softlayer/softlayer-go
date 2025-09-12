@@ -182,6 +182,7 @@ type Configuration_Template struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Account *Account `json:"account,omitempty" xmlrpc:"account,omitempty"`
 
 	// Internal identifier of a SoftLayer account that this configuration template belongs to
@@ -191,6 +192,7 @@ type Configuration_Template struct {
 	ConfigurationSectionCount *uint `json:"configurationSectionCount,omitempty" xmlrpc:"configurationSectionCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ConfigurationSections []Configuration_Template_Section `json:"configurationSections,omitempty" xmlrpc:"configurationSections,omitempty"`
 
 	// Created date
@@ -200,12 +202,14 @@ type Configuration_Template struct {
 	DefaultValueCount *uint `json:"defaultValueCount,omitempty" xmlrpc:"defaultValueCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	DefaultValues []Configuration_Template_Section_Definition_Value `json:"defaultValues,omitempty" xmlrpc:"defaultValues,omitempty"`
 
 	// A count of
 	DefinitionCount *uint `json:"definitionCount,omitempty" xmlrpc:"definitionCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Definitions []Configuration_Template_Section_Definition `json:"definitions,omitempty" xmlrpc:"definitions,omitempty"`
 
 	// Configuration template description
@@ -215,12 +219,14 @@ type Configuration_Template struct {
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Item *Product_Item `json:"item,omitempty" xmlrpc:"item,omitempty"`
 
 	// Internal identifier of a product item that this configuration template is associated with
 	ItemId *int `json:"itemId,omitempty" xmlrpc:"itemId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	LinkedSectionReferences *Configuration_Template_Section_Reference `json:"linkedSectionReferences,omitempty" xmlrpc:"linkedSectionReferences,omitempty"`
 
 	// Last modified date
@@ -230,12 +236,14 @@ type Configuration_Template struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Parent *Configuration_Template `json:"parent,omitempty" xmlrpc:"parent,omitempty"`
 
 	// Internal identifier of the parent configuration template
 	ParentId *int `json:"parentId,omitempty" xmlrpc:"parentId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	User *User_Customer `json:"user,omitempty" xmlrpc:"user,omitempty"`
 
 	// Internal identifier of a user that last modified this configuration template
@@ -247,6 +255,7 @@ type Configuration_Template_Attribute struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ConfigurationTemplate *Configuration_Template `json:"configurationTemplate,omitempty" xmlrpc:"configurationTemplate,omitempty"`
 
 	// Value of a configuration template attribute
@@ -266,24 +275,28 @@ type Configuration_Template_Section struct {
 	DefinitionCount *uint `json:"definitionCount,omitempty" xmlrpc:"definitionCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Definitions []Configuration_Template_Section_Definition `json:"definitions,omitempty" xmlrpc:"definitions,omitempty"`
 
 	// Configuration section description
 	Description *string `json:"description,omitempty" xmlrpc:"description,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	DisallowedDeletionFlag *bool `json:"disallowedDeletionFlag,omitempty" xmlrpc:"disallowedDeletionFlag,omitempty"`
 
 	// Internal identifier of a configuration section.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	LinkedTemplate *Configuration_Template `json:"linkedTemplate,omitempty" xmlrpc:"linkedTemplate,omitempty"`
 
 	// Internal identifier of a sub configuration template that this section points to. Use this property if you wish to create a reference to a sub configuration template when creating a linked section.
 	LinkedTemplateId *string `json:"linkedTemplateId,omitempty" xmlrpc:"linkedTemplateId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	LinkedTemplateReference *Configuration_Template_Section_Reference `json:"linkedTemplateReference,omitempty" xmlrpc:"linkedTemplateReference,omitempty"`
 
 	// Last modified date
@@ -299,12 +312,15 @@ type Configuration_Template_Section struct {
 	ProfileCount *uint `json:"profileCount,omitempty" xmlrpc:"profileCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Profiles []Configuration_Template_Section_Profile `json:"profiles,omitempty" xmlrpc:"profiles,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SectionType *Configuration_Template_Section_Type `json:"sectionType,omitempty" xmlrpc:"sectionType,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SectionTypeName *string `json:"sectionTypeName,omitempty" xmlrpc:"sectionTypeName,omitempty"`
 
 	// Sort order
@@ -314,9 +330,11 @@ type Configuration_Template_Section struct {
 	SubSectionCount *uint `json:"subSectionCount,omitempty" xmlrpc:"subSectionCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	SubSections []Configuration_Template_Section `json:"subSections,omitempty" xmlrpc:"subSections,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Template *Configuration_Template `json:"template,omitempty" xmlrpc:"template,omitempty"`
 
 	// Internal identifier of a configuration template that this section belongs to
@@ -331,6 +349,7 @@ type Configuration_Template_Section_Attribute struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ConfigurationSection *Configuration_Template_Section `json:"configurationSection,omitempty" xmlrpc:"configurationSection,omitempty"`
 
 	// Value of a configuration section attribute
@@ -347,12 +366,14 @@ type Configuration_Template_Section_Definition struct {
 	AttributeCount *uint `json:"attributeCount,omitempty" xmlrpc:"attributeCount,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Attributes []Configuration_Template_Section_Definition_Attribute `json:"attributes,omitempty" xmlrpc:"attributes,omitempty"`
 
 	// Created date
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	DefaultValue *Configuration_Template_Section_Definition_Value `json:"defaultValue,omitempty" xmlrpc:"defaultValue,omitempty"`
 
 	// Description of a configuration definition.
@@ -362,6 +383,7 @@ type Configuration_Template_Section_Definition struct {
 	EnumerationValues *string `json:"enumerationValues,omitempty" xmlrpc:"enumerationValues,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Group *Configuration_Template_Section_Definition_Group `json:"group,omitempty" xmlrpc:"group,omitempty"`
 
 	// Definition group id.
@@ -380,6 +402,7 @@ type Configuration_Template_Section_Definition struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringDataFlag *bool `json:"monitoringDataFlag,omitempty" xmlrpc:"monitoringDataFlag,omitempty"`
 
 	// Configuration definition name.
@@ -392,6 +415,7 @@ type Configuration_Template_Section_Definition struct {
 	RequireValueFlag *int `json:"requireValueFlag,omitempty" xmlrpc:"requireValueFlag,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Section *Configuration_Template_Section `json:"section,omitempty" xmlrpc:"section,omitempty"`
 
 	// Internal identifier of a configuration section.
@@ -407,6 +431,7 @@ type Configuration_Template_Section_Definition struct {
 	TypeId *int `json:"typeId,omitempty" xmlrpc:"typeId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ValueType *Configuration_Template_Section_Definition_Type `json:"valueType,omitempty" xmlrpc:"valueType,omitempty"`
 }
 
@@ -415,9 +440,11 @@ type Configuration_Template_Section_Definition_Attribute struct {
 	Entity
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	AttributeType *Configuration_Template_Section_Definition_Attribute_Type `json:"attributeType,omitempty" xmlrpc:"attributeType,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ConfigurationDefinition *Configuration_Template_Section_Definition `json:"configurationDefinition,omitempty" xmlrpc:"configurationDefinition,omitempty"`
 
 	// Value of a configuration definition attribute
@@ -452,6 +479,7 @@ type Configuration_Template_Section_Definition_Group struct {
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Parent *Configuration_Template_Section_Definition_Group `json:"parent,omitempty" xmlrpc:"parent,omitempty"`
 
 	// Sort order
@@ -480,6 +508,7 @@ type Configuration_Template_Section_Definition_Value struct {
 	CreateDate *Time `json:"createDate,omitempty" xmlrpc:"createDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Definition *Configuration_Template_Section_Definition `json:"definition,omitempty" xmlrpc:"definition,omitempty"`
 
 	// Internal identifier of a configuration definition that this configuration value if defined by
@@ -489,6 +518,7 @@ type Configuration_Template_Section_Definition_Value struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Template *Configuration_Template `json:"template,omitempty" xmlrpc:"template,omitempty"`
 
 	// Internal identifier of a configuration template that this configuration value belongs to
@@ -508,6 +538,7 @@ type Configuration_Template_Section_Profile struct {
 	AgentId *int `json:"agentId,omitempty" xmlrpc:"agentId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	ConfigurationSection *Configuration_Template_Section `json:"configurationSection,omitempty" xmlrpc:"configurationSection,omitempty"`
 
 	// Created date
@@ -537,12 +568,14 @@ type Configuration_Template_Section_Reference struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Section *Configuration_Template_Section `json:"section,omitempty" xmlrpc:"section,omitempty"`
 
 	// Internal identifier of a configuration section.
 	SectionId *int `json:"sectionId,omitempty" xmlrpc:"sectionId,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	Template *Configuration_Template `json:"template,omitempty" xmlrpc:"template,omitempty"`
 
 	// Internal identifier of a configuration template.

@@ -278,6 +278,12 @@ type Product_Item struct {
 	// Indicates a speed select server item.
 	SpeedSelectServerFlag *bool `json:"speedSelectServerFlag,omitempty" xmlrpc:"speedSelectServerFlag,omitempty"`
 
+	// A count of the supported settings profiles for a server product.
+	SupportedBiosSettingsProfileCount *uint `json:"supportedBiosSettingsProfileCount,omitempty" xmlrpc:"supportedBiosSettingsProfileCount,omitempty"`
+
+	// The supported settings profiles for a server product.
+	SupportedBiosSettingsProfiles []string `json:"supportedBiosSettingsProfiles,omitempty" xmlrpc:"supportedBiosSettingsProfiles,omitempty"`
+
 	// An item's tax category, if applicable.
 	TaxCategory *Product_Item_Tax_Category `json:"taxCategory,omitempty" xmlrpc:"taxCategory,omitempty"`
 
