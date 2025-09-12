@@ -573,12 +573,14 @@ type Virtual_Guest struct {
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringRobot *Monitoring_Robot `json:"monitoringRobot,omitempty" xmlrpc:"monitoringRobot,omitempty"`
 
 	// A virtual guest's network monitoring services.
 	MonitoringServiceComponent *Network_Monitor_Version1_Query_Host_Stratum `json:"monitoringServiceComponent,omitempty" xmlrpc:"monitoringServiceComponent,omitempty"`
 
 	// no documentation yet
+	// Deprecated: This function has been marked as deprecated.
 	MonitoringServiceEligibilityFlag *bool `json:"monitoringServiceEligibilityFlag,omitempty" xmlrpc:"monitoringServiceEligibilityFlag,omitempty"`
 
 	// The monitoring notification objects for this guest. Each object links this guest instance to a user account that will be notified if monitoring on this guest object fails
@@ -1361,10 +1363,6 @@ type Virtual_Host struct {
 
 	// Unique ID for a virtual host.
 	Id *int `json:"id,omitempty" xmlrpc:"id,omitempty"`
-
-	// [DEPRECATED] - The metric tracking object for this virtual host.
-	// Deprecated: This function has been marked as deprecated.
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
 
 	// The date a virtual host was last modified.
 	ModifyDate *Time `json:"modifyDate,omitempty" xmlrpc:"modifyDate,omitempty"`

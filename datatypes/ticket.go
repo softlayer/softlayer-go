@@ -403,12 +403,14 @@ type Ticket_Attachment_Network_Storage_Mass_Data_Migration struct {
 	Ticket_Attachment
 
 	// The Mass Data Migration request that is attached to a ticket.
+	// Deprecated: This function has been marked as deprecated.
 	Request *Network_Storage_MassDataMigration_Request `json:"request,omitempty" xmlrpc:"request,omitempty"`
 
 	// no documentation yet
 	RequestId *int `json:"requestId,omitempty" xmlrpc:"requestId,omitempty"`
 
 	// The Mass Data Migration request that is attached to a ticket.
+	// Deprecated: This function has been marked as deprecated.
 	Resource *Network_Storage_MassDataMigration_Request `json:"resource,omitempty" xmlrpc:"resource,omitempty"`
 }
 

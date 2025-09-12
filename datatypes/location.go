@@ -62,10 +62,6 @@ type Location struct {
 	// A longer location description.
 	LongName *string `json:"longName,omitempty" xmlrpc:"longName,omitempty"`
 
-	// [DEPRECATED] - A location's metric tracking object.
-	// Deprecated: This function has been marked as deprecated.
-	MetricTrackingObject *Metric_Tracking_Object `json:"metricTrackingObject,omitempty" xmlrpc:"metricTrackingObject,omitempty"`
-
 	// A short location description.
 	Name *string `json:"name,omitempty" xmlrpc:"name,omitempty"`
 

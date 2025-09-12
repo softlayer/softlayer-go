@@ -713,6 +713,7 @@ type Account struct {
 	NasNetworkStorageCount *uint `json:"nasNetworkStorageCount,omitempty" xmlrpc:"nasNetworkStorageCount,omitempty"`
 
 	// [Deprecated] Whether or not this account can define their own networks.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkCreationFlag *bool `json:"networkCreationFlag,omitempty" xmlrpc:"networkCreationFlag,omitempty"`
 
 	// A count of all network gateway devices on this account.
@@ -785,6 +786,7 @@ type Account struct {
 	NetworkTunnelContextCount *uint `json:"networkTunnelContextCount,omitempty" xmlrpc:"networkTunnelContextCount,omitempty"`
 
 	// IPSec network tunnels for an account.
+	// Deprecated: This function has been marked as deprecated.
 	NetworkTunnelContexts []Network_Tunnel_Module_Context `json:"networkTunnelContexts,omitempty" xmlrpc:"networkTunnelContexts,omitempty"`
 
 	// A count of all network VLANs assigned to an account.
@@ -1001,12 +1003,14 @@ type Account struct {
 	PostalCode *string `json:"postalCode,omitempty" xmlrpc:"postalCode,omitempty"`
 
 	// (Deprecated) Boolean flag dictating whether or not this account supports PPTP VPN Access.
+	// Deprecated: This function has been marked as deprecated.
 	PptpVpnAllowedFlag *bool `json:"pptpVpnAllowedFlag,omitempty" xmlrpc:"pptpVpnAllowedFlag,omitempty"`
 
 	// A count of an account's associated portal users with PPTP VPN access. (Deprecated)
 	PptpVpnUserCount *uint `json:"pptpVpnUserCount,omitempty" xmlrpc:"pptpVpnUserCount,omitempty"`
 
 	// An account's associated portal users with PPTP VPN access. (Deprecated)
+	// Deprecated: This function has been marked as deprecated.
 	PptpVpnUsers []User_Customer `json:"pptpVpnUsers,omitempty" xmlrpc:"pptpVpnUsers,omitempty"`
 
 	// A count of an account's invoices in the PRE_OPEN status.

@@ -126,13 +126,6 @@ var _ = Describe("Location Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Location::getMetricTrackingObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMetricTrackingObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Location::getNetworkConfigurationAttribute", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetNetworkConfigurationAttribute()
@@ -369,13 +362,6 @@ var _ = Describe("Location Tests", func() {
 		Context("SoftLayer_Location_Datacenter::getLocationStatus", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetLocationStatus()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Location_Datacenter::getMetricTrackingObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMetricTrackingObject()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

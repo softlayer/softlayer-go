@@ -1182,27 +1182,6 @@ func (r Virtual_Guest) GetCpuMetricDataByDate(startDateTime *datatypes.Time, end
 	return
 }
 
-// Use this method when needing a cpu usage image for a single guest.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.
-func (r Virtual_Guest) GetCpuMetricImage(snapshotRange *string, dateSpecified *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		snapshotRange,
-		dateSpecified,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCpuMetricImage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method when needing a CPU usage image for a single guest.  It will gather the correct input parameters for the generic graphing utility based on the date ranges
-func (r Virtual_Guest) GetCpuMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time, cpuIndexes []int) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-		cpuIndexes,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getCpuMetricImageByDate", params, &r.Options, &resp)
-	return
-}
-
 // There are many options that may be provided while ordering a computing instance, this method can be used to determine what these options are.
 //
 // Detailed information on the return value can be found on the data type page for [[SoftLayer_Container_Virtual_Guest_Configuration (type)]].
@@ -1421,26 +1400,6 @@ func (r Virtual_Guest) GetMemoryMetricDataByDate(startDateTime *datatypes.Time, 
 		endDateTime,
 	}
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricDataByDate", params, &r.Options, &resp)
-	return
-}
-
-// Use this method when needing a memory usage image for a single guest.  It will gather the correct input parameters for the generic graphing utility automatically based on the snapshot specified.
-func (r Virtual_Guest) GetMemoryMetricImage(snapshotRange *string, dateSpecified *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		snapshotRange,
-		dateSpecified,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricImage", params, &r.Options, &resp)
-	return
-}
-
-// Use this method when needing a image displaying the amount of memory used over time for a single computing instance. It will gather the correct input parameters for the generic graphing utility based on the date ranges
-func (r Virtual_Guest) GetMemoryMetricImageByDate(startDateTime *datatypes.Time, endDateTime *datatypes.Time) (resp datatypes.Container_Bandwidth_GraphOutputs, err error) {
-	params := []interface{}{
-		startDateTime,
-		endDateTime,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest", "getMemoryMetricImageByDate", params, &r.Options, &resp)
 	return
 }
 
@@ -2384,15 +2343,6 @@ func (r Virtual_Guest_Block_Device_Template_Group) GetRegions() (resp []datatype
 	return
 }
 
-// no documentation yet
-func (r Virtual_Guest_Block_Device_Template_Group) GetRiasAccount(secret *string) (resp datatypes.Container_Virtual_Guest_Block_Device_Template_Group_RiasAccount, err error) {
-	params := []interface{}{
-		secret,
-	}
-	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getRiasAccount", params, &r.Options, &resp)
-	return
-}
-
 // Retrieve The ssh keys to be implemented on the server when provisioned or reloaded from an image template group.
 func (r Virtual_Guest_Block_Device_Template_Group) GetSshKeys() (resp []datatypes.Security_Ssh_Key, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Guest_Block_Device_Template_Group", "getSshKeys", nil, &r.Options, &resp)
@@ -2888,12 +2838,6 @@ func (r Virtual_Host) GetAccount() (resp datatypes.Account, err error) {
 // Retrieve The hardware record which a virtual host resides on.
 func (r Virtual_Host) GetHardware() (resp datatypes.Hardware_Server, err error) {
 	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getHardware", nil, &r.Options, &resp)
-	return
-}
-
-// Retrieve [DEPRECATED] - The metric tracking object for this virtual host.
-func (r Virtual_Host) GetMetricTrackingObject() (resp datatypes.Metric_Tracking_Object, err error) {
-	err = r.Session.DoRequest("SoftLayer_Virtual_Host", "getMetricTrackingObject", nil, &r.Options, &resp)
 	return
 }
 

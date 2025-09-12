@@ -1618,13 +1618,6 @@ var _ = Describe("Hardware Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Hardware_Component_Model::getMetricTrackingObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMetricTrackingObject()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Hardware_Component_Model::getObject", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetObject()

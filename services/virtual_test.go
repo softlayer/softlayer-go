@@ -872,20 +872,6 @@ var _ = Describe("Virtual Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Virtual_Guest::getCpuMetricImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetCpuMetricImage(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Guest::getCpuMetricImageByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetCpuMetricImageByDate(nil, nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Virtual_Guest::getCreateObjectOptions", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetCreateObjectOptions()
@@ -1127,20 +1113,6 @@ var _ = Describe("Virtual Tests", func() {
 		Context("SoftLayer_Virtual_Guest::getMemoryMetricDataByDate", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetMemoryMetricDataByDate(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Guest::getMemoryMetricImage", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMemoryMetricImage(nil, nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Guest::getMemoryMetricImageByDate", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMemoryMetricImageByDate(nil, nil)
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
@@ -2099,13 +2071,6 @@ var _ = Describe("Virtual Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
-		Context("SoftLayer_Virtual_Guest_Block_Device_Template_Group::getRiasAccount", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetRiasAccount(nil)
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
 		Context("SoftLayer_Virtual_Guest_Block_Device_Template_Group::getSshKeys", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetSshKeys()
@@ -2579,13 +2544,6 @@ var _ = Describe("Virtual Tests", func() {
 		Context("SoftLayer_Virtual_Host::getHardware", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetHardware()
-				Expect(err).To(Succeed())
-				Expect(slsession.DoRequestCallCount()).To(Equal(1))
-			})
-		})
-		Context("SoftLayer_Virtual_Host::getMetricTrackingObject", func() {
-			It("API Call Test", func() {
-				_, err := sl_service.GetMetricTrackingObject()
 				Expect(err).To(Succeed())
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})

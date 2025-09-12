@@ -357,6 +357,13 @@ var _ = Describe("Product Tests", func() {
 				Expect(slsession.DoRequestCallCount()).To(Equal(1))
 			})
 		})
+		Context("SoftLayer_Product_Item::getSupportedBiosSettingsProfiles", func() {
+			It("API Call Test", func() {
+				_, err := sl_service.GetSupportedBiosSettingsProfiles()
+				Expect(err).To(Succeed())
+				Expect(slsession.DoRequestCallCount()).To(Equal(1))
+			})
+		})
 		Context("SoftLayer_Product_Item::getTaxCategory", func() {
 			It("API Call Test", func() {
 				_, err := sl_service.GetTaxCategory()

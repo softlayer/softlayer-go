@@ -332,6 +332,12 @@ func (r Product_Item) GetSpeedSelectServerFlag() (resp bool, err error) {
 	return
 }
 
+// Retrieve The supported settings profiles for a server product.
+func (r Product_Item) GetSupportedBiosSettingsProfiles() (resp []string, err error) {
+	err = r.Session.DoRequest("SoftLayer_Product_Item", "getSupportedBiosSettingsProfiles", nil, &r.Options, &resp)
+	return
+}
+
 // Retrieve An item's tax category, if applicable.
 func (r Product_Item) GetTaxCategory() (resp datatypes.Product_Item_Tax_Category, err error) {
 	err = r.Session.DoRequest("SoftLayer_Product_Item", "getTaxCategory", nil, &r.Options, &resp)
